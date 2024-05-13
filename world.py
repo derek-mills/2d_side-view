@@ -104,14 +104,14 @@ class World(object):
                     next_step_checked = True
                     checking_unit.is_enough_space_for_step = True
 
-            if obs.rectangle.colliderect((checking_unit.rectangle.left + 10, checking_unit.rectangle.top - 25), (checking_unit.rectangle.width - 20, 1)) \
-                    and (obs.Platform or obs.Obstacle):
+            if obs.rectangle.colliderect((checking_unit.rectangle.left + 10, checking_unit.rectangle.top - 25), (checking_unit.rectangle.width - 20, 1)):
 
                 checking_unit.is_enough_space_above = False
                 above_checked = True
                 continue
             if obs.rectangle.colliderect((checking_unit.rectangle.left , checking_unit.rectangle.bottom + 20), (checking_unit.rectangle.width, 2)):
                 checking_unit.is_enough_space_below = False
+                #checking_unit.is_stand_on_ground = True
                 if obs.is_ghost_platform:
                     checking_unit.is_on_ghost_platform = True
                 else:
@@ -132,29 +132,41 @@ class World(object):
             checking_unit.is_enough_space_for_step = False
 
     def processing_collisions(self, checking_unit):
+        checking_unit.is_enough_space_left = True
+        checking_unit.is_enough_space_right = True
+        checking_unit.is_enough_space_above = True
+        checking_unit.is_stand_on_ground = False
         for key in self.obstacles[self.location].keys():
             obs = self.obstacles[self.location][key]
             # if obs.rectangle.colliderect(checking_unit.rectangle):
                 # print('collide')
+
             # CHECK RIGHT
             if checking_unit.heading[0] > 0:
-                if obs.rectangle.colliderect(checking_unit.rectangle.right, checking_unit.rectangle.top + 5, 2, checking_unit.rectangle.height - 35):
-                    checking_unit.rectangle.right = obs.rectangle.left - 2
+                if obs.rectangle.colliderect(checking_unit.rectangle.right, checking_unit.rectangle.top + 5, checking_unit.speed*2, checking_unit.rectangle.height - 35):
+                #if obs.rectangle.colliderect(checking_unit.rectangle.right, checking_unit.rectangle.top + 5, 2, checking_unit.rectangle.height - 35):
+                    checking_unit.rectangle.right = obs.rectangle.left  # - 2
                     checking_unit.is_enough_space_right = False
+                    #checking_unit.heading[0] = 0
+                    #checking_unit.is_need_to_jump = False
                     # checking_unit.fall_speed = 0
+                    checking_unit.speed = 0
                     continue
                     # checking_unit.destination[0] = checking_unit.rectangle.centerx
 
             # CHECK LEFT
             if checking_unit.heading[0] < 0:
-                if obs.rectangle.colliderect(checking_unit.rectangle.left -2, checking_unit.rectangle.top + 5, 2, checking_unit.rectangle.height - 35):
-                    checking_unit.rectangle.left = obs.rectangle.right + 2
+                if obs.rectangle.colliderect(checking_unit.rectangle.left -checking_unit.speed*2, checking_unit.rectangle.top + 5, checking_unit.speed*2, checking_unit.rectangle.height - 35):
+                #if obs.rectangle.colliderect(checking_unit.rectangle.left -2, checking_unit.rectangle.top + 5, 2, checking_unit.rectangle.height - 35):
+                    checking_unit.rectangle.left = obs.rectangle.right #+ 2
                     checking_unit.is_enough_space_left = False
+                    #checking_unit.is_need_to_jump = False
+                    #checking_unit.heading[0] = 0
                     # checking_unit.fall_speed = 0
+                    checking_unit.speed = 0
                     continue
 
-            checking_unit.is_enough_space_left = True
-            checking_unit.is_enough_space_right = True
+
 
             # CHECK TOP
             if checking_unit.fall_speed < 0:
@@ -200,8 +212,12 @@ class World(object):
     def processing_actors(self):
         for key in self.actors[self.location].keys():
             actor = self.actors[self.location][key]
-            actor.is_stand_on_ground = False
+            #actor.is_stand_on_ground = False
+            #actor.is_enough_space_above = True
+            #self.processing_collisions(actor)
 
+            self.processing_free_space_checking(actor)
+            
             if key == 0:  # Player's actor routines
                 if self.is_input_left_arrow:
                     actor.heading[0] = -1
@@ -216,7 +232,7 @@ class World(object):
                     actor.speed = 0
                     # actor.destination[0] = actor.rectangle.centerx
 
-                if self.is_spacebar:
+                if self.is_spacebar and actor.is_enough_space_above and actor.is_stand_on_ground:
                     self.is_spacebar = False
                     actor.is_need_to_jump = True
                     # actor.is_stand_on_ground = False
@@ -224,6 +240,7 @@ class World(object):
             actor.process(self.time_passed)
             # self.processing_free_space_checking(actor)
             self.processing_collisions(actor)
+            #actor.is_stand_on_ground = False
 
     def render_background(self):
         pygame.draw.rect(self.screen, BLACK, (0,0,MAXX, MAXY))

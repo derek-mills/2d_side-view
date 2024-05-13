@@ -16,11 +16,11 @@ class Entity(object):
         self.look: str = 'right'
 
         # MOVEMENT
-        self.acceleration: float = 1.
+        self.acceleration: float = .3
         self.speed: float = 0.
         # self.speed_direction: int = 0
         self.speed_reduce = 0.0005
-        self.default_max_speed: float = 5.0  # Maximum speed cap for this creature
+        self.default_max_speed: float = 15.0  # Maximum speed cap for this creature
         self.max_speed: float = self.default_max_speed
         self.max_speed_penalty = 1
         self.heading: list = [0, 0]
@@ -81,7 +81,7 @@ class Entity(object):
 
     def move(self):
         if self.heading[0] != 0:
-            if self.speed < self.max_speed:
+            if self.speed < self.max_speed and self.is_stand_on_ground:
                 self.speed += self.acceleration
             self.rectangle.x += (self.speed * self.heading[0])
 

@@ -55,7 +55,7 @@ obs = {
 world.add_obstacle(obs)
 
 obs = {
-    'xy': (0, MAXY_DIV_2+150),
+    'xy': (0, MAXY_DIV_2+250),
     'dimensions': (200, 50),
     'is gravity affected': False
 }
