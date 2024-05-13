@@ -13,6 +13,8 @@ class Entity(object):
         # GEOMETRY
         self.rectangle = pygame.Rect(0, 0, 50, 50)
 
+        self.look: str = 'right'
+
         # MOVEMENT
         self.acceleration: float = 0.1
         self.speed: float = 0.
@@ -30,14 +32,52 @@ class Entity(object):
         # self.destination_point = 0
         self.destination: list = [0, 0]
         self.is_destination_reached: bool = False
+        self.collided_top: bool = False
+        self.collided_left: bool = False
+        self.collided_right: bool = False
+        self.collided_bottom: bool = False
+
+        self.is_on_obstacle: bool = False
+        self.is_on_ghost_platform: bool = False
+        self.is_enough_space_above = False
+        self.is_enough_space_below = False  # Флаг для определения возможности 'спрыгивания' со специальных платформ.
+        self.is_enough_space_for_step = True  # Флаг для определения возможности сделать следующий шаг по горизонтальной платформе;
+        #                                         не предусматривает отсутствие препятствия сбоку.
+        self.is_enough_space_right = True
+        self.is_enough_space_left = True
+
+    def process(self, time_passed):
+        if self.is_gravity_affected:
+            if not self.is_stand_on_ground:
+                # self.destination[1] = MAXY
+                self.fall()
+        if self.rectangle.center != self.destination:
+            self.move(time_passed)
+            if self.heading[0] > 1:
+                self.look = 'right'
+            elif self.heading[0] < 1:
+                self.look = 'left'
 
     def fall(self):
-        if not self.is_stand_on_ground:
-            # self.StandingOnSuchPlatformID = -1
+        # self.StandingOnSuchPlatformID = -1
+        # if self.fall_speed == 0:
+        #     print('pppp')
+        #     self.destination[1] = self.rectangle.centery
+
+        if self.fall_speed > GRAVITY_G:
+            self.fall_speed = GRAVITY_G
+        else:
             self.fall_speed += GRAVITY
-            if self.fall_speed > 19:
-                self.fall_speed = 19
-            self.rectangle.y += self.fall_speed
+        # self.destination[1] = MAXY
+        # else:
+        #     self.fall_speed = 0
+        # elif self.fall_speed < 0:
+        #     self.destination[1] = 0
+        #     self.rectangle.y += self.fall_speed
+
+        self.destination[1] = MAXY
+        self.rectangle.y += self.fall_speed
+
 
     def move(self, time_passed):
         vec_to_destination = list((self.destination[0] - self.rectangle.centerx, self.destination[1] - self.rectangle.centery))
@@ -87,14 +127,8 @@ class Entity(object):
 
             # print(f'BEFORe: {self.rectangle.center=} {vec_to_destination=}')
             self.rectangle.centerx += round(vec_to_destination[0])
-            self.rectangle.centery += round(vec_to_destination[1])  #+ self.fall_speed
+            self.rectangle.centery += round(vec_to_destination[1])
             # self.rectangle.center += vec_to_destination
             # print(f'AFTER: {self.rectangle.center=}')
             # print('-'*100)
             # self.rectangle_central_spot = self.rectangle.inflate(-self.rectangle.height // 3, -self.rectangle.width // 2)
-
-    def process(self, time_passed):
-        if self.is_gravity_affected:
-            self.fall()
-        if self.rectangle.center != self.destination:
-            self.move(time_passed)

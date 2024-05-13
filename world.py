@@ -1,5 +1,7 @@
 from actor import *
+from obstacle import *
 from constants import *
+import fonts
 
 class World(object):
     def __init__(self):
@@ -61,20 +63,95 @@ class World(object):
         entity.id = self.actor_id
         entity.is_gravity_affected = True
         entity.rectangle.center = description['xy']
+        entity.destination[0] = entity.rectangle.centerx
+        entity.destination[1] = entity.rectangle.centery
+
         if self.location not in self.actors.keys():
             self.actors[self.location] = dict()
         self.actors[self.location][entity.id] = entity
         self.actor_id += 1
-        # elif description['type'] == 'obstacle':
-        #     entity = Obstacle()
-        #     entity.id = self.obstacle_id
-        #     self.obstacle_id += 1
+
+    def add_obstacle(self, description):
+        entity = Obstacle()
+        entity.id = self.obstacle_id
+        entity.is_gravity_affected = description['is gravity affected']
+        entity.rectangle.topleft = description['xy']
+        entity.rectangle.width = description['dimensions'][0]
+        entity.rectangle.height = description['dimensions'][1]
+        if self.location not in self.obstacles.keys():
+            self.obstacles[self.location] = dict()
+        self.obstacles[self.location][entity.id] = entity
+        self.obstacle_id += 1
 
     def process(self, time_passed):
         self.time_passed = time_passed
         self.processing_human_input()
         self.processing_actors()
         self.render_all()
+
+    def processing_free_space_checking(self, checking_unit):
+        above_checked = False
+        below_checked = False
+        next_step_checked = False
+
+        for obs in self.obstacles[self.location].values():
+            if checking_unit.look == 'right':
+                if obs.rectangle.colliderect((checking_unit.rectangle.right + 5, checking_unit.rectangle.bottom + 10), (1, 1)):# or \
+                    next_step_checked = True
+                    checking_unit.is_enough_space_for_step = True
+            elif checking_unit.look == 'left':
+                if obs.rectangle.colliderect((checking_unit.rectangle.left - 5, checking_unit.rectangle.bottom + 10), (1, 1)):# or \
+                    next_step_checked = True
+                    checking_unit.is_enough_space_for_step = True
+
+            if obs.rectangle.colliderect((checking_unit.rectangle.left + 10, checking_unit.rectangle.top - 25), (checking_unit.rectangle.width - 20, 1)) \
+                    and (obs.Platform or obs.Obstacle):
+
+                checking_unit.is_enough_space_above = False
+                above_checked = True
+                continue
+            if obs.rectangle.colliderect((checking_unit.rectangle.left , checking_unit.rectangle.bottom + 20), (checking_unit.rectangle.width, 2)):
+                checking_unit.is_enough_space_below = False
+                if obs.is_ghost_platform:
+                    checking_unit.is_on_ghost_platform = True
+                else:
+                    checking_unit.is_on_ghost_platform = False
+                # if obs.Obstacle:
+                #     checking_unit.IsOnObstacle = True
+                # else:
+                checking_unit.is_on_obstacle = True
+                below_checked = True
+                continue
+            if above_checked and below_checked and next_step_checked:
+                return
+        if not above_checked:
+            checking_unit.is_enough_space_above = True
+        if not below_checked:
+            checking_unit.is_enough_space_below = True
+        if not next_step_checked:
+            checking_unit.is_enough_space_for_step = False
+
+    def processing_collisions(self, checking_unit):
+        for key in self.obstacles[self.location].keys():
+            obs = self.obstacles[self.location][key]
+            if obs.rectangle.colliderect(checking_unit.rectangle):
+                # print('collide')
+                if checking_unit.heading[0] > 0:
+                    if obs.rectangle.colliderect(checking_unit.rectangle.right, checking_unit.rectangle.top + 5, 10, checking_unit.rectangle.height - 35):
+                        checking_unit.rectangle.right = obs.rectangle.left - 2
+                        # checking_unit.destination[0] = checking_unit.rectangle.centerx
+                if checking_unit.heading[1] > 0:
+                    if obs.rectangle.colliderect(checking_unit.rectangle.left + 2, checking_unit.rectangle.bottom, checking_unit.rectangle.width - 4, 2):
+                        checking_unit.rectangle.bottom = obs.rectangle.top
+                        # checking_unit.rectangle.centery = checking_unit.rectangle.centery
+                        checking_unit.destination[1] = checking_unit.rectangle.centery
+                        checking_unit.is_stand_on_ground = True
+                        checking_unit.fall_speed = 0
+                        # checking_unit.is_need_to_jump = False
+                        continue
+            # else:
+            #     checking_unit.is_stand_on_ground = False
+            #     return
 
     def processing_actors(self):
         for key in self.actors[self.location].keys():
@@ -91,9 +168,11 @@ class World(object):
                 if self.is_spacebar:
                     self.is_spacebar = False
                     actor.is_need_to_jump = True
+                    actor.is_stand_on_ground = False
 
             actor.process(self.time_passed)
-
+            # self.processing_free_space_checking(actor)
+            self.processing_collisions(actor)
 
     def render_background(self):
         pygame.draw.rect(self.screen, BLACK, (0,0,MAXX, MAXY))
@@ -103,9 +182,16 @@ class World(object):
             actor = self.actors[self.location][key]
             pygame.draw.rect(self.screen, GREEN, (actor.rectangle.x, actor.rectangle.y, actor.rectangle.width, actor.rectangle.height), 2)
 
+    def render_obstacles(self):
+        for key in self.obstacles[self.location].keys():
+            obs = self.obstacles[self.location][key]
+            pygame.draw.rect(self.screen, WHITE, (obs.rectangle.x, obs.rectangle.y, obs.rectangle.width, obs.rectangle.height), 5)
+
     def render_all(self):
         self.render_background()
+        self.render_obstacles()
         self.render_actors()
+        self.render_debug_info()
 
     def processing_human_input(self):
         # self.mouse_xy = pygame.mouse.get_pos()
@@ -248,3 +334,24 @@ class World(object):
                     self.is_right_mouse_button_down = False
                 if self.is_left_mouse_button_down:
                     self.is_left_mouse_button_down = False
+
+    def render_debug_info(self):
+        stats_x = 1
+        stats_y = 1
+        # stripes_width = 500
+        gap = 1
+        font_size = 12
+        # m_hover_item = 'None' if not self.mouse_hovers_item else self.items[self.mouse_hovers_item].name
+        # m_hover_actor = 'None' if not self.mouse_hovers_actor else self.wandering_actors[self.mouse_hovers_actor].name + ' ' + str(self.wandering_actors[self.mouse_hovers_actor].id)
+        # m_hover_cell = 'None' if self.point_mouse_cursor_shows is None else str(self.locations[self.location]['points'][self.point_mouse_cursor_shows]['rect'].center)
+        params = (
+            ('ACTOR HEADING: ' + str(self.actors[self.location][0].heading), WHITE),
+            ('ACTOR RECT: ' + str(self.actors[self.location][0].rectangle), WHITE),
+            ('ACTOR IS ON OBS: ' + str(self.actors[self.location][0].is_on_obstacle), WHITE),
+            ('ACTOR IS ON GROUND: ' + str(self.actors[self.location][0].is_stand_on_ground), WHITE),
+            ('ACTOR FALL: ' + str(self.actors[self.location][0].fall_speed), WHITE),
+
+        )
+        for p in params:
+            self.screen.blit(fonts.all_fonts[font_size].render(p[0], True, p[1], BLACK), (stats_x, stats_y + gap))
+            gap += font_size

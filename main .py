@@ -43,9 +43,17 @@ world.location = 'default'
 if world.location not in world.locations.keys():
     world.locations[world.location] = dict()
 player = {
-    'xy': (MAXX_DIV_2, MAXY_DIV_2)
+    'xy': (MAXX_DIV_2, 0)
 }
 world.add_actor(player)
+
+obs = {
+    'xy': (0, MAXY-50),
+    'dimensions': (MAXX, 50),
+    'is gravity affected': False
+}
+world.add_obstacle(obs)
+
 def main():
     max_fps = 0
     # location = ('apartment_01_main_room', 172)
