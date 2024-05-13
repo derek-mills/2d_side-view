@@ -1,0 +1,100 @@
+import pygame
+from math import sqrt
+from constants import *
+
+class Entity(object):
+
+    def __init__(self):
+        self.id:int = 0
+        self.type: str = ''  #
+        self.name: str = ''
+        self.location: str = ''
+
+        # GEOMETRY
+        self.rectangle = pygame.Rect(0, 0, 50, 50)
+
+        # MOVEMENT
+        self.acceleration: float = 0.1
+        self.speed: float = 0.
+        self.speed_reduce = 0.0005
+        self.default_max_speed: float = 0.4  # Maximum speed cap for this creature
+        self.max_speed: float = self.default_max_speed
+        self.max_speed_penalty = 1
+        self.heading = (0, 0)
+        self.travel_distance: float = 0.
+        self.potential_moving_distance: float = 0.
+        self.fall_speed: float = 0.
+        self.is_stand_on_ground: bool = False
+        self.is_gravity_affected: bool = False
+        self.destination_list = list()
+        # self.destination_point = 0
+        self.destination: list = [0, 0]
+        self.is_destination_reached: bool = False
+
+    def fall(self):
+        if not self.is_stand_on_ground:
+            # self.StandingOnSuchPlatformID = -1
+            self.fall_speed += GRAVITY
+            if self.fall_speed > 19:
+                self.fall_speed = 19
+            self.rectangle.y += self.fall_speed
+
+    def move(self, time_passed):
+        vec_to_destination = list((self.destination[0] - self.rectangle.centerx, self.destination[1] - self.rectangle.centery))
+        # vec_to_destination = Vector2(self.destination[0] - self.rectangle.centerx, self.destination[1] - self.rectangle.centery)
+        # print(vec_to_destination)
+        # print(vec_to_destination[0], vec_to_destination[1])
+        # distance_to_destination = vec_to_destination.get_approximate_length()
+
+        if vec_to_destination == (0, 0) or self.destination == self.rectangle.center:
+            self.is_destination_reached = True
+            self.speed = 0
+            self.heading = (0, 0)
+            # if self.particle and self.liquid_drop:
+            #     self.gravity_affected = False
+            #     self.fall_speed = 0
+            #     # print(f'[creature move] Particle {self.id}: destination reached!!')
+            # # self.state = 'stay still'
+            return
+        else:
+            # self.state = 'move'
+            self.is_destination_reached = False
+
+        distance_to_destination = sqrt(vec_to_destination[0] * vec_to_destination[0] + vec_to_destination[1] * vec_to_destination[1])
+        # distance_to_destination = vec_to_destination.get_length()
+
+        if distance_to_destination > 0:
+            # Calculate normalized vector to apply animation set correctly in the future:
+            # self.heading = vec_to_destination.get_normalized()
+            self.heading = (vec_to_destination[0] / distance_to_destination, vec_to_destination[1] / distance_to_destination)
+            # self.heading = Vector2.from_floats(vec_to_destination[0] / distance_to_destination, vec_to_destination[1] / distance_to_destination)
+
+            self.speed = self.max_speed * self.max_speed_penalty  # * 0.5
+            # self.action_points_need_to_move_straight = 10 / self.fly_speed
+            # self.action_points_need_to_move_diagonal = 1.41 * (10 / self.fly_speed)
+            # self.fly_speed = self.max_fly_speed - (self.max_fly_speed / 100) * self.max_fly_speed_penalty
+            # Define the potential length of current move, depends on basic speed and passed amount of time:
+            self.potential_moving_distance = time_passed * self.speed
+            # Define current distance to travel:
+            self.travel_distance = min(distance_to_destination, self.potential_moving_distance)
+            # Set the length of moving vector equal to travel distance, which had already just been calculated:
+            l = self.travel_distance / distance_to_destination
+            # if self.battle_mode and self.hasten_mode:
+            #     self.decrease_stamina(l)
+            vec_to_destination[0] *= l
+            vec_to_destination[1] *= l
+            # vec_to_destination.set_length(self.travel_distance)
+
+            # print(f'BEFORe: {self.rectangle.center=} {vec_to_destination=}')
+            self.rectangle.centerx += round(vec_to_destination[0])
+            self.rectangle.centery += round(vec_to_destination[1])  #+ self.fall_speed
+            # self.rectangle.center += vec_to_destination
+            # print(f'AFTER: {self.rectangle.center=}')
+            # print('-'*100)
+            # self.rectangle_central_spot = self.rectangle.inflate(-self.rectangle.height // 3, -self.rectangle.width // 2)
+
+    def process(self, time_passed):
+        if self.is_gravity_affected:
+            self.fall()
+        if self.rectangle.center != self.destination:
+            self.move(time_passed)
