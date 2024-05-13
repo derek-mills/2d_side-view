@@ -43,7 +43,7 @@ world.location = 'default'
 if world.location not in world.locations.keys():
     world.locations[world.location] = dict()
 player = {
-    'xy': (MAXX_DIV_2, 0)
+    'xy': (100, 0)
 }
 world.add_actor(player)
 
@@ -53,6 +53,41 @@ obs = {
     'is gravity affected': False
 }
 world.add_obstacle(obs)
+
+obs = {
+    'xy': (0, MAXY_DIV_2+150),
+    'dimensions': (200, 50),
+    'is gravity affected': False
+}
+world.add_obstacle(obs)
+
+obs = {
+    'xy': (300, MAXY_DIV_2),
+    'dimensions': (200, 50),
+    'is gravity affected': False
+}
+world.add_obstacle(obs)
+
+obs = {
+    'xy': (MAXX_DIV_2, 0),
+    'dimensions': (10, MAXY),
+    'is gravity affected': False
+}
+world.add_obstacle(obs)
+
+obs = {
+    'xy': (0,0),
+    'dimensions': (10, MAXY),
+    'is gravity affected': False
+}
+world.add_obstacle(obs)
+
+# obs = {
+#     'xy': (0,0),
+#     'dimensions': (10, MAXY),
+#     'is gravity affected': False
+# }
+# world.add_obstacle(obs)
 
 def main():
     max_fps = 0

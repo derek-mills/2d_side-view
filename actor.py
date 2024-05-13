@@ -18,6 +18,6 @@ class Actor(Entity):
             self.fall_speed = -self.jump_height
             self.is_need_to_jump = False
             self.is_stand_on_ground = False
-            self.destination[1] = 0
+            # self.destination[1] = 0
 
         super().process(time_passed)

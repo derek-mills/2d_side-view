@@ -16,13 +16,14 @@ class Entity(object):
         self.look: str = 'right'
 
         # MOVEMENT
-        self.acceleration: float = 0.1
+        self.acceleration: float = 1.
         self.speed: float = 0.
+        # self.speed_direction: int = 0
         self.speed_reduce = 0.0005
-        self.default_max_speed: float = 0.4  # Maximum speed cap for this creature
+        self.default_max_speed: float = 5.0  # Maximum speed cap for this creature
         self.max_speed: float = self.default_max_speed
         self.max_speed_penalty = 1
-        self.heading = (0, 0)
+        self.heading: list = [0, 0]
         self.travel_distance: float = 0.
         self.potential_moving_distance: float = 0.
         self.fall_speed: float = 0.
@@ -52,18 +53,18 @@ class Entity(object):
                 # self.destination[1] = MAXY
                 self.fall()
         if self.rectangle.center != self.destination:
-            self.move(time_passed)
-            if self.heading[0] > 1:
-                self.look = 'right'
-            elif self.heading[0] < 1:
-                self.look = 'left'
+            self.move()
+
+            # if self.heading[0] > 1:
+            #     self.look = 'right'
+            # elif self.heading[0] < 1:
+            #     self.look = 'left'
 
     def fall(self):
         # self.StandingOnSuchPlatformID = -1
         # if self.fall_speed == 0:
         #     print('pppp')
         #     self.destination[1] = self.rectangle.centery
-
         if self.fall_speed > GRAVITY_G:
             self.fall_speed = GRAVITY_G
         else:
@@ -75,11 +76,17 @@ class Entity(object):
         #     self.destination[1] = 0
         #     self.rectangle.y += self.fall_speed
 
-        self.destination[1] = MAXY
+        # self.destination[1] = MAXY
         self.rectangle.y += self.fall_speed
 
+    def move(self):
+        if self.heading[0] != 0:
+            if self.speed < self.max_speed:
+                self.speed += self.acceleration
+            self.rectangle.x += (self.speed * self.heading[0])
 
-    def move(self, time_passed):
+
+    def fly(self, time_passed):
         vec_to_destination = list((self.destination[0] - self.rectangle.centerx, self.destination[1] - self.rectangle.centery))
         # vec_to_destination = Vector2(self.destination[0] - self.rectangle.centerx, self.destination[1] - self.rectangle.centery)
         # print(vec_to_destination)
