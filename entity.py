@@ -21,6 +21,8 @@ class Entity(object):
         self.is_need_to_jump: bool = False
         self.default_acceleration: float = .5
         self.acceleration: float = self.default_acceleration
+        self.default_air_acceleration: float = .1
+        self.air_acceleration: float = self.default_air_acceleration
         self.speed: float = 0.
         self.jump_height: int = 22
         # self.speed_direction: int = 0
@@ -57,10 +59,12 @@ class Entity(object):
         if self.is_need_to_move_left:
             # self.heading[0] = -1
             if self.is_edge_grabbed:
-                if self.look == -1:
-                    self.is_need_to_jump = True
-                    self.is_edge_grabbed = False
-                elif self.look == 1:
+                # if self.look == -1:
+                #     self.is_need_to_jump = True
+                #     self.is_edge_grabbed = False
+                #     self.heading[0] = -1
+                # elif self.look == 1:
+                if self.look == 1:
                     self.is_edge_grabbed = False
 
             if self.look == 1 and self.speed > 0:  # Actor looks to the other side and runs.
@@ -77,10 +81,13 @@ class Entity(object):
             # self.is_edge_grabbed = False
             # self.heading[0] = 1
             if self.is_edge_grabbed:
-                if self.look == 1:
-                    self.is_need_to_jump = True
-                    self.is_edge_grabbed = False
-                elif self.look == -1:
+                # if self.look == 1:
+                #     self.is_need_to_jump = True
+                #     self.is_edge_grabbed = False
+                #     # self.heading[0] = 1
+                #     # self.is_stand_on_ground = True
+                # elif self.look == -1:
+                if self.look == -1:
                     self.is_edge_grabbed = False
 
             if self.look == -1 and self.speed > 0:  # Actor looks to the other side and runs.
@@ -141,11 +148,21 @@ class Entity(object):
     def move(self):
         if self.heading[0] == 0:
             if self.speed > 0:
-                self.speed -= self.acceleration
+                if self.is_stand_on_ground:
+                    self.speed -= self.acceleration
+                else:
+                    self.speed -= self.air_acceleration
+
+                # self.speed -= self.acceleration
                 self.speed = max(self.speed, 0)
         else:
-            if self.speed < self.max_speed and self.is_stand_on_ground:
-                self.speed += self.acceleration
+            if self.speed < self.max_speed:
+                if self.is_stand_on_ground:
+                    self.speed += self.acceleration
+                else:
+                    self.speed += self.air_acceleration
+            # if self.speed < self.max_speed and self.is_stand_on_ground:
+            #     self.speed += self.acceleration
         self.rectangle.x += int(self.speed * self.look)
 
 

@@ -114,7 +114,21 @@
       <option name="project" value="LOCAL" />
       <updated>1715650851690</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Fixed annoying bug when direction of movement doesn't change properly if opposite direction buttons pressed too quickly one by one.">
+      <created>1715654231412</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1715654231412</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Added the edges grabbing ability.">
+      <created>1715659368450</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1715659368450</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -134,6 +148,8 @@
     <MESSAGE value="Continue improving collisions" />
     <MESSAGE value="added some files" />
     <MESSAGE value="Improved collisions, movement inertness." />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved collisions, movement inertness." />
+    <MESSAGE value="Fixed annoying bug when direction of movement doesn't change properly if opposite direction buttons pressed too quickly one by one." />
+    <MESSAGE value="Added the edges grabbing ability." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added the edges grabbing ability." />
   </component>
 </project>

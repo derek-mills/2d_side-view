@@ -267,7 +267,7 @@ class World(object):
                     # actor.heading[0] = 0
 
                 if self.is_spacebar:
-                    if actor.is_stand_on_ground:
+                    if actor.is_stand_on_ground or actor.is_edge_grabbed:
                     # if actor.is_enough_space_above and actor.is_stand_on_ground:
                         self.is_spacebar = False
                         actor.is_need_to_jump = True
