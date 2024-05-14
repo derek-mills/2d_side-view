@@ -162,6 +162,8 @@ class World(object):
                     checking_unit.is_stand_on_ground = True
                     checking_unit.fall_speed = 0
                     checking_unit.is_enough_space_below = False
+                    checking_unit.jump_attempts_counter = checking_unit.max_jump_attempts
+                    self.is_spacebar = False
                     # checking_unit.is_need_to_jump = False
                     continue
 
@@ -180,6 +182,7 @@ class World(object):
                         checking_unit.is_enough_space_left = False
                         checking_unit.heading[0] = 0
                         checking_unit.speed = 0
+                        checking_unit.jump_attempts_counter = checking_unit.max_jump_attempts
                         return
                     checking_unit.rectangle.left = obs.rectangle.right
                     checking_unit.is_enough_space_left = False
@@ -204,6 +207,7 @@ class World(object):
                         checking_unit.is_enough_space_right = False
                         checking_unit.heading[0] = 0
                         checking_unit.speed = 0
+                        checking_unit.jump_attempts_counter = checking_unit.max_jump_attempts
                         # checking_unit.is_need_to_jump = False
                         return
 
@@ -272,11 +276,20 @@ class World(object):
                     # actor.heading[0] = 0
 
                 if self.is_spacebar:
-                    if actor.is_stand_on_ground or actor.is_edge_grabbed:
-                    #     self.is_spacebar = False
+                    # if actor.is_stand_on_ground or actor.is_edge_grabbed:
+                    # self.is_spacebar = False
+                    # if actor.jump_attempts_counter == actor.max_jump_attempts:
+                    if not actor.just_got_jumped:
+                        actor.just_got_jumped = True
+                        actor.jump_attempts_counter -= 1
                         actor.is_need_to_jump = True
                     actor.is_need_to_abort_jump = False
                 else:
+                    # if actor.fall_speed > 0:
+                    #     actor.jump_attempts_counter -= 1
+                    if actor.just_got_jumped:
+                        # actor.jump_attempts_counter -= 1
+                        actor.just_got_jumped = False
                     actor.is_need_to_abort_jump = True
                     # else:
                     #     actor.is_need_to_grab_edge = True
@@ -467,6 +480,8 @@ class World(object):
             ('ACTOR SPEED: ' + str(self.actors[self.location][0].speed), WHITE),
             ('ACTOR LOOK: ' + str(self.actors[self.location][0].look), WHITE),
             ('ACTOR GRAB: ' + str(self.actors[self.location][0].is_edge_grabbed), WHITE),
+            ('ACTOR JUMP ATTMPS: ' + str(self.actors[self.location][0].jump_attempts_counter), WHITE),
+            ('ACTOR JUST JUMPED: ' + str(self.actors[self.location][0].just_got_jumped), WHITE),
 
 
         )

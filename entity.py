@@ -26,6 +26,9 @@ class Entity(object):
         self.air_acceleration: float = self.default_air_acceleration
         self.speed: float = 0.
         self.jump_height: int = 22
+        self.max_jump_attempts: int = 3  # n-1 attempts to do a jump in midair.
+        self.jump_attempts_counter: int = 0
+        self.just_got_jumped: bool = False
         self.default_max_speed: float = 15.0  # Maximum speed cap for this creature
         self.max_speed: float = self.default_max_speed
         self.max_speed_penalty = 1
@@ -105,9 +108,11 @@ class Entity(object):
         else:
             self.heading[0] = 0
 
-        if self.is_need_to_jump:
+        if self.is_need_to_jump and self.jump_attempts_counter > 0:
             # Jump
             # self.fall_speed = -self.jump_height_counter
+            # if self.just_got_jumped:
+            #     self.jump_attempts_counter -= 1
             self.fall_speed = -self.jump_height
             self.is_need_to_jump = False
             self.is_stand_on_ground = False

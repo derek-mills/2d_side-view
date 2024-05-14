@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -37,7 +38,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/media/sid/d90c7353-09c5-492a-aa88-66d695362d79/sid/scripts/python/pygame/Arcade_side-view/23-1/Creature.py",
+    "last_opened_file_path": "/media/sid/d90c7353-09c5-492a-aa88-66d695362d79/sid/scripts/python/pygame/Arcade_side-view/23-1/Player.py",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
@@ -141,7 +142,21 @@
       <option name="project" value="LOCAL" />
       <updated>1715664980030</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Fixed bug when jumping up under the very close obstacle caused passing inside this obstacle.">
+      <created>1715666708461</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1715666708461</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Added relative jump height depends on how long the jump button being hold.">
+      <created>1715671174631</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1715671174631</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -165,6 +180,8 @@
     <MESSAGE value="Added the edges grabbing ability." />
     <MESSAGE value="Added air acceleration" />
     <MESSAGE value="Added jump over an obstacle after grabbing the edge." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added jump over an obstacle after grabbing the edge." />
+    <MESSAGE value="Fixed bug when jumping up under the very close obstacle caused passing inside this obstacle." />
+    <MESSAGE value="Added relative jump height depends on how long the jump button being hold." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added relative jump height depends on how long the jump button being hold." />
   </component>
 </project>
