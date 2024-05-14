@@ -47,47 +47,13 @@ player = {
 }
 world.add_actor(player)
 
-obs = {
-    'xy': (0, MAXY-50),
-    'dimensions': (MAXX, 50),
-    'is gravity affected': False
-}
-world.add_obstacle(obs)
 
-obs = {
-    'xy': (0, MAXY_DIV_2+250),
-    'dimensions': (200, 50),
-    'is gravity affected': False
-}
-world.add_obstacle(obs)
+o = (((0, MAXY-50),(MAXX, 50)), ((0, MAXY_DIV_2+250), (200, 50)),
+     ((300, MAXY_DIV_2), (200, 50)), ((MAXX_DIV_2, MAXY_DIV_2 + 150), (10, MAXY_DIV_2)),  ((0,0), (10, MAXY)))
+for obs in o:
+    world.add_obstacle({'xy': obs[0], 'dimensions': obs[1], 'is gravity affected': False})
 
-obs = {
-    'xy': (300, MAXY_DIV_2),
-    'dimensions': (200, 50),
-    'is gravity affected': False
-}
-world.add_obstacle(obs)
 
-obs = {
-    'xy': (MAXX_DIV_2, 0),
-    'dimensions': (10, MAXY),
-    'is gravity affected': False
-}
-world.add_obstacle(obs)
-
-obs = {
-    'xy': (0,0),
-    'dimensions': (10, MAXY),
-    'is gravity affected': False
-}
-world.add_obstacle(obs)
-
-# obs = {
-#     'xy': (0,0),
-#     'dimensions': (10, MAXY),
-#     'is gravity affected': False
-# }
-# world.add_obstacle(obs)
 
 def main():
     max_fps = 0

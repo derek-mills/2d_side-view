@@ -19,14 +19,13 @@ class Entity(object):
         self.is_need_to_move_right: bool = False
         self.is_need_to_move_left: bool = False
         self.is_need_to_jump: bool = False
-        self.default_acceleration: float = .5
+        self.is_need_to_abort_jump: bool = False
+        self.default_acceleration: float = .8
         self.acceleration: float = self.default_acceleration
         self.default_air_acceleration: float = .1
         self.air_acceleration: float = self.default_air_acceleration
         self.speed: float = 0.
         self.jump_height: int = 22
-        # self.speed_direction: int = 0
-        # self.speed_reduce = 0.0005
         self.default_max_speed: float = 15.0  # Maximum speed cap for this creature
         self.max_speed: float = self.default_max_speed
         self.max_speed_penalty = 1
@@ -108,25 +107,17 @@ class Entity(object):
 
         if self.is_need_to_jump:
             # Jump
-            # if self.is_stand_on_ground:  # and self.IsEnoughSpaceAbove:
-                # self.IsCrouch = False
-                # self.IsUp = False
+            # self.fall_speed = -self.jump_height_counter
             self.fall_speed = -self.jump_height
             self.is_need_to_jump = False
             self.is_stand_on_ground = False
-            # self.destination[1] = 0
+        # else:
+        #     self.fall_speed = 0
 
         if self.is_gravity_affected:
             if not self.is_stand_on_ground and not self.is_edge_grabbed:
-                # self.destination[1] = MAXY
                 self.fall()
-        # if self.rectangle.center != self.destination:
         self.move()
-
-            # if self.heading[0] > 1:
-            #     self.look = 'right'
-            # elif self.heading[0] < 1:
-            #     self.look = 'left'
 
     def fall(self):
         # self.StandingOnSuchPlatformID = -1
@@ -137,6 +128,14 @@ class Entity(object):
             self.fall_speed = GRAVITY_G
         else:
             self.fall_speed += GRAVITY
+
+        if self.is_need_to_abort_jump:
+            if self.fall_speed >= 0:
+                self.is_need_to_abort_jump = False
+            else:
+                self.fall_speed = 0
+                self.is_need_to_abort_jump = False
+
         # self.destination[1] = MAXY
         # else:
         #     self.fall_speed = 0

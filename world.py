@@ -273,10 +273,11 @@ class World(object):
 
                 if self.is_spacebar:
                     if actor.is_stand_on_ground or actor.is_edge_grabbed:
-                    # if actor.is_enough_space_above and actor.is_stand_on_ground:
-                        self.is_spacebar = False
+                    #     self.is_spacebar = False
                         actor.is_need_to_jump = True
-                        # actor.is_need_to_grab_edge = True
+                    actor.is_need_to_abort_jump = False
+                else:
+                    actor.is_need_to_abort_jump = True
                     # else:
                     #     actor.is_need_to_grab_edge = True
 
