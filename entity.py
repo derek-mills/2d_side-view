@@ -16,7 +16,10 @@ class Entity(object):
         self.look: int = 1
 
         # MOVEMENT
-        self.acceleration: float = .5
+        self.is_need_to_move_right: bool = False
+        self.is_need_to_move_left: bool = False
+        self.default_acceleration: float = .5
+        self.acceleration: float = self.default_acceleration
         self.speed: float = 0.
         # self.speed_direction: int = 0
         # self.speed_reduce = 0.0005
@@ -48,6 +51,25 @@ class Entity(object):
         self.is_enough_space_left = True
 
     def process(self, time_passed):
+        if self.is_need_to_move_left:
+            self.heading[0] = -1
+            if self.look == 1 and self.speed > 0:  # Actor looks to the other side and runs.
+                # Switch off heading to force actor start reducing his speed and slow it down to zero.
+                # After that self is going to be able to start acceleration to proper direction.
+                self.heading[0] = 0
+            else:
+                self.look = -1
+        elif self.is_need_to_move_right:
+            self.heading[0] = 1
+            if self.look == -1 and self.speed > 0:  # Actor looks to the other side and runs.
+                # Switch off heading to force actor start reducing his speed and slow it down to zero.
+                # After that self is going to be able to start acceleration to proper direction.
+                self.heading[0] = 0
+            else:
+                self.look = 1
+        else:
+            self.heading[0] = 0
+
         if self.is_gravity_affected:
             if not self.is_stand_on_ground:
                 # self.destination[1] = MAXY

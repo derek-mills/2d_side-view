@@ -149,7 +149,7 @@ class World(object):
                     checking_unit.rectangle.left = obs.rectangle.right
                     checking_unit.is_enough_space_left = False
                     #checking_unit.is_need_to_jump = False
-                    #checking_unit.heading[0] = 0
+                    checking_unit.heading[0] = 0
                     # checking_unit.fall_speed = 0
                     checking_unit.speed = 0
                     continue
@@ -161,7 +161,7 @@ class World(object):
                 #if obs.rectangle.colliderect(checking_unit.rectangle.right, checking_unit.rectangle.top + 5, 2, checking_unit.rectangle.height - 35):
                     checking_unit.rectangle.right = obs.rectangle.left  # - 2
                     checking_unit.is_enough_space_right = False
-                    #checking_unit.heading[0] = 0
+                    checking_unit.heading[0] = 0
                     #checking_unit.is_need_to_jump = False
                     # checking_unit.fall_speed = 0
                     checking_unit.speed = 0
@@ -221,24 +221,33 @@ class World(object):
             # self.processing_free_space_checking(actor)
             
             if key == 0:  # Player's actor routines
+                actor.is_need_to_move_left = False
+                actor.is_need_to_move_right = False
+
                 if self.is_input_left_arrow:
-                    actor.heading[0] = -1
-                    if actor.look == 1 and actor.speed > 0:  # Actor looks to the other side and runs.
-                        # Switch off heading to force actor start reducing his speed and slow it down to zero.
-                        # After that actor is going to be able to start acceleration to proper direction.
-                        actor.heading[0] = 0
-                    else:
-                        actor.look = -1
+                    actor.is_need_to_move_left = True
+                    # actor.is_need_to_move_right = False
+
+                    # actor.heading[0] = -1
+                    # if actor.look == 1 and actor.speed > 0:  # Actor looks to the other side and runs.
+                    #     # Switch off heading to force actor start reducing his speed and slow it down to zero.
+                    #     # After that actor is going to be able to start acceleration to proper direction.
+                    #     actor.heading[0] = 0
+                    # else:
+                    #     actor.look = -1
                 elif self.is_input_right_arrow:
-                    actor.heading[0] = 1
-                    if actor.look == -1 and actor.speed > 0:  # Actor looks to the other side and runs.
-                        # Switch off heading to force actor start reducing his speed and slow it down to zero.
-                        # After that actor is going to be able to start acceleration to proper direction.
-                        actor.heading[0] = 0
-                    else:
-                        actor.look = 1
-                else:
-                    actor.heading[0] = 0
+                    actor.is_need_to_move_right = True
+                    # actor.is_need_to_move_left = False
+
+                    # actor.heading[0] = 1
+                    # if actor.look == -1 and actor.speed > 0:  # Actor looks to the other side and runs.
+                    #     # Switch off heading to force actor start reducing his speed and slow it down to zero.
+                    #     # After that actor is going to be able to start acceleration to proper direction.
+                    #     actor.heading[0] = 0
+                    # else:
+                    #     actor.look = 1
+
+                    # actor.heading[0] = 0
 
                 if self.is_spacebar and actor.is_enough_space_above and actor.is_stand_on_ground:
                     self.is_spacebar = False
@@ -427,6 +436,7 @@ class World(object):
             ('ACTOR IS ON GROUND: ' + str(self.actors[self.location][0].is_stand_on_ground), WHITE),
             ('ACTOR FALL: ' + str(self.actors[self.location][0].fall_speed), WHITE),
             ('ACTOR SPEED: ' + str(self.actors[self.location][0].speed), WHITE),
+            ('ACTOR LOOK: ' + str(self.actors[self.location][0].look), GREEN),
 
 
         )

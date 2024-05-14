@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main .py" beforeDir="false" afterPath="$PROJECT_DIR$/main .py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -94,7 +93,28 @@
       <option name="project" value="LOCAL" />
       <updated>1715586441323</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Continue improving collisions">
+      <created>1715591913166</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1715591913166</updated>
+    </task>
+    <task id="LOCAL-00004" summary="added some files">
+      <created>1715591957462</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1715591957462</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Improved collisions, movement inertness.">
+      <created>1715650851690</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1715650851690</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -111,6 +131,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First initial commit." />
     <MESSAGE value="Basic bottom collision, jump and side-to-side movement achieved." />
-    <option name="LAST_COMMIT_MESSAGE" value="Basic bottom collision, jump and side-to-side movement achieved." />
+    <MESSAGE value="Continue improving collisions" />
+    <MESSAGE value="added some files" />
+    <MESSAGE value="Improved collisions, movement inertness." />
+    <option name="LAST_COMMIT_MESSAGE" value="Improved collisions, movement inertness." />
   </component>
 </project>
