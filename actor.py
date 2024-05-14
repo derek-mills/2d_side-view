@@ -10,7 +10,7 @@ class Actor(Entity):
         # self.edge
 
         self.jump_height: int = 22
-        self.rectangle.height = 180
+        self.rectangle.height = 150
 
 
     def process(self, time_passed):
