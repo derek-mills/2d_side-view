@@ -89,53 +89,55 @@ class World(object):
         self.processing_actors()
         self.render_all()
 
-    def processing_free_space_checking(self, checking_unit):
-        above_checked = False
-        below_checked = False
-        next_step_checked = False
-
-        for obs in self.obstacles[self.location].values():
-            if checking_unit.look == 'right':
-                if obs.rectangle.colliderect((checking_unit.rectangle.right + 5, checking_unit.rectangle.bottom + 10), (1, 1)):# or \
-                    next_step_checked = True
-                    checking_unit.is_enough_space_for_step = True
-            elif checking_unit.look == 'left':
-                if obs.rectangle.colliderect((checking_unit.rectangle.left - 5, checking_unit.rectangle.bottom + 10), (1, 1)):# or \
-                    next_step_checked = True
-                    checking_unit.is_enough_space_for_step = True
-
-            if obs.rectangle.colliderect((checking_unit.rectangle.left + 10, checking_unit.rectangle.top - 25), (checking_unit.rectangle.width - 20, 1)):
-
-                checking_unit.is_enough_space_above = False
-                above_checked = True
-                continue
-            if obs.rectangle.colliderect((checking_unit.rectangle.left , checking_unit.rectangle.bottom + 20), (checking_unit.rectangle.width, 2)):
-                checking_unit.is_enough_space_below = False
-                #checking_unit.is_stand_on_ground = True
-                if obs.is_ghost_platform:
-                    checking_unit.is_on_ghost_platform = True
-                else:
-                    checking_unit.is_on_ghost_platform = False
-                # if obs.Obstacle:
-                #     checking_unit.IsOnObstacle = True
-                # else:
-                checking_unit.is_on_obstacle = True
-                below_checked = True
-                continue
-            if above_checked and below_checked and next_step_checked:
-                return
-        if not above_checked:
-            checking_unit.is_enough_space_above = True
-        if not below_checked:
-            checking_unit.is_enough_space_below = True
-        if not next_step_checked:
-            checking_unit.is_enough_space_for_step = False
+    # def processing_free_space_checking(self, checking_unit):
+    #     above_checked = False
+    #     below_checked = False
+    #     next_step_checked = False
+    #
+    #     for obs in self.obstacles[self.location].values():
+    #         if checking_unit.look == 'right':
+    #             if obs.rectangle.colliderect((checking_unit.rectangle.right + 5, checking_unit.rectangle.bottom + 10), (1, 1)):# or \
+    #                 next_step_checked = True
+    #                 checking_unit.is_enough_space_for_step = True
+    #         elif checking_unit.look == 'left':
+    #             if obs.rectangle.colliderect((checking_unit.rectangle.left - 5, checking_unit.rectangle.bottom + 10), (1, 1)):# or \
+    #                 next_step_checked = True
+    #                 checking_unit.is_enough_space_for_step = True
+    #
+    #         if obs.rectangle.colliderect((checking_unit.rectangle.left + 10, checking_unit.rectangle.top - 25), (checking_unit.rectangle.width - 20, 1)):
+    #
+    #             checking_unit.is_enough_space_above = False
+    #             above_checked = True
+    #             continue
+    #         if obs.rectangle.colliderect((checking_unit.rectangle.left , checking_unit.rectangle.bottom + 20), (checking_unit.rectangle.width, 2)):
+    #             checking_unit.is_enough_space_below = False
+    #             #checking_unit.is_stand_on_ground = True
+    #             if obs.is_ghost_platform:
+    #                 checking_unit.is_on_ghost_platform = True
+    #             else:
+    #                 checking_unit.is_on_ghost_platform = False
+    #             # if obs.Obstacle:
+    #             #     checking_unit.IsOnObstacle = True
+    #             # else:
+    #             checking_unit.is_on_obstacle = True
+    #             below_checked = True
+    #             continue
+    #         if above_checked and below_checked and next_step_checked:
+    #             return
+    #     if not above_checked:
+    #         checking_unit.is_enough_space_above = True
+    #     if not below_checked:
+    #         checking_unit.is_enough_space_below = True
+    #     if not next_step_checked:
+    #         checking_unit.is_enough_space_for_step = False
 
     def processing_collisions(self, checking_unit):
         checking_unit.is_enough_space_left = True
         checking_unit.is_enough_space_right = True
         checking_unit.is_enough_space_above = True
         checking_unit.is_stand_on_ground = False
+        # checking_unit.is_edge_grabbed = False
+
         for key in self.obstacles[self.location].keys():
             obs = self.obstacles[self.location][key]
             # if obs.rectangle.colliderect(checking_unit.rectangle):
@@ -144,8 +146,19 @@ class World(object):
             # CHECK LEFT
             if checking_unit.look < 0:
             # if checking_unit.heading[0] < 0:
-                if obs.rectangle.colliderect(checking_unit.rectangle.left - abs(checking_unit.speed), checking_unit.rectangle.top + 5, abs(checking_unit.speed), checking_unit.rectangle.height - 35):
-                #if obs.rectangle.colliderect(checking_unit.rectangle.left -2, checking_unit.rectangle.top + 5, 2, checking_unit.rectangle.height - 35):
+                if obs.rectangle.colliderect(checking_unit.rectangle.left - checking_unit.speed - 5, checking_unit.rectangle.top + 5, checking_unit.speed + 5, checking_unit.rectangle.height - 35):
+                    if checking_unit.rectangle.top <= obs.rectangle.top and checking_unit.fall_speed > 0:
+                    # if checking_unit.rectangle.top <= obs.rectangle.top and checking_unit.is_need_to_grab_edge:
+                        print('GRAB LEFT')
+                        checking_unit.is_edge_grabbed = True
+                        checking_unit.rectangle.top = obs.rectangle.top
+                        checking_unit.fall_speed = 0
+                        checking_unit.is_stand_on_ground = True
+                        checking_unit.rectangle.left = obs.rectangle.right  # - 2
+                        checking_unit.is_enough_space_left = False
+                        checking_unit.heading[0] = 0
+                        checking_unit.speed = 0
+                        return
                     checking_unit.rectangle.left = obs.rectangle.right
                     checking_unit.is_enough_space_left = False
                     #checking_unit.is_need_to_jump = False
@@ -157,13 +170,23 @@ class World(object):
             # CHECK RIGHT
             if checking_unit.look > 0:
             # if checking_unit.heading[0] > 0:
-                if obs.rectangle.colliderect(checking_unit.rectangle.right, checking_unit.rectangle.top + 5, checking_unit.speed, checking_unit.rectangle.height - 35):
-                #if obs.rectangle.colliderect(checking_unit.rectangle.right, checking_unit.rectangle.top + 5, 2, checking_unit.rectangle.height - 35):
+                if obs.rectangle.colliderect(checking_unit.rectangle.right, checking_unit.rectangle.top + 5, checking_unit.speed + 5, checking_unit.rectangle.height - 35):
+                    if checking_unit.rectangle.top <= obs.rectangle.top and checking_unit.fall_speed > 0:
+                    # if checking_unit.rectangle.top <= obs.rectangle.top and checking_unit.is_need_to_grab_edge:
+                        print('GRAB RIGHT')
+                        checking_unit.is_edge_grabbed = True
+                        checking_unit.rectangle.top = obs.rectangle.top
+                        checking_unit.fall_speed = 0
+                        checking_unit.is_stand_on_ground = True
+                        checking_unit.rectangle.right = obs.rectangle.left  # - 2
+                        checking_unit.is_enough_space_right = False
+                        checking_unit.heading[0] = 0
+                        checking_unit.speed = 0
+                        return
+
                     checking_unit.rectangle.right = obs.rectangle.left  # - 2
                     checking_unit.is_enough_space_right = False
                     checking_unit.heading[0] = 0
-                    #checking_unit.is_need_to_jump = False
-                    # checking_unit.fall_speed = 0
                     checking_unit.speed = 0
                     continue
                     # checking_unit.destination[0] = checking_unit.rectangle.centerx
@@ -223,18 +246,12 @@ class World(object):
             if key == 0:  # Player's actor routines
                 actor.is_need_to_move_left = False
                 actor.is_need_to_move_right = False
+                # actor.is_need_to_grab_edge = False
+                actor.is_need_to_jump = False
 
                 if self.is_input_left_arrow:
                     actor.is_need_to_move_left = True
-                    # actor.is_need_to_move_right = False
 
-                    # actor.heading[0] = -1
-                    # if actor.look == 1 and actor.speed > 0:  # Actor looks to the other side and runs.
-                    #     # Switch off heading to force actor start reducing his speed and slow it down to zero.
-                    #     # After that actor is going to be able to start acceleration to proper direction.
-                    #     actor.heading[0] = 0
-                    # else:
-                    #     actor.look = -1
                 elif self.is_input_right_arrow:
                     actor.is_need_to_move_right = True
                     # actor.is_need_to_move_left = False
@@ -249,10 +266,16 @@ class World(object):
 
                     # actor.heading[0] = 0
 
-                if self.is_spacebar and actor.is_enough_space_above and actor.is_stand_on_ground:
-                    self.is_spacebar = False
-                    actor.is_need_to_jump = True
-                    # actor.is_stand_on_ground = False
+                if self.is_spacebar:
+                    if actor.is_stand_on_ground:
+                    # if actor.is_enough_space_above and actor.is_stand_on_ground:
+                        self.is_spacebar = False
+                        actor.is_need_to_jump = True
+                        # actor.is_need_to_grab_edge = True
+                    # else:
+                    #     actor.is_need_to_grab_edge = True
+
+
 
             actor.process(self.time_passed)
             # self.processing_free_space_checking(actor)
@@ -436,7 +459,8 @@ class World(object):
             ('ACTOR IS ON GROUND: ' + str(self.actors[self.location][0].is_stand_on_ground), WHITE),
             ('ACTOR FALL: ' + str(self.actors[self.location][0].fall_speed), WHITE),
             ('ACTOR SPEED: ' + str(self.actors[self.location][0].speed), WHITE),
-            ('ACTOR LOOK: ' + str(self.actors[self.location][0].look), GREEN),
+            ('ACTOR LOOK: ' + str(self.actors[self.location][0].look), WHITE),
+            ('ACTOR GRAB: ' + str(self.actors[self.location][0].is_edge_grabbed), WHITE),
 
 
         )

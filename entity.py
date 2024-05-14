@@ -18,9 +18,11 @@ class Entity(object):
         # MOVEMENT
         self.is_need_to_move_right: bool = False
         self.is_need_to_move_left: bool = False
+        self.is_need_to_jump: bool = False
         self.default_acceleration: float = .5
         self.acceleration: float = self.default_acceleration
         self.speed: float = 0.
+        self.jump_height: int = 22
         # self.speed_direction: int = 0
         # self.speed_reduce = 0.0005
         self.default_max_speed: float = 15.0  # Maximum speed cap for this creature
@@ -41,6 +43,7 @@ class Entity(object):
         self.collided_right: bool = False
         self.collided_bottom: bool = False
 
+        self.is_edge_grabbed: bool = False
         self.is_on_obstacle: bool = False
         self.is_on_ghost_platform: bool = False
         self.is_enough_space_above = False
@@ -52,26 +55,60 @@ class Entity(object):
 
     def process(self, time_passed):
         if self.is_need_to_move_left:
-            self.heading[0] = -1
+            # self.heading[0] = -1
+            if self.is_edge_grabbed:
+                if self.look == -1:
+                    self.is_need_to_jump = True
+                    self.is_edge_grabbed = False
+                elif self.look == 1:
+                    self.is_edge_grabbed = False
+
             if self.look == 1 and self.speed > 0:  # Actor looks to the other side and runs.
                 # Switch off heading to force actor start reducing his speed and slow it down to zero.
                 # After that self is going to be able to start acceleration to proper direction.
                 self.heading[0] = 0
+
+                # self.is_edge_grabbed = False
+                # self.is_need_to_jump = True
             else:
                 self.look = -1
+                self.heading[0] = -1
         elif self.is_need_to_move_right:
-            self.heading[0] = 1
+            # self.is_edge_grabbed = False
+            # self.heading[0] = 1
+            if self.is_edge_grabbed:
+                if self.look == 1:
+                    self.is_need_to_jump = True
+                    self.is_edge_grabbed = False
+                elif self.look == -1:
+                    self.is_edge_grabbed = False
+
             if self.look == -1 and self.speed > 0:  # Actor looks to the other side and runs.
                 # Switch off heading to force actor start reducing his speed and slow it down to zero.
                 # After that self is going to be able to start acceleration to proper direction.
                 self.heading[0] = 0
+
+                # self.is_edge_grabbed = False
+                # self.is_need_to_jump = True
+
             else:
                 self.look = 1
+                self.heading[0] = 1
         else:
             self.heading[0] = 0
 
+        if self.is_need_to_jump:
+            # Jump
+            # if self.is_stand_on_ground:  # and self.IsEnoughSpaceAbove:
+                # self.IsCrouch = False
+                # self.IsUp = False
+            self.fall_speed = -self.jump_height
+            self.is_need_to_jump = False
+            self.is_stand_on_ground = False
+            # self.destination[1] = 0
+
         if self.is_gravity_affected:
-            if not self.is_stand_on_ground:
+            if not self.is_stand_on_ground and not self.is_edge_grabbed:
                 # self.destination[1] = MAXY
                 self.fall()
         # if self.rectangle.center != self.destination:
