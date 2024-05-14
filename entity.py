@@ -13,13 +13,13 @@ class Entity(object):
         # GEOMETRY
         self.rectangle = pygame.Rect(0, 0, 50, 50)
 
-        self.look: str = 'right'
+        self.look: int = 1
 
         # MOVEMENT
-        self.acceleration: float = .3
+        self.acceleration: float = .5
         self.speed: float = 0.
         # self.speed_direction: int = 0
-        self.speed_reduce = 0.0005
+        # self.speed_reduce = 0.0005
         self.default_max_speed: float = 15.0  # Maximum speed cap for this creature
         self.max_speed: float = self.default_max_speed
         self.max_speed_penalty = 1
@@ -52,8 +52,8 @@ class Entity(object):
             if not self.is_stand_on_ground:
                 # self.destination[1] = MAXY
                 self.fall()
-        if self.rectangle.center != self.destination:
-            self.move()
+        # if self.rectangle.center != self.destination:
+        self.move()
 
             # if self.heading[0] > 1:
             #     self.look = 'right'
@@ -80,10 +80,14 @@ class Entity(object):
         self.rectangle.y += self.fall_speed
 
     def move(self):
-        if self.heading[0] != 0:
+        if self.heading[0] == 0:
+            if self.speed > 0:
+                self.speed -= self.acceleration
+                self.speed = max(self.speed, 0)
+        else:
             if self.speed < self.max_speed and self.is_stand_on_ground:
                 self.speed += self.acceleration
-            self.rectangle.x += (self.speed * self.heading[0])
+        self.rectangle.x += int(self.speed * self.look)
 
 
     def fly(self, time_passed):

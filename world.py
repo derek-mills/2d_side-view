@@ -141,9 +141,23 @@ class World(object):
             # if obs.rectangle.colliderect(checking_unit.rectangle):
                 # print('collide')
 
+            # CHECK LEFT
+            if checking_unit.look < 0:
+            # if checking_unit.heading[0] < 0:
+                if obs.rectangle.colliderect(checking_unit.rectangle.left - abs(checking_unit.speed), checking_unit.rectangle.top + 5, abs(checking_unit.speed), checking_unit.rectangle.height - 35):
+                #if obs.rectangle.colliderect(checking_unit.rectangle.left -2, checking_unit.rectangle.top + 5, 2, checking_unit.rectangle.height - 35):
+                    checking_unit.rectangle.left = obs.rectangle.right
+                    checking_unit.is_enough_space_left = False
+                    #checking_unit.is_need_to_jump = False
+                    #checking_unit.heading[0] = 0
+                    # checking_unit.fall_speed = 0
+                    checking_unit.speed = 0
+                    continue
+
             # CHECK RIGHT
-            if checking_unit.heading[0] > 0:
-                if obs.rectangle.colliderect(checking_unit.rectangle.right, checking_unit.rectangle.top + 5, checking_unit.speed*2, checking_unit.rectangle.height - 35):
+            if checking_unit.look > 0:
+            # if checking_unit.heading[0] > 0:
+                if obs.rectangle.colliderect(checking_unit.rectangle.right, checking_unit.rectangle.top + 5, checking_unit.speed, checking_unit.rectangle.height - 35):
                 #if obs.rectangle.colliderect(checking_unit.rectangle.right, checking_unit.rectangle.top + 5, 2, checking_unit.rectangle.height - 35):
                     checking_unit.rectangle.right = obs.rectangle.left  # - 2
                     checking_unit.is_enough_space_right = False
@@ -153,18 +167,6 @@ class World(object):
                     checking_unit.speed = 0
                     continue
                     # checking_unit.destination[0] = checking_unit.rectangle.centerx
-
-            # CHECK LEFT
-            if checking_unit.heading[0] < 0:
-                if obs.rectangle.colliderect(checking_unit.rectangle.left -checking_unit.speed*2, checking_unit.rectangle.top + 5, checking_unit.speed*2, checking_unit.rectangle.height - 35):
-                #if obs.rectangle.colliderect(checking_unit.rectangle.left -2, checking_unit.rectangle.top + 5, 2, checking_unit.rectangle.height - 35):
-                    checking_unit.rectangle.left = obs.rectangle.right #+ 2
-                    checking_unit.is_enough_space_left = False
-                    #checking_unit.is_need_to_jump = False
-                    #checking_unit.heading[0] = 0
-                    # checking_unit.fall_speed = 0
-                    checking_unit.speed = 0
-                    continue
 
 
 
@@ -216,21 +218,27 @@ class World(object):
             #actor.is_enough_space_above = True
             #self.processing_collisions(actor)
 
-            self.processing_free_space_checking(actor)
+            # self.processing_free_space_checking(actor)
             
             if key == 0:  # Player's actor routines
                 if self.is_input_left_arrow:
                     actor.heading[0] = -1
-                    # actor.look = 'left'
-                    # actor.destination[0] = actor.rectangle.left - 500
+                    if actor.look == 1 and actor.speed > 0:  # Actor looks to the other side and runs.
+                        # Switch off heading to force actor start reducing his speed and slow it down to zero.
+                        # After that actor is going to be able to start acceleration to proper direction.
+                        actor.heading[0] = 0
+                    else:
+                        actor.look = -1
                 elif self.is_input_right_arrow:
                     actor.heading[0] = 1
-                    # actor.look = 'right'
-                    # actor.destination[0] = actor.rectangle.right + 500
+                    if actor.look == -1 and actor.speed > 0:  # Actor looks to the other side and runs.
+                        # Switch off heading to force actor start reducing his speed and slow it down to zero.
+                        # After that actor is going to be able to start acceleration to proper direction.
+                        actor.heading[0] = 0
+                    else:
+                        actor.look = 1
                 else:
                     actor.heading[0] = 0
-                    actor.speed = 0
-                    # actor.destination[0] = actor.rectangle.centerx
 
                 if self.is_spacebar and actor.is_enough_space_above and actor.is_stand_on_ground:
                     self.is_spacebar = False
