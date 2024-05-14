@@ -182,6 +182,7 @@ class World(object):
                         checking_unit.is_enough_space_right = False
                         checking_unit.heading[0] = 0
                         checking_unit.speed = 0
+                        # checking_unit.is_need_to_jump = False
                         return
 
                     checking_unit.rectangle.right = obs.rectangle.left  # - 2
