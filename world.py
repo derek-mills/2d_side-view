@@ -143,10 +143,32 @@ class World(object):
             # if obs.rectangle.colliderect(checking_unit.rectangle):
                 # print('collide')
 
+            # CHECK TOP
+            if checking_unit.fall_speed < 0:
+                if obs.rectangle.colliderect(checking_unit.rectangle.left + 2, checking_unit.rectangle.top - int(checking_unit.fall_speed), checking_unit.rectangle.width - 4, int(checking_unit.fall_speed)):
+                    checking_unit.rectangle.top = obs.rectangle.bottom
+                    # checking_unit.destination[1] = checking_unit.rectangle.centery
+                    checking_unit.is_enough_space_above = False
+                    checking_unit.fall_speed = 0
+                    # checking_unit.is_need_to_jump = False
+                    continue
+
+            # CHECK BOTTOM
+            if checking_unit.fall_speed > 0:
+                # if checking_unit.heading[1] > 0:
+                if obs.rectangle.colliderect(checking_unit.rectangle.left + 2, checking_unit.rectangle.bottom, checking_unit.rectangle.width - 4, 2):
+                    checking_unit.rectangle.bottom = obs.rectangle.top
+                    # checking_unit.destination[1] = checking_unit.rectangle.centery
+                    checking_unit.is_stand_on_ground = True
+                    checking_unit.fall_speed = 0
+                    checking_unit.is_enough_space_below = False
+                    # checking_unit.is_need_to_jump = False
+                    continue
+
             # CHECK LEFT
             if checking_unit.look < 0:
             # if checking_unit.heading[0] < 0:
-                if obs.rectangle.colliderect(checking_unit.rectangle.left - checking_unit.speed - 5, checking_unit.rectangle.top + 5, checking_unit.speed + 5, checking_unit.rectangle.height - 35):
+                if obs.rectangle.colliderect(checking_unit.rectangle.left - checking_unit.speed - 10, checking_unit.rectangle.top + 5, checking_unit.speed + 10, checking_unit.rectangle.height - 35):
                     if checking_unit.rectangle.top <= obs.rectangle.top and checking_unit.fall_speed > 0:
                     # if checking_unit.rectangle.top <= obs.rectangle.top and checking_unit.is_need_to_grab_edge:
                         print('GRAB LEFT')
@@ -170,7 +192,7 @@ class World(object):
             # CHECK RIGHT
             if checking_unit.look > 0:
             # if checking_unit.heading[0] > 0:
-                if obs.rectangle.colliderect(checking_unit.rectangle.right, checking_unit.rectangle.top + 5, checking_unit.speed + 5, checking_unit.rectangle.height - 35):
+                if obs.rectangle.colliderect(checking_unit.rectangle.right, checking_unit.rectangle.top + 5, checking_unit.speed + 10, checking_unit.rectangle.height - 35):
                     if checking_unit.rectangle.top <= obs.rectangle.top and checking_unit.fall_speed > 0:
                     # if checking_unit.rectangle.top <= obs.rectangle.top and checking_unit.is_need_to_grab_edge:
                         print('GRAB RIGHT')
@@ -194,46 +216,28 @@ class World(object):
 
 
 
-            # CHECK TOP
-            if checking_unit.fall_speed < 0:
-                if obs.rectangle.colliderect(checking_unit.rectangle.left + 2, checking_unit.rectangle.top - 2, checking_unit.rectangle.width - 4, 2):
-                    checking_unit.rectangle.top = obs.rectangle.bottom + 2
-                    # checking_unit.destination[1] = checking_unit.rectangle.centery
-                    checking_unit.is_enough_space_above = False
-                    checking_unit.fall_speed = 0
-                    # checking_unit.is_need_to_jump = False
-                    continue
+            # # CHECK TOP
+            # if checking_unit.fall_speed < 0:
+            #     if obs.rectangle.colliderect(checking_unit.rectangle.left + 2, checking_unit.rectangle.top - int(checking_unit.fall_speed), checking_unit.rectangle.width - 4, int(checking_unit.fall_speed)):
+            #         checking_unit.rectangle.top = obs.rectangle.bottom + 2
+            #         # checking_unit.destination[1] = checking_unit.rectangle.centery
+            #         checking_unit.is_enough_space_above = False
+            #         checking_unit.fall_speed = 0
+            #         # checking_unit.is_need_to_jump = False
+            #         continue
+            #
+            # # CHECK BOTTOM
+            # if checking_unit.fall_speed > 0:
+            #     # if checking_unit.heading[1] > 0:
+            #     if obs.rectangle.colliderect(checking_unit.rectangle.left + 2, checking_unit.rectangle.bottom, checking_unit.rectangle.width - 4, 2):
+            #         checking_unit.rectangle.bottom = obs.rectangle.top
+            #         # checking_unit.destination[1] = checking_unit.rectangle.centery
+            #         checking_unit.is_stand_on_ground = True
+            #         checking_unit.fall_speed = 0
+            #         checking_unit.is_enough_space_below = False
+            #         # checking_unit.is_need_to_jump = False
+            #         continue
 
-            # CHECK BOTTOM
-            if checking_unit.fall_speed > 0:
-                # if checking_unit.heading[1] > 0:
-                if obs.rectangle.colliderect(checking_unit.rectangle.left + 2, checking_unit.rectangle.bottom, checking_unit.rectangle.width - 4, 2):
-                    checking_unit.rectangle.bottom = obs.rectangle.top
-                    # checking_unit.destination[1] = checking_unit.rectangle.centery
-                    checking_unit.is_stand_on_ground = True
-                    checking_unit.fall_speed = 0
-                    checking_unit.is_enough_space_below = False
-                    # checking_unit.is_need_to_jump = False
-                    continue
-
-                # if checking_unit.heading[0] > 0:
-                #     if obs.rectangle.colliderect(checking_unit.rectangle.right, checking_unit.rectangle.top + 5, 2, checking_unit.rectangle.height - 35):
-                #         checking_unit.rectangle.right = obs.rectangle.left - 2
-                #         continue
-                #         # checking_unit.destination[0] = checking_unit.rectangle.centerx
-                # elif checking_unit.heading[0] < 0:
-                #     if obs.rectangle.colliderect(checking_unit.rectangle.left -2, checking_unit.rectangle.top + 5, 2, checking_unit.rectangle.height - 35):
-                #         checking_unit.rectangle.left = obs.rectangle.right + 2
-                #         continue
-                #
-                # if checking_unit.heading[1] > 0:
-                #     if obs.rectangle.colliderect(checking_unit.rectangle.left + 2, checking_unit.rectangle.bottom, checking_unit.rectangle.width - 4, 2):
-                #         checking_unit.rectangle.bottom = obs.rectangle.top
-                #         checking_unit.destination[1] = checking_unit.rectangle.centery
-                #         checking_unit.is_stand_on_ground = True
-                #         checking_unit.fall_speed = 0
-                #         # checking_unit.is_need_to_jump = False
-                #         continue
 
     def processing_actors(self):
         for key in self.actors[self.location].keys():
