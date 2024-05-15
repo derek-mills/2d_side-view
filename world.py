@@ -53,7 +53,7 @@ class World(object):
 
         self.screen = None
         self.camera = camera.Camera()
-        self.camera.setup(MAXX*2, 0)
+        self.camera.setup(MAXX*2, MAXY)
         self.time_passed: int = 0
         self.game_cycles_counter: int = 0
         self.is_quit:bool = False
@@ -90,7 +90,8 @@ class World(object):
         self.time_passed = time_passed
         self.processing_human_input()
         self.processing_actors()
-        self.camera.apply_offset(self.actors[self.location][0].rectangle.center)
+        self.camera.apply_offset(self.actors[self.location][0].rectangle.center,
+                                 self.actors[self.location][0].speed * 0.9, self.actors[self.location][0].fall_speed)
         self.render_all()
 
     def processing_collisions(self, checking_unit):

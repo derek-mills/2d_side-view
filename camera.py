@@ -10,24 +10,23 @@ class Camera(object):
         self.target_offset_x: int = 0
         self.target_offset_y: int = 0
         self.instant_follow: bool = False
-        self.default_offset_scroll_velocity = 25
-        self.offset_scroll_velocity = self.default_offset_scroll_velocity
+        self.default_offset_scroll_velocity = 1
+        self.offset_scroll_velocity_x = 0
+        self.offset_scroll_velocity_y = 0
 
 
     def setup(self, max_offset_x, max_offset_y):
         self.max_offset_x = max_offset_x
         self.max_offset_y = max_offset_y
 
-    def apply_offset(self, xy):
+    def apply_offset(self, xy, velocity_x, velocity_y, instant_follow=False):
 
         x = xy[0]
         y = xy[1]
-        # self.scroll_counter_x = 0
-        # self.scroll_counter_y = 0
-        # self.allow_screen_scrolling_x = True
-        # self.allow_screen_scrolling_y = True
-        # print('AA')
-    
+        self.offset_scroll_velocity_x = velocity_x
+        self.offset_scroll_velocity_y = velocity_y
+        self.instant_follow = instant_follow
+
         if x <= MAXX_DIV_2:
             self.target_offset_x = 0
         else:
@@ -44,19 +43,19 @@ class Camera(object):
     
         if self.instant_follow:
             self.instant_follow = False
-            self.offset_x = self.target_offset_x
-            self.offset_y = self.target_offset_y
+            self.offset_x = int(self.target_offset_x)
+            self.offset_y = int(self.target_offset_y)
         else:
-            if self.offset_x <= self.target_offset_x - self.offset_scroll_velocity:
-                self.offset_x += self.offset_scroll_velocity
-            elif self.offset_x > self.target_offset_x + self.offset_scroll_velocity:
-                self.offset_x -= self.offset_scroll_velocity
+            if self.offset_x <= self.target_offset_x - self.offset_scroll_velocity_x:
+                self.offset_x += int(self.offset_scroll_velocity_x)
+            elif self.offset_x > self.target_offset_x + self.offset_scroll_velocity_x:
+                self.offset_x -= int(self.offset_scroll_velocity_x)
             else:
-                self.offset_x = self.target_offset_x
+                self.offset_x = int(self.target_offset_x)
     
-            if self.offset_y <= self.target_offset_y - self.offset_scroll_velocity:
-                self.offset_y += self.offset_scroll_velocity
-            elif self.offset_y > self.target_offset_y + self.offset_scroll_velocity:
-                self.offset_y -= self.offset_scroll_velocity
+            if self.offset_y <= self.target_offset_y - self.offset_scroll_velocity_y:
+                self.offset_y += int(self.offset_scroll_velocity_y)
+            elif self.offset_y > self.target_offset_y + self.offset_scroll_velocity_y:
+                self.offset_y -= int(self.offset_scroll_velocity_y)
             else:
-                self.offset_y = self.target_offset_y
+                self.offset_y = int(self.target_offset_y)
