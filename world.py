@@ -2,6 +2,7 @@ from actor import *
 from obstacle import *
 from constants import *
 import fonts
+import camera
 
 class World(object):
     def __init__(self):
@@ -51,6 +52,8 @@ class World(object):
         self.mouse_hovers_actor: int = 0
 
         self.screen = None
+        self.camera = camera.Camera()
+        self.camera.setup(MAXX*2, 0)
         self.time_passed: int = 0
         self.game_cycles_counter: int = 0
         self.is_quit:bool = False
@@ -87,49 +90,8 @@ class World(object):
         self.time_passed = time_passed
         self.processing_human_input()
         self.processing_actors()
+        self.camera.apply_offset(self.actors[self.location][0].rectangle.center)
         self.render_all()
-
-    # def processing_free_space_checking(self, checking_unit):
-    #     above_checked = False
-    #     below_checked = False
-    #     next_step_checked = False
-    #
-    #     for obs in self.obstacles[self.location].values():
-    #         if checking_unit.look == 'right':
-    #             if obs.rectangle.colliderect((checking_unit.rectangle.right + 5, checking_unit.rectangle.bottom + 10), (1, 1)):# or \
-    #                 next_step_checked = True
-    #                 checking_unit.is_enough_space_for_step = True
-    #         elif checking_unit.look == 'left':
-    #             if obs.rectangle.colliderect((checking_unit.rectangle.left - 5, checking_unit.rectangle.bottom + 10), (1, 1)):# or \
-    #                 next_step_checked = True
-    #                 checking_unit.is_enough_space_for_step = True
-    #
-    #         if obs.rectangle.colliderect((checking_unit.rectangle.left + 10, checking_unit.rectangle.top - 25), (checking_unit.rectangle.width - 20, 1)):
-    #
-    #             checking_unit.is_enough_space_above = False
-    #             above_checked = True
-    #             continue
-    #         if obs.rectangle.colliderect((checking_unit.rectangle.left , checking_unit.rectangle.bottom + 20), (checking_unit.rectangle.width, 2)):
-    #             checking_unit.is_enough_space_below = False
-    #             #checking_unit.is_stand_on_ground = True
-    #             if obs.is_ghost_platform:
-    #                 checking_unit.is_on_ghost_platform = True
-    #             else:
-    #                 checking_unit.is_on_ghost_platform = False
-    #             # if obs.Obstacle:
-    #             #     checking_unit.IsOnObstacle = True
-    #             # else:
-    #             checking_unit.is_on_obstacle = True
-    #             below_checked = True
-    #             continue
-    #         if above_checked and below_checked and next_step_checked:
-    #             return
-    #     if not above_checked:
-    #         checking_unit.is_enough_space_above = True
-    #     if not below_checked:
-    #         checking_unit.is_enough_space_below = True
-    #     if not next_step_checked:
-    #         checking_unit.is_enough_space_for_step = False
 
     def processing_collisions(self, checking_unit):
         checking_unit.is_enough_space_left = True
@@ -304,12 +266,14 @@ class World(object):
     def render_actors(self):
         for key in self.actors[self.location].keys():
             actor = self.actors[self.location][key]
-            pygame.draw.rect(self.screen, GREEN, (actor.rectangle.x, actor.rectangle.y, actor.rectangle.width, actor.rectangle.height))
+            pygame.draw.rect(self.screen, GREEN, (actor.rectangle.x - self.camera.offset_x, actor.rectangle.y - self.camera.offset_y,
+                                                  actor.rectangle.width, actor.rectangle.height))
 
     def render_obstacles(self):
         for key in self.obstacles[self.location].keys():
             obs = self.obstacles[self.location][key]
-            pygame.draw.rect(self.screen, WHITE, (obs.rectangle.x, obs.rectangle.y, obs.rectangle.width, obs.rectangle.height))
+            pygame.draw.rect(self.screen, WHITE, (obs.rectangle.x - self.camera.offset_x, obs.rectangle.y - self.camera.offset_y,
+                                                  obs.rectangle.width, obs.rectangle.height))
 
     def render_all(self):
         self.render_background()
