@@ -68,7 +68,10 @@ class Actor(Entity):
 
         # DOWN actions
         elif new_action == 'down action':
-            if self.__state == 'stand still' and self.is_stand_on_ground:
+            if self.is_edge_grabbed:
+                self.is_edge_grabbed = False
+                self.set_state('stand still')
+            elif self.__state == 'stand still' and self.is_stand_on_ground:
                 self.set_state('crouch down')
         elif new_action == 'down action cancel':
             if self.__state == 'crouch':
