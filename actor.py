@@ -76,28 +76,51 @@ class Actor(Entity):
                 self.set_state('crouch')
         elif new_action == 'crouch rise':
             self.set_state('stand still')
+        
+        elif new_action == 'jump action':
+            # self.set_state('jump')
+            if not self.just_got_jumped:
+                self.just_got_jumped = True
+                self.jump_attempts_counter -= 1
+                self.is_jump = True
+            self.is_abort_jump = False
+        elif new_action == 'jump action cancel':
+            # self.set_state('jump cancel')
+            if self.just_got_jumped:
+                self.just_got_jumped = False
+            self.is_abort_jump = True
 
     def state_machine(self):
         if self.__state == 'crouch':
             ...
         elif self.__state == 'stand still':
             ...
+        # elif self.__state == 'jump cancel':
+        #     if self.just_got_jumped:
+        #         self.just_got_jumped = False
+        #     self.is_abort_jump = True
+        #     self.set_state('stand still')
+        # elif self.__state == 'jump':
+        #     if not self.just_got_jumped:
+        #         self.just_got_jumped = True
+        #         self.jump_attempts_counter -= 1
+        #         self.is_jump = True
+        #     self.is_abort_jump = False
+        #     self.set_state('stand still')
         elif self.__state == 'crouch down':
             self.is_crouch = True
-            self.rectangle.height = 90
-            self.rectangle.y -= 100
+            # self.rectangle.height = 90
+            # self.rectangle.y -= 100
             self.set_state('crouch')
         elif self.__state == 'crouch rise':
             self.is_crouch = False
-            self.rectangle.y -= 150
-            self.rectangle.height = self.rectangle_height_default
+            # self.rectangle.y -= 150
+            # self.rectangle.height = self.rectangle_height_default
             self.set_state('stand still')
         elif self.__state == 'turn left':
-            # self.look = -1
             self.is_move_left = True
             self.set_state('stand still')
         elif self.__state == 'turn right':
-            # self.look = 1
             self.is_move_right = True
             self.set_state('stand still')
         elif self.__state == 'crouch turn left':

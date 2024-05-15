@@ -229,24 +229,17 @@ class World(object):
                     actor.set_action('left action cancel')
 
                 if self.is_spacebar:
-                    # if actor.is_stand_on_ground or actor.is_edge_grabbed:
-                    # self.is_spacebar = False
-                    # if actor.jump_attempts_counter == actor.max_jump_attempts:
-                    if not actor.just_got_jumped:
-                        actor.just_got_jumped = True
-                        actor.jump_attempts_counter -= 1
-                        actor.is_jump = True
-                    actor.is_abort_jump = False
-                else:
-                    # if actor.fall_speed > 0:
+                    actor.set_action('jump action')
+                    # if not actor.just_got_jumped:
+                    #     actor.just_got_jumped = True
                     #     actor.jump_attempts_counter -= 1
-                    if actor.just_got_jumped:
-                        # actor.jump_attempts_counter -= 1
-                        actor.just_got_jumped = False
-                    actor.is_abort_jump = True
-                    # else:
-                    #     actor.is_grab_edge = True
-
+                    #     actor.is_jump = True
+                    # actor.is_abort_jump = False
+                else:
+                    actor.set_action('jump action cancel')
+                    # if actor.just_got_jumped:
+                    #     actor.just_got_jumped = False
+                    # actor.is_abort_jump = True
 
 
             actor.process(self.time_passed)

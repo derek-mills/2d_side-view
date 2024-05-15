@@ -138,7 +138,8 @@ def main():
         if fps > max_fps:
             max_fps = fps
         pygame.display.set_caption(str(fps) + ' ('+ str(max_fps) +')')  # + str(world.exec_time_))
-        pygame.display.update()
+        pygame.display.flip()
+        # pygame.display.update()
         # world.press_any_key()
 
 
