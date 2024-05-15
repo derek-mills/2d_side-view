@@ -123,14 +123,10 @@ class Actor(Entity):
         #     self.set_state('stand still')
         elif self.__state == 'crouch down':
             self.is_crouch = True
-            # self.rectangle.height = 90
-            # self.rectangle.y -= 100
             self.set_rect_height(90)
             self.set_state('crouch')
         elif self.__state == 'crouch rise':
             self.is_crouch = False
-            # self.rectangle.y -= 150
-            # self.rectangle.height = self.rectangle_height_default
             self.set_rect_height(self.rectangle_height_default)
             self.set_state('stand still')
         elif self.__state == 'turn left':

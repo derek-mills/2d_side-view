@@ -255,6 +255,9 @@ class World(object):
             actor = self.actors[self.location][key]
             pygame.draw.rect(self.screen, GREEN, (actor.rectangle.x - self.camera.offset_x, actor.rectangle.y - self.camera.offset_y,
                                                   actor.rectangle.width, actor.rectangle.height))
+            gaze_direction_mod = 0 if actor.look == -1 else actor.rectangle.width - 10
+            pygame.draw.rect(self.screen, RED, (actor.rectangle.x + gaze_direction_mod - self.camera.offset_x, actor.rectangle.centery - 10 - self.camera.offset_y,
+                                                  10, 20))
 
     def render_obstacles(self):
         for key in self.obstacles[self.location].keys():
