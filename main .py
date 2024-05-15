@@ -48,9 +48,14 @@ player = {
 world.add_actor(player)
 
 
-o = (((0, MAXY-50),(MAXX*3, 50)), ((0, MAXY_DIV_2+250), (200, 50)),
-     ((300, MAXY_DIV_2), (200, 50)), ((MAXX_DIV_2, MAXY_DIV_2 + 150), (10, MAXY_DIV_2)),
-     ((0,0), (10, MAXY)), ((MAXX - 50,0), (50, MAXY-200)), ((MAXX - 300,0), (50, MAXY-300)))
+o = (
+    ((0, MAXY-50),(MAXX*3, 50)),
+    ((0, MAXY_DIV_2+250), (200, 50)),
+    ((300, MAXY_DIV_2), (200, 50)),
+    ((MAXX_DIV_2, MAXY_DIV_2 + 150), (50, MAXY_DIV_2)),
+    ((0,0), (50, MAXY)),
+    ((MAXX - 50,0), (50, MAXY-200)),
+    ((MAXX - 300,0), (50, MAXY-300)))
 for obs in o:
     world.add_obstacle({'xy': obs[0], 'dimensions': obs[1], 'is gravity affected': False})
 

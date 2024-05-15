@@ -25,6 +25,11 @@ class Actor(Entity):
     def set_state(self, new_state):
         self.__state = new_state
 
+    def set_rect_height(self, height):
+        floor = self.rectangle.bottom
+        self.rectangle.height = height
+        self.rectangle.bottom = floor
+
     def set_action(self, new_action):
         # LEFT actions
         if new_action == 'left action':
@@ -63,7 +68,7 @@ class Actor(Entity):
 
         # DOWN actions
         elif new_action == 'down action':
-            if self.__state == 'stand still':
+            if self.__state == 'stand still' and self.is_stand_on_ground:
                 self.set_state('crouch down')
         elif new_action == 'down action cancel':
             if self.__state == 'crouch':
@@ -79,11 +84,14 @@ class Actor(Entity):
         
         elif new_action == 'jump action':
             # self.set_state('jump')
-            if not self.just_got_jumped:
-                self.just_got_jumped = True
-                self.jump_attempts_counter -= 1
-                self.is_jump = True
-            self.is_abort_jump = False
+            if self.__state == 'crouch':
+                self.set_state('slide')
+            else:
+                if not self.just_got_jumped:
+                    self.just_got_jumped = True
+                    self.jump_attempts_counter -= 1
+                    self.is_jump = True
+                self.is_abort_jump = False
         elif new_action == 'jump action cancel':
             # self.set_state('jump cancel')
             if self.just_got_jumped:
@@ -93,6 +101,9 @@ class Actor(Entity):
     def state_machine(self):
         if self.__state == 'crouch':
             ...
+        elif self.__state == 'slide':
+            self.speed = self.max_speed + 5
+            self.set_state('crouch')
         elif self.__state == 'stand still':
             ...
         # elif self.__state == 'jump cancel':
@@ -111,11 +122,13 @@ class Actor(Entity):
             self.is_crouch = True
             # self.rectangle.height = 90
             # self.rectangle.y -= 100
+            self.set_rect_height(90)
             self.set_state('crouch')
         elif self.__state == 'crouch rise':
             self.is_crouch = False
             # self.rectangle.y -= 150
             # self.rectangle.height = self.rectangle_height_default
+            self.set_rect_height(self.rectangle_height_default)
             self.set_state('stand still')
         elif self.__state == 'turn left':
             self.is_move_left = True
