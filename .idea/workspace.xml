@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/camera.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -163,7 +164,21 @@
       <option name="project" value="LOCAL" />
       <updated>1715674848059</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Added camera follow">
+      <created>1715742337428</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1715742337428</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Modified camera follow">
+      <created>1715744775850</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1715744775850</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -190,6 +205,8 @@
     <MESSAGE value="Fixed bug when jumping up under the very close obstacle caused passing inside this obstacle." />
     <MESSAGE value="Added relative jump height depends on how long the jump button being hold." />
     <MESSAGE value="Added double jump in midair." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added double jump in midair." />
+    <MESSAGE value="Added camera follow" />
+    <MESSAGE value="Modified camera follow" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modified camera follow" />
   </component>
 </project>

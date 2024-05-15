@@ -91,7 +91,8 @@ class World(object):
         self.processing_human_input()
         self.processing_actors()
         self.camera.apply_offset(self.actors[self.location][0].rectangle.center,
-                                 self.actors[self.location][0].speed * 0.9, self.actors[self.location][0].fall_speed)
+                                 self.actors[self.location][0].speed * 0.9, 5)
+                                 # self.actors[self.location][0].speed * 0.9, self.actors[self.location][0].fall_speed)
         self.render_all()
 
     def processing_collisions(self, checking_unit):
@@ -150,7 +151,7 @@ class World(object):
                     #     checking_unit.look = 1
                     #     checking_unit.jump_attempts_counter = 1
                     #     checking_unit.rectangle.left = obs.rectangle.right  # - 2
-                    #     checking_unit.is_need_to_jump = True
+                    #     checking_unit.is_jump = True
                     #     if checking_unit.speed > 0:
                     #         checking_unit.speed *= .8
                     #     else:
@@ -189,7 +190,7 @@ class World(object):
                     #     # if self.is_spacebar and checking_unit.speed > 0:
                     #     checking_unit.look = -1
                     #     checking_unit.jump_attempts_counter = 1
-                    #     checking_unit.is_need_to_jump = True
+                    #     checking_unit.is_jump = True
                     #     if checking_unit.speed > 0:
                     #         checking_unit.speed *= .8
                     #     else:
@@ -206,34 +207,26 @@ class World(object):
     def processing_actors(self):
         for key in self.actors[self.location].keys():
             actor = self.actors[self.location][key]
-            #actor.is_stand_on_ground = False
-            #actor.is_enough_space_above = True
-            #self.processing_collisions(actor)
+            actor.reset_self_flags()
 
-            # self.processing_free_space_checking(actor)
-            
             if key == 0:  # Player's actor routines
-                actor.is_need_to_move_left = False
-                actor.is_need_to_move_right = False
-                # actor.is_need_to_grab_edge = False
-                actor.is_need_to_jump = False
+                if self.is_input_down_arrow:
+                    # actor.is_crouch = True
+                    actor.set_action('down action')
+                else:
+                    actor.set_action('down action cancel')
+
+                if self.is_input_right_arrow:
+                    # actor.is_move_right = True
+                    actor.set_action('right action')
+                else:
+                    actor.set_action('right action cancel')
 
                 if self.is_input_left_arrow:
-                    actor.is_need_to_move_left = True
-
-                elif self.is_input_right_arrow:
-                    actor.is_need_to_move_right = True
-                    # actor.is_need_to_move_left = False
-
-                    # actor.heading[0] = 1
-                    # if actor.look == -1 and actor.speed > 0:  # Actor looks to the other side and runs.
-                    #     # Switch off heading to force actor start reducing his speed and slow it down to zero.
-                    #     # After that actor is going to be able to start acceleration to proper direction.
-                    #     actor.heading[0] = 0
-                    # else:
-                    #     actor.look = 1
-
-                    # actor.heading[0] = 0
+                    # actor.is_move_left = True
+                    actor.set_action('left action')
+                else:
+                    actor.set_action('left action cancel')
 
                 if self.is_spacebar:
                     # if actor.is_stand_on_ground or actor.is_edge_grabbed:
@@ -242,17 +235,17 @@ class World(object):
                     if not actor.just_got_jumped:
                         actor.just_got_jumped = True
                         actor.jump_attempts_counter -= 1
-                        actor.is_need_to_jump = True
-                    actor.is_need_to_abort_jump = False
+                        actor.is_jump = True
+                    actor.is_abort_jump = False
                 else:
                     # if actor.fall_speed > 0:
                     #     actor.jump_attempts_counter -= 1
                     if actor.just_got_jumped:
                         # actor.jump_attempts_counter -= 1
                         actor.just_got_jumped = False
-                    actor.is_need_to_abort_jump = True
+                    actor.is_abort_jump = True
                     # else:
-                    #     actor.is_need_to_grab_edge = True
+                    #     actor.is_grab_edge = True
 
 
 
@@ -444,6 +437,7 @@ class World(object):
             ('ACTOR GRAB: ' + str(self.actors[self.location][0].is_edge_grabbed), WHITE),
             ('ACTOR JUMP ATTMPS: ' + str(self.actors[self.location][0].jump_attempts_counter), WHITE),
             ('ACTOR JUST JUMPED: ' + str(self.actors[self.location][0].just_got_jumped), WHITE),
+            ('ACTOR __STATE: ' + str(self.actors[self.location][0].get_state()), WHITE),
 
 
         )

@@ -16,10 +16,11 @@ class Entity(object):
         self.look: int = 1
 
         # MOVEMENT
-        self.is_need_to_move_right: bool = False
-        self.is_need_to_move_left: bool = False
-        self.is_need_to_jump: bool = False
-        self.is_need_to_abort_jump: bool = False
+        self.is_move_right: bool = False
+        self.is_move_left: bool = False
+        self.is_jump: bool = False
+        self.is_crouch: bool = False
+        self.is_abort_jump: bool = False
         self.default_acceleration: float = .8
         self.acceleration: float = self.default_acceleration
         self.default_air_acceleration: float = .1
@@ -58,17 +59,17 @@ class Entity(object):
         self.is_enough_space_left = True
 
     def process(self, time_passed):
-        if self.is_need_to_move_left:
+        if self.is_move_left:
             # self.heading[0] = -1
             if self.is_edge_grabbed:
-                if self.look == -1 and self.is_need_to_jump:
-                #     self.is_need_to_jump = True
+                if self.look == -1 and self.is_jump:
+                #     self.is_jump = True
                     self.is_edge_grabbed = False
                 #     self.heading[0] = -1
                 # elif self.look == 1:
                 if self.look == 1:  # Attempting to release the edge
                     self.is_edge_grabbed = False
-                    self.is_need_to_jump = False
+                    self.is_jump = False
 
             if self.look == 1 and self.speed > 0:  # Actor looks to the other side and runs.
                 # Switch off heading to force actor start reducing his speed and slow it down to zero.
@@ -76,48 +77,39 @@ class Entity(object):
                 self.heading[0] = 0
 
                 # self.is_edge_grabbed = False
-                # self.is_need_to_jump = True
+                # self.is_jump = True
             else:
                 self.look = -1
                 self.heading[0] = -1
-        elif self.is_need_to_move_right:
+        elif self.is_move_right:
             # self.is_edge_grabbed = False
             # self.heading[0] = 1
             if self.is_edge_grabbed:
-                if self.look == 1 and self.is_need_to_jump:
-                #     self.is_need_to_jump = True
+                if self.look == 1 and self.is_jump:
+                #     self.is_jump = True
                     self.is_edge_grabbed = False
                 #     # self.heading[0] = 1
                 #     # self.is_stand_on_ground = True
                 # elif self.look == -1:
                 if self.look == -1:  # Attempting to release the edge
                     self.is_edge_grabbed = False
-                    self.is_need_to_jump = False
+                    self.is_jump = False
 
             if self.look == -1 and self.speed > 0:  # Actor looks to the other side and runs.
                 # Switch off heading to force actor start reducing his speed and slow it down to zero.
                 # After that self is going to be able to start acceleration to proper direction.
                 self.heading[0] = 0
-
-                # self.is_edge_grabbed = False
-                # self.is_need_to_jump = True
-
             else:
                 self.look = 1
                 self.heading[0] = 1
         else:
             self.heading[0] = 0
 
-        if self.is_need_to_jump and self.jump_attempts_counter > 0:
+        if self.is_jump and self.jump_attempts_counter > 0:
             # Jump
-            # self.fall_speed = -self.jump_height_counter
-            # if self.just_got_jumped:
-            #     self.jump_attempts_counter -= 1
             self.fall_speed = -self.jump_height
-            self.is_need_to_jump = False
+            self.is_jump = False
             self.is_stand_on_ground = False
-        # else:
-        #     self.fall_speed = 0
 
         if self.is_gravity_affected:
             if not self.is_stand_on_ground and not self.is_edge_grabbed:
@@ -134,12 +126,12 @@ class Entity(object):
         else:
             self.fall_speed += GRAVITY
 
-        if self.is_need_to_abort_jump:
+        if self.is_abort_jump:
             if self.fall_speed >= 0:
-                self.is_need_to_abort_jump = False
+                self.is_abort_jump = False
             else:
                 self.fall_speed = 0
-                self.is_need_to_abort_jump = False
+                self.is_abort_jump = False
 
         # self.destination[1] = MAXY
         # else:
@@ -203,8 +195,8 @@ class Entity(object):
             # self.heading = Vector2.from_floats(vec_to_destination[0] / distance_to_destination, vec_to_destination[1] / distance_to_destination)
 
             self.speed = self.max_speed * self.max_speed_penalty  # * 0.5
-            # self.action_points_need_to_move_straight = 10 / self.fly_speed
-            # self.action_points_need_to_move_diagonal = 1.41 * (10 / self.fly_speed)
+            # self.action_points_move_straight = 10 / self.fly_speed
+            # self.action_points_move_diagonal = 1.41 * (10 / self.fly_speed)
             # self.fly_speed = self.max_fly_speed - (self.max_fly_speed / 100) * self.max_fly_speed_penalty
             # Define the potential length of current move, depends on basic speed and passed amount of time:
             self.potential_moving_distance = time_passed * self.speed
