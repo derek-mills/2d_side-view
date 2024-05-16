@@ -13,6 +13,12 @@ class Actor(Entity):
         self.rectangle.height = 150
         self.rectangle_height_default = self.rectangle.height
         self.rectangle_width_default = self.rectangle.width
+        self.rectangle_height_sit = 90
+        self.rectangle_width_sit = self.rectangle.width
+        self.rectangle_height_slide = 45
+        self.rectangle_width_slide = 130
+
+        self.ignore_user_input: bool = False
 
         self.__state = 'stand still'
 
@@ -34,11 +40,14 @@ class Actor(Entity):
     def set_rect_width(self, width):
         floor = self.rectangle.bottom
         center = self.rectangle.centerx
+        # if self.look == 1:
+        #     self.rectangle.
         self.rectangle.width = width
-        self.rectangle.bottom = floor
         self.rectangle.centerx = center
-
+        self.rectangle.bottom = floor
     def set_action(self, new_action):
+        if self.ignore_user_input:
+            return
         # LEFT actions
         if new_action == 'left action':
             if self.__state == 'crouch':
@@ -81,22 +90,25 @@ class Actor(Entity):
                 self.set_state('stand still')
             elif self.__state == 'stand still' and self.is_stand_on_ground:
                 self.set_state('crouch down')
+
         elif new_action == 'down action cancel':
             if self.__state == 'crouch':
                 self.set_state('crouch rise')
 
-        elif new_action == 'crouch':
-            if self.__state == 'crouch down':
-                self.set_state('crouch')
-            else:
-                self.set_state('crouch')
-        elif new_action == 'crouch rise':
-            self.set_state('stand still')
+        # elif new_action == 'crouch':
+        #     if self.__state == 'crouch down':
+        #         self.set_state('crouch')
+        #     else:
+        #         self.set_state('crouch')
+        # elif new_action == 'crouch rise':
+        #     self.set_state('stand still')
         
         elif new_action == 'jump action':
             # self.set_state('jump')
             if self.__state == 'crouch':
-                self.set_state('slide')
+                if (self.look == 1 and self.is_enough_space_right) or\
+                        (self.look == -1 and self.is_enough_space_left):
+                    self.set_state('slide')
             else:
                 if not self.just_got_jumped:
                     self.just_got_jumped = True
@@ -110,36 +122,39 @@ class Actor(Entity):
             self.is_abort_jump = True
 
     def state_machine(self):
-        if self.__state == 'crouch':
-            ...
-        elif self.__state == 'slide':
-            self.speed = self.max_speed + 5
-            self.set_rect_width(100)
-            self.set_rect_height(50)
-            self.set_state('crouch')
-        elif self.__state == 'stand still':
-            self.set_rect_width(self.rectangle_width_default)
-            self.set_rect_height(self.rectangle_height_default)
-        # elif self.__state == 'jump cancel':
-        #     if self.just_got_jumped:
-        #         self.just_got_jumped = False
-        #     self.is_abort_jump = True
-        #     self.set_state('stand still')
-        # elif self.__state == 'jump':
-        #     if not self.just_got_jumped:
-        #         self.just_got_jumped = True
-        #         self.jump_attempts_counter -= 1
-        #         self.is_jump = True
-        #     self.is_abort_jump = False
-        #     self.set_state('stand still')
-        elif self.__state == 'crouch down':
+        # CROUCH
+        if self.__state == 'crouch down':
             self.is_crouch = True
-            self.set_rect_height(90)
+            self.set_rect_height(self.rectangle_height_sit)
+            self.set_rect_width(self.rectangle_width_sit)
             self.set_state('crouch')
+        elif self.__state == 'crouch':
+            ...
         elif self.__state == 'crouch rise':
             self.is_crouch = False
             self.set_rect_height(self.rectangle_height_default)
+            self.set_rect_width(self.rectangle_width_default)
             self.set_state('stand still')
+        # SLIDE
+        elif self.__state == 'slide':
+            # allow_slide
+            # if self.look == 1 and self.is_enough_space_right:
+            self.speed = self.max_speed
+            self.set_rect_width(self.rectangle_width_slide)
+            self.set_rect_height(self.rectangle_height_slide)
+            self.set_state('sliding')
+            self.ignore_user_input = True
+        elif self.__state == 'sliding':
+            if self.speed == 0:
+                self.set_state('slide rise')
+        elif self.__state == 'slide rise':
+            self.ignore_user_input = False
+            self.set_rect_width(self.rectangle_width_sit)
+            self.set_rect_height(self.rectangle_height_sit)
+            self.set_state('crouch')
+            # self.set_state('stand still')
+        elif self.__state == 'stand still':
+            ...
         elif self.__state == 'turn left':
             self.is_move_left = True
             self.set_state('stand still')

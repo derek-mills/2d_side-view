@@ -210,6 +210,7 @@ class World(object):
             actor.reset_self_flags()
 
             if key == 0:  # Player's actor routines
+
                 if self.is_input_down_arrow:
                     actor.set_action('down action')
                 else:
@@ -420,6 +421,7 @@ class World(object):
             ('ACTOR JUMP ATTMPS: ' + str(self.actors[self.location][0].jump_attempts_counter), WHITE),
             ('ACTOR JUST JUMPED: ' + str(self.actors[self.location][0].just_got_jumped), WHITE),
             ('ACTOR __STATE: ' + str(self.actors[self.location][0].get_state()), WHITE),
+            ('ACTOR IGNORES INPUT: ' + str(self.actors[self.location][0].ignore_user_input), WHITE),
 
 
         )

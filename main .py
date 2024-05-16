@@ -51,7 +51,7 @@ world.add_actor(player)
 o = (
     ((0, MAXY-50),(MAXX*3, 50)),
     ((0, MAXY_DIV_2+250), (200, 50)),
-    ((300, MAXY_DIV_2), (200, 50)),
+    ((300, MAXY_DIV_2), (400, 50)),
     ((MAXX_DIV_2, MAXY_DIV_2 + 150), (50, MAXY_DIV_2)),
     ((0,0), (50, MAXY)),
     ((MAXX - 50,0), (50, MAXY-200)),
