@@ -55,7 +55,12 @@ o = (
     ((MAXX_DIV_2, MAXY_DIV_2 + 150), (50, MAXY_DIV_2)),
     ((0,0), (50, MAXY)),
     ((MAXX - 50,0), (50, MAXY-200)),
-    ((MAXX - 300,0), (50, MAXY-300)))
+    ((400,MAXY - 60), (50, MAXY-200)),
+    ((500,MAXY - 70), (50, MAXY-200)),
+    ((600,MAXY - 80), (50, MAXY-200)),
+    ((700,MAXY - 90), (50, MAXY-200)),
+    ((MAXX - 300,0), (50, MAXY-300))
+)
 for obs in o:
     world.add_obstacle({'xy': obs[0], 'dimensions': obs[1], 'is gravity affected': False})
 

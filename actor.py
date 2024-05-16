@@ -155,7 +155,7 @@ class Actor(Entity):
                 self.set_state('sliding')
                 self.ignore_user_input = True
             else:
-                # self.speed = 0
+                self.speed = self.max_speed
                 self.set_rect_width(self.rectangle_width_sit)
                 self.set_rect_height(self.rectangle_height_sit)
                 self.set_state('crouch')
