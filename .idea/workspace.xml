@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
+    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="Added gaze direction sign.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main .py" beforeDir="false" afterPath="$PROJECT_DIR$/main .py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -191,7 +191,28 @@
       <option name="project" value="LOCAL" />
       <updated>1715759755585</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Added real crouching with height reduce and slide ability">
+      <created>1715760584245</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1715760584245</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Crouching is unavailable during hanging on the edges, and it causes actor to fall down the cliff.">
+      <created>1715760860940</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1715760860940</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Added gaze direction sign.">
+      <created>1715761106083</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1715761106083</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -222,6 +243,9 @@
     <MESSAGE value="Modified camera follow" />
     <MESSAGE value="Added machine of states for actor." />
     <MESSAGE value="Improving machine of states for actor.&#10;Try to move all code responsible for actor's actions into this actor implementation." />
-    <option name="LAST_COMMIT_MESSAGE" value="Improving machine of states for actor.&#10;Try to move all code responsible for actor's actions into this actor implementation." />
+    <MESSAGE value="Added real crouching with height reduce and slide ability" />
+    <MESSAGE value="Crouching is unavailable during hanging on the edges, and it causes actor to fall down the cliff." />
+    <MESSAGE value="Added gaze direction sign." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added gaze direction sign." />
   </component>
 </project>

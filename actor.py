@@ -12,6 +12,7 @@ class Actor(Entity):
         self.jump_height: int = 22
         self.rectangle.height = 150
         self.rectangle_height_default = self.rectangle.height
+        self.rectangle_width_default = self.rectangle.width
 
         self.__state = 'stand still'
 
@@ -29,6 +30,13 @@ class Actor(Entity):
         floor = self.rectangle.bottom
         self.rectangle.height = height
         self.rectangle.bottom = floor
+
+    def set_rect_width(self, width):
+        floor = self.rectangle.bottom
+        center = self.rectangle.centerx
+        self.rectangle.width = width
+        self.rectangle.bottom = floor
+        self.rectangle.centerx = center
 
     def set_action(self, new_action):
         # LEFT actions
@@ -106,9 +114,12 @@ class Actor(Entity):
             ...
         elif self.__state == 'slide':
             self.speed = self.max_speed + 5
+            self.set_rect_width(100)
+            self.set_rect_height(50)
             self.set_state('crouch')
         elif self.__state == 'stand still':
-            ...
+            self.set_rect_width(self.rectangle_width_default)
+            self.set_rect_height(self.rectangle_height_default)
         # elif self.__state == 'jump cancel':
         #     if self.just_got_jumped:
         #         self.just_got_jumped = False

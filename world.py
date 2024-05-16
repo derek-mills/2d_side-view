@@ -211,41 +211,27 @@ class World(object):
 
             if key == 0:  # Player's actor routines
                 if self.is_input_down_arrow:
-                    # actor.is_crouch = True
                     actor.set_action('down action')
                 else:
                     actor.set_action('down action cancel')
 
                 if self.is_input_right_arrow:
-                    # actor.is_move_right = True
                     actor.set_action('right action')
                 else:
                     actor.set_action('right action cancel')
 
                 if self.is_input_left_arrow:
-                    # actor.is_move_left = True
                     actor.set_action('left action')
                 else:
                     actor.set_action('left action cancel')
 
                 if self.is_spacebar:
                     actor.set_action('jump action')
-                    # if not actor.just_got_jumped:
-                    #     actor.just_got_jumped = True
-                    #     actor.jump_attempts_counter -= 1
-                    #     actor.is_jump = True
-                    # actor.is_abort_jump = False
                 else:
                     actor.set_action('jump action cancel')
-                    # if actor.just_got_jumped:
-                    #     actor.just_got_jumped = False
-                    # actor.is_abort_jump = True
-
 
             actor.process(self.time_passed)
-            # self.processing_free_space_checking(actor)
             self.processing_collisions(actor)
-            #actor.is_stand_on_ground = False
 
     def render_background(self):
         pygame.draw.rect(self.screen, BLACK, (0,0,MAXX, MAXY))
