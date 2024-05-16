@@ -40,11 +40,14 @@ class Actor(Entity):
     def set_rect_width(self, width):
         floor = self.rectangle.bottom
         center = self.rectangle.centerx
-        # if self.look == 1:
-        #     self.rectangle.
+        right = self.rectangle.right
+        left = self.rectangle.left
         self.rectangle.width = width
         if self.speed > 0:
-            self.rectangle.centerx = center + self.speed * self.look
+            if self.look == 1:
+                self.rectangle.left = left
+            else:
+                self.rectangle.right = right
         else:
             self.rectangle.centerx = center
         self.rectangle.bottom = floor

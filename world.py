@@ -107,9 +107,9 @@ class World(object):
             obs = self.obstacles[self.location][key]
 
             # Check enough spaces right and left:
-            if obs.rectangle.colliderect(checking_unit.rectangle.left - checking_unit.rectangle.width - checking_unit.speed, checking_unit.rectangle.top, checking_unit.rectangle.width, checking_unit.rectangle.height - 35):
+            if obs.rectangle.colliderect(checking_unit.rectangle.left - checking_unit.rectangle.width - checking_unit.speed - 2, checking_unit.rectangle.top, checking_unit.rectangle.width + checking_unit.speed + 2, checking_unit.rectangle.height - 35):
                 checking_unit.is_enough_space_left = False
-            if obs.rectangle.colliderect(checking_unit.rectangle.right, checking_unit.rectangle.top, checking_unit.rectangle.width + checking_unit.speed, checking_unit.rectangle.height - 35):
+            if obs.rectangle.colliderect(checking_unit.rectangle.right, checking_unit.rectangle.top, checking_unit.rectangle.width + checking_unit.speed + 2, checking_unit.rectangle.height - 35):
                 checking_unit.is_enough_space_right = False
 
             if checking_unit.fall_speed < 0:
@@ -133,11 +133,7 @@ class World(object):
 
             # CHECK LEFT
             if checking_unit.look == -1:
-                # if obs.rectangle.colliderect(checking_unit.rectangle.left - checking_unit.rectangle.width, checking_unit.rectangle.top, checking_unit.rectangle.width, checking_unit.rectangle.height - 35):
-                #     checking_unit.is_enough_space_left = False
-                if checking_unit.speed > 0:
-                    if obs.rectangle.colliderect(checking_unit.rectangle.left - checking_unit.speed, checking_unit.rectangle.top, checking_unit.speed, checking_unit.rectangle.height - 35):
-
+                if obs.rectangle.colliderect(checking_unit.rectangle.left - checking_unit.speed - 10, checking_unit.rectangle.top, checking_unit.speed + 10, checking_unit.rectangle.height - 35):
                         # Grab over the top of an obstacle.
                         if obs.rectangle.top >= checking_unit.rectangle.top > (obs.rectangle.top - 30) and checking_unit.fall_speed > 0:
                         # if checking_unit.rectangle.top <= obs.rectangle.top and checking_unit.fall_speed > 0:
@@ -174,45 +170,40 @@ class World(object):
                         continue
 
             # CHECK RIGHT
-            if checking_unit.look > 0:
-                # if obs.rectangle.colliderect(checking_unit.rectangle.right, checking_unit.rectangle.top, checking_unit.rectangle.width + 10, checking_unit.rectangle.height - 35):
-                #     checking_unit.is_enough_space_right = False
-
-                if checking_unit.speed > 0:
-                    x_mod = checking_unit.speed
-                    if obs.rectangle.colliderect(checking_unit.rectangle.right, checking_unit.rectangle.top, x_mod + 10, checking_unit.rectangle.height - 35):
-                        # Grab over the top of an obstacle.
-                        if obs.rectangle.top >= checking_unit.rectangle.top > (obs.rectangle.top - 30) and checking_unit.fall_speed > 0:
-                        # if checking_unit.rectangle.top <= obs.rectangle.top and checking_unit.fall_speed > 0:
-                            checking_unit.is_edge_grabbed = True
-                            checking_unit.rectangle.top = obs.rectangle.top
-                            checking_unit.fall_speed = 0
-                            checking_unit.is_stand_on_ground = True
-                            checking_unit.rectangle.right = obs.rectangle.left  # - 2
-                            checking_unit.is_enough_space_right = False
-                            checking_unit.heading[0] = 0
-                            checking_unit.speed = 0
-                            checking_unit.jump_attempts_counter = checking_unit.max_jump_attempts
-                            return
-
-                        # # Bounce from the wall
-                        # if self.is_spacebar and self.is_input_right_arrow:
-                        #     # if self.is_spacebar and checking_unit.speed > 0:
-                        #     checking_unit.look = -1
-                        #     checking_unit.jump_attempts_counter = 1
-                        #     checking_unit.is_jump = True
-                        #     if checking_unit.speed > 0:
-                        #         checking_unit.speed *= .8
-                        #     else:
-                        #         checking_unit.speed = checking_unit.max_speed * 0.7
-                        #     checking_unit.rectangle.right = obs.rectangle.left  # - 2
-                        #     return
-
-                        checking_unit.rectangle.right = obs.rectangle.left
+            if checking_unit.look == 1:
+                if obs.rectangle.colliderect(checking_unit.rectangle.right, checking_unit.rectangle.top, checking_unit.speed + 10, checking_unit.rectangle.height - 35):
+                    # Grab over the top of an obstacle.
+                    if obs.rectangle.top >= checking_unit.rectangle.top > (obs.rectangle.top - 30) and checking_unit.fall_speed > 0:
+                    # if checking_unit.rectangle.top <= obs.rectangle.top and checking_unit.fall_speed > 0:
+                        checking_unit.is_edge_grabbed = True
+                        checking_unit.rectangle.top = obs.rectangle.top
+                        checking_unit.fall_speed = 0
+                        checking_unit.is_stand_on_ground = True
+                        checking_unit.rectangle.right = obs.rectangle.left  # - 2
                         checking_unit.is_enough_space_right = False
                         checking_unit.heading[0] = 0
                         checking_unit.speed = 0
-                        continue
+                        checking_unit.jump_attempts_counter = checking_unit.max_jump_attempts
+                        return
+
+                    # # Bounce from the wall
+                    # if self.is_spacebar and self.is_input_right_arrow:
+                    #     # if self.is_spacebar and checking_unit.speed > 0:
+                    #     checking_unit.look = -1
+                    #     checking_unit.jump_attempts_counter = 1
+                    #     checking_unit.is_jump = True
+                    #     if checking_unit.speed > 0:
+                    #         checking_unit.speed *= .8
+                    #     else:
+                    #         checking_unit.speed = checking_unit.max_speed * 0.7
+                    #     checking_unit.rectangle.right = obs.rectangle.left  # - 2
+                    #     return
+
+                    checking_unit.rectangle.right = obs.rectangle.left
+                    checking_unit.is_enough_space_right = False
+                    checking_unit.heading[0] = 0
+                    checking_unit.speed = 0
+                    continue
 
     def processing_collisions_old(self, checking_unit):
         checking_unit.is_enough_space_left = True
