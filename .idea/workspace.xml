@@ -226,7 +226,21 @@
       <option name="project" value="LOCAL" />
       <updated>1715830271877</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Fixed bugs with incorrect collision detection (mostly around slide mode).">
+      <created>1715836849666</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1715836849666</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Fixed bugs with incorrect collision detection (mostly around slide mode), go on.">
+      <created>1715838689440</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1715838689440</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -262,6 +276,8 @@
     <MESSAGE value="Added gaze direction sign." />
     <MESSAGE value="Rectangle changes dimensions during slide.&#10;TODO fix problem with walls clipping when slide activating near it." />
     <MESSAGE value="Solved problem with getting inside an obstacle while try to slide too close to it." />
-    <option name="LAST_COMMIT_MESSAGE" value="Solved problem with getting inside an obstacle while try to slide too close to it." />
+    <MESSAGE value="Fixed bugs with incorrect collision detection (mostly around slide mode)." />
+    <MESSAGE value="Fixed bugs with incorrect collision detection (mostly around slide mode), go on." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed bugs with incorrect collision detection (mostly around slide mode), go on." />
   </component>
 </project>

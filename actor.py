@@ -19,6 +19,7 @@ class Actor(Entity):
         self.rectangle_width_slide = 130
 
         self.ignore_user_input: bool = False
+        self.obstacles_around = None
 
         self.__state = 'stand still'
 
@@ -112,10 +113,11 @@ class Actor(Entity):
         elif new_action == 'jump action':
             # self.set_state('jump')
             if self.__state == 'crouch' and self.is_stand_on_ground:
-                # if self.is_enough_space_left and self.is_enough_space_right:
+
                 if (self.look == 1 and self.is_enough_space_right) or\
                         (self.look == -1 and self.is_enough_space_left):
                     self.set_state('slide')
+                # self.set_state('slide')
             else:
                 if not self.just_got_jumped:
                     self.just_got_jumped = True
@@ -147,8 +149,17 @@ class Actor(Entity):
             self.speed = self.max_speed * 1.5
             self.set_rect_width(self.rectangle_width_slide)
             self.set_rect_height(self.rectangle_height_slide)
-            self.set_state('sliding')
-            self.ignore_user_input = True
+            self.check_space_around()
+            if (self.look == 1 and self.is_enough_space_right) or\
+                    (self.look == -1 and self.is_enough_space_left):
+                self.set_state('sliding')
+                self.ignore_user_input = True
+            else:
+                # self.speed = 0
+                self.set_rect_width(self.rectangle_width_sit)
+                self.set_rect_height(self.rectangle_height_sit)
+                self.set_state('crouch')
+
         elif self.__state == 'sliding':
             # self.set_rect_width(self.rectangle_width_slide)
             # self.set_rect_height(self.rectangle_height_slide)
@@ -179,6 +190,22 @@ class Actor(Entity):
         elif self.__state == 'run right':
             self.is_move_right = True
 
+    def percept(self, obstacles):
+        self.obstacles_around = obstacles
+
+    def check_space_around(self):
+        self.is_enough_space_left = True
+        self.is_enough_space_right = True
+
+        for key in self.obstacles_around.keys():
+            obs = self.obstacles_around[key]
+            # # Check enough spaces right and left:
+            if obs.rectangle.colliderect(self.rectangle.left - self.rectangle.width - self.speed - 2, self.rectangle.top,
+                                         self.rectangle.width + self.speed + 2, self.rectangle.height - 35):
+                self.is_enough_space_left = False
+            if obs.rectangle.colliderect(self.rectangle.right, self.rectangle.top,
+                                         self.rectangle.width + self.speed + 2, self.rectangle.height - 35):
+                self.is_enough_space_right = False
 
     def reset_self_flags(self):
         self.is_move_left = False
