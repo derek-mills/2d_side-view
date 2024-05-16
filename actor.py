@@ -43,7 +43,10 @@ class Actor(Entity):
         # if self.look == 1:
         #     self.rectangle.
         self.rectangle.width = width
-        self.rectangle.centerx = center
+        if self.speed > 0:
+            self.rectangle.centerx = center + self.speed * self.look
+        else:
+            self.rectangle.centerx = center
         self.rectangle.bottom = floor
     def set_action(self, new_action):
         if self.ignore_user_input:
@@ -105,7 +108,8 @@ class Actor(Entity):
         
         elif new_action == 'jump action':
             # self.set_state('jump')
-            if self.__state == 'crouch':
+            if self.__state == 'crouch' and self.is_stand_on_ground:
+                # if self.is_enough_space_left and self.is_enough_space_right:
                 if (self.look == 1 and self.is_enough_space_right) or\
                         (self.look == -1 and self.is_enough_space_left):
                     self.set_state('slide')
@@ -137,14 +141,14 @@ class Actor(Entity):
             self.set_state('stand still')
         # SLIDE
         elif self.__state == 'slide':
-            # allow_slide
-            # if self.look == 1 and self.is_enough_space_right:
-            self.speed = self.max_speed
+            self.speed = self.max_speed * 1.5
             self.set_rect_width(self.rectangle_width_slide)
             self.set_rect_height(self.rectangle_height_slide)
             self.set_state('sliding')
             self.ignore_user_input = True
         elif self.__state == 'sliding':
+            # self.set_rect_width(self.rectangle_width_slide)
+            # self.set_rect_height(self.rectangle_height_slide)
             if self.speed == 0:
                 self.set_state('slide rise')
         elif self.__state == 'slide rise':
