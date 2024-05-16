@@ -6,10 +6,9 @@ class Actor(Entity):
         self.id: int = 0
         self.type = 'actor'
 
-        # self.is_need_to_grab_edge: bool = True
-        # self.edge
-
+        self.acceleration = 1
         self.jump_height: int = 22
+
         self.rectangle.height = 150
         self.rectangle_height_default = self.rectangle.height
         self.rectangle_width_default = self.rectangle.width
@@ -52,6 +51,7 @@ class Actor(Entity):
         else:
             self.rectangle.centerx = center
         self.rectangle.bottom = floor
+
     def set_action(self, new_action):
         if self.ignore_user_input:
             return

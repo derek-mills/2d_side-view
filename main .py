@@ -49,16 +49,20 @@ world.add_actor(player)
 
 
 o = (
-    ((0, MAXY-50),(MAXX*3, 50)),
+    ((0, MAXY-50),(MAXX*3, 50)), # floor
+    ((0, 0), (50, MAXY)),  # left wall
+    ((MAXX*3 - 150, 0), (150, MAXY)),  # right wall
+    # steps:
+    ((400, MAXY - 60), (50, 200)),
+    ((450, MAXY - 70), (50, 200)),
+    ((500, MAXY - 80), (50, 200)),
+    ((550, MAXY - 90), (50, 200)),
+
     ((0, MAXY_DIV_2+250), (200, 50)),
     ((300, MAXY_DIV_2), (400, 50)),
     ((MAXX_DIV_2, MAXY_DIV_2 + 150), (50, MAXY_DIV_2)),
-    ((0,0), (50, MAXY)),
+
     ((MAXX - 50,0), (50, MAXY-200)),
-    ((400,MAXY - 60), (50, MAXY-200)),
-    ((500,MAXY - 70), (50, MAXY-200)),
-    ((600,MAXY - 80), (50, MAXY-200)),
-    ((700,MAXY - 90), (50, MAXY-200)),
     ((MAXX - 300,0), (50, MAXY-300))
 )
 for obs in o:
