@@ -36,12 +36,20 @@ class Entity(object):
         self.heading: list = [0, 0]
         self.travel_distance: float = 0.
         self.potential_moving_distance: float = 0.
+        self.potential_falling_distance: float = 0.
         self.fall_speed: float = 0.
         self.is_stand_on_ground: bool = False
         self.is_gravity_affected: bool = False
         self.destination_list = list()
         # self.destination_point = 0
         self.destination: list = [0, 0]
+
+        # Collisions
+        self.obstacles_around = None
+        self.collision_detector_right = pygame.Rect(0,0,0,0)
+        self.collision_detector_left = pygame.Rect(0,0,0,0)
+        self.collision_detector_top = pygame.Rect(0,0,0,0)
+        self.collision_detector_bottom = pygame.Rect(0,0,0,0)
         self.is_destination_reached: bool = False
         self.collided_top: bool = False
         self.collided_left: bool = False
@@ -57,6 +65,10 @@ class Entity(object):
         #                                         не предусматривает отсутствие препятствия сбоку.
         self.is_enough_space_right = True
         self.is_enough_space_left = True
+
+
+    def percept(self, obstacles):
+        self.obstacles_around = obstacles
 
     def process(self, time_passed):
         if self.is_move_left:
@@ -104,35 +116,38 @@ class Entity(object):
             self.is_jump = False
             self.is_stand_on_ground = False
 
+        self.fall_speed_calc()
+        self.speed_calc()
+        self.colliders_calc()
+        self.detect_collisions()
+
         if self.is_gravity_affected:
             if not self.is_stand_on_ground and not self.is_edge_grabbed:
                 self.fall()
         self.move()
 
-    def fall(self):
-        if self.is_enough_space_below:
-            if self.fall_speed > GRAVITY_G:
-                self.fall_speed = GRAVITY_G
+
+    def fall_speed_calc(self):
+        if self.fall_speed > GRAVITY_G:
+            self.fall_speed = GRAVITY_G
+        else:
+            self.fall_speed += GRAVITY
+
+        if self.is_abort_jump:
+            if self.fall_speed >= 0:
+                self.is_abort_jump = False
             else:
-                self.fall_speed += GRAVITY
+                self.fall_speed = 0
+                self.is_abort_jump = False
+        self.potential_falling_distance = self.fall_speed
 
-            if self.is_abort_jump:
-                if self.fall_speed >= 0:
-                    self.is_abort_jump = False
-                else:
-                    self.fall_speed = 0
-                    self.is_abort_jump = False
-            self.rectangle.y += self.fall_speed
-
-    def move(self):
+    def speed_calc(self):
         if self.heading[0] == 0:
             if self.speed > 0:
                 if self.is_stand_on_ground:
                     self.speed -= self.acceleration
                 else:
                     self.speed -= self.air_acceleration
-
-                # self.speed -= self.acceleration
                 self.speed = max(self.speed, 0)
         else:
             if self.speed < self.max_speed:
@@ -140,10 +155,76 @@ class Entity(object):
                     self.speed += self.acceleration
                 else:
                     self.speed += self.air_acceleration
-            # if self.speed < self.max_speed and self.is_stand_on_ground:
-            #     self.speed += self.acceleration
-        self.rectangle.x += int(self.speed * self.look)
 
+        self.potential_moving_distance = self.speed
+        # self.potential_moving_distance = int(self.speed * self.look)
+        # self.rectangle.x += int(self.speed * self.look)
+
+    def detect_collisions(self):
+        self.is_stand_on_ground = False
+        for key in self.obstacles_around.keys():
+            obs = self.obstacles_around[key]
+            # Check bottom
+            if obs.rectangle.colliderect(self.collision_detector_bottom):
+                # print('OOO')
+                # self.potential_falling_distance = obs.rectangle.top - self.collision_detector_bottom.top
+                self.rectangle.bottom = obs.rectangle.top
+                # self.rectangle.bottom = self.collision_detector_bottom.top
+                self.is_stand_on_ground = True
+                # self.fall_speed = 0
+                self.jump_attempts_counter = self.max_jump_attempts
+                # self.is_spacebar = False
+                # continue
+            # Check top
+            if obs.rectangle.colliderect(self.collision_detector_top):
+                self.potential_falling_distance = obs.rectangle.bottom - self.collision_detector_top.bottom 
+                self.is_stand_on_ground = False
+                self.fall_speed = 0
+                continue
+            # Check right
+            if obs.rectangle.colliderect(self.collision_detector_right):
+                self.potential_moving_distance = obs.rectangle.left - self.collision_detector_right.left
+                # self.rectangle.right = obs.rectangle.left
+                self.is_enough_space_right = False
+                self.heading[0] = 0
+                # self.speed = 0
+                continue
+            # Check left
+            if obs.rectangle.colliderect(self.collision_detector_left):
+                self.potential_moving_distance = self.collision_detector_left.right - obs.rectangle.right
+                # self.rectangle.left = obs.rectangle.right
+                self.is_enough_space_left = False
+                self.heading[0] = 0
+                self.speed = 0
+                continue
+
+    def check_space_around(self):
+        self.is_enough_space_left = True
+        self.is_enough_space_right = True
+        # self.is_enough_space_below = True
+        # self.is_enough_space_above = True
+
+        for key in self.obstacles_around.keys():
+            obs = self.obstacles_around[key]
+            # # Check enough spaces right and left:
+            if obs.rectangle.colliderect(self.rectangle.left - self.rectangle.width - self.speed - 2, self.rectangle.top,
+                                         self.rectangle.width + self.speed + 2, self.rectangle.height - 35):
+                self.is_enough_space_left = False
+                continue
+            if obs.rectangle.colliderect(self.rectangle.right, self.rectangle.top,
+                                         self.rectangle.width + self.speed + 2, self.rectangle.height - 35):
+                self.is_enough_space_right = False
+                continue
+            # # Check if there is enough space ABOVE
+            # if obs.rectangle.colliderect(self.rectangle.left + 2, self.rectangle.top - abs(self.fall_speed),
+            #                              self.rectangle.width - 4, abs(self.fall_speed)):
+            #     self.is_enough_space_above = False
+            #     continue
+            # # Check if there is enough space BELOW
+            # if obs.rectangle.colliderect(self.rectangle.left + 2, self.rectangle.bottom,
+            #                              self.rectangle.width - 4, abs(self.fall_speed) + 1):
+            #     self.is_enough_space_below = False
+            #     continue
 
     def fly(self, time_passed):
         vec_to_destination = list((self.destination[0] - self.rectangle.centerx, self.destination[1] - self.rectangle.centery))
@@ -198,3 +279,63 @@ class Entity(object):
             # print(f'AFTER: {self.rectangle.center=}')
             # print('-'*100)
             # self.rectangle_central_spot = self.rectangle.inflate(-self.rectangle.height // 3, -self.rectangle.width // 2)
+
+    def colliders_calc(self):
+        if self.look == 1:
+            self.collision_detector_right.update(self.rectangle.right, self.rectangle.top, self.speed + 1, self.rectangle.height - 35)
+            self.collision_detector_left.update(0,0,0,0)
+            # self.collision_detector_left.update(self.rectangle.left - 1, self.rectangle.top, 1, self.rectangle.height - 35)
+        elif self.look == -1:
+            self.collision_detector_right.update(0,0,0,0)
+            # self.collision_detector_right.update(self.rectangle.right, self.rectangle.top, 1, self.rectangle.height - 35)
+            self.collision_detector_left.update(self.rectangle.left - self.speed + 1, self.rectangle.top, self.speed + 1, self.rectangle.height - 35)
+        if self.fall_speed < 0:
+            self.collision_detector_top.update(self.rectangle.left + 2, self.rectangle.top - abs(self.fall_speed), self.rectangle.width - 4, abs(self.fall_speed))
+            self.collision_detector_bottom.update(0,0,0,0)
+            # self.collision_detector_bottom.update(self.rectangle.left + 2, self.rectangle.bottom, self.rectangle.width - 4, 1)
+        elif self.fall_speed > 0:
+            self.collision_detector_top.update(0,0,0,0)
+            # self.collision_detector_top.update(self.rectangle.left + 2, self.rectangle.top - 1, self.rectangle.width - 4, 1)
+            self.collision_detector_bottom.update(self.rectangle.left + 2, self.rectangle.bottom, self.rectangle.width - 4, abs(self.fall_speed))
+        else:
+            self.collision_detector_top.update(0,0,0,0)
+            # self.collision_detector_top.update(self.rectangle.left + 2, self.rectangle.top - 1, self.rectangle.width - 4, 1)
+            self.collision_detector_bottom.update(self.rectangle.left + 2, self.rectangle.bottom, self.rectangle.width - 4, 1)
+
+    def fall(self):
+        # if self.is_enough_space_below:
+        #     if self.fall_speed > GRAVITY_G:
+        #         self.fall_speed = GRAVITY_G
+        #     else:
+        #         self.fall_speed += GRAVITY
+        #
+        #     if self.is_abort_jump:
+        #         if self.fall_speed >= 0:
+        #             self.is_abort_jump = False
+        #         else:
+        #             self.fall_speed = 0
+        #             self.is_abort_jump = False
+        #     self.rectangle.y += self.fall_speed
+        #
+        self.rectangle.y += self.potential_falling_distance
+
+    def move(self):
+        # if self.heading[0] == 0:
+        #     if self.speed > 0:
+        #         if self.is_stand_on_ground:
+        #             self.speed -= self.acceleration
+        #         else:
+        #             self.speed -= self.air_acceleration
+        #         self.speed = max(self.speed, 0)
+        # else:
+        #     if self.speed < self.max_speed:
+        #         if self.is_stand_on_ground:
+        #             self.speed += self.acceleration
+        #         else:
+        #             self.speed += self.air_acceleration
+        # # self.potential_moving_distance = int(self.speed * self.look)
+        #
+        # self.collision_detector_right.update(self.rectangle.right, self.rectangle.top, self.speed, self.rectangle.height - 35)
+
+        self.rectangle.x += (self.potential_moving_distance * self.look)
+        # self.rectangle.x += int(self.speed * self.look)

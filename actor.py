@@ -18,7 +18,6 @@ class Actor(Entity):
         self.rectangle_width_slide = 130
 
         self.ignore_user_input: bool = False
-        self.obstacles_around = None
 
         self.__state = 'stand still'
 
@@ -181,37 +180,6 @@ class Actor(Entity):
             self.is_move_left = True
         elif self.__state == 'run right':
             self.is_move_right = True
-
-    def percept(self, obstacles):
-        self.obstacles_around = obstacles
-
-    def check_space_around(self):
-        self.is_enough_space_left = True
-        self.is_enough_space_right = True
-        # self.is_enough_space_below = True
-        # self.is_enough_space_above = True
-
-        for key in self.obstacles_around.keys():
-            obs = self.obstacles_around[key]
-            # # Check enough spaces right and left:
-            if obs.rectangle.colliderect(self.rectangle.left - self.rectangle.width - self.speed - 2, self.rectangle.top,
-                                         self.rectangle.width + self.speed + 2, self.rectangle.height - 35):
-                self.is_enough_space_left = False
-                continue
-            if obs.rectangle.colliderect(self.rectangle.right, self.rectangle.top,
-                                         self.rectangle.width + self.speed + 2, self.rectangle.height - 35):
-                self.is_enough_space_right = False
-                continue
-            # # Check if there is enough space ABOVE
-            # if obs.rectangle.colliderect(self.rectangle.left + 2, self.rectangle.top - abs(self.fall_speed),
-            #                              self.rectangle.width - 4, abs(self.fall_speed)):
-            #     self.is_enough_space_above = False
-            #     continue
-            # # Check if there is enough space BELOW
-            # if obs.rectangle.colliderect(self.rectangle.left + 2, self.rectangle.bottom,
-            #                              self.rectangle.width - 4, abs(self.fall_speed) + 1):
-            #     self.is_enough_space_below = False
-            #     continue
 
 
     def reset_self_flags(self):

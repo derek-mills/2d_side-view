@@ -91,7 +91,7 @@ class World(object):
 
     def process(self, time_passed):
         self.time_passed = time_passed
-        self.processing_obstacles()
+        # self.processing_obstacles()
         self.processing_human_input()
         self.processing_actors()
         self.camera.apply_offset((self.actors[self.location][0].rectangle.centerx, self.actors[self.location][0].rectangle.bottom),
@@ -125,7 +125,7 @@ class World(object):
                     checking_unit.fall_speed = 0
                     checking_unit.is_stand_on_ground = False
                     continue
-            if checking_unit.fall_speed > 0:
+            else:
                 # CHECK BOTTOM
                 if obs.rectangle.colliderect(checking_unit.rectangle.left + 2, checking_unit.rectangle.bottom,
                                              checking_unit.rectangle.width - 4, abs(checking_unit.fall_speed) + 1):
@@ -247,7 +247,7 @@ class World(object):
                     actor.set_action('jump action cancel')
 
             actor.process(self.time_passed)
-            self.processing_collisions(actor)
+            # self.processing_collisions(actor)
             actor.reset_self_flags()
 
     def render_background(self):
@@ -257,9 +257,18 @@ class World(object):
         for key in self.actors[self.location].keys():
             actor = self.actors[self.location][key]
             pygame.draw.rect(self.screen, GREEN, (actor.rectangle.x - self.camera.offset_x, actor.rectangle.y - self.camera.offset_y,
-                                                  actor.rectangle.width, actor.rectangle.height))
+                                                  actor.rectangle.width, actor.rectangle.height), 2)
+            # Colliders rect:
+            pygame.draw.rect(self.screen, RED, (actor.collision_detector_right.x - self.camera.offset_x, actor.collision_detector_right.y - self.camera.offset_y,
+                                                  actor.collision_detector_right.width, actor.collision_detector_right.height))
+            pygame.draw.rect(self.screen, RED, (actor.collision_detector_left.x - self.camera.offset_x, actor.collision_detector_left.y - self.camera.offset_y,
+                                                  actor.collision_detector_left.width, actor.collision_detector_left.height))
+            pygame.draw.rect(self.screen, RED, (actor.collision_detector_top.x - self.camera.offset_x, actor.collision_detector_top.y - self.camera.offset_y,
+                                                  actor.collision_detector_top.width, actor.collision_detector_top.height))
+            pygame.draw.rect(self.screen, RED, (actor.collision_detector_bottom.x - self.camera.offset_x, actor.collision_detector_bottom.y - self.camera.offset_y,
+                                                  actor.collision_detector_bottom.width, actor.collision_detector_bottom.height))
             gaze_direction_mod = 0 if actor.look == -1 else actor.rectangle.width - 10
-            pygame.draw.rect(self.screen, RED, (actor.rectangle.x + gaze_direction_mod - self.camera.offset_x, actor.rectangle.centery - 10 - self.camera.offset_y,
+            pygame.draw.rect(self.screen, CYAN, (actor.rectangle.x + gaze_direction_mod - self.camera.offset_x, actor.rectangle.centery - 10 - self.camera.offset_y,
                                                   10, 20))
 
     def render_obstacles(self):
