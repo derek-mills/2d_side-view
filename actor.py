@@ -112,7 +112,7 @@ class Actor(Entity):
                         # self.influenced_by_obstacle = None
                         # self.is_stand_on_ground = False
                         # self.fall_speed = 10
-                        # self.set_state('stay still')
+                        self.set_state('crouch rise')
                         return
 
                 if (self.look == 1 and self.is_enough_space_right) or\

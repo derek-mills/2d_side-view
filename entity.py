@@ -18,6 +18,8 @@ class Entity(object):
         # MOVEMENT
         self.is_move_right: bool = False
         self.is_move_left: bool = False
+        self.is_move_up: bool = False
+        self.is_move_down: bool = False
         self.is_jump: bool = False
         self.is_crouch: bool = False
         self.is_abort_jump: bool = False

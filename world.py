@@ -83,6 +83,8 @@ class World(object):
         entity.rectangle.width = description[1][0]
         entity.rectangle.height = description[1][1]
         entity.is_move_right = True if 'move right' in description else False
+        entity.is_move_up = True if 'move up' in description else False
+        entity.is_move_down = True if 'move down' in description else False
         entity.is_move_left = True if 'move left' in description else False
         entity.is_ghost_platform = True if 'ghost' in description else False
         # Add an obstacle to the world storage:
