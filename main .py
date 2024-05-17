@@ -49,24 +49,24 @@ world.add_actor(player)
 
 
 o = (
-    ((0, MAXY-50),(MAXX*3, 50)), # floor
-    ((0, 0), (50, MAXY)),  # left wall
-    ((MAXX*3 - 150, 0), (150, MAXY)),  # right wall
+    ((0, MAXY-50),(MAXX*3, 50), False, False), # floor
+    ((0, 0), (50, MAXY), False, False),  # left wall
+    ((MAXX*3 - 150, 0), (150, MAXY), False, False),  # right wall
     # steps:
-    ((400, MAXY - 60), (50, 200)),
-    ((450, MAXY - 70), (50, 200)),
-    ((500, MAXY - 80), (50, 200)),
-    ((550, MAXY - 90), (50, 200)),
+    ((400, MAXY - 60), (50, 200), False, False),
+    ((450, MAXY - 70), (50, 200), False, False),
+    ((500, MAXY - 80), (50, 200), False, False),
+    ((550, MAXY - 90), (50, 200), False, False),
 
-    ((0, MAXY_DIV_2+250), (200, 50)),
-    ((300, MAXY_DIV_2), (400, 50)),
-    ((MAXX_DIV_2, MAXY_DIV_2 + 150), (50, MAXY_DIV_2)),
+    ((0, MAXY_DIV_2+250), (200, 50), False, False),
+    ((300, MAXY_DIV_2), (400, 50), False, False),
+    ((MAXX_DIV_2, MAXY_DIV_2 + 150), (50, MAXY_DIV_2), False, False),
 
-    ((MAXX - 50,0), (50, MAXY-200)),
-    ((MAXX - 300,0), (50, MAXY-300))
+    ((MAXX - 50,0), (50, MAXY-200), False, False),
+    ((MAXX - 300,0), (50, MAXY-300), False, False)
 )
 for obs in o:
-    world.add_obstacle({'xy': obs[0], 'dimensions': obs[1], 'is gravity affected': False})
+    world.add_obstacle({'xy': obs[0], 'dimensions': obs[1], 'is gravity affected': obs[2], 'move right': obs[3]})
 
 
 

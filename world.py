@@ -3,6 +3,7 @@ from obstacle import *
 from constants import *
 import fonts
 import camera
+from random import choice
 
 class World(object):
     def __init__(self):
@@ -81,6 +82,8 @@ class World(object):
         entity.rectangle.topleft = description['xy']
         entity.rectangle.width = description['dimensions'][0]
         entity.rectangle.height = description['dimensions'][1]
+        entity.is_move_right = description['move right']
+        # Add an obstacle to the world storage:
         if self.location not in self.obstacles.keys():
             self.obstacles[self.location] = dict()
         self.obstacles[self.location][entity.id] = entity
@@ -88,6 +91,7 @@ class World(object):
 
     def process(self, time_passed):
         self.time_passed = time_passed
+        self.processing_obstacles()
         self.processing_human_input()
         self.processing_actors()
         self.camera.apply_offset((self.actors[self.location][0].rectangle.centerx, self.actors[self.location][0].rectangle.bottom),
@@ -114,15 +118,17 @@ class World(object):
 
             if checking_unit.fall_speed < 0:
                 # CHECK TOP
-                if obs.rectangle.colliderect(checking_unit.rectangle.left + 2, checking_unit.rectangle.top - abs(checking_unit.fall_speed), checking_unit.rectangle.width - 4, abs(checking_unit.fall_speed)):
+                if obs.rectangle.colliderect(checking_unit.rectangle.left + 2, checking_unit.rectangle.top - abs(checking_unit.fall_speed),
+                                             checking_unit.rectangle.width - 4, abs(checking_unit.fall_speed)):
                     checking_unit.rectangle.top = obs.rectangle.bottom
                     checking_unit.is_enough_space_above = False
                     checking_unit.fall_speed = 0
                     checking_unit.is_stand_on_ground = False
                     continue
-            else:
+            if checking_unit.fall_speed > 0:
                 # CHECK BOTTOM
-                if obs.rectangle.colliderect(checking_unit.rectangle.left + 2, checking_unit.rectangle.bottom, checking_unit.rectangle.width - 4, abs(checking_unit.fall_speed) + 1):
+                if obs.rectangle.colliderect(checking_unit.rectangle.left + 2, checking_unit.rectangle.bottom,
+                                             checking_unit.rectangle.width - 4, abs(checking_unit.fall_speed) + 1):
                     checking_unit.rectangle.bottom = obs.rectangle.top
                     checking_unit.is_stand_on_ground = True
                     checking_unit.fall_speed = 0
@@ -204,6 +210,12 @@ class World(object):
                     checking_unit.heading[0] = 0
                     checking_unit.speed = 0
                     continue
+
+    def processing_obstacles(self):
+        for key in self.obstacles[self.location].keys():
+            obs = self.obstacles[self.location][key]
+            obs.process(self.time_passed)
+
 
     def processing_actors(self):
         for key in self.actors[self.location].keys():

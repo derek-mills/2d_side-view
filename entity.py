@@ -110,31 +110,19 @@ class Entity(object):
         self.move()
 
     def fall(self):
-        # self.StandingOnSuchPlatformID = -1
-        # if self.fall_speed == 0:
-        #     print('pppp')
-        #     self.destination[1] = self.rectangle.centery
-        if self.fall_speed > GRAVITY_G:
-            self.fall_speed = GRAVITY_G
-        else:
-            self.fall_speed += GRAVITY
-
-        if self.is_abort_jump:
-            if self.fall_speed >= 0:
-                self.is_abort_jump = False
+        if self.is_enough_space_below:
+            if self.fall_speed > GRAVITY_G:
+                self.fall_speed = GRAVITY_G
             else:
-                self.fall_speed = 0
-                self.is_abort_jump = False
+                self.fall_speed += GRAVITY
 
-        # self.destination[1] = MAXY
-        # else:
-        #     self.fall_speed = 0
-        # elif self.fall_speed < 0:
-        #     self.destination[1] = 0
-        #     self.rectangle.y += self.fall_speed
-
-        # self.destination[1] = MAXY
-        self.rectangle.y += self.fall_speed
+            if self.is_abort_jump:
+                if self.fall_speed >= 0:
+                    self.is_abort_jump = False
+                else:
+                    self.fall_speed = 0
+                    self.is_abort_jump = False
+            self.rectangle.y += self.fall_speed
 
     def move(self):
         if self.heading[0] == 0:

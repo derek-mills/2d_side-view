@@ -102,14 +102,6 @@ class Actor(Entity):
             if self.__state == 'crouch':
                 self.set_state('crouch rise')
 
-        # elif new_action == 'crouch':
-        #     if self.__state == 'crouch down':
-        #         self.set_state('crouch')
-        #     else:
-        #         self.set_state('crouch')
-        # elif new_action == 'crouch rise':
-        #     self.set_state('stand still')
-        
         elif new_action == 'jump action':
             # self.set_state('jump')
             if self.__state == 'crouch' and self.is_stand_on_ground:
@@ -196,6 +188,8 @@ class Actor(Entity):
     def check_space_around(self):
         self.is_enough_space_left = True
         self.is_enough_space_right = True
+        # self.is_enough_space_below = True
+        # self.is_enough_space_above = True
 
         for key in self.obstacles_around.keys():
             obs = self.obstacles_around[key]
@@ -203,9 +197,22 @@ class Actor(Entity):
             if obs.rectangle.colliderect(self.rectangle.left - self.rectangle.width - self.speed - 2, self.rectangle.top,
                                          self.rectangle.width + self.speed + 2, self.rectangle.height - 35):
                 self.is_enough_space_left = False
+                continue
             if obs.rectangle.colliderect(self.rectangle.right, self.rectangle.top,
                                          self.rectangle.width + self.speed + 2, self.rectangle.height - 35):
                 self.is_enough_space_right = False
+                continue
+            # # Check if there is enough space ABOVE
+            # if obs.rectangle.colliderect(self.rectangle.left + 2, self.rectangle.top - abs(self.fall_speed),
+            #                              self.rectangle.width - 4, abs(self.fall_speed)):
+            #     self.is_enough_space_above = False
+            #     continue
+            # # Check if there is enough space BELOW
+            # if obs.rectangle.colliderect(self.rectangle.left + 2, self.rectangle.bottom,
+            #                              self.rectangle.width - 4, abs(self.fall_speed) + 1):
+            #     self.is_enough_space_below = False
+            #     continue
+
 
     def reset_self_flags(self):
         self.is_move_left = False
