@@ -107,7 +107,12 @@ class Actor(Entity):
                 if self.influenced_by_obstacle:
                     # print('sdad')
                     if self.obstacles_around[self.influenced_by_obstacle].is_ghost_platform:
-                        self.rectangle.top = self.obstacles_around[self.influenced_by_obstacle].rectangle.bottom + 1
+                        self.rectangle.centery = self.obstacles_around[self.influenced_by_obstacle].rectangle.bottom + 20
+                        # self.set_action('jump action cancel')
+                        # self.influenced_by_obstacle = None
+                        # self.is_stand_on_ground = False
+                        # self.fall_speed = 10
+                        # self.set_state('stay still')
                         return
 
                 if (self.look == 1 and self.is_enough_space_right) or\

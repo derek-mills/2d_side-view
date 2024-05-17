@@ -9,7 +9,6 @@
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main .py" beforeDir="false" afterPath="$PROJECT_DIR$/main .py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -298,7 +297,14 @@
       <option name="project" value="LOCAL" />
       <updated>1715926725675</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Added ghost obstacles.&#10;Several improvements in actor's behavior around grabbing the edges and such.">
+      <created>1715933307645</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1715933307645</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -313,7 +319,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed annoying bug when direction of movement doesn't change properly if opposite direction buttons pressed too quickly one by one." />
     <MESSAGE value="Added the edges grabbing ability." />
     <MESSAGE value="Added air acceleration" />
     <MESSAGE value="Added jump over an obstacle after grabbing the edge." />
@@ -338,6 +343,7 @@
     <MESSAGE value="Improving new collision detector" />
     <MESSAGE value="Moving obstacle is able to push actors now." />
     <MESSAGE value="Moving obstacle is able to drag actors now if they stand on them or grab the edge of such obstacle." />
-    <option name="LAST_COMMIT_MESSAGE" value="Moving obstacle is able to drag actors now if they stand on them or grab the edge of such obstacle." />
+    <MESSAGE value="Added ghost obstacles.&#10;Several improvements in actor's behavior around grabbing the edges and such." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added ghost obstacles.&#10;Several improvements in actor's behavior around grabbing the edges and such." />
   </component>
 </project>

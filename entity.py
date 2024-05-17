@@ -200,6 +200,8 @@ class Entity(object):
                 # Check if obstacle has crawled from behind and pushed actor to his back:
                 if self.look == -1:  # Obstacle is on the right, but actor looks to the left.
                     self.rectangle.right = obs.rectangle.left  # Push the actor
+                    self.influenced_by_obstacle = None
+                    self.is_edge_grabbed = False
                     continue
 
                 # Grab over the top of an obstacle.
@@ -233,6 +235,8 @@ class Entity(object):
                 # Check if obstacle has crawled from behind and pushed actor to his back:
                 if self.look == 1:  # Obstacle is on the left, but actor looks to the right.
                     self.rectangle.left = obs.rectangle.right  # Push the actor
+                    self.influenced_by_obstacle = None
+                    self.is_edge_grabbed = False
                     continue
 
                 # Grab over the top of an obstacle.

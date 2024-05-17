@@ -50,6 +50,7 @@ world.add_actor(player)
 
 o = (
     ((0, MAXY-50),(MAXX*3, 50)), # floor
+    ((300, MAXY-250),(300, 80)), # floor
     ((-100, 500), (150, MAXY), 'move right'),  # left wall
     ((MAXX*3 - 150, 0), (150, MAXY)),  # right wall
     # steps:
