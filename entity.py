@@ -56,6 +56,7 @@ class Entity(object):
         self.collided_right: bool = False
         self.collided_bottom: bool = False
 
+        self.influenced_by_obstacle = None
         self.is_edge_grabbed: bool = False
         self.is_on_obstacle: bool = False
         self.is_on_ghost_platform: bool = False
@@ -163,6 +164,7 @@ class Entity(object):
 
     def detect_collisions(self):
         self.is_stand_on_ground = False
+        self.influenced_by_obstacle = None
         for key in self.obstacles_around.keys():
             obs = self.obstacles_around[key]
             # # Check top
@@ -189,12 +191,14 @@ class Entity(object):
             if obs.rectangle.colliderect(self.collision_detector_right):
                 # Check if obstacle has crawled from behind and pushed actor to his back:
                 if self.look == -1:  # Obstacle is on the right, but actor looks to the left.
-                    self.rectangle.right = obs.rectangle.left
+                    self.rectangle.right = obs.rectangle.left  # Push the actor
                     continue
+
                 # Grab over the top of an obstacle.
                 if obs.rectangle.top >= self.rectangle.top > (obs.rectangle.top - 30) and self.fall_speed > 0:
                     # if self.rectangle.top <= obs.rectangle.top and self.fall_speed > 0:
                     self.potential_moving_distance = 0
+                    self.influenced_by_obstacle = obs.id
                     self.is_edge_grabbed = True
                     self.rectangle.top = obs.rectangle.top
                     self.fall_speed = 0
@@ -217,13 +221,14 @@ class Entity(object):
             if obs.rectangle.colliderect(self.collision_detector_left):
                 # Check if obstacle has crawled from behind and pushed actor to his back:
                 if self.look == 1:  # Obstacle is on the left, but actor looks to the right.
-                    self.rectangle.left = obs.rectangle.right
+                    self.rectangle.left = obs.rectangle.right  # Push the actor
                     continue
 
                 # Grab over the top of an obstacle.
                 if obs.rectangle.top >= self.rectangle.top > (obs.rectangle.top - 30) and self.fall_speed > 0:
                     # if self.rectangle.top <= obs.rectangle.top and self.fall_speed > 0:
                     self.potential_moving_distance = 0
+                    self.influenced_by_obstacle = obs.id
                     self.is_edge_grabbed = True
                     self.rectangle.top = obs.rectangle.top
                     self.fall_speed = 0
@@ -258,6 +263,7 @@ class Entity(object):
                     self.rectangle.bottom = obs.rectangle.top
                     # self.rectangle.bottom = self.collision_detector_bottom.top
                     self.is_stand_on_ground = True
+                    self.influenced_by_obstacle = obs.id
                     # self.fall_speed = 0
                     self.jump_attempts_counter = self.max_jump_attempts
                     # self.is_spacebar = False
@@ -400,6 +406,9 @@ class Entity(object):
         # # self.potential_moving_distance = int(self.speed * self.look)
         #
         # self.collision_detector_right.update(self.rectangle.right, self.rectangle.top, self.speed, self.rectangle.height - 35)
-
-        self.rectangle.x += (self.potential_moving_distance * self.look)
+        if self.influenced_by_obstacle:
+            infl = self.obstacles_around[self.influenced_by_obstacle]
+            self.rectangle.x += (self.potential_moving_distance * self.look + infl.potential_moving_distance*infl.look)
+        else:
+            self.rectangle.x += (self.potential_moving_distance * self.look)
         # self.rectangle.x += int(self.speed * self.look)

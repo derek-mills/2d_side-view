@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main .py" beforeDir="false" afterPath="$PROJECT_DIR$/main .py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obstacle.py" beforeDir="false" afterPath="$PROJECT_DIR$/obstacle.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -284,7 +280,14 @@
       <option name="project" value="LOCAL" />
       <updated>1715924115701</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Moving obstacle is able to push actors now.">
+      <created>1715926076537</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1715926076537</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -299,7 +302,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added some files" />
     <MESSAGE value="Improved collisions, movement inertness." />
     <MESSAGE value="Fixed annoying bug when direction of movement doesn't change properly if opposite direction buttons pressed too quickly one by one." />
     <MESSAGE value="Added the edges grabbing ability." />
@@ -324,6 +326,7 @@
     <MESSAGE value="Added obstacles processing" />
     <MESSAGE value="New collision detection method implemented, based on a colliders, calculating around actor every tick." />
     <MESSAGE value="Improving new collision detector" />
-    <option name="LAST_COMMIT_MESSAGE" value="Improving new collision detector" />
+    <MESSAGE value="Moving obstacle is able to push actors now." />
+    <option name="LAST_COMMIT_MESSAGE" value="Moving obstacle is able to push actors now." />
   </component>
 </project>
