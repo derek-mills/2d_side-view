@@ -13,7 +13,7 @@ from world import *
 world = World()
 
 # world = World(screen)
-world.get_screen(screen)
+world.set_screen(screen)
 # world.info_windows = dict()
 # world.info_windows_id = 0
 
@@ -50,20 +50,20 @@ world.add_actor(player)
 
 o = (
     ((0, MAXY-50),(MAXX*3, 50), False, False), # floor
-    ((0, 0), (50, MAXY), False, False),  # left wall
+    ((0, 500), (50, MAXY), False, True),  # left wall
     ((MAXX*3 - 150, 0), (150, MAXY), False, False),  # right wall
     # steps:
-    ((400, MAXY - 60), (50, 200), False, False),
-    ((450, MAXY - 70), (50, 200), False, False),
-    ((500, MAXY - 80), (50, 200), False, False),
-    ((550, MAXY - 90), (50, 200), False, False),
-
-    ((0, MAXY_DIV_2+250), (200, 50), False, False),
-    ((300, MAXY_DIV_2), (400, 50), False, False),
-    ((MAXX_DIV_2, MAXY_DIV_2 + 150), (50, MAXY_DIV_2), False, False),
-
-    ((MAXX - 50,0), (50, MAXY-200), False, False),
-    ((MAXX - 300,0), (50, MAXY-300), False, False)
+    # ((400, MAXY - 60), (50, 200), False, False),
+    # ((450, MAXY - 70), (50, 200), False, False),
+    # ((500, MAXY - 80), (50, 200), False, False),
+    # ((550, MAXY - 90), (50, 200), False, False),
+    #
+    # ((0, MAXY_DIV_2+250), (200, 50), False, False),
+    # ((300, MAXY_DIV_2), (400, 50), False, False),
+    # ((MAXX_DIV_2, MAXY_DIV_2 + 150), (50, MAXY_DIV_2), False, False),
+    #
+    # ((MAXX - 50,0), (50, MAXY-200), False, False),
+    # ((MAXX - 300,0), (50, MAXY-300), False, False)
 )
 for obs in o:
     world.add_obstacle({'xy': obs[0], 'dimensions': obs[1], 'is gravity affected': obs[2], 'move right': obs[3]})
