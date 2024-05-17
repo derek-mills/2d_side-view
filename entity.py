@@ -164,25 +164,43 @@ class Entity(object):
         self.is_stand_on_ground = False
         for key in self.obstacles_around.keys():
             obs = self.obstacles_around[key]
-            # Check bottom
-            if obs.rectangle.colliderect(self.collision_detector_bottom):
-                # print('OOO')
-                # self.potential_falling_distance = obs.rectangle.top - self.collision_detector_bottom.top
-                self.rectangle.bottom = obs.rectangle.top
-                # self.rectangle.bottom = self.collision_detector_bottom.top
-                self.is_stand_on_ground = True
-                # self.fall_speed = 0
-                self.jump_attempts_counter = self.max_jump_attempts
-                # self.is_spacebar = False
-                # continue
             # Check top
-            if obs.rectangle.colliderect(self.collision_detector_top):
-                self.potential_falling_distance = obs.rectangle.bottom - self.collision_detector_top.bottom 
-                self.is_stand_on_ground = False
-                self.fall_speed = 0
-                continue
+            if self.fall_speed < 0:
+                if obs.rectangle.colliderect(self.collision_detector_top):
+                    self.potential_falling_distance = obs.rectangle.bottom - self.collision_detector_top.bottom
+                    self.is_stand_on_ground = False
+                    self.fall_speed = 0
+                    continue
+            else:
+                # Check bottom
+                if obs.rectangle.colliderect(self.collision_detector_bottom):
+                    # print('OOO')
+                    # self.potential_falling_distance = obs.rectangle.top - self.collision_detector_bottom.top
+                    self.rectangle.bottom = obs.rectangle.top
+                    # self.rectangle.bottom = self.collision_detector_bottom.top
+                    self.is_stand_on_ground = True
+                    # self.fall_speed = 0
+                    self.jump_attempts_counter = self.max_jump_attempts
+                    # self.is_spacebar = False
+                    continue
+
             # Check right
             if obs.rectangle.colliderect(self.collision_detector_right):
+                # Grab over the top of an obstacle.
+                if obs.rectangle.top >= self.rectangle.top > (obs.rectangle.top - 30) and self.fall_speed > 0:
+                    # if self.rectangle.top <= obs.rectangle.top and self.fall_speed > 0:
+                    self.potential_moving_distance = 0
+                    self.is_edge_grabbed = True
+                    self.rectangle.top = obs.rectangle.top
+                    self.fall_speed = 0
+                    # self.is_stand_on_ground = True
+                    self.rectangle.right = obs.rectangle.left
+                    self.is_enough_space_right = False
+                    self.heading[0] = 0
+                    self.speed = 0
+                    self.jump_attempts_counter = 2
+                    # self.jump_attempts_counter = self.max_jump_attempts
+                    return
                 self.potential_moving_distance = obs.rectangle.left - self.collision_detector_right.left
                 # self.rectangle.right = obs.rectangle.left
                 self.is_enough_space_right = False
@@ -191,6 +209,21 @@ class Entity(object):
                 continue
             # Check left
             if obs.rectangle.colliderect(self.collision_detector_left):
+                # Grab over the top of an obstacle.
+                if obs.rectangle.top >= self.rectangle.top > (obs.rectangle.top - 30) and self.fall_speed > 0:
+                    # if self.rectangle.top <= obs.rectangle.top and self.fall_speed > 0:
+                    self.potential_moving_distance = 0
+                    self.is_edge_grabbed = True
+                    self.rectangle.top = obs.rectangle.top
+                    self.fall_speed = 0
+                    # self.is_stand_on_ground = True
+                    self.rectangle.left = obs.rectangle.right  # - 2
+                    self.is_enough_space_left = False
+                    self.heading[0] = 0
+                    self.speed = 0
+                    self.jump_attempts_counter = 2
+                    # self.jump_attempts_counter = self.max_jump_attempts
+                    return
                 self.potential_moving_distance = self.collision_detector_left.right - obs.rectangle.right
                 # self.rectangle.left = obs.rectangle.right
                 self.is_enough_space_left = False
