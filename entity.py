@@ -76,8 +76,10 @@ class Entity(object):
             if self.is_edge_grabbed:
                 if self.look == -1 and self.is_jump:
                     self.is_edge_grabbed = False
+                    self.influenced_by_obstacle = None
                 if self.look == 1:  # Attempting to release the edge
                     self.is_edge_grabbed = False
+                    self.influenced_by_obstacle = None
                     self.is_jump = False
                 # return
             elif self.look == 1 and self.speed > 0:  # Actor looks to the other side and runs.
@@ -94,8 +96,10 @@ class Entity(object):
             if self.is_edge_grabbed:
                 if self.look == 1 and self.is_jump:
                     self.is_edge_grabbed = False
+                    self.influenced_by_obstacle = None
                 if self.look == -1:  # Attempting to release the edge
                     self.is_edge_grabbed = False
+                    self.influenced_by_obstacle = None
                     self.is_jump = False
                 # return
             elif self.look == -1 and self.speed > 0:  # Actor looks to the other side and runs.
@@ -125,6 +129,7 @@ class Entity(object):
 
         if self.is_gravity_affected:
             if not self.is_stand_on_ground and not self.is_edge_grabbed:
+                self.influenced_by_obstacle = None
                 self.fall()
         self.move()
 
@@ -164,7 +169,7 @@ class Entity(object):
 
     def detect_collisions(self):
         self.is_stand_on_ground = False
-        self.influenced_by_obstacle = None
+        # self.influenced_by_obstacle = None
         for key in self.obstacles_around.keys():
             obs = self.obstacles_around[key]
             # # Check top
@@ -189,6 +194,9 @@ class Entity(object):
 
             # Check right
             if obs.rectangle.colliderect(self.collision_detector_right):
+                if obs.is_ghost_platform:
+                    continue
+
                 # Check if obstacle has crawled from behind and pushed actor to his back:
                 if self.look == -1:  # Obstacle is on the right, but actor looks to the left.
                     self.rectangle.right = obs.rectangle.left  # Push the actor
@@ -219,6 +227,9 @@ class Entity(object):
                 continue
             # Check left
             if obs.rectangle.colliderect(self.collision_detector_left):
+                if obs.is_ghost_platform:
+                    continue
+
                 # Check if obstacle has crawled from behind and pushed actor to his back:
                 if self.look == 1:  # Obstacle is on the left, but actor looks to the right.
                     self.rectangle.left = obs.rectangle.right  # Push the actor
@@ -251,10 +262,13 @@ class Entity(object):
             # Check top
             if self.fall_speed < 0:
                 if obs.rectangle.colliderect(self.collision_detector_top):
+                    if obs.is_ghost_platform:
+                        continue
                     self.potential_falling_distance = obs.rectangle.bottom - self.collision_detector_top.bottom
                     self.is_stand_on_ground = False
                     self.fall_speed = 0
                     continue
+            # if self.fall_speed > 0:
             else:
                 # Check bottom
                 if obs.rectangle.colliderect(self.collision_detector_bottom):
@@ -268,6 +282,9 @@ class Entity(object):
                     self.jump_attempts_counter = self.max_jump_attempts
                     # self.is_spacebar = False
                     continue
+        # self.is_stand_on_ground = False
+        # self.influenced_by_obstacle = None
+
     def check_space_around(self):
         self.is_enough_space_left = True
         self.is_enough_space_right = True

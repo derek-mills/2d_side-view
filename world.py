@@ -78,11 +78,13 @@ class World(object):
     def add_obstacle(self, description):
         entity = Obstacle()
         entity.id = self.obstacle_id
-        entity.is_gravity_affected = description['is gravity affected']
-        entity.rectangle.topleft = description['xy']
-        entity.rectangle.width = description['dimensions'][0]
-        entity.rectangle.height = description['dimensions'][1]
-        entity.is_move_right = description['move right']
+        entity.is_gravity_affected = True if 'is gravity affected' in description else False
+        entity.rectangle.topleft = description[0]
+        entity.rectangle.width = description[1][0]
+        entity.rectangle.height = description[1][1]
+        entity.is_move_right = True if 'move right' in description else False
+        entity.is_move_left = True if 'move left' in description else False
+        entity.is_ghost_platform = True if 'ghost' in description else False
         # Add an obstacle to the world storage:
         if self.location not in self.obstacles.keys():
             self.obstacles[self.location] = dict()
@@ -147,15 +149,17 @@ class World(object):
             actor = self.actors[self.location][key]
             pygame.draw.rect(self.screen, GREEN, (actor.rectangle.x - self.camera.offset_x, actor.rectangle.y - self.camera.offset_y,
                                                   actor.rectangle.width, actor.rectangle.height), 5)
-            # Colliders rect:
-            pygame.draw.rect(self.screen, RED, (actor.collision_detector_right.x - self.camera.offset_x, actor.collision_detector_right.y - self.camera.offset_y,
-                                                  actor.collision_detector_right.width, actor.collision_detector_right.height))
-            pygame.draw.rect(self.screen, RED, (actor.collision_detector_left.x - self.camera.offset_x, actor.collision_detector_left.y - self.camera.offset_y,
-                                                  actor.collision_detector_left.width, actor.collision_detector_left.height))
-            pygame.draw.rect(self.screen, RED, (actor.collision_detector_top.x - self.camera.offset_x, actor.collision_detector_top.y - self.camera.offset_y,
-                                                  actor.collision_detector_top.width, actor.collision_detector_top.height))
-            pygame.draw.rect(self.screen, RED, (actor.collision_detector_bottom.x - self.camera.offset_x, actor.collision_detector_bottom.y - self.camera.offset_y,
-                                                  actor.collision_detector_bottom.width, actor.collision_detector_bottom.height))
+            # Colliders rects:
+            # pygame.draw.rect(self.screen, RED, (actor.collision_detector_right.x - self.camera.offset_x, actor.collision_detector_right.y - self.camera.offset_y,
+            #                                       actor.collision_detector_right.width, actor.collision_detector_right.height))
+            # pygame.draw.rect(self.screen, RED, (actor.collision_detector_left.x - self.camera.offset_x, actor.collision_detector_left.y - self.camera.offset_y,
+            #                                       actor.collision_detector_left.width, actor.collision_detector_left.height))
+            # pygame.draw.rect(self.screen, RED, (actor.collision_detector_top.x - self.camera.offset_x, actor.collision_detector_top.y - self.camera.offset_y,
+            #                                       actor.collision_detector_top.width, actor.collision_detector_top.height))
+            # pygame.draw.rect(self.screen, RED, (actor.collision_detector_bottom.x - self.camera.offset_x, actor.collision_detector_bottom.y - self.camera.offset_y,
+            #                                       actor.collision_detector_bottom.width, actor.collision_detector_bottom.height))
+
+            # The eye
             gaze_direction_mod = 0 if actor.look == -1 else actor.rectangle.width - 10
             pygame.draw.rect(self.screen, CYAN, (actor.rectangle.x + gaze_direction_mod - self.camera.offset_x, actor.rectangle.centery - 10 - self.camera.offset_y,
                                                   10, 20))
@@ -340,6 +344,7 @@ class World(object):
             ('ACTOR BELOW SPACE: ' + str(self.actors[self.location][0].is_enough_space_below), WHITE),
             ('ACTOR RIGHT SPACE: ' + str(self.actors[self.location][0].is_enough_space_right), WHITE),
             ('ACTOR LEFT SPACE: ' + str(self.actors[self.location][0].is_enough_space_left), WHITE),
+            ('ACTOR STANDS ON PLATFORM #: ' + str(self.actors[self.location][0].influenced_by_obstacle), GREEN),
 
 
         )

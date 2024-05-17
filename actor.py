@@ -104,6 +104,11 @@ class Actor(Entity):
         elif new_action == 'jump action':
             # self.set_state('jump')
             if self.__state == 'crouch' and self.is_stand_on_ground:
+                if self.influenced_by_obstacle:
+                    # print('sdad')
+                    if self.obstacles_around[self.influenced_by_obstacle].is_ghost_platform:
+                        self.rectangle.top = self.obstacles_around[self.influenced_by_obstacle].rectangle.bottom + 1
+                        return
 
                 if (self.look == 1 and self.is_enough_space_right) or\
                         (self.look == -1 and self.is_enough_space_left):
