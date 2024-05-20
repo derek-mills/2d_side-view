@@ -182,32 +182,36 @@ class Entity(object):
         # self.influenced_by_obstacle = None
         for key in self.obstacles_around.keys():
             obs = self.obstacles_around[key]
-            # Check right
+            # Check RIGHT
             if obs.rectangle.colliderect(self.collision_detector_right) and not obs.is_ghost_platform:
                 # if obs.is_ghost_platform:
                 #     continue
                 # Check if obstacle has crawled from behind and pushed actor to his back:
                 if self.look == -1:  # Obstacle is on the right, but actor looks to the left.
-                    self.rectangle.right = obs.rectangle.left  # Push the actor
-                    self.influenced_by_obstacle = None
-                    self.is_edge_grabbed = False
+                    self.rectangle.right = obs.rectangle.left - 2  # Push the actor
+                    # self.influenced_by_obstacle = None
+                    # self.is_edge_grabbed = False
+                    self.set_state('release edge')
                     continue
                 # Grab over the top of an obstacle.
-                if obs.rectangle.top >= self.rectangle.top > (obs.rectangle.top - 30) and self.fall_speed > 0:
-                    # if self.rectangle.top <= obs.rectangle.top and self.fall_speed > 0:
-                    self.set_state('has just grabbed edge')
-                    # self.potential_moving_distance = 0
-                    self.influenced_by_obstacle = obs.id
-                    # self.is_edge_grabbed = True
-                    self.rectangle.top = obs.rectangle.top
-                    # self.fall_speed = 0
-                    self.rectangle.right = obs.rectangle.left
-                    # self.is_enough_space_right = False
-                    # self.heading[0] = 0
-                    # self.speed = 0
-                    # # self.jump_attempts_counter = 3
-                    # self.jump_attempts_counter = self.max_jump_attempts
-                    return
+                if self.get_state() not in ('release edge', 'hanging on edge', 'has just grabbed edge'):
+                # if self.__state != 'release edge':
+                # if not self.is_stand_on_ground:
+                    if obs.rectangle.top >= self.rectangle.top > (obs.rectangle.top - 30) and self.fall_speed > 0:
+                        # if self.rectangle.top <= obs.rectangle.top and self.fall_speed > 0:
+                        self.set_state('has just grabbed edge')
+                        # self.potential_moving_distance = 0
+                        self.influenced_by_obstacle = obs.id
+                        # self.is_edge_grabbed = True
+                        # self.rectangle.top = obs.rectangle.top
+                        # self.fall_speed = 0
+                        # self.rectangle.right = obs.rectangle.left
+                        # self.is_enough_space_right = False
+                        # self.heading[0] = 0
+                        # self.speed = 0
+                        # # self.jump_attempts_counter = 3
+                        # self.jump_attempts_counter = self.max_jump_attempts
+                        return
 
                 self.potential_moving_distance = obs.rectangle.left - self.collision_detector_right.left
                 # self.rectangle.right = obs.rectangle.left
@@ -216,35 +220,39 @@ class Entity(object):
                 # self.speed = 0
                 continue
 
-            # Check left
+            # Check LEFT
             if obs.rectangle.colliderect(self.collision_detector_left) and not obs.is_ghost_platform:
                 # if obs.is_ghost_platform:
                 #     continue
 
                 # Check if obstacle has crawled from behind and pushed actor to his back:
                 if self.look == 1:  # Obstacle is on the left, but actor looks to the right.
-                    self.rectangle.left = obs.rectangle.right  # Push the actor
-                    self.influenced_by_obstacle = None
-                    self.is_edge_grabbed = False
+                    self.rectangle.left = obs.rectangle.right + 2  # Push the actor
+                    # self.influenced_by_obstacle = None
+                    # self.is_edge_grabbed = False
+                    self.set_state('release edge')
                     continue
 
                 # Grab over the top of an obstacle.
-                if obs.rectangle.top >= self.rectangle.top > (obs.rectangle.top - 30) and self.fall_speed > 0:
-                    # if self.rectangle.top <= obs.rectangle.top and self.fall_speed > 0:
-                    self.set_state('has just grabbed edge')
-                    # self.potential_moving_distance = 0
-                    self.influenced_by_obstacle = obs.id
-                    # self.is_edge_grabbed = True
-                    self.rectangle.top = obs.rectangle.top
-                    # self.fall_speed = 0
-                    # self.is_stand_on_ground = True
-                    self.rectangle.left = obs.rectangle.right  # - 2
-                    # self.is_enough_space_left = False
-                    # self.heading[0] = 0
-                    # self.speed = 0
-                    # self.jump_attempts_counter = 3
-                    # self.jump_attempts_counter = self.max_jump_attempts
-                    return
+                if self.get_state() not in ('release edge', 'hanging on edge', 'has just grabbed edge'):
+                # if not self.is_stand_on_ground:
+                # if not self.is_stand_on_ground:
+                    if obs.rectangle.top >= self.rectangle.top > (obs.rectangle.top - 30) and self.fall_speed > 0:
+                        # if self.rectangle.top <= obs.rectangle.top and self.fall_speed > 0:
+                        self.set_state('has just grabbed edge')
+                        # self.potential_moving_distance = 0
+                        self.influenced_by_obstacle = obs.id
+                        # self.is_edge_grabbed = True
+                        # self.rectangle.top = obs.rectangle.top
+                        # # self.fall_speed = 0
+                        # # self.is_stand_on_ground = True
+                        # self.rectangle.left = obs.rectangle.right  # - 2
+                        # self.is_enough_space_left = False
+                        # self.heading[0] = 0
+                        # self.speed = 0
+                        # self.jump_attempts_counter = 3
+                        # self.jump_attempts_counter = self.max_jump_attempts
+                        return
 
                 self.potential_moving_distance = self.collision_detector_left.right - obs.rectangle.right
                 # self.rectangle.left = obs.rectangle.right
@@ -282,8 +290,8 @@ class Entity(object):
     def check_space_around(self):
         self.is_enough_space_left = True
         self.is_enough_space_right = True
-        # self.is_enough_space_below = True
-        # self.is_enough_space_above = True
+        self.is_enough_space_below = True
+        self.is_enough_space_above = True
 
         for key in self.obstacles_around.keys():
             obs = self.obstacles_around[key]
@@ -296,16 +304,16 @@ class Entity(object):
                                          self.rectangle.width + self.speed + 2, self.rectangle.height - 35):
                 self.is_enough_space_right = False
                 continue
-            # # Check if there is enough space ABOVE
-            # if obs.rectangle.colliderect(self.rectangle.left + 2, self.rectangle.top - abs(self.fall_speed),
-            #                              self.rectangle.width - 4, abs(self.fall_speed)):
-            #     self.is_enough_space_above = False
-            #     continue
-            # # Check if there is enough space BELOW
-            # if obs.rectangle.colliderect(self.rectangle.left + 2, self.rectangle.bottom,
-            #                              self.rectangle.width - 4, abs(self.fall_speed) + 1):
-            #     self.is_enough_space_below = False
-            #     continue
+            # Check if there is enough space ABOVE
+            if obs.rectangle.colliderect(self.rectangle.left + 2, self.rectangle.top - abs(self.fall_speed) - 4,
+                                         self.rectangle.width - 4, abs(self.fall_speed) + 4):
+                self.is_enough_space_above = False
+                continue
+            # Check if there is enough space BELOW
+            if obs.rectangle.colliderect(self.rectangle.left + 2, self.rectangle.bottom,
+                                         self.rectangle.width - 4, abs(self.fall_speed) + 1):
+                self.is_enough_space_below = False
+                continue
 
     def fly(self, time_passed):
         vec_to_destination = list((self.destination[0] - self.rectangle.centerx, self.destination[1] - self.rectangle.centery))

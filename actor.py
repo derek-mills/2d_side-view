@@ -26,6 +26,7 @@ class Actor(Entity):
         return self.__state
 
     def set_state(self, new_state):
+        print(f'[actor.set_state] new state: {new_state}')
         self.__state = new_state
 
     def process(self, time_passed):
@@ -96,8 +97,8 @@ class Actor(Entity):
 
         # DOWN actions
         elif new_action == 'down action':
-            if self.__state == 'grabbing edge':
-                self.set_state('grab off')
+            if self.__state == 'hanging on edge':
+                self.set_state('release edge')
             # if self.is_edge_grabbed:
             #     self.is_edge_grabbed = False
             #     self.set_state('stand still')
@@ -106,11 +107,12 @@ class Actor(Entity):
 
         elif new_action == 'down action cancel':
             if self.__state == 'crouch':
-                self.set_state('crouch rise')
+                if self.is_enough_space_above:
+                    self.set_state('crouch rise')
 
         # UP action
         elif new_action == 'up action':
-            if self.__state == 'grabbing edge':
+            if self.__state == 'hanging on edge' and self.is_enough_space_above:
                 self.set_state('climb on')
 
         # JUMP
@@ -130,7 +132,7 @@ class Actor(Entity):
                     self.set_state('slide')
                 # self.set_state('slide')
 
-            elif self.__state == 'grabbing edge':
+            elif self.__state == 'hanging on edge':
                 ...
                 # self.set_state('climb on')
             # elif self.is_stand_on_ground:
@@ -210,28 +212,32 @@ class Actor(Entity):
             self.is_move_right = True
         elif self.__state == 'has just grabbed edge':
             self.potential_moving_distance = 0
-            # self.influenced_by_obstacle = obs.id
             self.is_edge_grabbed = True
-            # self.rectangle.top = obs.rectangle.top
             self.fall_speed = 0
-            # self.rectangle.right = obs.rectangle.left
-            self.is_enough_space_right = False
             self.heading[0] = 0
             self.speed = 0
+            self.rectangle.top = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
+            if self.look == -1:
+                self.rectangle.left = self.obstacles_around[self.influenced_by_obstacle].rectangle.right
+                self.is_enough_space_left = False
+            else:
+                self.rectangle.right = self.obstacles_around[self.influenced_by_obstacle].rectangle.left
+                self.is_enough_space_right = False
             # self.jump_attempts_counter = 3
             # self.jump_attempts_counter = self.max_jump_attempts
-            self.set_state('grabbing edge')
-        elif self.__state == 'grabbing edge':
+            self.set_state('hanging on edge')
+        elif self.__state == 'hanging on edge':
             ...
-        elif self.__state == 'grab off':
+        elif self.__state == 'release edge':
             self.is_edge_grabbed = False
-            # self.influenced_by_obstacle = None
-            self.set_state('stand still')
+            self.influenced_by_obstacle = None
+            if self.is_stand_on_ground:
+                self.set_state('stand still')
         elif self.__state == 'climb on':
             # self.jump_attempts_counter = self.max_jump_attempts
             self.jump_attempts_counter = 0
             self.rectangle.bottom = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
-            self.rectangle.centerx += 20 * self.look
+            self.rectangle.centerx += 10 * self.look
             self.is_edge_grabbed = False
             # self.influenced_by_obstacle = None
             self.set_state('crouch')
