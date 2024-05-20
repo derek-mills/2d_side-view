@@ -56,14 +56,14 @@ o = (
     ((51, 550), (350, 150), 'move right'),  # left wall
     ((MAXX*3 - 150, 0), (150, MAXY)),  # right wall
     # steps:
-    # ((400, MAXY - 60), (50, 200), False, False),
-    # ((450, MAXY - 70), (50, 200), False, False),
-    # ((500, MAXY - 80), (50, 200), False, False),
-    # ((550, MAXY - 90), (50, 200), False, False),
+    ((600, MAXY - 60), (50, 200), False, False),
+    ((650, MAXY - 70), (50, 200), False, False),
+    ((700, MAXY - 80), (50, 200), False, False),
+    ((750, MAXY - 90), (50, 200), False, False),
     # moving ghosts:
     # ((1200, MAXY_DIV_2+250), (1000, 10), 'move left', 'ghost'),
     ((1200, MAXY_DIV_2+250), (1000, 10), 'move left'),
-    ((1200, MAXY_DIV_2+235), (1000, 10), 'ghost'),
+    # ((1200, MAXY_DIV_2+235), (1000, 10), 'ghost'),
 
     # ((300, MAXY_DIV_2), (400, 50), False, False),
     # ((MAXX_DIV_2, MAXY_DIV_2 + 150), (50, MAXY_DIV_2), False, False),

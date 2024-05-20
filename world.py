@@ -100,8 +100,14 @@ class World(object):
         self.processing_obstacles()
         self.processing_human_input()
         self.processing_actors()
+        if self.actors[self.location][0].speed > 0:
+            y_offset_speed = self.actors[self.location][0].speed
+        elif self.actors[self.location][0].influenced_by_obstacle:
+            y_offset_speed = self.obstacles[self.location][self.actors[self.location][0].influenced_by_obstacle].speed
+        else:
+            y_offset_speed = 1
         self.camera.apply_offset((self.actors[self.location][0].rectangle.centerx, self.actors[self.location][0].rectangle.bottom),
-                                 self.actors[self.location][0].speed * 0.9, 5)
+                                 y_offset_speed, 5)
                                  # self.actors[self.location][0].speed * 0.9, self.actors[self.location][0].fall_speed)
         self.render_all()
 
