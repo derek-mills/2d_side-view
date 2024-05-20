@@ -6,10 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main .py" beforeDir="false" afterPath="$PROJECT_DIR$/main .py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obstacle.py" beforeDir="false" afterPath="$PROJECT_DIR$/obstacle.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -352,7 +351,14 @@
       <option name="project" value="LOCAL" />
       <updated>1716184694326</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="Improved camera follow ability">
+      <created>1716186542280</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1716186542280</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -367,7 +373,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added double jump in midair." />
     <MESSAGE value="Added camera follow" />
     <MESSAGE value="Modified camera follow" />
     <MESSAGE value="Added machine of states for actor." />
@@ -392,6 +397,7 @@
     <MESSAGE value="Tuning 'grab the edge' option." />
     <MESSAGE value="Slightly corrected left collider" />
     <MESSAGE value="Added some tiny, but important improvements:&#10;- 'release edge' state&#10;- try to grab the edge of an obstacle only in several states&#10;- check_space_around() routine is now includes above and below spaces&#10;- actor raise up now if he gets enough space above" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added some tiny, but important improvements:&#10;- 'release edge' state&#10;- try to grab the edge of an obstacle only in several states&#10;- check_space_around() routine is now includes above and below spaces&#10;- actor raise up now if he gets enough space above" />
+    <MESSAGE value="Improved camera follow ability" />
+    <option name="LAST_COMMIT_MESSAGE" value="Improved camera follow ability" />
   </component>
 </project>

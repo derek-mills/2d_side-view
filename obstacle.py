@@ -55,7 +55,7 @@ class Obstacle(Entity):
         self.fall_speed_calc()  # Discover speed and potential fall distance
         self.speed_calc()       # Discover fall speed and potential move distance
         self.colliders_calc()   # Calculate colliders around actor based on his current movement and fall speeds.
-        self.detect_collisions()
+        # self.detect_collisions()
 
         if self.is_gravity_affected:
             if not self.is_stand_on_ground:

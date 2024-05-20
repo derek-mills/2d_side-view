@@ -235,13 +235,15 @@ class Actor(Entity):
                 self.set_state('stand still')
         elif self.__state == 'climb on':
             # self.jump_attempts_counter = self.max_jump_attempts
-            self.jump_attempts_counter = 0
-            self.rectangle.bottom = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
-            self.rectangle.centerx += 10 * self.look
-            self.is_edge_grabbed = False
-            # self.influenced_by_obstacle = None
-            self.set_state('crouch')
-
+            if self.influenced_by_obstacle:
+                self.jump_attempts_counter = 0
+                self.rectangle.bottom = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
+                self.rectangle.centerx += 10 * self.look
+                self.is_edge_grabbed = False
+                # self.influenced_by_obstacle = None
+                self.set_state('crouch')
+            else:
+                self.set_state('crouch')
 
     def reset_self_flags(self):
         self.is_move_left = False
