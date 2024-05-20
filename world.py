@@ -69,6 +69,7 @@ class World(object):
         entity.rectangle.center = description['xy']
         entity.destination[0] = entity.rectangle.centerx
         entity.destination[1] = entity.rectangle.centery
+        entity.set_state('stand still')
 
         if self.location not in self.actors.keys():
             self.actors[self.location] = dict()
@@ -82,6 +83,7 @@ class World(object):
         entity.rectangle.topleft = description[0]
         entity.rectangle.width = description[1][0]
         entity.rectangle.height = description[1][1]
+        # entity.max_speed = 0.6
         entity.is_move_right = True if 'move right' in description else False
         entity.is_move_up = True if 'move up' in description else False
         entity.is_move_down = True if 'move down' in description else False
@@ -330,23 +332,27 @@ class World(object):
         # m_hover_actor = 'None' if not self.mouse_hovers_actor else self.wandering_actors[self.mouse_hovers_actor].name + ' ' + str(self.wandering_actors[self.mouse_hovers_actor].id)
         # m_hover_cell = 'None' if self.point_mouse_cursor_shows is None else str(self.locations[self.location]['points'][self.point_mouse_cursor_shows]['rect'].center)
         params = (
-            ('ACTOR HEADING: ' + str(self.actors[self.location][0].heading), WHITE),
-            ('ACTOR RECT: ' + str(self.actors[self.location][0].rectangle), WHITE),
-            ('ACTOR IS ON OBS: ' + str(self.actors[self.location][0].is_on_obstacle), WHITE),
-            ('ACTOR IS ON GROUND: ' + str(self.actors[self.location][0].is_stand_on_ground), WHITE),
-            ('ACTOR FALL: ' + str(self.actors[self.location][0].fall_speed), WHITE),
-            ('ACTOR SPEED: ' + str(self.actors[self.location][0].speed), WHITE),
-            ('ACTOR LOOK: ' + str(self.actors[self.location][0].look), WHITE),
-            ('ACTOR GRAB: ' + str(self.actors[self.location][0].is_edge_grabbed), WHITE),
-            ('ACTOR JUMP ATTMPS: ' + str(self.actors[self.location][0].jump_attempts_counter), WHITE),
-            ('ACTOR JUST JUMPED: ' + str(self.actors[self.location][0].just_got_jumped), WHITE),
-            ('ACTOR __STATE: ' + str(self.actors[self.location][0].get_state()), WHITE),
-            ('ACTOR IGNORES INPUT: ' + str(self.actors[self.location][0].ignore_user_input), WHITE),
-            ('ACTOR ABOVE SPACE: ' + str(self.actors[self.location][0].is_enough_space_above), WHITE),
-            ('ACTOR BELOW SPACE: ' + str(self.actors[self.location][0].is_enough_space_below), WHITE),
-            ('ACTOR RIGHT SPACE: ' + str(self.actors[self.location][0].is_enough_space_right), WHITE),
-            ('ACTOR LEFT SPACE: ' + str(self.actors[self.location][0].is_enough_space_left), WHITE),
-            ('ACTOR STANDS ON PLATFORM #: ' + str(self.actors[self.location][0].influenced_by_obstacle), GREEN),
+            #(' IS ON OBS: ' + str(self.actors[self.location][0].is_on_obstacle), WHITE),
+            (' IS ON GROUND: ' + str(self.actors[self.location][0].is_stand_on_ground), WHITE),
+            (' IS GRABBING: ' + str(self.actors[self.location][0].is_edge_grabbed), WHITE),
+            (' INFLUENCED BY PLATFORM #: ' + str(self.actors[self.location][0].influenced_by_obstacle), WHITE),
+            ('', WHITE),
+            (' HEADING: ' + str(self.actors[self.location][0].heading), WHITE),
+            (' RECT: ' + str(self.actors[self.location][0].rectangle), WHITE),
+            (' FALL SPEED: ' + str(self.actors[self.location][0].fall_speed), WHITE),
+            (' SPEED: ' + str(self.actors[self.location][0].speed), WHITE),
+            (' LOOK: ' + str(self.actors[self.location][0].look), WHITE),
+
+            (' JUMP ATTEMPTS: ' + str(self.actors[self.location][0].jump_attempts_counter), WHITE),
+            (' JUST JUMPED: ' + str(self.actors[self.location][0].just_got_jumped), WHITE),
+            (' IGNORES INPUT: ' + str(self.actors[self.location][0].ignore_user_input), WHITE),
+            (' __STATE: ' + str(self.actors[self.location][0].get_state()), CYAN),
+
+            (' ABOVE SPACE: ' + str(self.actors[self.location][0].is_enough_space_above), GREEN),
+            (' BELOW SPACE: ' + str(self.actors[self.location][0].is_enough_space_below), GREEN),
+            (' RIGHT SPACE: ' + str(self.actors[self.location][0].is_enough_space_right), GREEN),
+            (' LEFT SPACE: ' + str(self.actors[self.location][0].is_enough_space_left), GREEN),
+
 
 
         )

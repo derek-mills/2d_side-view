@@ -21,15 +21,16 @@ class Actor(Entity):
 
         self.__state = 'stand still'
 
-    def process(self, time_passed):
-        self.state_machine()
-        super().process(time_passed)
 
     def get_state(self):
         return self.__state
 
     def set_state(self, new_state):
         self.__state = new_state
+
+    def process(self, time_passed):
+        self.state_machine()
+        super().process(time_passed)
 
     def set_rect_height(self, height):
         floor = self.rectangle.bottom
@@ -54,8 +55,28 @@ class Actor(Entity):
     def set_action(self, new_action):
         if self.ignore_user_input:
             return
+
+        # RIGHT actions
+        if new_action == 'right action':
+            if self.__state == 'crouch':
+                if self.look == -1:
+                    self.set_state('crouch turn right')
+                else:
+                    ...
+            elif self.__state == 'stand still':
+                if self.look == 1:
+                    self.set_state('run right')
+                else:
+                    self.set_state('turn right')
+            elif self.__state == 'run left':
+                # self.set_state('turn left')
+                self.set_action('right action cancel')
+        elif new_action == 'right action cancel':
+            if self.__state == 'run right':
+                self.set_state('stand still')
+
         # LEFT actions
-        if new_action == 'left action':
+        elif new_action == 'left action':
             if self.__state == 'crouch':
                 if self.look == 1:
                     self.set_state('crouch turn left')
@@ -73,27 +94,13 @@ class Actor(Entity):
             if self.__state == 'run left':
                 self.set_state('stand still')
 
-        # RIGHT actions
-        elif new_action == 'right action':
-            if self.__state == 'crouch':
-                if self.look == -1:
-                    self.set_state('crouch turn right')
-                else:
-                    ...
-            elif self.__state == 'stand still':
-                if self.look == -1:
-                    self.set_state('turn right')
-                else:
-                    self.set_state('run right')
-        elif new_action == 'right action cancel':
-            if self.__state == 'run right':
-                self.set_state('stand still')
-
         # DOWN actions
         elif new_action == 'down action':
-            if self.is_edge_grabbed:
-                self.is_edge_grabbed = False
-                self.set_state('stand still')
+            if self.__state == 'grabbing edge':
+                self.set_state('grab off')
+            # if self.is_edge_grabbed:
+            #     self.is_edge_grabbed = False
+            #     self.set_state('stand still')
             elif self.__state == 'stand still' and self.is_stand_on_ground:
                 self.set_state('crouch down')
 
@@ -105,13 +112,10 @@ class Actor(Entity):
             # self.set_state('jump')
             if self.__state == 'crouch' and self.is_stand_on_ground:
                 if self.influenced_by_obstacle:
+                    # Jump off a ghost platform:
                     # print('sdad')
                     if self.obstacles_around[self.influenced_by_obstacle].is_ghost_platform:
                         self.rectangle.centery = self.obstacles_around[self.influenced_by_obstacle].rectangle.bottom + 20
-                        # self.set_action('jump action cancel')
-                        # self.influenced_by_obstacle = None
-                        # self.is_stand_on_ground = False
-                        # self.fall_speed = 10
                         self.set_state('crouch rise')
                         return
 
@@ -147,6 +151,7 @@ class Actor(Entity):
             self.set_state('stand still')
         # SLIDE
         elif self.__state == 'slide':
+            # self.speed *=
             self.speed = self.max_speed * 1.5
             self.set_rect_width(self.rectangle_width_slide)
             self.set_rect_height(self.rectangle_height_slide)
@@ -190,6 +195,24 @@ class Actor(Entity):
             self.is_move_left = True
         elif self.__state == 'run right':
             self.is_move_right = True
+        elif self.__state == 'has just grabbed edge':
+            self.potential_moving_distance = 0
+            # self.influenced_by_obstacle = obs.id
+            self.is_edge_grabbed = True
+            # self.rectangle.top = obs.rectangle.top
+            self.fall_speed = 0
+            # self.rectangle.right = obs.rectangle.left
+            self.is_enough_space_right = False
+            self.heading[0] = 0
+            self.speed = 0
+            # self.jump_attempts_counter = 3
+            self.jump_attempts_counter = self.max_jump_attempts
+            self.set_state('grabbing edge')
+        elif self.__state == 'grabbing edge':
+            ...
+        elif self.__state == 'grab off':
+            self.is_edge_grabbed = False
+            self.set_state('stand still')
 
 
     def reset_self_flags(self):
