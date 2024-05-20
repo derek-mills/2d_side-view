@@ -120,6 +120,10 @@ class World(object):
             # actor.reset_self_flags()
 
             if key == 0:  # Player's actor routines
+                if self.is_input_up_arrow:
+                    actor.set_action('up action')
+                else:
+                    actor.set_action('up action cancel')
 
                 if self.is_input_down_arrow:
                     actor.set_action('down action')

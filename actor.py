@@ -108,6 +108,12 @@ class Actor(Entity):
             if self.__state == 'crouch':
                 self.set_state('crouch rise')
 
+        # UP action
+        elif new_action == 'up action':
+            if self.__state == 'grabbing edge':
+                self.set_state('climb on')
+
+        # JUMP
         elif new_action == 'jump action':
             # self.set_state('jump')
             if self.__state == 'crouch' and self.is_stand_on_ground:
@@ -123,12 +129,19 @@ class Actor(Entity):
                         (self.look == -1 and self.is_enough_space_left):
                     self.set_state('slide')
                 # self.set_state('slide')
+
+            elif self.__state == 'grabbing edge':
+                ...
+                # self.set_state('climb on')
+            # elif self.is_stand_on_ground:
             else:
                 if not self.just_got_jumped:
                     self.just_got_jumped = True
                     self.jump_attempts_counter -= 1
                     self.is_jump = True
+                    self.influenced_by_obstacle = None
                 self.is_abort_jump = False
+
         elif new_action == 'jump action cancel':
             # self.set_state('jump cancel')
             if self.just_got_jumped:
@@ -206,13 +219,22 @@ class Actor(Entity):
             self.heading[0] = 0
             self.speed = 0
             # self.jump_attempts_counter = 3
-            self.jump_attempts_counter = self.max_jump_attempts
+            # self.jump_attempts_counter = self.max_jump_attempts
             self.set_state('grabbing edge')
         elif self.__state == 'grabbing edge':
             ...
         elif self.__state == 'grab off':
             self.is_edge_grabbed = False
+            # self.influenced_by_obstacle = None
             self.set_state('stand still')
+        elif self.__state == 'climb on':
+            # self.jump_attempts_counter = self.max_jump_attempts
+            self.jump_attempts_counter = 0
+            self.rectangle.bottom = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
+            self.rectangle.centerx += 20 * self.look
+            self.is_edge_grabbed = False
+            # self.influenced_by_obstacle = None
+            self.set_state('crouch')
 
 
     def reset_self_flags(self):
