@@ -369,7 +369,7 @@ class Entity(object):
         elif self.look == -1:
             # self.collision_detector_right.update(0,0,0,0)
             self.collision_detector_right.update(self.rectangle.right, self.rectangle.top, 1, self.rectangle.height - 35)
-            self.collision_detector_left.update(self.rectangle.left - self.speed + 1, self.rectangle.top, self.speed + 1, self.rectangle.height - 35)
+            self.collision_detector_left.update(self.rectangle.left - self.speed - 1, self.rectangle.top, self.speed + 1, self.rectangle.height - 35)
         if self.fall_speed < 0:
             self.collision_detector_top.update(self.rectangle.left + 2, self.rectangle.top - abs(self.fall_speed), self.rectangle.width - 4, abs(self.fall_speed))
             self.collision_detector_bottom.update(0,0,0,0)
