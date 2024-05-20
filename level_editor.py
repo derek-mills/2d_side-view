@@ -1,3 +1,5 @@
+import pygame
+
 from constants import *
 # from world import *
 from locations import *
@@ -5,6 +7,7 @@ from obstacle import *
 import camera
 # from sound import *
 # import fonts
+import pickle
 
 class World(object):
     def __init__(self):
@@ -33,11 +36,13 @@ class World(object):
         self.is_mouse_wheel_up = False
         self.is_mouse_wheel_down = False
         self.mouse_xy = list()  #
+        self.mouse_xy_global = list()  #
         self.is_mouse_hovers_item: bool = False
         self.mouse_hovers_item: int = 0
         self.is_mouse_hovers_actor: bool = False
         self.mouse_hovers_actor: int = 0
         self.camera_follows_mouse = True
+        self.camera_scroll_speed = 4
 
         self.obstacles = dict()
         self.obstacle_id: int = 0
@@ -46,27 +51,32 @@ class World(object):
         self.camera = camera.Camera()
         self.camera.setup(MAXX*2, MAXY)
 
+        self.new_obs_rect = pygame.Rect(0,0,0,0)
+        self.new_obs_rect_started = False
+        self.new_obs_rect_start_xy = [0, 0]
+
 
     def set_screen(self, surface):
         self.screen = surface
 
     def processing_human_input(self):
         self.mouse_xy = pygame.mouse.get_pos()
+        self.mouse_xy_global = (self.mouse_xy[0] + self.camera.offset_x, self.mouse_xy[1] + self.camera.offset_y)
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
                 raise SystemExit()
-            # mods = pygame.key.get_mods()
-            # if mods & KMOD_LSHIFT:  # use whatever KMOD_ constant you want;)
-            #     self.is_l_shift = True
-            # elif mods & KMOD_LCTRL:
-            #     self.is_l_ctrl = True
-            # elif mods & KMOD_LALT:
-            #     self.is_l_alt = True
-            # else:
-            #     self.is_l_ctrl = False
-            #     self.is_l_shift = False
-            #     self.is_l_alt = False
+            mods = pygame.key.get_mods()
+            if mods & KMOD_LSHIFT:  # use whatever KMOD_ constant you want;)
+                self.is_l_shift = True
+            elif mods & KMOD_LCTRL:
+                self.is_l_ctrl = True
+            elif mods & KMOD_LALT:
+                self.is_l_alt = True
+            else:
+                self.is_l_ctrl = False
+                self.is_l_shift = False
+                self.is_l_alt = False
             # # print(self.l_shift)
             # if event.type == KEYUP:
             #     self.is_key_pressed = False
@@ -96,6 +106,8 @@ class World(object):
             #
                 if event.key == K_l:
                     self.load()
+                elif event.key == K_s:
+                    self.save()
             #         self.is_input_right_arrow = True
             #     if event.key == K_a:
             #         self.is_input_left_arrow = True
@@ -200,17 +212,46 @@ class World(object):
         entity.is_move_down = True if 'move down' in description else False
         entity.is_move_left = True if 'move left' in description else False
         entity.is_ghost_platform = True if 'ghost' in description else False
+
         # Add an obstacle to the world storage:
         if self.location not in self.obstacles.keys():
             self.obstacles[self.location] = dict()
         self.obstacles[self.location][entity.id] = entity
         self.obstacle_id += 1
 
-    def load(self):
-        for obs in locations[self.location]['obstacles']['platforms']:
-            self.add_obstacle(obs)
-        print(f'[world.load] loaded obstacles: {len(self.obstacles[self.location])}')
+    # def load(self):
+    #     for obs in locations[self.location]['obstacles']['platforms']:
+    #         self.add_obstacle(obs)
+    #     print(f'[world.load] loaded obstacles: {len(self.obstacles[self.location])}')
 
+    def load(self):
+        try:
+            with open('locations_'+self.location+'.dat', 'rb') as f:
+                loaded_data = pickle.load(f)
+        except FileNotFoundError:
+            self.obstacles[self.location] = dict()
+            return
+
+        # for d in loaded_data:
+        # print(f'{d}: {loaded_data[d]}')  #
+        # print('*' * 100)
+        self.obstacles[self.location] = loaded_data
+        # with open('locations.dat' , 'r') as f:
+        #     for line in f:
+        #         print(line.split('|'))
+        #         # obs_id,obs_xy,obs_size = line.split('|')
+        #         # print(obs_id, obs_xy, obs_size)
+        # # for obs in locations[self.location]['obstacles']['platforms']:
+        # #     self.add_obstacle(obs)
+        # # print(f'[world.load] loaded obstacles: {len(self.obstacles[self.location])}')
+
+    def save(self):
+        with open('locations_'+self.location+'.dat', 'wb') as f:
+            # for k in self.obstacles[self.location].keys():
+            #     obs = self.obstacles[self.location][k]
+            #     # self.new_obs_rect.topleft, self.new_obs_rect.size
+            #     f.write(str(obs.id) + '|' + str(obs.rectangle.topleft) + '|' + str(obs.rectangle.size) + '\n')
+            pickle.dump(self.obstacles[self.location], f)
     def render_background(self):
         pygame.draw.rect(self.screen, BLACK, (0,0,MAXX, MAXY))
 
@@ -220,13 +261,44 @@ class World(object):
             pygame.draw.rect(self.screen, WHITE, (obs.rectangle.x - self.camera.offset_x, obs.rectangle.y - self.camera.offset_y,
                                                   obs.rectangle.width, obs.rectangle.height))
 
+    def render_new_obs(self):
+        pygame.draw.rect(self.screen, CYAN, (self.new_obs_rect.x - self.camera.offset_x, self.new_obs_rect.y - self.camera.offset_y,
+                                              self.new_obs_rect.width, self.new_obs_rect.height))
+
+    def check_mouse_xy_collides_obs(self):
+        for key in self.obstacles[self.location].keys():
+            obs = self.obstacles[self.location][key]
+            if obs.rectangle.collidepoint(self.mouse_xy_global):
+                return obs.id
+        return -1
+
     def process(self):
         self.processing_human_input()
-        if self.camera_follows_mouse:
-            self.camera.apply_offset((self.mouse_xy[0], self.mouse_xy[1]),
-                                     10, 10)
+        if self.is_right_mouse_button_down:
+            obs_id = self.check_mouse_xy_collides_obs()
+            if obs_id > -1:
+                del self.obstacles[self.location][obs_id]
+        if self.is_left_mouse_button_down:
+            if self.new_obs_rect_started:
+                self.new_obs_rect.update(self.new_obs_rect_start_xy[0], self.new_obs_rect_start_xy[1],
+                                         self.mouse_xy_global[0] - self.new_obs_rect_start_xy[0], self.mouse_xy_global[1] - self.new_obs_rect_start_xy[1] )
+            else:
+                self.new_obs_rect_started = True
+                self.new_obs_rect_start_xy = self.mouse_xy_global
+        else:
+            if self.new_obs_rect_started:
+                description = (self.new_obs_rect.topleft, self.new_obs_rect.size)
+                self.add_obstacle(description)
+                self.new_obs_rect_started = False
+                self.new_obs_rect_start_xy = [0, 0]
+                self.new_obs_rect.update(0,0,0,0)
+
+        if self.is_l_shift:
+            self.camera.apply_offset((self.mouse_xy_global[0], self.mouse_xy_global[1]),
+                                     self.camera_scroll_speed, self.camera_scroll_speed)
         self.render_background()
         self.render_obstacles()
+        self.render_new_obs()
 
 
 world = World()

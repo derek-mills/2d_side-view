@@ -42,13 +42,14 @@ fades_speed = 100
 world.location = '01'
 if world.location not in world.locations.keys():
     world.locations[world.location] = dict()
+world.load()
 player = {
     'xy': (100, 0)
 }
 world.add_actor(player)
 
-for obs in locations['01']['obstacles']['platforms']:
-    world.add_obstacle(obs)
+# for obs in locations['01']['obstacles']['platforms']:
+#     world.add_obstacle(obs)
 
 def main():
     max_fps = 0
