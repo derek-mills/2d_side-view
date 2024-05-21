@@ -178,6 +178,9 @@ class Entity(object):
     def set_state(self, new_state):
         self.__state = new_state
 
+    def state_machine(self):
+        ...
+
     def detect_collisions(self):
         self.is_stand_on_ground = False
         # self.influenced_by_obstacle = None
@@ -198,8 +201,10 @@ class Entity(object):
                 # Grab over the top of an obstacle.
                 if self.get_state() not in ('release edge', 'hanging on edge', 'has just grabbed edge'):
                     if obs.rectangle.top >= self.rectangle.top > (obs.rectangle.top - 30) and self.fall_speed > 0:
-                        self.set_state('has just grabbed edge')
+                        # self.rectangle.right = obs.rectangle.left - 2
                         self.influenced_by_obstacle = obs.id
+                        self.set_state('has just grabbed edge')
+                        self.state_machine()
                         continue
 
                 if self.look == 1: # Obstacle is on the right, and actor also looks to the right, and hangs on the edge.
@@ -216,6 +221,8 @@ class Entity(object):
             #-----------------------------------
             # Check LEFT
             if obs.rectangle.colliderect(self.collision_detector_left) and not obs.is_ghost_platform:
+                # self.rectangle.left = obs.rectangle.right + 2
+
                 # Check if obstacle has crawled from behind and pushed actor to his back:
                 if self.look == 1:  # Obstacle is on the left, but actor looks to the right.
                     self.rectangle.left = obs.rectangle.right + 2  # Push the actor
@@ -225,8 +232,9 @@ class Entity(object):
                 # Grab over the top of an obstacle.
                 if self.get_state() not in ('release edge', 'hanging on edge', 'has just grabbed edge'):
                     if obs.rectangle.top >= self.rectangle.top > (obs.rectangle.top - 30) and self.fall_speed > 0:
-                        self.set_state('has just grabbed edge')
                         self.influenced_by_obstacle = obs.id
+                        self.set_state('has just grabbed edge')
+                        self.state_machine()
                         continue
 
                 if self.look == -1: # Obstacle is on the left, and actor also looks to the left, and hangs on the edge.

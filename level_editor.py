@@ -46,6 +46,7 @@ class World(object):
         self.is_mouse_wheel_down = False
         self.mouse_xy = list()  #
         self.mouse_xy_global = list()  #
+        self.mouse_xy_snapped_to_mesh = list()  #
         self.is_mouse_hovers_item: bool = False
         self.mouse_hovers_item: int = 0
         self.is_mouse_hovers_actor: bool = False
@@ -75,6 +76,8 @@ class World(object):
     def processing_human_input(self):
         self.mouse_xy = pygame.mouse.get_pos()
         self.mouse_xy_global = (self.mouse_xy[0] + self.camera.offset_x, self.mouse_xy[1] + self.camera.offset_y)
+        self.mouse_xy_snapped_to_mesh = (self.mouse_xy_global[0] // self.snap_mesh_size * self.snap_mesh_size,
+                                         self.mouse_xy_global[1] // self.snap_mesh_size * self.snap_mesh_size)
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
@@ -360,6 +363,7 @@ class World(object):
         #     self.menu.draw()
 
     def render_new_obs(self):
+
         pygame.draw.rect(self.screen, CYAN, (self.new_obs_rect.x - self.camera.offset_x, self.new_obs_rect.y - self.camera.offset_y,
                                               self.new_obs_rect.width, self.new_obs_rect.height))
 
@@ -373,7 +377,8 @@ class World(object):
         # m_hover_actor = 'None' if not self.mouse_hovers_actor else self.wandering_actors[self.mouse_hovers_actor].name + ' ' + str(self.wandering_actors[self.mouse_hovers_actor].id)
         # m_hover_cell = 'None' if self.point_mouse_cursor_shows is None else str(self.locations[self.location]['points'][self.point_mouse_cursor_shows]['rect'].center)
         params = (
-            ('SAVE: F2 | LOAD: F8 | WASD: MOVE CAMERA', BLUE),
+            ('SAVE: F2 | LOAD: F8 | WASD: MOVE CAMERA | + - : CHANGE SNAP MESH SCALE | ESC: QUIT', BLUE),
+            ('SNAP MESH SCALE: ' + str(self.snap_mesh_size), BLACK),
             ('OFFSET GLOBAL: ' + str(self.global_offset_xy), BLACK),
             ('CAMERA INNER OFFSET: ' + str(self.camera.offset_x) + ' ' + str(self.camera.offset_y), BLACK),
         )
@@ -382,6 +387,8 @@ class World(object):
             gap += font_size
 
     def render_snap_mesh(self):
+        pygame.draw.circle(self.screen, RED, (self.mouse_xy_snapped_to_mesh[0] - self.camera.offset_x,
+                                              self.mouse_xy_snapped_to_mesh[1] - self.camera.offset_y), 5)
         for k in self.snap_mesh.keys():
             # dot = self.snap_mesh[k]
             pygame.draw.circle(self.screen, YELLOW, (k[0] - self.camera.offset_x, k[1] - self.camera.offset_y), 1)
@@ -440,8 +447,9 @@ class World(object):
         if self.is_left_mouse_button_down:
             if self.new_obs_rect_started:
                 # Update new obs.
-                last_point = (self.mouse_xy_global[0] // self.snap_mesh_size * self.snap_mesh_size,
-                              self.mouse_xy_global[1] // self.snap_mesh_size * self.snap_mesh_size)
+                # last_point = (self.mouse_xy_global[0] // self.snap_mesh_size * self.snap_mesh_size,
+                #               self.mouse_xy_global[1] // self.snap_mesh_size * self.snap_mesh_size)
+                last_point = self.mouse_xy_snapped_to_mesh
                 if self.new_obs_rect_start_xy[0] < last_point[0]:
                     x = self.new_obs_rect_start_xy[0]
                     w = last_point[0] - self.new_obs_rect_start_xy[0]
@@ -459,14 +467,15 @@ class World(object):
             else:
                 # Start new obs.
                 self.new_obs_rect_started = True
-                self.new_obs_rect_start_xy = (self.mouse_xy_global[0] // self.snap_mesh_size * self.snap_mesh_size,
-                                              self.mouse_xy_global[1] // self.snap_mesh_size * self.snap_mesh_size)
+                self.new_obs_rect_start_xy = self.mouse_xy_snapped_to_mesh
                 # self.new_obs_rect_start_xy = self.mouse_xy_global  # Without snap to mesh.
         else:
             if self.new_obs_rect_started:
                 # Add new obs.
-                description = (self.new_obs_rect.topleft, self.new_obs_rect.size)
-                self.add_obstacle(description)
+
+                if self.new_obs_rect.width != 0 and self.new_obs_rect.height != 0:
+                    description = (self.new_obs_rect.topleft, self.new_obs_rect.size)
+                    self.add_obstacle(description)
                 self.new_obs_rect_started = False
                 self.new_obs_rect_start_xy = [0, 0]
                 self.new_obs_rect.update(0,0,0,0)

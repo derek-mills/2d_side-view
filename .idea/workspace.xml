@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
     </list>
@@ -47,7 +48,7 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
 }</component>
-  <component name="RunManager" selected="Python.level_editor">
+  <component name="RunManager" selected="Python.main ">
     <configuration name="level_editor" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ver_0.000.1" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -92,8 +93,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.level_editor" />
         <item itemvalue="Python.main " />
+        <item itemvalue="Python.level_editor" />
       </list>
     </recent_temporary>
   </component>
@@ -428,7 +429,14 @@
       <option name="project" value="LOCAL" />
       <updated>1716273503412</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="Working on the level editor: snap mesh added.">
+      <created>1716274943844</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1716274943844</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -443,7 +451,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Rectangle changes dimensions during slide.&#10;TODO fix problem with walls clipping when slide activating near it." />
     <MESSAGE value="Solved problem with getting inside an obstacle while try to slide too close to it." />
     <MESSAGE value="Fixed bugs with incorrect collision detection (mostly around slide mode)." />
     <MESSAGE value="Fixed bugs with incorrect collision detection (mostly around slide mode), go on." />
@@ -468,6 +475,7 @@
     <MESSAGE value="Working on the level editor." />
     <MESSAGE value="Working on the level editor: drawing of new obstacles is possible to any way from the start point." />
     <MESSAGE value="Working on the level editor: save and load routines." />
-    <option name="LAST_COMMIT_MESSAGE" value="Working on the level editor: save and load routines." />
+    <MESSAGE value="Working on the level editor: snap mesh added." />
+    <option name="LAST_COMMIT_MESSAGE" value="Working on the level editor: snap mesh added." />
   </component>
 </project>
