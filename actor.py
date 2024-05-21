@@ -123,8 +123,9 @@ class Actor(Entity):
                     # Jump off a ghost platform:
                     # print('sdad')
                     if self.obstacles_around[self.influenced_by_obstacle].is_ghost_platform:
-                        self.rectangle.centery = self.obstacles_around[self.influenced_by_obstacle].rectangle.bottom + 20
-                        self.set_state('crouch rise')
+                        self.set_state('hop down from ghost')
+                        # self.rectangle.centery = self.obstacles_around[self.influenced_by_obstacle].rectangle.bottom + 20
+                        # self.set_state('crouch rise')
                         return
 
                 if (self.look == 1 and self.is_enough_space_right) or\
@@ -132,6 +133,8 @@ class Actor(Entity):
                     self.set_state('slide')
                 # self.set_state('slide')
 
+            elif self.__state == 'hanging on ghost':
+                self.set_state('release edge')
             elif self.__state == 'hanging on edge':
                 ...
                 # self.set_state('climb on')
@@ -226,7 +229,28 @@ class Actor(Entity):
             # self.jump_attempts_counter = 3
             # self.jump_attempts_counter = self.max_jump_attempts
             self.set_state('hanging on edge')
+        elif self.__state == 'hop down from ghost':
+            # self.rectangle.centery = self.obstacles_around[self.influenced_by_obstacle].rectangle.bottom + 20
+            self.potential_moving_distance = 0
+            self.is_edge_grabbed = True
+            self.fall_speed = 0
+            self.heading[0] = 0
+            self.speed = 0
+            # self.rectangle.top = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
+            self.rectangle.top = self.obstacles_around[self.influenced_by_obstacle].rectangle.bottom
+            self.reset_self_flags()
+            # if self.look == -1:
+            #     self.rectangle.left = self.obstacles_around[self.influenced_by_obstacle].rectangle.right
+            #     self.is_enough_space_left = False
+            # else:
+            #     self.rectangle.right = self.obstacles_around[self.influenced_by_obstacle].rectangle.left
+            #     self.is_enough_space_right = False
+            # self.jump_attempts_counter = 3
+            # self.jump_attempts_counter = self.max_jump_attempts
+            self.set_state('hanging on ghost')
         elif self.__state == 'hanging on edge':
+            ...
+        elif self.__state == 'hanging on ghost':
             ...
         elif self.__state == 'release edge':
             self.is_edge_grabbed = False
@@ -248,4 +272,6 @@ class Actor(Entity):
     def reset_self_flags(self):
         self.is_move_left = False
         self.is_move_right = False
+        self.is_move_up = False
+        self.is_move_down = False
         self.is_jump = False

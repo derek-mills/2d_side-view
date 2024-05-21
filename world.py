@@ -184,7 +184,8 @@ class World(object):
     def render_obstacles(self):
         for key in self.obstacles[self.location].keys():
             obs = self.obstacles[self.location][key]
-            pygame.draw.rect(self.screen, WHITE, (obs.rectangle.x - self.camera.offset_x, obs.rectangle.y - self.camera.offset_y,
+            color = WHITE if obs.is_ghost_platform else CYAN
+            pygame.draw.rect(self.screen, color, (obs.rectangle.x - self.camera.offset_x, obs.rectangle.y - self.camera.offset_y,
                                                   obs.rectangle.width, obs.rectangle.height))
 
     def render_all(self):

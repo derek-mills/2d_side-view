@@ -321,13 +321,13 @@ class World(object):
                     if '\'platforms\':' in line:
                         for k in self.obstacles[self.location].keys():
                             obs = self.obstacles[self.location][k]
-                            ghost = 'ghost' if obs.is_ghost_platform else ''
-                            move_right = 'move right, ' if obs.is_move_right else ''
-                            move_left = 'move left, ' if obs.is_move_left else ''
-                            collideable = 'collideable, ' if obs.is_collideable else ''
-                            strg = '                ('+str(obs.rectangle.topleft) + ', ' + \
-                                   str(obs.rectangle.size) + ghost + move_right + move_left +'),  #' + str(obs.id) + '\n'
-                            f_dest.write(strg)
+                            ghost = ', \'ghost\', ' if obs.is_ghost_platform else ''
+                            move_right = ', \'move right\', ' if obs.is_move_right else ''
+                            move_left = ', \'move left\', ' if obs.is_move_left else ''
+                            collideable = ', \'collideable\', ' if obs.is_collideable else ''
+                            total_strg = '                ('+str(obs.rectangle.topleft) + ', ' + \
+                                   str(obs.rectangle.size) + ghost + move_right + move_left + collideable + '),  #' + str(obs.id) + '\n'
+                            f_dest.write(total_strg)
                         loc_found = False
                 if '\''+self.location+'\':' in line and not loc_found:
                     # print('Location found!')
