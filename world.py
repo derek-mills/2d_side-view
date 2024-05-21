@@ -91,7 +91,7 @@ class World(object):
         entity.is_move_down = True if 'move down' in description else False
         entity.is_move_left = True if 'move left' in description else False
         entity.is_ghost_platform = True if 'ghost' in description else False
-        entity.is_collides = True if 'collides' in description else False
+        entity.is_collideable = True if 'collideable' in description else False
         # Add an obstacle to the world storage:
         if self.location not in self.obstacles.keys():
             self.obstacles[self.location] = dict()
