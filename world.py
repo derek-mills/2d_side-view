@@ -91,6 +91,7 @@ class World(object):
         entity.is_move_down = True if 'move down' in description else False
         entity.is_move_left = True if 'move left' in description else False
         entity.is_ghost_platform = True if 'ghost' in description else False
+        entity.is_collides = True if 'collides' in description else False
         # Add an obstacle to the world storage:
         if self.location not in self.obstacles.keys():
             self.obstacles[self.location] = dict()
@@ -117,7 +118,7 @@ class World(object):
         for key in self.obstacles[self.location].keys():
             obs = self.obstacles[self.location][key]
             obs.percept(self.obstacles[self.location])
-            obs.process(self.time_passed)
+            obs.process_(self.time_passed)
 
 
     def processing_actors(self):

@@ -8,7 +8,7 @@ class Obstacle(Entity):
         self.is_ghost_platform: bool = False
         self.max_speed = 2
 
-    def process(self, time_passed):
+    def process_(self, time_passed):
         # ...
         # super().process(time_passed)
         if self.is_move_left:
@@ -54,8 +54,10 @@ class Obstacle(Entity):
         # self.check_space_around()  # Detect obstacles on the right and left sides
         self.fall_speed_calc()  # Discover speed and potential fall distance
         self.speed_calc()       # Discover fall speed and potential move distance
-        self.colliders_calc()   # Calculate colliders around actor based on his current movement and fall speeds.
-        # self.detect_collisions()
+
+        if self.is_collideable:
+            self.colliders_calc()  # Calculate colliders around actor based on his current movement and fall speeds.
+            self.detect_collisions()
 
         if self.is_gravity_affected:
             if not self.is_stand_on_ground:

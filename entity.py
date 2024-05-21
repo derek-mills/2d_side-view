@@ -48,6 +48,7 @@ class Entity(object):
         self.destination: list = [0, 0]
 
         # Collisions
+        self.is_collideable = False
         self.obstacles_around = None
         self.collision_detector_right = pygame.Rect(0,0,0,0)
         self.collision_detector_left = pygame.Rect(0,0,0,0)

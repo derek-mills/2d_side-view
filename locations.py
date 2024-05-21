@@ -51,27 +51,14 @@ locations = {
 
 
                 'platforms': (
-                ((0, MAXY-50),(MAXX*3, 50)), # floor
-                ((300, MAXY-250),(300, 80)), # floor
-                # ((-100, 500), (150, 150), 'move right'),  # left wall
-                ((0, -50), (50, MAXY)),  # left wall giant
-                ((51, 550), (350, 150), 'move right'),  # left wall
-                ((MAXX*3 - 150, 0), (150, MAXY)),  # right wall
-                # steps:
-                ((600, MAXY - 60), (50, 200)),
-                ((650, MAXY - 70), (50, 200)),
-                ((700, MAXY - 80), (50, 200)),
-                ((750, MAXY - 90), (50, 200)),
-                # moving ghosts:
-                # ((1200, MAXY_DIV_2+250), (1000, 10), 'move left', 'ghost'),
-                ((1200, MAXY_DIV_2+250), (1000, 10), 'move left'),
-                # ((1200, MAXY_DIV_2+235), (1000, 10), 'ghost'),
+                ((0, 980), (1067, 20)),  #0
+                ((854, 580), (61, 411)),  #1
+                ((404, 735), (470, 70)),  #2
+                ((476, 271), (122, 474)),  #3
+                ((562, 325), (842, 114)),  #4
+                ((1256, 390), (50, 363)),  #5
+                ((1011, 703), (268, 51)),  #6
 
-                # ((300, MAXY_DIV_2), (400, 50), False, False),
-                # ((MAXX_DIV_2, MAXY_DIV_2 + 150), (50, MAXY_DIV_2), False, False),
-                #
-                # ((MAXX - 50,0), (50, MAXY-200), False, False),
-                # ((MAXX - 300,0), (50, MAXY-300), False, False)
                 )
             },
             'items': {

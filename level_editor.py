@@ -2,15 +2,22 @@ import pygame
 
 from constants import *
 # from world import *
-from locations import *
+try:
+    from locations import *
+except ModuleNotFoundError:
+    pass
 from obstacle import *
 import camera
 # from sound import *
 import fonts
-import pickle
+import json
+# import pickle
+# import setup_box
+# import menu
 
 class World(object):
     def __init__(self):
+        self.allow_import_locations = False
         # CONTROLS
         self.is_key_pressed = False
         self.is_input_up_arrow = False
@@ -58,7 +65,7 @@ class World(object):
         self.new_obs_rect_started = False
         self.new_obs_rect_start_xy = [0, 0]
 
-
+        # self.setup_box = list()
 
     def set_screen(self, surface):
         self.screen = surface
@@ -104,7 +111,8 @@ class World(object):
                 if event.key == K_ESCAPE:
                     pygame.quit()
                     raise SystemExit()
-            #
+                if event.key == K_SPACE:
+                    self.is_spacebar = True
                 if event.key == K_F8:
                     self.load()
                 if event.key == K_F2:
@@ -229,34 +237,93 @@ class World(object):
         self.obstacle_id += 1
 
     def load(self):
-        try:
-            with open('locations_'+self.location+'.dat', 'rb') as f:
-                loaded_data = pickle.load(f)
-        except FileNotFoundError:
-            self.obstacles[self.location] = dict()
-            return
+        # Loading with pickle:
+        # try:
+        #     with open('locations_'+self.location+'.dat', 'rb') as f:
+        #         loaded_data = pickle.load(f)
+        # except FileNotFoundError:
+        #     self.obstacles[self.location] = dict()
+        #     return
 
-        # for d in loaded_data:
-        # print(f'{d}: {loaded_data[d]}')  #
-        # print('*' * 100)
-        self.obstacles[self.location] = loaded_data
-        self.obstacle_id = len(self.obstacles[self.location].keys()) + 1
-        # with open('locations.dat' , 'r') as f:
+        #Loading with JSON:
+        # try:
+        #     with open('locations.py', 'r') as f:
+        #     # with open('locations_'+self.location+'.dat', 'r') as f:
+        #         loaded_data = f.read()
+        #         print(loaded_data)
+        #         print(json.loads(loaded_data))
+        #         exit()
+        #         # loaded_data = json.load(f)
+        # except FileNotFoundError:
+        #     self.obstacles[self.location] = dict()
+        #     return
+
+        # self.obstacles[self.location] = dict()
+        # self.obstacle_id = 0
+        # loc_found = False
+        # platf_found = False
+        # with open('locations.py', 'r') as f:
+        #     # self.obstacles[self.location][self.obstacle_id] =
         #     for line in f:
-        #         print(line.split('|'))
-        #         # obs_id,obs_xy,obs_size = line.split('|')
-        #         # print(obs_id, obs_xy, obs_size)
-        # # for obs in locations[self.location]['obstacles']['platforms']:
-        # #     self.add_obstacle(obs)
-        # # print(f'[world.load] loaded obstacles: {len(self.obstacles[self.location])}')
+        #         if platf_found:
+        #             if ')  # END' in line:
+        #                 break
+        #             obs_data = line.strip().split(',  #')[0]
+        #             print(list(obs_data))
+        #         if loc_found:
+        #             if '\'platforms\':' in line:
+        #                 platf_found = True
+        #                 # for k in self.obstacles[self.location].keys():
+        #                 #     obs = self.obstacles[self.location][k]
+        #                 loc_found = False
+        #         if '\''+self.location+'\':' in line and not loc_found:
+        #             # print('Location found!')
+        #             loc_found = True
+
+        try:
+            for obs in locations['01']['obstacles']['platforms']:
+                self.add_obstacle(obs)
+        except NameError:
+            self.obstacles[self.location] = dict()
+
+        # self.obstacle_id = len(self.obstacles[self.location].keys()) + 1
 
     def save(self):
-        with open('locations_'+self.location+'.dat', 'wb') as f:
-            # for k in self.obstacles[self.location].keys():
-            #     obs = self.obstacles[self.location][k]
-            #     # self.new_obs_rect.topleft, self.new_obs_rect.size
-            #     f.write(str(obs.id) + '|' + str(obs.rectangle.topleft) + '|' + str(obs.rectangle.size) + '\n')
-            pickle.dump(self.obstacles[self.location], f)
+        # Saving with pickle:
+        # with open('locations_'+self.location+'.dat', 'wb') as f:
+        #     pickle.dump(self.obstacles[self.location], f)
+
+        # Saving using JSON:
+        # obs_geometry = list()
+        loc_found = False
+        f_dest = open('locations.py', 'w')
+        with open('locations_template.py', 'r') as f_source:
+            for line in f_source:
+                f_dest.write(line)
+                if loc_found:
+                    if '\'platforms\':' in line:
+                        for k in self.obstacles[self.location].keys():
+                            obs = self.obstacles[self.location][k]
+                            f_dest.write('                ('+str(obs.rectangle.topleft) + ', ' + str(obs.rectangle.size) + '),  #' + str(obs.id) + '\n')
+                        loc_found = False
+                if '\''+self.location+'\':' in line and not loc_found:
+                    # print('Location found!')
+                    loc_found = True
+
+        f_dest.close()
+        self.allow_import_locations = True
+        # exit()
+        # with open('locations_' + self.location + '.dat', 'w') as f:
+        #     for k in self.obstacles[self.location].keys():
+        #         obs = self.obstacles[self.location][k]
+        #         obs_geometry = (obs.id, obs.rectangle.topleft, obs.rectangle.size)
+        #         # obs_geometry.append((obs.id, obs.rectangle.topleft, obs.rectangle.size))
+        #         # f.write(str(obs.id) + ' ' + str(obs_geometry) + '\n')
+        #         f.write(obs_geometry)
+        #         # f.write(json.dumps(obs_geometry))
+
+            # json.dump(obs_geometry, f)
+
             # settings = {
             #     ''
             # }
@@ -270,6 +337,13 @@ class World(object):
             obs = self.obstacles[self.location][key]
             pygame.draw.rect(self.screen, WHITE, (obs.rectangle.x - self.camera.offset_x, obs.rectangle.y - self.camera.offset_y,
                                                   obs.rectangle.width, obs.rectangle.height))
+            s = fonts.font15.render(str(obs.id), True, GREEN)
+            self.screen.blit(s, (obs.rectangle.x - self.camera.offset_x + 2, obs.rectangle.y - self.camera.offset_y + 2))
+
+    def render_menu(self):
+        ...
+        # if self.menu:
+        #     self.menu.draw()
 
     def render_new_obs(self):
         pygame.draw.rect(self.screen, CYAN, (self.new_obs_rect.x - self.camera.offset_x, self.new_obs_rect.y - self.camera.offset_y,
@@ -301,17 +375,46 @@ class World(object):
                 return obs.id
         return -1
 
+    # def menu_bar(self, menu_items, xy):
+    #     items = list()
+    #     dx = xy[0]
+    #     dy = xy[1]
+    #     for i in menu_items.keys():
+    #         items.append((i, dx, dy, menu_items[i][0], menu_items[i][1]))
+    #         dy += 20
+    #
+    #     pygame.draw.rect(self.screen, pygame.Color(100, 100, 100, 10), (dx - 2, dy - 2, self.menu_item_width + 4, self.menu_height + self.menu_items_spacing + 2), 0)
+    #     print(items)
+    #     exit()
+
     def process(self):
         self.processing_human_input()
+
+        if self.is_spacebar:
+            obs_id = self.check_mouse_xy_collides_obs()
+            if obs_id > -1:
+                # Try to delete existing obs:
+                del self.obstacles[self.location][obs_id]
+
         if self.is_right_mouse_button_down:
             obs_id = self.check_mouse_xy_collides_obs()
             if obs_id > -1:
-                del self.obstacles[self.location][obs_id]
+                menu_items = {
+                    'IS GHOST?:': ('checkbox', 'is_ghost_platform'),
+                    'MOVE RIGHT:': ('checkbox', 'is_move_right'),
+                    'MOVE LEFT:': ('checkbox', 'is_move_left'),
+                    'MOVE UP:': ('checkbox', 'is_move_up'),
+                    'MOVE DOWN:': ('checkbox', 'is_move_down'),
+                    'GRAVITY AFFECTED:': ('checkbox', 'is_gravity_affected'),
+                    'COLLIDEABLE:': ('checkbox', 'is_collideable'),
+                }
+                # self.menu_bar(menu_items, self.mouse_xy)
+                self.obstacles[self.location][obs_id].is_ghost_platform = input('Is ghost? (True/False):')
+
+
         if self.is_left_mouse_button_down:
             if self.new_obs_rect_started:
-                # self.new_obs_rect.update(self.new_obs_rect_start_xy[0], self.new_obs_rect_start_xy[1],
-                #                          self.mouse_xy_global[0] - self.new_obs_rect_start_xy[0], self.mouse_xy_global[1] - self.new_obs_rect_start_xy[1] )
-
+                # Update new obs.
                 if self.new_obs_rect_start_xy[0] < self.mouse_xy_global[0]:
                     x = self.new_obs_rect_start_xy[0]
                     w = self.mouse_xy_global[0] - self.new_obs_rect_start_xy[0]
@@ -325,64 +428,70 @@ class World(object):
                 else:
                     y = self.mouse_xy_global[1]
                     h = self.new_obs_rect_start_xy[1] - self.mouse_xy_global[1]
-
                 self.new_obs_rect.update(x, y, w, h)
             else:
+                # Start new obs.
                 self.new_obs_rect_started = True
                 self.new_obs_rect_start_xy = self.mouse_xy_global
         else:
             if self.new_obs_rect_started:
+                # Add new obs.
                 description = (self.new_obs_rect.topleft, self.new_obs_rect.size)
                 self.add_obstacle(description)
                 self.new_obs_rect_started = False
                 self.new_obs_rect_start_xy = [0, 0]
                 self.new_obs_rect.update(0,0,0,0)
 
-        # if self.is_l_shift:
-        #     self.camera.apply_offset((self.mouse_xy_global[0], self.mouse_xy_global[1]),
-        #                              self.camera_scroll_speed, self.camera_scroll_speed)
-        #     self.global_offset_xy = [self.camera.offset_x, self.camera.offset_x]
-        # if self.is_key_pressed:
+        # Update camera viewport:
         if self.is_input_left_arrow:
             self.global_offset_xy[0] -= self.camera_scroll_speed * 10
             if self.global_offset_xy[0] < MAXX_DIV_2:
                 self.global_offset_xy[0] = MAXX_DIV_2
-            # self.camera.apply_offset(self.global_offset_xy,
-            #                          self.camera_scroll_speed, self.camera_scroll_speed, True)
         if self.is_input_right_arrow:
             self.global_offset_xy[0] += self.camera_scroll_speed * 10
             if self.global_offset_xy[0] > MAXX_DIV_2 + self.camera.max_offset_x:
                 self.global_offset_xy[0] = MAXX_DIV_2 + self.camera.max_offset_x
-
         if self.is_input_down_arrow:
             self.global_offset_xy[1] += self.camera_scroll_speed * 10
             if self.global_offset_xy[1] > MAXY_DIV_2 + self.camera.max_offset_y:
                 self.global_offset_xy[1] = MAXY_DIV_2 + self.camera.max_offset_y
-
         if self.is_input_up_arrow:
             self.global_offset_xy[1] -= self.camera_scroll_speed * 10
             if self.global_offset_xy[1] < MAXY_DIV_2:
                 self.global_offset_xy[1] = MAXY_DIV_2
-
-
         self.camera.apply_offset(self.global_offset_xy,
                                  self.camera_scroll_speed, self.camera_scroll_speed, True)
 
+        # if self.menu:
+        #     self.menu.process()
+        #     # self.menu.process(self.mouse_xy, self.is_left_mouse_button_down)
+        #
+        # Rendering:
         self.render_background()
         self.render_obstacles()
         self.render_new_obs()
         self.render_debug_info()
+        self.render_menu()
 
 
 world = World()
 world.set_screen(screen)
 world.obstacles[world.location] = dict()
-# world.load()
+world.load()
+
+allow_import_location = False
 def main():
+    global allow_import_location
     while True:
+        if world.allow_import_locations:
+            allow_import_location = True
+            world.allow_import_locations = False
         world.process()
         pygame.display.flip()
 
 
 if __name__ == "__main__":
+    if allow_import_location:
+        from locations import *
+        allow_import_location = False
     main()
