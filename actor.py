@@ -9,12 +9,12 @@ class Actor(Entity):
         self.acceleration = 1
         self.jump_height: int = 22
 
-        self.rectangle.height = 150
+        self.rectangle.height = 149
         self.rectangle_height_default = self.rectangle.height
         self.rectangle_width_default = self.rectangle.width
-        self.rectangle_height_sit = 90
+        self.rectangle_height_sit = 99
         self.rectangle_width_sit = self.rectangle.width
-        self.rectangle_height_slide = 45
+        self.rectangle_height_slide = 49
         self.rectangle_width_slide = 130
 
         self.ignore_user_input: bool = False
@@ -241,9 +241,9 @@ class Actor(Entity):
                 self.rectangle.centerx += 10 * self.look
                 self.is_edge_grabbed = False
                 # self.influenced_by_obstacle = None
-                self.set_state('crouch')
+                self.set_state('stand still')
             else:
-                self.set_state('crouch')
+                self.set_state('stand still')
 
     def reset_self_flags(self):
         self.is_move_left = False
