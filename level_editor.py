@@ -285,11 +285,12 @@ class World(object):
         # m_hover_actor = 'None' if not self.mouse_hovers_actor else self.wandering_actors[self.mouse_hovers_actor].name + ' ' + str(self.wandering_actors[self.mouse_hovers_actor].id)
         # m_hover_cell = 'None' if self.point_mouse_cursor_shows is None else str(self.locations[self.location]['points'][self.point_mouse_cursor_shows]['rect'].center)
         params = (
-            ('OFFSET GLOBAL: ' + str(self.global_offset_xy), WHITE),
-            ('CAMERA INNER OFFSET: ' + str(self.camera.offset_x) + ' ' + str(self.camera.offset_y), WHITE),
+            ('SAVE: F2 | LOAD: F8 | WASD: MOVE CAMERA', BLUE),
+            ('OFFSET GLOBAL: ' + str(self.global_offset_xy), BLACK),
+            ('CAMERA INNER OFFSET: ' + str(self.camera.offset_x) + ' ' + str(self.camera.offset_y), BLACK),
         )
         for p in params:
-            self.screen.blit(fonts.all_fonts[font_size].render(p[0], True, p[1], BLACK), (stats_x, stats_y + gap))
+            self.screen.blit(fonts.all_fonts[font_size].render(p[0], True, p[1], GRAY), (stats_x, stats_y + gap))
             gap += font_size
 
 
@@ -308,8 +309,24 @@ class World(object):
                 del self.obstacles[self.location][obs_id]
         if self.is_left_mouse_button_down:
             if self.new_obs_rect_started:
-                self.new_obs_rect.update(self.new_obs_rect_start_xy[0], self.new_obs_rect_start_xy[1],
-                                         self.mouse_xy_global[0] - self.new_obs_rect_start_xy[0], self.mouse_xy_global[1] - self.new_obs_rect_start_xy[1] )
+                # self.new_obs_rect.update(self.new_obs_rect_start_xy[0], self.new_obs_rect_start_xy[1],
+                #                          self.mouse_xy_global[0] - self.new_obs_rect_start_xy[0], self.mouse_xy_global[1] - self.new_obs_rect_start_xy[1] )
+
+                if self.new_obs_rect_start_xy[0] < self.mouse_xy_global[0]:
+                    x = self.new_obs_rect_start_xy[0]
+                    w = self.mouse_xy_global[0] - self.new_obs_rect_start_xy[0]
+                else:
+                    x = self.mouse_xy_global[0]
+                    w = self.new_obs_rect_start_xy[0] - self.mouse_xy_global[0]
+
+                if self.new_obs_rect_start_xy[1] < self.mouse_xy_global[1]:
+                    y = self.new_obs_rect_start_xy[1]
+                    h = self.mouse_xy_global[1] - self.new_obs_rect_start_xy[1]
+                else:
+                    y = self.mouse_xy_global[1]
+                    h = self.new_obs_rect_start_xy[1] - self.mouse_xy_global[1]
+
+                self.new_obs_rect.update(x, y, w, h)
             else:
                 self.new_obs_rect_started = True
                 self.new_obs_rect_start_xy = self.mouse_xy_global

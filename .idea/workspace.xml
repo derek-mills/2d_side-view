@@ -7,8 +7,6 @@
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locations_01.dat" beforeDir="false" afterPath="$PROJECT_DIR$/locations_01.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -408,7 +406,14 @@
       <option name="project" value="LOCAL" />
       <updated>1716195863546</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="Working on the level editor.">
+      <created>1716257666142</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1716257666142</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -423,7 +428,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added real crouching with height reduce and slide ability" />
     <MESSAGE value="Crouching is unavailable during hanging on the edges, and it causes actor to fall down the cliff." />
     <MESSAGE value="Added gaze direction sign." />
     <MESSAGE value="Rectangle changes dimensions during slide.&#10;TODO fix problem with walls clipping when slide activating near it." />
@@ -448,6 +452,7 @@
     <MESSAGE value="Added level editor" />
     <MESSAGE value="Level editor can save and load files with obstacles data, so as the main program unit." />
     <MESSAGE value="Data file added to GIT" />
-    <option name="LAST_COMMIT_MESSAGE" value="Data file added to GIT" />
+    <MESSAGE value="Working on the level editor." />
+    <option name="LAST_COMMIT_MESSAGE" value="Working on the level editor." />
   </component>
 </project>
