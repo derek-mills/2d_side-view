@@ -6,7 +6,7 @@ from locations import *
 from obstacle import *
 import camera
 # from sound import *
-# import fonts
+import fonts
 import pickle
 
 class World(object):
@@ -26,6 +26,8 @@ class World(object):
         self.is_n = False
         self.is_b = False
         self.is_spacebar = False
+        self.is_F2 = False
+        self.is_F8 = False
         self.is_l_shift = False
         self.is_l_ctrl = False
         self.is_l_alt = False
@@ -50,10 +52,12 @@ class World(object):
         self.screen = None
         self.camera = camera.Camera()
         self.camera.setup(MAXX*2, MAXY)
+        self.global_offset_xy = [MAXX_DIV_2, MAXY_DIV_2]
 
         self.new_obs_rect = pygame.Rect(0,0,0,0)
         self.new_obs_rect_started = False
         self.new_obs_rect_start_xy = [0, 0]
+
 
 
     def set_screen(self, surface):
@@ -78,36 +82,41 @@ class World(object):
                 self.is_l_shift = False
                 self.is_l_alt = False
             # # print(self.l_shift)
-            # if event.type == KEYUP:
-            #     self.is_key_pressed = False
-            #     if event.key == K_d:
-            #         self.is_input_right_arrow = False
-            #     if event.key == K_a:
-            #         self.is_input_left_arrow = False
-            #     if event.key == K_w:
-            #         self.is_input_up_arrow = False
-            #     if event.key == K_s:
-            #         self.is_input_down_arrow = False
-            #     if event.key == K_SPACE:
-            #         self.is_spacebar = False
-            #     # elif event.key == K_z:
-            #     #     self.z = False
-            #     # elif event.key == K_x:
-            #     #     self.input_cancel = False
-            #     # if event.key == K_KP_PLUS:
-            #     #     self.avatars_row_scale_decrease = False
-            #     # if event.key == K_KP_MINUS:
-            #     #     self.avatars_row_scale_increase = False
+            if event.type == KEYUP:
+                self.is_key_pressed = False
+
+                if event.key == K_SPACE:
+                    self.is_spacebar = False
+                # elif event.key == K_F8:
+                #     self.load()
+                # elif event.key == K_F2:
+                #     self.save()
+                if event.key == K_d:
+                    self.is_input_right_arrow = False
+                if event.key == K_a:
+                    self.is_input_left_arrow = False
+                if event.key == K_w:
+                    self.is_input_up_arrow = False
+                if event.key == K_s:
+                    self.is_input_down_arrow = False
             if event.type == KEYDOWN:
                 self.is_key_pressed = True
                 if event.key == K_ESCAPE:
                     pygame.quit()
                     raise SystemExit()
             #
-                if event.key == K_l:
+                if event.key == K_F8:
                     self.load()
-                elif event.key == K_s:
+                if event.key == K_F2:
                     self.save()
+                if event.key == K_d:
+                    self.is_input_right_arrow = True
+                if event.key == K_a:
+                    self.is_input_left_arrow = True
+                if event.key == K_w:
+                    self.is_input_up_arrow = True
+                if event.key == K_s:
+                    self.is_input_down_arrow = True
             #         self.is_input_right_arrow = True
             #     if event.key == K_a:
             #         self.is_input_left_arrow = True
@@ -219,11 +228,6 @@ class World(object):
         self.obstacles[self.location][entity.id] = entity
         self.obstacle_id += 1
 
-    # def load(self):
-    #     for obs in locations[self.location]['obstacles']['platforms']:
-    #         self.add_obstacle(obs)
-    #     print(f'[world.load] loaded obstacles: {len(self.obstacles[self.location])}')
-
     def load(self):
         try:
             with open('locations_'+self.location+'.dat', 'rb') as f:
@@ -236,6 +240,7 @@ class World(object):
         # print(f'{d}: {loaded_data[d]}')  #
         # print('*' * 100)
         self.obstacles[self.location] = loaded_data
+        self.obstacle_id = len(self.obstacles[self.location].keys()) + 1
         # with open('locations.dat' , 'r') as f:
         #     for line in f:
         #         print(line.split('|'))
@@ -252,6 +257,11 @@ class World(object):
             #     # self.new_obs_rect.topleft, self.new_obs_rect.size
             #     f.write(str(obs.id) + '|' + str(obs.rectangle.topleft) + '|' + str(obs.rectangle.size) + '\n')
             pickle.dump(self.obstacles[self.location], f)
+            # settings = {
+            #     ''
+            # }
+            # pickle.dump(settings, f)
+
     def render_background(self):
         pygame.draw.rect(self.screen, BLACK, (0,0,MAXX, MAXY))
 
@@ -264,6 +274,24 @@ class World(object):
     def render_new_obs(self):
         pygame.draw.rect(self.screen, CYAN, (self.new_obs_rect.x - self.camera.offset_x, self.new_obs_rect.y - self.camera.offset_y,
                                               self.new_obs_rect.width, self.new_obs_rect.height))
+
+    def render_debug_info(self):
+        stats_x = 1
+        stats_y = 1
+        # stripes_width = 500
+        gap = 1
+        font_size = 12
+        # m_hover_item = 'None' if not self.mouse_hovers_item else self.items[self.mouse_hovers_item].name
+        # m_hover_actor = 'None' if not self.mouse_hovers_actor else self.wandering_actors[self.mouse_hovers_actor].name + ' ' + str(self.wandering_actors[self.mouse_hovers_actor].id)
+        # m_hover_cell = 'None' if self.point_mouse_cursor_shows is None else str(self.locations[self.location]['points'][self.point_mouse_cursor_shows]['rect'].center)
+        params = (
+            ('OFFSET GLOBAL: ' + str(self.global_offset_xy), WHITE),
+            ('CAMERA INNER OFFSET: ' + str(self.camera.offset_x) + ' ' + str(self.camera.offset_y), WHITE),
+        )
+        for p in params:
+            self.screen.blit(fonts.all_fonts[font_size].render(p[0], True, p[1], BLACK), (stats_x, stats_y + gap))
+            gap += font_size
+
 
     def check_mouse_xy_collides_obs(self):
         for key in self.obstacles[self.location].keys():
@@ -293,17 +321,46 @@ class World(object):
                 self.new_obs_rect_start_xy = [0, 0]
                 self.new_obs_rect.update(0,0,0,0)
 
-        if self.is_l_shift:
-            self.camera.apply_offset((self.mouse_xy_global[0], self.mouse_xy_global[1]),
-                                     self.camera_scroll_speed, self.camera_scroll_speed)
+        # if self.is_l_shift:
+        #     self.camera.apply_offset((self.mouse_xy_global[0], self.mouse_xy_global[1]),
+        #                              self.camera_scroll_speed, self.camera_scroll_speed)
+        #     self.global_offset_xy = [self.camera.offset_x, self.camera.offset_x]
+        # if self.is_key_pressed:
+        if self.is_input_left_arrow:
+            self.global_offset_xy[0] -= self.camera_scroll_speed * 10
+            if self.global_offset_xy[0] < MAXX_DIV_2:
+                self.global_offset_xy[0] = MAXX_DIV_2
+            # self.camera.apply_offset(self.global_offset_xy,
+            #                          self.camera_scroll_speed, self.camera_scroll_speed, True)
+        if self.is_input_right_arrow:
+            self.global_offset_xy[0] += self.camera_scroll_speed * 10
+            if self.global_offset_xy[0] > MAXX_DIV_2 + self.camera.max_offset_x:
+                self.global_offset_xy[0] = MAXX_DIV_2 + self.camera.max_offset_x
+
+        if self.is_input_down_arrow:
+            self.global_offset_xy[1] += self.camera_scroll_speed * 10
+            if self.global_offset_xy[1] > MAXY_DIV_2 + self.camera.max_offset_y:
+                self.global_offset_xy[1] = MAXY_DIV_2 + self.camera.max_offset_y
+
+        if self.is_input_up_arrow:
+            self.global_offset_xy[1] -= self.camera_scroll_speed * 10
+            if self.global_offset_xy[1] < MAXY_DIV_2:
+                self.global_offset_xy[1] = MAXY_DIV_2
+
+
+        self.camera.apply_offset(self.global_offset_xy,
+                                 self.camera_scroll_speed, self.camera_scroll_speed, True)
+
         self.render_background()
         self.render_obstacles()
         self.render_new_obs()
+        self.render_debug_info()
 
 
 world = World()
 world.set_screen(screen)
-world.load()
+world.obstacles[world.location] = dict()
+# world.load()
 def main():
     while True:
         world.process()

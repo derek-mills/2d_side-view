@@ -71,6 +71,7 @@ class World(object):
         entity.destination[0] = entity.rectangle.centerx
         entity.destination[1] = entity.rectangle.centery
         entity.set_state('stand still')
+        entity.max_jump_attempts = 3
 
         if self.location not in self.actors.keys():
             self.actors[self.location] = dict()
