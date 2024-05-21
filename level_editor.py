@@ -65,6 +65,8 @@ class World(object):
         self.new_obs_rect_started = False
         self.new_obs_rect_start_xy = [0, 0]
 
+        self.snap_mesh = dict()
+        self.snap_mesh_size = 50
         # self.setup_box = list()
 
     def set_screen(self, surface):
@@ -98,6 +100,12 @@ class World(object):
                 #     self.load()
                 # elif event.key == K_F2:
                 #     self.save()
+                # if event.key == K_KP_PLUS:
+                #     self.snap_mesh_size += 1
+                #     self.create_snap_mesh()
+                # if event.key == K_KP_MINUS:
+                #     self.snap_mesh_size -= 1
+                #     self.create_snap_mesh()
                 if event.key == K_d:
                     self.is_input_right_arrow = False
                 if event.key == K_a:
@@ -111,6 +119,12 @@ class World(object):
                 if event.key == K_ESCAPE:
                     pygame.quit()
                     raise SystemExit()
+                if event.key == K_KP_PLUS:
+                    self.snap_mesh_size += 1
+                    self.create_snap_mesh()
+                if event.key == K_KP_MINUS:
+                    self.snap_mesh_size -= 1
+                    self.create_snap_mesh()
                 if event.key == K_SPACE:
                     self.is_spacebar = True
                 if event.key == K_F8:
@@ -367,6 +381,16 @@ class World(object):
             self.screen.blit(fonts.all_fonts[font_size].render(p[0], True, p[1], GRAY), (stats_x, stats_y + gap))
             gap += font_size
 
+    def render_snap_mesh(self):
+        for k in self.snap_mesh.keys():
+            # dot = self.snap_mesh[k]
+            pygame.draw.circle(self.screen, YELLOW, (k[0] - self.camera.offset_x, k[1] - self.camera.offset_y), 1)
+
+    def create_snap_mesh(self):
+        self.snap_mesh = dict()
+        for x in range(0, self.camera.max_offset_x + MAXX, self.snap_mesh_size):
+            for y in range(0, self.camera.max_offset_y + MAXY, self.snap_mesh_size):
+                self.snap_mesh[(x, y)] = (x, y)
 
     def check_mouse_xy_collides_obs(self):
         for key in self.obstacles[self.location].keys():
@@ -397,42 +421,47 @@ class World(object):
                 del self.obstacles[self.location][obs_id]
 
         if self.is_right_mouse_button_down:
-            obs_id = self.check_mouse_xy_collides_obs()
-            if obs_id > -1:
-                menu_items = {
-                    'IS GHOST?:': ('checkbox', 'is_ghost_platform'),
-                    'MOVE RIGHT:': ('checkbox', 'is_move_right'),
-                    'MOVE LEFT:': ('checkbox', 'is_move_left'),
-                    'MOVE UP:': ('checkbox', 'is_move_up'),
-                    'MOVE DOWN:': ('checkbox', 'is_move_down'),
-                    'GRAVITY AFFECTED:': ('checkbox', 'is_gravity_affected'),
-                    'COLLIDEABLE:': ('checkbox', 'is_collideable'),
-                }
-                # self.menu_bar(menu_items, self.mouse_xy)
-                self.obstacles[self.location][obs_id].is_ghost_platform = input('Is ghost? (True/False):')
+            ...
+            # obs_id = self.check_mouse_xy_collides_obs()
+            # if obs_id > -1:
+            #     menu_items = {
+            #         'IS GHOST?:': ('checkbox', 'is_ghost_platform'),
+            #         'MOVE RIGHT:': ('checkbox', 'is_move_right'),
+            #         'MOVE LEFT:': ('checkbox', 'is_move_left'),
+            #         'MOVE UP:': ('checkbox', 'is_move_up'),
+            #         'MOVE DOWN:': ('checkbox', 'is_move_down'),
+            #         'GRAVITY AFFECTED:': ('checkbox', 'is_gravity_affected'),
+            #         'COLLIDEABLE:': ('checkbox', 'is_collideable'),
+            #     }
+            #     # self.menu_bar(menu_items, self.mouse_xy)
+            #     self.obstacles[self.location][obs_id].is_ghost_platform = input('Is ghost? (True/False):')
 
 
         if self.is_left_mouse_button_down:
             if self.new_obs_rect_started:
                 # Update new obs.
-                if self.new_obs_rect_start_xy[0] < self.mouse_xy_global[0]:
+                last_point = (self.mouse_xy_global[0] // self.snap_mesh_size * self.snap_mesh_size,
+                              self.mouse_xy_global[1] // self.snap_mesh_size * self.snap_mesh_size)
+                if self.new_obs_rect_start_xy[0] < last_point[0]:
                     x = self.new_obs_rect_start_xy[0]
-                    w = self.mouse_xy_global[0] - self.new_obs_rect_start_xy[0]
+                    w = last_point[0] - self.new_obs_rect_start_xy[0]
                 else:
-                    x = self.mouse_xy_global[0]
-                    w = self.new_obs_rect_start_xy[0] - self.mouse_xy_global[0]
+                    x = last_point[0]
+                    w = self.new_obs_rect_start_xy[0] - last_point[0]
 
-                if self.new_obs_rect_start_xy[1] < self.mouse_xy_global[1]:
+                if self.new_obs_rect_start_xy[1] < last_point[1]:
                     y = self.new_obs_rect_start_xy[1]
-                    h = self.mouse_xy_global[1] - self.new_obs_rect_start_xy[1]
+                    h = last_point[1] - self.new_obs_rect_start_xy[1]
                 else:
-                    y = self.mouse_xy_global[1]
-                    h = self.new_obs_rect_start_xy[1] - self.mouse_xy_global[1]
+                    y = last_point[1]
+                    h = self.new_obs_rect_start_xy[1] - last_point[1]
                 self.new_obs_rect.update(x, y, w, h)
             else:
                 # Start new obs.
                 self.new_obs_rect_started = True
-                self.new_obs_rect_start_xy = self.mouse_xy_global
+                self.new_obs_rect_start_xy = (self.mouse_xy_global[0] // self.snap_mesh_size * self.snap_mesh_size,
+                                              self.mouse_xy_global[1] // self.snap_mesh_size * self.snap_mesh_size)
+                # self.new_obs_rect_start_xy = self.mouse_xy_global  # Without snap to mesh.
         else:
             if self.new_obs_rect_started:
                 # Add new obs.
@@ -471,13 +500,14 @@ class World(object):
         self.render_obstacles()
         self.render_new_obs()
         self.render_debug_info()
-        self.render_menu()
-
+        # self.render_menu()
+        self.render_snap_mesh()
 
 world = World()
 world.set_screen(screen)
 world.obstacles[world.location] = dict()
 world.load()
+world.create_snap_mesh()
 
 allow_import_location = False
 def main():
