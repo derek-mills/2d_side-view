@@ -229,13 +229,14 @@ class Actor(Entity):
                 self.jump_height = 10
                 self.speed = 10
                 self.movement_direction_inverter = -1
-                self.idle_counter = 40
+                # self.idle_counter = 40
             self.is_abort_jump = False
             self.set_state('hopping back process')
         elif self.__state == 'hopping back process':
-            if self.idle_counter > 0:
-                self.idle_counter -= 1
-            else:
+            # if self.idle_counter > 0:
+            #     self.idle_counter -= 1
+            # else:
+            if self.speed <= 0:
                 self.ignore_user_input = False
                 if self.just_got_jumped:
                     self.just_got_jumped = False
@@ -319,6 +320,7 @@ class Actor(Entity):
         elif self.__state == 'release edge':
             self.is_edge_grabbed = False
             self.influenced_by_obstacle = None
+            self.speed = 0
             if self.is_stand_on_ground:
                 self.set_state('stand still')
         elif self.__state == 'climb on':

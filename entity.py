@@ -205,6 +205,7 @@ class Entity(object):
                 # Check if obstacle has crawled from behind and pushed actor to his back:
                 if self.look * self.movement_direction_inverter == -1:  # Obstacle is on the right, but actor looks to the left.
                     self.rectangle.right = obs.rectangle.left - 2  # Push the actor
+                    # self.speed = 0
                     # self.influenced_by_obstacle = None
                     # self.is_edge_grabbed = False
                     self.set_state('release edge')
@@ -228,7 +229,7 @@ class Entity(object):
                 # self.rectangle.right = obs.rectangle.left
                 self.is_enough_space_right = False
                 self.heading[0] = 0
-                # self.speed = 0
+                self.speed = 0
                 continue
             #-----------------------------------
             # Check LEFT
@@ -238,6 +239,7 @@ class Entity(object):
                 # Check if obstacle has crawled from behind and pushed actor to his back:
                 if self.look * self.movement_direction_inverter == 1:  # Obstacle is on the left, but actor looks to the right.
                     self.rectangle.left = obs.rectangle.right + 2  # Push the actor
+                    # self.speed = 0
                     self.set_state('release edge')
                     continue
 
@@ -259,7 +261,7 @@ class Entity(object):
                 # self.rectangle.left = obs.rectangle.right
                 self.is_enough_space_left = False
                 self.heading[0] = 0
-                # self.speed = 0
+                self.speed = 0
                 continue
             #-----------------------------------
             # Check top

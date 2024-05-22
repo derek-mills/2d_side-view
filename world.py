@@ -162,11 +162,11 @@ class World(object):
                     # if actor.get_state() == 'jump action':
                     actor.set_action('jump action cancel')
 
-                # if self.is_l_alt:
-                #     actor.set_action('hop back')
+                if self.is_l_alt:
+                    actor.set_action('hop back')
                 # else:
-                #     # if actor.get_state() == 'hop back':
-                #     actor.set_action('hop back action cancel')
+                #     if actor.get_state() == 'hop back progress':
+                #         actor.set_action('hop back action cancel')
 
             actor.process(self.time_passed)
             # self.processing_collisions(actor)
