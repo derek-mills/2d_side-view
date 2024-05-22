@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,13 +104,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Fixed annoying bug when direction of movement doesn't change properly if opposite direction buttons pressed too quickly one by one.">
-      <created>1715654231412</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1715654231412</updated>
     </task>
     <task id="LOCAL-00007" summary="Added the edges grabbing ability.">
       <created>1715659368450</created>
@@ -450,7 +441,14 @@
       <option name="project" value="LOCAL" />
       <updated>1716355426263</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="Continue fixing tiny annoying bugs in states behaviour and interactions.">
+      <created>1716357583625</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1716357583625</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -465,7 +463,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Improving new collision detector" />
     <MESSAGE value="Moving obstacle is able to push actors now." />
     <MESSAGE value="Moving obstacle is able to drag actors now if they stand on them or grab the edge of such obstacle." />
     <MESSAGE value="Added ghost obstacles.&#10;Several improvements in actor's behavior around grabbing the edges and such." />
@@ -490,6 +487,7 @@
     <MESSAGE value="Added own collision detector for obstacles." />
     <MESSAGE value="Added hop back option." />
     <MESSAGE value="Hopping back option improved." />
-    <option name="LAST_COMMIT_MESSAGE" value="Hopping back option improved." />
+    <MESSAGE value="Continue fixing tiny annoying bugs in states behaviour and interactions." />
+    <option name="LAST_COMMIT_MESSAGE" value="Continue fixing tiny annoying bugs in states behaviour and interactions." />
   </component>
 </project>

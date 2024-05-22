@@ -193,9 +193,7 @@ class Actor(Entity):
             self.just_got_jumped = False
             self.is_abort_jump = True
             self.set_state('stand still')
-        # SLIDE
-        elif self.__state == 'slide':
-            # self.speed *=
+        elif self.__state == 'slide':  # SLIDE
             self.speed = self.max_speed * 1.5
             self.set_rect_width(self.rectangle_width_slide)
             self.set_rect_height(self.rectangle_height_slide)
@@ -209,8 +207,7 @@ class Actor(Entity):
                 self.set_rect_width(self.rectangle_width_sit)
                 self.set_rect_height(self.rectangle_height_sit)
                 self.set_state('crouch')
-        # HOP BACK
-        elif self.__state == 'hop back':
+        elif self.__state == 'hop back':        # HOP BACK
             if not self.just_got_jumped:
                 self.ignore_user_input = True
                 self.just_got_jumped = True
@@ -249,22 +246,7 @@ class Actor(Entity):
         elif self.__state == 'stand still':
             self.heading[0] = 0
             # ...
-        elif self.__state == 'turn left':
-            self.is_move_left = True
-            self.look = -1
-            # print('jj')
-            self.set_state('stand still')
-        elif self.__state == 'turn right':
-            self.is_move_right = True
-            self.look = 1
-            self.set_state('stand still')
-        elif self.__state == 'crouch turn left':
-            self.look = -1
-            self.set_state('crouch')
-        elif self.__state == 'crouch turn right':
-            self.look = 1
-            self.set_state('crouch')
-        elif self.__state == 'run left':
+        elif self.__state == 'turn left':  # TURN LEFT
             if self.look == 1 and self.speed > 0:  # Actor looks to the other side and runs.
                 # Switch off heading to force actor start reducing his speed and slow it down to zero.
                 # After that self is going to be able to start acceleration to proper direction.
@@ -272,8 +254,13 @@ class Actor(Entity):
             else:
                 self.look = -1
                 self.heading[0] = -1
+                self.set_state('stand still')
+
             # self.is_move_left = True
-        elif self.__state == 'run right':
+            # self.look = -1
+            # print('jj')
+            # self.set_state('stand still')
+        elif self.__state == 'turn right':  # TURN RIGHT
             if self.look == -1 and self.speed > 0:  # Actor looks to the other side and runs.
                 # Switch off heading to force actor start reducing his speed and slow it down to zero.
                 # After that self is going to be able to start acceleration to proper direction.
@@ -281,7 +268,41 @@ class Actor(Entity):
             else:
                 self.look = 1
                 self.heading[0] = 1
+                self.set_state('stand still')
+
             # self.is_move_right = True
+            # self.look = 1
+            # self.set_state('stand still')
+        elif self.__state == 'crouch turn left':
+            self.look = -1
+            self.set_state('crouch')
+        elif self.__state == 'crouch turn right':
+            self.look = 1
+            self.set_state('crouch')
+        elif self.__state == 'run left':
+            self.look = -1
+            self.heading[0] = -1
+
+            # if self.look == 1 and self.speed > 0:  # Actor looks to the other side and runs.
+            #     # Switch off heading to force actor start reducing his speed and slow it down to zero.
+            #     # After that self is going to be able to start acceleration to proper direction.
+            #     self.heading[0] = 0
+            # else:
+            #     self.look = -1
+            #     self.heading[0] = -1
+            # # self.is_move_left = True
+        elif self.__state == 'run right':
+            self.look = 1
+            self.heading[0] = 1
+
+            # if self.look == -1 and self.speed > 0:  # Actor looks to the other side and runs.
+            #     # Switch off heading to force actor start reducing his speed and slow it down to zero.
+            #     # After that self is going to be able to start acceleration to proper direction.
+            #     self.heading[0] = 0
+            # else:
+            #     self.look = 1
+            #     self.heading[0] = 1
+            # # self.is_move_right = True
         elif self.__state == 'has just grabbed edge':
             self.potential_moving_distance = 0
             self.is_edge_grabbed = True
