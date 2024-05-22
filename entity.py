@@ -201,16 +201,16 @@ class Entity(object):
                     if self.get_state() == 'hanging on edge' and self.influenced_by_obstacle != obs.id:
                         self.rectangle.right = obs.rectangle.left - 2  # Drop down the actor
                         self.set_state('release edge')
+                    else:
+                        if self.movement_direction_inverter == -1:
+                            continue
 
-                if self.movement_direction_inverter == -1:
-                    continue
-
-                self.potential_moving_distance = obs.rectangle.left - self.collision_detector_right.left
-                # self.rectangle.right = obs.rectangle.left
-                self.is_enough_space_right = False
-                self.heading[0] = 0
-                self.speed = 0
-                continue
+                        self.potential_moving_distance = obs.rectangle.left - self.collision_detector_right.left
+                        # self.rectangle.right = obs.rectangle.left
+                        self.is_enough_space_right = False
+                        self.heading[0] = 0
+                        self.speed = 0
+                        continue
             #-----------------------------------
             # Check LEFT
             if obs.rectangle.colliderect(self.collision_detector_left) and not obs.is_ghost_platform:
@@ -236,43 +236,75 @@ class Entity(object):
                     if self.get_state() == 'hanging on edge' and self.influenced_by_obstacle != obs.id:
                         self.rectangle.left = obs.rectangle.right + 2  # Drop down the actor
                         self.set_state('release edge')
+                    else:
 
-                if self.movement_direction_inverter == -1:
-                    continue
+                        if self.movement_direction_inverter == -1:
+                            continue
 
-                self.potential_moving_distance = self.collision_detector_left.right - obs.rectangle.right
-                # self.rectangle.left = obs.rectangle.right
-                self.is_enough_space_left = False
-                self.heading[0] = 0
-                self.speed = 0
-                continue
-            #-----------------------------------
-            # Check top
-            if self.fall_speed < 0 and not obs.is_ghost_platform:
-                if obs.rectangle.colliderect(self.collision_detector_top):
-                    # if obs.is_ghost_platform:
-                    #     continue
-                    self.potential_falling_distance = obs.rectangle.bottom - self.collision_detector_top.bottom
-                    self.is_stand_on_ground = False
-                    self.fall_speed = 0
-                    continue
-            # if self.fall_speed > 0:
-            else:
-                # -----------------------------------
-                # Check bottom
-                if obs.rectangle.colliderect(self.collision_detector_bottom):
+                        self.potential_moving_distance = self.collision_detector_left.right - obs.rectangle.right
+                        # self.rectangle.left = obs.rectangle.right
+                        self.is_enough_space_left = False
+                        self.heading[0] = 0
+                        self.speed = 0
+                        continue
+            # -----------------------------------
+            # Check bottom
+            if obs.rectangle.colliderect(self.collision_detector_bottom):
+                if self.fall_speed >= 0:
                     # print('OOO')
                     # self.potential_falling_distance = obs.rectangle.top - self.collision_detector_bottom.top
                     self.rectangle.bottom = obs.rectangle.top
                     # self.rectangle.bottom = self.collision_detector_bottom.top
                     self.is_stand_on_ground = True
                     self.influenced_by_obstacle = obs.id
-                    # self.fall_speed = 0
                     self.jump_attempts_counter = self.max_jump_attempts
-                    # self.is_spacebar = False
                     continue
-        # self.is_stand_on_ground = False
-        # self.influenced_by_obstacle = None
+            #-----------------------------------
+            # Check top
+            if obs.rectangle.colliderect(self.collision_detector_top):
+                if self.fall_speed < 0 and not obs.is_ghost_platform:
+                    self.potential_falling_distance = obs.rectangle.bottom - self.collision_detector_top.bottom
+                    self.is_stand_on_ground = False
+                    self.fall_speed = 0
+                    continue
+
+            # # -----------------------------------
+            # # Check bottom
+            # if obs.rectangle.colliderect(self.collision_detector_bottom):
+            #     if self.fall_speed >= 0:
+            #         # print('OOO')
+            #         # self.potential_falling_distance = obs.rectangle.top - self.collision_detector_bottom.top
+            #         self.rectangle.bottom = obs.rectangle.top
+            #         # self.rectangle.bottom = self.collision_detector_bottom.top
+            #         self.is_stand_on_ground = True
+            #         self.influenced_by_obstacle = obs.id
+            #         self.jump_attempts_counter = self.max_jump_attempts
+            #         continue
+
+            # #-----------------------------------
+            # # Check top
+            # if self.fall_speed < 0 and not obs.is_ghost_platform:
+            #     if obs.rectangle.colliderect(self.collision_detector_top):
+            #         # if obs.is_ghost_platform:
+            #         #     continue
+            #         self.potential_falling_distance = obs.rectangle.bottom - self.collision_detector_top.bottom
+            #         self.is_stand_on_ground = False
+            #         self.fall_speed = 0
+            #         continue
+            # # if self.fall_speed > 0:
+            # else:
+            #     # -----------------------------------
+            #     # Check bottom
+            #     if obs.rectangle.colliderect(self.collision_detector_bottom):
+            #         # print('OOO')
+            #         # self.potential_falling_distance = obs.rectangle.top - self.collision_detector_bottom.top
+            #         self.rectangle.bottom = obs.rectangle.top
+            #         # self.rectangle.bottom = self.collision_detector_bottom.top
+            #         self.is_stand_on_ground = True
+            #         self.influenced_by_obstacle = obs.id
+            #         self.jump_attempts_counter = self.max_jump_attempts
+            #         continue
+
 
     def check_space_around(self):
         self.is_enough_space_left = True
@@ -369,14 +401,14 @@ class Entity(object):
             self.collision_detector_top.update(self.rectangle.left + 2, self.rectangle.top - abs(self.fall_speed), self.rectangle.width - 4, abs(self.fall_speed))
             self.collision_detector_bottom.update(0,0,0,0)
             # self.collision_detector_bottom.update(self.rectangle.left + 2, self.rectangle.bottom, self.rectangle.width - 4, 1)
-        elif self.fall_speed > 0:
+        elif self.fall_speed >= 0:
             self.collision_detector_top.update(0,0,0,0)
             # self.collision_detector_top.update(self.rectangle.left + 2, self.rectangle.top - 1, self.rectangle.width - 4, 1)
-            self.collision_detector_bottom.update(self.rectangle.left + 2, self.rectangle.bottom, self.rectangle.width - 4, abs(self.fall_speed))
-        else:
-            self.collision_detector_top.update(0,0,0,0)
-            # self.collision_detector_top.update(self.rectangle.left + 2, self.rectangle.top - 1, self.rectangle.width - 4, 1)
-            self.collision_detector_bottom.update(self.rectangle.left + 2, self.rectangle.bottom, self.rectangle.width - 4, 1)
+            self.collision_detector_bottom.update(self.rectangle.left + 2, self.rectangle.bottom - 2, self.rectangle.width - 4, self.fall_speed + 2)
+        # else:
+        #     self.collision_detector_top.update(0,0,0,0)
+        #     # self.collision_detector_top.update(self.rectangle.left + 2, self.rectangle.top - 1, self.rectangle.width - 4, 1)
+        #     self.collision_detector_bottom.update(self.rectangle.left + 2, self.rectangle.bottom - 2, self.rectangle.width - 4, 2)
 
     def fall(self):
         # if self.is_enough_space_below:

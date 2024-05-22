@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -106,13 +107,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Fixed bug when jumping up under the very close obstacle caused passing inside this obstacle.">
-      <created>1715666708461</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1715666708461</updated>
     </task>
     <task id="LOCAL-00011" summary="Added relative jump height depends on how long the jump button being hold.">
       <created>1715671174631</created>
@@ -450,7 +444,14 @@
       <option name="project" value="LOCAL" />
       <updated>1716363016272</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="Still solving problems with hopping back.">
+      <created>1716363482126</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1716363482126</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -465,7 +466,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Improvements in case of actor try to jumps off a ghost platform." />
     <MESSAGE value="Added 'grab the edge' state and some other ones, logically connected with it.&#10;Grab off an obstacle could be performed now just by pressing DOWN button only." />
     <MESSAGE value="Tuning 'grab the edge' option." />
     <MESSAGE value="Slightly corrected left collider" />
@@ -490,6 +490,7 @@
     <MESSAGE value="Solved issue with instant change of movement direction without inertia." />
     <MESSAGE value="Fixed bug in level editor: 'collideable' and 'gravity affected' did not save after editing." />
     <MESSAGE value="Fixed bug while hopping back and incorrect collision detection." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug while hopping back and incorrect collision detection." />
+    <MESSAGE value="Still solving problems with hopping back." />
+    <option name="LAST_COMMIT_MESSAGE" value="Still solving problems with hopping back." />
   </component>
 </project>
