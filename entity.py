@@ -180,7 +180,7 @@ class Entity(object):
                 # if obs.is_ghost_platform:
                 #     continue
                 # Check if obstacle has crawled from behind and pushed actor to his back:
-                if self.look * self.movement_direction_inverter == -1:  # Obstacle is on the right, but actor looks to the left.
+                if self.look == -1:  # Obstacle is on the right, but actor looks to the left.
                     self.rectangle.right = obs.rectangle.left - 2  # Push the actor
                     # self.speed = 0
                     # self.influenced_by_obstacle = None
@@ -188,19 +188,22 @@ class Entity(object):
                     self.set_state('release edge')
                     continue
                 # Grab over the top of an obstacle.
-                if self.get_state() not in ('release edge', 'hanging on edge', 'has just grabbed edge'):
-                    if self.movement_direction_inverter != -1:  # Try to grab the edge only if actor moves exactly at the same direction of his gaze.
-                        if obs.rectangle.top >= self.rectangle.top > (obs.rectangle.top - 30) and self.fall_speed > 0:
-                            # self.rectangle.right = obs.rectangle.left - 2
-                            self.influenced_by_obstacle = obs.id
-                            self.set_state('has just grabbed edge')
-                            self.state_machine()
-                            continue
+                if self.get_state() not in ('release edge', 'hanging on edge', 'has just grabbed edge', 'hopping back process', 'hop back'):
+                    # if self.movement_direction_inverter != 1:  # Try to grab the edge only if actor moves exactly at the same direction of his gaze.
+                    if obs.rectangle.top >= self.rectangle.top > (obs.rectangle.top - 30) and self.fall_speed > 0:
+                        # self.rectangle.right = obs.rectangle.left - 2
+                        self.influenced_by_obstacle = obs.id
+                        self.set_state('has just grabbed edge')
+                        self.state_machine()
+                        continue
 
-                if self.look * self.movement_direction_inverter == 1: # Obstacle is on the right, and actor also looks to the right, and hangs on the edge.
+                if self.look == 1: # Obstacle is on the right, and actor also looks to the right, and hangs on the edge.
                     if self.get_state() == 'hanging on edge' and self.influenced_by_obstacle != obs.id:
                         self.rectangle.right = obs.rectangle.left - 2  # Drop down the actor
                         self.set_state('release edge')
+
+                if self.movement_direction_inverter == -1:
+                    continue
 
                 self.potential_moving_distance = obs.rectangle.left - self.collision_detector_right.left
                 # self.rectangle.right = obs.rectangle.left
@@ -214,25 +217,28 @@ class Entity(object):
                 # self.rectangle.left = obs.rectangle.right + 2
 
                 # Check if obstacle has crawled from behind and pushed actor to his back:
-                if self.look * self.movement_direction_inverter == 1:  # Obstacle is on the left, but actor looks to the right.
+                if self.look == 1:  # Obstacle is on the left, but actor looks to the right.
                     self.rectangle.left = obs.rectangle.right + 2  # Push the actor
                     # self.speed = 0
                     self.set_state('release edge')
                     continue
 
                 # Grab over the top of an obstacle.
-                if self.get_state() not in ('release edge', 'hanging on edge', 'has just grabbed edge'):
-                    if self.movement_direction_inverter != -1:  # Try to grab the edge only if actor moves exactly at the same direction of his gaze.
-                        if obs.rectangle.top >= self.rectangle.top > (obs.rectangle.top - 30) and self.fall_speed > 0:
-                            self.influenced_by_obstacle = obs.id
-                            self.set_state('has just grabbed edge')
-                            self.state_machine()
-                            continue
+                if self.get_state() not in ('release edge', 'hanging on edge', 'has just grabbed edge', 'hopping back process', 'hop back'):
+                    # if self.movement_direction_inverter != -1:  # Try to grab the edge only if actor moves exactly at the same direction of his gaze.
+                    if obs.rectangle.top >= self.rectangle.top > (obs.rectangle.top - 30) and self.fall_speed > 0:
+                        self.influenced_by_obstacle = obs.id
+                        self.set_state('has just grabbed edge')
+                        self.state_machine()
+                        continue
 
-                if self.look * self.movement_direction_inverter == -1: # Obstacle is on the left, and actor also looks to the left, and hangs on the edge.
+                if self.look == -1: # Obstacle is on the left, and actor also looks to the left, and hangs on the edge.
                     if self.get_state() == 'hanging on edge' and self.influenced_by_obstacle != obs.id:
                         self.rectangle.left = obs.rectangle.right + 2  # Drop down the actor
                         self.set_state('release edge')
+
+                if self.movement_direction_inverter == -1:
+                    continue
 
                 self.potential_moving_distance = self.collision_detector_left.right - obs.rectangle.right
                 # self.rectangle.left = obs.rectangle.right

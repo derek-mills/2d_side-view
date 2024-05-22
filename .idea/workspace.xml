@@ -6,8 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,13 +107,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Added air acceleration">
-      <created>1715661787871</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1715661787871</updated>
     </task>
     <task id="LOCAL-00009" summary="Added jump over an obstacle after grabbing the edge.">
       <created>1715664980030</created>
@@ -450,7 +444,14 @@
       <option name="project" value="LOCAL" />
       <updated>1716358260134</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="Fixed bug in level editor: 'collideable' and 'gravity affected' did not save after editing.">
+      <created>1716359287473</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1716359287473</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -465,7 +466,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Moving obstacle is able to drag actors now if they stand on them or grab the edge of such obstacle." />
     <MESSAGE value="Added ghost obstacles.&#10;Several improvements in actor's behavior around grabbing the edges and such." />
     <MESSAGE value="Improvements in case of actor try to jumps off a ghost platform." />
     <MESSAGE value="Added 'grab the edge' state and some other ones, logically connected with it.&#10;Grab off an obstacle could be performed now just by pressing DOWN button only." />
@@ -490,6 +490,7 @@
     <MESSAGE value="Hopping back option improved." />
     <MESSAGE value="Continue fixing tiny annoying bugs in states behaviour and interactions." />
     <MESSAGE value="Solved issue with instant change of movement direction without inertia." />
-    <option name="LAST_COMMIT_MESSAGE" value="Solved issue with instant change of movement direction without inertia." />
+    <MESSAGE value="Fixed bug in level editor: 'collideable' and 'gravity affected' did not save after editing." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug in level editor: 'collideable' and 'gravity affected' did not save after editing." />
   </component>
 </project>

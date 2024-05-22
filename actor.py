@@ -141,21 +141,13 @@ class Actor(Entity):
         elif new_action == 'jump action cancel':
             if self.just_got_jumped:
                 self.set_state('jump cancel')
+
         # HOP BACK
         elif new_action == 'hop back':
-            # if not self.just_got_jumped:
-            #     self.ignore_user_input = True
-            #     self.just_got_jumped = True
-            #     self.jump_attempts_counter -= 1
-            #     self.is_jump = True
-            #     self.influenced_by_obstacle = None
-            #     self.jump_height = 10
-            #     self.speed = 10
-            #     self.movement_direction_inverter = -1
-            # self.is_abort_jump = False
             if self.is_stand_on_ground:
-            # if self.__state not in ('hanging on ghost', 'hanging on edge', 'hop down from ghost', 'jump' ):
-                self.set_state('hop back')
+                if (self.look == -1 and self.is_enough_space_right) or\
+                        (self.look == 1 and self.is_enough_space_left):
+                    self.set_state('hop back')
         elif new_action == 'hop back action cancel':
             # self.set_state('jump cancel')
             if self.just_got_jumped:
@@ -208,8 +200,8 @@ class Actor(Entity):
                 self.set_rect_height(self.rectangle_height_sit)
                 self.set_state('crouch')
         elif self.__state == 'hop back':        # HOP BACK
+            self.ignore_user_input = True
             if not self.just_got_jumped:
-                self.ignore_user_input = True
                 self.just_got_jumped = True
                 self.jump_attempts_counter -= 1
                 self.is_jump = True
@@ -224,13 +216,13 @@ class Actor(Entity):
             # if self.idle_counter > 0:
             #     self.idle_counter -= 1
             # else:
-            if self.speed == 0:
+            if self.speed <= 0:
                 self.ignore_user_input = False
                 if self.just_got_jumped:
                     self.just_got_jumped = False
                 self.is_abort_jump = True
-                self.ignore_user_input = False
                 # self.movement_direction_inverter = 1
+                # self.set_state('crouch')
                 self.set_state('stand still')
         elif self.__state == 'sliding':
             # self.set_rect_width(self.rectangle_width_slide)
@@ -351,6 +343,7 @@ class Actor(Entity):
             self.is_edge_grabbed = False
             self.influenced_by_obstacle = None
             self.speed = 0
+            self.ignore_user_input = False
             if self.is_stand_on_ground:
                 self.set_state('stand still')
         elif self.__state == 'climb on':
