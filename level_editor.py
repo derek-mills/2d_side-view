@@ -236,7 +236,8 @@ class World(object):
     def add_obstacle(self, description):
         entity = Obstacle()
         entity.id = self.obstacle_id
-        entity.is_gravity_affected = True if 'is gravity affected' in description else False
+        entity.is_gravity_affected = True if 'gravity affected' in description else False
+        entity.is_collideable = True if 'collideable' in description else False
         entity.rectangle.topleft = description[0]
         entity.rectangle.width = description[1][0]
         entity.rectangle.height = description[1][1]
@@ -325,7 +326,7 @@ class World(object):
                             move_right = ', \'move right\' ' if obs.is_move_right else ''
                             move_left = ', \'move left\' ' if obs.is_move_left else ''
                             collideable = ', \'collideable\' ' if obs.is_collideable else ''
-                            gravity_affected = ', \'gravity affected\' ' if obs.is_collideable else ''
+                            gravity_affected = ', \'gravity affected\' ' if obs.is_gravity_affected else ''
                             total_strg = '                ('+str(obs.rectangle.topleft) + ', ' + \
                                    str(obs.rectangle.size) + ghost + move_right + move_left + collideable + gravity_affected + '),  #' + str(obs.id) + '\n'
                             f_dest.write(total_strg)
