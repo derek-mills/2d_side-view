@@ -83,48 +83,25 @@ class Entity(object):
         self.obstacles_around = obstacles
 
     def process(self, time_passed):
-        if self.is_move_left:
-            # if self.is_edge_grabbed:
-            #     if self.look == -1 and self.is_jump:
-            #         self.is_edge_grabbed = False
-            #         self.influenced_by_obstacle = None
-            #     if self.look == 1:  # Attempting to release the edge
-            #         self.is_edge_grabbed = False
-            #         self.influenced_by_obstacle = None
-            #         self.is_jump = False
-
-            if self.look == 1 and self.speed > 0:  # Actor looks to the other side and runs.
-                # Switch off heading to force actor start reducing his speed and slow it down to zero.
-                # After that self is going to be able to start acceleration to proper direction.
-                self.heading[0] = 0
-            # elif self.is_crouch:
-            #     self.look = -1
-            #     self.heading[0] = 0
-            else:
-                self.look = -1
-                self.heading[0] = -1
-        elif self.is_move_right:
-            # if self.is_edge_grabbed:
-            #     if self.look == 1 and self.is_jump:
-            #         self.is_edge_grabbed = False
-            #         self.influenced_by_obstacle = None
-            #     if self.look == -1:  # Attempting to release the edge
-            #         self.is_edge_grabbed = False
-            #         self.influenced_by_obstacle = None
-            #         self.is_jump = False
-
-            if self.look == -1 and self.speed > 0:  # Actor looks to the other side and runs.
-                # Switch off heading to force actor start reducing his speed and slow it down to zero.
-                # After that self is going to be able to start acceleration to proper direction.
-                self.heading[0] = 0
-            # elif self.is_crouch:
-            #     self.look = 1
-            #     self.heading[0] = 0
-            else:
-                self.look = 1
-                self.heading[0] = 1
-        else:
-            self.heading[0] = 0
+        # if self.is_move_left:
+        #
+        #     if self.look == 1 and self.speed > 0:  # Actor looks to the other side and runs.
+        #         # Switch off heading to force actor start reducing his speed and slow it down to zero.
+        #         # After that self is going to be able to start acceleration to proper direction.
+        #         self.heading[0] = 0
+        #     else:
+        #         self.look = -1
+        #         self.heading[0] = -1
+        # elif self.is_move_right:
+        #     if self.look == -1 and self.speed > 0:  # Actor looks to the other side and runs.
+        #         # Switch off heading to force actor start reducing his speed and slow it down to zero.
+        #         # After that self is going to be able to start acceleration to proper direction.
+        #         self.heading[0] = 0
+        #     else:
+        #         self.look = 1
+        #         self.heading[0] = 1
+        # else:
+        #     self.heading[0] = 0
 
         if self.is_jump and self.jump_attempts_counter > 0:
             # Jump
