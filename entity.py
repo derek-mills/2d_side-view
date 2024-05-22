@@ -30,7 +30,8 @@ class Entity(object):
         self.default_air_acceleration: float = .1
         self.air_acceleration: float = self.default_air_acceleration
         self.speed: float = 0.
-        self.jump_height: int = 22
+        self.jump_height: int = 0
+        self.max_jump_height: int = 22
         self.max_jump_attempts: int = 3  # n-1 attempts to do a jump in midair.
         self.jump_attempts_counter: int = 0
         self.just_got_jumped: bool = False
@@ -38,6 +39,9 @@ class Entity(object):
         self.max_speed: float = self.default_max_speed
         self.max_speed_penalty = 1
         self.heading: list = [0, 0]
+        # In some cases entity will move in the opposite direction; default is 1.
+        # To invert direction set it to -1.
+        self.movement_direction_inverter = 1
         self.travel_distance: float = 0.
         self.potential_moving_distance: float = 0.
         self.potential_falling_distance: float = 0.
@@ -138,6 +142,7 @@ class Entity(object):
             # if not self.is_stand_on_ground or not self.is_edge_grabbed:
             if not self.is_stand_on_ground and not self.is_edge_grabbed:
                 # self.influenced_by_obstacle = None
+                # print('fall!')
                 self.fall()
         self.move()
 
@@ -171,6 +176,9 @@ class Entity(object):
                 else:
                     self.speed += self.air_acceleration
 
+        if self.speed <= 0:
+            self.movement_direction_inverter = 1
+
         self.potential_moving_distance = self.speed
         # self.potential_moving_distance = int(self.speed * self.look)
         # self.rectangle.x += int(self.speed * self.look)
@@ -195,7 +203,7 @@ class Entity(object):
                 # if obs.is_ghost_platform:
                 #     continue
                 # Check if obstacle has crawled from behind and pushed actor to his back:
-                if self.look == -1:  # Obstacle is on the right, but actor looks to the left.
+                if self.look * self.movement_direction_inverter == -1:  # Obstacle is on the right, but actor looks to the left.
                     self.rectangle.right = obs.rectangle.left - 2  # Push the actor
                     # self.influenced_by_obstacle = None
                     # self.is_edge_grabbed = False
@@ -203,14 +211,15 @@ class Entity(object):
                     continue
                 # Grab over the top of an obstacle.
                 if self.get_state() not in ('release edge', 'hanging on edge', 'has just grabbed edge'):
-                    if obs.rectangle.top >= self.rectangle.top > (obs.rectangle.top - 30) and self.fall_speed > 0:
-                        # self.rectangle.right = obs.rectangle.left - 2
-                        self.influenced_by_obstacle = obs.id
-                        self.set_state('has just grabbed edge')
-                        self.state_machine()
-                        continue
+                    if self.movement_direction_inverter != -1:  # Try to grab the edge only if actor moves exactly at the same direction of his gaze.
+                        if obs.rectangle.top >= self.rectangle.top > (obs.rectangle.top - 30) and self.fall_speed > 0:
+                            # self.rectangle.right = obs.rectangle.left - 2
+                            self.influenced_by_obstacle = obs.id
+                            self.set_state('has just grabbed edge')
+                            self.state_machine()
+                            continue
 
-                if self.look == 1: # Obstacle is on the right, and actor also looks to the right, and hangs on the edge.
+                if self.look * self.movement_direction_inverter == 1: # Obstacle is on the right, and actor also looks to the right, and hangs on the edge.
                     if self.get_state() == 'hanging on edge' and self.influenced_by_obstacle != obs.id:
                         self.rectangle.right = obs.rectangle.left - 2  # Drop down the actor
                         self.set_state('release edge')
@@ -227,20 +236,21 @@ class Entity(object):
                 # self.rectangle.left = obs.rectangle.right + 2
 
                 # Check if obstacle has crawled from behind and pushed actor to his back:
-                if self.look == 1:  # Obstacle is on the left, but actor looks to the right.
+                if self.look * self.movement_direction_inverter == 1:  # Obstacle is on the left, but actor looks to the right.
                     self.rectangle.left = obs.rectangle.right + 2  # Push the actor
                     self.set_state('release edge')
                     continue
 
                 # Grab over the top of an obstacle.
                 if self.get_state() not in ('release edge', 'hanging on edge', 'has just grabbed edge'):
-                    if obs.rectangle.top >= self.rectangle.top > (obs.rectangle.top - 30) and self.fall_speed > 0:
-                        self.influenced_by_obstacle = obs.id
-                        self.set_state('has just grabbed edge')
-                        self.state_machine()
-                        continue
+                    if self.movement_direction_inverter != -1:  # Try to grab the edge only if actor moves exactly at the same direction of his gaze.
+                        if obs.rectangle.top >= self.rectangle.top > (obs.rectangle.top - 30) and self.fall_speed > 0:
+                            self.influenced_by_obstacle = obs.id
+                            self.set_state('has just grabbed edge')
+                            self.state_machine()
+                            continue
 
-                if self.look == -1: # Obstacle is on the left, and actor also looks to the left, and hangs on the edge.
+                if self.look * self.movement_direction_inverter == -1: # Obstacle is on the left, and actor also looks to the left, and hangs on the edge.
                     if self.get_state() == 'hanging on edge' and self.influenced_by_obstacle != obs.id:
                         self.rectangle.left = obs.rectangle.right + 2  # Drop down the actor
                         self.set_state('release edge')
@@ -362,11 +372,11 @@ class Entity(object):
             # self.rectangle_central_spot = self.rectangle.inflate(-self.rectangle.height // 3, -self.rectangle.width // 2)
 
     def colliders_calc(self):
-        if self.look == 1:
+        if self.look * self.movement_direction_inverter == 1:
             self.collision_detector_right.update(self.rectangle.right, self.rectangle.top, self.speed + 1, self.rectangle.height - 35)
             # self.collision_detector_left.update(0,0,0,0)
             self.collision_detector_left.update(self.rectangle.left - 1, self.rectangle.top, 1, self.rectangle.height - 35)
-        elif self.look == -1:
+        elif self.look * self.movement_direction_inverter == -1:
             # self.collision_detector_right.update(0,0,0,0)
             self.collision_detector_right.update(self.rectangle.right, self.rectangle.top, 1, self.rectangle.height - 35)
             self.collision_detector_left.update(self.rectangle.left - self.speed - 1, self.rectangle.top, self.speed + 1, self.rectangle.height - 35)
@@ -419,7 +429,8 @@ class Entity(object):
         # self.collision_detector_right.update(self.rectangle.right, self.rectangle.top, self.speed, self.rectangle.height - 35)
         if self.influenced_by_obstacle:
             infl = self.obstacles_around[self.influenced_by_obstacle]
-            self.rectangle.x += (self.potential_moving_distance * self.look + infl.potential_moving_distance*infl.look)
+            self.rectangle.x += (self.potential_moving_distance * self.look * self.movement_direction_inverter + infl.potential_moving_distance*infl.look)
         else:
-            self.rectangle.x += (self.potential_moving_distance * self.look)
+            # self.rectangle.x += (self.potential_moving_distance * self.heading[0])
+            self.rectangle.x += (self.potential_moving_distance * self.look * self.movement_direction_inverter)
         # self.rectangle.x += int(self.speed * self.look)

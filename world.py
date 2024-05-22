@@ -131,31 +131,42 @@ class World(object):
             # actor.check_space_around()
             # actor.reset_self_flags()
 
-            if key == 0:  # Player's actor routines
+            if key == 0:  # routines for Player actor
                 if self.is_input_up_arrow:
                     actor.set_action('up action')
                 else:
+                    # if actor.get_state() == 'up action':
                     actor.set_action('up action cancel')
 
                 if self.is_input_down_arrow:
                     actor.set_action('down action')
                 else:
+                    # if actor.get_state() == 'down action':
                     actor.set_action('down action cancel')
 
                 if self.is_input_right_arrow:
                     actor.set_action('right action')
                 else:
+                    # if actor.get_state() == 'right action':
                     actor.set_action('right action cancel')
 
                 if self.is_input_left_arrow:
                     actor.set_action('left action')
                 else:
+                    # if actor.get_state() == 'left action':
                     actor.set_action('left action cancel')
 
                 if self.is_spacebar:
                     actor.set_action('jump action')
                 else:
+                    # if actor.get_state() == 'jump action':
                     actor.set_action('jump action cancel')
+
+                # if self.is_l_alt:
+                #     actor.set_action('hop back')
+                # else:
+                #     # if actor.get_state() == 'hop back':
+                #     actor.set_action('hop back action cancel')
 
             actor.process(self.time_passed)
             # self.processing_collisions(actor)
