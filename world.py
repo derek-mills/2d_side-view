@@ -103,6 +103,8 @@ class World(object):
         self.processing_obstacles()
         self.processing_human_input()
         self.processing_actors()
+
+        # Applying camera offset:
         if self.actors[self.location][0].speed > 0:
             y_offset_speed = self.actors[self.location][0].speed
         elif self.actors[self.location][0].influenced_by_obstacle:
@@ -112,6 +114,7 @@ class World(object):
         self.camera.apply_offset((self.actors[self.location][0].rectangle.centerx, self.actors[self.location][0].rectangle.bottom),
                                  y_offset_speed, 5)
                                  # self.actors[self.location][0].speed * 0.9, self.actors[self.location][0].fall_speed)
+
         self.render_all()
 
     def processing_obstacles(self):
@@ -377,6 +380,7 @@ class World(object):
             (' FALL SPEED: ' + str(self.actors[self.location][0].fall_speed), WHITE),
             (' SPEED: ' + str(self.actors[self.location][0].speed), WHITE),
             (' LOOK: ' + str(self.actors[self.location][0].look), WHITE),
+            (' IDLE COUNT: ' + str(self.actors[self.location][0].idle_counter), (200, 100, 50)),
 
             (' JUMP ATTEMPTS: ' + str(self.actors[self.location][0].jump_attempts_counter), WHITE),
             (' JUST JUMPED: ' + str(self.actors[self.location][0].just_got_jumped), WHITE),

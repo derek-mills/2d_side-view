@@ -7,8 +7,7 @@
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -107,13 +106,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Basic bottom collision, jump and side-to-side movement achieved.">
-      <created>1715586441323</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1715586441323</updated>
     </task>
     <task id="LOCAL-00003" summary="Continue improving collisions">
       <created>1715591913166</created>
@@ -451,7 +443,14 @@
       <option name="project" value="LOCAL" />
       <updated>1716278879990</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="Added some states connected with hopping down from ghost platforms.">
+      <created>1716281948482</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1716281948482</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -466,7 +465,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed bugs with incorrect collision detection (mostly around slide mode), and go on." />
     <MESSAGE value="Fixed bugs with incorrect collision detection (mostly around slide mode), and still go on." />
     <MESSAGE value="Added obstacles processing" />
     <MESSAGE value="New collision detection method implemented, based on a colliders, calculating around actor every tick." />
@@ -491,6 +489,7 @@
     <MESSAGE value="Working on the level editor: snap mesh is now cause affect while new obstacles has been built.&#10;Some improvements in entity collision detection: state_machine() have to be applied right after the edge hanging has happened." />
     <MESSAGE value="When climbing on the edge, actor got 'stand still' state now." />
     <MESSAGE value="Level editor: added preservation of some obstacle status states when save\load." />
-    <option name="LAST_COMMIT_MESSAGE" value="Level editor: added preservation of some obstacle status states when save\load." />
+    <MESSAGE value="Added some states connected with hopping down from ghost platforms." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added some states connected with hopping down from ghost platforms." />
   </component>
 </project>

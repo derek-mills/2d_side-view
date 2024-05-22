@@ -9,12 +9,13 @@ class Entity(object):
         self.type: str = ''  #
         self.name: str = ''
         self.location: str = ''
-        self.__state = ''
+        self.__state: str = ''
+        self.idle_counter: int = 0
 
         # GEOMETRY
         self.rectangle = pygame.Rect(0, 0, 50, 50)
 
-        self.look: int = 1
+        self.look: int = 1  # 1: look right, -1: look left
 
         # MOVEMENT
         self.is_move_right: bool = False
@@ -59,6 +60,8 @@ class Entity(object):
         self.collided_left: bool = False
         self.collided_right: bool = False
         self.collided_bottom: bool = False
+
+        # self.aux_counter = 0
 
         self.influenced_by_obstacle = None
         self.is_edge_grabbed: bool = False

@@ -54,6 +54,7 @@ class Actor(Entity):
         self.rectangle.bottom = floor
 
     def set_action(self, new_action):
+
         if self.ignore_user_input:
             return
 
@@ -97,7 +98,7 @@ class Actor(Entity):
 
         # DOWN actions
         elif new_action == 'down action':
-            if self.__state == 'hanging on edge':
+            if self.__state in ('hanging on edge', 'hanging on ghost'):
                 self.set_state('release edge')
             # if self.is_edge_grabbed:
             #     self.is_edge_grabbed = False
@@ -233,10 +234,12 @@ class Actor(Entity):
             # self.rectangle.centery = self.obstacles_around[self.influenced_by_obstacle].rectangle.bottom + 20
             self.potential_moving_distance = 0
             self.is_edge_grabbed = True
+            self.ignore_user_input = True
+            self.idle_counter = 25
             self.fall_speed = 0
             self.heading[0] = 0
             self.speed = 0
-            # self.rectangle.top = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
+            self.rectangle.height = self.rectangle_height_default
             self.rectangle.top = self.obstacles_around[self.influenced_by_obstacle].rectangle.bottom
             self.reset_self_flags()
             # if self.look == -1:
@@ -251,7 +254,10 @@ class Actor(Entity):
         elif self.__state == 'hanging on edge':
             ...
         elif self.__state == 'hanging on ghost':
-            ...
+            if self.idle_counter > 0:
+                self.idle_counter -= 1
+            else:
+                self.ignore_user_input = False
         elif self.__state == 'release edge':
             self.is_edge_grabbed = False
             self.influenced_by_obstacle = None
