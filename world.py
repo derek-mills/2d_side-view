@@ -81,7 +81,7 @@ class World(object):
     def add_obstacle(self, description):
         entity = Obstacle()
         entity.id = self.obstacle_id
-        entity.is_gravity_affected = True if 'is gravity affected' in description else False
+        entity.is_gravity_affected = True if 'gravity affected' in description else False
         entity.rectangle.topleft = description[0]
         entity.rectangle.width = description[1][0]
         entity.rectangle.height = description[1][1]
