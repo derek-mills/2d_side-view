@@ -164,7 +164,9 @@ class Actor(Entity):
             #     self.speed = 10
             #     self.movement_direction_inverter = -1
             # self.is_abort_jump = False
-            self.set_state('hop back')
+            if self.is_stand_on_ground:
+            # if self.__state not in ('hanging on ghost', 'hanging on edge', 'hop down from ghost', 'jump' ):
+                self.set_state('hop back')
         elif new_action == 'hop back action cancel':
             # self.set_state('jump cancel')
             if self.just_got_jumped:
@@ -236,7 +238,7 @@ class Actor(Entity):
             # if self.idle_counter > 0:
             #     self.idle_counter -= 1
             # else:
-            if self.speed <= 0:
+            if self.speed == 0:
                 self.ignore_user_input = False
                 if self.just_got_jumped:
                     self.just_got_jumped = False
