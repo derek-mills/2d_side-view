@@ -131,7 +131,7 @@ class World(object):
             # actor.check_space_around()
             # actor.reset_self_flags()
 
-            if key == 0:  # routines for Player actor
+            if key == 0 and not actor.ignore_user_input:  # routines for Player actor
                 if self.is_input_up_arrow:
                     actor.set_action('up action')
                 else:

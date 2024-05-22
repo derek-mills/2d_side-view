@@ -7,7 +7,6 @@
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -107,13 +106,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Added jump over an obstacle after grabbing the edge.">
-      <created>1715664980030</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1715664980030</updated>
     </task>
     <task id="LOCAL-00010" summary="Fixed bug when jumping up under the very close obstacle caused passing inside this obstacle.">
       <created>1715666708461</created>
@@ -451,7 +443,14 @@
       <option name="project" value="LOCAL" />
       <updated>1716359287473</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="Fixed bug while hopping back and incorrect collision detection.">
+      <created>1716363016272</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1716363016272</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -466,7 +465,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added ghost obstacles.&#10;Several improvements in actor's behavior around grabbing the edges and such." />
     <MESSAGE value="Improvements in case of actor try to jumps off a ghost platform." />
     <MESSAGE value="Added 'grab the edge' state and some other ones, logically connected with it.&#10;Grab off an obstacle could be performed now just by pressing DOWN button only." />
     <MESSAGE value="Tuning 'grab the edge' option." />
@@ -491,6 +489,7 @@
     <MESSAGE value="Continue fixing tiny annoying bugs in states behaviour and interactions." />
     <MESSAGE value="Solved issue with instant change of movement direction without inertia." />
     <MESSAGE value="Fixed bug in level editor: 'collideable' and 'gravity affected' did not save after editing." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug in level editor: 'collideable' and 'gravity affected' did not save after editing." />
+    <MESSAGE value="Fixed bug while hopping back and incorrect collision detection." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug while hopping back and incorrect collision detection." />
   </component>
 </project>

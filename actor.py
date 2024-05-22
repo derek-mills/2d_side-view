@@ -56,8 +56,8 @@ class Actor(Entity):
 
     def set_action(self, new_action):
         # print(f'[actor set action] Setting new action: {new_action}')
-        if self.ignore_user_input:
-            return
+        # if self.ignore_user_input:
+        #     return
 
         # RIGHT actions
         if new_action == 'right action':
@@ -209,21 +209,22 @@ class Actor(Entity):
                 self.jump_height = 10
                 self.speed = 10
                 self.movement_direction_inverter = -1
-                # self.idle_counter = 40
+                self.heading[0] = 0
+                self.idle_counter = 40
             self.is_abort_jump = False
             self.set_state('hopping back process')
         elif self.__state == 'hopping back process':
-            # if self.idle_counter > 0:
-            #     self.idle_counter -= 1
-            # else:
-            if self.speed <= 0:
-                self.ignore_user_input = False
-                if self.just_got_jumped:
-                    self.just_got_jumped = False
-                self.is_abort_jump = True
-                # self.movement_direction_inverter = 1
-                # self.set_state('crouch')
-                self.set_state('stand still')
+            if self.idle_counter > 0:
+                self.idle_counter -= 1
+            else:
+                if self.speed <= 0:
+                    self.ignore_user_input = False
+                    if self.just_got_jumped:
+                        self.just_got_jumped = False
+                    self.is_abort_jump = True
+                    # self.movement_direction_inverter = 1
+                    # self.set_state('crouch')
+                    self.set_state('stand still')
         elif self.__state == 'sliding':
             # self.set_rect_width(self.rectangle_width_slide)
             # self.set_rect_height(self.rectangle_height_slide)
