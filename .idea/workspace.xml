@@ -7,7 +7,6 @@
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obstacle.py" beforeDir="false" afterPath="$PROJECT_DIR$/obstacle.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -107,13 +106,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Added double jump in midair.">
-      <created>1715674848059</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1715674848059</updated>
     </task>
     <task id="LOCAL-00013" summary="Added camera follow">
       <created>1715742337428</created>
@@ -451,7 +443,14 @@
       <option name="project" value="LOCAL" />
       <updated>1716369578747</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="Corrected fall speed calculations: it happens if actor stands on the ground only.&#10;Added is_being_collided_now for obstacles.">
+      <created>1716424663519</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1716424663519</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -466,7 +465,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Tuning 'grab the edge' option." />
     <MESSAGE value="Slightly corrected left collider" />
     <MESSAGE value="Added some tiny, but important improvements:&#10;- 'release edge' state&#10;- try to grab the edge of an obstacle only in several states&#10;- check_space_around() routine is now includes above and below spaces&#10;- actor raise up now if he gets enough space above" />
     <MESSAGE value="Improved camera follow ability" />
@@ -491,6 +489,7 @@
     <MESSAGE value="Fixed bug while hopping back and incorrect collision detection." />
     <MESSAGE value="Still solving problems with hopping back." />
     <MESSAGE value="There is a bug when try to step over a tiny obstacle lower 35 px of height if moving left." />
-    <option name="LAST_COMMIT_MESSAGE" value="There is a bug when try to step over a tiny obstacle lower 35 px of height if moving left." />
+    <MESSAGE value="Corrected fall speed calculations: it happens if actor stands on the ground only.&#10;Added is_being_collided_now for obstacles." />
+    <option name="LAST_COMMIT_MESSAGE" value="Corrected fall speed calculations: it happens if actor stands on the ground only.&#10;Added is_being_collided_now for obstacles." />
   </component>
 </project>
