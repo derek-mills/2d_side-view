@@ -182,6 +182,15 @@ class Entity(object):
         for key in self.obstacles_around.keys():
             obs = self.obstacles_around[key]
             #-----------------------------------
+            # Check top
+            if obs.rectangle.colliderect(self.collision_detector_top):
+                obs.is_being_collided_now = True
+                if self.fall_speed < 0 and not obs.is_ghost_platform:
+                    self.potential_falling_distance = obs.rectangle.bottom - self.collision_detector_top.bottom
+                    self.is_stand_on_ground = False
+                    self.fall_speed = 0
+                    continue
+            #-----------------------------------
             # Check RIGHT
             if obs.rectangle.colliderect(self.collision_detector_right) and not obs.is_ghost_platform:
                 # if obs.is_ghost_platform:
@@ -305,15 +314,7 @@ class Entity(object):
                     self.influenced_by_obstacle = obs.id
                     self.jump_attempts_counter = self.max_jump_attempts
                     continue
-            #-----------------------------------
-            # Check top
-            if obs.rectangle.colliderect(self.collision_detector_top):
-                obs.is_being_collided_now = True
-                if self.fall_speed < 0 and not obs.is_ghost_platform:
-                    self.potential_falling_distance = obs.rectangle.bottom - self.collision_detector_top.bottom
-                    self.is_stand_on_ground = False
-                    self.fall_speed = 0
-                    continue
+
             obs.is_being_collided_now = False
 
     def check_space_around(self):
@@ -326,11 +327,13 @@ class Entity(object):
             obs = self.obstacles_around[key]
             # # Check enough spaces right and left:
             if obs.rectangle.colliderect(self.rectangle.left - self.rectangle.width - self.speed - 2, self.rectangle.top,
-                                         self.rectangle.width + self.speed + 2, self.rectangle.height - 35):
+                                         self.rectangle.width + self.speed + 2, self.rectangle.height):
+                                         # self.rectangle.width + self.speed + 2, self.rectangle.height - 35):
                 self.is_enough_space_left = False
                 continue
             if obs.rectangle.colliderect(self.rectangle.right, self.rectangle.top,
-                                         self.rectangle.width + self.speed + 2, self.rectangle.height - 35):
+                                         self.rectangle.width + self.speed + 2, self.rectangle.height):
+                                         # self.rectangle.width + self.speed + 2, self.rectangle.height - 35):
                 self.is_enough_space_right = False
                 continue
             # Check if there is enough space ABOVE

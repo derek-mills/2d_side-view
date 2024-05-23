@@ -328,7 +328,8 @@ class World(object):
                             collideable = ', \'collideable\' ' if obs.is_collideable else ''
                             gravity_affected = ', \'gravity affected\' ' if obs.is_gravity_affected else ''
                             total_strg = '                ('+str(obs.rectangle.topleft) + ', ' + \
-                                   str(obs.rectangle.size) + ghost + move_right + move_left + collideable + gravity_affected + '),  #' + str(obs.id) + '\n'
+                                   str(obs.rectangle.size) + ghost + move_right + move_left + collideable + gravity_affected + '),  #' + str(k) + '\n'
+                                   # str(obs.rectangle.size) + ghost + move_right + move_left + collideable + gravity_affected + '),  #' + str(obs.id) + '\n'
                             f_dest.write(total_strg)
                         loc_found = False
                 if '\''+self.location+'\':' in line and not loc_found:
