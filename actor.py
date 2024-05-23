@@ -149,9 +149,10 @@ class Actor(Entity):
         # HOP BACK
         elif new_action == 'hop back':
             if self.is_stand_on_ground:
-                if (self.look == -1 and self.is_enough_space_right) or\
-                        (self.look == 1 and self.is_enough_space_left):
-                    self.set_state('hop back')
+                # if (self.look == -1 and self.is_enough_space_right) or\
+                #         (self.look == 1 and self.is_enough_space_left):
+                #     self.set_state('hop back')
+                self.set_state('hop back')
         elif new_action == 'hop back action cancel':
             # self.set_state('jump cancel')
             if self.just_got_jumped:
@@ -211,7 +212,7 @@ class Actor(Entity):
                 self.is_jump = True
                 self.influenced_by_obstacle = None
                 self.jump_height = self.max_jump_height // 2
-                self.speed = self.max_speed * 1.5
+                self.speed = self.max_speed
                 self.movement_direction_inverter = -1
                 self.heading[0] = 0
                 self.idle_counter = 40

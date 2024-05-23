@@ -155,147 +155,189 @@ class Entity(object):
     def state_machine(self):
         ...
 
+    def colliders_calc(self):
+        if self.look * self.movement_direction_inverter == 1:
+            self.collision_detector_right.update(self.rectangle.right, self.rectangle.top, self.speed + 1, self.rectangle.height - 35)
+            self.collision_detector_bottom_right.update(self.rectangle.right, self.rectangle.bottom - 35, self.speed + 1, 35)
+
+            self.collision_detector_left.update(self.rectangle.left - 1, self.rectangle.top, 1, self.rectangle.height - 35)
+            self.collision_detector_bottom_left.update(self.rectangle.left - 1, self.rectangle.bottom - 35, 1, 35)
+        elif self.look * self.movement_direction_inverter == -1:
+            self.collision_detector_right.update(self.rectangle.right, self.rectangle.top, 1, self.rectangle.height - 35)
+            self.collision_detector_bottom_right.update(self.rectangle.right, self.rectangle.bottom - 35, 1, 35)
+
+            self.collision_detector_left.update(self.rectangle.left - self.speed - 1, self.rectangle.top, self.speed + 1, self.rectangle.height - 35)
+            self.collision_detector_bottom_left.update(self.rectangle.left - self.speed - 1, self.rectangle.bottom - 35, self.speed + 1, 35)
+        if self.fall_speed < 0:
+            self.collision_detector_top.update(self.rectangle.left + 2, self.rectangle.top - abs(self.fall_speed), self.rectangle.width - 4, abs(self.fall_speed))
+            self.collision_detector_bottom.update(0,0,0,0)
+            # self.collision_detector_bottom.update(self.rectangle.left + 2, self.rectangle.bottom, self.rectangle.width - 4, 1)
+        elif self.fall_speed >= 0:
+            self.collision_detector_top.update(0,0,0,0)
+            # self.collision_detector_top.update(self.rectangle.left + 2, self.rectangle.top - 1, self.rectangle.width - 4, 1)
+            self.collision_detector_bottom.update(self.rectangle.left + 2, self.rectangle.bottom - 2, self.rectangle.width - 4, self.fall_speed + 2)
+        # else:
+        #     self.collision_detector_top.update(0,0,0,0)
+        #     # self.collision_detector_top.update(self.rectangle.left + 2, self.rectangle.top - 1, self.rectangle.width - 4, 1)
+        #     self.collision_detector_bottom.update(self.rectangle.left + 2, self.rectangle.bottom - 2, self.rectangle.width - 4, 2)
+
     def detect_collisions(self):
         self.is_stand_on_ground = False
         # self.influenced_by_obstacle = None
         bottom_already_changed = False
         for key in self.obstacles_around.keys():
             obs = self.obstacles_around[key]
-            #-----------------------------------
-            # Check top
-            if obs.rectangle.colliderect(self.collision_detector_top):
-                obs.is_being_collided_now = True
-                if self.fall_speed < 0 and not obs.is_ghost_platform:
-                    self.potential_falling_distance = obs.rectangle.bottom - self.collision_detector_top.bottom
-                    self.is_stand_on_ground = False
-                    self.fall_speed = 0
-                    continue
-            #-----------------------------------
-            # Check RIGHT
-            if obs.rectangle.colliderect(self.collision_detector_right) and not obs.is_ghost_platform:
-                # if obs.is_ghost_platform:
-                #     continue
-                # Check if obstacle has crawled from behind and pushed actor to his back:
-                if self.look == -1:  # Obstacle is on the right, but actor looks to the left.
-                    self.rectangle.right = obs.rectangle.left - 2  # Push the actor
-                    # self.speed = 0
-                    # self.influenced_by_obstacle = None
-                    # self.is_edge_grabbed = False
-                    if self.get_state() in ('hanging on edge', 'hanging on ghost'):
-                        self.set_state('release edge')
-                    continue
-                # Grab over the top of an obstacle.
-                if self.get_state() not in ('release edge', 'hanging on edge', 'has just grabbed edge', 'hopping back process', 'hop back'):
-                    # if self.movement_direction_inverter != 1:  # Try to grab the edge only if actor moves exactly at the same direction of his gaze.
-                    if obs.rectangle.top >= self.rectangle.top > (obs.rectangle.top - 30) and self.fall_speed > 0:
-                        # self.rectangle.right = obs.rectangle.left - 2
-                        self.influenced_by_obstacle = obs.id
-                        self.set_state('has just grabbed edge')
-                        self.state_machine()
-                        continue
-
-                if self.look == 1: # Obstacle is on the right, and actor also looks to the right, and hangs on the edge.
-                    if self.get_state() == 'hanging on edge' and self.influenced_by_obstacle != obs.id:
-                        self.rectangle.right = obs.rectangle.left - 2  # Drop down the actor
-                        self.set_state('release edge')
-                    else:
-                        if self.movement_direction_inverter == -1:
-                            continue
-
-                        self.potential_moving_distance = obs.rectangle.left - self.collision_detector_right.left
-                        # self.rectangle.right = obs.rectangle.left
-                        self.is_enough_space_right = False
-                        self.heading[0] = 0
-                        self.speed = 0
-                        continue
-            #-----------------------------------
-            # Check bottom-right
-            if obs.rectangle.colliderect(self.collision_detector_bottom_right) and not obs.is_ghost_platform:
-                obs.is_being_collided_now = True
-                # Check if obstacle has crawled from behind and pushed actor to his back:
-                if self.look == -1:  # Obstacle is on the right, but actor looks to the left.
-                    self.rectangle.right = obs.rectangle.left - 2  # Push the actor
-                    self.set_state('release edge')
-                    continue
-                if self.look == 1:  # Obstacle is on the right, and actor also looks to the right, and hangs on the edge.
-                    if self.get_state() == 'hanging on edge' and self.influenced_by_obstacle != obs.id:
-                        self.rectangle.right = obs.rectangle.left - 2  # Drop down the actor
-                        self.set_state('release edge')
-                    else:
+            if obs.is_ghost_platform:
+                # -----------------------------------
+                # Check bottom
+                if obs.rectangle.colliderect(self.collision_detector_bottom) and not bottom_already_changed:
+                    obs.is_being_collided_now = True
+                    if self.fall_speed >= 0:
                         self.rectangle.bottom = obs.rectangle.top
                         self.is_stand_on_ground = True
                         self.influenced_by_obstacle = obs.id
                         self.jump_attempts_counter = self.max_jump_attempts
                         continue
-            #-----------------------------------
-            # Check LEFT
-            if obs.rectangle.colliderect(self.collision_detector_left) and not obs.is_ghost_platform:
-                obs.is_being_collided_now = True
-                # self.rectangle.left = obs.rectangle.right + 2
-
-                # Check if obstacle has crawled from behind and pushed actor to his back:
-                if self.look == 1:  # Obstacle is on the left, but actor looks to the right.
-                    self.rectangle.left = obs.rectangle.right + 2  # Push the actor
-                    # self.speed = 0
-                    if self.get_state() in ('hanging on edge', 'hanging on ghost'):
-                        self.set_state('release edge')
-                    continue
-
-                # Grab over the top of an obstacle.
-                if self.get_state() not in ('release edge', 'hanging on edge', 'has just grabbed edge', 'hopping back process', 'hop back'):
-                    # if self.movement_direction_inverter != -1:  # Try to grab the edge only if actor moves exactly at the same direction of his gaze.
-                    if obs.rectangle.top >= self.rectangle.top > (obs.rectangle.top - 30) and self.fall_speed > 0:
-                        self.influenced_by_obstacle = obs.id
-                        self.set_state('has just grabbed edge')
-                        self.state_machine()
+            else:
+                #-----------------------------------
+                # Check RIGHT
+                if obs.rectangle.colliderect(self.collision_detector_right) and not obs.is_ghost_platform:
+                    # if obs.is_ghost_platform:
+                    #     continue
+                    # Check if obstacle has crawled from behind and pushed actor to his back:
+                    if self.look == -1:  # Obstacle is on the right, but actor looks to the left.
+                        self.rectangle.right = obs.rectangle.left - 2  # Push the actor
+                        # self.speed = 0
+                        # self.influenced_by_obstacle = None
+                        # self.is_edge_grabbed = False
+                        if self.get_state() in ('hanging on edge', 'hanging on ghost'):
+                            self.set_state('release edge')
                         continue
+                    # Grab over the top of an obstacle.
+                    if obs.fall_speed == 0:
+                        if self.get_state() not in ('release edge', 'hanging on edge', 'has just grabbed edge', 'hopping back process', 'hop back'):
+                            # if self.movement_direction_inverter != 1:  # Try to grab the edge only if actor moves exactly at the same direction of his gaze.
+                            if obs.rectangle.top >= self.rectangle.top > (obs.rectangle.top - 30) and self.fall_speed > 0:
+                                # self.rectangle.right = obs.rectangle.left - 2
+                                self.influenced_by_obstacle = obs.id
+                                self.set_state('has just grabbed edge')
+                                self.state_machine()
+                                continue
 
-                if self.look == -1: # Obstacle is on the left, and actor also looks to the left, and hangs on the edge.
-                    if self.get_state() == 'hanging on edge' and self.influenced_by_obstacle != obs.id:
-                        self.rectangle.left = obs.rectangle.right + 2  # Drop down the actor
-                        self.set_state('release edge')
-                    else:
+                    if self.look == 1: # Obstacle is on the right, and actor also looks to the right, and hangs on the edge.
+                        if self.get_state() == 'hanging on edge' and self.influenced_by_obstacle != obs.id:
+                            self.rectangle.right = obs.rectangle.left - 2  # Drop down the actor
+                            self.set_state('release edge')
+                        else:
+                            if self.movement_direction_inverter == -1:
+                                continue
 
-                        if self.movement_direction_inverter == -1:
+                            self.potential_moving_distance = obs.rectangle.left - self.collision_detector_right.left
+                            # self.rectangle.right = obs.rectangle.left
+                            self.is_enough_space_right = False
+                            self.heading[0] = 0
+                            self.speed = 0
                             continue
-
-                        self.potential_moving_distance = self.collision_detector_left.right - obs.rectangle.right
-                        # self.rectangle.left = obs.rectangle.right
-                        self.is_enough_space_left = False
-                        self.heading[0] = 0
-                        self.speed = 0
+                #-----------------------------------
+                # Check bottom-right
+                if obs.rectangle.colliderect(self.collision_detector_bottom_right) and not obs.is_ghost_platform:
+                    obs.is_being_collided_now = True
+                    # Check if obstacle has crawled from behind and pushed actor to his back:
+                    if self.look == -1:  # Obstacle is on the right, but actor looks to the left.
+                        self.rectangle.right = obs.rectangle.left - 2  # Push the actor
+                        # print('gg')
+                        if self.get_state() in ('hanging on edge', 'hanging on ghost'):
+                            self.set_state('release edge')
                         continue
-            #-----------------------------------
-            # Check bottom-left
-            if obs.rectangle.colliderect(self.collision_detector_bottom_left) and not obs.is_ghost_platform:
-                obs.is_being_collided_now = True
-                # Check if obstacle has crawled from behind and pushed actor to his back:
-                if self.look == 1:  # Obstacle is on the left, but actor looks to the right.
-                    self.rectangle.left = obs.rectangle.right + 2  # Push the actor
-                    self.set_state('release edge')
-                    continue
-                if self.look == -1:  # Obstacle is on the right, and actor also looks to the right, and hangs on the edge.
-                    if self.get_state() == 'hanging on edge' and self.influenced_by_obstacle != obs.id:
-                        self.rectangle.left = obs.rectangle.right + 2  # Drop down the actor
-                        self.set_state('release edge')
-                    else:
+                    if self.look == 1:  # Obstacle is on the right, and actor also looks to the right, and hangs on the edge.
+                        if self.get_state() == 'hanging on edge' and self.influenced_by_obstacle != obs.id:
+                            self.rectangle.right = obs.rectangle.left - 2  # Drop down the actor
+                            self.set_state('release edge')
+                        else:
+                            self.rectangle.bottom = obs.rectangle.top
+                            self.is_stand_on_ground = True
+                            self.influenced_by_obstacle = obs.id
+                            self.jump_attempts_counter = self.max_jump_attempts
+                            continue
+                #-----------------------------------
+                # Check LEFT
+                if obs.rectangle.colliderect(self.collision_detector_left) and not obs.is_ghost_platform:
+                    obs.is_being_collided_now = True
+                    # self.rectangle.left = obs.rectangle.right + 2
+
+                    # Check if obstacle has crawled from behind and pushed actor to his back:
+                    if self.look == 1:  # Obstacle is on the left, but actor looks to the right.
+                        self.rectangle.left = obs.rectangle.right + 2  # Push the actor
+                        # self.speed = 0
+                        if self.get_state() in ('hanging on edge', 'hanging on ghost'):
+                            self.set_state('release edge')
+                        continue
+
+                    # Grab over the top of an obstacle.
+                    if obs.fall_speed == 0:
+                        if self.get_state() not in ('release edge', 'hanging on edge', 'has just grabbed edge', 'hopping back process', 'hop back'):
+                            # if self.movement_direction_inverter != -1:  # Try to grab the edge only if actor moves exactly at the same direction of his gaze.
+                            if obs.rectangle.top >= self.rectangle.top > (obs.rectangle.top - 30) and self.fall_speed > 0:
+                                self.influenced_by_obstacle = obs.id
+                                self.set_state('has just grabbed edge')
+                                self.state_machine()
+                                continue
+
+                    if self.look == -1: # Obstacle is on the left, and actor also looks to the left, and hangs on the edge.
+                        if self.get_state() == 'hanging on edge' and self.influenced_by_obstacle != obs.id:
+                            self.rectangle.left = obs.rectangle.right + 2  # Drop down the actor
+                            self.set_state('release edge')
+                        else:
+
+                            if self.movement_direction_inverter == -1:
+                                continue
+
+                            self.potential_moving_distance = self.collision_detector_left.right - obs.rectangle.right
+                            # self.rectangle.left = obs.rectangle.right
+                            self.is_enough_space_left = False
+                            self.heading[0] = 0
+                            self.speed = 0
+                            continue
+                #-----------------------------------
+                # Check bottom-left
+                if obs.rectangle.colliderect(self.collision_detector_bottom_left) and not obs.is_ghost_platform:
+                    obs.is_being_collided_now = True
+                    # Check if obstacle has crawled from behind and pushed actor to his back:
+                    if self.look == 1:  # Obstacle is on the left, but actor looks to the right.
+                        self.rectangle.left = obs.rectangle.right + 2  # Push the actor
+                        if self.get_state() in ('hanging on edge', 'hanging on ghost'):
+                            self.set_state('release edge')
+                        continue
+                    if self.look == -1:  # Obstacle is on the right, and actor also looks to the right, and hangs on the edge.
+                        if self.get_state() == 'hanging on edge' and self.influenced_by_obstacle != obs.id:
+                            self.rectangle.left = obs.rectangle.right + 2  # Drop down the actor
+                            self.set_state('release edge')
+                        else:
+                            self.rectangle.bottom = obs.rectangle.top
+                            bottom_already_changed = True
+                            self.is_stand_on_ground = True
+                            self.influenced_by_obstacle = obs.id
+                            self.jump_attempts_counter = self.max_jump_attempts
+                            continue
+                #-----------------------------------
+                # Check top
+                if obs.rectangle.colliderect(self.collision_detector_top):
+                    obs.is_being_collided_now = True
+                    if self.fall_speed < 0 and not obs.is_ghost_platform:
+                        self.potential_falling_distance = obs.rectangle.bottom - self.collision_detector_top.bottom
+                        self.is_stand_on_ground = False
+                        self.fall_speed = 0
+                        continue
+                # -----------------------------------
+                # Check bottom
+                if obs.rectangle.colliderect(self.collision_detector_bottom) and not bottom_already_changed:
+                    obs.is_being_collided_now = True
+                    if self.fall_speed >= 0:
                         self.rectangle.bottom = obs.rectangle.top
-                        bottom_already_changed = True
                         self.is_stand_on_ground = True
                         self.influenced_by_obstacle = obs.id
                         self.jump_attempts_counter = self.max_jump_attempts
                         continue
-
-            # -----------------------------------
-            # Check bottom
-            if obs.rectangle.colliderect(self.collision_detector_bottom) and not bottom_already_changed:
-                obs.is_being_collided_now = True
-                if self.fall_speed >= 0:
-                    self.rectangle.bottom = obs.rectangle.top
-                    self.is_stand_on_ground = True
-                    self.influenced_by_obstacle = obs.id
-                    self.jump_attempts_counter = self.max_jump_attempts
-                    continue
 
             obs.is_being_collided_now = False
 
@@ -385,31 +427,32 @@ class Entity(object):
             # print('-'*100)
             # self.rectangle_central_spot = self.rectangle.inflate(-self.rectangle.height // 3, -self.rectangle.width // 2)
 
-    def colliders_calc(self):
-        if self.look * self.movement_direction_inverter == 1:
-            self.collision_detector_right.update(self.rectangle.right, self.rectangle.top, self.speed + 1, self.rectangle.height - 35)
-            self.collision_detector_bottom_right.update(self.rectangle.right, self.rectangle.bottom - 35, self.speed + 1, 35)
 
-            self.collision_detector_left.update(self.rectangle.left - 1, self.rectangle.top, 1, self.rectangle.height - 35)
-            self.collision_detector_bottom_left.update(self.rectangle.left - 1, self.rectangle.bottom - 35, 1, 35)
-        elif self.look * self.movement_direction_inverter == -1:
-            self.collision_detector_right.update(self.rectangle.right, self.rectangle.top, 1, self.rectangle.height - 35)
-            self.collision_detector_bottom_right.update(self.rectangle.right, self.rectangle.bottom - 35, 1, 35)
-
-            self.collision_detector_left.update(self.rectangle.left - self.speed - 1, self.rectangle.top, self.speed + 1, self.rectangle.height - 35)
-            self.collision_detector_bottom_left.update(self.rectangle.left - self.speed - 1, self.rectangle.bottom - 35, self.speed + 1, 35)
-        if self.fall_speed < 0:
-            self.collision_detector_top.update(self.rectangle.left + 2, self.rectangle.top - abs(self.fall_speed), self.rectangle.width - 4, abs(self.fall_speed))
-            self.collision_detector_bottom.update(0,0,0,0)
-            # self.collision_detector_bottom.update(self.rectangle.left + 2, self.rectangle.bottom, self.rectangle.width - 4, 1)
-        elif self.fall_speed >= 0:
-            self.collision_detector_top.update(0,0,0,0)
-            # self.collision_detector_top.update(self.rectangle.left + 2, self.rectangle.top - 1, self.rectangle.width - 4, 1)
-            self.collision_detector_bottom.update(self.rectangle.left + 2, self.rectangle.bottom - 2, self.rectangle.width - 4, self.fall_speed + 2)
-        # else:
-        #     self.collision_detector_top.update(0,0,0,0)
-        #     # self.collision_detector_top.update(self.rectangle.left + 2, self.rectangle.top - 1, self.rectangle.width - 4, 1)
-        #     self.collision_detector_bottom.update(self.rectangle.left + 2, self.rectangle.bottom - 2, self.rectangle.width - 4, 2)
+    # def colliders_calc_backup(self):
+    #     if self.look * self.movement_direction_inverter == 1:
+    #         self.collision_detector_right.update(self.rectangle.right, self.rectangle.top, self.speed + 1, self.rectangle.height - 35)
+    #         self.collision_detector_bottom_right.update(self.rectangle.right, self.rectangle.bottom - 35, self.speed + 1, 35)
+    #
+    #         self.collision_detector_left.update(self.rectangle.left - 1, self.rectangle.top, 1, self.rectangle.height - 35)
+    #         self.collision_detector_bottom_left.update(self.rectangle.left - 1, self.rectangle.bottom - 35, 1, 35)
+    #     elif self.look * self.movement_direction_inverter == -1:
+    #         self.collision_detector_right.update(self.rectangle.right, self.rectangle.top, 1, self.rectangle.height - 35)
+    #         self.collision_detector_bottom_right.update(self.rectangle.right, self.rectangle.bottom - 35, 1, 35)
+    #
+    #         self.collision_detector_left.update(self.rectangle.left - self.speed - 1, self.rectangle.top, self.speed + 1, self.rectangle.height - 35)
+    #         self.collision_detector_bottom_left.update(self.rectangle.left - self.speed - 1, self.rectangle.bottom - 35, self.speed + 1, 35)
+    #     if self.fall_speed < 0:
+    #         self.collision_detector_top.update(self.rectangle.left + 2, self.rectangle.top - abs(self.fall_speed), self.rectangle.width - 4, abs(self.fall_speed))
+    #         self.collision_detector_bottom.update(0,0,0,0)
+    #         # self.collision_detector_bottom.update(self.rectangle.left + 2, self.rectangle.bottom, self.rectangle.width - 4, 1)
+    #     elif self.fall_speed >= 0:
+    #         self.collision_detector_top.update(0,0,0,0)
+    #         # self.collision_detector_top.update(self.rectangle.left + 2, self.rectangle.top - 1, self.rectangle.width - 4, 1)
+    #         self.collision_detector_bottom.update(self.rectangle.left + 2, self.rectangle.bottom - 2, self.rectangle.width - 4, self.fall_speed + 2)
+    #     # else:
+    #     #     self.collision_detector_top.update(0,0,0,0)
+    #     #     # self.collision_detector_top.update(self.rectangle.left + 2, self.rectangle.top - 1, self.rectangle.width - 4, 1)
+    #     #     self.collision_detector_bottom.update(self.rectangle.left + 2, self.rectangle.bottom - 2, self.rectangle.width - 4, 2)
 
     def fall(self):
         # if self.is_enough_space_below:

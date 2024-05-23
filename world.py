@@ -38,9 +38,11 @@ class World(object):
         self.is_n = False
         self.is_b = False
         self.is_spacebar = False
+        self.spacebar_multiple_press_prevent = False
         self.is_l_shift = False
         self.is_l_ctrl = False
         self.is_l_alt = False
+        self.l_alt_multiple_press_prevent = False
         self.is_mouse_button_down = False
         self.is_left_mouse_button_down = False
         self.is_right_mouse_button_down = False
@@ -159,10 +161,10 @@ class World(object):
                 if self.is_spacebar:
                     actor.set_action('jump action')
                 else:
-                    # if actor.get_state() == 'jump action':
                     actor.set_action('jump action cancel')
 
-                if self.is_l_alt:
+                if self.is_l_alt and not self.l_alt_multiple_press_prevent:
+                    self.l_alt_multiple_press_prevent = True
                     actor.set_action('hop back')
                 else:
                     if actor.get_state() == 'hop back progress':
@@ -256,6 +258,7 @@ class World(object):
             elif mods & KMOD_LALT:
                 self.is_l_alt = True
             else:
+                self.l_alt_multiple_press_prevent = False
                 self.is_l_ctrl = False
                 self.is_l_shift = False
                 self.is_l_alt = False
@@ -272,6 +275,7 @@ class World(object):
                     self.is_input_down_arrow = False
                 if event.key == K_SPACE:
                     self.is_spacebar = False
+                    self.spacebar_multiple_press_prevent = False
                 # elif event.key == K_z:
                 #     self.z = False
                 # elif event.key == K_x:
@@ -295,7 +299,8 @@ class World(object):
                 if event.key == K_s:
                     self.is_input_down_arrow = True
                 if event.key == K_SPACE:
-                    self.is_spacebar = True
+                    if not self.spacebar_multiple_press_prevent:
+                        self.is_spacebar = True
                 # if event.key == K_F5:
                 #     self.need_quick_save = True
                 # elif event.key == K_F8:

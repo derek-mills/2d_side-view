@@ -108,13 +108,6 @@
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
     </task>
-    <task id="LOCAL-00015" summary="Added machine of states for actor.">
-      <created>1715755279983</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1715755279983</updated>
-    </task>
     <task id="LOCAL-00016" summary="Improving machine of states for actor.&#10;Try to move all code responsible for actor's actions into this actor implementation.">
       <created>1715759755585</created>
       <option name="number" value="00016" />
@@ -451,7 +444,14 @@
       <option name="project" value="LOCAL" />
       <updated>1716435972692</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="Some tiny changes">
+      <created>1716444092135</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1716444092135</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -466,7 +466,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Improved camera follow ability" />
     <MESSAGE value="While hanging actor could be pushed off from the platform by the other obstacle.&#10;Temporary removed collisions for obstacles." />
     <MESSAGE value="Added level editor" />
     <MESSAGE value="Level editor can save and load files with obstacles data, so as the main program unit." />
@@ -491,6 +490,7 @@
     <MESSAGE value="Corrected fall speed calculations: it happens if actor stands on the ground only.&#10;Added is_being_collided_now for obstacles." />
     <MESSAGE value="Added auxiliary colliders near the bottom of an actor's rectangle to provide hopping over an obstacles lower than 35 pixels of height." />
     <MESSAGE value="If slide is over and actor has not enough space above, he continues to lie down." />
-    <option name="LAST_COMMIT_MESSAGE" value="If slide is over and actor has not enough space above, he continues to lie down." />
+    <MESSAGE value="Some tiny changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Some tiny changes" />
   </component>
 </project>
