@@ -32,7 +32,7 @@ class Entity(object):
         self.speed: float = 0.
         self.jump_height: int = 0
         self.max_jump_height: int = 22
-        self.max_jump_attempts: int = 3  # n-1 attempts to do a jump in midair.
+        self.max_jump_attempts: int = 1  #
         self.jump_attempts_counter: int = 0
         self.just_got_jumped: bool = False
         self.default_max_speed: float = 15.0  # Maximum speed cap for this creature

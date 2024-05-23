@@ -10,6 +10,7 @@ class Actor(Entity):
         self.air_acceleration = .3
         self.jump_height: int = 22
         self.default_max_speed = 10
+        self.max_jump_attempts = 2
         self.max_speed = 10
 
         self.rectangle.height = 149
@@ -225,7 +226,7 @@ class Actor(Entity):
                 self.speed = self.max_speed
                 self.movement_direction_inverter = -1
                 self.heading[0] = 0
-                self.idle_counter = 40
+                self.idle_counter = 30
             self.is_abort_jump = False
             self.set_state('hopping back process')
         elif self.__state == 'hopping back process':            # HOPPING BACK PROCESS
