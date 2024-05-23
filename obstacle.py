@@ -7,6 +7,7 @@ class Obstacle(Entity):
         self.type = 'obstacle'
         self.is_ghost_platform: bool = False
         self.max_speed = 2
+        self.is_being_collided_now: bool = False
 
     def process_(self, time_passed):
         # ...

@@ -181,13 +181,13 @@ class World(object):
             pygame.draw.rect(self.screen, GREEN, (actor.rectangle.x - self.camera.offset_x, actor.rectangle.y - self.camera.offset_y,
                                                   actor.rectangle.width, actor.rectangle.height), 5)
             # Colliders rects:
-            pygame.draw.rect(self.screen, RED, (actor.collision_detector_right.x - self.camera.offset_x, actor.collision_detector_right.y - self.camera.offset_y,
+            pygame.draw.rect(self.screen, DARK_ORANGE, (actor.collision_detector_right.x - self.camera.offset_x, actor.collision_detector_right.y - self.camera.offset_y,
                                                   actor.collision_detector_right.width, actor.collision_detector_right.height))
-            pygame.draw.rect(self.screen, RED, (actor.collision_detector_left.x - self.camera.offset_x, actor.collision_detector_left.y - self.camera.offset_y,
+            pygame.draw.rect(self.screen, DARK_ORANGE, (actor.collision_detector_left.x - self.camera.offset_x, actor.collision_detector_left.y - self.camera.offset_y,
                                                   actor.collision_detector_left.width, actor.collision_detector_left.height))
-            pygame.draw.rect(self.screen, RED, (actor.collision_detector_top.x - self.camera.offset_x, actor.collision_detector_top.y - self.camera.offset_y,
+            pygame.draw.rect(self.screen, DARK_ORANGE, (actor.collision_detector_top.x - self.camera.offset_x, actor.collision_detector_top.y - self.camera.offset_y,
                                                   actor.collision_detector_top.width, actor.collision_detector_top.height))
-            pygame.draw.rect(self.screen, RED, (actor.collision_detector_bottom.x - self.camera.offset_x, actor.collision_detector_bottom.y - self.camera.offset_y,
+            pygame.draw.rect(self.screen, DARK_ORANGE, (actor.collision_detector_bottom.x - self.camera.offset_x, actor.collision_detector_bottom.y - self.camera.offset_y,
                                                   actor.collision_detector_bottom.width, actor.collision_detector_bottom.height))
 
             # The eye
@@ -198,7 +198,10 @@ class World(object):
     def render_obstacles(self):
         for key in self.obstacles[self.location].keys():
             obs = self.obstacles[self.location][key]
-            color = WHITE if obs.is_ghost_platform else CYAN
+            if obs.is_being_collided_now:
+                color = RED
+            else:
+                color = WHITE if obs.is_ghost_platform else CYAN
             pygame.draw.rect(self.screen, color, (obs.rectangle.x - self.camera.offset_x, obs.rectangle.y - self.camera.offset_y,
                                                   obs.rectangle.width, obs.rectangle.height))
 

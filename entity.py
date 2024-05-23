@@ -125,18 +125,22 @@ class Entity(object):
 
 
     def fall_speed_calc(self):
-        if self.fall_speed > GRAVITY_G:
-            self.fall_speed = GRAVITY_G
-        else:
-            self.fall_speed += GRAVITY
-
-        if self.is_abort_jump:
-            if self.fall_speed >= 0:
-                self.is_abort_jump = False
+        if not self.is_stand_on_ground:
+            if self.fall_speed > GRAVITY_G:
+                self.fall_speed = GRAVITY_G
             else:
-                self.fall_speed = 0
-                self.is_abort_jump = False
-        self.potential_falling_distance = self.fall_speed
+                self.fall_speed += GRAVITY
+
+            if self.is_abort_jump:
+                if self.fall_speed >= 0:
+                    self.is_abort_jump = False
+                else:
+                    self.fall_speed = 0
+                    self.is_abort_jump = False
+            self.potential_falling_distance = self.fall_speed
+        else:
+            self.potential_falling_distance = 1
+            self.fall_speed = 1
 
     def speed_calc(self):
         if self.heading[0] == 0:
@@ -214,6 +218,7 @@ class Entity(object):
             #-----------------------------------
             # Check LEFT
             if obs.rectangle.colliderect(self.collision_detector_left) and not obs.is_ghost_platform:
+                obs.is_being_collided_now = True
                 # self.rectangle.left = obs.rectangle.right + 2
 
                 # Check if obstacle has crawled from behind and pushed actor to his back:
@@ -250,6 +255,7 @@ class Entity(object):
             # -----------------------------------
             # Check bottom
             if obs.rectangle.colliderect(self.collision_detector_bottom):
+                obs.is_being_collided_now = True
                 if self.fall_speed >= 0:
                     # print('OOO')
                     # self.potential_falling_distance = obs.rectangle.top - self.collision_detector_bottom.top
@@ -262,12 +268,13 @@ class Entity(object):
             #-----------------------------------
             # Check top
             if obs.rectangle.colliderect(self.collision_detector_top):
+                obs.is_being_collided_now = True
                 if self.fall_speed < 0 and not obs.is_ghost_platform:
                     self.potential_falling_distance = obs.rectangle.bottom - self.collision_detector_top.bottom
                     self.is_stand_on_ground = False
                     self.fall_speed = 0
                     continue
-
+            obs.is_being_collided_now = False
             # # -----------------------------------
             # # Check bottom
             # if obs.rectangle.colliderect(self.collision_detector_bottom):
