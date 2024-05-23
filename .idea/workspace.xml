@@ -8,8 +8,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -109,13 +107,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Modified camera follow">
-      <created>1715744775850</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1715744775850</updated>
     </task>
     <task id="LOCAL-00015" summary="Added machine of states for actor.">
       <created>1715755279983</created>
@@ -453,7 +444,14 @@
       <option name="project" value="LOCAL" />
       <updated>1716427970433</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="If slide is over and actor has not enough space above, he continues to lie down.">
+      <created>1716435972692</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1716435972692</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -468,7 +466,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added some tiny, but important improvements:&#10;- 'release edge' state&#10;- try to grab the edge of an obstacle only in several states&#10;- check_space_around() routine is now includes above and below spaces&#10;- actor raise up now if he gets enough space above" />
     <MESSAGE value="Improved camera follow ability" />
     <MESSAGE value="While hanging actor could be pushed off from the platform by the other obstacle.&#10;Temporary removed collisions for obstacles." />
     <MESSAGE value="Added level editor" />
@@ -493,6 +490,7 @@
     <MESSAGE value="There is a bug when try to step over a tiny obstacle lower 35 px of height if moving left." />
     <MESSAGE value="Corrected fall speed calculations: it happens if actor stands on the ground only.&#10;Added is_being_collided_now for obstacles." />
     <MESSAGE value="Added auxiliary colliders near the bottom of an actor's rectangle to provide hopping over an obstacles lower than 35 pixels of height." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added auxiliary colliders near the bottom of an actor's rectangle to provide hopping over an obstacles lower than 35 pixels of height." />
+    <MESSAGE value="If slide is over and actor has not enough space above, he continues to lie down." />
+    <option name="LAST_COMMIT_MESSAGE" value="If slide is over and actor has not enough space above, he continues to lie down." />
   </component>
 </project>

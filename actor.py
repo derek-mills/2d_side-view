@@ -7,7 +7,7 @@ class Actor(Entity):
         self.type = 'actor'
 
         self.acceleration = 1
-        self.air_acceleration = .7
+        self.air_acceleration = .3
         self.jump_height: int = 22
         self.default_max_speed = 10
         self.max_speed = 10
@@ -210,8 +210,8 @@ class Actor(Entity):
                 self.jump_attempts_counter -= 1
                 self.is_jump = True
                 self.influenced_by_obstacle = None
-                self.jump_height = 10
-                self.speed = 10
+                self.jump_height = self.max_jump_height // 2
+                self.speed = self.max_speed * 1.5
                 self.movement_direction_inverter = -1
                 self.heading[0] = 0
                 self.idle_counter = 40

@@ -85,26 +85,6 @@ class Entity(object):
         self.obstacles_around = obstacles
 
     def process(self, time_passed):
-        # if self.is_move_left:
-        #
-        #     if self.look == 1 and self.speed > 0:  # Actor looks to the other side and runs.
-        #         # Switch off heading to force actor start reducing his speed and slow it down to zero.
-        #         # After that self is going to be able to start acceleration to proper direction.
-        #         self.heading[0] = 0
-        #     else:
-        #         self.look = -1
-        #         self.heading[0] = -1
-        # elif self.is_move_right:
-        #     if self.look == -1 and self.speed > 0:  # Actor looks to the other side and runs.
-        #         # Switch off heading to force actor start reducing his speed and slow it down to zero.
-        #         # After that self is going to be able to start acceleration to proper direction.
-        #         self.heading[0] = 0
-        #     else:
-        #         self.look = 1
-        #         self.heading[0] = 1
-        # else:
-        #     self.heading[0] = 0
-
         if self.is_jump and self.jump_attempts_counter > 0:
             # Jump
             self.fall_speed = -self.jump_height
@@ -201,7 +181,8 @@ class Entity(object):
                     # self.speed = 0
                     # self.influenced_by_obstacle = None
                     # self.is_edge_grabbed = False
-                    self.set_state('release edge')
+                    if self.get_state() in ('hanging on edge', 'hanging on ghost'):
+                        self.set_state('release edge')
                     continue
                 # Grab over the top of an obstacle.
                 if self.get_state() not in ('release edge', 'hanging on edge', 'has just grabbed edge', 'hopping back process', 'hop back'):
@@ -256,7 +237,8 @@ class Entity(object):
                 if self.look == 1:  # Obstacle is on the left, but actor looks to the right.
                     self.rectangle.left = obs.rectangle.right + 2  # Push the actor
                     # self.speed = 0
-                    self.set_state('release edge')
+                    if self.get_state() in ('hanging on edge', 'hanging on ghost'):
+                        self.set_state('release edge')
                     continue
 
                 # Grab over the top of an obstacle.
@@ -326,12 +308,14 @@ class Entity(object):
         for key in self.obstacles_around.keys():
             obs = self.obstacles_around[key]
             # # Check enough spaces right and left:
-            if obs.rectangle.colliderect(self.rectangle.left - self.rectangle.width - self.speed - 2, self.rectangle.top,
+            if obs.rectangle.colliderect(self.rectangle.left - self.speed - 2, self.rectangle.top,
+                                         # self.speed + 2, self.rectangle.height):
                                          self.rectangle.width + self.speed + 2, self.rectangle.height):
                                          # self.rectangle.width + self.speed + 2, self.rectangle.height - 35):
                 self.is_enough_space_left = False
                 continue
             if obs.rectangle.colliderect(self.rectangle.right, self.rectangle.top,
+                                         # self.speed + 2, self.rectangle.height):
                                          self.rectangle.width + self.speed + 2, self.rectangle.height):
                                          # self.rectangle.width + self.speed + 2, self.rectangle.height - 35):
                 self.is_enough_space_right = False
