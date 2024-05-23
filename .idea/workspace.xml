@@ -8,9 +8,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locations_template.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations_template.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,13 +106,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00017" summary="Added real crouching with height reduce and slide ability">
-      <created>1715760584245</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1715760584245</updated>
     </task>
     <task id="LOCAL-00018" summary="Crouching is unavailable during hanging on the edges, and it causes actor to fall down the cliff.">
       <created>1715760860940</created>
@@ -453,7 +443,14 @@
       <option name="project" value="LOCAL" />
       <updated>1716450650251</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="Try to fix broken hanging ability">
+      <created>1716453378041</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1716453378041</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -468,7 +465,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added level editor" />
     <MESSAGE value="Level editor can save and load files with obstacles data, so as the main program unit." />
     <MESSAGE value="Data file added to GIT" />
     <MESSAGE value="Working on the level editor." />
@@ -493,6 +489,7 @@
     <MESSAGE value="If slide is over and actor has not enough space above, he continues to lie down." />
     <MESSAGE value="Some tiny changes" />
     <MESSAGE value="Collisions improvement" />
-    <option name="LAST_COMMIT_MESSAGE" value="Collisions improvement" />
+    <MESSAGE value="Try to fix broken hanging ability" />
+    <option name="LAST_COMMIT_MESSAGE" value="Try to fix broken hanging ability" />
   </component>
 </project>

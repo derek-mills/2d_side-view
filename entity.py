@@ -85,7 +85,8 @@ class Entity(object):
         self.obstacles_around = obstacles
 
     def process(self, time_passed):
-        if self.is_jump and self.jump_attempts_counter > 0:
+        if self.is_jump:
+        # if self.is_jump and self.jump_attempts_counter > 0:
             # Jump
             self.fall_speed = -self.jump_height
             self.is_jump = False

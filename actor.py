@@ -120,6 +120,8 @@ class Actor(Entity):
 
         # JUMP
         elif new_action == 'jump action':
+            if self.jump_attempts_counter == 0:
+                return
             if self.__state == 'jump':
                 return
             if self.__state == 'crouch' and self.is_stand_on_ground:
@@ -184,7 +186,14 @@ class Actor(Entity):
                 self.influenced_by_obstacle = None
                 self.jump_height = self.max_jump_height
             self.is_abort_jump = False
-            # self.set_state('stand still')
+            # self.set_state('jump process')
+        # elif self.__state == 'jump process':
+        #     # if self.is_jump and self.jump_attempts_counter > 0:
+        #     # if self.is_jump and self.jump_attempts_counter > 0:
+        #     self.fall_speed = -self.jump_height
+        #     self.is_jump = False
+        #     self.is_stand_on_ground = False
+
         elif self.__state == 'jump cancel':
             # if self.just_got_jumped:
             self.just_got_jumped = False
