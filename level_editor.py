@@ -68,6 +68,8 @@ class World(object):
 
         self.snap_mesh = dict()
         self.snap_mesh_size = 50
+        self.snap_mesh_size_change_step = 25
+
         # self.setup_box = list()
 
     def set_screen(self, surface):
@@ -123,10 +125,16 @@ class World(object):
                     pygame.quit()
                     raise SystemExit()
                 if event.key == K_KP_PLUS:
-                    self.snap_mesh_size += 1
+                    if self.is_l_shift:
+                        self.snap_mesh_size += self.snap_mesh_size_change_step
+                    else:
+                        self.snap_mesh_size += 1
                     self.create_snap_mesh()
                 if event.key == K_KP_MINUS:
-                    self.snap_mesh_size -= 1
+                    if self.is_l_shift:
+                        self.snap_mesh_size -= self.snap_mesh_size_change_step
+                    else:
+                        self.snap_mesh_size -= 1
                     self.create_snap_mesh()
                 if event.key == K_SPACE:
                     self.is_spacebar = True

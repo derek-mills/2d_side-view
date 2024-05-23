@@ -8,7 +8,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locations_template.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations_template.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,13 +109,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00016" summary="Improving machine of states for actor.&#10;Try to move all code responsible for actor's actions into this actor implementation.">
-      <created>1715759755585</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1715759755585</updated>
     </task>
     <task id="LOCAL-00017" summary="Added real crouching with height reduce and slide ability">
       <created>1715760584245</created>
@@ -451,7 +446,14 @@
       <option name="project" value="LOCAL" />
       <updated>1716444092135</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="Collisions improvement">
+      <created>1716450650251</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1716450650251</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -466,7 +468,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="While hanging actor could be pushed off from the platform by the other obstacle.&#10;Temporary removed collisions for obstacles." />
     <MESSAGE value="Added level editor" />
     <MESSAGE value="Level editor can save and load files with obstacles data, so as the main program unit." />
     <MESSAGE value="Data file added to GIT" />
@@ -491,6 +492,7 @@
     <MESSAGE value="Added auxiliary colliders near the bottom of an actor's rectangle to provide hopping over an obstacles lower than 35 pixels of height." />
     <MESSAGE value="If slide is over and actor has not enough space above, he continues to lie down." />
     <MESSAGE value="Some tiny changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Some tiny changes" />
+    <MESSAGE value="Collisions improvement" />
+    <option name="LAST_COMMIT_MESSAGE" value="Collisions improvement" />
   </component>
 </project>

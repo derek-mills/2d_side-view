@@ -120,6 +120,8 @@ class Actor(Entity):
 
         # JUMP
         elif new_action == 'jump action':
+            if self.__state == 'jump':
+                return
             if self.__state == 'crouch' and self.is_stand_on_ground:
                 if self.influenced_by_obstacle:
                     # Jump off a ghost platform:
@@ -160,7 +162,6 @@ class Actor(Entity):
             self.is_abort_jump = True
             self.ignore_user_input = False
             # self.movement_direction_inverter = 1
-
 
     def state_machine(self):
         if self.__state == 'crouch down':                       # CROUCH DOWN PROCESS

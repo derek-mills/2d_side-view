@@ -48,7 +48,11 @@ locations = {
                 #     'scale': 1.4,
                 #     'actions': None
                 # },
-
+#, 'ghost'
+#, 'move right'
+#, 'move left'
+#, 'collideable'
+#, 'gravity affected'
 
                 'platforms': (
 
