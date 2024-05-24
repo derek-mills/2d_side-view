@@ -42,6 +42,9 @@ class Obstacle(Entity):
         if self.is_gravity_affected:
             if not self.is_stand_on_ground:
                 self.fall()
+                # !!! RUDE HACK FOR TESTING PURPOSE!!!
+                if self.rectangle.y < 0:
+                    self.rectangle.y = 1000
         self.move()
 
     def detect_collisions(self):
