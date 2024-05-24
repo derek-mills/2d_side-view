@@ -209,6 +209,11 @@ class Entity(object):
         else:
             self.potential_falling_distance = 1
             self.fall_speed = 1
+        # if self.influenced_by_obstacle:
+        #     self.potential_falling_distance += self.obstacles_around[self.influenced_by_obstacle].fall_speed
+        #     # self.potential_falling_distance += self.obstacles_around[self.influenced_by_obstacle].potential_falling_distance
+
+
 
     def speed_calc(self):
         if self.heading[0] == 0:
@@ -562,25 +567,18 @@ class Entity(object):
         #             self.is_abort_jump = False
         #     self.rectangle.y += self.fall_speed
         #
+        # if self.influenced_by_obstacle:
+        #     # self.rectangle.top = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
+        #     self.rectangle.y += self.obstacles_around[self.influenced_by_obstacle].potential_falling_distance
+        # else:
+        # if self.influenced_by_obstacle:
+        #     self.rectangle.y += self.obstacles_around[self.influenced_by_obstacle].potential_falling_distance
+        #     # self.potential_falling_distance += self.obstacles_around[self.influenced_by_obstacle].fall_speed
+        #     # self.potential_falling_distance += self.obstacles_around[self.influenced_by_obstacle].potential_falling_distance
+        # else:
         self.rectangle.y += self.potential_falling_distance
 
     def move(self):
-        # if self.heading[0] == 0:
-        #     if self.speed > 0:
-        #         if self.is_stand_on_ground:
-        #             self.speed -= self.acceleration
-        #         else:
-        #             self.speed -= self.air_acceleration
-        #         self.speed = max(self.speed, 0)
-        # else:
-        #     if self.speed < self.max_speed:
-        #         if self.is_stand_on_ground:
-        #             self.speed += self.acceleration
-        #         else:
-        #             self.speed += self.air_acceleration
-        # # self.potential_moving_distance = int(self.speed * self.look)
-        #
-        # self.collision_detector_right.update(self.rectangle.right, self.rectangle.top, self.speed, self.rectangle.height - 35)
         if self.influenced_by_obstacle:
             infl = self.obstacles_around[self.influenced_by_obstacle]
             self.rectangle.x += (self.potential_moving_distance * self.look * self.movement_direction_inverter + infl.potential_moving_distance*infl.look)

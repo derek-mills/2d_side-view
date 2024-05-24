@@ -370,8 +370,9 @@ class Actor(Entity):
             # self.jump_attempts_counter = self.max_jump_attempts
             self.set_state('hanging on ghost')
         elif self.__state == 'hanging on edge':                 # HANGING ON THE EDGE
-            ...
+            self.rectangle.top = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
         elif self.__state == 'hanging on ghost':                # HANGING ON THE GHOST PLATFORM
+            self.rectangle.top = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
             if self.idle_counter > 0:
                 self.idle_counter -= 1
             else:
