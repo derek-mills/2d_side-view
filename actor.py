@@ -110,12 +110,11 @@ class Actor(Entity):
             elif self.__state == 'run left':
                 self.set_state('stand still')
 
-
         # DOWN actions
         elif new_action == 'down action':
-            if self.__state in ('hanging on edge', 'hanging on ghost'):
-                self.set_state('release edge')
-                return
+            # if self.__state in ('hanging on edge', 'hanging on ghost'):
+            #     self.set_state('release edge')
+            #     return
             if self.is_stand_on_ground:
                 if self.__state in ('stand still', 'run right', 'run left' ):
                     self.set_state('crouch down')
@@ -208,8 +207,8 @@ class Actor(Entity):
                 self.is_jump = True
                 self.influenced_by_obstacle = None
                 self.jump_height = self.max_jump_height
-                self.set_new_desired_height(self.rectangle_height_default + 10, 1)
-                self.set_new_desired_width(self.rectangle_width_default - 10, 1)
+                self.set_new_desired_height(self.rectangle_height_default + 15, 1)
+                self.set_new_desired_width(self.rectangle_width_default - 15, 1)
             self.is_abort_jump = False
         elif self.__state == 'jump cancel':
             self.just_got_jumped = False
@@ -356,8 +355,8 @@ class Actor(Entity):
             self.fall_speed = 0
             self.heading[0] = 0
             self.speed = 0
-            self.set_new_desired_height(self.rectangle_height_default, 3)
-            self.set_new_desired_width(self.rectangle_width_default, 3)
+            self.set_new_desired_height(self.rectangle_height_sit, 5)
+            self.set_new_desired_width(self.rectangle_width_sit, 5)
             # self.rectangle.height = self.rectangle_height_default
             self.rectangle.top = self.obstacles_around[self.influenced_by_obstacle].rectangle.bottom
             self.reset_self_flags()

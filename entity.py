@@ -306,15 +306,15 @@ class Entity(object):
                             self.set_state('release edge')
                         continue
                     # Grab over the top of an obstacle.
-                    if not obs.is_gravity_affected:
-                        if self.get_state() not in ('release edge', 'hanging on edge', 'has just grabbed edge', 'hopping back process', 'hop back'):
-                            # if self.movement_direction_inverter != 1:  # Try to grab the edge only if actor moves exactly at the same direction of his gaze.
-                            if obs.rectangle.top >= self.rectangle.top > (obs.rectangle.top - 40) and self.fall_speed > 0:
-                                self.rectangle.right = obs.rectangle.left - 2
-                                self.influenced_by_obstacle = obs.id
-                                self.set_state('has just grabbed edge')
-                                self.state_machine()
-                                continue
+                    # if not obs.is_gravity_affected:
+                    if self.get_state() not in ('release edge', 'hanging on edge', 'has just grabbed edge', 'hopping back process', 'hop back'):
+                        # if self.movement_direction_inverter != 1:  # Try to grab the edge only if actor moves exactly at the same direction of his gaze.
+                        if obs.rectangle.top >= self.rectangle.top > (obs.rectangle.top - 40) and self.fall_speed > 0:
+                            self.rectangle.right = obs.rectangle.left - 2
+                            self.influenced_by_obstacle = obs.id
+                            self.set_state('has just grabbed edge')
+                            self.state_machine()
+                            continue
 
                     if self.look == 1: # Obstacle is on the right, and actor also looks to the right, and hangs on the edge.
                         if self.get_state() == 'hanging on edge' and self.influenced_by_obstacle != obs.id:
@@ -366,14 +366,14 @@ class Entity(object):
                         continue
 
                     # Grab over the top of an obstacle.
-                    if not obs.is_gravity_affected:
-                        if self.get_state() not in ('release edge', 'hanging on edge', 'has just grabbed edge', 'hopping back process', 'hop back'):
-                            # if self.movement_direction_inverter != -1:  # Try to grab the edge only if actor moves exactly at the same direction of his gaze.
-                            if obs.rectangle.top >= self.rectangle.top > (obs.rectangle.top - 40) and self.fall_speed > 0:
-                                self.influenced_by_obstacle = obs.id
-                                self.set_state('has just grabbed edge')
-                                self.state_machine()
-                                continue
+                    # if not obs.is_gravity_affected:
+                    if self.get_state() not in ('release edge', 'hanging on edge', 'has just grabbed edge', 'hopping back process', 'hop back'):
+                        # if self.movement_direction_inverter != -1:  # Try to grab the edge only if actor moves exactly at the same direction of his gaze.
+                        if obs.rectangle.top >= self.rectangle.top > (obs.rectangle.top - 40) and self.fall_speed > 0:
+                            self.influenced_by_obstacle = obs.id
+                            self.set_state('has just grabbed edge')
+                            self.state_machine()
+                            continue
 
                     if self.look == -1: # Obstacle is on the left, and actor also looks to the left, and hangs on the edge.
                         if self.get_state() == 'hanging on edge' and self.influenced_by_obstacle != obs.id:

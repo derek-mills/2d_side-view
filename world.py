@@ -405,6 +405,7 @@ class World(object):
         params = (
             #(' IS ON OBS: ' + str(self.actors[self.location][0].is_on_obstacle), WHITE),
             ('SCREEN OFFSETS: ' + str(self.camera.offset_x) + ' ' + str(self.camera.offset_y), GREEN),
+            (' STAND ON GROUND: ' + str(self.actors[self.location][0].is_stand_on_ground), WHITE),
             (' IS GRABBING: ' + str(self.actors[self.location][0].is_edge_grabbed), WHITE),
             (' INFLUENCED BY PLATFORM #: ' + str(self.actors[self.location][0].influenced_by_obstacle), WHITE),
             ('', WHITE),
@@ -415,8 +416,8 @@ class World(object):
             (' LOOK: ' + str(self.actors[self.location][0].look), WHITE),
             (' IDLE COUNT: ' + str(self.actors[self.location][0].idle_counter), (200, 100, 50)),
 
-            (' JUMP ATTEMPTS: ' + str(self.actors[self.location][0].jump_attempts_counter), WHITE),
-            (' JUST JUMPED: ' + str(self.actors[self.location][0].just_got_jumped), WHITE),
+            (' JUMP ATTEMPTS: ' + str(self.actors[self.location][0].jump_attempts_counter), YELLOW),
+            (' JUST JUMPED: ' + str(self.actors[self.location][0].just_got_jumped), YELLOW),
             (' IGNORES INPUT: ' + str(self.actors[self.location][0].ignore_user_input), WHITE),
             (' __STATE: ' + str(self.actors[self.location][0].get_state()), CYAN),
 

@@ -6,10 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locations_template.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations_template.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main .py" beforeDir="false" afterPath="$PROJECT_DIR$/main .py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obstacle.py" beforeDir="false" afterPath="$PROJECT_DIR$/obstacle.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -109,13 +109,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00025" summary="Fixed bugs with incorrect collision detection (mostly around slide mode), and still go on.">
-      <created>1715842167861</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1715842167861</updated>
     </task>
     <task id="LOCAL-00026" summary="Fixed bugs with incorrect collision detection (mostly around slide mode), and still go on.">
       <created>1715848471150</created>
@@ -453,7 +446,14 @@
       <option name="project" value="LOCAL" />
       <updated>1716530201926</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="Some tiny Improvements">
+      <created>1716534532880</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1716534532880</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -468,7 +468,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Working on the level editor: snap mesh is now cause affect while new obstacles has been built.&#10;Some improvements in entity collision detection: state_machine() have to be applied right after the edge hanging has happened." />
     <MESSAGE value="When climbing on the edge, actor got 'stand still' state now." />
     <MESSAGE value="Level editor: added preservation of some obstacle status states when save\load." />
     <MESSAGE value="Added some states connected with hopping down from ghost platforms." />
@@ -493,6 +492,7 @@
     <MESSAGE value="Crawling added." />
     <MESSAGE value="Start implementing of smooth rectangle size change mechanism for objects." />
     <MESSAGE value="Improvements of smooth rectangle size change mechanism for objects." />
-    <option name="LAST_COMMIT_MESSAGE" value="Improvements of smooth rectangle size change mechanism for objects." />
+    <MESSAGE value="Some tiny Improvements" />
+    <option name="LAST_COMMIT_MESSAGE" value="Some tiny Improvements" />
   </component>
 </project>
