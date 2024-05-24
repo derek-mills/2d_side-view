@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/camera.py" beforeDir="false" afterPath="$PROJECT_DIR$/camera.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,13 +107,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00020" summary="Rectangle changes dimensions during slide.&#10;TODO fix problem with walls clipping when slide activating near it.">
-      <created>1715820960702</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1715820960702</updated>
     </task>
     <task id="LOCAL-00021" summary="Solved problem with getting inside an obstacle while try to slide too close to it.">
       <created>1715830271877</created>
@@ -449,7 +444,14 @@
       <option name="project" value="LOCAL" />
       <updated>1716455690199</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="When actor speed is == 0, bottom-left and bottom-right colliders become inactive to prevent unwanted collisions">
+      <created>1716512994308</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1716512994308</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -464,7 +466,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Data file added to GIT" />
     <MESSAGE value="Working on the level editor." />
     <MESSAGE value="Working on the level editor: drawing of new obstacles is possible to any way from the start point." />
     <MESSAGE value="Working on the level editor: save and load routines." />
@@ -489,6 +490,7 @@
     <MESSAGE value="Collisions improvement" />
     <MESSAGE value="Try to fix broken hanging ability" />
     <MESSAGE value="Slightly changed jump event handling." />
-    <option name="LAST_COMMIT_MESSAGE" value="Slightly changed jump event handling." />
+    <MESSAGE value="When actor speed is == 0, bottom-left and bottom-right colliders become inactive to prevent unwanted collisions" />
+    <option name="LAST_COMMIT_MESSAGE" value="When actor speed is == 0, bottom-left and bottom-right colliders become inactive to prevent unwanted collisions" />
   </component>
 </project>

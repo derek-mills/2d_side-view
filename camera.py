@@ -1,3 +1,5 @@
+import pygame
+
 from constants import *
 
 
@@ -13,6 +15,7 @@ class Camera(object):
         self.default_offset_scroll_velocity = 1
         self.offset_scroll_velocity_x = 0
         self.offset_scroll_velocity_y = 0
+        self.rectangle = pygame.Rect(0, 0, 0, 0)
 
 
     def setup(self, max_offset_x, max_offset_y):
@@ -59,3 +62,5 @@ class Camera(object):
                 self.offset_y -= int(self.offset_scroll_velocity_y)
             else:
                 self.offset_y = int(self.target_offset_y)
+
+        self.rectangle.update(self.offset_x, self.offset_y, MAXX, MAXY)

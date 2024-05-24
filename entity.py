@@ -176,6 +176,7 @@ class Entity(object):
             else:
                 self.collision_detector_bottom_right.update(0,0,0,0)
                 self.collision_detector_bottom_left.update(0,0,0,0)
+        # TOP and BOTTOM colliders:
         if self.fall_speed < 0:
             self.collision_detector_top.update(self.rectangle.left + 2, self.rectangle.top - abs(self.fall_speed), self.rectangle.width - 4, abs(self.fall_speed))
             self.collision_detector_bottom.update(0,0,0,0)
@@ -185,15 +186,12 @@ class Entity(object):
             # self.collision_detector_top.update(self.rectangle.left + 2, self.rectangle.top - 1, self.rectangle.width - 4, 1)
             self.collision_detector_bottom.update(self.rectangle.left, self.rectangle.bottom - 2, self.rectangle.width, self.fall_speed + 2)
             # self.collision_detector_bottom.update(self.rectangle.left + 2, self.rectangle.bottom - 2, self.rectangle.width - 4, self.fall_speed + 2)
-        # else:
-        #     self.collision_detector_top.update(0,0,0,0)
-        #     # self.collision_detector_top.update(self.rectangle.left + 2, self.rectangle.top - 1, self.rectangle.width - 4, 1)
-        #     self.collision_detector_bottom.update(self.rectangle.left + 2, self.rectangle.bottom - 2, self.rectangle.width - 4, 2)
 
     def detect_collisions(self):
         self.is_stand_on_ground = False
         # self.influenced_by_obstacle = None
         bottom_already_changed = False
+        # for obs in self.obstacles_around:
         for key in self.obstacles_around.keys():
             obs = self.obstacles_around[key]
             if obs.is_ghost_platform:
@@ -356,6 +354,7 @@ class Entity(object):
         self.is_enough_space_below = True
         self.is_enough_space_above = True
 
+        # for obs in self.obstacles_around:
         for key in self.obstacles_around.keys():
             obs = self.obstacles_around[key]
             # # Check enough spaces right and left:

@@ -11,6 +11,7 @@ class World(object):
         # Entities
         self.obstacles = dict()
         self.obstacle_id: int = 0
+        self.active_obstacles = list()
         self.actors = dict()
         self.actor_id: int = 0
         self.items = dict()
@@ -116,8 +117,16 @@ class World(object):
         self.camera.apply_offset((self.actors[self.location][0].rectangle.centerx, self.actors[self.location][0].rectangle.bottom),
                                  y_offset_speed, 5)
                                  # self.actors[self.location][0].speed * 0.9, self.actors[self.location][0].fall_speed)
+        self.detect_active_obstacles()
 
         self.render_all()
+
+    def detect_active_obstacles(self):
+        self.active_obstacles = list()
+        for k in self.obstacles[self.location].keys():
+            obs = self.obstacles[self.location][k]
+            if obs.rectangle.colliderect(self.camera.rectangle):
+                self.active_obstacles.append(k)
 
     def processing_obstacles(self):
         for key in self.obstacles[self.location].keys():
@@ -129,9 +138,8 @@ class World(object):
     def processing_actors(self):
         for key in self.actors[self.location].keys():
             actor = self.actors[self.location][key]
-            actor.percept(self.obstacles[self.location])
-            # actor.check_space_around()
-            # actor.reset_self_flags()
+            actor.percept({k: self.obstacles[self.location][k] for k in self.active_obstacles})
+            # actor.percept(self.obstacles[self.location])
 
             if key == 0 and not actor.ignore_user_input:  # routines for Player actor
                 if self.is_input_up_arrow:
@@ -203,6 +211,8 @@ class World(object):
 
     def render_obstacles(self):
         for key in self.obstacles[self.location].keys():
+            if key not in self.active_obstacles:
+                continue
             obs = self.obstacles[self.location][key]
             if obs.is_being_collided_now:
                 color = RED
@@ -394,7 +404,7 @@ class World(object):
         # m_hover_cell = 'None' if self.point_mouse_cursor_shows is None else str(self.locations[self.location]['points'][self.point_mouse_cursor_shows]['rect'].center)
         params = (
             #(' IS ON OBS: ' + str(self.actors[self.location][0].is_on_obstacle), WHITE),
-            (' IS ON GROUND: ' + str(self.actors[self.location][0].is_stand_on_ground), WHITE),
+            ('SCREEN OFFSETS: ' + str(self.camera.offset_x) + ' ' + str(self.camera.offset_y), GREEN),
             (' IS GRABBING: ' + str(self.actors[self.location][0].is_edge_grabbed), WHITE),
             (' INFLUENCED BY PLATFORM #: ' + str(self.actors[self.location][0].influenced_by_obstacle), WHITE),
             ('', WHITE),
