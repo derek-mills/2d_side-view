@@ -7,7 +7,7 @@
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,13 +106,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00027" summary="Added obstacles processing">
-      <created>1715909628045</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1715909628045</updated>
     </task>
     <task id="LOCAL-00028" summary="New collision detection method implemented, based on a colliders, calculating around actor every tick.">
       <created>1715915509143</created>
@@ -450,7 +443,14 @@
       <option name="project" value="LOCAL" />
       <updated>1716536917899</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="Added actor's ability to grab moving obstacles.&#10;If actor hanging on the moving obstacle, his Y coordinate corresponds to this obstacle's Y.">
+      <created>1716538113312</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1716538113312</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -465,7 +465,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Level editor: added preservation of some obstacle status states when save\load." />
     <MESSAGE value="Added some states connected with hopping down from ghost platforms." />
     <MESSAGE value="Added own collision detector for obstacles." />
     <MESSAGE value="Added hop back option." />
@@ -490,6 +489,7 @@
     <MESSAGE value="Improvements of smooth rectangle size change mechanism for objects." />
     <MESSAGE value="Some tiny Improvements" />
     <MESSAGE value="Added 'move up' ability for obstacles." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added 'move up' ability for obstacles." />
+    <MESSAGE value="Added actor's ability to grab moving obstacles.&#10;If actor hanging on the moving obstacle, his Y coordinate corresponds to this obstacle's Y." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added actor's ability to grab moving obstacles.&#10;If actor hanging on the moving obstacle, his Y coordinate corresponds to this obstacle's Y." />
   </component>
 </project>

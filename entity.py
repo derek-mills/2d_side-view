@@ -251,8 +251,8 @@ class Entity(object):
             self.collision_detector_right.update(self.rectangle.right, self.rectangle.top, self.speed + 1, self.rectangle.height - 35)
             self.collision_detector_left.update(self.rectangle.left - 1, self.rectangle.top, 1, self.rectangle.height - 35)
             if self.speed > 0:
-                self.collision_detector_bottom_right.update(self.rectangle.right, self.rectangle.bottom - 35, self.speed + 1, 35)
-                self.collision_detector_bottom_left.update(self.rectangle.left - 1, self.rectangle.bottom - 35, 1, 35)
+                self.collision_detector_bottom_right.update(self.rectangle.right, self.rectangle.bottom - 35, self.speed + 1, 30)
+                self.collision_detector_bottom_left.update(self.rectangle.left - 1, self.rectangle.bottom - 35, 1, 30)
             else:
                 self.collision_detector_bottom_right.update(0,0,0,0)
                 self.collision_detector_bottom_left.update(0,0,0,0)
@@ -261,8 +261,8 @@ class Entity(object):
             self.collision_detector_right.update(self.rectangle.right, self.rectangle.top, 1, self.rectangle.height - 35)
             self.collision_detector_left.update(self.rectangle.left - self.speed - 1, self.rectangle.top, self.speed + 1, self.rectangle.height - 35)
             if self.speed > 0:
-                self.collision_detector_bottom_right.update(self.rectangle.right, self.rectangle.bottom - 35, 1, 35)
-                self.collision_detector_bottom_left.update(self.rectangle.left - self.speed - 1, self.rectangle.bottom - 35, self.speed + 1, 35)
+                self.collision_detector_bottom_right.update(self.rectangle.right, self.rectangle.bottom - 35, 1, 30)
+                self.collision_detector_bottom_left.update(self.rectangle.left - self.speed - 1, self.rectangle.bottom - 35, self.speed + 1, 30)
             else:
                 self.collision_detector_bottom_right.update(0,0,0,0)
                 self.collision_detector_bottom_left.update(0,0,0,0)
@@ -553,29 +553,6 @@ class Entity(object):
     #     #     self.collision_detector_bottom.update(self.rectangle.left + 2, self.rectangle.bottom - 2, self.rectangle.width - 4, 2)
 
     def fall(self):
-        # if self.is_enough_space_below:
-        #     if self.fall_speed > GRAVITY_G:
-        #         self.fall_speed = GRAVITY_G
-        #     else:
-        #         self.fall_speed += GRAVITY
-        #
-        #     if self.is_abort_jump:
-        #         if self.fall_speed >= 0:
-        #             self.is_abort_jump = False
-        #         else:
-        #             self.fall_speed = 0
-        #             self.is_abort_jump = False
-        #     self.rectangle.y += self.fall_speed
-        #
-        # if self.influenced_by_obstacle:
-        #     # self.rectangle.top = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
-        #     self.rectangle.y += self.obstacles_around[self.influenced_by_obstacle].potential_falling_distance
-        # else:
-        # if self.influenced_by_obstacle:
-        #     self.rectangle.y += self.obstacles_around[self.influenced_by_obstacle].potential_falling_distance
-        #     # self.potential_falling_distance += self.obstacles_around[self.influenced_by_obstacle].fall_speed
-        #     # self.potential_falling_distance += self.obstacles_around[self.influenced_by_obstacle].potential_falling_distance
-        # else:
         self.rectangle.y += self.potential_falling_distance
 
     def move(self):
