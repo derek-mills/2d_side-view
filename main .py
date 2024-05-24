@@ -40,17 +40,19 @@ fades_speed = 100
 # black_out(world.screen, world.screen, 5)
 # ---------------------------------------------------
 world.location = '01'
-if world.location not in world.locations.keys():
-    world.locations[world.location] = dict()
+# if world.location not in world.locations.keys():
+#     world.locations[world.location] = dict()
+
+world.load()
 
 player = {
     'xy': (200, 200)
 }
 world.add_actor(player)
 
-# world.load()
-for obs in locations['01']['obstacles']['platforms']:
-    world.add_obstacle(obs)
+
+# for obs in locations['01']['obstacles']['platforms']:
+#     world.add_obstacle(obs)
 
 def main():
     max_fps = 0

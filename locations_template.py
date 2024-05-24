@@ -8,6 +8,7 @@ locations = {
         {
             'music': music_ambient_1,
             'description': 'apartment #1',
+            'size': (MAXX, MAXY),
             'hostiles': {
                 # 'demon Hula': {
                 #     'already added': False,

@@ -3,6 +3,7 @@ from obstacle import *
 from constants import *
 import fonts
 import camera
+from locations import *
 import pickle
 from random import choice
 
@@ -228,25 +229,24 @@ class World(object):
         self.render_debug_info()
 
     def load(self):
-        try:
-            with open('locations_'+self.location+'.dat', 'rb') as f:
-                loaded_data = pickle.load(f)
-        except FileNotFoundError:
-            self.obstacles[self.location] = dict()
-            return
+        # try:
+        #     with open('locations_'+self.location+'.dat', 'rb') as f:
+        #         loaded_data = pickle.load(f)
+        # except FileNotFoundError:
+        #     self.obstacles[self.location] = dict()
+        #     return
 
         # for d in loaded_data:
         # print(f'{d}: {loaded_data[d]}')  #
         # print('*' * 100)
-        self.obstacles[self.location] = loaded_data
-        # with open('locations.dat' , 'r') as f:
-        #     for line in f:
-        #         print(line.split('|'))
-        #         # obs_id,obs_xy,obs_size = line.split('|')
-        #         # print(obs_id, obs_xy, obs_size)
-        # # for obs in locations[self.location]['obstacles']['platforms']:
-        # #     self.add_obstacle(obs)
-        # # print(f'[world.load] loaded obstacles: {len(self.obstacles[self.location])}')
+        # self.obstacles[self.location] = loaded_data
+        if self.location not in self.locations.keys():
+            self.locations[self.location] = dict()
+        self.locations[self.location] = locations[self.location]
+        for obs in self.locations[self.location]['obstacles']['platforms']:
+            self.add_obstacle(obs)
+
+        self.camera.setup(self.locations[self.location]['size'][0], self.locations[self.location]['size'][1])
 
     def processing_human_input(self):
         # self.mouse_xy = pygame.mouse.get_pos()

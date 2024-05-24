@@ -32,6 +32,8 @@ class World(object):
         self.is_x = False
         self.is_n = False
         self.is_b = False
+        # self.is_b = False
+        self.is_y = False
         self.is_spacebar = False
         self.is_F2 = False
         self.is_F8 = False
@@ -59,7 +61,7 @@ class World(object):
         self.location = '01'
         self.screen = None
         self.camera = camera.Camera()
-        self.camera.setup(MAXX*2, MAXY)
+        # self.camera.setup(MAXX*2, MAXY)
         self.global_offset_xy = [MAXX_DIV_2, MAXY_DIV_2]
 
         self.new_obs_rect = pygame.Rect(0,0,0,0)
@@ -111,6 +113,10 @@ class World(object):
                 # if event.key == K_KP_MINUS:
                 #     self.snap_mesh_size -= 1
                 #     self.create_snap_mesh()
+                if event.key == K_y:
+                    self.is_y = False
+                if event.key == K_x:
+                    self.is_x = False
                 if event.key == K_d:
                     self.is_input_right_arrow = False
                 if event.key == K_a:
@@ -125,12 +131,27 @@ class World(object):
                     pygame.quit()
                     raise SystemExit()
                 if event.key == K_KP_PLUS:
+                    if self.is_x:
+                        self.camera.setup(self.camera.max_offset_x + 100, self.camera.max_offset_y)
+                        return
+                    elif self.is_y:
+                        self.camera.setup(self.camera.max_offset_x, self.camera.max_offset_y + 100)
+                        return
+
                     if self.is_l_shift:
                         self.snap_mesh_size += self.snap_mesh_size_change_step
                     else:
                         self.snap_mesh_size += 1
                     self.create_snap_mesh()
                 if event.key == K_KP_MINUS:
+                    if self.is_x:
+                        self.camera.setup(self.camera.max_offset_x - 100, self.camera.max_offset_y)
+                        return
+                    elif self.is_y:
+                        self.camera.setup(self.camera.max_offset_x, self.camera.max_offset_y - 100)
+                        return
+
+
                     if self.is_l_shift:
                         self.snap_mesh_size -= self.snap_mesh_size_change_step
                     else:
@@ -150,6 +171,11 @@ class World(object):
                     self.is_input_up_arrow = True
                 if event.key == K_s:
                     self.is_input_down_arrow = True
+                if event.key == K_y:
+                    self.is_y = True
+                if event.key == K_x:
+                    self.is_x = True
+
             #         self.is_input_right_arrow = True
             #     if event.key == K_a:
             #         self.is_input_left_arrow = True
@@ -309,9 +335,10 @@ class World(object):
         try:
             for obs in locations['01']['obstacles']['platforms']:
                 self.add_obstacle(obs)
+            self.camera.setup(locations['01']['size'][0], locations['01']['size'][1])
         except NameError:
             self.obstacles[self.location] = dict()
-
+            self.camera.setup(MAXX, MAXY)
         # self.obstacle_id = len(self.obstacles[self.location].keys()) + 1
 
     def save(self):
@@ -395,6 +422,8 @@ class World(object):
         # m_hover_cell = 'None' if self.point_mouse_cursor_shows is None else str(self.locations[self.location]['points'][self.point_mouse_cursor_shows]['rect'].center)
         params = (
             ('SAVE: F2 | LOAD: F8 | WASD: MOVE CAMERA | + - : CHANGE SNAP MESH SCALE | ESC: QUIT', BLUE),
+
+            ('WORLD SIZE: ' + str(self.camera.max_offset_x) + ':' + str(self.camera.max_offset_y), BLACK),
             ('SNAP MESH SCALE: ' + str(self.snap_mesh_size), BLACK),
             ('OFFSET GLOBAL: ' + str(self.global_offset_xy), BLACK),
             ('CAMERA INNER OFFSET: ' + str(self.camera.offset_x) + ' ' + str(self.camera.offset_y), BLACK),
