@@ -6,8 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/camera.py" beforeDir="false" afterPath="$PROJECT_DIR$/camera.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -107,13 +106,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00021" summary="Solved problem with getting inside an obstacle while try to slide too close to it.">
-      <created>1715830271877</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1715830271877</updated>
     </task>
     <task id="LOCAL-00022" summary="Fixed bugs with incorrect collision detection (mostly around slide mode).">
       <created>1715836849666</created>
@@ -451,7 +443,14 @@
       <option name="project" value="LOCAL" />
       <updated>1716512994308</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL-00070" summary="Implemented a list of active obstacles, which collides only with camera, to prevent futile iterating through all of them.">
+      <created>1716514006747</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1716514006747</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -466,7 +465,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Working on the level editor." />
     <MESSAGE value="Working on the level editor: drawing of new obstacles is possible to any way from the start point." />
     <MESSAGE value="Working on the level editor: save and load routines." />
     <MESSAGE value="Working on the level editor: snap mesh added." />
@@ -491,6 +489,7 @@
     <MESSAGE value="Try to fix broken hanging ability" />
     <MESSAGE value="Slightly changed jump event handling." />
     <MESSAGE value="When actor speed is == 0, bottom-left and bottom-right colliders become inactive to prevent unwanted collisions" />
-    <option name="LAST_COMMIT_MESSAGE" value="When actor speed is == 0, bottom-left and bottom-right colliders become inactive to prevent unwanted collisions" />
+    <MESSAGE value="Implemented a list of active obstacles, which collides only with camera, to prevent futile iterating through all of them." />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented a list of active obstacles, which collides only with camera, to prevent futile iterating through all of them." />
   </component>
 </project>

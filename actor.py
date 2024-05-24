@@ -14,12 +14,13 @@ class Actor(Entity):
         self.max_speed = 10
 
         self.rectangle.height = 149
+        self.rectangle.width = 29
         self.rectangle_height_default = self.rectangle.height
         self.rectangle_width_default = self.rectangle.width
-        self.rectangle_height_sit = 99
+        self.rectangle_height_sit = self.rectangle.height // 3 * 2
         self.rectangle_width_sit = self.rectangle.width
-        self.rectangle_height_slide = 49
-        self.rectangle_width_slide = 130
+        self.rectangle_height_slide = self.rectangle.height // 3
+        self.rectangle_width_slide = self.rectangle.height // 4 * 3
 
         self.ignore_user_input: bool = False
 
@@ -36,6 +37,17 @@ class Actor(Entity):
     def process(self, time_passed):
         self.state_machine()
         super().process(time_passed)
+        self.reset_self_flags()
+
+    def apply_new_size(self, w, h):
+        self.rectangle.width = w
+        self.rectangle.height = h
+        self.rectangle_height_default = self.rectangle.height
+        self.rectangle_width_default = self.rectangle.width
+        self.rectangle_height_sit = self.rectangle.height // 3 * 2
+        self.rectangle_width_sit = self.rectangle.width
+        self.rectangle_height_slide = self.rectangle.height // 3
+        self.rectangle_width_slide = self.rectangle.height // 4 * 3
 
     def set_rect_height(self, height):
         floor = self.rectangle.bottom
@@ -68,7 +80,7 @@ class Actor(Entity):
                 if self.look == -1:
                     self.set_state('crouch turn right')
                 else:
-                    ...
+                    self.set_state('crawl right')
             elif self.__state == 'stand still':
                 if self.look == 1:
                     self.set_state('run right')
@@ -78,7 +90,9 @@ class Actor(Entity):
                 # self.set_state('turn left')
                 self.set_action('right action cancel')
         elif new_action == 'right action cancel':
-            if self.__state == 'run right':
+            if self.__state == 'crawl right':
+                self.set_state('crouch')
+            elif self.__state == 'run right':
                 self.set_state('stand still')
 
         # LEFT actions
@@ -87,7 +101,7 @@ class Actor(Entity):
                 if self.look == 1:
                     self.set_state('crouch turn left')
                 else:
-                    ...
+                    self.set_state('crawl left')
             elif self.__state == 'stand still':
                 if self.look == -1:
                     self.set_state('run left')
@@ -97,20 +111,27 @@ class Actor(Entity):
                 # self.set_state('turn left')
                 self.set_action('left action cancel')
         elif new_action == 'left action cancel':
-            if self.__state == 'run left':
+            if self.__state == 'crawl left':
+                self.set_state('crouch')
+            elif self.__state == 'run left':
                 self.set_state('stand still')
+
 
         # DOWN actions
         elif new_action == 'down action':
             if self.__state in ('hanging on edge', 'hanging on ghost'):
                 self.set_state('release edge')
-            # if self.is_edge_grabbed:
-            #     self.is_edge_grabbed = False
-            #     self.set_state('stand still')
-            elif self.__state == 'stand still' and self.is_stand_on_ground:
-                self.set_state('crouch down')
+                return
+            if self.is_stand_on_ground:
+                if self.__state in ('stand still', 'run right', 'run left' ):
+                    self.set_state('crouch down')
+                # elif 'crawl' in self.__state:
+
         elif new_action == 'down action cancel':
             if self.__state == 'crouch':
+                if self.is_enough_space_above:
+                    self.set_state('crouch rise')
+            elif 'crawl' in self.__state:
                 if self.is_enough_space_above:
                     self.set_state('crouch rise')
 
@@ -123,24 +144,18 @@ class Actor(Entity):
         elif new_action == 'jump action':
             if self.jump_attempts_counter == 0:
                 return
-            if self.__state == 'jump':
-                return
-            if self.__state == 'crouch' and self.is_stand_on_ground:
+            # if self.__state == 'jump':
+            #     return
+            if self.__state in ('crouch', 'crawl right', 'crawl left') and self.is_stand_on_ground:
                 if self.influenced_by_obstacle:
                     # Jump off a ghost platform:
                     # print('sdad')
                     if self.obstacles_around[self.influenced_by_obstacle].is_ghost_platform:
                         self.set_state('hop down from ghost')
-                        # self.rectangle.centery = self.obstacles_around[self.influenced_by_obstacle].rectangle.bottom + 20
-                        # self.set_state('crouch rise')
                         return
-
                 if (self.look == 1 and self.is_enough_space_right) or\
                         (self.look == -1 and self.is_enough_space_left):
                     self.set_state('slide')
-                # else:
-                #     self.set_state('crouch')
-                # self.set_state('slide')
             elif self.__state == 'hanging on ghost':
                 self.set_state('release edge')
             elif self.__state == 'hanging on edge':
@@ -154,9 +169,6 @@ class Actor(Entity):
         # HOP BACK
         elif new_action == 'hop back':
             if self.is_stand_on_ground:
-                # if (self.look == -1 and self.is_enough_space_right) or\
-                #         (self.look == 1 and self.is_enough_space_left):
-                #     self.set_state('hop back')
                 self.set_state('hop back')
         elif new_action == 'hop back action cancel':
             # self.set_state('jump cancel')
@@ -173,12 +185,23 @@ class Actor(Entity):
             self.set_rect_width(self.rectangle_width_sit)
             self.set_state('crouch')
         elif self.__state == 'crouch':                          # CROUCH
-            ...
+            self.speed = 0
+            self.heading[0] = 0
         elif self.__state == 'crouch rise':  # CROUCH UP PROCESS
             self.is_crouch = False
+            self.speed = 0
             self.set_rect_height(self.rectangle_height_default)
             self.set_rect_width(self.rectangle_width_default)
             self.set_state('stand still')
+        # elif self.__state == 'crawl stop':
+        elif self.__state == 'crawl right':
+            # self.look = 1
+            self.speed = self.max_speed // 3
+            # self.heading[0] = 1
+        elif self.__state == 'crawl left':
+            # self.look = 1
+            self.speed = self.max_speed // 3
+            # self.heading[0] = -1
         elif self.__state == 'jump':
             if not self.just_got_jumped:
                 self.just_got_jumped = True
@@ -187,16 +210,7 @@ class Actor(Entity):
                 self.influenced_by_obstacle = None
                 self.jump_height = self.max_jump_height
             self.is_abort_jump = False
-            # self.set_state('jump process')
-        # elif self.__state == 'jump process':
-        #     # if self.is_jump and self.jump_attempts_counter > 0:
-        #     # if self.is_jump and self.jump_attempts_counter > 0:
-        #     self.fall_speed = -self.jump_height
-        #     self.is_jump = False
-        #     self.is_stand_on_ground = False
-
         elif self.__state == 'jump cancel':
-            # if self.just_got_jumped:
             self.just_got_jumped = False
             self.is_abort_jump = True
             self.set_state('stand still')
@@ -207,8 +221,8 @@ class Actor(Entity):
             self.check_space_around()
             if (self.look == 1 and self.is_enough_space_right) or\
                     (self.look == -1 and self.is_enough_space_left):
-                self.set_state('sliding')
                 self.ignore_user_input = True
+                self.set_state('sliding')
             else:
                 self.speed = 0
                 # self.speed = self.max_speed // 2
@@ -242,8 +256,6 @@ class Actor(Entity):
                     # self.set_state('crouch')
                     self.set_state('stand still')
         elif self.__state == 'sliding':                         # SLIDING PROCESS
-            # self.set_rect_width(self.rectangle_width_slide)
-            # self.set_rect_height(self.rectangle_height_slide)
             if self.speed == 0:
                 self.set_state('slide rise')
         elif self.__state == 'slide rise':                      # RISING AFTER SLIDE IS OVER

@@ -131,7 +131,8 @@ class World(object):
     def processing_obstacles(self):
         for key in self.obstacles[self.location].keys():
             obs = self.obstacles[self.location][key]
-            obs.percept(self.obstacles[self.location])
+            obs.percept({k: self.obstacles[self.location][k] for k in self.active_obstacles})
+            # obs.percept(self.obstacles[self.location])
             obs.process_(self.time_passed)
 
 
@@ -179,8 +180,7 @@ class World(object):
                         actor.set_action('hop back action cancel')
 
             actor.process(self.time_passed)
-            # self.processing_collisions(actor)
-            actor.reset_self_flags()
+            # actor.reset_self_flags()
 
     def render_background(self):
         pygame.draw.rect(self.screen, BLACK, (0,0,MAXX, MAXY))
