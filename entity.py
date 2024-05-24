@@ -23,7 +23,9 @@ class Entity(object):
         self.rectangle_height_slide = 0
         self.rectangle_width_slide = 0
         self.rectangle_height_counter: int = 0
+        self.rectangle_height_counter_change_speed: int = 1
         self.rectangle_width_counter: int = 0
+        self.rectangle_width_counter_change_speed: int = 1
 
         self.look: int = 1  # 1: look right, -1: look left
 
@@ -114,28 +116,47 @@ class Entity(object):
             self.rectangle.centerx = center
         self.rectangle.bottom = floor
 
-    def set_new_desired_height(self, h):
+    def set_new_desired_height(self, h, speed=0):
         self.target_height = h
         self.rectangle_height_counter = self.rectangle.height
+        self.rectangle_height_counter_change_speed = speed
 
-    def set_new_desired_width(self, w):
+    def set_new_desired_width(self, w, speed=0):
         self.target_width = w
         self.rectangle_width_counter = self.rectangle.width
+        self.rectangle_width_counter_change_speed = speed
 
     def processing_rectangle_size(self):
+
         if self.target_height != self.rectangle.height:
-            if self.target_height < self.rectangle.height:
-                self.rectangle_height_counter -= 1
+            if self.rectangle_height_counter_change_speed == 0:
+                # If height changing speed set to 0, change it instantly:
+                self.set_rect_height(self.target_height)
             else:
-                self.rectangle_height_counter += 1
-            self.set_rect_height(self.rectangle_height_counter)
+                if self.rectangle.height > self.target_height:
+                    self.rectangle_height_counter -= self.rectangle_height_counter_change_speed
+                    if self.rectangle_height_counter < self.target_height:
+                        self.rectangle_height_counter = self.target_height
+                else:
+                    self.rectangle_height_counter += self.rectangle_height_counter_change_speed
+                    if self.rectangle_height_counter > self.target_height:
+                        self.rectangle_height_counter = self.target_height
+                self.set_rect_height(self.rectangle_height_counter)
 
         if self.target_width != self.rectangle.width:
-            if self.target_width < self.rectangle.width:
-                self.rectangle_width_counter -= 1
+            if self.rectangle_width_counter_change_speed == 0:
+                # If width changing speed set to 0, change it instantly:
+                self.set_rect_width(self.target_width)
             else:
-                self.rectangle_width_counter += 1
-            self.set_rect_width(self.rectangle_width_counter)
+                if self.rectangle.width > self.target_width:
+                    self.rectangle_width_counter -= self.rectangle_width_counter_change_speed
+                    if self.rectangle_width_counter < self.target_width:
+                        self.rectangle_width_counter = self.target_width
+                else:
+                    self.rectangle_width_counter += self.rectangle_width_counter_change_speed
+                    if self.rectangle_width_counter > self.target_width:
+                        self.rectangle_width_counter = self.target_width
+                self.set_rect_width(self.rectangle_width_counter)
 
     def apply_new_measurements(self):
         # self.rectangle.width = w
