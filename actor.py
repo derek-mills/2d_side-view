@@ -384,17 +384,24 @@ class Actor(Entity):
             self.ignore_user_input = False
             if self.is_stand_on_ground:
                 self.set_state('stand still')
-        elif self.__state == 'climb on':                        # CLIMB ON
-            # self.jump_attempts_counter = self.max_jump_attempts
-            if self.influenced_by_obstacle:
-                self.jump_attempts_counter = 0
-                self.rectangle.bottom = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
-                self.rectangle.centerx += 20 * self.look
-                self.is_edge_grabbed = False
-                # self.influenced_by_obstacle = None
-                self.set_state('stand still')
+        elif self.__state == 'climb on':                        # START CLIMBING ON AN OBSTACLE
+            self.ignore_user_input = True
+            self.set_new_desired_height(self.rectangle_height_sit // 2, 4)
+            self.set_state('climb on raise')
+        elif self.__state == 'climb on raise':                        # START CLIMBING ON AN OBSTACLE
+            if self.rectangle.height <= self.rectangle_height_sit // 2:
+                self.ignore_user_input = False
+                if self.influenced_by_obstacle:
+                    self.jump_attempts_counter = 0
+                    self.rectangle.bottom = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
+                    self.rectangle.centerx += 20 * self.look
+                    self.is_edge_grabbed = False
+                    # self.influenced_by_obstacle = None
+                    self.set_state('stand still')
+                else:
+                    self.set_state('stand still')
             else:
-                self.set_state('stand still')
+                self.rectangle.top = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
 
     def reset_self_flags(self):
         self.is_move_left = False
