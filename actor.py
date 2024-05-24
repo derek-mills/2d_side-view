@@ -6,8 +6,8 @@ class Actor(Entity):
         self.id: int = 0
         self.type = 'actor'
 
-        self.acceleration = 1
-        self.air_acceleration = .3
+        self.acceleration = .5
+        self.air_acceleration = .4
         self.jump_height: int = 22
         self.default_max_speed = 10
         self.max_jump_attempts = 2
@@ -15,6 +15,8 @@ class Actor(Entity):
 
         self.rectangle.height = 149
         self.rectangle.width = 29
+        self.target_height = self.rectangle.h
+        self.target_width = self.rectangle.w
         self.rectangle_height_default = self.rectangle.height
         self.rectangle_width_default = self.rectangle.width
         self.rectangle_height_sit = self.rectangle.height // 3 * 2
@@ -39,35 +41,25 @@ class Actor(Entity):
         super().process(time_passed)
         self.reset_self_flags()
 
-    def apply_new_size(self, w, h):
-        self.rectangle.width = w
-        self.rectangle.height = h
-        self.rectangle_height_default = self.rectangle.height
-        self.rectangle_width_default = self.rectangle.width
-        self.rectangle_height_sit = self.rectangle.height // 3 * 2
-        self.rectangle_width_sit = self.rectangle.width
-        self.rectangle_height_slide = self.rectangle.height // 3
-        self.rectangle_width_slide = self.rectangle.height // 4 * 3
-
-    def set_rect_height(self, height):
-        floor = self.rectangle.bottom
-        self.rectangle.height = height
-        self.rectangle.bottom = floor
-
-    def set_rect_width(self, width):
-        floor = self.rectangle.bottom
-        center = self.rectangle.centerx
-        right = self.rectangle.right
-        left = self.rectangle.left
-        self.rectangle.width = width
-        if self.speed > 0:
-            if self.look == 1:
-                self.rectangle.left = left
-            else:
-                self.rectangle.right = right
-        else:
-            self.rectangle.centerx = center
-        self.rectangle.bottom = floor
+    # def set_rect_height(self, height):
+    #     floor = self.rectangle.bottom
+    #     self.rectangle.height = height
+    #     self.rectangle.bottom = floor
+    #
+    # def set_rect_width(self, width):
+    #     floor = self.rectangle.bottom
+    #     center = self.rectangle.centerx
+    #     right = self.rectangle.right
+    #     left = self.rectangle.left
+    #     self.rectangle.width = width
+    #     if self.speed > 0:
+    #         if self.look == 1:
+    #             self.rectangle.left = left
+    #         else:
+    #             self.rectangle.right = right
+    #     else:
+    #         self.rectangle.centerx = center
+    #     self.rectangle.bottom = floor
 
     def set_action(self, new_action):
         # print(f'[actor set action] Setting new action: {new_action}')
@@ -125,7 +117,6 @@ class Actor(Entity):
             if self.is_stand_on_ground:
                 if self.__state in ('stand still', 'run right', 'run left' ):
                     self.set_state('crouch down')
-                # elif 'crawl' in self.__state:
 
         elif new_action == 'down action cancel':
             if self.__state == 'crouch':
@@ -181,8 +172,10 @@ class Actor(Entity):
     def state_machine(self):
         if self.__state == 'crouch down':                       # CROUCH DOWN PROCESS
             self.is_crouch = True
-            self.set_rect_height(self.rectangle_height_sit)
-            self.set_rect_width(self.rectangle_width_sit)
+            self.set_new_desired_height(self.rectangle_height_sit)
+            self.set_new_desired_width(self.rectangle_width_sit)
+            # self.set_rect_height(self.rectangle_height_sit)
+            # self.set_rect_width(self.rectangle_width_sit)
             self.set_state('crouch')
         elif self.__state == 'crouch':                          # CROUCH
             self.speed = 0
@@ -190,8 +183,10 @@ class Actor(Entity):
         elif self.__state == 'crouch rise':  # CROUCH UP PROCESS
             self.is_crouch = False
             self.speed = 0
-            self.set_rect_height(self.rectangle_height_default)
-            self.set_rect_width(self.rectangle_width_default)
+            self.target_height = self.rectangle_height_default
+            self.target_width = self.rectangle_width_default
+            # self.set_rect_height(self.rectangle_height_default)
+            # self.set_rect_width(self.rectangle_width_default)
             self.set_state('stand still')
         # elif self.__state == 'crawl stop':
         elif self.__state == 'crawl right':

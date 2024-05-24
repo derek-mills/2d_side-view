@@ -14,6 +14,16 @@ class Entity(object):
 
         # GEOMETRY
         self.rectangle = pygame.Rect(0, 0, 50, 50)
+        self.target_height: int = 0
+        self.target_width: int = 0
+        self.rectangle_height_default = 0
+        self.rectangle_width_default = 0
+        self.rectangle_height_sit = 0
+        self.rectangle_width_sit = 0
+        self.rectangle_height_slide = 0
+        self.rectangle_width_slide = 0
+        self.rectangle_height_counter: int = 0
+        self.rectangle_width_counter: int = 0
 
         self.look: int = 1  # 1: look right, -1: look left
 
@@ -84,6 +94,59 @@ class Entity(object):
     def percept(self, obstacles):
         self.obstacles_around = obstacles
 
+    def set_rect_height(self, height):
+        floor = self.rectangle.bottom
+        self.rectangle.height = height
+        self.rectangle.bottom = floor
+
+    def set_rect_width(self, width):
+        floor = self.rectangle.bottom
+        center = self.rectangle.centerx
+        right = self.rectangle.right
+        left = self.rectangle.left
+        self.rectangle.width = width
+        if self.speed > 0:
+            if self.look == 1:
+                self.rectangle.left = left
+            else:
+                self.rectangle.right = right
+        else:
+            self.rectangle.centerx = center
+        self.rectangle.bottom = floor
+
+    def set_new_desired_height(self, h):
+        self.target_height = h
+        self.rectangle_height_counter = self.rectangle.height
+
+    def set_new_desired_width(self, w):
+        self.target_width = w
+        self.rectangle_width_counter = self.rectangle.width
+
+    def processing_rectangle_size(self):
+        if self.target_height != self.rectangle.height:
+            if self.target_height < self.rectangle.height:
+                self.rectangle_height_counter -= 1
+            else:
+                self.rectangle_height_counter += 1
+            self.set_rect_height(self.rectangle_height_counter)
+
+        if self.target_width != self.rectangle.width:
+            if self.target_width < self.rectangle.width:
+                self.rectangle_width_counter -= 1
+            else:
+                self.rectangle_width_counter += 1
+            self.set_rect_width(self.rectangle_width_counter)
+
+    def apply_new_measurements(self):
+        # self.rectangle.width = w
+        # self.rectangle.height = h
+        # self.rectangle_height_default = self.rectangle.height
+        # self.rectangle_width_default = self.rectangle.width
+        self.rectangle_height_sit = self.rectangle.height // 3 * 2
+        self.rectangle_width_sit = self.rectangle.width
+        self.rectangle_height_slide = self.rectangle.height // 3
+        self.rectangle_width_slide = self.rectangle.height // 4 * 3
+
     def process(self, time_passed):
         if self.is_jump:
         # if self.is_jump and self.jump_attempts_counter > 0:
@@ -92,6 +155,7 @@ class Entity(object):
             self.is_jump = False
             self.is_stand_on_ground = False
 
+        self.processing_rectangle_size()
         self.check_space_around()  # Detect obstacles on the right and left sides
         self.fall_speed_calc()  # Discover speed and potential fall distance
         self.speed_calc()       # Discover fall speed and potential move distance

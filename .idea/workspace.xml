@@ -7,7 +7,7 @@
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,13 +106,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00022" summary="Fixed bugs with incorrect collision detection (mostly around slide mode).">
-      <created>1715836849666</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1715836849666</updated>
     </task>
     <task id="LOCAL-00023" summary="Fixed bugs with incorrect collision detection (mostly around slide mode), go on.">
       <created>1715838689440</created>
@@ -450,7 +443,14 @@
       <option name="project" value="LOCAL" />
       <updated>1716514006747</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="Crawling added.">
+      <created>1716519664858</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1716519664858</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -465,7 +465,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Working on the level editor: drawing of new obstacles is possible to any way from the start point." />
     <MESSAGE value="Working on the level editor: save and load routines." />
     <MESSAGE value="Working on the level editor: snap mesh added." />
     <MESSAGE value="Working on the level editor: snap mesh is now cause affect while new obstacles has been built.&#10;Some improvements in entity collision detection: state_machine() have to be applied right after the edge hanging has happened." />
@@ -490,6 +489,7 @@
     <MESSAGE value="Slightly changed jump event handling." />
     <MESSAGE value="When actor speed is == 0, bottom-left and bottom-right colliders become inactive to prevent unwanted collisions" />
     <MESSAGE value="Implemented a list of active obstacles, which collides only with camera, to prevent futile iterating through all of them." />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented a list of active obstacles, which collides only with camera, to prevent futile iterating through all of them." />
+    <MESSAGE value="Crawling added." />
+    <option name="LAST_COMMIT_MESSAGE" value="Crawling added." />
   </component>
 </project>
