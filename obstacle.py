@@ -72,8 +72,18 @@ class Obstacle(Entity):
             # print(self.actions[self.actions_set_number])
             # print(self.actions[self.actions_set_number][self.current_action])
             # print(self.actions_set_number, self.current_action)
-            if self.actions[self.actions_set_number][self.current_action][0] == 'move':
+            if self.actions[self.actions_set_number][self.current_action][0] == 'repeat':
+                self.need_next_action = True
+            elif self.actions[self.actions_set_number][self.current_action][0] == 'move':
                 self.fly(time_passed)
+                if self.is_destination_reached:
+                    self.need_next_action = True
+
+            # if self.need_next_action:
+            #     self.need_next_action = False
+            #     self.next_action()
+            #     return
+
 
     def detect_collisions(self):
         self.is_stand_on_ground = False
@@ -180,13 +190,15 @@ class Obstacle(Entity):
         self.repeat_counter = -1
 
     def next_action(self):
-        # print(self.description, 'ENTERING NEXT ACTION')
-        # print(self.actions, self.current_action)
+        # print('ENTERING NEXT ACTION')
+        # print('current_action:', self.actions[self.actions_set_number][self.current_action])
         if not self.actions:
             return
         if self.actions[self.actions_set_number][self.current_action][0] == 'repeat':
             if self.actions[self.actions_set_number][self.current_action][1] == 0:
+                print('return to first action')
                 self.current_action = 0
+                # return
             else:
                 if self.repeat_counter > 0:
                     self.repeat_counter -= 1
@@ -196,28 +208,29 @@ class Obstacle(Entity):
                         self.current_action = 0
                 else:
                     self.repeat_counter = self.actions[self.actions_set_number][self.current_action][1]
-
+            # self.need_next_action = True
         else:
             self.current_action += 1
 
         if self.current_action == len(self.actions[self.actions_set_number]):
-        # if self.current_action == (len(self.actions) - 1):
             # End of action sequence reached.
             # print('ENd reached '*5)
-            self.do_actions = False
+            self.active = False
             self.current_action = -1
             return
 
         # print(f'{self.actions[self.current_action]=}')
 
         if self.actions[self.actions_set_number][self.current_action][0] == 'move':
-            # print('P'*70)
-            self.destination = self.actions[self.actions_set_number][self.current_action][1]
-        elif self.actions[self.actions_set_number][self.current_action][0] == 'die':
-            self.get_suicide()
+            self.is_destination_reached = False
+            if self.actions[self.actions_set_number][self.current_action][1] == 'start':
+                self.destination = self.origin_xy
+            else:
+                self.destination = self.actions[self.actions_set_number][self.current_action][1]
+        # elif self.actions[self.actions_set_number][self.current_action][0] == 'die':
+        #     self.get_suicide()
         elif self.actions[self.actions_set_number][self.current_action][0] == 'stop':
-            self.do_actions = False
-            # self.homeland_location['obstacles'][self.description]['do actions'] = False
+            self.active = False
         elif self.actions[self.actions_set_number][self.current_action][0] == 'wait':
             self.wait_counter = self.actions[self.actions_set_number][self.current_action][1]
         elif self.actions[self.actions_set_number][self.current_action][0] == 'find route':

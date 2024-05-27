@@ -13,6 +13,7 @@ class Entity(object):
         self.idle_counter: int = 0
 
         # GEOMETRY
+        self.origin_xy: tuple = (0, 0)
         self.rectangle = pygame.Rect(0, 0, 50, 50)
         self.target_height: int = 0
         self.target_width: int = 0
@@ -478,7 +479,8 @@ class Entity(object):
         vec_to_destination = list((self.destination[0] - self.rectangle.x, self.destination[1] - self.rectangle.y))
         # vec_to_destination = list((self.destination[0] - self.rectangle.centerx, self.destination[1] - self.rectangle.centery))
 
-        if vec_to_destination == (0, 0) or self.destination == self.rectangle.center:
+        if vec_to_destination == (0, 0) or self.destination == self.rectangle.topleft:
+        # if vec_to_destination == (0, 0) or self.destination == self.rectangle.center:
             self.is_destination_reached = True
             self.speed = 0
             self.heading = (0, 0)

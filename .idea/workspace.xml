@@ -6,11 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locations_template.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations_template.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obstacle.py" beforeDir="false" afterPath="$PROJECT_DIR$/obstacle.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
@@ -50,7 +47,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "last_opened_file_path": "/media/sid/d90c7353-09c5-492a-aa88-66d695362d79/sid/scripts/python/pygame/1.turn_based_adv.ProjectOne/turn_based/locations.py",
-    "settings.editor.selected.configurable": "editor.preferences.tabs"
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
 }]]></component>
   <component name="RunManager" selected="Python.main ">
@@ -111,13 +108,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00035" summary="Added 'grab the edge' state and some other ones, logically connected with it.&#10;Grab off an obstacle could be performed now just by pressing DOWN button only.">
-      <created>1716173720823</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1716173720823</updated>
     </task>
     <task id="LOCAL-00036" summary="Tuning 'grab the edge' option.">
       <created>1716177195354</created>
@@ -455,7 +445,14 @@
       <option name="project" value="LOCAL" />
       <updated>1716786567006</updated>
     </task>
-    <option name="localTasksCounter" value="84" />
+    <task id="LOCAL-00084" summary="Initiated system for obstacles action handling.">
+      <created>1716794489955</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1716794489955</updated>
+    </task>
+    <option name="localTasksCounter" value="85" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -470,7 +467,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed bug while hopping back and incorrect collision detection." />
     <MESSAGE value="Still solving problems with hopping back." />
     <MESSAGE value="There is a bug when try to step over a tiny obstacle lower 35 px of height if moving left." />
     <MESSAGE value="Corrected fall speed calculations: it happens if actor stands on the ground only.&#10;Added is_being_collided_now for obstacles." />
@@ -495,6 +491,7 @@
     <MESSAGE value="Improved some states interactions to avoid getting stuck into an obstacles after actor stance has changed." />
     <MESSAGE value="Fixed suddenly broken top collision detector." />
     <MESSAGE value="Tuning the hopping down." />
-    <option name="LAST_COMMIT_MESSAGE" value="Tuning the hopping down." />
+    <MESSAGE value="Initiated system for obstacles action handling." />
+    <option name="LAST_COMMIT_MESSAGE" value="Initiated system for obstacles action handling." />
   </component>
 </project>

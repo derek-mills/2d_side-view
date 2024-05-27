@@ -87,6 +87,7 @@ class World(object):
         entity.id = self.obstacle_id
         entity.is_gravity_affected = True if 'gravity affected' in description else False
         entity.rectangle.topleft = description[0]
+        entity.origin_xy = description[0]
         entity.rectangle.width = description[1][0]
         entity.rectangle.height = description[1][1]
         # entity.max_speed = 0.6
@@ -227,6 +228,32 @@ class World(object):
                 color = WHITE if obs.is_ghost_platform else CYAN
             pygame.draw.rect(self.screen, color, (obs.rectangle.x - self.camera.offset_x, obs.rectangle.y - self.camera.offset_y,
                                                   obs.rectangle.width, obs.rectangle.height))
+            if obs.active:
+                dx = 10
+                stats_y = 1
+                gap = 1
+                font_size = 10
+                params = (
+                    #
+                    #(' IS ON OBS: ' + str(self.actors[self.location][0].is_on_obstacle), WHITE),
+                    ('      ACTIVE    : ' + str(obs.active), BLACK),
+                    ('WAIT COUNTER    : ' + str(obs.wait_counter), BLACK),
+                    ('DEST REACHED    : ' + str(obs.is_destination_reached), BLACK),
+                    ('RECTANGLE       : ' + str(obs.rectangle), BLACK),
+                    ('ACTION          : ' + str(obs.actions[obs.actions_set_number][obs.current_action]), BLACK),
+                    'CR',
+                    ('NEED NEXT ACTION: ' + str(obs.need_next_action), BLACK),
+
+
+                )
+                for p in params:
+                    if p == 'CR':
+                        dx += 300
+                        gap = 1
+                        continue
+                    self.screen.blit(fonts.all_fonts[font_size].render(p[0], True, p[1]),
+                                     (obs.rectangle.x + dx - self.camera.offset_x, obs.rectangle.y + gap - self.camera.offset_y))
+                    gap += font_size
 
     def render_all(self):
         self.render_background()
