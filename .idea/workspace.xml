@@ -7,6 +7,9 @@
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,13 +108,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00030" summary="Moving obstacle is able to push actors now.">
-      <created>1715926076537</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1715926076537</updated>
     </task>
     <task id="LOCAL-00031" summary="Moving obstacle is able to drag actors now if they stand on them or grab the edge of such obstacle.">
       <created>1715926725675</created>
@@ -449,7 +445,14 @@
       <option name="project" value="LOCAL" />
       <updated>1716540038049</updated>
     </task>
-    <option name="localTasksCounter" value="79" />
+    <task id="LOCAL-00079" summary="Smooth animation for climbing up added.">
+      <created>1716541925295</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1716541925295</updated>
+    </task>
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -464,7 +467,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added hop back option." />
     <MESSAGE value="Hopping back option improved." />
     <MESSAGE value="Continue fixing tiny annoying bugs in states behaviour and interactions." />
     <MESSAGE value="Solved issue with instant change of movement direction without inertia." />
@@ -489,6 +491,7 @@
     <MESSAGE value="Added actor's ability to grab moving obstacles.&#10;If actor hanging on the moving obstacle, his Y coordinate corresponds to this obstacle's Y." />
     <MESSAGE value="Bottom-left and bottom-right colliders are slightly shortened to avoid unwanted fatal collisions on moving platforms." />
     <MESSAGE value="Grabbing is now available if actor do not stand on the ground&#10;Free space check to the right and to the left from actor's rectangle is slightly vertically shortened." />
-    <option name="LAST_COMMIT_MESSAGE" value="Grabbing is now available if actor do not stand on the ground&#10;Free space check to the right and to the left from actor's rectangle is slightly vertically shortened." />
+    <MESSAGE value="Smooth animation for climbing up added." />
+    <option name="LAST_COMMIT_MESSAGE" value="Smooth animation for climbing up added." />
   </component>
 </project>

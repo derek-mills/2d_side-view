@@ -184,13 +184,10 @@ class Actor(Entity):
         elif self.__state == 'crouch rise':  # CROUCH UP PROCESS
             self.is_crouch = False
             self.speed = 0
-            # self.set_new_desired_height(self.rectangle_height_default, 3)
-            # self.set_new_desired_width(self.rectangle_width_default, 3)
-            # self.target_height = self.rectangle_height_default
-            # self.target_width = self.rectangle_width_default
-            # self.set_rect_height(self.rectangle_height_default)
-            # self.set_rect_width(self.rectangle_width_default)
             self.set_state('stand still')
+            self.check_space_around()
+            if not self.is_enough_space_above:
+                self.set_state('crouch down')
         # elif self.__state == 'crawl stop':
         elif self.__state == 'crawl right':
             # self.look = 1
@@ -210,7 +207,7 @@ class Actor(Entity):
                 self.set_new_desired_height(self.rectangle_height_default + 15, 1)
                 self.set_new_desired_width(self.rectangle_width_default - 15, 1)
             self.is_abort_jump = False
-        elif self.__state == 'jump cancel':
+        elif self.__state == 'jump cancel':                     # CANCEL JUMP
             self.just_got_jumped = False
             self.is_abort_jump = True
             self.set_new_desired_height(self.rectangle_height_default, 1)
@@ -275,8 +272,11 @@ class Actor(Entity):
                 # self.set_rect_height(self.rectangle_height_sit)
                 self.set_state('crouch')
             else:
-                self.set_state('sliding')
-            # self.set_state('stand still')
+                self.speed = self.max_speed // 3
+                if self.is_enough_space_above:
+                    self.set_state('crouch down')
+
+                # self.set_state('autocrawling')
         elif self.__state == 'stand still':                     # STANDING STILL
             self.heading[0] = 0
             if self.rectangle.height != self.rectangle_height_default:

@@ -463,8 +463,10 @@ class Entity(object):
                 self.is_enough_space_right = False
                 continue
             # Check if there is enough space ABOVE
-            if obs.rectangle.colliderect(self.rectangle.left + 2, self.rectangle.top - abs(self.fall_speed) - 4,
-                                         self.rectangle.width - 4, abs(self.fall_speed) + 4):
+            if obs.rectangle.colliderect(self.rectangle.left + 2, self.rectangle.bottom - self.target_height - abs(self.fall_speed) - 14,
+                                         self.rectangle.width - 4, self.target_height - abs(self.fall_speed) + 4):
+            # if obs.rectangle.colliderect(self.rectangle.left + 2, self.rectangle.top - abs(self.fall_speed) - 4,
+            #                              self.rectangle.width - 4, abs(self.fall_speed) + 4):
                 self.is_enough_space_above = False
                 continue
             # Check if there is enough space BELOW
