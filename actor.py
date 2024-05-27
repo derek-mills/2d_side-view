@@ -151,7 +151,7 @@ class Actor(Entity):
                 if self.jump_attempts_counter == 0:
                     return
             if self.__state in ('crouch', 'crawl right', 'crawl left') and self.is_stand_on_ground:
-                if self.influenced_by_obstacle:
+                if self.influenced_by_obstacle >= 0:
                     # Jump off a ghost platform:
                     # print('sdad')
                     if self.obstacles_around[self.influenced_by_obstacle].is_ghost_platform:
@@ -214,7 +214,7 @@ class Actor(Entity):
                 self.just_got_jumped = True
                 self.jump_attempts_counter -= 1
                 self.is_jump = True
-                self.influenced_by_obstacle = None
+                self.influenced_by_obstacle = -1
                 self.jump_height = self.max_jump_height
                 self.set_new_desired_height(self.rectangle_height_default + 15, 1)
                 self.set_new_desired_width(self.rectangle_width_default - 15, 1)
@@ -250,7 +250,7 @@ class Actor(Entity):
                 self.just_got_jumped = True
                 self.jump_attempts_counter -= 1
                 self.is_jump = True
-                self.influenced_by_obstacle = None
+                self.influenced_by_obstacle = -1
                 self.jump_height = self.max_jump_height // 2
                 self.speed = self.max_speed
                 self.movement_direction_inverter = -1
@@ -395,7 +395,7 @@ class Actor(Entity):
                 self.ignore_user_input = False
         elif self.__state == 'release edge':                    # RELEASE
             self.is_edge_grabbed = False
-            self.influenced_by_obstacle = None
+            self.influenced_by_obstacle = -1
             self.speed = 0
             self.ignore_user_input = False
             if self.is_stand_on_ground:

@@ -8,7 +8,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obstacle.py" beforeDir="false" afterPath="$PROJECT_DIR$/obstacle.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locations_template.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations_template.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -108,13 +108,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00036" summary="Tuning 'grab the edge' option.">
-      <created>1716177195354</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1716177195354</updated>
     </task>
     <task id="LOCAL-00037" summary="Slightly corrected left collider">
       <created>1716177666004</created>
@@ -452,7 +445,14 @@
       <option name="project" value="LOCAL" />
       <updated>1716794489955</updated>
     </task>
-    <option name="localTasksCounter" value="85" />
+    <task id="LOCAL-00085" summary="Obstacle actions handling system improved.">
+      <created>1716798492029</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1716798492029</updated>
+    </task>
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -467,7 +467,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Still solving problems with hopping back." />
     <MESSAGE value="There is a bug when try to step over a tiny obstacle lower 35 px of height if moving left." />
     <MESSAGE value="Corrected fall speed calculations: it happens if actor stands on the ground only.&#10;Added is_being_collided_now for obstacles." />
     <MESSAGE value="Added auxiliary colliders near the bottom of an actor's rectangle to provide hopping over an obstacles lower than 35 pixels of height." />
@@ -492,6 +491,7 @@
     <MESSAGE value="Fixed suddenly broken top collision detector." />
     <MESSAGE value="Tuning the hopping down." />
     <MESSAGE value="Initiated system for obstacles action handling." />
-    <option name="LAST_COMMIT_MESSAGE" value="Initiated system for obstacles action handling." />
+    <MESSAGE value="Obstacle actions handling system improved." />
+    <option name="LAST_COMMIT_MESSAGE" value="Obstacle actions handling system improved." />
   </component>
 </project>

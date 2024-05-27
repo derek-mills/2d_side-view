@@ -64,6 +64,11 @@ locations = {
                         0: (('move', (100, 100)), ('move', 'start'), ('wait', 100), ('repeat', 0)),
                         1: (('move', (1000, 1000)), ('move', 'start'), ('wait', 100), ('repeat', 0)),
                     },
+                },
+                'settings': {
+                    0: {
+                        'speed': 0.1,
+                    },
                 }
             },
             'items': {

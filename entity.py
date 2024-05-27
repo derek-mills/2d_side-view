@@ -64,6 +64,7 @@ class Entity(object):
         # self.destination_list = list()
         # self.destination_point = 0
         self.destination: list = [0, 0]
+        self.vec_to_destination: list = [0, 0]
 
         # Collisions
         self.is_collideable = False
@@ -82,7 +83,7 @@ class Entity(object):
 
         # self.aux_counter = 0
 
-        self.influenced_by_obstacle = None
+        self.influenced_by_obstacle: int = -1
         self.is_edge_grabbed: bool = False
         # self.is_on_obstacle: bool = False
         self.is_on_ghost_platform: bool = False
@@ -185,15 +186,27 @@ class Entity(object):
         self.detect_collisions()
 
         if self.is_gravity_affected:
+            # if self.influenced_by_obstacle:
+            #     self.rectangle.bottom = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
+            # else:
             # if not self.is_stand_on_ground or not self.is_edge_grabbed:
             if not self.is_stand_on_ground and not self.is_edge_grabbed:
                 # self.influenced_by_obstacle = None
                 # print('fall!')
                 self.fall()
         self.move()
+        # if self.influenced_by_obstacle:
+        #     print('dd')
+        #     self.rectangle.x += self.obstacles_around[self.influenced_by_obstacle].vec_to_destination[0]
+
 
 
     def fall_speed_calc(self):
+        # if self.influenced_by_obstacle >= 0:
+        #     self.rectangle.bottom = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
+        #     self.potential_falling_distance = 1
+        #     self.fall_speed = 1
+        # else:
         if not self.is_stand_on_ground:
             if self.fall_speed > GRAVITY_G:
                 self.fall_speed = GRAVITY_G
@@ -234,6 +247,10 @@ class Entity(object):
         if self.speed <= 0:
             self.movement_direction_inverter = 1
 
+        # if self.influenced_by_obstacle:
+        #     self.potential_moving_distance = self.speed + \
+        #                                      self.obstacles_around[self.influenced_by_obstacle].vec_to_destination[0]
+        # else:
         self.potential_moving_distance = self.speed
         # self.potential_moving_distance = int(self.speed * self.look)
         # self.rectangle.x += int(self.speed * self.look)
@@ -274,7 +291,7 @@ class Entity(object):
         elif self.fall_speed >= 0:
             self.collision_detector_top.update(0,0,0,0)
             # self.collision_detector_top.update(self.rectangle.left + 2, self.rectangle.top - 1, self.rectangle.width - 4, 1)
-            self.collision_detector_bottom.update(self.rectangle.left, self.rectangle.bottom - 2, self.rectangle.width, self.fall_speed + 2)
+            self.collision_detector_bottom.update(self.rectangle.left, self.rectangle.bottom, self.rectangle.width, self.fall_speed + 2)
             # self.collision_detector_bottom.update(self.rectangle.left + 2, self.rectangle.bottom - 2, self.rectangle.width - 4, self.fall_speed + 2)
 
     def detect_collisions(self):
@@ -471,16 +488,16 @@ class Entity(object):
                 continue
             # Check if there is enough space BELOW
             if obs.rectangle.colliderect(self.rectangle.left + 2, self.rectangle.bottom,
-                                         self.rectangle.width - 4, abs(self.fall_speed) + 1):
+                                         self.rectangle.width - 4, abs(self.fall_speed) + GRAVITY):
                 self.is_enough_space_below = False
                 continue
 
     def fly(self, time_passed):
-        vec_to_destination = list((self.destination[0] - self.rectangle.x, self.destination[1] - self.rectangle.y))
-        # vec_to_destination = list((self.destination[0] - self.rectangle.centerx, self.destination[1] - self.rectangle.centery))
+        self.vec_to_destination = list((self.destination[0] - self.rectangle.x, self.destination[1] - self.rectangle.y))
+        # self.vec_to_destination = list((self.destination[0] - self.rectangle.centerx, self.destination[1] - self.rectangle.centery))
 
-        if vec_to_destination == (0, 0) or self.destination == self.rectangle.topleft:
-        # if vec_to_destination == (0, 0) or self.destination == self.rectangle.center:
+        if self.vec_to_destination == (0, 0) or self.destination == self.rectangle.topleft:
+        # if self.vec_to_destination == (0, 0) or self.destination == self.rectangle.center:
             self.is_destination_reached = True
             self.speed = 0
             self.heading = (0, 0)
@@ -488,12 +505,12 @@ class Entity(object):
         else:
             self.is_destination_reached = False
 
-        distance_to_destination = sqrt(vec_to_destination[0] * vec_to_destination[0] + vec_to_destination[1] * vec_to_destination[1])
+        distance_to_destination = sqrt(self.vec_to_destination[0] * self.vec_to_destination[0] + self.vec_to_destination[1] * self.vec_to_destination[1])
 
         if distance_to_destination > 0:
             # Calculate normalized vector to apply animation set correctly in the future:
-            # self.heading = vec_to_destination.get_normalized()
-            self.heading = (vec_to_destination[0] / distance_to_destination, vec_to_destination[1] / distance_to_destination)
+            # self.heading = self.vec_to_destination.get_normalized()
+            self.heading = (self.vec_to_destination[0] / distance_to_destination, self.vec_to_destination[1] / distance_to_destination)
 
             self.speed = self.max_speed * self.max_speed_penalty  # * 0.5
             # Define the potential length of current move, depends on basic speed and passed amount of time:
@@ -502,14 +519,14 @@ class Entity(object):
             self.travel_distance = min(distance_to_destination, self.potential_moving_distance)
             # Set the length of moving vector equal to travel distance, which had already just been calculated:
             l = self.travel_distance / distance_to_destination
-            vec_to_destination[0] *= l
-            vec_to_destination[1] *= l
+            self.vec_to_destination[0] *= l
+            self.vec_to_destination[1] *= l
 
-            # print(f'BEFORe: {self.rectangle.center=} {vec_to_destination=}')
-            self.rectangle.x += round(vec_to_destination[0])
-            # self.rectangle.centerx += round(vec_to_destination[0])
-            self.rectangle.y += round(vec_to_destination[1])
-            # self.rectangle.centery += round(vec_to_destination[1])
+            # print(f'BEFORe: {self.rectangle.center=} {self.vec_to_destination=}')
+            self.rectangle.x += round(self.vec_to_destination[0])
+            # self.rectangle.centerx += round(self.vec_to_destination[0])
+            self.rectangle.y += round(self.vec_to_destination[1])
+            # self.rectangle.centery += round(self.vec_to_destination[1])
 
 
     # def colliders_calc_backup(self):
@@ -542,9 +559,11 @@ class Entity(object):
         self.rectangle.y += self.potential_falling_distance
 
     def move(self):
-        if self.influenced_by_obstacle:
-            infl = self.obstacles_around[self.influenced_by_obstacle]
-            self.rectangle.x += (self.potential_moving_distance * self.look * self.movement_direction_inverter + infl.potential_moving_distance*infl.look)
+        if self.influenced_by_obstacle >= 0:
+            # print('dd')
+            obs = self.obstacles_around[self.influenced_by_obstacle]
+            self.rectangle.x += (self.potential_moving_distance * self.look * self.movement_direction_inverter + round(obs.vec_to_destination[0]))
+            # self.rectangle.x += (self.potential_moving_distance * self.look * self.movement_direction_inverter + infl.potential_moving_distance*infl.look)
         else:
             # self.rectangle.x += (self.potential_moving_distance * self.heading[0])
             self.rectangle.x += (self.potential_moving_distance * self.look * self.movement_direction_inverter)

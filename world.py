@@ -101,6 +101,7 @@ class World(object):
         if entity.id in self.locations[self.location]['obstacles']['actions'].keys():
             entity.active = True
             entity.actions = self.locations[self.location]['obstacles']['actions'][entity.id]
+            entity.max_speed = self.locations[self.location]['obstacles']['settings'][entity.id]['speed']
             print(f'[add_obstacle] Added active obstacle: {entity.actions=}')
         # Add an obstacle to the world storage:
         if self.location not in self.obstacles.keys():
@@ -117,7 +118,7 @@ class World(object):
         # Applying camera offset:
         if self.actors[self.location][0].speed > 0:
             y_offset_speed = self.actors[self.location][0].speed
-        elif self.actors[self.location][0].influenced_by_obstacle:
+        elif self.actors[self.location][0].influenced_by_obstacle >= 0:
             y_offset_speed = self.obstacles[self.location][self.actors[self.location][0].influenced_by_obstacle].speed
         else:
             y_offset_speed = 1
@@ -243,6 +244,7 @@ class World(object):
                     ('ACTION          : ' + str(obs.actions[obs.actions_set_number][obs.current_action]), BLACK),
                     'CR',
                     ('NEED NEXT ACTION: ' + str(obs.need_next_action), BLACK),
+                    ('VEC TO DESTINTON: ' + str(obs.vec_to_destination), BLACK),
 
 
                 )
