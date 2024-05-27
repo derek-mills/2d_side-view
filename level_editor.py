@@ -333,9 +333,9 @@ class World(object):
         #             loc_found = True
 
         try:
-            for obs in locations['01']['obstacles']['platforms']:
+            for obs in locations[self.location]['obstacles']['platforms']:
                 self.add_obstacle(obs)
-            self.camera.setup(locations['01']['size'][0], locations['01']['size'][1])
+            self.camera.setup(locations[self.location]['size'][0], locations[self.location]['size'][1])
         except NameError:
             self.obstacles[self.location] = dict()
             self.camera.setup(MAXX, MAXY)
@@ -358,12 +358,19 @@ class World(object):
                         for k in self.obstacles[self.location].keys():
                             obs = self.obstacles[self.location][k]
                             ghost = ', \'ghost\' ' if obs.is_ghost_platform else ''
-                            move_right = ', \'move right\' ' if obs.is_move_right else ''
-                            move_left = ', \'move left\' ' if obs.is_move_left else ''
+                            # move_right = ', \'move right\' ' if obs.is_move_right else ''
+                            # move_left = ', \'move left\' ' if obs.is_move_left else ''
                             collideable = ', \'collideable\' ' if obs.is_collideable else ''
+                            actions = ', \'active\' ' if obs.actions else ''
                             gravity_affected = ', \'gravity affected\' ' if obs.is_gravity_affected else ''
-                            total_strg = '                ('+str(obs.rectangle.topleft) + ', ' + \
-                                   str(obs.rectangle.size) + ghost + move_right + move_left + collideable + gravity_affected + '),  #' + str(k) + '\n'
+
+                            # str(obs.rectangle.size) + ghost + move_right + move_left + \
+                            total_strg = '                ' + \
+                                   '(' + \
+                                   str(obs.rectangle.topleft) + ', ' + \
+                                   str(obs.rectangle.size) + ghost + \
+                                   collideable + gravity_affected + actions + ', ' + str(k) + \
+                                   '),  #' + str(k) + '\n'
                                    # str(obs.rectangle.size) + ghost + move_right + move_left + collideable + gravity_affected + '),  #' + str(obs.id) + '\n'
                             f_dest.write(total_strg)
                         loc_found = False

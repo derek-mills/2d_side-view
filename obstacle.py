@@ -6,10 +6,20 @@ class Obstacle(Entity):
         self.id: int = 0
         self.type = 'obstacle'
         self.is_ghost_platform: bool = False
-        self.max_speed = 2
+        self.max_speed = .2
         self.is_being_collided_now: bool = False
+        self.idle = False
 
-    def process_(self, time_passed):
+        self.active = False
+        self.actions = dict()
+        self.actions_set_number = 0
+        self.current_action = -1
+        self.need_next_action = True
+        self.wait_counter = 0
+        self.repeat_counter = -1
+
+
+    def process_old(self, time_passed):
         # ...
         # super().process(time_passed)
         if self.is_move_left:
@@ -31,21 +41,39 @@ class Obstacle(Entity):
         else:
             self.heading[0] = 0
 
-        # self.check_space_around()  # Detect obstacles on the right and left sides
-        self.fall_speed_calc()  # Discover speed and potential fall distance
-        self.speed_calc()       # Discover fall speed and potential move distance
-
-        if self.is_collideable:
-            self.colliders_calc()  # Calculate colliders around actor based on his current movement and fall speeds.
-            self.detect_collisions()
-
         if self.is_gravity_affected:
+            # self.check_space_around()  # Detect obstacles on the right and left sides
+            self.fall_speed_calc()  # Discover speed and potential fall distance
+            self.speed_calc()  # Discover fall speed and potential move distance
+
+            if self.is_collideable:
+                self.colliders_calc()  # Calculate colliders around actor based on his current movement and fall speeds.
+                self.detect_collisions()
             if not self.is_stand_on_ground:
                 self.fall()
                 # !!! RUDE HACK FOR TESTING PURPOSE!!!
                 if self.rectangle.y < 0:
                     self.rectangle.y = 1000
-        self.move()
+            self.move()
+
+    def process_(self, time_passed):
+        if self.active:
+            if self.idle:
+                return
+            if self.wait_counter > 0:
+                self.wait_counter -= 1
+                if self.wait_counter == 0:
+                    self.need_next_action = True
+                return
+            if self.need_next_action:
+                self.need_next_action = False
+                self.next_action()
+                return
+            # print(self.actions[self.actions_set_number])
+            # print(self.actions[self.actions_set_number][self.current_action])
+            # print(self.actions_set_number, self.current_action)
+            if self.actions[self.actions_set_number][self.current_action][0] == 'move':
+                self.fly(time_passed)
 
     def detect_collisions(self):
         self.is_stand_on_ground = False
@@ -143,3 +171,69 @@ class Obstacle(Entity):
                     continue
         # self.is_stand_on_ground = False
         # self.influenced_by_obstacle = None
+
+    def reset_actions(self):
+        self.actions = None
+        self.current_action = -1
+        self.need_next_action = False
+        self.wait_counter = 0
+        self.repeat_counter = -1
+
+    def next_action(self):
+        # print(self.description, 'ENTERING NEXT ACTION')
+        # print(self.actions, self.current_action)
+        if not self.actions:
+            return
+        if self.actions[self.actions_set_number][self.current_action][0] == 'repeat':
+            if self.actions[self.actions_set_number][self.current_action][1] == 0:
+                self.current_action = 0
+            else:
+                if self.repeat_counter > 0:
+                    self.repeat_counter -= 1
+                    if self.repeat_counter == 0:
+                        self.current_action += 1
+                    else:
+                        self.current_action = 0
+                else:
+                    self.repeat_counter = self.actions[self.actions_set_number][self.current_action][1]
+
+        else:
+            self.current_action += 1
+
+        if self.current_action == len(self.actions[self.actions_set_number]):
+        # if self.current_action == (len(self.actions) - 1):
+            # End of action sequence reached.
+            # print('ENd reached '*5)
+            self.do_actions = False
+            self.current_action = -1
+            return
+
+        # print(f'{self.actions[self.current_action]=}')
+
+        if self.actions[self.actions_set_number][self.current_action][0] == 'move':
+            # print('P'*70)
+            self.destination = self.actions[self.actions_set_number][self.current_action][1]
+        elif self.actions[self.actions_set_number][self.current_action][0] == 'die':
+            self.get_suicide()
+        elif self.actions[self.actions_set_number][self.current_action][0] == 'stop':
+            self.do_actions = False
+            # self.homeland_location['obstacles'][self.description]['do actions'] = False
+        elif self.actions[self.actions_set_number][self.current_action][0] == 'wait':
+            self.wait_counter = self.actions[self.actions_set_number][self.current_action][1]
+        elif self.actions[self.actions_set_number][self.current_action][0] == 'find route':
+            self.destination_list = list()
+            # self.destination = self.rectangle.center
+            self.need_to_build_new_route_to_point = self.actions[self.actions_set_number][self.current_action][1]
+        elif self.actions[self.actions_set_number][self.current_action][0] == 'switch visibility':
+            self.invisible = False if self.invisible else True
+        elif self.actions[self.actions_set_number][self.current_action][0] == 'switch passability':
+            self.passable = False if self.passable else True
+        elif self.actions[self.actions_set_number][self.current_action][0] == 'make inactive':
+            self.active = False
+        elif self.actions[self.actions_set_number][self.current_action][0] == 'teleport':
+            self.destination_list = list()
+            # self.destination = None
+            # self.destination_point = self.point_on_map
+            self.rectangle.center = self.homeland_location['points'][self.actions[self.actions_set_number][self.current_action][1]]['rect'].center
+            # self.rectangle.center = locations[self.location]['points'][self.actions[self.current_action][1]]['rect'].center
+            self.destination = self.rectangle.center

@@ -90,12 +90,17 @@ class World(object):
         entity.rectangle.width = description[1][0]
         entity.rectangle.height = description[1][1]
         # entity.max_speed = 0.6
-        entity.is_move_right = True if 'move right' in description else False
-        entity.is_move_up = True if 'move up' in description else False
-        entity.is_move_down = True if 'move down' in description else False
-        entity.is_move_left = True if 'move left' in description else False
+        # entity
+        # entity.is_move_right = True if 'move right' in description else False
+        # entity.is_move_up = True if 'move up' in description else False
+        # entity.is_move_down = True if 'move down' in description else False
+        # entity.is_move_left = True if 'move left' in description else False
         entity.is_ghost_platform = True if 'ghost' in description else False
         entity.is_collideable = True if 'collideable' in description else False
+        if entity.id in self.locations[self.location]['obstacles']['actions'].keys():
+            entity.active = True
+            entity.actions = self.locations[self.location]['obstacles']['actions'][entity.id]
+            print(f'[add_obstacle] Added active obstacle: {entity.actions=}')
         # Add an obstacle to the world storage:
         if self.location not in self.obstacles.keys():
             self.obstacles[self.location] = dict()

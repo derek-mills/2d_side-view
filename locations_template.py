@@ -55,9 +55,16 @@ locations = {
 #, 'collideable'
 #, 'gravity affected'
 
+                # HERE WILL BE A GEOMETRY DESCRIPTION OF EVERY PLATFORM AFTER level_editor.py USAGE:
                 'platforms': (
 
-                )
+                ),
+                'actions': {
+                    0: {
+                        0: (('move', (100, 100)), ('move', 'start'), ('wait', 100), ('repeat', 0)),
+                        1: (('move', (1000, 1000)), ('move', 'start'), ('wait', 100), ('repeat', 0)),
+                    },
+                }
             },
             'items': {
                 'central light switcher': {
