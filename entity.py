@@ -268,9 +268,8 @@ class Entity(object):
                 self.collision_detector_bottom_left.update(0,0,0,0)
         # TOP and BOTTOM colliders:
         if self.fall_speed < 0:
-            self.collision_detector_top.update(self.rectangle.left + 2, self.rectangle.top - abs(self.fall_speed), self.rectangle.width - 4, abs(self.fall_speed))
+            self.collision_detector_top.update(self.rectangle.left + 2, self.rectangle.top - abs(self.fall_speed) - 4, self.rectangle.width - 4, abs(self.fall_speed))
             self.collision_detector_bottom.update(0,0,0,0)
-            # self.collision_detector_bottom.update(self.rectangle.left + 2, self.rectangle.bottom, self.rectangle.width - 4, 1)
         elif self.fall_speed >= 0:
             self.collision_detector_top.update(0,0,0,0)
             # self.collision_detector_top.update(self.rectangle.left + 2, self.rectangle.top - 1, self.rectangle.width - 4, 1)

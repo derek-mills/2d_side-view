@@ -404,6 +404,7 @@ class World(object):
         # m_hover_actor = 'None' if not self.mouse_hovers_actor else self.wandering_actors[self.mouse_hovers_actor].name + ' ' + str(self.wandering_actors[self.mouse_hovers_actor].id)
         # m_hover_cell = 'None' if self.point_mouse_cursor_shows is None else str(self.locations[self.location]['points'][self.point_mouse_cursor_shows]['rect'].center)
         params = (
+            #
             #(' IS ON OBS: ' + str(self.actors[self.location][0].is_on_obstacle), WHITE),
             ('SCREEN OFFSETS: ' + str(self.camera.offset_x) + ' ' + str(self.camera.offset_y), GREEN),
             (' STAND ON GROUND: ' + str(self.actors[self.location][0].is_stand_on_ground), WHITE),
@@ -412,6 +413,8 @@ class World(object):
             ('', WHITE),
             (' HEADING: ' + str(self.actors[self.location][0].heading), WHITE),
             (' RECT: ' + str(self.actors[self.location][0].rectangle), WHITE),
+            ('╔ TARGET HEIGHT ╗: ' + str(self.actors[self.location][0].target_height), YELLOW),
+            ('╚ TARGET WIDTH  ╝: ' + str(self.actors[self.location][0].target_width), YELLOW),
             (' FALL SPEED: ' + str(self.actors[self.location][0].fall_speed), WHITE),
             (' SPEED: ' + str(self.actors[self.location][0].speed), WHITE),
             (' LOOK: ' + str(self.actors[self.location][0].look), WHITE),
