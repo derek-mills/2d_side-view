@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,13 +105,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00033" summary="Improvements in case of actor try to jumps off a ghost platform.">
-      <created>1715934239369</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1715934239369</updated>
     </task>
     <task id="LOCAL-00034" summary="Improvements in case of actor try to jumps off a ghost platform.">
       <created>1715936586264</created>
@@ -451,7 +442,14 @@
       <option name="project" value="LOCAL" />
       <updated>1716780334891</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="Fixed suddenly broken top collision detector.">
+      <created>1716783001268</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1716783001268</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -466,7 +464,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Solved issue with instant change of movement direction without inertia." />
     <MESSAGE value="Fixed bug in level editor: 'collideable' and 'gravity affected' did not save after editing." />
     <MESSAGE value="Fixed bug while hopping back and incorrect collision detection." />
     <MESSAGE value="Still solving problems with hopping back." />
@@ -491,6 +488,7 @@
     <MESSAGE value="Smooth animation for climbing up added." />
     <MESSAGE value="Added autocrawling if actor get stuck under the obstacle after the sliding process is over.&#10;Added stay crouch status if actor has not enough space above to stand up." />
     <MESSAGE value="Improved some states interactions to avoid getting stuck into an obstacles after actor stance has changed." />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved some states interactions to avoid getting stuck into an obstacles after actor stance has changed." />
+    <MESSAGE value="Fixed suddenly broken top collision detector." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed suddenly broken top collision detector." />
   </component>
 </project>
