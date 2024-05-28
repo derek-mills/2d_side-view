@@ -291,7 +291,7 @@ class Entity(object):
         elif self.fall_speed >= 0:
             self.collision_detector_top.update(0,0,0,0)
             # self.collision_detector_top.update(self.rectangle.left + 2, self.rectangle.top - 1, self.rectangle.width - 4, 1)
-            self.collision_detector_bottom.update(self.rectangle.left, self.rectangle.bottom, self.rectangle.width, self.fall_speed + 2)
+            self.collision_detector_bottom.update(self.rectangle.left +2, self.rectangle.bottom, self.rectangle.width-4, self.fall_speed + 2)
             # self.collision_detector_bottom.update(self.rectangle.left + 2, self.rectangle.bottom - 2, self.rectangle.width - 4, self.fall_speed + 2)
 
     def detect_collisions(self):
@@ -315,42 +315,42 @@ class Entity(object):
             elif obs.rectangle.centerx > self.rectangle.centerx:
                 sorted_obs['right'].append(obs.id)
 
-        # -----------------------------------
-        # Check bottom
-        bottom_already_changed = False
-        for key in sorted_obs['below']:
-            obs = self.obstacles_around[key]
-            obs.is_being_collided_now = False
-            # if obs.is_ghost_platform:
-            if obs.rectangle.colliderect(self.collision_detector_bottom):
-                if bottom_already_changed and obs.rectangle.top > self.rectangle.bottom:
-                    # Current obstacle lower than the actor's rectangle after at least one bottom collision has been registered.
-                    # Skip it.
-                    continue
-                obs.is_being_collided_now = True
-                # if self.fall_speed >= 0:
-                self.rectangle.bottom = obs.rectangle.top
-                self.is_stand_on_ground = True
-                self.influenced_by_obstacle = obs.id
-                self.jump_attempts_counter = self.max_jump_attempts
-                bottom_already_changed = True
-                # break
-                    # continue
-
-        # -----------------------------------
-        # Check top
-        for key in sorted_obs['above']:
-            obs = self.obstacles_around[key]
-            obs.is_being_collided_now = False
-            if obs.is_ghost_platform:
-                continue
-            if obs.rectangle.colliderect(self.collision_detector_top):
-                obs.is_being_collided_now = True
-                if self.fall_speed < 0:
-                    self.potential_falling_distance = obs.rectangle.bottom - self.collision_detector_top.bottom
-                    self.is_stand_on_ground = False
-                    self.fall_speed = 0
-                    # continue
+        # # -----------------------------------
+        # # Check bottom
+        # bottom_already_changed = False
+        # for key in sorted_obs['below']:
+        #     obs = self.obstacles_around[key]
+        #     obs.is_being_collided_now = False
+        #     # if obs.is_ghost_platform:
+        #     if obs.rectangle.colliderect(self.collision_detector_bottom):
+        #         if bottom_already_changed and obs.rectangle.top > self.rectangle.bottom:
+        #             # Current obstacle lower than the actor's rectangle after at least one bottom collision has been registered.
+        #             # Skip it.
+        #             continue
+        #         obs.is_being_collided_now = True
+        #         # if self.fall_speed >= 0:
+        #         self.rectangle.bottom = obs.rectangle.top
+        #         self.is_stand_on_ground = True
+        #         self.influenced_by_obstacle = obs.id
+        #         self.jump_attempts_counter = self.max_jump_attempts
+        #         bottom_already_changed = True
+        #         # break
+        #             # continue
+        #
+        # # -----------------------------------
+        # # Check top
+        # for key in sorted_obs['above']:
+        #     obs = self.obstacles_around[key]
+        #     obs.is_being_collided_now = False
+        #     if obs.is_ghost_platform:
+        #         continue
+        #     if obs.rectangle.colliderect(self.collision_detector_top):
+        #         obs.is_being_collided_now = True
+        #         if self.fall_speed < 0:
+        #             self.potential_falling_distance = obs.rectangle.bottom - self.collision_detector_top.bottom
+        #             self.is_stand_on_ground = False
+        #             self.fall_speed = 0
+        #             # continue
 
         #-----------------------------------
         # Check RIGHT
@@ -503,6 +503,48 @@ class Entity(object):
                 #         continue
 
             # obs.is_being_collided_now = False
+
+        # -----------------------------------
+        # Check bottom
+        bottom_already_changed = False
+        for key in sorted_obs['below']:
+            obs = self.obstacles_around[key]
+            obs.is_being_collided_now = False
+            # if obs.is_ghost_platform:
+            if obs.rectangle.colliderect(self.collision_detector_bottom):
+                if bottom_already_changed and obs.rectangle.top > self.rectangle.bottom:
+                    # Current obstacle lower than the actor's rectangle after at least one bottom collision has been registered.
+                    # Skip it.
+                    continue
+                if self.get_state() == 'hanging on edge' and self.influenced_by_obstacle != obs.id:
+                    self.set_state('release edge')
+                obs.is_being_collided_now = True
+                # if self.fall_speed >= 0:
+                self.rectangle.bottom = obs.rectangle.top
+                self.is_stand_on_ground = True
+                self.influenced_by_obstacle = obs.id
+                self.jump_attempts_counter = self.max_jump_attempts
+                bottom_already_changed = True
+                # break
+                    # continue
+
+        # -----------------------------------
+        # Check top
+        for key in sorted_obs['above']:
+            obs = self.obstacles_around[key]
+            obs.is_being_collided_now = False
+            if obs.is_ghost_platform:
+                continue
+            if obs.rectangle.colliderect(self.collision_detector_top):
+                obs.is_being_collided_now = True
+                if self.get_state() == 'hanging on edge' and self.influenced_by_obstacle != obs.id:
+                    self.set_state('release edge')
+
+                if self.fall_speed < 0:
+                    self.potential_falling_distance = obs.rectangle.bottom - self.collision_detector_top.bottom
+                    self.is_stand_on_ground = False
+                    self.fall_speed = 0
+                    # continue
 
     def detect_collisions_backup(self):
         self.is_stand_on_ground = False

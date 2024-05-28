@@ -106,20 +106,6 @@
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
     </task>
-    <task id="LOCAL-00038" summary="Added some tiny, but important improvements:&#10;- 'release edge' state&#10;- try to grab the edge of an obstacle only in several states&#10;- check_space_around() routine is now includes above and below spaces&#10;- actor raise up now if he gets enough space above">
-      <created>1716184694326</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1716184694326</updated>
-    </task>
-    <task id="LOCAL-00039" summary="Improved camera follow ability">
-      <created>1716186542280</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1716186542280</updated>
-    </task>
     <task id="LOCAL-00040" summary="While hanging actor could be pushed off from the platform by the other obstacle.&#10;Temporary removed collisions for obstacles.">
       <created>1716189974906</created>
       <option name="number" value="00040" />
@@ -449,7 +435,21 @@
       <option name="project" value="LOCAL" />
       <updated>1716873456581</updated>
     </task>
-    <option name="localTasksCounter" value="87" />
+    <task id="LOCAL-00087" summary="Bottom collision detection improved.">
+      <created>1716874162317</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1716874162317</updated>
+    </task>
+    <task id="LOCAL-00088" summary="Just save.">
+      <created>1716874532399</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1716874532399</updated>
+    </task>
+    <option name="localTasksCounter" value="89" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -464,8 +464,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Corrected fall speed calculations: it happens if actor stands on the ground only.&#10;Added is_being_collided_now for obstacles." />
-    <MESSAGE value="Added auxiliary colliders near the bottom of an actor's rectangle to provide hopping over an obstacles lower than 35 pixels of height." />
     <MESSAGE value="If slide is over and actor has not enough space above, he continues to lie down." />
     <MESSAGE value="Some tiny changes" />
     <MESSAGE value="Collisions improvement" />
@@ -489,6 +487,8 @@
     <MESSAGE value="Initiated system for obstacles action handling." />
     <MESSAGE value="Obstacle actions handling system improved." />
     <MESSAGE value="Obstacles are divided into four lists during collisions detection depends on their position relative to actor rectangle center." />
-    <option name="LAST_COMMIT_MESSAGE" value="Obstacles are divided into four lists during collisions detection depends on their position relative to actor rectangle center." />
+    <MESSAGE value="Bottom collision detection improved." />
+    <MESSAGE value="Just save." />
+    <option name="LAST_COMMIT_MESSAGE" value="Just save." />
   </component>
 </project>
