@@ -265,22 +265,24 @@ class Entity(object):
         ...
 
     def colliders_calc(self):
+        bottom_indent = 35 if self.is_stand_on_ground else 0
         if self.look * self.movement_direction_inverter == 1:
-            self.collision_detector_right.update(self.rectangle.right, self.rectangle.top, self.speed + 1, self.rectangle.height - 35)
-            self.collision_detector_left.update(self.rectangle.left - 1, self.rectangle.top, 1, self.rectangle.height - 35)
-            if self.speed > 0:
-                self.collision_detector_bottom_right.update(self.rectangle.right, self.rectangle.bottom - 35, self.speed + 1, 30)
-                self.collision_detector_bottom_left.update(self.rectangle.left - 1, self.rectangle.bottom - 35, 1, 30)
+
+            self.collision_detector_right.update(self.rectangle.right, self.rectangle.top, self.speed + 1, self.rectangle.height - bottom_indent)
+            self.collision_detector_left.update(self.rectangle.left - 1, self.rectangle.top, 1, self.rectangle.height - bottom_indent)
+            if self.speed > 0 and bottom_indent > 0:
+                self.collision_detector_bottom_right.update(self.rectangle.right, self.rectangle.bottom - bottom_indent, self.speed + 1, 30)
+                self.collision_detector_bottom_left.update(self.rectangle.left - 1, self.rectangle.bottom - bottom_indent, 1, 30)
             else:
                 self.collision_detector_bottom_right.update(0,0,0,0)
                 self.collision_detector_bottom_left.update(0,0,0,0)
 
         elif self.look * self.movement_direction_inverter == -1:
-            self.collision_detector_right.update(self.rectangle.right, self.rectangle.top, 1, self.rectangle.height - 35)
+            self.collision_detector_right.update(self.rectangle.right, self.rectangle.top, 1, self.rectangle.height - bottom_indent)
             self.collision_detector_left.update(self.rectangle.left - self.speed - 1, self.rectangle.top, self.speed + 1, self.rectangle.height - 35)
-            if self.speed > 0:
-                self.collision_detector_bottom_right.update(self.rectangle.right, self.rectangle.bottom - 35, 1, 30)
-                self.collision_detector_bottom_left.update(self.rectangle.left - self.speed - 1, self.rectangle.bottom - 35, self.speed + 1, 30)
+            if self.speed > 0 and bottom_indent > 0:
+                self.collision_detector_bottom_right.update(self.rectangle.right, self.rectangle.bottom - bottom_indent, 1, 30)
+                self.collision_detector_bottom_left.update(self.rectangle.left - self.speed - 1, self.rectangle.bottom - bottom_indent, self.speed + 1, 30)
             else:
                 self.collision_detector_bottom_right.update(0,0,0,0)
                 self.collision_detector_bottom_left.update(0,0,0,0)
@@ -733,8 +735,8 @@ class Entity(object):
                 self.is_enough_space_right = False
                 continue
             # Check if there is enough space ABOVE
-            if obs.rectangle.colliderect(self.rectangle.left + 2, self.rectangle.bottom - self.target_height - abs(self.fall_speed) - 1,
-                                         self.rectangle.width - 4, self.target_height - abs(self.fall_speed)):
+            if obs.rectangle.colliderect(self.rectangle.left + 2, self.rectangle.bottom - self.target_height,
+                                         self.rectangle.width - 4, self.target_height):
             # if obs.rectangle.colliderect(self.rectangle.left + 2, self.rectangle.top - abs(self.fall_speed) - 4,
             #                              self.rectangle.width - 4, abs(self.fall_speed) + 4):
                 self.is_enough_space_above = False

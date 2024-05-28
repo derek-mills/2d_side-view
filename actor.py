@@ -35,33 +35,13 @@ class Actor(Entity):
         return self.__state
 
     def set_state(self, new_state):
-        # print(f'[actor.set_state] new state: {new_state}')
+        print(f'[actor.set_state] new state: {new_state}')
         self.__state = new_state
 
     def process(self, time_passed):
         self.state_machine()
         super().process(time_passed)
-        self.reset_self_flags()
-
-    # def set_rect_height(self, height):
-    #     floor = self.rectangle.bottom
-    #     self.rectangle.height = height
-    #     self.rectangle.bottom = floor
-    #
-    # def set_rect_width(self, width):
-    #     floor = self.rectangle.bottom
-    #     center = self.rectangle.centerx
-    #     right = self.rectangle.right
-    #     left = self.rectangle.left
-    #     self.rectangle.width = width
-    #     if self.speed > 0:
-    #         if self.look == 1:
-    #             self.rectangle.left = left
-    #         else:
-    #             self.rectangle.right = right
-    #     else:
-    #         self.rectangle.centerx = center
-    #     self.rectangle.bottom = floor
+        # self.reset_self_flags()
 
     def set_action(self, new_action):
         # print(f'[actor set action] Setting new action: {new_action}')
@@ -80,17 +60,18 @@ class Actor(Entity):
                     self.set_state('run right')
                 else:
                     self.set_state('turn right')
-            elif self.__state == 'slide rise':
-                self.look = 1
-                self.__state = 'crawl right'
+            elif self.__state == 'prone':
+                self.set_state('crawl prone right')
             elif self.__state == 'run left':
-                # self.set_state('turn left')
                 self.set_action('right action cancel')
         elif new_action == 'right action cancel':
             if self.__state == 'crawl right':
                 self.set_state('crouch')
             elif self.__state == 'run right':
                 self.set_state('stand still')
+            elif self.__state == 'crawl prone right':
+            # elif self.__state in ('crawl prone left', 'crawl prone right'):
+                self.set_state('prone')
 
         # LEFT actions
         elif new_action == 'left action':
@@ -104,9 +85,10 @@ class Actor(Entity):
                     self.set_state('run left')
                 else:
                     self.set_state('turn left')
-            elif self.__state == 'slide rise':
-                self.look = -1
-                self.__state = 'crawl left'
+            elif self.__state == 'prone':
+            # elif self.__state in ('prone', 'crawl prone'):
+                # self.look = -1
+                self.set_state('crawl prone left')
             elif self.__state == 'run right':
                 # self.set_state('turn left')
                 self.set_action('left action cancel')
@@ -115,6 +97,10 @@ class Actor(Entity):
                 self.set_state('crouch')
             elif self.__state == 'run left':
                 self.set_state('stand still')
+            elif self.__state == 'crawl prone left':
+            # elif self.__state in ('crawl prone left', 'crawl prone right'):
+                self.set_state('prone')
+
 
         # DOWN actions
         elif new_action == 'down action':
@@ -129,7 +115,7 @@ class Actor(Entity):
             if self.__state == 'crouch':
                 if self.is_enough_space_above:
                     self.set_state('crouch rise')
-            elif 'crawl' in self.__state:
+            elif self.__state in ('crawl right', 'crawl left'):
                 if self.is_enough_space_above:
                     self.set_state('crouch rise')
 
@@ -138,9 +124,13 @@ class Actor(Entity):
             if self.__state in ('hanging on edge', 'hanging on ghost') and self.is_enough_space_above:
             # if self.__state == 'hanging on edge' and self.is_enough_space_above:
                 self.set_state('climb on')
+            # if self.__state in ('prone', 'crawl prone right', 'crawl prone left'):
+            #     self.set_state('crouch down')
 
         # JUMP
         elif new_action == 'jump action':
+            if self.__state in ('prone', 'crawl prone right', 'crawl prone left'):
+                return
             if self.__state == 'hanging on ghost':
                 self.set_state('release edge')
                 return
@@ -173,6 +163,8 @@ class Actor(Entity):
 
         # HOP BACK
         elif new_action == 'hop back':
+            if self.__state in ('prone', 'crawl prone'):
+                return
             if self.is_stand_on_ground:
                 self.set_state('hop back')
         elif new_action == 'hop back action cancel':
@@ -198,9 +190,13 @@ class Actor(Entity):
             self.is_crouch = False
             self.speed = 0
             self.set_state('stand still')
-            self.check_space_around()
-            if not self.is_enough_space_above:
-                self.set_state('crouch down')
+            self.state_machine()
+            # self.set_new_desired_height(self.rectangle_height_default, 5)
+            # self.check_space_around()
+            # if not self.is_enough_space_above:
+            #     self.set_state('crouch down')
+            # else:
+            #     self.set_state('stand still')
         # elif self.__state == 'crawl stop':
         elif self.__state == 'crawl right':
             # self.look = 1
@@ -276,20 +272,47 @@ class Actor(Entity):
             if self.speed == 0:
                 self.set_state('slide rise')
         elif self.__state == 'slide rise':                      # RISING AFTER SLIDE IS OVER
-            self.check_space_around()
             self.ignore_user_input = False
+            self.set_new_desired_height(self.rectangle_height_sit, 5)
+            self.check_space_around()
             if self.is_enough_space_above:
-                self.ignore_user_input = False
-                self.set_new_desired_height(self.rectangle_height_sit, 5)
+                # self.ignore_user_input = False
+                # self.set_new_desired_height(self.rectangle_height_sit, 5)
                 self.set_new_desired_width(self.rectangle_width_sit,10)
-                # self.set_rect_width(self.rectangle_width_sit)
-                # self.set_rect_height(self.rectangle_height_sit)
                 self.set_state('crouch')
             else:
-                self.set_state('crouch')
+                self.set_new_desired_height(self.rectangle_height_slide, 0)
+                # self.check_space_around()
+                self.set_state('prone')
+            #     self.set_state('crouch')
             #     self.speed = self.max_speed // 3
                 # if self.is_enough_space_above:
                 #     self.set_state('crouch down')
+        elif self.__state == 'crawl prone left':
+            self.speed = self.max_speed // 3
+            self.look = -1
+            self.heading[0] = -1
+            # print('sdsdsdsdsdsds')
+            # self.set_new_desired_height(self.rectangle_height_slide, 0)
+            # self.check_space_around()
+        elif self.__state == 'crawl prone right':
+            self.speed = self.max_speed // 3
+            self.look = 1
+            self.heading[0] = 1
+            # print('sdsdsdsdsdsds')
+            # self.set_new_desired_height(self.rectangle_height_slide, 0)
+            # self.check_space_around()
+        elif self.__state == 'prone':
+            self.speed = 0
+            self.heading[0] = 0
+            self.set_new_desired_height(self.rectangle_height_sit, 0)
+            self.check_space_around()
+            if self.is_enough_space_above:
+                self.set_state('crouch down')
+            else:
+                self.set_new_desired_height(self.rectangle_height_slide, 0)
+            # self.set_new_desired_height(self.rectangle_height_slide, 0)
+
         elif self.__state == 'stand still':                     # STANDING STILL
             self.heading[0] = 0
             if self.rectangle.height != self.rectangle_height_default:
@@ -297,6 +320,7 @@ class Actor(Entity):
                 self.check_space_around()
                 if not self.is_enough_space_above:
                     self.set_state('crouch down')
+                    self.state_machine()
                     return
             if self.rectangle.width != self.rectangle_width_default:
                 self.set_new_desired_width(self.rectangle_width_default,5)

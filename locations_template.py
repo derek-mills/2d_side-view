@@ -59,17 +59,18 @@ locations = {
                 'platforms': (
 
                 ),
+                
                 'actions': {
                     0: {
-                        0: (('move', (350, 250)), ('move', 'start'), ('wait', 2), ('repeat', 0)),
+                        0: (('move', (300,450)), ('move', 'start'), ('wait', 2), ('repeat', 0)),
                     },
                     
-		    14: {		
-                        0: (('move', (150, 450)), ('move', 'start'), ('wait', 2), ('repeat', 0)),
+		    13: {		
+                        0: (('move', (1000,600)), ('move', 'start'), ('wait', 2), ('repeat', 0)),
                         },
                         
-		    16: {
-		        0: (('move', (550, 100)), ('move', 'start'), ('wait', 2), ('repeat', 0)),
+		    4: {
+		        0: (('move', (1100,450)), ('move', 'start'), ('wait', 2), ('repeat', 0)),
 		    },
 
                 },
@@ -77,10 +78,10 @@ locations = {
                     0: {
                         'speed': 0.1,
                     },
-                    16: {
+                    13: {
                         'speed': 0.1,
                     },
-                    14: {
+                    4: {
                         'speed': 0.1,
                     },
 

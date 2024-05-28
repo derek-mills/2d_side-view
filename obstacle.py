@@ -196,7 +196,7 @@ class Obstacle(Entity):
             return
         if self.actions[self.actions_set_number][self.current_action][0] == 'repeat':
             if self.actions[self.actions_set_number][self.current_action][1] == 0:
-                print('return to first action')
+                # print('return to first action')
                 self.current_action = 0
                 # return
             else:
