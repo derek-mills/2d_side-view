@@ -61,14 +61,29 @@ locations = {
                 ),
                 'actions': {
                     0: {
-                        0: (('move', (100, 100)), ('move', 'start'), ('wait', 100), ('repeat', 0)),
-                        1: (('move', (1000, 1000)), ('move', 'start'), ('wait', 100), ('repeat', 0)),
+                        0: (('move', (350, 250)), ('move', 'start'), ('wait', 2), ('repeat', 0)),
                     },
+                    
+		    14: {		
+                        0: (('move', (150, 450)), ('move', 'start'), ('wait', 2), ('repeat', 0)),
+                        },
+                        
+		    16: {
+		        0: (('move', (550, 100)), ('move', 'start'), ('wait', 2), ('repeat', 0)),
+		    },
+
                 },
                 'settings': {
                     0: {
                         'speed': 0.1,
                     },
+                    16: {
+                        'speed': 0.1,
+                    },
+                    14: {
+                        'speed': 0.1,
+                    },
+
                 }
             },
             'items': {

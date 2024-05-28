@@ -165,7 +165,8 @@ class Actor(Entity):
             # elif self.__state == 'hanging on edge':
             #     self.set_state('release edge')
             else:
-                self.set_state('jump')
+                if self.is_enough_space_above:
+                    self.set_state('jump')
         elif new_action == 'jump action cancel':
             if self.just_got_jumped:
                 self.set_state('jump cancel')
