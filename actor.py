@@ -19,8 +19,8 @@ class Actor(Entity):
         self.target_width = self.rectangle.w
         self.rectangle_height_default = self.rectangle.height
         self.rectangle_width_default = self.rectangle.width
-        self.rectangle_height_sit = self.rectangle.height * 0.6
-        self.rectangle_width_sit = self.rectangle.width * 1.4
+        self.rectangle_height_sit = self.rectangle.height * 0.66
+        self.rectangle_width_sit = self.rectangle.width * 1.34
         self.rectangle_height_slide = self.rectangle.width
         self.rectangle_width_slide = self.rectangle.height
         # self.rectangle_height_slide = self.rectangle.height // 3

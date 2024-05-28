@@ -8,9 +8,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locations_template.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations_template.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obstacle.py" beforeDir="false" afterPath="$PROJECT_DIR$/obstacle.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,13 +106,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00041" summary="Added level editor">
-      <created>1716191760033</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1716191760033</updated>
     </task>
     <task id="LOCAL-00042" summary="Level editor can save and load files with obstacles data, so as the main program unit.">
       <created>1716195829121</created>
@@ -453,7 +443,14 @@
       <option name="project" value="LOCAL" />
       <updated>1716875801021</updated>
     </task>
-    <option name="localTasksCounter" value="90" />
+    <task id="LOCAL-00090" summary="Fixed prone crawling under the low obstacles.">
+      <created>1716883370657</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1716883370657</updated>
+    </task>
+    <option name="localTasksCounter" value="91" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -468,7 +465,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Some tiny changes" />
     <MESSAGE value="Collisions improvement" />
     <MESSAGE value="Try to fix broken hanging ability" />
     <MESSAGE value="Slightly changed jump event handling." />
@@ -493,6 +489,7 @@
     <MESSAGE value="Bottom collision detection improved." />
     <MESSAGE value="Just save." />
     <MESSAGE value="Improved collision detect while hanging the edge." />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved collision detect while hanging the edge." />
+    <MESSAGE value="Fixed prone crawling under the low obstacles." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed prone crawling under the low obstacles." />
   </component>
 </project>
