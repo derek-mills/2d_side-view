@@ -91,6 +91,7 @@ class Entity(object):
         self.is_enough_space_below = False  # Флаг для определения возможности 'спрыгивания' со специальных платформ.
         self.is_enough_space_for_step = True  # Флаг для определения возможности сделать следующий шаг по горизонтальной платформе;
         #                                         не предусматривает отсутствие препятствия сбоку.
+        self.is_enough_height = False  # Флаг для установления достаточного пространства над объектом, чтобы выпрямиться на нужную высоту.
         self.is_enough_space_right = True
         self.is_enough_space_left = True
 
@@ -716,6 +717,7 @@ class Entity(object):
         self.is_enough_space_right = True
         self.is_enough_space_below = True
         self.is_enough_space_above = True
+        self.is_enough_height = True
 
         # for obs in self.obstacles_around:
         for key in self.obstacles_around.keys():
@@ -734,11 +736,19 @@ class Entity(object):
                                          # self.rectangle.width + self.speed + 2, self.rectangle.height - 35):
                 self.is_enough_space_right = False
                 continue
-            # Check if there is enough space ABOVE
-            # if obs.rectangle.colliderect(self.rectangle.left + 2, self.rectangle.bottom - self.target_height,
-            #                              self.rectangle.width - 4, self.target_height):
-            if obs.rectangle.colliderect(self.rectangle.left + 2, self.rectangle.top - abs(self.fall_speed) - 2,
-                                         self.rectangle.width - 4, abs(self.fall_speed) + 2):
+            # Check if there is enough space to raise:
+            if obs.rectangle.colliderect(self.rectangle.left + 2, self.rectangle.bottom - self.target_height,
+                                         self.rectangle.width - 4, self.target_height):
+            # if obs.rectangle.colliderect(self.rectangle.left + 2, self.rectangle.top - abs(self.fall_speed) - 1,
+            #                              self.rectangle.width - 4, abs(self.fall_speed) + 1):
+                self.is_enough_height = False
+                continue
+
+            # Check if there is enough space ABOVE to perform a jump, for example.
+            # if obs.rectangle.colliderect(self.rectangle.left + 2, self.rectangle.bottom - self.target_height - abs(self.fall_speed) - 4,
+            #                              self.rectangle.width - 4, abs(self.fall_speed)):
+            if obs.rectangle.colliderect(self.rectangle.left + 2, self.rectangle.top - abs(self.fall_speed) - 1,
+                                         self.rectangle.width - 4, abs(self.fall_speed) + 1):
                 self.is_enough_space_above = False
                 continue
             # Check if there is enough space BELOW

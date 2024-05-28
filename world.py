@@ -459,6 +459,7 @@ class World(object):
             (' IGNORES INPUT: ' + str(self.actors[self.location][0].ignore_user_input), WHITE),
             (' __STATE: ' + str(self.actors[self.location][0].get_state()), CYAN),
 
+            ('HEIGHT SPACE: ' + str(self.actors[self.location][0].is_enough_height), GREEN),
             (' ABOVE SPACE: ' + str(self.actors[self.location][0].is_enough_space_above), GREEN),
             (' BELOW SPACE: ' + str(self.actors[self.location][0].is_enough_space_below), GREEN),
             (' RIGHT SPACE: ' + str(self.actors[self.location][0].is_enough_space_right), GREEN),
