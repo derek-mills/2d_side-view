@@ -318,45 +318,6 @@ class Entity(object):
             elif obs.rectangle.centerx > self.rectangle.centerx:
                 sorted_obs['right'].append(obs.id)
 
-        # # -----------------------------------
-        # # Check bottom
-        # bottom_already_changed = False
-        # for key in sorted_obs['below']:
-        #     obs = self.obstacles_around[key]
-        #     obs.is_being_collided_now = False
-        #     # if obs.is_ghost_platform:
-        #     if obs.rectangle.colliderect(self.collision_detector_bottom):
-        #         if bottom_already_changed and obs.rectangle.top > self.rectangle.bottom:
-        #             # Current obstacle lower than the actor's rectangle after at least one bottom collision has been registered.
-        #             # Skip it.
-        #             continue
-        #         obs.is_being_collided_now = True
-        #         # if self.fall_speed >= 0:
-        #         self.rectangle.bottom = obs.rectangle.top
-        #         self.is_stand_on_ground = True
-        #         self.influenced_by_obstacle = obs.id
-        #         self.jump_attempts_counter = self.max_jump_attempts
-        #         bottom_already_changed = True
-        #         # break
-        #             # continue
-        #
-        # # -----------------------------------
-        # # Check top
-        # for key in sorted_obs['above']:
-        #     obs = self.obstacles_around[key]
-        #     obs.is_being_collided_now = False
-        #     if obs.is_ghost_platform:
-        #         continue
-        #     if obs.rectangle.colliderect(self.collision_detector_top):
-        #         obs.is_being_collided_now = True
-        #         if self.fall_speed < 0:
-        #             self.potential_falling_distance = obs.rectangle.bottom - self.collision_detector_top.bottom
-        #             self.is_stand_on_ground = False
-        #             self.fall_speed = 0
-        #             # continue
-
-        #-----------------------------------
-        # Check RIGHT
         for key in sorted_obs['right']:
             obs = self.obstacles_around[key]
             obs.is_being_collided_now = False
@@ -370,8 +331,15 @@ class Entity(object):
                     # self.speed = 0
                     # self.influenced_by_obstacle = None
                     # self.is_edge_grabbed = False
+                    self.potential_moving_distance = obs.rectangle.left - self.collision_detector_right.left
+                    # self.rectangle.right = obs.rectangle.left
+                    self.is_enough_space_right = False
+                    self.heading[0] = 0
+                    self.speed = 0
                     if self.get_state() in ('hanging on edge', 'hanging on ghost'):
                         self.set_state('release edge')
+                    if key in sorted_obs['above']:
+                        sorted_obs['above'].remove(key)
                     continue
                 # Grab over the top of an obstacle.
                 # if not obs.is_gravity_affected:
@@ -433,9 +401,17 @@ class Entity(object):
                 # Check if obstacle has crawled from behind and pushed actor to his back:
                 if self.look == 1:  # Obstacle is on the left, but actor looks to the right.
                     self.rectangle.left = obs.rectangle.right + 2  # Push the actor
+                    self.potential_moving_distance = self.collision_detector_left.right - obs.rectangle.right
+                    # self.rectangle.left = obs.rectangle.right
+                    self.is_enough_space_left = False
+                    self.heading[0] = 0
+                    self.speed = 0
                     # self.speed = 0
                     if self.get_state() in ('hanging on edge', 'hanging on ghost'):
                         self.set_state('release edge')
+                    if key in sorted_obs['above']:
+                        sorted_obs['above'].remove(key)
+
                     continue
 
                 # Grab over the top of an obstacle.

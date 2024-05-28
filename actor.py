@@ -147,7 +147,7 @@ class Actor(Entity):
                     if self.obstacles_around[self.influenced_by_obstacle].is_ghost_platform:
                         self.set_state('hop down from ghost')
                         return
-                self.set_new_desired_height(self.rectangle_height_slide)
+                self.set_new_desired_height(self.rectangle_height_slide, 0)
                 self.check_space_around()
                 if (self.look == 1 and self.is_enough_space_right) or\
                         (self.look == -1 and self.is_enough_space_left):
@@ -165,9 +165,9 @@ class Actor(Entity):
 
         # HOP BACK
         elif new_action == 'hop back':
-            if self.__state in ('prone', 'crawl prone'):
+            if self.__state not in ('run left', 'run right', 'stand still', ):
                 return
-            if self.is_stand_on_ground:
+            if self.is_stand_on_ground and self.is_enough_space_above:
                 self.set_state('hop back')
         elif new_action == 'hop back action cancel':
             # self.set_state('jump cancel')
@@ -228,7 +228,7 @@ class Actor(Entity):
             self.set_state('stand still')
         elif self.__state == 'slide':                           # SLIDE PREPARING
             self.speed = self.max_speed * 2.5
-            self.set_new_desired_height(self.rectangle_height_slide, 10)
+            self.set_new_desired_height(self.rectangle_height_slide, 0)
             self.set_new_desired_width(self.rectangle_width_slide, 6)
             # self.set_rect_width(self.rectangle_width_slide)
             # self.set_rect_height(self.rectangle_height_slide)
