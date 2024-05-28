@@ -430,10 +430,11 @@ class World(object):
         params = (
             ('SAVE: F2 | LOAD: F8 | WASD: MOVE CAMERA | + - : CHANGE SNAP MESH SCALE | ESC: QUIT', BLUE),
 
-            ('WORLD SIZE: ' + str(self.camera.max_offset_x) + ':' + str(self.camera.max_offset_y), BLACK),
-            ('SNAP MESH SCALE: ' + str(self.snap_mesh_size), BLACK),
-            ('OFFSET GLOBAL: ' + str(self.global_offset_xy), BLACK),
+            ('WORLD SIZE         : ' + str(self.camera.max_offset_x) + ':' + str(self.camera.max_offset_y), BLACK),
+            ('SNAP MESH SCALE    : ' + str(self.snap_mesh_size), BLACK),
+            ('OFFSET GLOBAL      : ' + str(self.global_offset_xy), BLACK),
             ('CAMERA INNER OFFSET: ' + str(self.camera.offset_x) + ' ' + str(self.camera.offset_y), BLACK),
+            ('MOUSE XY           : ' + str(self.mouse_xy_snapped_to_mesh), WHITE),
         )
         for p in params:
             self.screen.blit(fonts.all_fonts[font_size].render(p[0], True, p[1], GRAY), (stats_x, stats_y + gap))
