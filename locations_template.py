@@ -20,6 +20,38 @@ locations = {
                 # }
 
             },
+            'demolishers': {
+                # HERE WILL BE A GEOMETRY DESCRIPTION OF EVERY PLATFORM AFTER level_editor.py USAGE:
+                'dem rectangles': (
+
+                ),            	
+                'actions': {
+                    0: {
+                        0: (('move', (300,450)), ('move', 'start'), ('wait', 2), ('repeat', 0)),
+                    },
+                    
+		    13: {		
+                        0: (('move', (1000,600)), ('move', 'start'), ('wait', 2), ('repeat', 0)),
+                        },
+                        
+		    4: {
+		        0: (('move', (1100,450)), ('move', 'start'), ('wait', 2), ('repeat', 0)),
+		    },
+
+                },
+                'settings': {
+                    0: {
+                        'speed': 0.1,
+                    },
+                    13: {
+                        'speed': 0.1,
+                    },
+                    4: {
+                        'speed': 0.1,
+                    },
+
+                }
+            },
             'obstacles': {
                 # 'void': {
                 #     'already added': False,
@@ -56,7 +88,7 @@ locations = {
 #, 'gravity affected'
 
                 # HERE WILL BE A GEOMETRY DESCRIPTION OF EVERY PLATFORM AFTER level_editor.py USAGE:
-                'platforms': (
+                'obs rectangles': (
 
                 ),
                 

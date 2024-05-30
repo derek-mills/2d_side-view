@@ -1,5 +1,6 @@
 from actor import *
 from obstacle import *
+from demolisher import *
 from constants import *
 import fonts
 import camera
@@ -14,6 +15,8 @@ class World(object):
         self.obstacles = dict()
         self.obstacle_id: int = 0
         self.active_obstacles = list()
+        self.demolishers = dict()
+        self.demolisher_id: int = 0
         self.actors = dict()
         self.actor_id: int = 0
         self.items = dict()
@@ -109,6 +112,27 @@ class World(object):
             self.obstacles[self.location] = dict()
         self.obstacles[self.location][entity.id] = entity
         self.obstacle_id += 1
+
+    def add_demolisher(self, description):
+        entity = Demolisher()
+        entity.id = self.demolisher_id
+        # entity.is_gravity_affected = True if 'gravity affected' in description else False
+        entity.rectangle.topleft = description[0]
+        entity.origin_xy = description[0]
+        entity.rectangle.width = description[1][0]
+        entity.rectangle.height = description[1][1]
+        # entity.is_ghost_platform = True if 'ghost' in description else False
+        entity.is_collideable = True if 'collideable' in description else False
+        if entity.id in self.locations[self.location]['demolishers']['actions'].keys():
+            entity.active = True
+            entity.actions = self.locations[self.location]['demolishers']['actions'][entity.id]
+            entity.max_speed = self.locations[self.location]['demolishers']['settings'][entity.id]['speed']
+            print(f'[add_demolisher] Added active demolisher: {entity.actions=}')
+        # Add an obstacle to the world storage:
+        if self.location not in self.demolishers.keys():
+            self.demolishers[self.location] = dict()
+        self.demolishers[self.location][entity.id] = entity
+        self.demolisher_id += 1
 
     def process(self, time_passed):
         self.time_passed = time_passed
@@ -279,8 +303,17 @@ class World(object):
         if self.location not in self.locations.keys():
             self.locations[self.location] = dict()
         self.locations[self.location] = locations[self.location]
-        for obs in self.locations[self.location]['obstacles']['platforms']:
+        for obs in self.locations[self.location]['obstacles']['rectangles']:
             self.add_obstacle(obs)
+        for dem in self.locations[self.location]['demolishers']['rectangles']:
+            self.add_demolisher(dem)
+            # if obs[2] in self.locations[self.location]['obstacles']['settings'].keys():
+            #     if 'demolisher' in self.locations[self.location]['obstacles']['settings'][obs[2]].keys():
+            #         self.add_demolisher(obs)
+            #     else:
+            #        self.add_obstacle(obs)
+            # else:
+            #     self.add_obstacle(obs)
 
         self.camera.setup(self.locations[self.location]['size'][0], self.locations[self.location]['size'][1])
 

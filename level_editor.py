@@ -7,6 +7,7 @@ try:
 except ModuleNotFoundError:
     pass
 from obstacle import *
+from demolisher import *
 import camera
 # from sound import *
 import fonts
@@ -40,6 +41,8 @@ class World(object):
         self.is_l_shift = False
         self.is_l_ctrl = False
         self.is_l_alt = False
+        self.is_left_bracket = False
+        self.is_right_bracket = False
         self.is_mouse_button_down = False
         self.is_left_mouse_button_down = False
         self.is_right_mouse_button_down = False
@@ -56,8 +59,13 @@ class World(object):
         self.camera_follows_mouse = True
         self.camera_scroll_speed = 4
 
+        self.object_types = ('obstacle', 'demolisher')
+        self.current_object_type = 0
+
         self.obstacles = dict()
         self.obstacle_id: int = 0
+        self.demolishers = dict()
+        self.demolishers_id: int = 0
         self.location = '01'
         self.screen = None
         self.camera = camera.Camera()
@@ -113,6 +121,10 @@ class World(object):
                 # if event.key == K_KP_MINUS:
                 #     self.snap_mesh_size -= 1
                 #     self.create_snap_mesh()
+                if event.key == K_RIGHTBRACKET:
+                    self.is_right_bracket = False
+                if event.key == K_LEFTBRACKET:
+                    self.is_left_bracket = False
                 if event.key == K_y:
                     self.is_y = False
                 if event.key == K_x:
@@ -157,6 +169,10 @@ class World(object):
                     else:
                         self.snap_mesh_size -= 1
                     self.create_snap_mesh()
+                if event.key == K_RIGHTBRACKET:
+                    self.is_right_bracket = True
+                if event.key == K_LEFTBRACKET:
+                    self.is_left_bracket = True
                 if event.key == K_SPACE:
                     self.is_spacebar = True
                 if event.key == K_F8:
@@ -288,6 +304,27 @@ class World(object):
         self.obstacles[self.location][entity.id] = entity
         self.obstacle_id += 1
 
+    def add_demolisher(self, description):
+        entity = Demolisher()
+        entity.id = self.demolishers_id
+        entity.is_gravity_affected = True if 'gravity affected' in description else False
+        entity.is_collideable = True if 'collideable' in description else False
+        entity.rectangle.topleft = description[0]
+        entity.rectangle.width = description[1][0]
+        entity.rectangle.height = description[1][1]
+        # entity.max_speed = 0.6
+        # entity.is_move_right = True if 'move right' in description else False
+        # entity.is_move_up = True if 'move up' in description else False
+        # entity.is_move_down = True if 'move down' in description else False
+        # entity.is_move_left = True if 'move left' in description else False
+        # entity.is_ghost_platform = True if 'ghost' in description else False
+
+        # Add an obstacle to the world storage:
+        if self.location not in self.demolishers.keys():
+            self.demolishers[self.location] = dict()
+        self.demolishers[self.location][entity.id] = entity
+        self.demolishers_id += 1
+
     def load(self):
         # Loading with pickle:
         # try:
@@ -333,11 +370,14 @@ class World(object):
         #             loc_found = True
 
         try:
-            for obs in locations[self.location]['obstacles']['platforms']:
+            for obs in locations[self.location]['obstacles']['obs rectangles']:
                 self.add_obstacle(obs)
+            for dem in locations[self.location]['demolishers']['dem rectangles']:
+                self.add_demolisher(dem)
             self.camera.setup(locations[self.location]['size'][0], locations[self.location]['size'][1])
         except NameError:
             self.obstacles[self.location] = dict()
+            self.demolishers[self.location] = dict()
             self.camera.setup(MAXX, MAXY)
         # self.obstacle_id = len(self.obstacles[self.location].keys()) + 1
 
@@ -348,37 +388,126 @@ class World(object):
 
         # Saving using JSON:
         # obs_geometry = list()
+
+        obs_rects = list()
+        for k in self.obstacles[self.location].keys():
+            obs = self.obstacles[self.location][k]
+            ghost = ', \'ghost\' ' if obs.is_ghost_platform else ''
+            # move_right = ', \'move right\' ' if obs.is_move_right else ''
+            # move_left = ', \'move left\' ' if obs.is_move_left else ''
+            collideable = ', \'collideable\' ' if obs.is_collideable else ''
+            actions = ', \'active\' ' if obs.actions else ''
+            gravity_affected = ', \'gravity affected\' ' if obs.is_gravity_affected else ''
+
+            # str(obs.rectangle.size) + ghost + move_right + move_left + \
+            total_strg = '                ' + \
+                         '(' + \
+                         str(obs.rectangle.topleft) + ', ' + \
+                         str(obs.rectangle.size) + ghost + \
+                         collideable + gravity_affected + actions + ', ' + str(k) + \
+                         '),  #' + str(k) + '\n'
+            obs_rects.append(total_strg)
+            # str(obs.rectangle.size) + ghost + move_right + move_left + collideable + gravity_affected + '),  #' + str(obs.id) + '\n'
+
+        dem_rects = list()
+        for k in self.demolishers[self.location].keys():
+            dem = self.demolishers[self.location][k]
+            ghost = ', \'ghost\' ' if dem.is_ghost_platform else ''
+            # move_right = ', \'move right\' ' if dem.is_move_right else ''
+            # move_left = ', \'move left\' ' if dem.is_move_left else ''
+            collideable = ', \'collideable\' ' if dem.is_collideable else ''
+            actions = ', \'active\' ' if dem.actions else ''
+            gravity_affected = ', \'gravity affected\' ' if dem.is_gravity_affected else ''
+
+            # str(dem.rectangle.size) + ghost + move_right + move_left + \
+            total_strg = '                ' + \
+                   '(' + \
+                   str(dem.rectangle.topleft) + ', ' + \
+                   str(dem.rectangle.size) + ghost + \
+                   collideable + gravity_affected + actions + ', ' + str(k) + \
+                   '),  #' + str(k) + '\n'
+            dem_rects.append(total_strg)
+                   # str(dem.rectangle.size) + ghost + move_right + move_left + collideable + gravity_affected + '),  #' + str(dem.id) + '\n'
+
+        # print(obs_rects)
+        # print(dem_rects)
+        # exit()
+        # ['                ((100, 950), (1550, 50), 0),  #0\n',
+        #  '                ((1300, 500), (300, 250), 1),  #1\n',
+        #  '                ((950, 350), (100, 150), 2),  #2\n',
+        #  '                ((650, 300), (200, 200), 3),  #3\n']
+
+        # ['                ((550, 750), (200, 200), 0),  #0\n']
+
+
         loc_found = False
         f_dest = open('locations.py', 'w')
         with open('locations_template.py', 'r') as f_source:
             for line in f_source:
                 f_dest.write(line)
                 if loc_found:
-                    if '\'platforms\':' in line:
-                        for k in self.obstacles[self.location].keys():
-                            obs = self.obstacles[self.location][k]
-                            ghost = ', \'ghost\' ' if obs.is_ghost_platform else ''
-                            # move_right = ', \'move right\' ' if obs.is_move_right else ''
-                            # move_left = ', \'move left\' ' if obs.is_move_left else ''
-                            collideable = ', \'collideable\' ' if obs.is_collideable else ''
-                            actions = ', \'active\' ' if obs.actions else ''
-                            gravity_affected = ', \'gravity affected\' ' if obs.is_gravity_affected else ''
+                    if '\'obs rectangles\':' in line:
+                        for obs_rect_line in obs_rects:
+                            f_dest.write(obs_rect_line)
+                    if '\'dem rectangles\':' in line:
+                        for dem_rect_line in dem_rects:
+                            f_dest.write(dem_rect_line)
+                        # print('obs found!!')
+                        # for k in self.obstacles[self.location].keys():
+                        #     obs = self.obstacles[self.location][k]
+                        #     ghost = ', \'ghost\' ' if obs.is_ghost_platform else ''
+                        #     # move_right = ', \'move right\' ' if obs.is_move_right else ''
+                        #     # move_left = ', \'move left\' ' if obs.is_move_left else ''
+                        #     collideable = ', \'collideable\' ' if obs.is_collideable else ''
+                        #     actions = ', \'active\' ' if obs.actions else ''
+                        #     gravity_affected = ', \'gravity affected\' ' if obs.is_gravity_affected else ''
+                        #
+                        #     # str(obs.rectangle.size) + ghost + move_right + move_left + \
+                        #     total_strg = '                ' + \
+                        #            '(' + \
+                        #            str(obs.rectangle.topleft) + ', ' + \
+                        #            str(obs.rectangle.size) + ghost + \
+                        #            collideable + gravity_affected + actions + ', ' + str(k) + \
+                        #            '),  #' + str(k) + '\n'
+                        #            # str(obs.rectangle.size) + ghost + move_right + move_left + collideable + gravity_affected + '),  #' + str(obs.id) + '\n'
 
-                            # str(obs.rectangle.size) + ghost + move_right + move_left + \
-                            total_strg = '                ' + \
-                                   '(' + \
-                                   str(obs.rectangle.topleft) + ', ' + \
-                                   str(obs.rectangle.size) + ghost + \
-                                   collideable + gravity_affected + actions + ', ' + str(k) + \
-                                   '),  #' + str(k) + '\n'
-                                   # str(obs.rectangle.size) + ghost + move_right + move_left + collideable + gravity_affected + '),  #' + str(obs.id) + '\n'
-                            f_dest.write(total_strg)
-                        loc_found = False
+                        # loc_found = False
                 if '\''+self.location+'\':' in line and not loc_found:
                     # print('Location found!')
                     loc_found = True
-
         f_dest.close()
+
+        # loc_found = False
+        # f_dest = open('locations.py', 'w')
+        # with open('locations_template.py', 'r') as f_source:
+        #     for line in f_source:
+        #         f_dest.write(line)
+        #         if loc_found:
+        #             if '\'dem rectangles\':' in line:
+        #                 for k in self.demolishers[self.location].keys():
+        #                     dem = self.demolishers[self.location][k]
+        #                     ghost = ', \'ghost\' ' if dem.is_ghost_platform else ''
+        #                     # move_right = ', \'move right\' ' if dem.is_move_right else ''
+        #                     # move_left = ', \'move left\' ' if dem.is_move_left else ''
+        #                     collideable = ', \'collideable\' ' if dem.is_collideable else ''
+        #                     actions = ', \'active\' ' if dem.actions else ''
+        #                     gravity_affected = ', \'gravity affected\' ' if dem.is_gravity_affected else ''
+        #
+        #                     # str(dem.rectangle.size) + ghost + move_right + move_left + \
+        #                     total_strg = '                ' + \
+        #                            '(' + \
+        #                            str(dem.rectangle.topleft) + ', ' + \
+        #                            str(dem.rectangle.size) + ghost + \
+        #                            collideable + gravity_affected + actions + ', ' + str(k) + \
+        #                            '),  #' + str(k) + '\n'
+        #                            # str(dem.rectangle.size) + ghost + move_right + move_left + collideable + gravity_affected + '),  #' + str(dem.id) + '\n'
+        #                     f_dest.write(total_strg)
+        #                 loc_found = False
+        #         if '\''+self.location+'\':' in line and not loc_found:
+        #             # print('Location found!')
+        #             loc_found = True
+        # f_dest.close()
+
         self.allow_import_locations = True
         # exit()
         # with open('locations_' + self.location + '.dat', 'w') as f:
@@ -408,6 +537,17 @@ class World(object):
             s = fonts.font15.render(str(obs.id), True, GREEN)
             self.screen.blit(s, (obs.rectangle.x - self.camera.offset_x + 2, obs.rectangle.y - self.camera.offset_y + 2))
 
+    def render_demolishers(self):
+        if self.location not in self.demolishers.keys():
+            return
+        for key in self.demolishers[self.location].keys():
+            dem = self.demolishers[self.location][key]
+            pygame.draw.rect(self.screen, RED, (dem.rectangle.x - self.camera.offset_x, dem.rectangle.y - self.camera.offset_y,
+                                                  dem.rectangle.width, dem.rectangle.height))
+            s = fonts.font15.render(str(dem.id), True, WHITE)
+            self.screen.blit(s, (dem.rectangle.x - self.camera.offset_x + 2, dem.rectangle.y - self.camera.offset_y + 2))
+
+
     def render_menu(self):
         ...
         # if self.menu:
@@ -428,8 +568,9 @@ class World(object):
         # m_hover_actor = 'None' if not self.mouse_hovers_actor else self.wandering_actors[self.mouse_hovers_actor].name + ' ' + str(self.wandering_actors[self.mouse_hovers_actor].id)
         # m_hover_cell = 'None' if self.point_mouse_cursor_shows is None else str(self.locations[self.location]['points'][self.point_mouse_cursor_shows]['rect'].center)
         params = (
-            ('SAVE: F2 | LOAD: F8 | WASD: MOVE CAMERA | + - : CHANGE SNAP MESH SCALE | ESC: QUIT', BLUE),
+            ('SAVE: F2 | LOAD: F8 | WASD: MOVE CAMERA | + - : CHANGE SNAP MESH SCALE | [ ] : change inserting object type | ESC: QUIT', BLUE),
 
+            ('OBJECT TYPE        : ' + str(self.object_types[self.current_object_type]), BLACK),
             ('WORLD SIZE         : ' + str(self.camera.max_offset_x) + ':' + str(self.camera.max_offset_y), BLACK),
             ('SNAP MESH SCALE    : ' + str(self.snap_mesh_size), BLACK),
             ('OFFSET GLOBAL      : ' + str(self.global_offset_xy), BLACK),
@@ -497,6 +638,16 @@ class World(object):
             #     # self.menu_bar(menu_items, self.mouse_xy)
             #     self.obstacles[self.location][obs_id].is_ghost_platform = input('Is ghost? (True/False):')
 
+        if self.is_right_bracket:
+            self.is_right_bracket = False
+            self.current_object_type += 1
+            if self.current_object_type == len(self.object_types):
+                self.current_object_type = 0
+        if self.is_left_bracket:
+            self.is_left_bracket = False
+            self.current_object_type -= 1
+            if self.current_object_type < 0:
+                self.current_object_type = len(self.object_types) - 1
 
         if self.is_left_mouse_button_down:
             if self.new_obs_rect_started:
@@ -529,7 +680,10 @@ class World(object):
 
                 if self.new_obs_rect.width != 0 and self.new_obs_rect.height != 0:
                     description = (self.new_obs_rect.topleft, self.new_obs_rect.size)
-                    self.add_obstacle(description)
+                    if self.object_types[self.current_object_type] == 'obstacle':
+                        self.add_obstacle(description)
+                    elif self.object_types[self.current_object_type] == 'demolisher':
+                        self.add_demolisher(description)
                 self.new_obs_rect_started = False
                 self.new_obs_rect_start_xy = [0, 0]
                 self.new_obs_rect.update(0,0,0,0)
@@ -561,6 +715,7 @@ class World(object):
         # Rendering:
         self.render_background()
         self.render_obstacles()
+        self.render_demolishers()
         self.render_new_obs()
         self.render_debug_info()
         # self.render_menu()

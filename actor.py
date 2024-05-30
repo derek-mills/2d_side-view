@@ -226,8 +226,8 @@ class Actor(Entity):
         elif self.__state == 'jump cancel':                     # CANCEL JUMP
             self.just_got_jumped = False
             self.is_abort_jump = True
-            self.set_new_desired_height(self.rectangle_height_default, 1)
-            self.set_new_desired_width(self.rectangle_width_default, 1)
+            self.set_new_desired_height(self.rectangle_height_default, 5)
+            self.set_new_desired_width(self.rectangle_width_default, 5)
             self.set_state('stand still')
         elif self.__state == 'slide':                           # SLIDE PREPARING
             self.speed = self.max_speed * 2.5
@@ -243,8 +243,8 @@ class Actor(Entity):
             else:
                 self.speed = 0
                 # self.speed = self.max_speed // 2
-                self.set_new_desired_height(self.rectangle_height_sit, 3)
-                self.set_new_desired_width(self.rectangle_width_sit, 2)
+                self.set_new_desired_height(self.rectangle_height_sit, 5)
+                self.set_new_desired_width(self.rectangle_width_sit, 4)
                 # self.set_rect_width(self.rectangle_width_sit)
                 # self.set_rect_height(self.rectangle_height_sit)
                 self.set_state('crouch')
@@ -323,14 +323,14 @@ class Actor(Entity):
         elif self.__state == 'stand still':                     # STANDING STILL
             self.heading[0] = 0
             if self.rectangle.height != self.rectangle_height_default:
-                self.set_new_desired_height(self.rectangle_height_default,5)
+                self.set_new_desired_height(self.rectangle_height_default,7)
                 self.check_space_around()
                 if not self.is_enough_height:
                     self.set_state('crouch down')
                     self.state_machine()
                     return
             if self.rectangle.width != self.rectangle_width_default:
-                self.set_new_desired_width(self.rectangle_width_default,5)
+                self.set_new_desired_width(self.rectangle_width_default,7)
         elif self.__state == 'turn left':                       # TURN LEFT
             if self.look == 1 and self.speed > 0:  # Actor looks to the other side and runs.
                 # Switch off heading to force actor start reducing his speed and slow it down to zero.
@@ -434,7 +434,7 @@ class Actor(Entity):
                 self.set_state('stand still')
         elif self.__state == 'climb on':                        # START CLIMBING ON AN OBSTACLE
             self.ignore_user_input = True
-            self.set_new_desired_height(self.rectangle_height_sit // 2, 4)
+            self.set_new_desired_height(self.rectangle_height_sit // 2, 6)
             self.set_state('climb on raise')
         elif self.__state == 'climb on raise':                        # START CLIMBING ON AN OBSTACLE
             if self.rectangle.height <= self.rectangle_height_sit // 2:
