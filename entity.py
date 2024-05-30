@@ -266,10 +266,9 @@ class Entity(object):
     def state_machine(self):
         ...
 
-    def colliders_calc(self):
+    def colliders_calc_backup(self):
         bottom_indent = 35 if self.is_stand_on_ground else 0
         if self.look * self.movement_direction_inverter == 1:
-
             self.collision_detector_right.update(self.rectangle.right, self.rectangle.top, self.speed + 1, self.rectangle.height - bottom_indent)
             self.collision_detector_left.update(self.rectangle.left - 1, self.rectangle.top, 1, self.rectangle.height - bottom_indent)
             if self.speed > 0 and bottom_indent > 0:
@@ -298,6 +297,40 @@ class Entity(object):
             self.collision_detector_bottom.update(self.rectangle.left +2, self.rectangle.bottom, self.rectangle.width-4, self.fall_speed + 2)
             # self.collision_detector_bottom.update(self.rectangle.left + 2, self.rectangle.bottom - 2, self.rectangle.width - 4, self.fall_speed + 2)
 
+    def colliders_calc(self):
+        bottom_indent = 35 #if self.is_stand_on_ground else 0
+        if self.look * self.movement_direction_inverter == 1:
+            # if self.speed > 0:
+            self.collision_detector_right.update(self.rectangle.right, self.rectangle.top, self.speed + 1, self.rectangle.height - bottom_indent)
+            self.collision_detector_left.update(self.rectangle.left - 1, self.rectangle.top, 1, self.rectangle.height)
+            self.collision_detector_bottom_right.update(self.rectangle.right, self.rectangle.bottom - bottom_indent, self.speed + 1, 30)
+            self.collision_detector_bottom_left.update(0, 0, 0, 0)
+
+                # self.collision_detector_bottom_left.update(self.rectangle.left - 1, self.rectangle.bottom - bottom_indent, 1, 30)
+            # else:
+            #     self.collision_detector_bottom_right.update(0,0,0,0)
+
+
+        elif self.look * self.movement_direction_inverter == -1:
+            self.collision_detector_right.update(self.rectangle.right, self.rectangle.top, 1, self.rectangle.height)
+            self.collision_detector_left.update(self.rectangle.left - self.speed - 1, self.rectangle.top, self.speed + 1, self.rectangle.height - bottom_indent)
+            self.collision_detector_bottom_right.update(0,0,0,0)
+            self.collision_detector_bottom_left.update(self.rectangle.left - self.speed - 1, self.rectangle.bottom - bottom_indent, self.speed + 1, 30)
+            # else:
+            #     self.collision_detector_bottom_right.update(0,0,0,0)
+            #     self.collision_detector_bottom_left.update(0,0,0,0)
+
+        # TOP and BOTTOM colliders:
+        if self.fall_speed < 0:
+            self.collision_detector_top.update(self.rectangle.left + 2, self.rectangle.top - abs(self.fall_speed) - 4, self.rectangle.width - 4, abs(self.fall_speed))
+            self.collision_detector_bottom.update(0,0,0,0)
+            # self.collision_detector_bottom.update(self.rectangle.left + 2, self.rectangle.bottom, self.rectangle.width - 4, 1)
+        elif self.fall_speed >= 0:
+            # self.collision_detector_top.update(0,0,0,0)
+            self.collision_detector_top.update(self.rectangle.left + 2, self.rectangle.top - 1, self.rectangle.width - 4, 1)
+            self.collision_detector_bottom.update(self.rectangle.left +2, self.rectangle.bottom, self.rectangle.width-4, self.fall_speed + 2)
+
+
     def detect_collisions(self):
         # self.influenced_by_obstacle = None
         sorted_obs = {
@@ -312,6 +345,7 @@ class Entity(object):
         self.collided_bottom =False
         # self.ignore_user_input = False
         self.is_stand_on_ground = False
+        bottom_already_changed = False
 
         for key in self.obstacles_around.keys():
             obs = self.obstacles_around[key]
@@ -398,6 +432,7 @@ class Entity(object):
             # Check bottom-right
             if obs.rectangle.colliderect(self.collision_detector_bottom_right):
                 obs.is_being_collided_now = True
+                self.collided_right = True
                 # Check if obstacle has crawled from behind and pushed actor to his back:
                 if self.look == -1:  # Obstacle is on the right, but actor looks to the left.
                     self.rectangle.right = obs.rectangle.left - 2  # Push the actor
@@ -410,11 +445,13 @@ class Entity(object):
                         self.rectangle.right = obs.rectangle.left - 2  # Drop down the actor
                         self.set_state('release edge')
                     else:
+                        # print('ksdjhdakjdhsakjdh')
+                        bottom_already_changed = True
                         self.rectangle.bottom = obs.rectangle.top
                         self.is_stand_on_ground = True
                         self.influenced_by_obstacle = obs.id
                         self.jump_attempts_counter = self.max_jump_attempts
-                        continue
+                        # continue
         #-----------------------------------
         # Check LEFT
         for key in sorted_obs['left']:
@@ -498,7 +535,6 @@ class Entity(object):
 
         # -----------------------------------
         # Check bottom
-        bottom_already_changed = False
         for key in sorted_obs['below']:
             obs = self.obstacles_around[key]
             obs.is_being_collided_now = False
