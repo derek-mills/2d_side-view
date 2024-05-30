@@ -11,6 +11,7 @@ class Entity(object):
         self.location: str = ''
         self.__state: str = ''
         self.idle_counter: int = 0
+        self.ignore_user_input: bool = False
 
         # GEOMETRY
         self.origin_xy: tuple = (0, 0)
@@ -298,7 +299,6 @@ class Entity(object):
             # self.collision_detector_bottom.update(self.rectangle.left + 2, self.rectangle.bottom - 2, self.rectangle.width - 4, self.fall_speed + 2)
 
     def detect_collisions(self):
-        self.is_stand_on_ground = False
         # self.influenced_by_obstacle = None
         sorted_obs = {
             'above': list(),
@@ -306,18 +306,36 @@ class Entity(object):
             'right': list(),
             'left': list(),
         }
-        # for obs in self.obstacles_around:
+        self.collided_top = False
+        self.collided_left = False
+        self.collided_right = False
+        self.collided_bottom =False
+        # self.ignore_user_input = False
+        self.is_stand_on_ground = False
+
         for key in self.obstacles_around.keys():
             obs = self.obstacles_around[key]
-            if obs.rectangle.centery < self.rectangle.centery:
+            if obs.rectangle.bottom <= self.rectangle.centery:
                 sorted_obs['above'].append(obs.id)
-            elif obs.rectangle.centery > self.rectangle.centery:
+            elif obs.rectangle.top >= self.rectangle.centery:
                 sorted_obs['below'].append(obs.id)
-            if obs.rectangle.centerx < self.rectangle.centerx:
+            if obs.rectangle.right <= self.rectangle.centerx:
                 sorted_obs['left'].append(obs.id)
-            elif obs.rectangle.centerx > self.rectangle.centerx:
+            elif obs.rectangle.left >= self.rectangle.centerx:
                 sorted_obs['right'].append(obs.id)
+        # for key in self.obstacles_around.keys():
+        #     obs = self.obstacles_around[key]
+        #     if obs.rectangle.centery < self.rectangle.centery:
+        #         sorted_obs['above'].append(obs.id)
+        #     elif obs.rectangle.centery > self.rectangle.centery:
+        #         sorted_obs['below'].append(obs.id)
+        #     if obs.rectangle.centerx < self.rectangle.centerx:
+        #         sorted_obs['left'].append(obs.id)
+        #     elif obs.rectangle.centerx > self.rectangle.centerx:
+        #         sorted_obs['right'].append(obs.id)
 
+        #-----------------------------------
+        # Check RIGHT
         for key in sorted_obs['right']:
             obs = self.obstacles_around[key]
             obs.is_being_collided_now = False
@@ -325,6 +343,13 @@ class Entity(object):
                 continue
 
             if obs.rectangle.colliderect(self.collision_detector_right):
+                obs.is_being_collided_now = True
+
+                self.collided_right = True
+                # if self.collided_left:
+                    # Actor's stuck.
+                    # self.ignore_user_input = True
+
                 # Check if obstacle has crawled from behind and pushed actor to his back:
                 if self.look == -1:  # Obstacle is on the right, but actor looks to the left.
                     self.rectangle.right = obs.rectangle.left - 2  # Push the actor
@@ -341,10 +366,12 @@ class Entity(object):
                     if key in sorted_obs['above']:
                         sorted_obs['above'].remove(key)
                     continue
+
                 # Grab over the top of an obstacle.
                 # if not obs.is_gravity_affected:
                 if not self.is_stand_on_ground:
-                    if self.get_state() not in ('release edge', 'hanging on edge', 'has just grabbed edge', 'hopping back process', 'hop back'):
+                    if self.get_state() in ('jump', 'run right', 'run left', 'stand still'):
+                    # if self.get_state() not in ('release edge', 'hanging on edge', 'has just grabbed edge', 'hopping back process', 'hop back'):
                         # if self.movement_direction_inverter != 1:  # Try to grab the edge only if actor moves exactly at the same direction of his gaze.
                         if obs.rectangle.top >= self.rectangle.top > (obs.rectangle.top - 10) and self.fall_speed > 0:
                             self.rectangle.right = obs.rectangle.left - 2
@@ -395,7 +422,13 @@ class Entity(object):
             if obs.is_ghost_platform:
                 continue
             if obs.rectangle.colliderect(self.collision_detector_left):
+
+                self.collided_left = True
+                # if self.collided_right:
+                #     self.ignore_user_input = True
+
                 obs.is_being_collided_now = True
+
                 # self.rectangle.left = obs.rectangle.right + 2
 
                 # Check if obstacle has crawled from behind and pushed actor to his back:
@@ -417,7 +450,8 @@ class Entity(object):
                 # Grab over the top of an obstacle.
                 # if not obs.is_gravity_affected:
                 if not self.is_stand_on_ground:
-                    if self.get_state() not in ('release edge', 'hanging on edge', 'has just grabbed edge', 'hopping back process', 'hop back'):
+                    if self.get_state() in ('jump', 'run right', 'run left', 'stand still'):
+                    # if self.get_state() not in ('release edge', 'hanging on edge', 'has just grabbed edge', 'hopping back process', 'hop back'):
                         # if self.movement_direction_inverter != -1:  # Try to grab the edge only if actor moves exactly at the same direction of his gaze.
                         if obs.rectangle.top >= self.rectangle.top > (obs.rectangle.top - 10) and self.fall_speed > 0:
                             self.influenced_by_obstacle = obs.id
@@ -461,27 +495,6 @@ class Entity(object):
                         self.influenced_by_obstacle = obs.id
                         self.jump_attempts_counter = self.max_jump_attempts
                         continue
-                # #-----------------------------------
-                # # Check top
-                # if obs.rectangle.colliderect(self.collision_detector_top):
-                #     obs.is_being_collided_now = True
-                #     if self.fall_speed < 0 and not obs.is_ghost_platform:
-                #         self.potential_falling_distance = obs.rectangle.bottom - self.collision_detector_top.bottom
-                #         self.is_stand_on_ground = False
-                #         self.fall_speed = 0
-                #         continue
-                # -----------------------------------
-                # Check bottom
-                # if obs.rectangle.colliderect(self.collision_detector_bottom) and not bottom_already_changed:
-                #     obs.is_being_collided_now = True
-                #     if self.fall_speed >= 0:
-                #         self.rectangle.bottom = obs.rectangle.top
-                #         self.is_stand_on_ground = True
-                #         self.influenced_by_obstacle = obs.id
-                #         self.jump_attempts_counter = self.max_jump_attempts
-                #         continue
-
-            # obs.is_being_collided_now = False
 
         # -----------------------------------
         # Check bottom
@@ -495,6 +508,11 @@ class Entity(object):
                     # Current obstacle lower than the actor's rectangle after at least one bottom collision has been registered.
                     # Skip it.
                     continue
+
+                self.collided_bottom = True
+                # if self.collided_top:
+                #     self.ignore_user_input = True
+
                 if self.get_state() == 'hanging on edge' and self.influenced_by_obstacle != obs.id:
                     self.set_state('release edge')
                 obs.is_being_collided_now = True
@@ -516,6 +534,11 @@ class Entity(object):
                 continue
             if obs.rectangle.colliderect(self.collision_detector_top):
                 obs.is_being_collided_now = True
+
+                self.collided_top = True
+                # if self.collided_bottom:
+                #     self.ignore_user_input = True
+
                 if self.get_state() == 'hanging on edge' and self.influenced_by_obstacle != obs.id:
                     self.set_state('release edge')
 

@@ -8,6 +8,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,13 +108,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00044" summary="Working on the level editor.">
-      <created>1716257666142</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1716257666142</updated>
     </task>
     <task id="LOCAL-00045" summary="Working on the level editor: drawing of new obstacles is possible to any way from the start point.">
       <created>1716258380077</created>
@@ -450,7 +445,14 @@
       <option name="project" value="LOCAL" />
       <updated>1716886040946</updated>
     </task>
-    <option name="localTasksCounter" value="93" />
+    <task id="LOCAL-00093" summary="Fixed hop back.">
+      <created>1716887152992</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1716887152992</updated>
+    </task>
+    <option name="localTasksCounter" value="94" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -465,7 +467,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Slightly changed jump event handling." />
     <MESSAGE value="When actor speed is == 0, bottom-left and bottom-right colliders become inactive to prevent unwanted collisions" />
     <MESSAGE value="Implemented a list of active obstacles, which collides only with camera, to prevent futile iterating through all of them." />
     <MESSAGE value="Crawling added." />
@@ -490,6 +491,7 @@
     <MESSAGE value="Fixed prone crawling under the low obstacles." />
     <MESSAGE value="Fixed sizes of sit stance." />
     <MESSAGE value="Fixed errors in crouch\stand stances swaps." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed errors in crouch\stand stances swaps." />
+    <MESSAGE value="Fixed hop back." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed hop back." />
   </component>
 </project>

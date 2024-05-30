@@ -4,6 +4,7 @@ from constants import *
 import fonts
 import camera
 from locations import *
+# from misc_tools import black_out, black_in
 import pickle
 from random import choice
 
@@ -583,3 +584,40 @@ class World(object):
     #                 checking_unit.heading[0] = 0
     #                 checking_unit.speed = 0
     #                 continue
+
+    @staticmethod
+    def press_any_key():
+        command = None
+        while command is None:
+            for event in pygame.event.get():
+                if event.type == QUIT:
+                    pygame.quit()
+                    raise SystemExit()
+                if event.type == KEYDOWN or event.type == MOUSEBUTTONDOWN:
+                    command = 'key pressed'
+
+    @staticmethod
+    def press_any_key_passed():
+        # command = None
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                pygame.quit()
+                raise SystemExit()
+            if event.type == KEYDOWN or event.type == MOUSEBUTTONDOWN:
+                # command = 'key pressed'
+                # print('ok')
+                return True
+            # else:
+            #     return False
+
+    def game_over(self):
+        print("--== G A M E   O V E R ==--")
+        # self.info_windows[0].get_new_message('All survivors have died.')
+        # self.info_windows[0].get_new_message("--== G A M E   O V E R ==--")
+        # from misc_tools import render_text
+        black_out(self.screen, self.screen, 10)
+        render_text('GAME OVER', self.screen, 150, RED, 'AlbionicRegular.ttf', ('center_x', 'center_y'))
+        pygame.display.flip()
+        self.press_any_key()
+        pygame.quit()
+        exit()

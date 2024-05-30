@@ -1,3 +1,5 @@
+import sys
+
 from entity import *
 
 class Actor(Entity):
@@ -26,7 +28,7 @@ class Actor(Entity):
         # self.rectangle_height_slide = self.rectangle.height // 3
         # self.rectangle_width_slide = self.rectangle.height // 4 * 3
 
-        self.ignore_user_input: bool = False
+        # self.ignore_user_input: bool = False
 
         self.__state = 'stand still'
 
@@ -35,13 +37,18 @@ class Actor(Entity):
         return self.__state
 
     def set_state(self, new_state):
-        print(f'[actor.set_state] new state: {new_state}')
+        # print(f'[actor.set_state] new state: {new_state}')
         self.__state = new_state
 
     def process(self, time_passed):
         self.state_machine()
         super().process(time_passed)
         # self.reset_self_flags()
+        if (self.collided_top and self.collided_bottom) or (self.collided_right and self.collided_left):
+            # self.ignore_user_input = True
+            raise sys.exit()
+        # else :
+        #     self.ignore_user_input = False
 
     def set_action(self, new_action):
         # print(f'[actor set action] Setting new action: {new_action}')
@@ -143,7 +150,7 @@ class Actor(Entity):
             if self.__state in ('crouch down', 'crouch rise', 'crouch', 'crawl right', 'crawl left') and self.is_stand_on_ground:
                 if self.influenced_by_obstacle >= 0:
                     # Jump off a ghost platform:
-                    # print('sdad')
+                    # print('sdad111111111111111111111111111111111111111')
                     if self.obstacles_around[self.influenced_by_obstacle].is_ghost_platform:
                         self.set_state('hop down from ghost')
                         return
@@ -152,10 +159,6 @@ class Actor(Entity):
                 if (self.look == 1 and self.is_enough_space_right) or\
                         (self.look == -1 and self.is_enough_space_left):
                     self.set_state('slide')
-            # elif self.__state == 'hanging on ghost':
-            #     self.set_state('release edge')
-            # elif self.__state == 'hanging on edge':
-            #     self.set_state('release edge')
             else:
                 if self.is_enough_space_above:
                     self.set_state('jump')
@@ -455,3 +458,4 @@ class Actor(Entity):
         self.is_move_up = False
         self.is_move_down = False
         self.is_jump = False
+        # self.is_edge_grabbed = False

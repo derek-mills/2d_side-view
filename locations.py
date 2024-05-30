@@ -79,17 +79,17 @@ locations = {
                 ),
                 
                 'actions': {
-            #         0: {
-            #             0: (('move', (300,450)), ('move', 'start'), ('wait', 2), ('repeat', 0)),
-            #         },
-            #
-		    # 13: {
-            #             0: (('move', (1000,600)), ('move', 'start'), ('wait', 2), ('repeat', 0)),
-            #             },
-            #
-		    # 4: {
-		    #     0: (('move', (1100,450)), ('move', 'start'), ('wait', 2), ('repeat', 0)),
-		    # },
+                    0: {
+                        0: (('move', (300,450)), ('move', 'start'), ('wait', 2), ('repeat', 0)),
+                    },
+
+		    13: {
+                        0: (('move', (1000,600)), ('move', 'start'), ('wait', 2), ('repeat', 0)),
+                        },
+
+		    4: {
+		        0: (('move', (1100,450)), ('move', 'start'), ('wait', 2), ('repeat', 0)),
+		    },
 
                 },
                 'settings': {
