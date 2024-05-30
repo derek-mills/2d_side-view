@@ -70,6 +70,7 @@ class Entity(object):
         # Collisions
         self.is_collideable = False
         self.obstacles_around = None
+        self.demolishers_around = None
         self.collision_detector_right = pygame.Rect(0,0,0,0)
         self.collision_detector_left = pygame.Rect(0,0,0,0)
         self.collision_detector_top = pygame.Rect(0,0,0,0)
@@ -97,8 +98,12 @@ class Entity(object):
         self.is_enough_space_left = True
 
 
-    def percept(self, obstacles):
+    def percept(self, obstacles, demolishers):
         self.obstacles_around = obstacles
+        self.demolishers_around = demolishers
+        # print(self.obstacles_around)
+        # print(self.demolishers_around)
+        # exit()
 
     def set_rect_height(self, height):
         floor = self.rectangle.bottom
@@ -186,6 +191,7 @@ class Entity(object):
         self.speed_calc()       # Discover fall speed and potential move distance
         self.colliders_calc()   # Calculate colliders around actor based on his current movement and fall speeds.
         self.detect_collisions()
+        self.detect_demolishers_collisions()
 
         if self.is_gravity_affected:
             # if self.influenced_by_obstacle:
@@ -330,6 +336,15 @@ class Entity(object):
             self.collision_detector_top.update(self.rectangle.left + 2, self.rectangle.top - 1, self.rectangle.width - 4, 1)
             self.collision_detector_bottom.update(self.rectangle.left +2, self.rectangle.bottom, self.rectangle.width-4, self.fall_speed + 2)
 
+    @staticmethod
+    def get_damage():
+        print('AUCH!')
+
+    def detect_demolishers_collisions(self):
+        for key in self.demolishers_around.keys():
+            dem = self.demolishers_around[key]
+            if self.rectangle.colliderect(dem.rectangle):
+                self.get_damage()
 
     def detect_collisions(self):
         # self.influenced_by_obstacle = None

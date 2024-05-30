@@ -165,7 +165,7 @@ class World(object):
         for key in self.obstacles[self.location].keys():
         # for key in self.obstacles[self.location].keys():
             obs = self.obstacles[self.location][key]
-            obs.percept({k: self.obstacles[self.location][k] for k in self.active_obstacles})
+            obs.percept({k: self.obstacles[self.location][k] for k in self.active_obstacles}, self.demolishers)
             # obs.percept(self.obstacles[self.location])
             obs.process_(self.time_passed)
 
@@ -173,7 +173,7 @@ class World(object):
     def processing_actors(self):
         for key in self.actors[self.location].keys():
             actor = self.actors[self.location][key]
-            actor.percept({k: self.obstacles[self.location][k] for k in self.active_obstacles})
+            actor.percept({k: self.obstacles[self.location][k] for k in self.active_obstacles}, self.demolishers[self.location])
             # actor.percept(self.obstacles[self.location])
 
             if key == 0 and not actor.ignore_user_input:  # routines for Player actor
@@ -243,6 +243,14 @@ class World(object):
             pygame.draw.rect(self.screen, CYAN, (actor.rectangle.x + gaze_direction_mod - self.camera.offset_x, actor.rectangle.centery - 10 - self.camera.offset_y,
                                                   10, 20))
 
+    def render_demolishers(self):
+        for key in self.demolishers[self.location].keys():
+            # if key not in self.active_obstacles:
+            #     continue
+            dem = self.demolishers[self.location][key]
+            pygame.draw.rect(self.screen, PINK, (dem.rectangle.x - self.camera.offset_x, dem.rectangle.y - self.camera.offset_y,
+                                                  dem.rectangle.width, dem.rectangle.height))
+
     def render_obstacles(self):
         for key in self.obstacles[self.location].keys():
             if key not in self.active_obstacles:
@@ -285,6 +293,7 @@ class World(object):
     def render_all(self):
         self.render_background()
         self.render_obstacles()
+        self.render_demolishers()
         self.render_actors()
         self.render_debug_info()
 
@@ -303,9 +312,9 @@ class World(object):
         if self.location not in self.locations.keys():
             self.locations[self.location] = dict()
         self.locations[self.location] = locations[self.location]
-        for obs in self.locations[self.location]['obstacles']['rectangles']:
+        for obs in self.locations[self.location]['obstacles']['obs rectangles']:
             self.add_obstacle(obs)
-        for dem in self.locations[self.location]['demolishers']['rectangles']:
+        for dem in self.locations[self.location]['demolishers']['dem rectangles']:
             self.add_demolisher(dem)
             # if obs[2] in self.locations[self.location]['obstacles']['settings'].keys():
             #     if 'demolisher' in self.locations[self.location]['obstacles']['settings'][obs[2]].keys():
