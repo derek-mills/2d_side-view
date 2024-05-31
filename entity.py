@@ -203,6 +203,7 @@ class Entity(object):
                 # print('fall!')
                 self.fall()
         self.move()
+        self.correct_position_if_influenced()
         # if self.influenced_by_obstacle:
         #     print('dd')
         #     self.rectangle.x += self.obstacles_around[self.influenced_by_obstacle].vec_to_destination[0]
@@ -364,14 +365,15 @@ class Entity(object):
 
         for key in self.obstacles_around.keys():
             obs = self.obstacles_around[key]
-            if obs.rectangle.bottom <= self.rectangle.centery:
+            if obs.rectangle.centery < self.rectangle.centery:
                 sorted_obs['above'].append(obs.id)
-            elif obs.rectangle.top >= self.rectangle.centery:
+            elif obs.rectangle.centery > self.rectangle.centery:
                 sorted_obs['below'].append(obs.id)
-            if obs.rectangle.right <= self.rectangle.centerx:
+            if obs.rectangle.right < self.rectangle.centerx:
                 sorted_obs['left'].append(obs.id)
-            elif obs.rectangle.left >= self.rectangle.centerx:
+            elif obs.rectangle.left > self.rectangle.centerx:
                 sorted_obs['right'].append(obs.id)
+
         # for key in self.obstacles_around.keys():
         #     obs = self.obstacles_around[key]
         #     if obs.rectangle.centery < self.rectangle.centery:
@@ -873,13 +875,21 @@ class Entity(object):
     def fall(self):
         self.rectangle.y += self.potential_falling_distance
 
-    def move(self):
+    def correct_position_if_influenced(self):
         if self.influenced_by_obstacle >= 0:
-            # print('dd')
             obs = self.obstacles_around[self.influenced_by_obstacle]
-            self.rectangle.x += (self.potential_moving_distance * self.look * self.movement_direction_inverter + round(obs.vec_to_destination[0]))
-            # self.rectangle.x += (self.potential_moving_distance * self.look * self.movement_direction_inverter + infl.potential_moving_distance*infl.look)
-        else:
-            # self.rectangle.x += (self.potential_moving_distance * self.heading[0])
-            self.rectangle.x += (self.potential_moving_distance * self.look * self.movement_direction_inverter)
-        # self.rectangle.x += int(self.speed * self.look)
+            if obs.active:
+                self.rectangle.x += round(obs.vec_to_destination[0])
+                self.rectangle.y += round(obs.vec_to_destination[1])
+
+    def move(self):
+        # if self.influenced_by_obstacle >= 0:
+        #     # print('dd')
+        #     obs = self.obstacles_around[self.influenced_by_obstacle]
+        #     self.rectangle.x += (self.potential_moving_distance * self.look * self.movement_direction_inverter + round(obs.vec_to_destination[0]))
+        #     # self.rectangle.x += (self.potential_moving_distance * self.look * self.movement_direction_inverter + infl.potential_moving_distance*infl.look)
+        # else:
+        #     # self.rectangle.x += (self.potential_moving_distance * self.heading[0])
+        #     self.rectangle.x += (self.potential_moving_distance * self.look * self.movement_direction_inverter)
+
+        self.rectangle.x += (self.potential_moving_distance * self.look * self.movement_direction_inverter)

@@ -275,9 +275,10 @@ class World(object):
                     ('DEST REACHED    : ' + str(obs.is_destination_reached), BLACK),
                     ('RECTANGLE       : ' + str(obs.rectangle), BLACK),
                     ('ACTION          : ' + str(obs.actions[obs.actions_set_number][obs.current_action]), BLACK),
-                    'CR',
                     ('NEED NEXT ACTION: ' + str(obs.need_next_action), BLACK),
                     ('VEC TO DESTINTON: ' + str(obs.vec_to_destination), BLACK),
+                    'CR',
+                    # ('VEC TO DESTINTON: ' + str(obs.vec_to_destination), BLACK),
 
 
                 )
@@ -289,6 +290,29 @@ class World(object):
                     self.screen.blit(fonts.all_fonts[font_size].render(p[0], True, p[1]),
                                      (obs.rectangle.x + dx - self.camera.offset_x, obs.rectangle.y + gap - self.camera.offset_y))
                     gap += font_size
+            else:
+                dx = 10
+                stats_y = 1
+                gap = 1
+                font_size = 10
+                params = (
+                    #
+                    #(' IS ON OBS: ' + str(self.actors[self.location][0].is_on_obstacle), WHITE),
+                    ('RECTANGLE       : ' + str(obs.rectangle), BLACK),
+                    ('VEC TO DESTINTON: ' + str(obs.vec_to_destination), BLACK),
+                    # ('VEC TO DESTINTON: ' + str(obs.vec_to_destination), BLACK),
+
+
+                )
+                for p in params:
+                    if p == 'CR':
+                        dx += 300
+                        gap = 1
+                        continue
+                    self.screen.blit(fonts.all_fonts[font_size].render(p[0], True, p[1]),
+                                     (obs.rectangle.x + dx - self.camera.offset_x, obs.rectangle.y + gap - self.camera.offset_y))
+                    gap += font_size
+
 
     def render_all(self):
         self.render_background()

@@ -44,11 +44,9 @@ class Actor(Entity):
         self.state_machine()
         super().process(time_passed)
         # self.reset_self_flags()
-        if (self.collided_top and self.collided_bottom) or (self.collided_right and self.collided_left):
-            # self.ignore_user_input = True
-            raise sys.exit()
-        # else :
-        #     self.ignore_user_input = False
+
+        # if (self.collided_top and self.collided_bottom) or (self.collided_right and self.collided_left):
+        #     raise sys.exit()
 
     def set_action(self, new_action):
         # print(f'[actor set action] Setting new action: {new_action}')
