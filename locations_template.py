@@ -53,50 +53,30 @@ locations = {
                 }
             },
             'obstacles': {
-                # 'void': {
-                #     'already added': False,
-                #     'stops bullets': True,
-                #     'active': False,
-                #     'cells': (180,181,182,86,102,118,134,150,166),
-                #     'sprite name': None,
-                #     'sprite snap': 'left',
-                #     'available': True,
-                #     'index': None,
-                #     'TTL': -1,
-                #     'description': 'invisible obstacle',
-                #     'scale': 0,
-                #     'actions': ()
-                # },
-                # 'piles 1': {
-                #     'already added': False,
-                #     'stops bullets': True,
-                #     'active': False,
-                #     'cells': (121,122,137,153,154,155, 185,186,187,202,218,189,190,206,222),
-                #     'sprite name': 'pile 1x #1',
-                #     'sprite snap': 'left',
-                #     'available': True,
-                #     'index': None,
-                #     'TTL': -1,
-                #     'description': 'BIG QUESTION',
-                #     'scale': 1.4,
-                #     'actions': None
-                # },
 #, 'ghost'
 #, 'move right'
 #, 'move left'
 #, 'collideable'
 #, 'gravity affected'
-#                    0: {
-#                        0: (('move', (300,450)), ('move', 'start'), ('wait', 2), ('repeat', 0)),
-#                    },
-                    #
-#		    13: {		
-#                        0: (('move', (1000,600)), ('move', 'start'), ('wait', 2), ('repeat', 0)),
-#                        },
-#                        
-#		    4: {
-#		        0: (('move', (1100,450)), ('move', 'start'), ('wait', 2), ('repeat', 0)),
-#		    },
+                # 'actions': {
+                #     3: {
+                #         0: (('move', (950, 750)), ('move', 'start'), ('wait', 2), ('repeat', 0)),
+                #     },
+                #
+                #     4: {
+                #         0: (('move', (250, 600)), ('move', 'start'), ('wait', 2), ('repeat', 0)),
+                #     },
+                #
+                # },
+                # 'settings': {
+                #     3: {
+                #         'speed': 0.1,
+                #     },
+                #     4: {
+                #         'speed': 0.3,
+                #     },
+                #
+                # }
                 # HERE WILL BE A GEOMETRY DESCRIPTION OF EVERY PLATFORM AFTER level_editor.py USAGE:
                 'obs rectangles': (
 
