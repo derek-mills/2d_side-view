@@ -392,6 +392,15 @@ class Actor(Entity):
             self.jump_attempts_counter = 0
             # self.jump_attempts_counter = self.max_jump_attempts
             self.set_state('hanging on edge')
+        elif self.__state == 'hanging on edge':                 # HANGING ON THE EDGE
+            ...
+            # self.rectangle.top = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
+        elif self.__state == 'hanging on ghost':                # HANGING ON THE GHOST PLATFORM
+            self.rectangle.top = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
+            if self.idle_counter > 0:
+                self.idle_counter -= 1
+            else:
+                self.ignore_user_input = False
         elif self.__state == 'hop down from ghost':             # PREPARE TO HOP DOWN FROM THE GHOST PLATFORM
             # self.rectangle.centery = self.obstacles_around[self.influenced_by_obstacle].rectangle.bottom + 20
             self.potential_moving_distance = 0
@@ -415,21 +424,13 @@ class Actor(Entity):
             self.jump_attempts_counter = 0
             # self.jump_attempts_counter = self.max_jump_attempts
             self.set_state('hanging on ghost')
-        elif self.__state == 'hanging on edge':                 # HANGING ON THE EDGE
-            self.rectangle.top = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
-        elif self.__state == 'hanging on ghost':                # HANGING ON THE GHOST PLATFORM
-            self.rectangle.top = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
-            if self.idle_counter > 0:
-                self.idle_counter -= 1
-            else:
-                self.ignore_user_input = False
         elif self.__state == 'release edge':                    # RELEASE
             self.is_edge_grabbed = False
             self.influenced_by_obstacle = -1
             self.speed = 0
             self.ignore_user_input = False
-            if self.is_stand_on_ground:
-                self.set_state('stand still')
+            # if self.is_stand_on_ground:
+            self.set_state('stand still')
         elif self.__state == 'climb on':                        # START CLIMBING ON AN OBSTACLE
             self.ignore_user_input = True
             self.set_new_desired_height(self.rectangle_height_sit // 2, 6)
@@ -438,14 +439,16 @@ class Actor(Entity):
             if self.rectangle.height <= self.rectangle_height_sit // 2:
                 self.ignore_user_input = False
                 self.jump_attempts_counter = 0
-                if self.influenced_by_obstacle:
+                if self.is_edge_grabbed:
+                # if self.influenced_by_obstacle:
                     self.is_edge_grabbed = False
                     self.rectangle.bottom = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
                     self.rectangle.centerx += 20 * self.look  # Slightly pushing an actor far from the edge of an obstacle to let his bottom collider do the job.
                     self.influenced_by_obstacle = -1
-                    self.set_state('stand still')
-                else:
-                    self.set_state('stand still')
+                    self.set_state('crouch down')
+                    # self.set_state('stand still')
+                # else:
+                #     self.set_state('stand still')
             else:
                 self.rectangle.top = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
 

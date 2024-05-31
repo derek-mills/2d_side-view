@@ -314,7 +314,7 @@ class Entity(object):
             self.collision_detector_left.update(self.rectangle.left - 1, self.rectangle.top, 1, self.rectangle.height)
             self.collision_detector_bottom_right.update(self.rectangle.right, self.rectangle.bottom - bottom_indent, self.speed + 1, 30)
             self.collision_detector_bottom_left.update(0, 0, 0, 0)
-            self.collision_grabber_right.update(self.rectangle.right, self.rectangle.top, 20, 40)
+            self.collision_grabber_right.update(self.rectangle.right, self.rectangle.top - 10, 30, 50)
             self.collision_grabber_left.update(0,0,0,0)
             # self.collision_grabber_left.update(self.rectangle.top, self.rectangle.left - 20, 20, 40)
 
@@ -325,7 +325,7 @@ class Entity(object):
             self.collision_detector_bottom_left.update(self.rectangle.left - self.speed - 1, self.rectangle.bottom - bottom_indent, self.speed + 1, 30)
             self.collision_grabber_right.update(0,0,0,0)
             # self.collision_grabber_right.update(self.rectangle.top, self.rectangle.right, 20, 40)
-            self.collision_grabber_left.update(self.rectangle.left - 20, self.rectangle.top, 20, 40)
+            self.collision_grabber_left.update(self.rectangle.left - 30, self.rectangle.top - 10, 30, 50)
 
         # TOP and BOTTOM colliders:
         if self.fall_speed < 0:
@@ -426,7 +426,7 @@ class Entity(object):
                         # if self.movement_direction_inverter != 1:  # Try to grab the edge only if actor moves exactly at the same direction of his gaze.
                         # if obs.rectangle.top >= self.rectangle.top > (obs.rectangle.top - 10) and self.fall_speed > 0:
                         if self.collision_grabber_right.collidepoint(obs.rectangle.topleft):
-                            self.rectangle.right = obs.rectangle.left - 2
+                            # self.rectangle.right = obs.rectangle.left - 2
                             self.influenced_by_obstacle = obs.id
                             self.set_state('has just grabbed edge')
                             self.state_machine()
