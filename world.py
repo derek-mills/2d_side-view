@@ -108,8 +108,8 @@ class World(object):
             entity.max_speed = self.locations[self.location]['obstacles']['settings'][entity.id]['speed']
             print(f'[add_obstacle] Added active obstacle: {entity.actions=}')
         # Add an obstacle to the world storage:
-        if self.location not in self.obstacles.keys():
-            self.obstacles[self.location] = dict()
+        # if self.location not in self.obstacles.keys():
+        #     self.obstacles[self.location] = dict()
         self.obstacles[self.location][entity.id] = entity
         self.obstacle_id += 1
 
@@ -129,8 +129,8 @@ class World(object):
             entity.max_speed = self.locations[self.location]['demolishers']['settings'][entity.id]['speed']
             print(f'[add_demolisher] Added active demolisher: {entity.actions=}')
         # Add an obstacle to the world storage:
-        if self.location not in self.demolishers.keys():
-            self.demolishers[self.location] = dict()
+        # if self.location not in self.demolishers.keys():
+        #     self.demolishers[self.location] = dict()
         self.demolishers[self.location][entity.id] = entity
         self.demolisher_id += 1
 
@@ -339,6 +339,8 @@ class World(object):
         # self.obstacles[self.location] = loaded_data
         if self.location not in self.locations.keys():
             self.locations[self.location] = dict()
+            self.obstacles[self.location] = dict()
+            self.demolishers[self.location] = dict()
         self.locations[self.location] = locations[self.location]
         for obs in self.locations[self.location]['obstacles']['obs rectangles']:
             self.add_obstacle(obs)

@@ -23,8 +23,6 @@ locations = {
             'demolishers': {
                 # HERE WILL BE A GEOMETRY DESCRIPTION OF EVERY PLATFORM AFTER level_editor.py USAGE:
                 'dem rectangles': (
-                ((250, 700), (1450, 50), 0),  #0
-                ((950, 250), (300, 50), 1),  #1
 
                 ),            	
                 'actions': {
@@ -91,36 +89,27 @@ locations = {
 
                 # HERE WILL BE A GEOMETRY DESCRIPTION OF EVERY PLATFORM AFTER level_editor.py USAGE:
                 'obs rectangles': (
-                ((950, 300), (300, 200), 0),  #0
-                ((750, 750), (950, 50), 1),  #1
-                ((0, 950), (1700, 50), 2),  #2
-                ((1700, 900), (300, 100), 3),  #3
-                ((250, 800), (500, 150), 6),  #6
-                ((2000, 0), (100, 1000), 7),  #7
-                ((0, 0), (50, 950), 8),  #8
-                ((50, 0), (1950, 50), 9),  #9
+                ((0, 1000), (1900, 50), 0),  #0
+                ((0, 0), (50, 1000), 1),  #1
+                ((1850, 0), (50, 1000), 2),  #2
+                ((250, 750), (350, 100), 3),  #3
+                ((1250, 600), (400, 100), 4),  #4
 
                 ),
                 
                 'actions': {
-                    0: {
-                        0: (('move', (300,450)), ('move', 'start'), ('wait', 2), ('repeat', 0)),
+                    3: {
+                        0: (('move', (1400,750)), ('move', 'start'), ('wait', 2), ('repeat', 0)),
                     },
-                    
-		    13: {		
-                        0: (('move', (1000,600)), ('move', 'start'), ('wait', 2), ('repeat', 0)),
-                        },
-                        
 		    4: {
-		        0: (('move', (1100,450)), ('move', 'start'), ('wait', 2), ('repeat', 0)),
+		        0: (('move', (250,600)), ('move', 'start'), ('wait', 2), ('repeat', 0)),
+                    
+                        
 		    },
 
                 },
                 'settings': {
-                    0: {
-                        'speed': 0.1,
-                    },
-                    13: {
+                    3: {
                         'speed': 0.1,
                     },
                     4: {

@@ -409,25 +409,27 @@ class World(object):
             obs_rects.append(total_strg)
             # str(obs.rectangle.size) + ghost + move_right + move_left + collideable + gravity_affected + '),  #' + str(obs.id) + '\n'
 
-        dem_rects = list()
-        for k in self.demolishers[self.location].keys():
-            dem = self.demolishers[self.location][k]
-            ghost = ', \'ghost\' ' if dem.is_ghost_platform else ''
-            # move_right = ', \'move right\' ' if dem.is_move_right else ''
-            # move_left = ', \'move left\' ' if dem.is_move_left else ''
-            collideable = ', \'collideable\' ' if dem.is_collideable else ''
-            actions = ', \'active\' ' if dem.actions else ''
-            gravity_affected = ', \'gravity affected\' ' if dem.is_gravity_affected else ''
 
-            # str(dem.rectangle.size) + ghost + move_right + move_left + \
-            total_strg = '                ' + \
-                   '(' + \
-                   str(dem.rectangle.topleft) + ', ' + \
-                   str(dem.rectangle.size) + ghost + \
-                   collideable + gravity_affected + actions + ', ' + str(k) + \
-                   '),  #' + str(k) + '\n'
-            dem_rects.append(total_strg)
-                   # str(dem.rectangle.size) + ghost + move_right + move_left + collideable + gravity_affected + '),  #' + str(dem.id) + '\n'
+        dem_rects = list()
+        if self.location in self.demolishers:
+            for k in self.demolishers[self.location].keys():
+                dem = self.demolishers[self.location][k]
+                ghost = ', \'ghost\' ' if dem.is_ghost_platform else ''
+                # move_right = ', \'move right\' ' if dem.is_move_right else ''
+                # move_left = ', \'move left\' ' if dem.is_move_left else ''
+                collideable = ', \'collideable\' ' if dem.is_collideable else ''
+                actions = ', \'active\' ' if dem.actions else ''
+                gravity_affected = ', \'gravity affected\' ' if dem.is_gravity_affected else ''
+
+                # str(dem.rectangle.size) + ghost + move_right + move_left + \
+                total_strg = '                ' + \
+                       '(' + \
+                       str(dem.rectangle.topleft) + ', ' + \
+                       str(dem.rectangle.size) + ghost + \
+                       collideable + gravity_affected + actions + ', ' + str(k) + \
+                       '),  #' + str(k) + '\n'
+                dem_rects.append(total_strg)
+                       # str(dem.rectangle.size) + ghost + move_right + move_left + collideable + gravity_affected + '),  #' + str(dem.id) + '\n'
 
         # print(obs_rects)
         # print(dem_rects)
