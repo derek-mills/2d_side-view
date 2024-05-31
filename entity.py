@@ -77,6 +77,7 @@ class Entity(object):
         self.collision_detector_bottom = pygame.Rect(0,0,0,0)
         self.collision_detector_bottom_right = pygame.Rect(0,0,0,0)
         self.collision_detector_bottom_left = pygame.Rect(0,0,0,0)
+        self.is_grabbers_active = True
         self.collision_grabber_right = pygame.Rect(0,0,0,0)
         self.collision_grabber_left = pygame.Rect(0,0,0,0)
         self.is_destination_reached: bool = False
@@ -307,7 +308,7 @@ class Entity(object):
             # self.collision_detector_bottom.update(self.rectangle.left + 2, self.rectangle.bottom - 2, self.rectangle.width - 4, self.fall_speed + 2)
 
     def colliders_calc(self):
-        bottom_indent = 15 #if self.is_stand_on_ground else 0
+        bottom_indent = 25 #if self.is_stand_on_ground else 0
         if self.look * self.movement_direction_inverter == 1:
             # if self.speed > 0:
             self.collision_detector_right.update(self.rectangle.right, self.rectangle.top, self.speed + 1, self.rectangle.height - bottom_indent)
@@ -327,6 +328,18 @@ class Entity(object):
             # self.collision_grabber_right.update(self.rectangle.top, self.rectangle.right, 20, 40)
             self.collision_grabber_left.update(self.rectangle.left - 25, self.rectangle.top - 10, 30, 50)
 
+        # Grabbers:
+        if self.is_grabbers_active:
+            if self.look == 1:
+                self.collision_grabber_right.update(self.rectangle.right-5, self.rectangle.top - 10, 30, 50)
+                self.collision_grabber_left.update(0,0,0,0)
+            elif self.look == -1:
+                self.collision_grabber_right.update(0,0,0,0)
+                self.collision_grabber_left.update(self.rectangle.left - 25, self.rectangle.top - 10, 30, 50)
+        else:
+            self.collision_grabber_right.update(0, 0, 0, 0)
+            self.collision_grabber_left.update(0, 0, 0, 0)
+
         # TOP and BOTTOM colliders:
         if self.fall_speed < 0:
             self.collision_detector_top.update(self.rectangle.left + 2, self.rectangle.top - abs(self.fall_speed) - 4, self.rectangle.width - 4, abs(self.fall_speed))
@@ -335,7 +348,8 @@ class Entity(object):
         elif self.fall_speed >= 0:
             # self.collision_detector_top.update(0,0,0,0)
             self.collision_detector_top.update(self.rectangle.left + 2, self.rectangle.top - 1, self.rectangle.width - 4, 1)
-            self.collision_detector_bottom.update(self.rectangle.left +2, self.rectangle.bottom, self.rectangle.width-4, self.fall_speed + 2)
+            self.collision_detector_bottom.update(self.rectangle.left, self.rectangle.bottom, self.rectangle.width, self.fall_speed + 2)
+            # self.collision_detector_bottom.update(self.rectangle.left +2, self.rectangle.bottom, self.rectangle.width-4, self.fall_speed + 2)
 
     @staticmethod
     def get_damage():

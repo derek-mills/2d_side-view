@@ -37,7 +37,7 @@ class Actor(Entity):
         return self.__state
 
     def set_state(self, new_state):
-        print(f'[actor.set_state] new state: {new_state}')
+        # print(f'[actor.set_state] new state: {new_state}')
         self.__state = new_state
 
     def process(self, time_passed):
@@ -181,10 +181,9 @@ class Actor(Entity):
     def state_machine(self):
         if self.__state == 'crouch down':                       # CROUCH DOWN PROCESS
             self.is_crouch = True
+            self.is_grabbers_active = False
             self.set_new_desired_height(self.rectangle_height_sit, 5)
             self.set_new_desired_width(self.rectangle_width_sit, 3)
-            # self.set_rect_height(self.rectangle_height_sit)
-            # self.set_rect_width(self.rectangle_width_sit)
             self.set_state('crouch')
         elif self.__state == 'crouch':                          # CROUCH
             self.speed = 0
@@ -215,6 +214,7 @@ class Actor(Entity):
             if not self.just_got_jumped:
                 self.just_got_jumped = True
                 self.jump_attempts_counter -= 1
+                self.is_grabbers_active = True
                 self.is_jump = True
                 self.influenced_by_obstacle = -1
                 self.jump_height = self.max_jump_height
@@ -231,8 +231,7 @@ class Actor(Entity):
             self.speed = self.max_speed * 2.5
             self.set_new_desired_height(self.rectangle_height_slide, 0)
             self.set_new_desired_width(self.rectangle_width_slide, 6)
-            # self.set_rect_width(self.rectangle_width_slide)
-            # self.set_rect_height(self.rectangle_height_slide)
+            self.is_grabbers_active = False
             self.check_space_around()
             if (self.look == 1 and self.is_enough_space_right) or\
                     (self.look == -1 and self.is_enough_space_left):
@@ -248,6 +247,7 @@ class Actor(Entity):
                 self.set_state('crouch')
         elif self.__state == 'hop back':                        # HOP BACK
             self.ignore_user_input = True
+            self.is_grabbers_active = False
             if not self.just_got_jumped:
                 self.just_got_jumped = True
                 self.jump_attempts_counter -= 1
@@ -320,6 +320,8 @@ class Actor(Entity):
 
         elif self.__state == 'stand still':                     # STANDING STILL
             self.heading[0] = 0
+            # self.is_grabbers_active = True
+            self.is_grabbers_active = False
             if self.rectangle.height != self.rectangle_height_default:
                 self.set_new_desired_height(self.rectangle_height_default,7)
                 self.check_space_around()
@@ -365,6 +367,7 @@ class Actor(Entity):
         elif self.__state == 'run left':                        # RUN LEFT
             self.look = -1
             self.heading[0] = -1
+            self.is_grabbers_active = True
             if self.rectangle.height != self.rectangle_height_default:
                 self.set_new_desired_height(self.rectangle_height_default,5)
             if self.rectangle.width != self.rectangle_width_default:
@@ -372,12 +375,14 @@ class Actor(Entity):
         elif self.__state == 'run right':                        # RUN RIGHT
             self.look = 1
             self.heading[0] = 1
+            self.is_grabbers_active = True
             if self.rectangle.height != self.rectangle_height_default:
                 self.set_new_desired_height(self.rectangle_height_default,5)
             if self.rectangle.width != self.rectangle_width_default:
                 self.set_new_desired_width(self.rectangle_width_default,5)
         elif self.__state == 'has just grabbed edge':            # GRAB THE EDGE
             self.potential_moving_distance = 0
+            self.is_grabbers_active = False
             self.is_edge_grabbed = True
             self.fall_speed = 0
             self.heading[0] = 0
@@ -426,6 +431,9 @@ class Actor(Entity):
             self.set_state('hanging on ghost')
         elif self.__state == 'release edge':                    # RELEASE
             self.is_edge_grabbed = False
+            self.is_grabbers_active = False
+            # self.look *= -1
+            self.rectangle.y += self.obstacles_around[self.influenced_by_obstacle].vec_to_destination[1] * -4
             self.influenced_by_obstacle = -1
             self.speed = 0
             self.ignore_user_input = False
@@ -440,13 +448,17 @@ class Actor(Entity):
                 self.ignore_user_input = False
                 self.jump_attempts_counter = 0
                 if self.is_edge_grabbed:
-                # if self.influenced_by_obstacle:
                     self.is_edge_grabbed = False
-                    self.rectangle.bottom = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
-                    self.rectangle.centerx += 20 * self.look  # Slightly pushing an actor far from the edge of an obstacle to let his bottom collider do the job.
+                    self.set_new_desired_height(self.rectangle_height_default)
+                    self.check_space_around()
+                    if self.is_enough_height:
+                        self.rectangle.bottom = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
+                        self.rectangle.centerx += 20 * self.look  # Slightly pushing an actor far from the edge of an obstacle to let his bottom collider do the job.
+                        # self.influenced_by_obstacle = -1
+                        self.set_state('crouch down')
+                    else:
+                        self.set_state('stand still')
                     self.influenced_by_obstacle = -1
-                    self.set_state('crouch down')
-                    # self.set_state('stand still')
                 # else:
                 #     self.set_state('stand still')
             else:
