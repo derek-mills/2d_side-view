@@ -437,13 +437,12 @@ class Actor(Entity):
         elif self.__state == 'climb on raise':                        # START CLIMBING ON AN OBSTACLE
             if self.rectangle.height <= self.rectangle_height_sit // 2:
                 self.ignore_user_input = False
+                self.jump_attempts_counter = 0
                 if self.influenced_by_obstacle:
-                    self.jump_attempts_counter = 0
-                    # self.rectangle.bottom = self.obstacles_around[self.influenced_by_obstacle].rectangle.centery
+                    self.is_edge_grabbed = False
                     self.rectangle.bottom = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
                     self.rectangle.centerx += 20 * self.look  # Slightly pushing an actor far from the edge of an obstacle to let his bottom collider do the job.
-                    self.is_edge_grabbed = False
-                    # self.influenced_by_obstacle = None
+                    self.influenced_by_obstacle = -1
                     self.set_state('stand still')
                 else:
                     self.set_state('stand still')

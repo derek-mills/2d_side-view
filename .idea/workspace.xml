@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="Demolishers class has now an interaction with actors class.">
+    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -108,13 +107,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00049" summary="When climbing on the edge, actor got 'stand still' state now.">
-      <created>1716277662265</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1716277662265</updated>
     </task>
     <task id="LOCAL-00050" summary="Level editor: added preservation of some obstacle status states when save\load.">
       <created>1716278879989</created>
@@ -452,7 +444,14 @@
       <option name="project" value="LOCAL" />
       <updated>1717056816858</updated>
     </task>
-    <option name="localTasksCounter" value="98" />
+    <task id="LOCAL-00098" summary="Integrated x and y coordinates correction if object is influenced by other moving object.">
+      <created>1717123278648</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1717123278648</updated>
+    </task>
+    <option name="localTasksCounter" value="99" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -467,7 +466,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Improvements of smooth rectangle size change mechanism for objects." />
     <MESSAGE value="Some tiny Improvements" />
     <MESSAGE value="Added 'move up' ability for obstacles." />
     <MESSAGE value="Added actor's ability to grab moving obstacles.&#10;If actor hanging on the moving obstacle, his Y coordinate corresponds to this obstacle's Y." />
@@ -492,6 +490,7 @@
     <MESSAGE value="Slightly modified colliders and collision detection in case of tiny steps by 35 px of height." />
     <MESSAGE value="Demolishers class added. They are passive yet.&#10;Added demolishers handling within the level editor routines." />
     <MESSAGE value="Demolishers class has now an interaction with actors class." />
-    <option name="LAST_COMMIT_MESSAGE" value="Demolishers class has now an interaction with actors class." />
+    <MESSAGE value="Integrated x and y coordinates correction if object is influenced by other moving object." />
+    <option name="LAST_COMMIT_MESSAGE" value="Integrated x and y coordinates correction if object is influenced by other moving object." />
   </component>
 </project>

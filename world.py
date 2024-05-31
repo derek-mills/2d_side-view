@@ -237,6 +237,10 @@ class World(object):
                                                   actor.collision_detector_bottom_right.width, actor.collision_detector_bottom_right.height))
             pygame.draw.rect(self.screen, MAGENTA, (actor.collision_detector_bottom_left.x - self.camera.offset_x, actor.collision_detector_bottom_left.y - self.camera.offset_y,
                                                   actor.collision_detector_bottom_left.width, actor.collision_detector_bottom_left.height))
+            pygame.draw.rect(self.screen, CYAN, (actor.collision_grabber_right.x - self.camera.offset_x, actor.collision_grabber_right.y - self.camera.offset_y,
+                                                  actor.collision_grabber_right.width, actor.collision_grabber_right.height))
+            pygame.draw.rect(self.screen, CYAN, (actor.collision_grabber_left.x - self.camera.offset_x, actor.collision_grabber_left.y - self.camera.offset_y,
+                                                  actor.collision_grabber_left.width, actor.collision_grabber_left.height))
 
             # The eye
             gaze_direction_mod = 0 if actor.look == -1 else actor.rectangle.width - 10
