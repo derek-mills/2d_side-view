@@ -214,47 +214,30 @@ def scale_sprite(sprite, final_scale_factor, flip=False):
                                                         size_original[1] * final_scale_factor))
 
 sprites = dict()
-# sprites_reference = ImmutableDict()
 sprites_reference = dict()
-# environment = dict()
 avatars = pygame.image.load('img/avatars.png').convert_alpha()
 env = pygame.image.load('img/environment.png').convert_alpha()
 
-sprites['light halo casual'] = pygame.image.load('img/light_halo.png').convert_alpha()
-sprites['light halo strong'] = pygame.image.load('img/light_halo_strong.png').convert_alpha()
-sprites['light halo mild'] = pygame.image.load('img/light_halo_mild_spot.png').convert_alpha()
-sprites['light cone right'] = pygame.image.load('img/light_cone.png').convert_alpha()
-sprites['light cone left'] = pygame.transform.flip(sprites['light cone right'], True, False)
-sprites['light cone up'] = pygame.transform.rotate(sprites['light cone right'], 90)
-sprites['light cone down'] = pygame.transform.rotate(sprites['light cone right'], 270)
-sprites['light cone 45'] = pygame.image.load('img/light_cone_45.png').convert_alpha()
-# self.static_lights[self.location] = pygame.surface.Surface((self.map_sz[0], self.map_sz[1])).convert_alpha()
-# self.static_lights[self.location].fill((0, 0, 0, self.darkness_deepness), (0, 0, self.map_sz[0], self.map_sz[1]))
-# sz = light_halo.get_size()
-# self.static_lights[self.location].blit(light_halo, (x - sz[0] // 2, y - sz[1] // 2), special_flags=BLEND_RGBA_MIN)
-
-# rotated_sprites_sz = pygame.transform.rotate(sprites['light cone up'], 45).get_size()
-#
-# sprites['light cone 45'] = pygame.surface.Surface((rotated_sprites_sz[0], rotated_sprites_sz[1])).convert_alpha()
-# # sprites['light cone 45'].fill((0, 0, 0, DEFAULT_DARKNESS_DEEPNESS))
-# sprites['light cone 45'].blit(pygame.transform.rotate(sprites['light cone up'], 45), (0,0))
-# sprites['light cone 45'].fill((0, 0, 0, DEFAULT_DARKNESS_DEEPNESS), special_flags=BLEND_RGBA_MAX)
-# # sprites['light cone 45'].blit(pygame.transform.rotate(sprites['light cone up'], 45), (0,0), special_flags=BLEND_RGBA_MULT)
-
-sprites['light cone 135'] = pygame.transform.rotate(sprites['light cone 45'], 90)
-sprites['light cone 225'] = pygame.transform.rotate(sprites['light cone 45'], 180)
-sprites['light cone 315'] = pygame.transform.rotate(sprites['light cone 45'], 270)
-# sprites['blood splatter'] = avatars.subsurface((128, 1062, 217, 198))
-# sprites['idle sign'] = avatars.subsurface((2, 1096, 107, 107))
+# sprites['light halo casual'] = pygame.image.load('img/light_halo.png').convert_alpha()
+# sprites['light halo strong'] = pygame.image.load('img/light_halo_strong.png').convert_alpha()
+# sprites['light halo mild'] = pygame.image.load('img/light_halo_mild_spot.png').convert_alpha()
+# sprites['light cone right'] = pygame.image.load('img/light_cone.png').convert_alpha()
+# sprites['light cone left'] = pygame.transform.flip(sprites['light cone right'], True, False)
+# sprites['light cone up'] = pygame.transform.rotate(sprites['light cone right'], 90)
+# sprites['light cone down'] = pygame.transform.rotate(sprites['light cone right'], 270)
+# sprites['light cone 45'] = pygame.image.load('img/light_cone_45.png').convert_alpha()
+# sprites['light cone 135'] = pygame.transform.rotate(sprites['light cone 45'], 90)
+# sprites['light cone 225'] = pygame.transform.rotate(sprites['light cone 45'], 180)
+# sprites['light cone 315'] = pygame.transform.rotate(sprites['light cone 45'], 270)
 sprites['question sign'] = avatars.subsurface((573, 1053, 145, 240))
-sprites['void'] = avatars.subsurface((0,1843,20,20))
+# sprites['void'] = avatars.subsurface((0,1843,20,20))
 
 # ___...---=== JAKE ===---...___
 name = 'Jake'
 tmp_sprites = pygame.image.load('img/animations/jake_8bit.png').convert_alpha()
 load_single_frame(tmp_sprites, ((2610,1530,180,150),), name + ' avatar')
 load_single_frame(tmp_sprites, ((2610,1530,180,150),), name + ' avatar front')
-load_single_frame(tmp_sprites, ((2660,1720,90,50),), name + 'floor shadow mask')
+# load_single_frame(tmp_sprites, ((2660,1720,90,50),), name + 'floor shadow mask')
 # load_single_frame(tmp_sprites, ((1744,2194,332,205),), name + ' 98')  # Unconsciousness frame 1
 # load_single_frame(tmp_sprites, ((2076,2220,369,176),), name + ' 99')  # Unconsciousness frame 2
 load_all_frames(tmp_sprites, 43, name, 200, 300)
@@ -264,23 +247,14 @@ load_all_frames(tmp_sprites, 43, name, 200, 300)
 # load_single_frame(tmp_sprites, ((1744,2194,332,205),), name + ' 98')  # Unconsciousness frame 1
 # load_single_frame(tmp_sprites, ((2076,2220,369,176),), name + ' 99')  # Unconsciousness frame 2
 # load_all_frames(tmp_sprites, 20, name)
-
-# ___...---=== JANE ===---...___
-name = 'Jane'
-tmp_sprites = pygame.image.load('img/animations/jane_8bit.png').convert_alpha()
-load_single_frame(tmp_sprites, ((2610,1530,180,150),), name + ' avatar')
-load_single_frame(tmp_sprites, ((2610,1530,180,150),), name + ' avatar front')
-load_single_frame(tmp_sprites, ((2660,1720,90,50),), name + 'floor shadow mask')
-# load_single_frame(tmp_sprites, ((1744,2194,332,205),), name + ' 98')  # Unconsciousness frame 1
-# load_single_frame(tmp_sprites, ((2076,2220,369,176),), name + ' 99')  # Unconsciousness frame 2
-load_all_frames(tmp_sprites, 43, name, 200, 300)
-# tmp_sprites = pygame.image.load('img/animations/jane.png').convert_alpha()
-# load_single_frame(tmp_sprites, ((0, 1000, 300, 500),), name + ' avatar')
-# load_single_frame(tmp_sprites, ((0, 1000, 300, 500),), name + ' avatar front')
-# load_all_frames(tmp_sprites, 13, name, 300, 500)
+# print(sprites.keys())
+#dict_keys(['question sign', 'Jake avatar', 'Jake avatar front', 'Jake 0', 'Jake 1', 'Jake 2', 'Jake 3', 'Jake 4', 'Jake 5', 'Jake 6', 'Jake 7', 'Jake 8', 'Jake 9', 'Jake 10', 'Jake 11', 'Jake 12', 'Jake 13', 'Jake 14', 'Jake 15', 'Jake 16', 'Jake 17', 'Jake 18', 'Jake 19', 'Jake 20', 'Jake 21', 'Jake 22', 'Jake 23', 'Jake 24', 'Jake 25', 'Jake 26', 'Jake 27', 'Jake 28', 'Jake 29', 'Jake 30', 'Jake 31', 'Jake 32', 'Jake 33', 'Jake 34', 'Jake 35', 'Jake 36', 'Jake 37', 'Jake 38', 'Jake 39', 'Jake 40', 'Jake 41', 'Jake 42', 'Jake 43'])
+# print(sprites['Jake 0'])
+# {'sprite': <Surface(90x210x32 SW)>, 'sprite center': 45, 'sprite asymmetric': False}
+# exit()
 
 # ___...---=== DEMON MALE 1 ===---...___
-name = 'demon Hildegarda'
+name = 'demon 1'
 tmp_sprites = pygame.image.load('img/animations/demon_male_1.png').convert_alpha()
 load_single_frame(tmp_sprites, ((2610,1530,180,150),), name + ' avatar')
 load_single_frame(tmp_sprites, ((2610,1530,180,150),), name + ' avatar front')
@@ -292,132 +266,33 @@ load_all_frames(tmp_sprites, 43, name, 200, 300)
 # load_single_frame(tmp_sprites, ((1987,2245,459,150),), name + ' 99')  # Lay down
 # load_all_frames(tmp_sprites, 8, name, 300, 500)
 
-# ___...---=== DEMON FEMALE 2 ===---...___
-# name = 'demon Hula'
-# tmp_sprites = pygame.image.load('img/animations/demon_female_2.png').convert_alpha()
-# load_single_frame(tmp_sprites, ((0, 1000, 300, 500),), name + ' avatar')
-# load_single_frame(tmp_sprites, ((0, 1000, 300, 500),), name + ' avatar front')
-# load_single_frame(tmp_sprites, ((1987,2245,459,150),), name + ' 99')  # Lay down
-# load_all_frames(tmp_sprites, 8, name, 300, 500)
-
-# # ___...---=== PHANTOM ===---...___
-# name = 'phantom'
-# tmp_sprites = pygame.image.load('img/animations/phantom.png').convert_alpha()
-# load_single_frame(tmp_sprites, ((0, 1000, 300, 500),), name + ' avatar')
-# load_single_frame(tmp_sprites, ((0, 1000, 300, 500),), name + ' avatar front')
-# load_all_frames(tmp_sprites, 4, name, 300, 500)
-
-# load_frames(tmp_sprites, [(300*i, 0, 300, 500) for i in range(0, 6, 1)], 'phantom side walk frame ')
-# load_frames(tmp_sprites, ((0,500, 300, 500), (300,500, 300, 500)), 'phantom down walk frame ')
-# load_frames(tmp_sprites, ((600,500, 300, 500), (900,500, 300, 500)), 'phantom up walk frame ')
-
-# ___...---=== DUDE ===---...___
-# load_single_frame(tmp_sprites, ((600, 0, 300, 500),), 'dude avatar')
-# load_single_frame(tmp_sprites, ((600, 0, 300, 500),), 'dude avatar front')
-# avatars_dude = pygame.image.load('/media/sid/d90c7353-09c5-492a-aa88-66d695362d79/sid/Images/!games/SPRITES/figures_animation/dude.png').convert_alpha()
-# approximate_frames_down_walk = ((20,5,48,148),(115,6,48,148),(211,6,48,148),(307,6,48,148),(403,6,48,148),(499,6,48,148),(596,6,48,148),
-# (689,6,48,148),(785,6,48,148),(878,6,53,149),(975,6,53,149),(1071,6,51,144))
-# load_frames(avatars_dude, approximate_frames_down_walk, 'dude down walk frame ', 3)
-# approximate_frames_side_walk = ((3,314,89,161),(98,314,89,161),(194,314,89,161),(289,314,89,161),(381,314,89,161),(476,314,89,161),(571,314,89,161),(672,314,89,161),
-#                                 (774,314,89,161),(863,314,89,161),(954,314,89,161),(1045,314,89,161),)
-# load_frames(avatars_dude, approximate_frames_side_walk, 'dude side walk frame ', 3)
-# approximate_frames_up_walk = ((102,480,82,148), (195,482,82,148), (292,483,82,148), (390,484,82,148), (482,482,82,148),(579,484,82,148),
-# (673,480,82,148), (767,481,82,148), (865,482,82,148),(957,480,82,148),(1048,479,82,148),(17,479,61,151))
-# load_frames(avatars_dude, approximate_frames_up_walk, 'dude up walk frame ', 3)
-
-# ___...---=== ZOMBIE ===---...___
-# sprites['zombie2 avatar'] = avatars.subsurface((600, 500, 300, 500))  #  Zombie male 1 avatar
-# sprites['zombie2 avatar front'] = avatars.subsurface((600, 500, 300, 500))  #  Zombie male 1 avatar FRONT
-# sprites['zombie2 round frame 0'] = avatars.subsurface((600, 2001, 300, 300))  # Zombie male 2 round avatar
-# sprites['zombie2 round frame 1'] = avatars.subsurface((600, 2301, 300, 300))  # Zombie male 2 round avatar
-# sprites['zombie2 side walk frame 0'] = avatars.subsurface((1872,887,153,450))  # player male 1 front avatar
-# sprites['zombie2 side walk frame 1'] = avatars.subsurface((2124,887,180,450))  # player male 1 front avatar
-# sprites['zombie2 side walk frame 2'] = avatars.subsurface((2376,887,261,450))  # player male 1 front avatar
-# sprites['zombie2 side walk frame 3'] = avatars.subsurface((2682,887,157, 450))  # player male 1 front avatar
-# sprites['zombie2 side walk frame 4'] = avatars.subsurface((2934,887,201, 450))  # player male 1 front avatar
-# sprites['zombie2 side walk frame 5'] = avatars.subsurface((3186,887,262, 450))  # player male 1 front avatar
-# sprites['zombie2 down walk frame 0'] = avatars.subsurface((1872,887,153,450))  # player male 1 front avatar
-# sprites['zombie2 down walk frame 1'] = avatars.subsurface((2124,887,180,450))  # player male 1 front avatar
-# sprites['zombie2 up walk frame 0'] = avatars.subsurface((1872,887,153,450))  # player male 1 front avatar
-# sprites['zombie2 up walk frame 1'] = avatars.subsurface((2124,887,180,450))  # player male 1 front avatar
-# sprites['zombie2 stand frame 0'] = avatars.subsurface((1588,887,153,450))  # player male 1 front avatar
-
-
-# Tiny figure
-# sprites['player1 side walk frame 0'] = avatars.subsurface((1016,2935,124,144))  # player male 1 front avatar
-# sprites['player1 side walk frame 1'] = avatars.subsurface((1274,2939,122,146))  # player male 1 front avatar
-# sprites['player1 side walk frame 2'] = avatars.subsurface((1516,2941,136,146))  # player male 1 front avatar
-# sprites['player1 side walk frame 3'] = avatars.subsurface((1770,2939,138,148))  # player male 1 front avatar
-# sprites['player1 side walk frame 4'] = avatars.subsurface((2040,2935,124,154))  # player male 1 front avatar
-# sprites['player1 side walk frame 5'] = avatars.subsurface((2298,2937,122,148))  # player male 1 front avatar
-# sprites['player1 side walk frame 6'] = avatars.subsurface((2540,2939,136,140))  # player male 1 front avatar
-# sprites['player1 side walk frame 7'] = avatars.subsurface((2794,2936,138,144))  # player male 1 front avatar
-# sprites['player1 down walk frame 0'] = avatars.subsurface((1044,3453,92,132))  # player male 1 front avatar
-# sprites['player1 down walk frame 1'] = avatars.subsurface((1298,3457,92,122))  # player male 1 front avatar
-# sprites['player1 down walk frame 2'] = avatars.subsurface((1554,3459,90,152))  # player male 1 front avatar
-# sprites['player1 down walk frame 3'] = avatars.subsurface((1810,3457,92,146))  # player male 1 front avatar
-# sprites['player1 down walk frame 4'] = avatars.subsurface((2068,3453,92,132))  # player male 1 front avatar
-# sprites['player1 down walk frame 5'] = avatars.subsurface((2324,3457,92,122))  # player male 1 front avatar
-# sprites['player1 down walk frame 6'] = avatars.subsurface((2582,3459,90,152))  # player male 1 front avatar
-# sprites['player1 down walk frame 7'] = avatars.subsurface((2836,3457,89,140))  # player male 1 front avatar
-# # sprites['player1 down walk frame 1'] = avatars.subsurface(())  # player male 1 front avatar
-# sprites['player1 up walk frame 0'] = avatars.subsurface((1982, 1344, 200, 440))  # player male 1 front avatar
-# sprites['player1 up walk frame 1'] = avatars.subsurface((2236, 1344, 200, 440))  # player male 1 front avatar
-
-# sprites['zombie1'] = avatars.subsurface((300, 0, 300, 500))  #  Zombie female 1 avatar
-# sprites['zombie1 front'] = avatars.subsurface((1200, 500, 300, 500))  #  Zombie female 1 avatar FRONT
-# sprites['female1 front'] = avatars.subsurface((300, 500, 300, 500))  #  female 1 avatar FRONT
-# sprites['zombie3'] = avatars.subsurface((900, 0, 300, 500))  #  Zombie male 2 avatar
-# sprites['zombie3 front'] = avatars.subsurface((900, 500, 300, 500))  #  Zombie male 2 avatar FRONT
-# sprites['zombie4'] = avatars.subsurface((1200, 0, 300, 500))  #  Zombie male 3 avatar
-# sprites['zombie4 front'] = avatars.subsurface((900, 500, 300, 500))  #  Zombie male 2 avatar FRONT
-# sprites['zombie punch 1'] = avatars.subsurface((3, 1333, 560, 667))  #
-# sprites['zombie guarded 1'] = avatars.subsurface((566, 1333, 560, 667))  #
-# sprites['zombie shadow 1'] = avatars.subsurface((1122, 1346, 510, 654))  #
-
 sprites['void sprite'] = env.subsurface((0,1340,10,10))  #
 sprites['pinetree'] = env.subsurface((0,400,475,800))  #
 sprites['pile 1x #1'] = env.subsurface((0,0,94,199))  #
-# sprites['pile 1x #1 trans'] = env.subsurface((1045,0,94,199))  #
 sprites['glass 1x #1'] = env.subsurface((95,0,94,199))  #
 sprites['glass 1x #2'] = env.subsurface((190,0,94,199))  #
 sprites['box 1.5x #23'] = env.subsurface((380,0,94,199))  #
-# sprites['box 1.5x #23 trans'] = env.subsurface((1425,0,94,199))  #
-# sprites['box 2x pile 2x row'] = env.subsurface((1060,1000,200,271))  #
 sprites['box single'] = env.subsurface((285,0,94,199))  #
-# sprites['box single trans'] = env.subsurface((1330,0,94,199))  #
 sprites['coffee table'] = env.subsurface((475,0,94,199))  #
 sprites['metal crate #1 frame 0'] = env.subsurface((0,200,94,199))  #
 sprites['metal crate #2 frame 0'] = env.subsurface((95,200,94,199))  #
 sprites['wooden door #1 frame 0'] = env.subsurface((572,0,124,281))  # from NW to SE \
 sprites['wooden door #2 frame 0'] = pygame.transform.flip(sprites['wooden door #1 frame 0'], True, False)  # from SW to NE /
-# sprites['wooden door #2 frame 0'] = env.subsurface((696,0,124,281))  # from SW to NE /
-# sprites['light switch'] = env.subsurface((855,0,95,94))  # big light switcher
 sprites['light switch #1'] = env.subsurface((950,0,49,70))  # light switcher \
 sprites['light switch #2'] = pygame.transform.flip(sprites['light switch #1'], True, False)  # light switcher /
-# sprites['obstacle box single'] = pygame.transform.laplacian(sprites['obstacle box single'])
-# sprites['obstacle pile 1x #1 w/glass 16 oclock'] = env.subsurface((1463, 869,102,200))  #
 sprites['shotgun'] = avatars.subsurface((4, 2923,367,56))  # shotgun image
 sprites['9mm_pistol'] = avatars.subsurface((382,2913,129,100))  # PM 9mm pistol image
 sprites['kitchen knife'] = avatars.subsurface((514,2918,216,100))  # PM 9mm pistol image
-# sprites['shield sign'] = avatars.subsurface((348, 1055, 223, 265))
-cursors = pygame.image.load('img/cursors.png').convert_alpha()
-sprites['aim cursor'] = cursors.subsurface((0,0,51,51))
-sprites['walk cursor'] = cursors.subsurface((51,0,51,51))
-sprites['interact cursor'] = cursors.subsurface((102,0,51,51))
-sprites['ordinary cursor'] = cursors.subsurface((0,51,51,51))
-sprites['knife cursor'] = cursors.subsurface((51,51,51,51))
-sprites['fist cursor'] = cursors.subsurface((102,51,51,51))
+
+# cursors = pygame.image.load('img/cursors.png').convert_alpha()
+# sprites['aim cursor'] = cursors.subsurface((0,0,51,51))
+# sprites['walk cursor'] = cursors.subsurface((51,0,51,51))
+# sprites['interact cursor'] = cursors.subsurface((102,0,51,51))
+# sprites['ordinary cursor'] = cursors.subsurface((0,51,51,51))
+# sprites['knife cursor'] = cursors.subsurface((51,51,51,51))
+# sprites['fist cursor'] = cursors.subsurface((102,51,51,51))
 
 all_obstacles = ('pile 1x #1', 'box 1.5x #23','box single',)
-# sprites['fist'] = avatars.subsurface((725, 1063, 232, 199))
-
-# sz = sprites['shield sign'].get_size()
-# sprites['shield sign small'] = pygame.transform.scale(sprites['shield sign'], (sz[0] // 2, sz[1] // 2))
 
 screen.convert_alpha(avatars)
 screen.convert_alpha(env)
-
-# for k in sprites.keys():
-#     if 'demon' in k:
-#         print(k)

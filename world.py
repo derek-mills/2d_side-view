@@ -1,12 +1,13 @@
 from actor import *
-from obstacle import *
+# from obstacle import *
 from demolisher import *
-from constants import *
+# from constants import *
 import fonts
 import camera
 from locations import *
+from load_content import load_animations
 # from misc_tools import black_out, black_in
-import pickle
+# import pickle
 from random import choice
 
 class World(object):
@@ -74,10 +75,30 @@ class World(object):
     def add_actor(self, description):
         entity = Actor()
         entity.id = self.actor_id
-        entity.is_gravity_affected = True
-        entity.rectangle.center = description['xy']
+        entity.name = description['name']
+        entity.is_gravity_affected = description['gravity affected']
+        entity.rectangle.center = description['start_xy']
         entity.destination[0] = entity.rectangle.centerx
         entity.destination[1] = entity.rectangle.centery
+        entity.max_speed = description['max speed']
+        entity.default_max_speed = description['max speed']
+
+        entity.animations = description['animations']
+        entity.animation_descriptor = entity.name  # for ex.: 'player1'
+        load_animations(entity)
+        entity.current_animation = 'stand still'
+        entity.frames_changing_threshold = entity.animations[entity.current_animation][entity.look]['speed']
+        entity.animation_sequence = entity.animations[entity.current_animation][entity.look]['sequence']
+        entity.set_current_sprite()
+
+        entity.ai_controlled = description['AI controlled']
+        entity.think_type = description['think type']
+        entity.add_items_to_inventory(description['items'])
+        entity.activate_weapon(0)
+
+        # entity.change_animation()
+        # entity.process_animation_counter()
+
         entity.set_state('stand still')
         # entity.max_jump_attempts = 3
 
@@ -225,27 +246,41 @@ class World(object):
             pygame.draw.rect(self.screen, GREEN, (actor.rectangle.x - self.camera.offset_x, actor.rectangle.y - self.camera.offset_y,
                                                   actor.rectangle.width, actor.rectangle.height), 5)
             # Colliders rects:
-            pygame.draw.rect(self.screen, DARK_ORANGE, (actor.collision_detector_right.x - self.camera.offset_x, actor.collision_detector_right.y - self.camera.offset_y,
-                                                  actor.collision_detector_right.width, actor.collision_detector_right.height))
-            pygame.draw.rect(self.screen, DARK_ORANGE, (actor.collision_detector_left.x - self.camera.offset_x, actor.collision_detector_left.y - self.camera.offset_y,
-                                                  actor.collision_detector_left.width, actor.collision_detector_left.height))
-            pygame.draw.rect(self.screen, DARK_ORANGE, (actor.collision_detector_top.x - self.camera.offset_x, actor.collision_detector_top.y - self.camera.offset_y,
-                                                  actor.collision_detector_top.width, actor.collision_detector_top.height))
-            pygame.draw.rect(self.screen, DARK_ORANGE, (actor.collision_detector_bottom.x - self.camera.offset_x, actor.collision_detector_bottom.y - self.camera.offset_y,
-                                                  actor.collision_detector_bottom.width, actor.collision_detector_bottom.height))
-            pygame.draw.rect(self.screen, MAGENTA, (actor.collision_detector_bottom_right.x - self.camera.offset_x, actor.collision_detector_bottom_right.y - self.camera.offset_y,
-                                                  actor.collision_detector_bottom_right.width, actor.collision_detector_bottom_right.height))
-            pygame.draw.rect(self.screen, MAGENTA, (actor.collision_detector_bottom_left.x - self.camera.offset_x, actor.collision_detector_bottom_left.y - self.camera.offset_y,
-                                                  actor.collision_detector_bottom_left.width, actor.collision_detector_bottom_left.height))
-            pygame.draw.rect(self.screen, CYAN, (actor.collision_grabber_right.x - self.camera.offset_x, actor.collision_grabber_right.y - self.camera.offset_y,
-                                                  actor.collision_grabber_right.width, actor.collision_grabber_right.height))
-            pygame.draw.rect(self.screen, CYAN, (actor.collision_grabber_left.x - self.camera.offset_x, actor.collision_grabber_left.y - self.camera.offset_y,
-                                                  actor.collision_grabber_left.width, actor.collision_grabber_left.height))
+            # pygame.draw.rect(self.screen, DARK_ORANGE, (actor.collision_detector_right.x - self.camera.offset_x, actor.collision_detector_right.y - self.camera.offset_y,
+            #                                       actor.collision_detector_right.width, actor.collision_detector_right.height))
+            # pygame.draw.rect(self.screen, DARK_ORANGE, (actor.collision_detector_left.x - self.camera.offset_x, actor.collision_detector_left.y - self.camera.offset_y,
+            #                                       actor.collision_detector_left.width, actor.collision_detector_left.height))
+            # pygame.draw.rect(self.screen, DARK_ORANGE, (actor.collision_detector_top.x - self.camera.offset_x, actor.collision_detector_top.y - self.camera.offset_y,
+            #                                       actor.collision_detector_top.width, actor.collision_detector_top.height))
+            # pygame.draw.rect(self.screen, DARK_ORANGE, (actor.collision_detector_bottom.x - self.camera.offset_x, actor.collision_detector_bottom.y - self.camera.offset_y,
+            #                                       actor.collision_detector_bottom.width, actor.collision_detector_bottom.height))
+            # pygame.draw.rect(self.screen, MAGENTA, (actor.collision_detector_bottom_right.x - self.camera.offset_x, actor.collision_detector_bottom_right.y - self.camera.offset_y,
+            #                                       actor.collision_detector_bottom_right.width, actor.collision_detector_bottom_right.height))
+            # pygame.draw.rect(self.screen, MAGENTA, (actor.collision_detector_bottom_left.x - self.camera.offset_x, actor.collision_detector_bottom_left.y - self.camera.offset_y,
+            #                                       actor.collision_detector_bottom_left.width, actor.collision_detector_bottom_left.height))
+            # pygame.draw.rect(self.screen, CYAN, (actor.collision_grabber_right.x - self.camera.offset_x, actor.collision_grabber_right.y - self.camera.offset_y,
+            #                                       actor.collision_grabber_right.width, actor.collision_grabber_right.height))
+            # pygame.draw.rect(self.screen, CYAN, (actor.collision_grabber_left.x - self.camera.offset_x, actor.collision_grabber_left.y - self.camera.offset_y,
+            #                                       actor.collision_grabber_left.width, actor.collision_grabber_left.height))
 
             # The eye
             gaze_direction_mod = 0 if actor.look == -1 else actor.rectangle.width - 10
             pygame.draw.rect(self.screen, CYAN, (actor.rectangle.x + gaze_direction_mod - self.camera.offset_x, actor.rectangle.centery - 10 - self.camera.offset_y,
                                                   10, 20))
+            size = actor.current_sprite['sprite'].get_size()
+            # Offset sprite to the left from the center of rectangle using anchor point.
+            if actor.current_sprite_flip:
+                if actor.current_sprite['sprite asymmetric']:
+                    x = actor.rectangle.centerx - self.camera.offset_x \
+                        - size[0] + actor.current_sprite['sprite center']
+                else:
+                    x = actor.rectangle.centerx - self.camera.offset_x \
+                        - actor.current_sprite['sprite center']
+            else:
+                x = actor.rectangle.centerx - self.camera.offset_x - actor.current_sprite['sprite center']
+            y = actor.rectangle.bottom - self.camera.offset_y - size[1] * 0.5 - size[1]
+
+            self.screen.blit(actor.current_sprite['sprite'], (x, y))
 
     def render_demolishers(self):
         for key in self.demolishers[self.location].keys():

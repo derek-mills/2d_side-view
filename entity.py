@@ -1,6 +1,7 @@
 import pygame
 from math import sqrt
 from constants import *
+from graphics import *
 
 class Entity(object):
 
@@ -12,6 +13,29 @@ class Entity(object):
         self.__state: str = ''
         self.idle_counter: int = 0
         self.ignore_user_input: bool = False
+        self.look: int = 1  # 1: look right, -1: look left
+        self.ai_controlled: bool = False
+        self.performing_an_interruptable_deed: bool = False
+        self.think_type: str = ''
+
+        # ANIMATION
+        self.animations = dict()
+        self.animation_descriptor: str = ''
+        self.animation_sequence = None
+        self.animation_sequence_default = None
+        self.animation_sequence_done = False
+        self.animation_not_interruptable = False
+        self.current_animation: str = ''
+        self.frame_number: int = 0
+        self.frame_change_counter: int = 0
+        self.frames_changing_threshold: int = 0
+        self.current_sprite_snap = 0
+        self.current_sprite_flip = False
+        self.current_frame = 0
+        self.current_sprite = None
+        self.current_sprite_xy: list = [0, 0]
+        self.current_mask_xy = (0, 0)
+        self.current_mask_flip = False
 
         # GEOMETRY
         self.origin_xy: tuple = (0, 0)
@@ -28,8 +52,6 @@ class Entity(object):
         self.rectangle_height_counter_change_speed: int = 1
         self.rectangle_width_counter: int = 0
         self.rectangle_width_counter_change_speed: int = 1
-
-        self.look: int = 1  # 1: look right, -1: look left
 
         # MOVEMENT
         self.is_move_right: bool = False
@@ -85,12 +107,8 @@ class Entity(object):
         self.collided_left: bool = False
         self.collided_right: bool = False
         self.collided_bottom: bool = False
-
-        # self.aux_counter = 0
-
         self.influenced_by_obstacle: int = -1
         self.is_edge_grabbed: bool = False
-        # self.is_on_obstacle: bool = False
         self.is_on_ghost_platform: bool = False
         self.is_enough_space_above = False
         self.is_enough_space_below = False  # Флаг для определения возможности 'спрыгивания' со специальных платформ.
@@ -100,6 +118,7 @@ class Entity(object):
         self.is_enough_space_right = True
         self.is_enough_space_left = True
 
+        
 
     def percept(self, obstacles, demolishers):
         self.obstacles_around = obstacles
@@ -181,6 +200,7 @@ class Entity(object):
         self.rectangle_width_slide = self.rectangle.height // 4 * 3
 
     def process(self, time_passed):
+        self.process_animation()
         if self.is_jump:
         # if self.is_jump and self.jump_attempts_counter > 0:
             # Jump
@@ -190,9 +210,9 @@ class Entity(object):
 
         self.processing_rectangle_size()
         self.check_space_around()  # Detect obstacles on the right and left sides
-        self.fall_speed_calc()  # Discover speed and potential fall distance
-        self.speed_calc()       # Discover fall speed and potential move distance
-        self.colliders_calc()   # Calculate colliders around actor based on his current movement and fall speeds.
+        self.calculate_fall_speed()  # Discover speed and potential fall distance
+        self.calculate_speed()       # Discover fall speed and potential move distance
+        self.calculate_colliders()   # Calculate colliders around actor based on his current movement and fall speeds.
         self.detect_collisions()
         self.detect_demolishers_collisions()
 
@@ -211,9 +231,51 @@ class Entity(object):
         #     print('dd')
         #     self.rectangle.x += self.obstacles_around[self.influenced_by_obstacle].vec_to_destination[0]
 
+    def process_animation(self):
+        self.frame_change_counter += 1
+        if self.frame_change_counter > self.frames_changing_threshold:
+            # It is time to change a frame in sequence:
+            self.frame_change_counter = 0
+            self.frame_number += 1
+            if self.frame_number > (len(self.animation_sequence) - 1):
+                # Sequence has come to an end.
+                self.frame_number = self.animations[self.current_animation][self.look]['repeat from frame']
+                # SOUND !!
+                # if self.animations[self.current_animation][self.gaze_direction]['sound']:
+                #     if self.frame_number in self.animations[self.current_animation][self.gaze_direction]['sound at frames']:
+                #         self.consider_which_sound_to_make()
+                self.animation_sequence_done = True
+                self.animation_not_interruptable = False
+                self.performing_an_interruptable_deed = False
+                # self.force_visible = False
+                # print(f'[actor_process_animation_counter] {self.name} Animation sequence done, release lock from world activity.')
+                if not self.animations[self.current_animation][self.look]['repeat']:
+                    # self.apply_default_animation()
+                    return
+            else:
+                self.animation_sequence_done = False
+                # SOUND !!
+                # if self.animations[self.current_animation][self.look]['sound']:
+                #     if self.frame_number in self.animations[self.current_animation][self.look]['sound at frames']:
+                #         self.consider_which_sound_to_make()
+            self.set_current_sprite()
 
+    def set_current_sprite(self):
+        self.current_frame = self.animation_descriptor + ' ' + str(self.animation_sequence[self.frame_number])  # For ex., 'Jane 8'
+        if self.current_frame in sprites[self.id]['sprites'][self.current_animation][self.look].keys():
+            self.current_sprite = sprites[self.id]['sprites'][self.current_animation][self.look][self.current_frame]
+        else:
+            self.apply_particular_animation(self.current_animation)
+            self.current_sprite = sprites[self.id]['sprites'][self.current_animation][self.look][self.current_frame]
 
-    def fall_speed_calc(self):
+    def apply_particular_animation(self, anim):
+        self.frame_number = 0
+        self.frame_change_counter = 0
+        self.frames_changing_threshold = self.animations[anim][self.look]['speed']
+        self.animation_sequence = self.animations[anim][self.look]['sequence']
+        self.set_current_sprite()
+
+    def calculate_fall_speed(self):
         # if self.influenced_by_obstacle >= 0:
         #     self.rectangle.bottom = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
         #     self.potential_falling_distance = 1
@@ -239,9 +301,7 @@ class Entity(object):
         #     self.potential_falling_distance += self.obstacles_around[self.influenced_by_obstacle].fall_speed
         #     # self.potential_falling_distance += self.obstacles_around[self.influenced_by_obstacle].potential_falling_distance
 
-
-
-    def speed_calc(self):
+    def calculate_speed(self):
         if self.heading[0] == 0:
             if self.speed > 0:
                 if self.is_stand_on_ground:
@@ -276,7 +336,7 @@ class Entity(object):
     def state_machine(self):
         ...
 
-    def colliders_calc_backup(self):
+    def calculate_colliders_backup(self):
         bottom_indent = 35 if self.is_stand_on_ground else 0
         if self.look * self.movement_direction_inverter == 1:
             self.collision_detector_right.update(self.rectangle.right, self.rectangle.top, self.speed + 1, self.rectangle.height - bottom_indent)
@@ -307,7 +367,7 @@ class Entity(object):
             self.collision_detector_bottom.update(self.rectangle.left +2, self.rectangle.bottom, self.rectangle.width-4, self.fall_speed + 2)
             # self.collision_detector_bottom.update(self.rectangle.left + 2, self.rectangle.bottom - 2, self.rectangle.width - 4, self.fall_speed + 2)
 
-    def colliders_calc(self):
+    def calculate_colliders(self):
         bottom_indent = 25 #if self.is_stand_on_ground else 0
         if self.look * self.movement_direction_inverter == 1:
             # if self.speed > 0:
@@ -863,7 +923,7 @@ class Entity(object):
             # self.rectangle.centery += round(self.vec_to_destination[1])
 
 
-    # def colliders_calc_backup(self):
+    # def calculate_colliders_backup(self):
     #     if self.look * self.movement_direction_inverter == 1:
     #         self.collision_detector_right.update(self.rectangle.right, self.rectangle.top, self.speed + 1, self.rectangle.height - 35)
     #         self.collision_detector_bottom_right.update(self.rectangle.right, self.rectangle.bottom - 35, self.speed + 1, 35)

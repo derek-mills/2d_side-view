@@ -7,13 +7,13 @@ class Actor(Entity):
         super().__init__()
         self.id: int = 0
         self.type = 'actor'
+        self.inventory = dict()
+        self.current_weapon = ''
 
         self.acceleration = .5
         self.air_acceleration = .4
         self.jump_height: int = 22
-        self.default_max_speed = 10
         self.max_jump_attempts = 2
-        self.max_speed = 10
 
         self.rectangle.height = 149
         self.rectangle.width = 49
@@ -25,13 +25,103 @@ class Actor(Entity):
         self.rectangle_width_sit = self.rectangle.width * 1.34
         self.rectangle_height_slide = self.rectangle.width
         self.rectangle_width_slide = self.rectangle.height
-        # self.rectangle_height_slide = self.rectangle.height // 3
-        # self.rectangle_width_slide = self.rectangle.height // 4 * 3
-
-        # self.ignore_user_input: bool = False
 
         self.__state = 'stand still'
 
+        self.body = {
+            'head': {
+                # 'map rect': pygame.Rect(1,0,7,8),
+                'to hit probability weight': 1,
+                'available': True,
+                'hardness': 2,
+                'consistency': 100,
+                'consistency default': 100,
+                'pain': 0,
+                'bleeding': 0
+            },
+            'left hand': {
+                # 'map rect': pygame.Rect(0,6,2,8),
+                'to hit probability weight': 5,
+                'status': {
+                    'grab_something': False,
+                    'grabbed': False
+                },
+                'available': True,
+                'hardness': 1,
+                'weapon': None,
+                'consistency': 100,
+                'consistency default': 100,
+                'pain': 0,
+                'bleeding': 0,
+            },
+            'right hand': {
+                'map rect': pygame.Rect(7,6,2,8),
+                'to hit probability weight': 5,
+                'status': {
+                    'grab_something': False,
+                    'grabbed': False
+                },
+                'available': True,
+                'hardness': 1,
+                'weapon': None,
+                'consistency': 100,
+                'consistency default': 100,
+                'pain': 0, 'bleeding': 0
+            },
+            'left leg': {
+                'map rect': pygame.Rect(2,13, 2, 8),
+                'to hit probability weight': 5,
+                'available': True,
+                'hardness': 1,
+                'consistency': 100,
+                'consistency default': 100,
+                'pain': 0,
+                'bleeding': 0
+            },
+            'right leg': {
+                'map rect': pygame.Rect(5,13,2, 8),
+                'to hit probability weight': 5,
+                'available': True,
+                'hardness': 1,
+                'consistency': 100,
+                'consistency default': 100,
+                'pain': 0,
+                'bleeding': 0
+            },
+            'torso': {
+                'map rect': pygame.Rect(2,8,5,5),
+                'to hit probability weight': 25,
+                'hardness': 1,
+                'consistency': 100,
+                'consistency default': 100,
+                'pain': 0,
+                'bleeding': 0
+            },
+
+        }
+
+    def add_items_to_inventory(self, items):
+        if not items:
+            return
+        # print(items)
+        for item in items:
+            if item['class'] not in self.inventory.keys():
+                self.inventory[item['class']] = dict()
+            if item['label'] in self.inventory[item['class']].keys():
+                self.inventory[item['class']][item['label']]['quantity'] += 1
+            else:
+                self.inventory[item['class']][item['label']] = {'item': item.copy(), 'quantity': 1}
+
+    def activate_weapon(self, uuid):
+        if not self.inventory:
+            return
+        # print(self.inventory)
+        if uuid == 0:
+            all_weapons = list(self.inventory['weapons'].keys())
+            self.body['right hand']['weapon'] = self.inventory['weapons'][all_weapons[0]]
+        else:
+            self.body['right hand']['weapon'] = self.inventory['weapons'][uuid]
+        self.current_weapon = self.body['right hand']['weapon']['item']
 
     def get_state(self):
         return self.__state

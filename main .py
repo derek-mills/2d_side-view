@@ -3,7 +3,7 @@ from graphics import *
 from world import *
 # from constants import *
 # from info_window import *
-# from actors_description import*
+from actors_description import *
 # from load_content import *
 from locations import *
 # from sound import *
@@ -45,10 +45,10 @@ world.location = '01'
 
 world.load()
 
-player = {
-    'xy': (200, 200)
-}
-world.add_actor(player)
+# player = {
+#     'xy': (200, 200)
+# }
+world.add_actor(player_jake)
 
 
 # for obs in locations['01']['obstacles']['platforms']:
