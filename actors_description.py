@@ -151,6 +151,26 @@ player_jake = {
                 'sequence': (17,18,19,20,21,22,23,24,25,26,14,15,16), 'speed': 1,
                 'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
+        'jump right': {
+                'repeat': True, 'interruptable': True,
+                'sequence': (17,), 'speed': 1,
+                'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
+            },
+        'jump left': {
+                'repeat': True, 'interruptable': True,
+                'sequence': (17,), 'speed': 1,
+                'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
+            },
+        'turn right': {
+                'repeat': True, 'interruptable': True,
+                'sequence': (25,), 'speed': 1,
+                'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
+            },
+        'turn left': {
+                'repeat': True, 'interruptable': True,
+                'sequence': (24,), 'speed': 1,
+                'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
+            },
     },
     'think type': '',
     'AI controlled': False

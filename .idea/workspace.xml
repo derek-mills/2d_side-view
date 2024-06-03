@@ -8,8 +8,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/load_content.py" beforeDir="false" afterPath="$PROJECT_DIR$/load_content.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,13 +106,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00056" summary="Solved issue with instant change of movement direction without inertia.">
-      <created>1716358260134</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1716358260134</updated>
     </task>
     <task id="LOCAL-00057" summary="Fixed bug in level editor: 'collideable' and 'gravity affected' did not save after editing.">
       <created>1716359287473</created>
@@ -452,7 +443,14 @@
       <option name="project" value="LOCAL" />
       <updated>1717397291331</updated>
     </task>
-    <option name="localTasksCounter" value="105" />
+    <task id="LOCAL-00105" summary="Animation depends on __state of actor.">
+      <created>1717401148136</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1717401148136</updated>
+    </task>
+    <option name="localTasksCounter" value="106" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -467,7 +465,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added autocrawling if actor get stuck under the obstacle after the sliding process is over.&#10;Added stay crouch status if actor has not enough space above to stand up." />
     <MESSAGE value="Improved some states interactions to avoid getting stuck into an obstacles after actor stance has changed." />
     <MESSAGE value="Fixed suddenly broken top collision detector." />
     <MESSAGE value="Tuning the hopping down." />
@@ -492,6 +489,7 @@
     <MESSAGE value="Fine-tuning of grab and release functions." />
     <MESSAGE value="Improved pushing actor to the back if moving obstacle has crawled from behind." />
     <MESSAGE value="Added raw animation mechanism." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added raw animation mechanism." />
+    <MESSAGE value="Animation depends on __state of actor." />
+    <option name="LAST_COMMIT_MESSAGE" value="Animation depends on __state of actor." />
   </component>
 </project>

@@ -234,13 +234,18 @@ class Entity(object):
     def set_current_animation(self):
         state = self.get_state()
         # print(state)
-        if state == 'stand still':
+        self.current_animation = state + str(self.look)
+        if 'right' not in state and 'left' not in state:
             if self.look == 1:
-                self.current_animation = 'stand still right'
+                self.current_animation = state + ' right'
             else:
-                self.current_animation = 'stand still left'
+                self.current_animation = state + ' left'
         else:
             self.current_animation = state
+
+        # If animation for current state does not exist, set default:
+        if self.current_animation not in self.animations.keys():
+            self.current_animation = 'stand still right'
 
     def process_animation(self):
         self.set_current_animation()

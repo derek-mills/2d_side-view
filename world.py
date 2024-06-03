@@ -283,7 +283,8 @@ class World(object):
                         - actor.current_sprite['sprite center']
             else:
                 x = actor.rectangle.centerx - self.camera.offset_x - actor.current_sprite['sprite center']
-            y = actor.rectangle.bottom - self.camera.offset_y - size[1] * 0.5 - size[1]
+
+            y = actor.rectangle.bottom - self.camera.offset_y - size[1]
 
             self.screen.blit(actor.current_sprite['sprite'], (x, y))
 
