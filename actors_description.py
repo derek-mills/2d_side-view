@@ -67,19 +67,19 @@ player_jake = {
         #     'down': {'repeat': False, 'interruptable': False, 'sequence': (6,6,6,6,6,6,6,6,6), 'speed': 1,
         #               'sound': 'gunshot', 'sound at frames': (2,), 'repeat from frame': 0},
         # },
-        'melee attack': {
-            1: {
-                'repeat': False, 'interruptable': False,
-                'sequence': (32,33,33,33), 'speed': 1,
-                'sound': 'swing', 'sound at frames': (1,), 'repeat from frame': 0
-            },
-
-            -1: {
-                'repeat': False, 'interruptable': False,
-                'sequence': (32,33,33,33), 'speed': 1,
-                'sound': 'swing', 'sound at frames': (1,), 'repeat from frame': 0
-            },
-        },
+        # 'melee attack': {
+        #     1: {
+        #         'repeat': False, 'interruptable': False,
+        #         'sequence': (32,33,33,33), 'speed': 1,
+        #         'sound': 'swing', 'sound at frames': (1,), 'repeat from frame': 0
+        #     },
+        #
+        #     -1: {
+        #         'repeat': False, 'interruptable': False,
+        #         'sequence': (32,33,33,33), 'speed': 1,
+        #         'sound': 'swing', 'sound at frames': (1,), 'repeat from frame': 0
+        #     },
+        # },
         # 'get hurt': {
         #     'right': {'repeat': False, 'interruptable': False, 'sequence': (12,13,12,13,12,13,12,13), 'speed': 2,
         #              'sound': 'jake groan', 'sound at frames': (1,), 'repeat from frame': 0},
@@ -130,30 +130,27 @@ player_jake = {
         #     'down': {'repeat': True, 'interruptable': True, 'sequence': (42,43), 'speed': 10,
         #              'sound': None, 'sound at frames': (0,), 'repeat from frame': 0},
         # },
-        'stand still': {
-            1: {
+        'stand still right': {
                 'repeat': True, 'interruptable': True,
                 'sequence': (1,1,1,1,1,1,2,2,2,2,2,2,2), 'speed': 20,
                 'sound': None, 'sound at frames': (0,), 'repeat from frame': 0
             },
-            -1: {
-                'repeat': True, 'interruptable': True,
-                'sequence': (1,1,1,1,1,1,2,2,2,2,2,2,2), 'speed': 20,
-                'sound': None, 'sound at frames': (0,), 'repeat from frame': 0
-            },
+        'stand still left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2), 'speed': 20,
+            'sound': None, 'sound at frames': (0,), 'repeat from frame': 0
         },
-        'walk': {
-            1: {
+
+        'run right': {
                 'repeat': True, 'interruptable': True,
                 'sequence': (17,18,19,20,21,22,23,24,25,26,14,15,16), 'speed': 1,
                 'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
-            -1: {
+        'run left': {
                 'repeat': True, 'interruptable': True,
                 'sequence': (17,18,19,20,21,22,23,24,25,26,14,15,16), 'speed': 1,
                 'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
-        },
     },
     'think type': '',
     'AI controlled': False

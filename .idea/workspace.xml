@@ -5,14 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/load_content.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphics.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphics.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main .py" beforeDir="false" afterPath="$PROJECT_DIR$/main .py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/load_content.py" beforeDir="false" afterPath="$PROJECT_DIR$/load_content.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -112,13 +108,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00055" summary="Continue fixing tiny annoying bugs in states behaviour and interactions.">
-      <created>1716357583625</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1716357583625</updated>
     </task>
     <task id="LOCAL-00056" summary="Solved issue with instant change of movement direction without inertia.">
       <created>1716358260134</created>
@@ -456,7 +445,14 @@
       <option name="project" value="LOCAL" />
       <updated>1717141860994</updated>
     </task>
-    <option name="localTasksCounter" value="104" />
+    <task id="LOCAL-00104" summary="Added raw animation mechanism.">
+      <created>1717397291331</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1717397291331</updated>
+    </task>
+    <option name="localTasksCounter" value="105" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -471,7 +467,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Smooth animation for climbing up added." />
     <MESSAGE value="Added autocrawling if actor get stuck under the obstacle after the sliding process is over.&#10;Added stay crouch status if actor has not enough space above to stand up." />
     <MESSAGE value="Improved some states interactions to avoid getting stuck into an obstacles after actor stance has changed." />
     <MESSAGE value="Fixed suddenly broken top collision detector." />
@@ -496,6 +491,7 @@
     <MESSAGE value="Grab colliders improving, go on." />
     <MESSAGE value="Fine-tuning of grab and release functions." />
     <MESSAGE value="Improved pushing actor to the back if moving obstacle has crawled from behind." />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved pushing actor to the back if moving obstacle has crawled from behind." />
+    <MESSAGE value="Added raw animation mechanism." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added raw animation mechanism." />
   </component>
 </project>

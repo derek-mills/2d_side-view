@@ -86,9 +86,14 @@ class World(object):
         entity.animations = description['animations']
         entity.animation_descriptor = entity.name  # for ex.: 'player1'
         load_animations(entity)
-        entity.current_animation = 'stand still'
-        entity.frames_changing_threshold = entity.animations[entity.current_animation][entity.look]['speed']
-        entity.animation_sequence = entity.animations[entity.current_animation][entity.look]['sequence']
+        entity.set_state('stand still')
+        entity.set_current_animation()
+        # print(entity.get_state(), entity.current_animation)
+        # exit()
+        entity.frames_changing_threshold = entity.animations[entity.current_animation]['speed']
+        # entity.frames_changing_threshold = entity.animations[entity.current_animation][entity.look]['speed']
+        entity.animation_sequence = entity.animations[entity.current_animation]['sequence']
+        # entity.animation_sequence = entity.animations[entity.current_animation][entity.look]['sequence']
         entity.set_current_sprite()
 
         entity.ai_controlled = description['AI controlled']

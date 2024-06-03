@@ -231,7 +231,19 @@ class Entity(object):
         #     print('dd')
         #     self.rectangle.x += self.obstacles_around[self.influenced_by_obstacle].vec_to_destination[0]
 
+    def set_current_animation(self):
+        state = self.get_state()
+        # print(state)
+        if state == 'stand still':
+            if self.look == 1:
+                self.current_animation = 'stand still right'
+            else:
+                self.current_animation = 'stand still left'
+        else:
+            self.current_animation = state
+
     def process_animation(self):
+        self.set_current_animation()
         self.frame_change_counter += 1
         if self.frame_change_counter > self.frames_changing_threshold:
             # It is time to change a frame in sequence:
@@ -239,7 +251,7 @@ class Entity(object):
             self.frame_number += 1
             if self.frame_number > (len(self.animation_sequence) - 1):
                 # Sequence has come to an end.
-                self.frame_number = self.animations[self.current_animation][self.look]['repeat from frame']
+                self.frame_number = self.animations[self.current_animation]['repeat from frame']
                 # SOUND !!
                 # if self.animations[self.current_animation][self.gaze_direction]['sound']:
                 #     if self.frame_number in self.animations[self.current_animation][self.gaze_direction]['sound at frames']:
@@ -249,7 +261,7 @@ class Entity(object):
                 self.performing_an_interruptable_deed = False
                 # self.force_visible = False
                 # print(f'[actor_process_animation_counter] {self.name} Animation sequence done, release lock from world activity.')
-                if not self.animations[self.current_animation][self.look]['repeat']:
+                if not self.animations[self.current_animation]['repeat']:
                     # self.apply_default_animation()
                     return
             else:
@@ -262,17 +274,17 @@ class Entity(object):
 
     def set_current_sprite(self):
         self.current_frame = self.animation_descriptor + ' ' + str(self.animation_sequence[self.frame_number])  # For ex., 'Jane 8'
-        if self.current_frame in sprites[self.id]['sprites'][self.current_animation][self.look].keys():
-            self.current_sprite = sprites[self.id]['sprites'][self.current_animation][self.look][self.current_frame]
+        if self.current_frame in sprites[self.id]['sprites'][self.current_animation].keys():
+            self.current_sprite = sprites[self.id]['sprites'][self.current_animation][self.current_frame]
         else:
             self.apply_particular_animation(self.current_animation)
-            self.current_sprite = sprites[self.id]['sprites'][self.current_animation][self.look][self.current_frame]
+            self.current_sprite = sprites[self.id]['sprites'][self.current_animation][self.current_frame]
 
     def apply_particular_animation(self, anim):
         self.frame_number = 0
         self.frame_change_counter = 0
-        self.frames_changing_threshold = self.animations[anim][self.look]['speed']
-        self.animation_sequence = self.animations[anim][self.look]['sequence']
+        self.frames_changing_threshold = self.animations[anim]['speed']
+        self.animation_sequence = self.animations[anim]['sequence']
         self.set_current_sprite()
 
     def calculate_fall_speed(self):
