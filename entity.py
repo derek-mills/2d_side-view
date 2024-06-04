@@ -246,9 +246,10 @@ class Entity(object):
         # If animation for current state does not exist, set default:
         if self.current_animation not in self.animations.keys():
             self.current_animation = 'stand still right'
+        self.apply_particular_animation(self.current_animation)
 
     def process_animation(self):
-        self.set_current_animation()
+        # self.set_current_animation()
         self.frame_change_counter += 1
         if self.frame_change_counter > self.frames_changing_threshold:
             # It is time to change a frame in sequence:

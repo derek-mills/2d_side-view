@@ -38,8 +38,9 @@ def load_animations(actor):
             # print(self.sprites[txt_description].get_palette())
             # exit()
             sprites[actor.id]['sprites'][animation_type][animation_description] = sprites[animation_description]
-            sprites[actor.id]['masks'][animation_type][animation_description] = pygame.mask.from_surface(sprites[animation_description]['sprite'])
-            sprites[actor.id]['outlines'][animation_type][animation_description] = create_contour_by_mask(sprites[actor.id]['masks'][animation_type][animation_description])
+            # sprites[actor.id]['masks'][animation_type][animation_description] = pygame.mask.from_surface(sprites[animation_description]['sprite'])
+            # sprites[actor.id]['outlines'][animation_type][animation_description] = create_contour_by_mask(sprites[actor.id]['masks'][animation_type][animation_description])
+
             # sprites[actor.id]['sprites'][animation_type][anim_direction][animation_description] = sprites[animation_description]
             # sprites[actor.id]['masks'][animation_type][anim_direction][animation_description] = pygame.mask.from_surface(sprites[animation_description]['sprite'])
             # sprites[actor.id]['outlines'][animation_type][anim_direction][animation_description] = create_contour_by_mask(sprites[actor.id]['masks'][animation_type][anim_direction][animation_description])

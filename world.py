@@ -248,6 +248,22 @@ class World(object):
     def render_actors(self):
         for key in self.actors[self.location].keys():
             actor = self.actors[self.location][key]
+            size = actor.current_sprite['sprite'].get_size()
+            # Offset sprite to the left from the center of rectangle using anchor point.
+            if actor.current_sprite_flip:
+                if actor.current_sprite['sprite asymmetric']:
+                    x = actor.rectangle.centerx - self.camera.offset_x \
+                        - size[0] + actor.current_sprite['sprite center']
+                else:
+                    x = actor.rectangle.centerx - self.camera.offset_x \
+                        - actor.current_sprite['sprite center']
+            else:
+                x = actor.rectangle.centerx - self.camera.offset_x - actor.current_sprite['sprite center']
+
+            y = actor.rectangle.bottom - self.camera.offset_y - size[1]
+
+            self.screen.blit(actor.current_sprite['sprite'], (x, y))
+
             pygame.draw.rect(self.screen, GREEN, (actor.rectangle.x - self.camera.offset_x, actor.rectangle.y - self.camera.offset_y,
                                                   actor.rectangle.width, actor.rectangle.height), 5)
             # Colliders rects:
@@ -272,21 +288,6 @@ class World(object):
             gaze_direction_mod = 0 if actor.look == -1 else actor.rectangle.width - 10
             pygame.draw.rect(self.screen, CYAN, (actor.rectangle.x + gaze_direction_mod - self.camera.offset_x, actor.rectangle.centery - 10 - self.camera.offset_y,
                                                   10, 20))
-            size = actor.current_sprite['sprite'].get_size()
-            # Offset sprite to the left from the center of rectangle using anchor point.
-            if actor.current_sprite_flip:
-                if actor.current_sprite['sprite asymmetric']:
-                    x = actor.rectangle.centerx - self.camera.offset_x \
-                        - size[0] + actor.current_sprite['sprite center']
-                else:
-                    x = actor.rectangle.centerx - self.camera.offset_x \
-                        - actor.current_sprite['sprite center']
-            else:
-                x = actor.rectangle.centerx - self.camera.offset_x - actor.current_sprite['sprite center']
-
-            y = actor.rectangle.bottom - self.camera.offset_y - size[1]
-
-            self.screen.blit(actor.current_sprite['sprite'], (x, y))
 
     def render_demolishers(self):
         for key in self.demolishers[self.location].keys():

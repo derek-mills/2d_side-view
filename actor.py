@@ -129,6 +129,7 @@ class Actor(Entity):
     def set_state(self, new_state):
         # print(f'[actor.set_state] new state: {new_state}')
         self.__state = new_state
+        self.set_current_animation()
 
     def process(self, time_passed):
         self.state_machine()

@@ -137,38 +137,38 @@ player_jake = {
             },
         'stand still left': {
             'repeat': True, 'interruptable': True,
-            'sequence': (1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2), 'speed': 20,
+            'sequence': (15,16), 'speed': 50,
             'sound': None, 'sound at frames': (0,), 'repeat from frame': 0
         },
 
         'run right': {
                 'repeat': True, 'interruptable': True,
-                'sequence': (17,18,19,20,21,22,23,24,25,26,14,15,16), 'speed': 1,
+                'sequence': (28,29,30,31,32,33,34,35,36,37,38,39,40), 'speed': 1,
                 'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
         'run left': {
                 'repeat': True, 'interruptable': True,
-                'sequence': (17,18,19,20,21,22,23,24,25,26,14,15,16), 'speed': 1,
+                'sequence': (54,53,52,51,50,49,48,47,46,45,44,43,42), 'speed': 1,
                 'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
         'jump right': {
                 'repeat': True, 'interruptable': True,
-                'sequence': (17,), 'speed': 1,
+                'sequence': (32,), 'speed': 1,
                 'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
         'jump left': {
                 'repeat': True, 'interruptable': True,
-                'sequence': (17,), 'speed': 1,
+                'sequence': (51,), 'speed': 1,
                 'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
         'turn right': {
                 'repeat': True, 'interruptable': True,
-                'sequence': (25,), 'speed': 1,
+                'sequence': (0,), 'speed': 1,
                 'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
         'turn left': {
                 'repeat': True, 'interruptable': True,
-                'sequence': (24,), 'speed': 1,
+                'sequence': (0,), 'speed': 1,
                 'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
     },

@@ -6,8 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphics.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/animations/jake_8bit.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/animations/jake_8bit.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/load_content.py" beforeDir="false" afterPath="$PROJECT_DIR$/load_content.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,14 +45,14 @@
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/media/sid/d90c7353-09c5-492a-aa88-66d695362d79/sid/scripts/python/pygame/1.turn_based_adv.ProjectOne/turn_based/main.py",
-    "settings.editor.selected.configurable": "preferences.customizations"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/media/sid/d90c7353-09c5-492a-aa88-66d695362d79/sid/scripts/python/pygame/1.turn_based_adv.ProjectOne/turn_based/main.py&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.customizations&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Python.main ">
     <configuration name="level_editor" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ver_0.000.1" />
@@ -106,13 +111,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00057" summary="Fixed bug in level editor: 'collideable' and 'gravity affected' did not save after editing.">
-      <created>1716359287473</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
-      <option name="project" value="LOCAL" />
-      <updated>1716359287473</updated>
     </task>
     <task id="LOCAL-00058" summary="Fixed bug while hopping back and incorrect collision detection.">
       <created>1716363016272</created>
@@ -450,7 +448,14 @@
       <option name="project" value="LOCAL" />
       <updated>1717401148136</updated>
     </task>
-    <option name="localTasksCounter" value="106" />
+    <task id="LOCAL-00106" summary="Animation getting more complicated and proper.">
+      <created>1717403121632</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1717403121632</updated>
+    </task>
+    <option name="localTasksCounter" value="107" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -465,7 +470,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Improved some states interactions to avoid getting stuck into an obstacles after actor stance has changed." />
     <MESSAGE value="Fixed suddenly broken top collision detector." />
     <MESSAGE value="Tuning the hopping down." />
     <MESSAGE value="Initiated system for obstacles action handling." />
@@ -490,6 +494,7 @@
     <MESSAGE value="Improved pushing actor to the back if moving obstacle has crawled from behind." />
     <MESSAGE value="Added raw animation mechanism." />
     <MESSAGE value="Animation depends on __state of actor." />
-    <option name="LAST_COMMIT_MESSAGE" value="Animation depends on __state of actor." />
+    <MESSAGE value="Animation getting more complicated and proper." />
+    <option name="LAST_COMMIT_MESSAGE" value="Animation getting more complicated and proper." />
   </component>
 </project>
