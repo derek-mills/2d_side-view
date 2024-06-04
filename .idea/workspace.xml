@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -105,13 +105,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00059" summary="Still solving problems with hopping back.">
-      <created>1716363482126</created>
-      <option name="number" value="00059" />
-      <option name="presentableId" value="LOCAL-00059" />
-      <option name="project" value="LOCAL" />
-      <updated>1716363482126</updated>
     </task>
     <task id="LOCAL-00060" summary="There is a bug when try to step over a tiny obstacle lower 35 px of height if moving left.">
       <created>1716369578747</created>
@@ -449,7 +442,14 @@
       <option name="project" value="LOCAL" />
       <updated>1717486897324</updated>
     </task>
-    <option name="localTasksCounter" value="108" />
+    <task id="LOCAL-00108" summary="New actor rectangle measurements system implemented.">
+      <created>1717487383986</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
+      <option name="project" value="LOCAL" />
+      <updated>1717487383986</updated>
+    </task>
+    <option name="localTasksCounter" value="109" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -464,7 +464,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Tuning the hopping down." />
     <MESSAGE value="Initiated system for obstacles action handling." />
     <MESSAGE value="Obstacle actions handling system improved." />
     <MESSAGE value="Obstacles are divided into four lists during collisions detection depends on their position relative to actor rectangle center." />
@@ -489,6 +488,7 @@
     <MESSAGE value="Animation depends on __state of actor." />
     <MESSAGE value="Animation getting more complicated and proper." />
     <MESSAGE value="Animations apply efficiently." />
-    <option name="LAST_COMMIT_MESSAGE" value="Animations apply efficiently." />
+    <MESSAGE value="New actor rectangle measurements system implemented." />
+    <option name="LAST_COMMIT_MESSAGE" value="New actor rectangle measurements system implemented." />
   </component>
 </project>

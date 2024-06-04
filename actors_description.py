@@ -183,6 +183,16 @@ player_jake = {
             'sequence': (73,), 'speed': 1,
             'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 0
         },
+        'crouch right': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (70,71,72,), 'speed': 1,
+            'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 2
+        },
+        'crouch left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (70,71,72,), 'speed': 1,
+            'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 2
+        },
     },
     'think type': '',
     'AI controlled': False
