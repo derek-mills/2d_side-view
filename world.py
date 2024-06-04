@@ -77,7 +77,10 @@ class World(object):
         entity.id = self.actor_id
         entity.name = description['name']
         entity.is_gravity_affected = description['gravity affected']
+        entity.rectangle.height = description['height']
+        entity.rectangle.width = description['width']
         entity.rectangle.center = description['start_xy']
+        entity.apply_measurements()
         entity.destination[0] = entity.rectangle.centerx
         entity.destination[1] = entity.rectangle.centery
         entity.max_speed = description['max speed']

@@ -5,6 +5,8 @@ from random import randint
 player_jake = {
     'name': 'Jake',
     'start_xy': (200, 200),
+    'height': 190,
+    'width': 49,
     'body state': {
         'viewing range': 600,
         'regeneration ability': 0.001,
@@ -171,6 +173,16 @@ player_jake = {
                 'sequence': (0,), 'speed': 1,
                 'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
+        'sliding right': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (73,), 'speed': 1,
+            'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 0
+        },
+        'sliding left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (73,), 'speed': 1,
+            'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 0
+        },
     },
     'think type': '',
     'AI controlled': False

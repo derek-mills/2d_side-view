@@ -15,16 +15,16 @@ class Actor(Entity):
         self.jump_height: int = 22
         self.max_jump_attempts = 2
 
-        self.rectangle.height = 149
-        self.rectangle.width = 49
-        self.target_height = self.rectangle.h
-        self.target_width = self.rectangle.w
-        self.rectangle_height_default = self.rectangle.height
-        self.rectangle_width_default = self.rectangle.width
-        self.rectangle_height_sit = self.rectangle.height * 0.66
-        self.rectangle_width_sit = self.rectangle.width * 1.34
-        self.rectangle_height_slide = self.rectangle.width
-        self.rectangle_width_slide = self.rectangle.height
+        # self.rectangle.height = 149
+        # self.rectangle.width = 49
+        # self.target_height = self.rectangle.h
+        # self.target_width = self.rectangle.w
+        # self.rectangle_height_default = self.rectangle.height
+        # self.rectangle_width_default = self.rectangle.width
+        # self.rectangle_height_sit = self.rectangle.height * 0.66
+        # self.rectangle_width_sit = self.rectangle.width * 1.34
+        # self.rectangle_height_slide = self.rectangle.width
+        # self.rectangle_width_slide = self.rectangle.height
 
         self.__state = 'stand still'
 
@@ -99,6 +99,17 @@ class Actor(Entity):
             },
 
         }
+
+
+    def apply_measurements(self):
+        self.target_height = self.rectangle.h
+        self.target_width = self.rectangle.w
+        self.rectangle_height_default = self.rectangle.height
+        self.rectangle_width_default = self.rectangle.width
+        self.rectangle_height_sit = self.rectangle.height * 0.66
+        self.rectangle_width_sit = self.rectangle.width * 1.34
+        self.rectangle_height_slide = self.rectangle.width
+        self.rectangle_width_slide = self.rectangle.height
 
     def add_items_to_inventory(self, items):
         if not items:
@@ -408,7 +419,6 @@ class Actor(Entity):
             else:
                 self.set_new_desired_height(self.rectangle_height_slide, 0)
             # self.set_new_desired_height(self.rectangle_height_slide, 0)
-
         elif self.__state == 'stand still':                     # STANDING STILL
             self.heading[0] = 0
             # self.is_grabbers_active = True
