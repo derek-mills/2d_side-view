@@ -1,6 +1,6 @@
 kitchen_knife = {
     'aimed fire': True,
-    'attack animation': 'melee attack stab',
+    'attack animation': 'stab',
     'leave particles': False,
     'class': 'weapons',
     'type': 'melee',

@@ -289,6 +289,7 @@ class Entity(object):
     def apply_particular_animation(self, anim):
         self.frame_number = 0
         self.frame_change_counter = 0
+        self.animation_sequence_done = False
         self.frames_changing_threshold = self.animations[anim]['speed']
         self.animation_sequence = self.animations[anim]['sequence']
         self.set_current_sprite()

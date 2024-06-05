@@ -6,7 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphics.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/animations/jake_8bit.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/animations/jake_8bit.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,13 +110,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00060" summary="There is a bug when try to step over a tiny obstacle lower 35 px of height if moving left.">
-      <created>1716369578747</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1716369578747</updated>
     </task>
     <task id="LOCAL-00061" summary="Corrected fall speed calculations: it happens if actor stands on the ground only.&#10;Added is_being_collided_now for obstacles.">
       <created>1716424663519</created>
@@ -449,7 +447,14 @@
       <option name="project" value="LOCAL" />
       <updated>1717487383986</updated>
     </task>
-    <option name="localTasksCounter" value="109" />
+    <task id="LOCAL-00109" summary="Crouch animation">
+      <created>1717491325166</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1717491325166</updated>
+    </task>
+    <option name="localTasksCounter" value="110" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -464,7 +469,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Initiated system for obstacles action handling." />
     <MESSAGE value="Obstacle actions handling system improved." />
     <MESSAGE value="Obstacles are divided into four lists during collisions detection depends on their position relative to actor rectangle center." />
     <MESSAGE value="Bottom collision detection improved." />
@@ -489,6 +493,7 @@
     <MESSAGE value="Animation getting more complicated and proper." />
     <MESSAGE value="Animations apply efficiently." />
     <MESSAGE value="New actor rectangle measurements system implemented." />
-    <option name="LAST_COMMIT_MESSAGE" value="New actor rectangle measurements system implemented." />
+    <MESSAGE value="Crouch animation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Crouch animation" />
   </component>
 </project>

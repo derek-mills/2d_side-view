@@ -280,6 +280,11 @@ class Actor(Entity):
             self.ignore_user_input = False
             # self.movement_direction_inverter = 1
 
+        elif new_action == 'attack':
+            if self.is_stand_on_ground:
+                self.set_state('attack')
+
+
     def state_machine(self):
         if self.__state == 'crouch down':                       # CROUCH DOWN PROCESS
             self.is_crouch = True
@@ -287,6 +292,18 @@ class Actor(Entity):
             self.set_new_desired_height(self.rectangle_height_sit, 5)
             self.set_new_desired_width(self.rectangle_width_sit, 3)
             self.set_state('crouch')
+        elif self.__state == 'attack':                          # PREPARE ATTACK
+            self.set_state(self.current_weapon['attack animation'])
+            # self.current_animation = self.current_weapon['attack animation']
+            self.set_current_animation()
+            # self.apply_particular_animation(self.current_animation)
+            # self.set_state('attacking')
+            self.ignore_user_input = True
+            self.heading[0] = 0
+        elif self.__state == 'stab':                          # ATTACKING IN PROCESS...
+            if self.animation_sequence_done:
+                self.ignore_user_input = False
+                self.set_state('stand still')
         elif self.__state == 'crouch':                          # CROUCH
             self.speed = 0
             self.heading[0] = 0

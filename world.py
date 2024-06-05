@@ -32,6 +32,7 @@ class World(object):
 
         # CONTROLS
         self.is_key_pressed = False
+        self.is_attack = False
         self.is_input_up_arrow = False
         self.is_input_down_arrow = False
         self.is_input_right_arrow = False
@@ -242,6 +243,10 @@ class World(object):
                     if actor.get_state() == 'hop back progress':
                         actor.set_action('hop back action cancel')
 
+                if self.is_attack:
+                    self.is_attack = False
+                    actor.set_action('attack')
+
             actor.process(self.time_passed)
             # actor.reset_self_flags()
 
@@ -439,19 +444,15 @@ class World(object):
                 if event.key == K_SPACE:
                     self.is_spacebar = False
                     self.spacebar_multiple_press_prevent = False
-                # elif event.key == K_z:
-                #     self.z = False
-                # elif event.key == K_x:
-                #     self.input_cancel = False
-                # if event.key == K_KP_PLUS:
-                #     self.avatars_row_scale_decrease = False
-                # if event.key == K_KP_MINUS:
-                #     self.avatars_row_scale_increase = False
+                # if event.key == K_RIGHT:
+                #     self.is_attack = False
             if event.type == KEYDOWN:
                 self.is_key_pressed = True
                 if event.key == K_ESCAPE:
                     pygame.quit()
                     raise SystemExit()
+                if event.key == K_RIGHT:
+                    self.is_attack = True
 
                 if event.key == K_d:
                     self.is_input_right_arrow = True

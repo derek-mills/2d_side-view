@@ -240,7 +240,7 @@ load_single_frame(tmp_sprites, ((260,150,20,18),), name + ' avatar front')
 # load_single_frame(tmp_sprites, ((2660,1720,90,50),), name + 'floor shadow mask')
 # load_single_frame(tmp_sprites, ((1744,2194,332,205),), name + ' 98')  # Unconsciousness frame 1
 # load_single_frame(tmp_sprites, ((2076,2220,369,176),), name + ' 99')  # Unconsciousness frame 2
-load_all_frames(tmp_sprites, 83, name, 20, 30, 10)
+load_all_frames(tmp_sprites, 89, name, 20, 30, 10)
 # tmp_sprites = pygame.image.load('img/animations/jake.png').convert_alpha()
 # load_single_frame(tmp_sprites, ((0, 1000, 300, 500),), name + ' avatar')
 # load_single_frame(tmp_sprites, ((0, 1000, 300, 500),), name + ' avatar front')
