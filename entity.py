@@ -17,6 +17,7 @@ class Entity(object):
         self.ai_controlled: bool = False
         self.performing_an_interruptable_deed: bool = False
         self.think_type: str = ''
+        self.summon_demolisher = False
 
         # ANIMATION
         self.animations = dict()

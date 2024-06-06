@@ -195,8 +195,14 @@ player_jake = {
         },
         'stab right': {
             'repeat': False, 'interruptable': True,
-            'sequence': (74,74,74,74,74,74,75,75), 'speed': 1,
-            'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 2
+            'sequence': (74,74,74,74,74,  # 0 - 4
+                         74,74,74,74,74,  # 5 - 9
+                         74,74,74,75,75,  # 10 - 14
+                         74,74,74,74,74,  # 15 - 19
+                         74,74,74,74,74,  # 20 - 24
+                         74,74,74,75,75), # 25 - 29
+            'speed': 2,
+            'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 0
         },
         'stab left': {
             'repeat': False, 'interruptable': True,

@@ -8,7 +8,8 @@ class Actor(Entity):
         self.id: int = 0
         self.type = 'actor'
         self.inventory = dict()
-        self.current_weapon = ''
+        self.current_weapon = dict()
+        self.current_weapon_demolishers_reveal_frames = list()
 
         self.acceleration = .5
         self.air_acceleration = .4
@@ -133,6 +134,9 @@ class Actor(Entity):
         else:
             self.body['right hand']['weapon'] = self.inventory['weapons'][uuid]
         self.current_weapon = self.body['right hand']['weapon']['item']
+        # print(self.current_weapon)
+        # {'aimed fire': True, 'attack animation': 'stab', 'steal user input': True, 'leave particles': False, 'class': 'weapons', 'type': 'melee', 'sub-type': 'bladed', 'sound': 'sound_swing_2', 'droppable': True, 'need ammo': False, 'ammo': 0, 'label': 'KITCHEN KNIFE', 'sprite': 'kitchen knife', 'pierce': False, 'damager TTL': 200, 'damagers spread': False, 'damager static': True, 'damager radius': 1, 'damagers quantity': 1, 'damager reveal delay': 0, 'damager reveals with flash': False, 'damager brings light': False, 'damager fly speed reduce': 0, 'damager fly speed': 1.5, 'damager invisible': False, 'damager weight': 5, 'description': 'Casual kitchen knife.', 'reach': 1, 'weight': 5, 'hardness': 10, 'special': ('bleeding',)}
+        # exit()
 
     def get_state(self):
         return self.__state
@@ -292,17 +296,24 @@ class Actor(Entity):
             self.set_new_desired_height(self.rectangle_height_sit, 5)
             self.set_new_desired_width(self.rectangle_width_sit, 3)
             self.set_state('crouch')
-        elif self.__state == 'attack':                          # PREPARE ATTACK
+        elif self.__state == 'attack':                          # PREPARING ATTACK
             self.set_state(self.current_weapon['attack animation'])
-            # self.current_animation = self.current_weapon['attack animation']
             self.set_current_animation()
-            # self.apply_particular_animation(self.current_animation)
-            # self.set_state('attacking')
-            self.ignore_user_input = True
-            self.heading[0] = 0
+            self.ignore_user_input = self.current_weapon['ignore user input']
+            self.current_weapon_demolishers_reveal_frames = list(self.current_weapon['demolisher reveals at frame'].keys())
+            # self.ignore_user_input = True
+            # self.heading[0] = 0
         elif self.__state == 'stab':                          # ATTACKING IN PROCESS...
+            self.speed = self.current_weapon['actor forward moving speed']
+            self.heading[0] = self.look
+            # print(self.frame_number, '-', self.current_frame)
+            if self.frame_number in self.current_weapon_demolishers_reveal_frames:
+                self.current_weapon_demolishers_reveal_frames = self.current_weapon_demolishers_reveal_frames[1:]
+                self.summon_demolisher = True
             if self.animation_sequence_done:
                 self.ignore_user_input = False
+                self.heading[0] = 0
+                # self.max_speed = self.default_max_speed
                 self.set_state('stand still')
         elif self.__state == 'crouch':                          # CROUCH
             self.speed = 0

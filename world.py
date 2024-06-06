@@ -248,6 +248,15 @@ class World(object):
                     actor.set_action('attack')
 
             actor.process(self.time_passed)
+            if actor.summon_demolisher:
+                actor.summon_demolisher = False
+                # actor.current_weapon_demolishers_reveal_frames = actor.current_weapon_demolishers_reveal_frames[1:]
+                print('ATTACK!', actor.frame_number, actor.current_weapon_demolishers_reveal_frames)
+                # If, for example, actor.current_weapon_demolishers_reveal_frames at the very beginning was: [13, 17, 23, 28], so:
+                # ATTACK! 13 [17, 23, 28]
+                # ATTACK! 17 [23, 28]
+                # ATTACK! 23 [28]
+                # ATTACK! 28 []
             # actor.reset_self_flags()
 
     def render_background(self):

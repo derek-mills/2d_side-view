@@ -1,6 +1,8 @@
 kitchen_knife = {
     'aimed fire': True,
     'attack animation': 'stab',
+    'ignore user input': True,  # Steal the ability to control a character for a while.
+    'actor forward moving speed': 0.5,  # During attack an actor may uncontrollably move forward.
     'leave particles': False,
     'class': 'weapons',
     'type': 'melee',
@@ -11,12 +13,40 @@ kitchen_knife = {
     'ammo': 0,
     'label': 'KITCHEN KNIFE',
     'sprite': 'kitchen knife',
-    'pierce': False, 'damager TTL': 200, 'damagers spread': False,
-    'damager static': True, 'damager radius': 1, 'damagers quantity': 1,
-    'damager reveal delay': 0, 'damager reveals with flash': False,
-    'damager brings light': False, 'damager fly speed reduce': 0,
-    'damager fly speed': 1.5, 'damager invisible': False,
-    'damager weight': 5,
+    'demolisher reveals at frame': {      #(75,88),
+        13: {
+            'pierce': False, 'demolisher TTL': 200, 'demolishers spread': False,
+            'demolisher static': True, 'demolisher radius': 1, 'demolishers quantity': 1,
+            'demolisher reveal delay': 0, 'demolisher reveals with flash': False,
+            'demolisher brings light': False, 'demolisher fly speed reduce': 0,
+            'demolisher fly speed': 1.5, 'demolisher invisible': False,
+            'demolisher weight': 5,
+        },
+        28: {
+            'pierce': False, 'demolisher TTL': 200, 'demolishers spread': False,
+            'demolisher static': True, 'demolisher radius': 1, 'demolishers quantity': 1,
+            'demolisher reveal delay': 0, 'demolisher reveals with flash': False,
+            'demolisher brings light': False, 'demolisher fly speed reduce': 0,
+            'demolisher fly speed': 1.5, 'demolisher invisible': False,
+            'demolisher weight': 5,
+        },
+        # 23: {
+        #     'pierce': False, 'demolisher TTL': 200, 'demolishers spread': False,
+        #     'demolisher static': True, 'demolisher radius': 1, 'demolishers quantity': 1,
+        #     'demolisher reveal delay': 0, 'demolisher reveals with flash': False,
+        #     'demolisher brings light': False, 'demolisher fly speed reduce': 0,
+        #     'demolisher fly speed': 1.5, 'demolisher invisible': False,
+        #     'demolisher weight': 5,
+        # },
+        # 28: {
+        #     'pierce': False, 'demolisher TTL': 200, 'demolishers spread': False,
+        #     'demolisher static': True, 'demolisher radius': 1, 'demolishers quantity': 1,
+        #     'demolisher reveal delay': 0, 'demolisher reveals with flash': False,
+        #     'demolisher brings light': False, 'demolisher fly speed reduce': 0,
+        #     'demolisher fly speed': 1.5, 'demolisher invisible': False,
+        #     'demolisher weight': 5,
+        # },
+    },
     'description': 'Casual kitchen knife.', 'reach': 1,
     'weight': 5, 'hardness': 10, 'special': ('bleeding',)
 }
