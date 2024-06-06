@@ -3,6 +3,7 @@ kitchen_knife = {
     'attack animation': 'stab',
     'ignore user input': True,  # Steal the ability to control a character for a while.
     'actor forward moving speed': 0.5,  # During attack an actor may uncontrollably move forward.
+    'animation speed modifier': 0.5,
     'leave particles': False,
     'class': 'weapons',
     'type': 'melee',

@@ -298,6 +298,7 @@ class Actor(Entity):
             self.set_state('crouch')
         elif self.__state == 'attack':                          # PREPARING ATTACK
             self.set_state(self.current_weapon['attack animation'])
+            self.frames_changing_threshold_modifier = self.current_weapon['animation speed modifier']
             self.set_current_animation()
             self.ignore_user_input = self.current_weapon['ignore user input']
             self.current_weapon_demolishers_reveal_frames = list(self.current_weapon['demolisher reveals at frame'].keys())

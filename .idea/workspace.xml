@@ -7,10 +7,8 @@
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,13 +107,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00062" summary="Added auxiliary colliders near the bottom of an actor's rectangle to provide hopping over an obstacles lower than 35 pixels of height.">
-      <created>1716427970433</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1716427970433</updated>
     </task>
     <task id="LOCAL-00063" summary="If slide is over and actor has not enough space above, he continues to lie down.">
       <created>1716435972692</created>
@@ -453,7 +444,14 @@
       <option name="project" value="LOCAL" />
       <updated>1717567487824</updated>
     </task>
-    <option name="localTasksCounter" value="111" />
+    <task id="LOCAL-00111" summary="Added demolishers summoning mechanism based on key frames, described in weapons.py for every weapon.">
+      <created>1717661866521</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1717661866521</updated>
+    </task>
+    <option name="localTasksCounter" value="112" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -468,7 +466,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Obstacles are divided into four lists during collisions detection depends on their position relative to actor rectangle center." />
     <MESSAGE value="Bottom collision detection improved." />
     <MESSAGE value="Just save." />
     <MESSAGE value="Improved collision detect while hanging the edge." />
@@ -493,6 +490,7 @@
     <MESSAGE value="New actor rectangle measurements system implemented." />
     <MESSAGE value="Crouch animation" />
     <MESSAGE value="Added attack animation and fixed some bugs around it" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added attack animation and fixed some bugs around it" />
+    <MESSAGE value="Added demolishers summoning mechanism based on key frames, described in weapons.py for every weapon." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added demolishers summoning mechanism based on key frames, described in weapons.py for every weapon." />
   </component>
 </project>

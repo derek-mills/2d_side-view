@@ -29,7 +29,8 @@ class Entity(object):
         self.current_animation: str = ''
         self.frame_number: int = 0
         self.frame_change_counter: int = 0
-        self.frames_changing_threshold: int = 0
+        self.frames_changing_threshold: float = 0.
+        self.frames_changing_threshold_modifier: float = 1.
         self.current_sprite_snap = 0
         self.current_sprite_flip = False
         self.current_frame = 0
@@ -291,7 +292,7 @@ class Entity(object):
         self.frame_number = 0
         self.frame_change_counter = 0
         self.animation_sequence_done = False
-        self.frames_changing_threshold = self.animations[anim]['speed']
+        self.frames_changing_threshold = self.animations[anim]['speed'] * self.frames_changing_threshold_modifier
         self.animation_sequence = self.animations[anim]['sequence']
         self.set_current_sprite()
 
