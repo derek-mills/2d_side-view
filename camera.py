@@ -16,6 +16,7 @@ class Camera(object):
         self.offset_scroll_velocity_x = 0
         self.offset_scroll_velocity_y = 0
         self.rectangle = pygame.Rect(0, 0, 0, 0)
+        self.active_objects_rectangle = pygame.Rect(0, 0, 0, 0)
 
 
     def setup(self, max_offset_x, max_offset_y):
@@ -64,3 +65,5 @@ class Camera(object):
                 self.offset_y = int(self.target_offset_y)
 
         self.rectangle.update(self.offset_x, self.offset_y, MAXX, MAXY)
+        self.active_objects_rectangle.update(self.offset_x - 400, self.offset_y - 400, MAXX + 800, MAXY + 800)
+        # self.active_objects_rectangle.inflate(400, 400)

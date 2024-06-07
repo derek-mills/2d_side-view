@@ -156,6 +156,7 @@ class World(object):
         entity.snap_to_actor = description['snap to actor']
         actor = self.actors[self.location][description['snap to actor']]
         entity.snapping_offset = actor.animations[actor.current_animation]['demolisher offset']
+        entity.damage = description['damage']
         # entity.snap_point = description['snap to actor']
         # entity.is_ghost_platform = True if 'ghost' in description else False
         # entity.is_collideable = True if 'collideable' in description else False
@@ -208,7 +209,9 @@ class World(object):
         self.camera.apply_offset((self.actors[self.location][0].rectangle.centerx, self.actors[self.location][0].rectangle.bottom),
                                  y_offset_speed, 5)
                                  # self.actors[self.location][0].speed * 0.9, self.actors[self.location][0].fall_speed)
+        # self.detect_active_actors()
         self.detect_active_obstacles()
+
 
         self.render_all()
 
@@ -216,8 +219,16 @@ class World(object):
         self.active_obstacles = list()
         for k in self.obstacles[self.location].keys():
             obs = self.obstacles[self.location][k]
-            if obs.rectangle.colliderect(self.camera.rectangle):
+            if obs.rectangle.colliderect(self.camera.active_objects_rectangle):
+            # if obs.rectangle.colliderect(self.camera.rectangle):
                 self.active_obstacles.append(k)
+
+    # def detect_active_actors(self):
+    #     self.active_actors = list()
+    #     for k in self.obstacles[self.location].keys():
+    #         obs = self.obstacles[self.location][k]
+    #         if obs.rectangle.colliderect(self.camera.rectangle):
+    #             self.active_obstacles.append(k
 
     def processing_obstacles(self):
         for key in self.obstacles[self.location].keys():
@@ -246,49 +257,56 @@ class World(object):
     def processing_actors(self):
         for key in self.actors[self.location].keys():
             actor = self.actors[self.location][key]
+            if not actor.rectangle.colliderect(self.camera.active_objects_rectangle):
+                continue
             actor.percept({k: self.obstacles[self.location][k] for k in self.active_obstacles}, self.demolishers[self.location])
             # actor.percept(self.obstacles[self.location])
+            if actor.ai_controlled:
+                actor.get_target(self.actors[self.location][0])
+                if not actor.ignore_user_input:
+                    actor.think()
+            else:
+                if not actor.ignore_user_input:  # routines for Player actor
+                # if key == 0 and not actor.ignore_user_input:  # routines for Player actor
+                    if self.is_input_up_arrow:
+                        actor.set_action('up action')
+                    else:
+                        # if actor.get_state() == 'up action':
+                        actor.set_action('up action cancel')
 
-            if key == 0 and not actor.ignore_user_input:  # routines for Player actor
-                if self.is_input_up_arrow:
-                    actor.set_action('up action')
-                else:
-                    # if actor.get_state() == 'up action':
-                    actor.set_action('up action cancel')
+                    if self.is_input_down_arrow:
+                        actor.set_action('down action')
+                    else:
+                        # if actor.get_state() == 'down action':
+                        actor.set_action('down action cancel')
 
-                if self.is_input_down_arrow:
-                    actor.set_action('down action')
-                else:
-                    # if actor.get_state() == 'down action':
-                    actor.set_action('down action cancel')
+                    if self.is_input_right_arrow:
+                        actor.set_action('right action')
+                    else:
+                        # if actor.get_state() == 'right action':
+                        actor.set_action('right action cancel')
 
-                if self.is_input_right_arrow:
-                    actor.set_action('right action')
-                else:
-                    # if actor.get_state() == 'right action':
-                    actor.set_action('right action cancel')
+                    if self.is_input_left_arrow:
+                        actor.set_action('left action')
+                    else:
+                        # if actor.get_state() == 'left action':
+                        actor.set_action('left action cancel')
 
-                if self.is_input_left_arrow:
-                    actor.set_action('left action')
-                else:
-                    # if actor.get_state() == 'left action':
-                    actor.set_action('left action cancel')
+                    if self.is_spacebar:
+                        actor.set_action('jump action')
+                    else:
+                        actor.set_action('jump action cancel')
 
-                if self.is_spacebar:
-                    actor.set_action('jump action')
-                else:
-                    actor.set_action('jump action cancel')
+                    if self.is_l_alt and not self.l_alt_multiple_press_prevent:
+                        self.l_alt_multiple_press_prevent = True
+                        actor.set_action('hop back')
+                    else:
+                        if actor.get_state() == 'hop back progress':
+                            actor.set_action('hop back action cancel')
 
-                if self.is_l_alt and not self.l_alt_multiple_press_prevent:
-                    self.l_alt_multiple_press_prevent = True
-                    actor.set_action('hop back')
-                else:
-                    if actor.get_state() == 'hop back progress':
-                        actor.set_action('hop back action cancel')
-
-                if self.is_attack:
-                    self.is_attack = False
-                    actor.set_action('attack')
+                    if self.is_attack:
+                        self.is_attack = False
+                        actor.set_action('attack')
 
             actor.process(self.time_passed)
             if actor.summon_demolisher:

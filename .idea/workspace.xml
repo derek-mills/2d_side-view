@@ -6,8 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demolisher.py" beforeDir="false" afterPath="$PROJECT_DIR$/demolisher.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphics.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main .py" beforeDir="false" afterPath="$PROJECT_DIR$/main .py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,13 +111,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00065" summary="Collisions improvement">
-      <created>1716450650251</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1716450650251</updated>
     </task>
     <task id="LOCAL-00066" summary="Try to fix broken hanging ability">
       <created>1716453378041</created>
@@ -450,7 +448,14 @@
       <option name="project" value="LOCAL" />
       <updated>1717737393117</updated>
     </task>
-    <option name="localTasksCounter" value="114" />
+    <task id="LOCAL-00114" summary="Demolishers appear improvement.">
+      <created>1717737810007</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1717737810007</updated>
+    </task>
+    <option name="localTasksCounter" value="115" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -465,7 +470,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Improved collision detect while hanging the edge." />
     <MESSAGE value="Fixed prone crawling under the low obstacles." />
     <MESSAGE value="Fixed sizes of sit stance." />
     <MESSAGE value="Fixed errors in crouch\stand stances swaps." />
@@ -490,6 +494,7 @@
     <MESSAGE value="Added demolishers summoning mechanism based on key frames, described in weapons.py for every weapon." />
     <MESSAGE value="Added animation speed modifier depends on every weapon settings." />
     <MESSAGE value="Demolishers appear, they snap to the player rectangle." />
-    <option name="LAST_COMMIT_MESSAGE" value="Demolishers appear, they snap to the player rectangle." />
+    <MESSAGE value="Demolishers appear improvement." />
+    <option name="LAST_COMMIT_MESSAGE" value="Demolishers appear improvement." />
   </component>
 </project>

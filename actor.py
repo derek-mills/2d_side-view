@@ -16,6 +16,11 @@ class Actor(Entity):
 
         }
 
+        self.ai_input_right_arrow = False
+        self.ai_input_left_arrow = False
+        self.ai_input_attack = False
+        self.ai_input_jump = False
+
         self.acceleration = .5
         self.air_acceleration = .4
         self.jump_height: int = 22
@@ -105,7 +110,7 @@ class Actor(Entity):
             },
 
         }
-
+        self.target = None
 
     def apply_measurements(self):
         self.target_height = self.rectangle.h
@@ -116,6 +121,60 @@ class Actor(Entity):
         self.rectangle_width_sit = self.rectangle.width * 1.34
         self.rectangle_height_slide = self.rectangle.width
         self.rectangle_width_slide = self.rectangle.height
+
+    def get_target(self, target):
+        self.target = target
+
+    def think(self):
+        if self.think_type == 'chaser':
+            if self.rectangle.centerx > self.target.rectangle.centerx:
+                # print('TARGET IS ON THE LEFT')
+                # self.set_state('run left')
+                # self.set_action('left action')
+                self.ai_input_left_arrow = True
+                self.ai_input_right_arrow = False
+            elif self.rectangle.centerx < self.target.rectangle.centerx:
+                # print('TARGET IS ON THE RIGHT')
+                self.ai_input_left_arrow = False
+                self.ai_input_right_arrow = True
+
+        # if self.is_input_up_arrow:
+        #     actor.set_action('up action')
+        # else:
+        #     # if actor.get_state() == 'up action':
+        #     actor.set_action('up action cancel')
+        #
+        # if self.is_input_down_arrow:
+        #     actor.set_action('down action')
+        # else:
+        #     # if actor.get_state() == 'down action':
+        #     actor.set_action('down action cancel')
+
+        if self.ai_input_right_arrow:
+            self.set_action('right action')
+        else:
+            self.set_action('right action cancel')
+
+        if self.ai_input_left_arrow:
+            self.set_action('left action')
+        else:
+            self.set_action('left action cancel')
+
+        if self.ai_input_jump:
+            self.set_action('jump action')
+        else:
+            self.set_action('jump action cancel')
+
+        # if self.is_l_alt and not self.l_alt_multiple_press_prevent:
+        #     self.l_alt_multiple_press_prevent = True
+        #     actor.set_action('hop back')
+        # else:
+        #     if actor.get_state() == 'hop back progress':
+        #         actor.set_action('hop back action cancel')
+
+        if self.ai_input_attack:
+            self.ai_input_attack = False
+            self.set_action('attack')
 
     def add_items_to_inventory(self, items):
         if not items:
@@ -308,10 +367,14 @@ class Actor(Entity):
             self.ignore_user_input = self.current_weapon['ignore user input']
             self.current_weapon_demolishers_reveal_frames = list(self.current_weapon['demolisher reveals at frame'].keys())
             # self.ignore_user_input = True
-            # self.heading[0] = 0
+
         elif self.__state == 'stab':                          # ATTACKING IN PROCESS...
-            self.speed = self.current_weapon['actor forward moving speed']
-            self.heading[0] = self.look
+            if self.current_weapon['actor forward moving speed'] > 0:
+                self.speed = self.current_weapon['actor forward moving speed']
+                self.heading[0] = self.look
+            else:
+                self.heading[0] = 0
+                self.speed = 0
             # print(self.frame_number, '-', self.current_frame)
             if self.frame_number in self.current_weapon_demolishers_reveal_frames:
                 self.current_weapon_demolishers_reveal_frames = self.current_weapon_demolishers_reveal_frames[1:]

@@ -3,12 +3,12 @@ kitchen_knife = {
     'aimed fire': True,
     'attack animation': 'stab',
     'ignore user input': True,  # Steal the ability to control a character for a while.
-    'actor forward moving speed': 0.5,  # During attack an actor may uncontrollably move forward.
-    'animation speed modifier': 2.5,  # 0 < x < 1: speed animation up, x > 1: slow down.
+    'actor forward moving speed': 0.,  # During attack an actor may uncontrollably move forward (min 0.5).
+    'animation speed modifier': 1,  # 0 < x < 1: speed animation up, x > 1: slow down.
     'leave particles': False,
     'class': 'weapons',
     'type': 'melee',
-    'sub-type': 'bladed',
+    'attack type': 'pierce',
     'sound': 'sound_swing_2',
     'droppable': True,
     'need ammo': False,
@@ -16,46 +16,29 @@ kitchen_knife = {
     'label': 'KITCHEN KNIFE',
     'sprite': 'kitchen knife',
     'demolisher reveals at frame': {      #(75,88),
-        13: {
-            'rect': pygame.Rect(0,0,100,10),
-            # 'demolisher offset': {
-            #     1: ()
-            # },
-            'pierce': False, 'demolisher TTL': 5, 'demolishers spread': False,
-            'demolisher static': True, 'demolisher radius': 1, 'demolishers quantity': 1,
-            'demolisher reveal delay': 0, 'demolisher reveals with flash': False,
-            'demolisher brings light': False, 'demolisher fly speed reduce': 0,
-            'demolisher fly speed': 1.5, 'demolisher invisible': False,
-            'demolisher weight': 5,
+        4: {
+            'rect': pygame.Rect(0,0,50,10),
+            'pierce': False, 'demolisher TTL': 5,
+            'damage': 10,
+            # 'demolishers spread': False,
+            # 'demolisher static': True, 'demolisher radius': 1, 'demolishers quantity': 1,
+            # 'demolisher reveal delay': 0, 'demolisher reveals with flash': False,
+            # 'demolisher brings light': False, 'demolisher fly speed reduce': 0,
+            # 'demolisher fly speed': 1.5, 'demolisher invisible': False,
+            # 'demolisher weight': 5,
         },
-        28: {
-            'rect': pygame.Rect(0,0,150,5),
-            'pierce': False, 'demolisher TTL': 5, 'demolishers spread': False,
-            'demolisher static': True, 'demolisher radius': 1, 'demolishers quantity': 1,
-            'demolisher reveal delay': 0, 'demolisher reveals with flash': False,
-            'demolisher brings light': False, 'demolisher fly speed reduce': 0,
-            'demolisher fly speed': 1.5, 'demolisher invisible': False,
-            'demolisher weight': 5,
-        },
-        # 23: {
-        #     'pierce': False, 'demolisher TTL': 200, 'demolishers spread': False,
-        #     'demolisher static': True, 'demolisher radius': 1, 'demolishers quantity': 1,
-        #     'demolisher reveal delay': 0, 'demolisher reveals with flash': False,
-        #     'demolisher brings light': False, 'demolisher fly speed reduce': 0,
-        #     'demolisher fly speed': 1.5, 'demolisher invisible': False,
-        #     'demolisher weight': 5,
-        # },
         # 28: {
-        #     'pierce': False, 'demolisher TTL': 200, 'demolishers spread': False,
-        #     'demolisher static': True, 'demolisher radius': 1, 'demolishers quantity': 1,
-        #     'demolisher reveal delay': 0, 'demolisher reveals with flash': False,
-        #     'demolisher brings light': False, 'demolisher fly speed reduce': 0,
-        #     'demolisher fly speed': 1.5, 'demolisher invisible': False,
-        #     'demolisher weight': 5,
+        #     'rect': pygame.Rect(0,0,150,5),
+        #     'pierce': False, 'demolisher TTL': 5,
+        #     # 'demolishers spread': False,
+        #     # 'demolisher static': True, 'demolisher radius': 1, 'demolishers quantity': 1,
+        #     # 'demolisher reveal delay': 0, 'demolisher reveals with flash': False,
+        #     # 'demolisher brings light': False, 'demolisher fly speed reduce': 0,
+        #     # 'demolisher fly speed': 1.5, 'demolisher invisible': False,
+        #     # 'demolisher weight': 5,
         # },
     },
-    'description': 'Casual kitchen knife.', 'reach': 1,
-    'weight': 5, 'hardness': 10, 'special': ('bleeding',)
+    'description': 'Casual kitchen knife.',
 }
 shotgun = {
     'aimed fire': False,
