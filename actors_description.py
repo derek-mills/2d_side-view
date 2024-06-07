@@ -201,14 +201,19 @@ player_jake = {
                          74,74,74,74,74,  # 15 - 19
                          74,74,74,74,74,  # 20 - 24
                          74,74,74,75,75), # 25 - 29
-            'demolisher offset': (5, 8),
+            'demolisher offset': (46, 36),
             'speed': 1,
             'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 0
         },
         'stab left': {
             'repeat': False, 'interruptable': True,
-            'sequence': (89,89,89,89,89,89,88,88),
-            'demolisher offset': (-5, 8),
+            'sequence': (89, 89, 89, 89, 89,  # 0 - 4
+                         89, 89, 89, 89, 89,  # 5 - 9
+                         89, 89, 89, 88, 88,  # 10 - 14
+                         89, 89, 89, 89, 89,  # 15 - 19
+                         89, 89, 89, 89, 89,  # 20 - 24
+                         89, 89, 89, 88, 88),  # 25 - 29
+            'demolisher offset': (-46,36),
             'speed': 1,
             'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 2
         },

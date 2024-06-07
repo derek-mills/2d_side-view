@@ -21,7 +21,7 @@ kitchen_knife = {
             # 'demolisher offset': {
             #     1: ()
             # },
-            'pierce': False, 'demolisher TTL': 2, 'demolishers spread': False,
+            'pierce': False, 'demolisher TTL': 5, 'demolishers spread': False,
             'demolisher static': True, 'demolisher radius': 1, 'demolishers quantity': 1,
             'demolisher reveal delay': 0, 'demolisher reveals with flash': False,
             'demolisher brings light': False, 'demolisher fly speed reduce': 0,
@@ -29,8 +29,8 @@ kitchen_knife = {
             'demolisher weight': 5,
         },
         28: {
-            'rect': pygame.Rect(0,0,200,5),
-            'pierce': False, 'demolisher TTL': 2, 'demolishers spread': False,
+            'rect': pygame.Rect(0,0,150,5),
+            'pierce': False, 'demolisher TTL': 5, 'demolishers spread': False,
             'demolisher static': True, 'demolisher radius': 1, 'demolishers quantity': 1,
             'demolisher reveal delay': 0, 'demolisher reveals with flash': False,
             'demolisher brings light': False, 'demolisher fly speed reduce': 0,
