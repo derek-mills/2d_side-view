@@ -18,6 +18,8 @@ class Entity(object):
         self.performing_an_interruptable_deed: bool = False
         self.think_type: str = ''
         self.summon_demolisher = False
+        self.ttl = 0
+        self.dead = False
 
         # ANIMATION
         self.animations = dict()
@@ -202,6 +204,10 @@ class Entity(object):
         self.rectangle_width_slide = self.rectangle.height // 4 * 3
 
     def process(self, time_passed):
+        if self.ttl > 0:
+            self.ttl -= 1
+            if self.ttl == 0:
+                self.die()
         self.process_animation()
         if self.is_jump:
         # if self.is_jump and self.jump_attempts_counter > 0:
@@ -991,3 +997,6 @@ class Entity(object):
         #     self.rectangle.x += (self.potential_moving_distance * self.look * self.movement_direction_inverter)
 
         self.rectangle.x += (self.potential_moving_distance * self.look * self.movement_direction_inverter)
+
+    def die(self):
+        self.dead = True

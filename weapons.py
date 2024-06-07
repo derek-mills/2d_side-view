@@ -1,9 +1,10 @@
+import pygame
 kitchen_knife = {
     'aimed fire': True,
     'attack animation': 'stab',
     'ignore user input': True,  # Steal the ability to control a character for a while.
     'actor forward moving speed': 0.5,  # During attack an actor may uncontrollably move forward.
-    'animation speed modifier': 0.5,
+    'animation speed modifier': 2.5,  # 0 < x < 1: speed animation up, x > 1: slow down.
     'leave particles': False,
     'class': 'weapons',
     'type': 'melee',
@@ -16,7 +17,11 @@ kitchen_knife = {
     'sprite': 'kitchen knife',
     'demolisher reveals at frame': {      #(75,88),
         13: {
-            'pierce': False, 'demolisher TTL': 200, 'demolishers spread': False,
+            'rect': pygame.Rect(0,0,100,10),
+            # 'demolisher offset': {
+            #     1: ()
+            # },
+            'pierce': False, 'demolisher TTL': 2, 'demolishers spread': False,
             'demolisher static': True, 'demolisher radius': 1, 'demolishers quantity': 1,
             'demolisher reveal delay': 0, 'demolisher reveals with flash': False,
             'demolisher brings light': False, 'demolisher fly speed reduce': 0,
@@ -24,7 +29,8 @@ kitchen_knife = {
             'demolisher weight': 5,
         },
         28: {
-            'pierce': False, 'demolisher TTL': 200, 'demolishers spread': False,
+            'rect': pygame.Rect(0,0,200,5),
+            'pierce': False, 'demolisher TTL': 2, 'demolishers spread': False,
             'demolisher static': True, 'demolisher radius': 1, 'demolishers quantity': 1,
             'demolisher reveal delay': 0, 'demolisher reveals with flash': False,
             'demolisher brings light': False, 'demolisher fly speed reduce': 0,

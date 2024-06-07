@@ -216,7 +216,7 @@ def scale_sprite(sprite, final_scale_factor, flip=False):
 sprites = dict()
 sprites_reference = dict()
 avatars = pygame.image.load('img/avatars.png').convert_alpha()
-env = pygame.image.load('img/environment.png').convert_alpha()
+# env = pygame.image.load('img/environment.png').convert_alpha()
 
 # sprites['light halo casual'] = pygame.image.load('img/light_halo.png').convert_alpha()
 # sprites['light halo strong'] = pygame.image.load('img/light_halo_strong.png').convert_alpha()
@@ -266,23 +266,23 @@ load_all_frames(tmp_sprites, 43, name, 200, 300)
 # load_single_frame(tmp_sprites, ((1987,2245,459,150),), name + ' 99')  # Lay down
 # load_all_frames(tmp_sprites, 8, name, 300, 500)
 
-sprites['void sprite'] = env.subsurface((0,1340,10,10))  #
-sprites['pinetree'] = env.subsurface((0,400,475,800))  #
-sprites['pile 1x #1'] = env.subsurface((0,0,94,199))  #
-sprites['glass 1x #1'] = env.subsurface((95,0,94,199))  #
-sprites['glass 1x #2'] = env.subsurface((190,0,94,199))  #
-sprites['box 1.5x #23'] = env.subsurface((380,0,94,199))  #
-sprites['box single'] = env.subsurface((285,0,94,199))  #
-sprites['coffee table'] = env.subsurface((475,0,94,199))  #
-sprites['metal crate #1 frame 0'] = env.subsurface((0,200,94,199))  #
-sprites['metal crate #2 frame 0'] = env.subsurface((95,200,94,199))  #
-sprites['wooden door #1 frame 0'] = env.subsurface((572,0,124,281))  # from NW to SE \
-sprites['wooden door #2 frame 0'] = pygame.transform.flip(sprites['wooden door #1 frame 0'], True, False)  # from SW to NE /
-sprites['light switch #1'] = env.subsurface((950,0,49,70))  # light switcher \
-sprites['light switch #2'] = pygame.transform.flip(sprites['light switch #1'], True, False)  # light switcher /
-sprites['shotgun'] = avatars.subsurface((4, 2923,367,56))  # shotgun image
-sprites['9mm_pistol'] = avatars.subsurface((382,2913,129,100))  # PM 9mm pistol image
-sprites['kitchen knife'] = avatars.subsurface((514,2918,216,100))  # PM 9mm pistol image
+# sprites['void sprite'] = env.subsurface((0,1340,10,10))  #
+# sprites['pinetree'] = env.subsurface((0,400,475,800))  #
+# sprites['pile 1x #1'] = env.subsurface((0,0,94,199))  #
+# sprites['glass 1x #1'] = env.subsurface((95,0,94,199))  #
+# sprites['glass 1x #2'] = env.subsurface((190,0,94,199))  #
+# sprites['box 1.5x #23'] = env.subsurface((380,0,94,199))  #
+# sprites['box single'] = env.subsurface((285,0,94,199))  #
+# sprites['coffee table'] = env.subsurface((475,0,94,199))  #
+# sprites['metal crate #1 frame 0'] = env.subsurface((0,200,94,199))  #
+# sprites['metal crate #2 frame 0'] = env.subsurface((95,200,94,199))  #
+# sprites['wooden door #1 frame 0'] = env.subsurface((572,0,124,281))  # from NW to SE \
+# sprites['wooden door #2 frame 0'] = pygame.transform.flip(sprites['wooden door #1 frame 0'], True, False)  # from SW to NE /
+# sprites['light switch #1'] = env.subsurface((950,0,49,70))  # light switcher \
+# sprites['light switch #2'] = pygame.transform.flip(sprites['light switch #1'], True, False)  # light switcher /
+# sprites['shotgun'] = avatars.subsurface((4, 2923,367,56))  # shotgun image
+# sprites['9mm_pistol'] = avatars.subsurface((382,2913,129,100))  # PM 9mm pistol image
+# sprites['kitchen knife'] = avatars.subsurface((514,2918,216,100))  # PM 9mm pistol image
 
 # cursors = pygame.image.load('img/cursors.png').convert_alpha()
 # sprites['aim cursor'] = cursors.subsurface((0,0,51,51))
@@ -295,4 +295,4 @@ sprites['kitchen knife'] = avatars.subsurface((514,2918,216,100))  # PM 9mm pist
 all_obstacles = ('pile 1x #1', 'box 1.5x #23','box single',)
 
 screen.convert_alpha(avatars)
-screen.convert_alpha(env)
+# screen.convert_alpha(env)

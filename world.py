@@ -146,6 +146,33 @@ class World(object):
     def add_demolisher(self, description):
         entity = Demolisher()
         entity.id = self.demolisher_id
+        entity.ttl = description['demolisher TTL']
+        # entity.is_gravity_affected = True if 'gravity affected' in description else False
+        entity.rectangle = description['rect']
+        # entity.rectangle.topleft = description['rect'].topleft
+        entity.origin_xy = description['rect'].topleft
+        # entity.rectangle.width = description['width'].width
+        # entity.rectangle.height = description['height'].height
+        entity.snap_to_actor = description['snap to actor']
+        actor = self.actors[self.location][description['snap to actor']]
+        entity.snapping_offset = actor.animations[actor.current_animation]['demolisher offset']
+        # entity.snap_point = description['snap to actor']
+        # entity.is_ghost_platform = True if 'ghost' in description else False
+        # entity.is_collideable = True if 'collideable' in description else False
+        # if entity.id in self.locations[self.location]['demolishers']['actions'].keys():
+        #     entity.active = True
+        #     entity.actions = self.locations[self.location]['demolishers']['actions'][entity.id]
+        #     entity.max_speed = self.locations[self.location]['demolishers']['settings'][entity.id]['speed']
+        #     print(f'[add_demolisher] Added active demolisher: {entity.actions=}')
+        # Add an obstacle to the world storage:
+        # if self.location not in self.demolishers.keys():
+        #     self.demolishers[self.location] = dict()
+        self.demolishers[self.location][entity.id] = entity
+        self.demolisher_id += 1
+
+    def add_demolisher_old(self, description):
+        entity = Demolisher()
+        entity.id = self.demolisher_id
         # entity.is_gravity_affected = True if 'gravity affected' in description else False
         entity.rectangle.topleft = description[0]
         entity.origin_xy = description[0]
@@ -169,6 +196,7 @@ class World(object):
         self.processing_obstacles()
         self.processing_human_input()
         self.processing_actors()
+        self.processing_demolishers()
 
         # Applying camera offset:
         if self.actors[self.location][0].speed > 0:
@@ -199,6 +227,21 @@ class World(object):
             # obs.percept(self.obstacles[self.location])
             obs.process_(self.time_passed)
 
+    def processing_demolishers(self):
+        dead = list()
+        for key in self.demolishers[self.location].keys():
+            dem = self.demolishers[self.location][key]
+            if dem.dead:
+                dead.append(dem.id)
+                continue
+            actor = self.actors[self.location][dem.snap_to_actor]
+            #actor.animations[actor.current_animation]['demolisher offset']
+            # dem.update_offset(offset)
+            dem.update(actor.look, actor.rectangle)
+            # dem.update(actor.look, actor.rectangle, actor.animations[actor.current_animation]['demolisher offset'])
+            dem.process_(self.time_passed)
+        for dead_id in dead:
+            del self.demolishers[self.location][dead_id]
 
     def processing_actors(self):
         for key in self.actors[self.location].keys():
@@ -252,6 +295,11 @@ class World(object):
                 actor.summon_demolisher = False
                 # actor.current_weapon_demolishers_reveal_frames = actor.current_weapon_demolishers_reveal_frames[1:]
                 print('ATTACK!', actor.frame_number, actor.current_weapon_demolishers_reveal_frames)
+                demolisher = actor.current_weapon['demolisher reveals at frame'][actor.frame_number]
+                demolisher['snap to actor'] = actor.id
+                # demolisher['snap points']['right'] = (0, 8)
+                # demolisher['snap points']['left'] = (0, 8)
+                self.add_demolisher(demolisher)
                 # If, for example, actor.current_weapon_demolishers_reveal_frames at the very beginning was: [13, 17, 23, 28], so:
                 # ATTACK! 13 [17, 23, 28]
                 # ATTACK! 17 [23, 28]

@@ -10,6 +10,11 @@ class Actor(Entity):
         self.inventory = dict()
         self.current_weapon = dict()
         self.current_weapon_demolishers_reveal_frames = list()
+        self.weapon_snap_points ={
+            'left hand': {},
+            'right hand': {},
+
+        }
 
         self.acceleration = .5
         self.air_acceleration = .4

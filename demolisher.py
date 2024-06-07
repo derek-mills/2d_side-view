@@ -8,10 +8,33 @@ class Demolisher(Obstacle):
         self.type = 'demolisher'
         self.acceleration = .5
         self.air_acceleration = .4
-        # self.jump_height: int = 22
-        # self.default_max_speed = 10
-        # self.max_jump_attempts = 2
         self.max_speed = 10
+        self.snap_to_actor: int = 0  # Active actor which cause this demolisher to be glued.
+        self.snapping_offset = list()
+        # self.snap_points = {  # Snapping coordinates
+        #     'left': list(),
+        #     'right': list(),
+        # }
 
-    def process(self, time_passed):
-        ...
+    # def update_offset(self, offset):
+    #     self.snapping_offset = offset
+
+    def update(self, snap_side, snap_rect):
+        if snap_side == 1:  # Snapping to the actor's right side
+            self.rectangle.left = snap_rect.right + self.snapping_offset[0]
+            self.rectangle.top = snap_rect.top + self.snapping_offset[1]
+        else:
+            self.rectangle.right = snap_rect.left + self.snapping_offset[0]
+            self.rectangle.top = snap_rect.top + self.snapping_offset[1]
+    # def update(self, snap_rect, snap_direction):
+    #     self.rectangle.topleft = (snap_rect.left + self.snapping_offset[0],
+    #                               snap_rect.top + self.snapping_offset[1])
+        # if snap_direction == 1:
+        # self.rectangle.topleft(snap_rect.left + self.snap_points[snap_direction][0],
+        #                        snap_rect.top + self.snap_points[snap_direction][1])
+
+    def process_(self, time_passed):
+        if self.ttl > 0:
+            self.ttl -= 1
+            if self.ttl == 0:
+                self.die()
