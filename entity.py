@@ -9,6 +9,8 @@ class Entity(object):
         self.id:int = 0
         self.type: str = ''  #
         self.name: str = ''
+        self.health: float = 0.
+        self.max_health: float = 0.
         self.location: str = ''
         self.__state: str = ''
         self.idle_counter: int = 0
@@ -438,15 +440,24 @@ class Entity(object):
             self.collision_detector_bottom.update(self.rectangle.left, self.rectangle.bottom, self.rectangle.width, self.fall_speed + 2)
             # self.collision_detector_bottom.update(self.rectangle.left +2, self.rectangle.bottom, self.rectangle.width-4, self.fall_speed + 2)
 
-    @staticmethod
-    def get_damage():
-        print('AUCH!')
+    # @staticmethod
+    # def get_damage(self, amount):
+    #     print('AUCH!')
+    #     self.health -= amount
+    #     if self.health <= 0:
+    #         self.dead = True
 
     def detect_demolishers_collisions(self):
         for key in self.demolishers_around.keys():
             dem = self.demolishers_around[key]
             if self.rectangle.colliderect(dem.rectangle):
-                self.get_damage()
+                self.get_damage(dem.damage)
+
+    def get_damage(self, amount):
+        print('AUCH!')
+        self.health -= amount
+        if self.health <= 0:
+            self.dead = True
 
     def detect_collisions(self):
         # self.influenced_by_obstacle = None

@@ -10,11 +10,11 @@ class Actor(Entity):
         self.inventory = dict()
         self.current_weapon = dict()
         self.current_weapon_demolishers_reveal_frames = list()
-        self.weapon_snap_points ={
-            'left hand': {},
-            'right hand': {},
 
-        }
+        # self.weapon_snap_points ={
+        #     'left hand': {},
+        #     'right hand': {},
+        # }
 
         self.ai_input_right_arrow = False
         self.ai_input_left_arrow = False
@@ -38,6 +38,7 @@ class Actor(Entity):
         # self.rectangle_width_slide = self.rectangle.height
 
         self.__state = 'stand still'
+
 
         self.body = {
             'head': {
@@ -669,3 +670,4 @@ class Actor(Entity):
         self.is_move_down = False
         self.is_jump = False
         # self.is_edge_grabbed = False
+

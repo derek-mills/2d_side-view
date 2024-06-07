@@ -77,6 +77,8 @@ class World(object):
         entity = Actor()
         entity.id = self.actor_id
         entity.name = description['name']
+        entity.max_health = description['health']
+        entity.health = description['health']
         entity.is_gravity_affected = description['gravity affected']
         entity.rectangle.height = description['height']
         entity.rectangle.width = description['width']
@@ -212,7 +214,6 @@ class World(object):
         # self.detect_active_actors()
         self.detect_active_obstacles()
 
-
         self.render_all()
 
     def detect_active_obstacles(self):
@@ -255,8 +256,12 @@ class World(object):
             del self.demolishers[self.location][dead_id]
 
     def processing_actors(self):
+        dead = list()
         for key in self.actors[self.location].keys():
             actor = self.actors[self.location][key]
+            if actor.dead:
+                dead.append(actor.id)
+                continue
             if not actor.rectangle.colliderect(self.camera.active_objects_rectangle):
                 continue
             actor.percept({k: self.obstacles[self.location][k] for k in self.active_obstacles}, self.demolishers[self.location])
@@ -312,7 +317,7 @@ class World(object):
             if actor.summon_demolisher:
                 actor.summon_demolisher = False
                 # actor.current_weapon_demolishers_reveal_frames = actor.current_weapon_demolishers_reveal_frames[1:]
-                print('ATTACK!', actor.frame_number, actor.current_weapon_demolishers_reveal_frames)
+                # print('ATTACK!', actor.frame_number, actor.current_weapon_demolishers_reveal_frames)
                 demolisher = actor.current_weapon['demolisher reveals at frame'][actor.frame_number]
                 demolisher['snap to actor'] = actor.id
                 # demolisher['snap points']['right'] = (0, 8)
@@ -324,6 +329,8 @@ class World(object):
                 # ATTACK! 23 [28]
                 # ATTACK! 28 []
             # actor.reset_self_flags()
+        for dead_id in dead:
+            del self.actors[self.location][dead_id]
 
     def render_background(self):
         pygame.draw.rect(self.screen, BLACK, (0,0,MAXX, MAXY))

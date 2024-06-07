@@ -5,6 +5,7 @@ from random import randint
 demon_1 = {
     'name': 'demon 1',
     'start_xy': (1200, 200),
+    'health': 10.,
     'height': 190,
     'width': 49,
     'body state': {
@@ -224,6 +225,7 @@ demon_1 = {
 
 player_jake = {
     'name': 'Jake',
+    'health': 10.,
     'start_xy': (200, 200),
     'height': 190,
     'width': 49,
