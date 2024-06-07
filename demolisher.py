@@ -12,6 +12,7 @@ class Demolisher(Obstacle):
         self.snap_to_actor: int = 0  # Active actor which cause this demolisher to be glued.
         self.snapping_offset = list()
         self.damage: float = 0
+        self.parent_id: int = 0
         # self.snap_points = {  # Snapping coordinates
         #     'left': list(),
         #     'right': list(),

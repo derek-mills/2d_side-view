@@ -15,17 +15,23 @@ kitchen_knife = {
     'ammo': 0,
     'label': 'KITCHEN KNIFE',
     'sprite': 'kitchen knife',
-    'demolisher reveals at frame': {      #(75,88),
+    'demolisher offset': {
+        1:  (46, 36),
+        -1: (-46, 36),
+    },
+    'reach': 50,
+    'demolisher reveals at frames': [4, 9],  # The list of damage revealing frames within an attack animation sequence.
+    # 'demolisher reveals at frame': {      #(75,88),
+    'demolishers': {
         4: {
             'rect': pygame.Rect(0,0,50,10),
             'pierce': False, 'demolisher TTL': 5,
             'damage': 10,
-            # 'demolishers spread': False,
-            # 'demolisher static': True, 'demolisher radius': 1, 'demolishers quantity': 1,
-            # 'demolisher reveal delay': 0, 'demolisher reveals with flash': False,
-            # 'demolisher brings light': False, 'demolisher fly speed reduce': 0,
-            # 'demolisher fly speed': 1.5, 'demolisher invisible': False,
-            # 'demolisher weight': 5,
+        },
+        9: {
+            'rect': pygame.Rect(0,0,150,10),
+            'pierce': False, 'demolisher TTL': 1,
+            'damage': 10,
         },
         # 28: {
         #     'rect': pygame.Rect(0,0,150,5),

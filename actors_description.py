@@ -4,8 +4,8 @@ from random import randint
 
 demon_1 = {
     'name': 'demon 1',
-    'start_xy': (1200, 200),
-    'health': 10.,
+    'start_xy': (1500, 200),
+    'health': 1000.,
     'height': 190,
     'width': 49,
     'body state': {
@@ -225,7 +225,7 @@ demon_1 = {
 
 player_jake = {
     'name': 'Jake',
-    'health': 10.,
+    'health': 1000.,
     'start_xy': (200, 200),
     'height': 190,
     'width': 49,
@@ -417,13 +417,14 @@ player_jake = {
         },
         'stab right': {
             'repeat': False, 'interruptable': True,
-            'sequence': (74,74,74,74,75),  # 0 - 4
+            'sequence': (74,74,74,74,75,  # 0 - 4
+                         74,74,74,74,75), # 5 - 9
                          # 74,74,74,74,74,  # 5 - 9
                          # 74,74,74,75,75,  # 10 - 14
                          # 74,74,74,74,74,  # 15 - 19
                          # 74,74,74,74,74,  # 20 - 24
                          # 74,74,74,75,75), # 25 - 29
-            'demolisher offset': (46, 36),
+            # 'demolisher offset': (46, 36),
             'speed': 1,
             'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 0
         },
@@ -435,7 +436,7 @@ player_jake = {
                          # 89, 89, 89, 89, 89,  # 15 - 19
                          # 89, 89, 89, 89, 89,  # 20 - 24
                          # 89, 89, 89, 88, 88),  # 25 - 29
-            'demolisher offset': (-46,36),
+            # 'demolisher offset': (-46,36),
             'speed': 1,
             'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 2
         },

@@ -11,6 +11,7 @@ class Entity(object):
         self.name: str = ''
         self.health: float = 0.
         self.max_health: float = 0.
+        self.got_immunity_to_demolishers = list()
         self.location: str = ''
         self.__state: str = ''
         self.idle_counter: int = 0
@@ -450,8 +451,12 @@ class Entity(object):
     def detect_demolishers_collisions(self):
         for key in self.demolishers_around.keys():
             dem = self.demolishers_around[key]
+            if dem.id in self.got_immunity_to_demolishers or dem.parent_id == self.id:
+                continue
             if self.rectangle.colliderect(dem.rectangle):
                 self.get_damage(dem.damage)
+                self.got_immunity_to_demolishers.append(dem.id)
+                self.set_state('hop back')
 
     def get_damage(self, amount):
         print('AUCH!')

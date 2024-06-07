@@ -6,7 +6,7 @@ import fonts
 import camera
 from locations import *
 from load_content import load_animations
-# from misc_tools import black_out, black_in
+from misc_tools import *  #black_out, black_in
 # import pickle
 from random import choice
 
@@ -156,8 +156,11 @@ class World(object):
         # entity.rectangle.width = description['width'].width
         # entity.rectangle.height = description['height'].height
         entity.snap_to_actor = description['snap to actor']
+        # entity.parent_id = description['snap to actor']
         actor = self.actors[self.location][description['snap to actor']]
-        entity.snapping_offset = actor.animations[actor.current_animation]['demolisher offset']
+        entity.parent_id = actor.id
+        entity.snapping_offset = actor.current_weapon['demolisher offset'][actor.look]
+        # entity.snapping_offset = actor.animations[actor.current_animation]['demolisher offset']
         entity.damage = description['damage']
         # entity.snap_point = description['snap to actor']
         # entity.is_ghost_platform = True if 'ghost' in description else False
@@ -199,6 +202,8 @@ class World(object):
         self.processing_obstacles()
         self.processing_human_input()
         self.processing_actors()
+        if self.actors[self.location][0].dead:
+            self.game_over()
         self.processing_demolishers()
 
         # Applying camera offset:
@@ -208,6 +213,7 @@ class World(object):
             y_offset_speed = self.obstacles[self.location][self.actors[self.location][0].influenced_by_obstacle].speed
         else:
             y_offset_speed = 1
+
         self.camera.apply_offset((self.actors[self.location][0].rectangle.centerx, self.actors[self.location][0].rectangle.bottom),
                                  y_offset_speed, 5)
                                  # self.actors[self.location][0].speed * 0.9, self.actors[self.location][0].fall_speed)
@@ -318,7 +324,10 @@ class World(object):
                 actor.summon_demolisher = False
                 # actor.current_weapon_demolishers_reveal_frames = actor.current_weapon_demolishers_reveal_frames[1:]
                 # print('ATTACK!', actor.frame_number, actor.current_weapon_demolishers_reveal_frames)
-                demolisher = actor.current_weapon['demolisher reveals at frame'][actor.frame_number]
+                frame = actor.current_weapon_demolishers_reveal_frames[0]
+                actor.current_weapon_demolishers_reveal_frames = actor.current_weapon_demolishers_reveal_frames[1:]
+                demolisher = actor.current_weapon['demolishers'][frame]
+                # demolisher = actor.current_weapon['demolisher reveals at frame'][actor.frame_number]
                 demolisher['snap to actor'] = actor.id
                 # demolisher['snap points']['right'] = (0, 8)
                 # demolisher['snap points']['left'] = (0, 8)

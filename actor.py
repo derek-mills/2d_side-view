@@ -128,16 +128,18 @@ class Actor(Entity):
 
     def think(self):
         if self.think_type == 'chaser':
-            if self.rectangle.centerx > self.target.rectangle.centerx:
-                # print('TARGET IS ON THE LEFT')
-                # self.set_state('run left')
-                # self.set_action('left action')
-                self.ai_input_left_arrow = True
-                self.ai_input_right_arrow = False
-            elif self.rectangle.centerx < self.target.rectangle.centerx:
-                # print('TARGET IS ON THE RIGHT')
-                self.ai_input_left_arrow = False
-                self.ai_input_right_arrow = True
+            if self.rectangle.left > self.target.rectangle.right:
+                if self.rectangle.left - self.target.rectangle.right <= self.current_weapon['reach']:
+                    self.ai_input_attack = True
+                else:
+                    self.ai_input_left_arrow = True
+                    self.ai_input_right_arrow = False
+            elif self.rectangle.right < self.target.rectangle.left:
+                if self.target.rectangle.left - self.rectangle.right <= self.current_weapon['reach']:
+                    self.ai_input_attack = True
+                else:
+                    self.ai_input_left_arrow = False
+                    self.ai_input_right_arrow = True
 
         # if self.is_input_up_arrow:
         #     actor.set_action('up action')
@@ -366,7 +368,8 @@ class Actor(Entity):
             self.frames_changing_threshold_modifier = self.current_weapon['animation speed modifier']
             self.set_current_animation()
             self.ignore_user_input = self.current_weapon['ignore user input']
-            self.current_weapon_demolishers_reveal_frames = list(self.current_weapon['demolisher reveals at frame'].keys())
+            self.current_weapon_demolishers_reveal_frames = self.current_weapon['demolisher reveals at frames']
+            # self.current_weapon_demolishers_reveal_frames = list(self.current_weapon['demolisher reveals at frame'].keys())
             # self.ignore_user_input = True
 
         elif self.__state == 'stab':                          # ATTACKING IN PROCESS...
@@ -377,9 +380,11 @@ class Actor(Entity):
                 self.heading[0] = 0
                 self.speed = 0
             # print(self.frame_number, '-', self.current_frame)
-            if self.frame_number in self.current_weapon_demolishers_reveal_frames:
-                self.current_weapon_demolishers_reveal_frames = self.current_weapon_demolishers_reveal_frames[1:]
-                self.summon_demolisher = True
+            if self.current_weapon_demolishers_reveal_frames:
+                if self.frame_number == self.current_weapon_demolishers_reveal_frames[0]:
+                # if self.frame_number in self.current_weapon_demolishers_reveal_frames:
+                    # self.current_weapon_demolishers_reveal_frames = self.current_weapon_demolishers_reveal_frames[1:]
+                    self.summon_demolisher = True
             if self.animation_sequence_done:
                 self.ignore_user_input = False
                 self.heading[0] = 0
