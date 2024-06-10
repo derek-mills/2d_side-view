@@ -203,7 +203,7 @@ demon_1 = {
                          # 74,74,74,74,74,  # 20 - 24
                          # 74,74,74,75,75), # 25 - 29
             'demolisher offset': (46, 36),
-            'speed': 1,
+            'speed': 2,
             'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 0
         },
         'stab left': {
@@ -215,7 +215,7 @@ demon_1 = {
                          # 89, 89, 89, 89, 89,  # 20 - 24
                          # 89, 89, 89, 88, 88),  # 25 - 29
             'demolisher offset': (-46,36),
-            'speed': 1,
+            'speed': 2,
             'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 2
         },
     },
@@ -260,100 +260,6 @@ player_jake = {
     'items': (kitchen_knife,),
     # 'avatar': 'Jake',
     'animations': {
-        # 'firearm attack':
-        #     {
-        #     'right': {'repeat': False, 'interruptable': False, 'sequence': (4,4,5,5,4,4,4,4,4), 'speed': 1,
-        #    'sound': 'gunshot', 'sound at frames': (2,), 'repeat from frame': 0},
-        #    'left': {'repeat': False, 'interruptable': False, 'sequence': (4,4,5,5,4,4,4,4,4), 'speed': 1,
-        #    'sound': 'gunshot', 'sound at frames': (2,), 'repeat from frame': 0},
-        #    'up': {'repeat': False, 'interruptable': False, 'sequence': (7,7,7,7,7,7,7,7,7), 'speed': 1,
-        #    'sound': 'gunshot', 'sound at frames': (2,), 'repeat from frame': 0},
-        #    'down': {'repeat': False, 'interruptable': False, 'sequence': (6,6,6,6,6,6,6,6,6), 'speed': 1,
-        #    'sound': 'gunshot', 'sound at frames': (2,), 'repeat from frame': 0},
-        #    },
-        # 'SMP attack': {
-        #     'right': {'repeat': False, 'interruptable': False, 'sequence': (4, 4, 5, 5, 4, 5,5, 4, 5,5, 4, 4, 4), 'speed': 1,
-        #                              'sound': 'gunshot', 'sound at frames': (2,5,8), 'repeat from frame': 0},
-        #                    'left': {'repeat': False, 'interruptable': False, 'sequence': (4, 4, 5, 5, 4, 5,5, 4, 5,5, 4, 4, 4), 'speed': 1,
-        #                             'sound': 'gunshot', 'sound at frames': (2,5,8), 'repeat from frame': 0},
-        #                    'up': {'repeat': False, 'interruptable': False, 'sequence': (7, 7, 7, 7, 7, 7, 7, 7, 7,7,7,7,7), 'speed': 1,
-        #                           'sound': 'gunshot', 'sound at frames': (2,5,8), 'repeat from frame': 0},
-        #                    'down': {'repeat': False, 'interruptable': False, 'sequence': (6, 6, 6, 6, 6, 6, 6, 6, 6,6,6,), 'speed': 1,
-        #                             'sound': 'gunshot', 'sound at frames': (2,5,8), 'repeat from frame': 0},
-        #                    },
-        # 'shotgun attack': {
-        #     'right': {'repeat': False, 'interruptable': False, 'sequence': (4,4,5,5,4,4,4,4,4), 'speed': 1,
-        #               'sound': 'gunshot', 'sound at frames': (2,), 'repeat from frame': 0},
-        #     'left': {'repeat': False, 'interruptable': False, 'sequence': (4,4,5,5,4,4,4,4,4), 'speed': 1,
-        #               'sound': 'gunshot', 'sound at frames': (2,), 'repeat from frame': 0},
-        #     'up': {'repeat': False, 'interruptable': False, 'sequence': (7,7,7,7,7,7,7,7,7), 'speed': 1,
-        #               'sound': 'gunshot', 'sound at frames': (2,), 'repeat from frame': 0},
-        #     'down': {'repeat': False, 'interruptable': False, 'sequence': (6,6,6,6,6,6,6,6,6), 'speed': 1,
-        #               'sound': 'gunshot', 'sound at frames': (2,), 'repeat from frame': 0},
-        # },
-        # 'melee attack': {
-        #     1: {
-        #         'repeat': False, 'interruptable': False,
-        #         'sequence': (32,33,33,33), 'speed': 1,
-        #         'sound': 'swing', 'sound at frames': (1,), 'repeat from frame': 0
-        #     },
-        #
-        #     -1: {
-        #         'repeat': False, 'interruptable': False,
-        #         'sequence': (32,33,33,33), 'speed': 1,
-        #         'sound': 'swing', 'sound at frames': (1,), 'repeat from frame': 0
-        #     },
-        # },
-        # 'get hurt': {
-        #     'right': {'repeat': False, 'interruptable': False, 'sequence': (12,13,12,13,12,13,12,13), 'speed': 2,
-        #              'sound': 'jake groan', 'sound at frames': (1,), 'repeat from frame': 0},
-        #     'left': {'repeat': False, 'interruptable': False, 'sequence': (12,13,12,13,12,13,12,13), 'speed': 2,
-        #              'sound': 'jake groan', 'sound at frames': (1,), 'repeat from frame': 0},
-        #     'up': {'repeat': False, 'interruptable': False, 'sequence': (7,13,7,13,7,13,7,13), 'speed': 2,
-        #              'sound': 'jake groan', 'sound at frames': (1,), 'repeat from frame': 0},
-        #     'down': {'repeat': False, 'interruptable': False, 'sequence': (27,13,27,13,27,13,27,13), 'speed': 2,
-        #              'sound': 'jake groan', 'sound at frames': (1,), 'repeat from frame': 0},
-        # },
-        # 'be dead': {
-        #     'right': {'repeat': True, 'interruptable': True, 'sequence': (40,), 'speed': 1,
-        #             'sound': None, 'sound at frames': (0,), 'repeat from frame': 0},
-        #     'left': {'repeat': True, 'interruptable': True, 'sequence': (40,), 'speed': 1,
-        #             'sound': None, 'sound at frames': (0,), 'repeat from frame': 0},
-        #     'up': {'repeat': True, 'interruptable': True, 'sequence': (40,), 'speed': 1,
-        #             'sound': None, 'sound at frames': (0,), 'repeat from frame': 0},
-        #     'down': {'repeat': True, 'interruptable': True, 'sequence': (40,), 'speed': 1,
-        #             'sound': None, 'sound at frames': (0,), 'repeat from frame': 0},
-        # },
-        # 'head explode': {
-        #     'right': {'repeat': True, 'interruptable': True, 'sequence': (34, 35, 36, 37, 38, 39, 40), 'speed': 1,
-        #                  'sound': None, 'sound at frames': (0,), 'repeat from frame': 6},
-        #     'left': {'repeat': True, 'interruptable': True, 'sequence': (34, 35, 36, 37, 38, 39, 40), 'speed': 1,
-        #                  'sound': None, 'sound at frames': (0,), 'repeat from frame': 6},
-        #     'up': {'repeat': True, 'interruptable': True, 'sequence': (34, 35, 36, 37, 38, 39, 40), 'speed': 1,
-        #                  'sound': None, 'sound at frames': (0,), 'repeat from frame': 6},
-        #     'down': {'repeat': True, 'interruptable': True, 'sequence': (34, 35, 36, 37, 38, 39, 40), 'speed': 1,
-        #                  'sound': None, 'sound at frames': (0,), 'repeat from frame': 6},
-        # },
-        # 'lay down': {
-        #     'right': {'repeat': True, 'interruptable': True, 'sequence': (27,27,28,28,29,30,30,31), 'speed': 2,
-        #              'sound': None, 'sound at frames': (3,), 'repeat from frame': 7},
-        #     'left': {'repeat': True, 'interruptable': True, 'sequence': (27,27,28,28,29,30,30,31), 'speed': 2,
-        #              'sound': None, 'sound at frames': (3,), 'repeat from frame': 7},
-        #     'up': {'repeat': True, 'interruptable': True, 'sequence': (27,27,28,28,29,30,30,31), 'speed': 2,
-        #              'sound': None, 'sound at frames': (3,), 'repeat from frame': 7},
-        #     'down': {'repeat': True, 'interruptable': True, 'sequence': (27,27,28,28,29,30,30,31), 'speed': 2,
-        #              'sound': None, 'sound at frames': (3,), 'repeat from frame': 7},
-        # },
-        # 'exhausted': {
-        #     'right': {'repeat': True, 'interruptable': True, 'sequence': (42,43), 'speed': 10,
-        #              'sound': None, 'sound at frames': (0,), 'repeat from frame': 0},
-        #     'left': {'repeat': True, 'interruptable': True, 'sequence': (42,43), 'speed': 10,
-        #              'sound': None, 'sound at frames': (0,), 'repeat from frame': 0},
-        #     'up': {'repeat': True, 'interruptable': True, 'sequence': (42,43), 'speed': 10,
-        #              'sound': None, 'sound at frames': (0,), 'repeat from frame': 0},
-        #     'down': {'repeat': True, 'interruptable': True, 'sequence': (42,43), 'speed': 10,
-        #              'sound': None, 'sound at frames': (0,), 'repeat from frame': 0},
-        # },
         'stand still right': {
                 'repeat': True, 'interruptable': True,
                 'sequence': (1,1,1,1,1,1,2,2,2,2,2,2,2), 'speed': 20,

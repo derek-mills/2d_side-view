@@ -160,7 +160,14 @@ class World(object):
         entity.parent_id = actor.id
         entity.snapping_offset = actor.current_weapon['demolisher offset'][actor.look]
         entity.damage = description['damage']
+        entity.static = description['static']
+        entity.damage_reduce = description['damage reduce']
         entity.update(actor.look, actor.rectangle)
+        entity.max_speed = description['speed']
+        if not entity.static:
+            entity.destination = (self.locations[self.location]['size'][0], entity.rectangle.y)
+            print((self.locations[self.location]['size'][0], entity.rectangle.y))
+
         self.demolishers[self.location][entity.id] = entity
         self.demolisher_id += 1
 
@@ -242,10 +249,8 @@ class World(object):
                 dead.append(dem.id)
                 continue
             actor = self.actors[self.location][dem.snap_to_actor]
-            #actor.animations[actor.current_animation]['demolisher offset']
-            # dem.update_offset(offset)
-            dem.update(actor.look, actor.rectangle)
-            # dem.update(actor.look, actor.rectangle, actor.animations[actor.current_animation]['demolisher offset'])
+            if dem.static:
+                dem.update(actor.look, actor.rectangle)
             dem.process_(self.time_passed)
         for dead_id in dead:
             del self.demolishers[self.location][dead_id]
@@ -500,13 +505,6 @@ class World(object):
             self.add_obstacle(obs)
         for dem in self.locations[self.location]['demolishers']['dem rectangles']:
             self.add_demolisher(dem)
-            # if obs[2] in self.locations[self.location]['obstacles']['settings'].keys():
-            #     if 'demolisher' in self.locations[self.location]['obstacles']['settings'][obs[2]].keys():
-            #         self.add_demolisher(obs)
-            #     else:
-            #        self.add_obstacle(obs)
-            # else:
-            #     self.add_obstacle(obs)
 
         self.camera.setup(self.locations[self.location]['size'][0], self.locations[self.location]['size'][1])
 

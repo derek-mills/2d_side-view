@@ -3,8 +3,8 @@ kitchen_knife = {
     'aimed fire': True,
     'attack animation': 'stab',
     'ignore user input': True,  # Steal the ability to control a character for a while.
-    'actor forward moving speed': 0.,  # During attack an actor may uncontrollably move forward (min 0.5).
-    'animation speed modifier': 1,  # 0 < x < 1: speed animation up, x > 1: slow down.
+    'actor forward moving speed': 0.3,  # During attack an actor may uncontrollably move forward (min 0.5).
+    'animation speed modifier': 1.,  # 0 < x < 1: speed animation up, x > 1: slow down.
     'leave particles': False,
     'class': 'weapons',
     'type': 'melee',
@@ -26,12 +26,14 @@ kitchen_knife = {
         4: {
             'rect': pygame.Rect(0,0,50,10),
             'pierce': False, 'demolisher TTL': 5,
-            'damage': 10,
+            'damage': 10, 'static': True, 'damage reduce': 0.,
+            'speed': 0.5
         },
         9: {
-            'rect': pygame.Rect(0,0,150,10),
-            'pierce': False, 'demolisher TTL': 1,
-            'damage': 10,
+            'rect': pygame.Rect(0,0,30,30),
+            'pierce': False, 'demolisher TTL': 100,
+            'damage': 10, 'static': False, 'damage reduce': .1,
+            'speed': 1.5
         },
         # 28: {
         #     'rect': pygame.Rect(0,0,150,5),
