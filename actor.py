@@ -368,7 +368,7 @@ class Actor(Entity):
             self.frames_changing_threshold_modifier = self.current_weapon['animation speed modifier']
             self.set_current_animation()
             self.ignore_user_input = self.current_weapon['ignore user input']
-            self.current_weapon_demolishers_reveal_frames = self.current_weapon['demolisher reveals at frames']
+            # self.current_weapon_demolishers_reveal_frames = self.current_weapon['demolisher reveals at frames']
             # self.current_weapon_demolishers_reveal_frames = list(self.current_weapon['demolisher reveals at frame'].keys())
             # self.ignore_user_input = True
 
@@ -381,17 +381,13 @@ class Actor(Entity):
             #     self.speed = 0
             self.heading[0] = 0
             self.speed = 0
-
             # print(self.frame_number, '-', self.current_frame)
-            if self.current_weapon_demolishers_reveal_frames:
-                if self.frame_number == self.current_weapon_demolishers_reveal_frames[0]:
-                # if self.frame_number in self.current_weapon_demolishers_reveal_frames:
-                    # self.current_weapon_demolishers_reveal_frames = self.current_weapon_demolishers_reveal_frames[1:]
-                    self.summon_demolisher = True
+            # if self.current_weapon_demolishers_reveal_frames:
+            #     if self.frame_number == self.current_weapon_demolishers_reveal_frames[0]:
+            #         self.summon_demolisher = True
             if self.animation_sequence_done:
                 self.ignore_user_input = False
                 self.heading[0] = 0
-                # self.max_speed = self.default_max_speed
                 self.set_state('stand still')
         elif self.__state == 'crouch':                          # CROUCH
             self.speed = 0

@@ -21,6 +21,8 @@ class Entity(object):
         self.performing_an_interruptable_deed: bool = False
         self.think_type: str = ''
         self.summon_demolisher = False
+        # self.summon_demolisher_at_frame = 0
+        self.summon_demolisher_counter = -1
         self.ttl = 0
         self.dead = False
 
@@ -271,7 +273,13 @@ class Entity(object):
                 # print(self.frame_number, action)
                 if action == 'move':
                     self.speed = self.animations[self.current_animation]['activity at frames'][self.frame_number]['move']
-                    print(f'[process active frames] make step at frame {self.frame_number}')
+                    # print(f'[process active frames] make step at frame {self.frame_number}')
+                    # self.active_frames = self.active_frames[1:]
+                elif action == 'demolisher':
+                    print(f'[process active frames] make attack at frame {self.frame_number}')
+                    self.summon_demolisher = True
+                    self.summon_demolisher_at_frame = self.frame_number
+                    self.summon_demolisher_counter += 1
                 elif action == 'sound':
                     print(f'[process active frames] make sound at frame {self.frame_number}')
             self.active_frames = self.active_frames[1:]
@@ -297,6 +305,7 @@ class Entity(object):
                 self.animation_not_interruptable = False
                 self.performing_an_interruptable_deed = False
                 self.active_frames = list()
+                self.summon_demolisher_counter = -1
                 # self.force_visible = False
                 # print(f'[actor_process_animation_counter] {self.name} Animation sequence done, release lock from world activity.')
                 if not self.animations[self.current_animation]['repeat']:

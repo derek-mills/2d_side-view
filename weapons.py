@@ -20,48 +20,21 @@ kitchen_knife = {
         -1: (-46, 36),
     },
     'reach': 50,
-    # 'demolisher reveals at frames': [4,],  # The list of damage revealing frames within an attack animation sequence.
-    'demolisher reveals at frames': [4, 9],  # The list of damage revealing frames within an attack animation sequence.
-    # An actor animation sequence for weapon:
-    #
-    # 'stab left': {
-    #   [...]
-    #
-    #   Demolisher reveals at this frame (4):
-    #                                  \/
-    #     'sequence': (89, 89, 89, 89, 88,   # Frames number from 0 to 4
-
-    #   Demolisher reveals at this frame (9):
-    #                                  \/
-    #                  89, 89, 89, 89, 88),  # Frames number from 5 to 9
-    #   [...]
-    # },
-    #
-    #
-    'demolishers': {
-        4: {
-            'rect': pygame.Rect(0,0,50,10),
+    'demolishers': (
+        # None,
+        {
+            'rect': pygame.Rect(0, 0, 50, 10),
             'pierce': False, 'demolisher TTL': 150,
             'damage': 10, 'static': False, 'damage reduce': .1,
             'speed': .1, 'collides': False, 'gravity affected': False
         },
-        9: {
-            'rect': pygame.Rect(0,0,30,30),
+        {
+            'rect': pygame.Rect(0, 0, 30, 30),
             'pierce': False, 'demolisher TTL': 100,
             'damage': 10, 'static': False, 'damage reduce': .1,
             'speed': 2, 'collides': True, 'gravity affected': True
         },
-        # 28: {
-        #     'rect': pygame.Rect(0,0,150,5),
-        #     'pierce': False, 'demolisher TTL': 5,
-        #     # 'demolishers spread': False,
-        #     # 'demolisher static': True, 'demolisher radius': 1, 'demolishers quantity': 1,
-        #     # 'demolisher reveal delay': 0, 'demolisher reveals with flash': False,
-        #     # 'demolisher brings light': False, 'demolisher fly speed reduce': 0,
-        #     # 'demolisher fly speed': 1.5, 'demolisher invisible': False,
-        #     # 'demolisher weight': 5,
-        # },
-    },
+    ),
     'description': 'Casual kitchen knife.',
 }
 shotgun = {

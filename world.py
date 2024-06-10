@@ -307,9 +307,14 @@ class World(object):
                 actor.summon_demolisher = False
                 # actor.current_weapon_demolishers_reveal_frames = actor.current_weapon_demolishers_reveal_frames[1:]
                 # print('ATTACK!', actor.frame_number, actor.current_weapon_demolishers_reveal_frames)
-                frame = actor.current_weapon_demolishers_reveal_frames[0]
-                actor.current_weapon_demolishers_reveal_frames = actor.current_weapon_demolishers_reveal_frames[1:]
-                demolisher = actor.current_weapon['demolishers'][frame]
+                # frame =
+                # frame = actor.active_frames[0]
+                # actor.active_frames = actor.active_frames[1:]
+                # frame = actor.current_weapon_demolishers_reveal_frames[0]
+                # actor.current_weapon_demolishers_reveal_frames = actor.current_weapon_demolishers_reveal_frames[1:]
+                # print(actor.summon_demolisher_counter)
+                demolisher = actor.current_weapon['demolishers'][actor.summon_demolisher_counter]
+                # demolisher = actor.current_weapon['demolishers'][actor.summon_demolisher_at_frame]
                 # demolisher = actor.current_weapon['demolisher reveals at frame'][actor.frame_number]
                 demolisher['snap to actor'] = actor.id
                 # demolisher['snap points']['right'] = (0, 8)
@@ -666,6 +671,7 @@ class World(object):
             (' LOOK: ' + str(self.actors[self.location][0].look), WHITE),
             (' HEADING: ' + str(self.actors[self.location][0].heading), WHITE),
             (' IDLE COUNT: ' + str(self.actors[self.location][0].idle_counter), (200, 100, 50)),
+            (' ACTIVE FRAMES: ' + str(self.actors[self.location][0].active_frames), (200, 100, 50)),
 
             (' JUMP ATTEMPTS: ' + str(self.actors[self.location][0].jump_attempts_counter), YELLOW),
             (' JUST JUMPED: ' + str(self.actors[self.location][0].just_got_jumped), YELLOW),

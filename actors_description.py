@@ -336,7 +336,7 @@ player_jake = {
         'stab right': {
             'repeat': False, 'interruptable': True,
             'sequence': (74,74,74,74,75,  # 0 - 4
-                         74,74,74,74,75), # 5 - 9
+                         74,74,74,74,75, 75), # 5 - 9
                          # 74,74,74,74,74,  # 5 - 9
                          # 74,74,74,75,75,  # 10 - 14
                          # 74,74,74,74,74,  # 15 - 19
@@ -348,9 +348,11 @@ player_jake = {
                 4: {
                     'sound': True,
                     'move': 10,
+                    'demolisher': True
                 },
                 9: {
                     'move': 10,
+                    'demolisher': True
                 },
             },
             'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 0
@@ -358,7 +360,7 @@ player_jake = {
         'stab left': {
             'repeat': False, 'interruptable': True,
             'sequence': (89, 89, 89, 89, 88,
-                         89, 89, 89, 89, 88),  # 0 - 4
+                         89, 89, 89, 89, 88, 88),  # 0 - 4
                          # 89, 89, 89, 89, 89,  # 5 - 9
                          # 89, 89, 89, 88, 88,  # 10 - 14
                          # 89, 89, 89, 89, 89,  # 15 - 19
@@ -369,9 +371,11 @@ player_jake = {
                 4: {
                     'sound': True,
                     'move': 10,
+                    'demolisher': True
                 },
                 9: {
                     'move': 10,
+                    'demolisher': True
                 },
             },
             'speed': 1,
