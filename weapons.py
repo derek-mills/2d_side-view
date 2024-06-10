@@ -3,7 +3,7 @@ kitchen_knife = {
     'aimed fire': True,
     'attack animation': 'stab',
     'ignore user input': True,  # Steal the ability to control a character for a while.
-    'actor forward moving speed': 0.3,  # During attack an actor may uncontrollably move forward (min 0.5).
+    # 'actor forward moving speed': 0.3,  # During attack an actor may uncontrollably move forward (min 0.5).
     'animation speed modifier': 1.,  # 0 < x < 1: speed animation up, x > 1: slow down.
     'leave particles': False,
     'class': 'weapons',

@@ -373,12 +373,15 @@ class Actor(Entity):
             # self.ignore_user_input = True
 
         elif self.__state == 'stab':                          # ATTACKING IN PROCESS...
-            if self.current_weapon['actor forward moving speed'] > 0:
-                self.speed = self.current_weapon['actor forward moving speed']
-                self.heading[0] = self.look
-            else:
-                self.heading[0] = 0
-                self.speed = 0
+            # if self.current_weapon['actor forward moving speed'] > 0:
+            #     self.speed = self.current_weapon['actor forward moving speed']
+            #     self.heading[0] = self.look
+            # else:
+            #     self.heading[0] = 0
+            #     self.speed = 0
+            self.heading[0] = 0
+            self.speed = 0
+
             # print(self.frame_number, '-', self.current_frame)
             if self.current_weapon_demolishers_reveal_frames:
                 if self.frame_number == self.current_weapon_demolishers_reveal_frames[0]:

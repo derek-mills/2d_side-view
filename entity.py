@@ -43,6 +43,7 @@ class Entity(object):
         self.current_sprite_xy: list = [0, 0]
         self.current_mask_xy = (0, 0)
         self.current_mask_flip = False
+        self.active_frames = list()
 
         # GEOMETRY
         self.origin_xy: tuple = (0, 0)
@@ -207,12 +208,14 @@ class Entity(object):
         self.rectangle_height_slide = self.rectangle.height // 3
         self.rectangle_width_slide = self.rectangle.height // 4 * 3
 
+
     def process(self, time_passed):
         if self.ttl > 0:
             self.ttl -= 1
             if self.ttl == 0:
                 self.die()
         self.process_animation()
+        self.process_activity_at_current_animation_frame()
         if self.is_jump:
         # if self.is_jump and self.jump_attempts_counter > 0:
             # Jump
@@ -260,6 +263,21 @@ class Entity(object):
         if self.current_animation not in self.animations.keys():
             self.current_animation = 'stand still right'
         self.apply_particular_animation(self.current_animation)
+        self.active_frames = list(self.animations[self.current_animation]['activity at frames'].keys())
+
+    def process_activity_at_current_animation_frame(self):
+        if self.frame_number in self.active_frames:
+            for action in self.animations[self.current_animation]['activity at frames'][self.frame_number]:
+                # print(self.frame_number, action)
+                if action == 'move':
+                    self.speed = self.animations[self.current_animation]['activity at frames'][self.frame_number]['move']
+                    print(f'[process active frames] make step at frame {self.frame_number}')
+                elif action == 'sound':
+                    print(f'[process active frames] make sound at frame {self.frame_number}')
+            self.active_frames = self.active_frames[1:]
+        # if self.frame_number in self.animations[self.current_animation]['activity at frames'].keys():
+        #     for action in self.animations[self.current_animation]['activity at frames'][self.frame_number]:
+        #         print(self.frame_number, action)
 
     def process_animation(self):
         # self.set_current_animation()
@@ -278,6 +296,7 @@ class Entity(object):
                 self.animation_sequence_done = True
                 self.animation_not_interruptable = False
                 self.performing_an_interruptable_deed = False
+                self.active_frames = list()
                 # self.force_visible = False
                 # print(f'[actor_process_animation_counter] {self.name} Animation sequence done, release lock from world activity.')
                 if not self.animations[self.current_animation]['repeat']:

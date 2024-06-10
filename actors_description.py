@@ -263,62 +263,74 @@ player_jake = {
         'stand still right': {
                 'repeat': True, 'interruptable': True,
                 'sequence': (1,1,1,1,1,1,2,2,2,2,2,2,2), 'speed': 20,
+                'activity at frames': {},
                 'sound': None, 'sound at frames': (0,), 'repeat from frame': 0
             },
         'stand still left': {
             'repeat': True, 'interruptable': True,
             'sequence': (15,16), 'speed': 50,
+            'activity at frames': {},
             'sound': None, 'sound at frames': (0,), 'repeat from frame': 0
         },
 
         'run right': {
                 'repeat': True, 'interruptable': True,
                 'sequence': (28,29,30,31,32,33,34,35,36,37,38,39,40), 'speed': 1,
+                'activity at frames': {},
                 'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
         'run left': {
                 'repeat': True, 'interruptable': True,
                 'sequence': (54,53,52,51,50,49,48,47,46,45,44,43,42), 'speed': 1,
+                'activity at frames': {},
                 'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
         'jump right': {
                 'repeat': True, 'interruptable': True,
                 'sequence': (32,), 'speed': 1,
+                'activity at frames': {},
                 'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
         'jump left': {
                 'repeat': True, 'interruptable': True,
                 'sequence': (51,), 'speed': 1,
+                'activity at frames': {},
                 'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
         'turn right': {
                 'repeat': True, 'interruptable': True,
                 'sequence': (0,), 'speed': 1,
+                'activity at frames': {},
                 'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
         'turn left': {
                 'repeat': True, 'interruptable': True,
                 'sequence': (0,), 'speed': 1,
+                'activity at frames': {},
                 'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
         'sliding right': {
             'repeat': True, 'interruptable': True,
             'sequence': (73,), 'speed': 1,
+            'activity at frames': {},
             'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 0
         },
         'sliding left': {
             'repeat': True, 'interruptable': True,
             'sequence': (73,), 'speed': 1,
+            'activity at frames': {},
             'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 0
         },
         'crouch right': {
             'repeat': True, 'interruptable': True,
             'sequence': (70,71,72,), 'speed': 1,
+            'activity at frames': {},
             'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 2
         },
         'crouch left': {
             'repeat': True, 'interruptable': True,
             'sequence': (70,71,72,), 'speed': 1,
+            'activity at frames': {},
             'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 2
         },
         'stab right': {
@@ -332,6 +344,15 @@ player_jake = {
                          # 74,74,74,75,75), # 25 - 29
             # 'demolisher offset': (46, 36),
             'speed': 1,
+            'activity at frames': {
+                4: {
+                    'sound': True,
+                    'move': 10,
+                },
+                9: {
+                    'move': 10,
+                },
+            },
             'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 0
         },
         'stab left': {
@@ -344,6 +365,15 @@ player_jake = {
                          # 89, 89, 89, 89, 89,  # 20 - 24
                          # 89, 89, 89, 88, 88),  # 25 - 29
             # 'demolisher offset': (-46,36),
+            'activity at frames': {
+                4: {
+                    'sound': True,
+                    'move': 10,
+                },
+                9: {
+                    'move': 10,
+                },
+            },
             'speed': 1,
             'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 2
         },
