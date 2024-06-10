@@ -166,16 +166,16 @@ class World(object):
         demol.static = description['static']
         demol.damage_reduce = description['damage reduce']
         demol.max_speed = description['speed']
-        demol.speed = description['speed']
+        # demol.speed = description['speed']
         demol.is_collideable = description['collides']
         demol.is_gravity_affected = description['gravity affected']
         # demol.rectangle.y += randint(-150, 150)
         demol.look = actor.look
-        # if not demol.static:
-        #     demol.destination = (self.camera.max_offset_x + MAXX, demol.rectangle.y) if actor.look == 1 else (-100, demol.rectangle.y)
+        if not demol.static:
+            demol.destination = (self.camera.max_offset_x + MAXX, demol.rectangle.y) if actor.look == 1 else (-100, demol.rectangle.y)
         # self.demolishers[self.location][self.demolisher_id] = ent
         self.demolishers[self.location][demol.id] = demol
-        print(f'[add_demolisher] Added: {demol.id=} {demol.name} {demol.rectangle} {demol.max_speed=}')
+        # print(f'[add_demolisher] Added: {demol.id=} {demol.name} {demol.rectangle} {demol.max_speed=}')
 
     def process(self, time_passed):
         self.time_passed = time_passed

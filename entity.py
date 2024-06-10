@@ -237,7 +237,8 @@ class Entity(object):
                 # self.influenced_by_obstacle = None
                 # print('fall!')
                 self.fall()
-        self.move()
+        self.move(time_passed)
+        # self.fly(time_passed)
         self.correct_position_if_influenced()
         # if self.influenced_by_obstacle:
         #     print('dd')
@@ -305,32 +306,6 @@ class Entity(object):
         self.frames_changing_threshold = self.animations[anim]['speed'] * self.frames_changing_threshold_modifier
         self.animation_sequence = self.animations[anim]['sequence']
         self.set_current_sprite()
-
-    def calculate_fall_speed(self):
-        # if self.influenced_by_obstacle >= 0:
-        #     self.rectangle.bottom = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
-        #     self.potential_falling_distance = 1
-        #     self.fall_speed = 1
-        # else:
-        if not self.is_stand_on_ground:
-            if self.fall_speed > GRAVITY_G:
-                self.fall_speed = GRAVITY_G
-            else:
-                self.fall_speed += GRAVITY
-
-            if self.is_abort_jump:
-                if self.fall_speed >= 0:
-                    self.is_abort_jump = False
-                else:
-                    self.fall_speed = 0
-                    self.is_abort_jump = False
-            self.potential_falling_distance = self.fall_speed
-        else:
-            self.potential_falling_distance = 1
-            self.fall_speed = 1
-        # if self.influenced_by_obstacle:
-        #     self.potential_falling_distance += self.obstacles_around[self.influenced_by_obstacle].fall_speed
-        #     # self.potential_falling_distance += self.obstacles_around[self.influenced_by_obstacle].potential_falling_distance
 
     def get_state(self):
         return self.__state
@@ -918,7 +893,7 @@ class Entity(object):
         # if self.vec_to_destination == (0, 0) or self.destination == self.rectangle.center:
             self.is_destination_reached = True
             self.speed = 0
-            self.heading = (0, 0)
+            self.heading = [0, 0]
             return
         else:
             self.is_destination_reached = False
@@ -928,7 +903,7 @@ class Entity(object):
         if distance_to_destination > 0:
             # Calculate normalized vector to apply animation set correctly in the future:
             # self.heading = self.vec_to_destination.get_normalized()
-            self.heading = (self.vec_to_destination[0] / distance_to_destination, self.vec_to_destination[1] / distance_to_destination)
+            self.heading = [self.vec_to_destination[0] / distance_to_destination, self.vec_to_destination[1] / distance_to_destination]
 
             self.speed = self.max_speed * self.max_speed_penalty  # * 0.5
             # Define the potential length of current move, depends on basic speed and passed amount of time:
@@ -973,7 +948,31 @@ class Entity(object):
     #     #     # self.collision_detector_top.update(self.rectangle.left + 2, self.rectangle.top - 1, self.rectangle.width - 4, 1)
     #     #     self.collision_detector_bottom.update(self.rectangle.left + 2, self.rectangle.bottom - 2, self.rectangle.width - 4, 2)
 
+    def calculate_fall_speed(self):
+        # if self.influenced_by_obstacle >= 0:
+        #     self.rectangle.bottom = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
+        #     self.potential_falling_distance = 1
+        #     self.fall_speed = 1
+        # else:
+        if not self.is_stand_on_ground:
+            if self.fall_speed > GRAVITY_G:
+                self.fall_speed = GRAVITY_G
+            else:
+                self.fall_speed += GRAVITY
+
+            if self.is_abort_jump:
+                if self.fall_speed >= 0:
+                    self.is_abort_jump = False
+                else:
+                    self.fall_speed = 0
+                    self.is_abort_jump = False
+            self.potential_falling_distance = self.fall_speed
+        else:
+            self.potential_falling_distance = 1
+            self.fall_speed = 1
+
     def fall(self):
+        # print(f'[FALL]')
         self.rectangle.y += self.potential_falling_distance
 
     def correct_position_if_influenced(self):
@@ -1003,10 +1002,16 @@ class Entity(object):
 
         self.potential_moving_distance = self.speed
 
-    def move(self):
+    def move(self, time_passed):
         # if self.id != 0:
         #     print('Now moves: ', self.type, self.id)
-
+        # if self.heading[0] == 1:
+        #     self.destination[0] = self.rectangle.centerx + 500
+        # elif self.heading[0] == -1:
+        #     self.destination[0] = self.rectangle.centerx - 500
+        # else:
+        #     self.destination[0] = self.rectangle.x
+        # self.fly(time_passed)
         self.rectangle.x += (self.potential_moving_distance * self.look * self.movement_direction_inverter)
 
     def die(self):

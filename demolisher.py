@@ -10,7 +10,7 @@ class Demolisher(Entity):
         super().__init__()
         # self.id: int = 0
         self.type = 'demolisher'
-        self.acceleration = 0.5
+        self.acceleration = 0.1
         # self.air_acceleration = 0
         # self.max_speed = 0
         self.snap_to_actor: int = 0  # Active actor which cause this demolisher to be glued.
@@ -48,17 +48,22 @@ class Demolisher(Entity):
                 self.is_being_collided_now = True
                 return
 
-    def calculate_speed(self):
-        if self.speed < self.max_speed:
-            self.speed += self.acceleration
-
-        # self.potential_moving_distance = self.speed
-
-    def move_demol(self):
-        # print('Now moves: ', self.type, self.id, self.rectangle.y)
-
-        self.rectangle.x += (self.speed * self.look)
-        # self.rectangle.x += (self.potential_moving_distance * self.look * self.movement_direction_inverter)
+    # def calculate_speed(self):
+    #     if self.speed < self.max_speed:
+    #         self.speed += self.acceleration
+    #
+    #     # self.potential_moving_distance = self.speed
+    #
+    # def move_demol(self):
+    #     # print('Now moves: ', self.type, self.id, self.rectangle.y)
+    #     if self.look == 1:
+    #         self.rectangle.x += self.speed
+    #     else:
+    #         self.rectangle.x -= self.speed
+    #
+    #     self.destination[0] =
+    #     # self.rectangle.x += (self.speed * self.look)
+    #     # self.rectangle.x += (self.potential_moving_distance * self.look * self.movement_direction_inverter)
 
     def process_demolisher(self, time_passed):
         if self.ttl > 0:
@@ -77,9 +82,9 @@ class Demolisher(Entity):
                 # print('Demolisher collides')
                 return
         if not self.static:
-            self.calculate_speed()
-            self.move_demol()
-            # self.fly(time_passed)
+            # self.calculate_speed()
+            # self.move_demol()
+            self.fly(time_passed)
             if self.is_gravity_affected:
                 self.calculate_fall_speed()  # Discover speed and potential fall distance
                 self.fall()
