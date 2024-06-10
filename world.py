@@ -156,25 +156,14 @@ class World(object):
         # entity.rectangle.width = description['width'].width
         # entity.rectangle.height = description['height'].height
         entity.snap_to_actor = description['snap to actor']
-        # entity.parent_id = description['snap to actor']
         actor = self.actors[self.location][description['snap to actor']]
         entity.parent_id = actor.id
         entity.snapping_offset = actor.current_weapon['demolisher offset'][actor.look]
-        # entity.snapping_offset = actor.animations[actor.current_animation]['demolisher offset']
         entity.damage = description['damage']
-        # entity.snap_point = description['snap to actor']
-        # entity.is_ghost_platform = True if 'ghost' in description else False
-        # entity.is_collideable = True if 'collideable' in description else False
-        # if entity.id in self.locations[self.location]['demolishers']['actions'].keys():
-        #     entity.active = True
-        #     entity.actions = self.locations[self.location]['demolishers']['actions'][entity.id]
-        #     entity.max_speed = self.locations[self.location]['demolishers']['settings'][entity.id]['speed']
-        #     print(f'[add_demolisher] Added active demolisher: {entity.actions=}')
-        # Add an obstacle to the world storage:
-        # if self.location not in self.demolishers.keys():
-        #     self.demolishers[self.location] = dict()
+        entity.update(actor.look, actor.rectangle)
         self.demolishers[self.location][entity.id] = entity
         self.demolisher_id += 1
+
 
     def add_demolisher_old(self, description):
         entity = Demolisher()
@@ -387,6 +376,13 @@ class World(object):
             gaze_direction_mod = 0 if actor.look == -1 else actor.rectangle.width - 10
             pygame.draw.rect(self.screen, CYAN, (actor.rectangle.x + gaze_direction_mod - self.camera.offset_x, actor.rectangle.centery - 10 - self.camera.offset_y,
                                                   10, 20))
+            # Enemies Health bar.
+            if actor.id != 0:
+                pygame.draw.rect(self.screen, WHITE, (actor.rectangle.x - self.camera.offset_x - 2, actor.rectangle.y - 12 - self.camera.offset_y,
+                                                     actor.rectangle.width + 4, 7), 1)
+                pygame.draw.rect(self.screen, RED, (actor.rectangle.x - self.camera.offset_x, actor.rectangle.y - 10 - self.camera.offset_y,
+                                                     actor.health * actor.rectangle.width // actor.max_health, 3))
+
 
     def render_demolishers(self):
         for key in self.demolishers[self.location].keys():
@@ -465,6 +461,23 @@ class World(object):
         self.render_demolishers()
         self.render_actors()
         self.render_debug_info()
+        self.render_info_panel_overlay()
+
+    def render_info_panel_overlay(self):
+        # Player stats:
+        start_x = 50
+        start_y = MAXY - 100
+        max_stripes_width = 500
+        gap_between_stripes = 10
+        font_size = 12
+        params = (
+            ('HEALTH:' + str(int(self.actors[self.location][0].max_health)) + '/' + str(int(self.actors[self.location][0].health)),int(self.actors[self.location][0].health * max_stripes_width // self.actors[self.location][0].max_health), RED),
+            # ('BLOOD VOLUME(' + str(int(actor.body_state['blood volume'])) + '):', int(actor.body_state['blood volume']*stripes_width//actor.body_state['max blood volume']), RED),
+        )
+        for p in params:
+            self.screen.blit(fonts.all_fonts[font_size].render(p[0], True, p[2]), (start_x, start_y + gap_between_stripes))
+            pygame.draw.rect(self.screen, p[2], (start_x + 200 ,start_y+gap_between_stripes, p[1],10))
+            gap_between_stripes += font_size
 
     def load(self):
         # try:
