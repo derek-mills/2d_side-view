@@ -1,5 +1,5 @@
 from actor import *
-# from obstacle import *
+from obstacle import *
 from demolisher import *
 # from constants import *
 import fonts
@@ -146,55 +146,40 @@ class World(object):
         self.obstacle_id += 1
 
     def add_demolisher(self, description):
-        entity = Demolisher()
-        entity.id = self.demolisher_id
-        entity.ttl = description['demolisher TTL']
-        # entity.is_gravity_affected = True if 'gravity affected' in description else False
-        entity.rectangle = description['rect']
-        # entity.rectangle.topleft = description['rect'].topleft
-        entity.origin_xy = description['rect'].topleft
-        # entity.rectangle.width = description['width'].width
-        # entity.rectangle.height = description['height'].height
-        entity.snap_to_actor = description['snap to actor']
+        demol = Demolisher()
+        demol.id = self.demolisher_id
+        self.demolisher_id += 1
+        demol.name = 'demolisher ' + str(demol.id)
+        demol.snap_to_actor = description['snap to actor']
         actor = self.actors[self.location][description['snap to actor']]
-        entity.parent_id = actor.id
-        entity.snapping_offset = actor.current_weapon['demolisher offset'][actor.look]
-        entity.damage = description['damage']
-        entity.static = description['static']
-        entity.damage_reduce = description['damage reduce']
-        entity.update(actor.look, actor.rectangle)
-        entity.max_speed = description['speed']
-        if not entity.static:
-            entity.destination = (self.locations[self.location]['size'][0], entity.rectangle.y)
-            print((self.locations[self.location]['size'][0], entity.rectangle.y))
+        demol.parent_id = actor.id
+        demol.ttl = description['demolisher TTL']
+        demol.rectangle.width = description['rect'].width
+        demol.rectangle.height = description['rect'].height
+        # demol.rectangle.topleft = (100, 750)
+        # demol.origin_xy = description['rect'].topleft
 
-        self.demolishers[self.location][entity.id] = entity
-        self.demolisher_id += 1
+        demol.snapping_offset = actor.current_weapon['demolisher offset'][actor.look]
+        demol.update(actor.look, actor.rectangle)
 
-
-    def add_demolisher_old(self, description):
-        entity = Demolisher()
-        entity.id = self.demolisher_id
-        # entity.is_gravity_affected = True if 'gravity affected' in description else False
-        entity.rectangle.topleft = description[0]
-        entity.origin_xy = description[0]
-        entity.rectangle.width = description[1][0]
-        entity.rectangle.height = description[1][1]
-        # entity.is_ghost_platform = True if 'ghost' in description else False
-        entity.is_collideable = True if 'collideable' in description else False
-        if entity.id in self.locations[self.location]['demolishers']['actions'].keys():
-            entity.active = True
-            entity.actions = self.locations[self.location]['demolishers']['actions'][entity.id]
-            entity.max_speed = self.locations[self.location]['demolishers']['settings'][entity.id]['speed']
-            print(f'[add_demolisher] Added active demolisher: {entity.actions=}')
-        # Add an obstacle to the world storage:
-        # if self.location not in self.demolishers.keys():
-        #     self.demolishers[self.location] = dict()
-        self.demolishers[self.location][entity.id] = entity
-        self.demolisher_id += 1
+        demol.damage = description['damage']
+        demol.static = description['static']
+        demol.damage_reduce = description['damage reduce']
+        demol.max_speed = description['speed']
+        demol.speed = description['speed']
+        demol.is_collideable = description['collides']
+        demol.is_gravity_affected = description['gravity affected']
+        # demol.rectangle.y += randint(-150, 150)
+        demol.look = actor.look
+        # if not demol.static:
+        #     demol.destination = (self.camera.max_offset_x + MAXX, demol.rectangle.y) if actor.look == 1 else (-100, demol.rectangle.y)
+        # self.demolishers[self.location][self.demolisher_id] = ent
+        self.demolishers[self.location][demol.id] = demol
+        print(f'[add_demolisher] Added: {demol.id=} {demol.name} {demol.rectangle} {demol.max_speed=}')
 
     def process(self, time_passed):
         self.time_passed = time_passed
+
         self.processing_obstacles()
         self.processing_human_input()
         self.processing_actors()
@@ -248,10 +233,14 @@ class World(object):
             if dem.dead:
                 dead.append(dem.id)
                 continue
-            actor = self.actors[self.location][dem.snap_to_actor]
+            if dem.is_collideable:
+                dem.percept({k: self.obstacles[self.location][k] for k in self.active_obstacles}, None)
             if dem.static:
+                actor = self.actors[self.location][dem.snap_to_actor]
                 dem.update(actor.look, actor.rectangle)
-            dem.process_(self.time_passed)
+                print('dfdf')
+            dem.process_demolisher(self.time_passed)
+
         for dead_id in dead:
             del self.demolishers[self.location][dead_id]
 
@@ -325,6 +314,10 @@ class World(object):
                 demolisher['snap to actor'] = actor.id
                 # demolisher['snap points']['right'] = (0, 8)
                 # demolisher['snap points']['left'] = (0, 8)
+                # for k in demolisher:
+                #     print(k, demolisher[k])
+                # print('*' * 100)
+                # self.press_any_key()
                 self.add_demolisher(demolisher)
                 # If, for example, actor.current_weapon_demolishers_reveal_frames at the very beginning was: [13, 17, 23, 28], so:
                 # ATTACK! 13 [17, 23, 28]
@@ -396,6 +389,8 @@ class World(object):
             dem = self.demolishers[self.location][key]
             pygame.draw.rect(self.screen, PINK, (dem.rectangle.x - self.camera.offset_x, dem.rectangle.y - self.camera.offset_y,
                                                   dem.rectangle.width, dem.rectangle.height))
+            self.screen.blit(fonts.all_fonts[20].render(str(dem.id) + ' ' + str(dem.speed) + ' ' + str(dem.rectangle.y), True, CYAN),
+                             (dem.rectangle.x - self.camera.offset_x, dem.rectangle.bottom - self.camera.offset_y + dem.id * 20))
 
     def render_obstacles(self):
         for key in self.obstacles[self.location].keys():
@@ -662,17 +657,14 @@ class World(object):
             #
             #(' IS ON OBS: ' + str(self.actors[self.location][0].is_on_obstacle), WHITE),
             ('SCREEN OFFSETS: ' + str(self.camera.offset_x) + ' ' + str(self.camera.offset_y), GREEN),
-            (' STAND ON GROUND: ' + str(self.actors[self.location][0].is_stand_on_ground), WHITE),
-            (' IS GRABBING: ' + str(self.actors[self.location][0].is_edge_grabbed), WHITE),
-            (' INFLUENCED BY PLATFORM #: ' + str(self.actors[self.location][0].influenced_by_obstacle), WHITE),
             ('', WHITE),
-            (' HEADING: ' + str(self.actors[self.location][0].heading), WHITE),
             (' RECT: ' + str(self.actors[self.location][0].rectangle), WHITE),
             ('╔ TARGET HEIGHT ╗: ' + str(self.actors[self.location][0].target_height), YELLOW),
             ('╚ TARGET WIDTH  ╝: ' + str(self.actors[self.location][0].target_width), YELLOW),
             (' FALL SPEED: ' + str(self.actors[self.location][0].fall_speed), WHITE),
             (' SPEED: ' + str(self.actors[self.location][0].speed), WHITE),
             (' LOOK: ' + str(self.actors[self.location][0].look), WHITE),
+            (' HEADING: ' + str(self.actors[self.location][0].heading), WHITE),
             (' IDLE COUNT: ' + str(self.actors[self.location][0].idle_counter), (200, 100, 50)),
 
             (' JUMP ATTEMPTS: ' + str(self.actors[self.location][0].jump_attempts_counter), YELLOW),
@@ -680,14 +672,16 @@ class World(object):
             (' IGNORES INPUT: ' + str(self.actors[self.location][0].ignore_user_input), WHITE),
             (' __STATE: ' + str(self.actors[self.location][0].get_state()), CYAN),
 
+            (' STAND ON GROUND: ' + str(self.actors[self.location][0].is_stand_on_ground), WHITE),
             ('HEIGHT SPACE: ' + str(self.actors[self.location][0].is_enough_height), GREEN),
             (' ABOVE SPACE: ' + str(self.actors[self.location][0].is_enough_space_above), GREEN),
             (' BELOW SPACE: ' + str(self.actors[self.location][0].is_enough_space_below), GREEN),
             (' RIGHT SPACE: ' + str(self.actors[self.location][0].is_enough_space_right), GREEN),
             (' LEFT SPACE: ' + str(self.actors[self.location][0].is_enough_space_left), GREEN),
-
-
-
+            (' IS GRABBING: ' + str(self.actors[self.location][0].is_edge_grabbed), WHITE),
+            (' INFLUENCED BY PLATFORM #: ' + str(self.actors[self.location][0].influenced_by_obstacle), WHITE),
+            ('', WHITE),
+            (str([str(self.demolishers[self.location][k].id) + str(self.demolishers[self.location][k].rectangle.topleft) for k in self.demolishers[self.location].keys()]),GRAY),
         )
         for p in params:
             self.screen.blit(fonts.all_fonts[font_size].render(p[0], True, p[1], BLACK), (stats_x, stats_y + gap))

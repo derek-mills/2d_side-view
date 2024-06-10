@@ -124,6 +124,7 @@ class Entity(object):
         self.is_enough_height = False  # Флаг для установления достаточного пространства над объектом, чтобы выпрямиться на нужную высоту.
         self.is_enough_space_right = True
         self.is_enough_space_left = True
+        self.is_being_collided_now = False
 
         
 
@@ -331,32 +332,6 @@ class Entity(object):
         #     self.potential_falling_distance += self.obstacles_around[self.influenced_by_obstacle].fall_speed
         #     # self.potential_falling_distance += self.obstacles_around[self.influenced_by_obstacle].potential_falling_distance
 
-    def calculate_speed(self):
-        if self.heading[0] == 0:
-            if self.speed > 0:
-                if self.is_stand_on_ground:
-                    self.speed -= self.acceleration
-                else:
-                    self.speed -= self.air_acceleration
-                self.speed = max(self.speed, 0)
-        else:
-            if self.speed < self.max_speed:
-                if self.is_stand_on_ground:
-                    self.speed += self.acceleration
-                else:
-                    self.speed += self.air_acceleration
-
-        if self.speed <= 0:
-            self.movement_direction_inverter = 1
-
-        # if self.influenced_by_obstacle:
-        #     self.potential_moving_distance = self.speed + \
-        #                                      self.obstacles_around[self.influenced_by_obstacle].vec_to_destination[0]
-        # else:
-        self.potential_moving_distance = self.speed
-        # self.potential_moving_distance = int(self.speed * self.look)
-        # self.rectangle.x += int(self.speed * self.look)
-
     def get_state(self):
         return self.__state
 
@@ -476,6 +451,7 @@ class Entity(object):
         self.collided_left = False
         self.collided_right = False
         self.collided_bottom =False
+        self.is_being_collided_now = False
         # self.ignore_user_input = False
         self.is_stand_on_ground = False
         bottom_already_changed = False
@@ -526,6 +502,7 @@ class Entity(object):
 
             if obs.rectangle.colliderect(self.collision_detector_right):
                 obs.is_being_collided_now = True
+                self.is_being_collided_now = True
 
                 self.collided_right = True
                 # if self.collided_left:
@@ -569,6 +546,7 @@ class Entity(object):
             # Check bottom-right
             if obs.rectangle.colliderect(self.collision_detector_bottom_right):
                 obs.is_being_collided_now = True
+                self.is_being_collided_now = True
                 self.collided_right = True
                 # Check if obstacle has crawled from behind and pushed actor to his back:
                 if self.look == -1:  # Obstacle is on the right, but actor looks to the left.
@@ -612,6 +590,7 @@ class Entity(object):
             if obs.rectangle.colliderect(self.collision_detector_left):
                 self.collided_left = True
                 obs.is_being_collided_now = True
+                self.is_being_collided_now = True
 
                 # Check if obstacle has crawled FROM BEHIND and pushed actor to his back:
                 if self.look == 1:  # Obstacle is on the left, but actor looks to the right.
@@ -652,6 +631,7 @@ class Entity(object):
             # Check bottom-left
             if obs.rectangle.colliderect(self.collision_detector_bottom_left):
                 obs.is_being_collided_now = True
+                self.is_being_collided_now = True
                 # Check if obstacle has crawled from behind and pushed actor to his back:
                 if self.look == 1:  # Obstacle is on the left, but actor looks to the right.
                     self.rectangle.left = obs.rectangle.right + 2  # Push the actor
@@ -689,6 +669,7 @@ class Entity(object):
                 if self.get_state() == 'hanging on edge' and self.influenced_by_obstacle != obs.id:
                     self.set_state('release edge')
                 obs.is_being_collided_now = True
+                self.is_being_collided_now = True
                 # if self.fall_speed >= 0:
                 self.rectangle.bottom = obs.rectangle.top
                 self.is_stand_on_ground = True
@@ -707,7 +688,7 @@ class Entity(object):
                 continue
             if obs.rectangle.colliderect(self.collision_detector_top):
                 obs.is_being_collided_now = True
-
+                self.is_being_collided_now = True
                 self.collided_top = True
                 # if self.collided_bottom:
                 #     self.ignore_user_input = True
@@ -1002,15 +983,29 @@ class Entity(object):
                 self.rectangle.x += round(obs.vec_to_destination[0])
                 self.rectangle.y += round(obs.vec_to_destination[1])
 
+    def calculate_speed(self):
+        if self.heading[0] == 0:
+            if self.speed > 0:
+                if self.is_stand_on_ground:
+                    self.speed -= self.acceleration
+                else:
+                    self.speed -= self.air_acceleration
+                self.speed = max(self.speed, 0)
+        else:
+            if self.speed < self.max_speed:
+                if self.is_stand_on_ground:
+                    self.speed += self.acceleration
+                else:
+                    self.speed += self.air_acceleration
+
+        if self.speed <= 0:
+            self.movement_direction_inverter = 1
+
+        self.potential_moving_distance = self.speed
+
     def move(self):
-        # if self.influenced_by_obstacle >= 0:
-        #     # print('dd')
-        #     obs = self.obstacles_around[self.influenced_by_obstacle]
-        #     self.rectangle.x += (self.potential_moving_distance * self.look * self.movement_direction_inverter + round(obs.vec_to_destination[0]))
-        #     # self.rectangle.x += (self.potential_moving_distance * self.look * self.movement_direction_inverter + infl.potential_moving_distance*infl.look)
-        # else:
-        #     # self.rectangle.x += (self.potential_moving_distance * self.heading[0])
-        #     self.rectangle.x += (self.potential_moving_distance * self.look * self.movement_direction_inverter)
+        # if self.id != 0:
+        #     print('Now moves: ', self.type, self.id)
 
         self.rectangle.x += (self.potential_moving_distance * self.look * self.movement_direction_inverter)
 

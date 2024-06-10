@@ -565,7 +565,7 @@ class World(object):
         stats_y = 1
         # stripes_width = 500
         gap = 1
-        font_size = 12
+        font_size = 18
         # m_hover_item = 'None' if not self.mouse_hovers_item else self.items[self.mouse_hovers_item].name
         # m_hover_actor = 'None' if not self.mouse_hovers_actor else self.wandering_actors[self.mouse_hovers_actor].name + ' ' + str(self.wandering_actors[self.mouse_hovers_actor].id)
         # m_hover_cell = 'None' if self.point_mouse_cursor_shows is None else str(self.locations[self.location]['points'][self.point_mouse_cursor_shows]['rect'].center)

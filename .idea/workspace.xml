@@ -8,6 +8,10 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demolisher.py" beforeDir="false" afterPath="$PROJECT_DIR$/demolisher.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main .py" beforeDir="false" afterPath="$PROJECT_DIR$/main .py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
@@ -108,13 +112,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00070" summary="Implemented a list of active obstacles, which collides only with camera, to prevent futile iterating through all of them.">
-      <created>1716514006747</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL-00070" />
-      <option name="project" value="LOCAL" />
-      <updated>1716514006747</updated>
     </task>
     <task id="LOCAL-00071" summary="Crawling added.">
       <created>1716519664858</created>
@@ -452,7 +449,14 @@
       <option name="project" value="LOCAL" />
       <updated>1717984772067</updated>
     </task>
-    <option name="localTasksCounter" value="119" />
+    <task id="LOCAL-00119" summary="Added moving demolishers.">
+      <created>1717989466206</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1717989466206</updated>
+    </task>
+    <option name="localTasksCounter" value="120" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -467,7 +471,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="WHen actor is stuck between two opposite moving obstacles, he's fucked up.&#10;Collisions improved.&#10;Grabbing over the edges is now available only in several modes: 'jump', 'run right', 'run left', 'stand still'." />
     <MESSAGE value="Slightly modified colliders and collision detection in case of tiny steps by 35 px of height." />
     <MESSAGE value="Demolishers class added. They are passive yet.&#10;Added demolishers handling within the level editor routines." />
     <MESSAGE value="Demolishers class has now an interaction with actors class." />
@@ -492,6 +495,7 @@
     <MESSAGE value="Actor get damage from demolishers and could die." />
     <MESSAGE value="Demolishers behavior improvements." />
     <MESSAGE value="Added health bars.&#10;Fixed demolishers incorrect first reveal without proper rectangle update." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added health bars.&#10;Fixed demolishers incorrect first reveal without proper rectangle update." />
+    <MESSAGE value="Added moving demolishers." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added moving demolishers." />
   </component>
 </project>
