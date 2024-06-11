@@ -1,3 +1,5 @@
+import pygame
+
 from actor import *
 from obstacle import *
 from demolisher import *
@@ -150,24 +152,29 @@ class World(object):
         demol.id = self.demolisher_id
         self.demolisher_id += 1
         demol.name = 'demolisher ' + str(demol.id)
-        demol.snap_to_actor = description['snap to actor']
-        actor = self.actors[self.location][description['snap to actor']]
-        demol.parent_id = actor.id
         demol.ttl = description['demolisher TTL']
         demol.rectangle.width = description['rect'].width
         demol.rectangle.height = description['rect'].height
-        # demol.rectangle.topleft = (100, 750)
-        # demol.origin_xy = description['rect'].topleft
-
-        demol.snapping_offset = actor.animations[actor.current_animation]['demolisher offset'][actor.look]
-        # demol.snapping_offset = actor.current_weapon['demolisher offset'][actor.look]
-        demol.update(actor.look, actor.rectangle)
         demol.bounce = description['bounce']
         demol.bounce_factor = description['bounce factor']
         demol.flyer = description['flyer']
-        if demol.flyer:
-            # if not demol.static:
-            demol.destination = (self.camera.max_offset_x + MAXX, demol.rectangle.y) if actor.look == 1 else (-100, demol.rectangle.y)
+
+        if description['snap to actor'] >= 0:
+            demol.snap_to_actor = description['snap to actor']
+            actor = self.actors[self.location][description['snap to actor']]
+            demol.parent_id = actor.id
+            demol.snapping_offset = actor.animations[actor.current_animation]['demolisher offset'][actor.look]
+            demol.update(actor.look, actor.rectangle)
+            if demol.flyer:
+                demol.destination = (self.camera.max_offset_x + MAXX, demol.rectangle.y) if actor.look == 1 else (-100, demol.rectangle.y)
+            demol.look = actor.look
+        else:
+            demol.rectangle.topleft = description['rect'].topleft
+            demol.snapping_offset = [0, 0]
+            demol.parent_id = -1
+            demol.snap_to_actor = -1
+            demol.look = description['look'] if 'look' in description.keys() else 1
+            demol.destination = description['destination'] if 'destination' in description.keys() else (0, 0)
         demol.aftermath = description['aftermath']
         demol.damage = description['damage']
         demol.static = description['static']
@@ -177,10 +184,10 @@ class World(object):
         demol.is_collideable = description['collides']
         demol.is_gravity_affected = description['gravity affected']
         # demol.rectangle.y += randint(-150, 150)
-        demol.look = actor.look
+
         # self.demolishers[self.location][self.demolisher_id] = ent
         self.demolishers[self.location][demol.id] = demol
-        # print(f'[add_demolisher] Added: {demol.id=} {demol.name} {demol.rectangle} {demol.max_speed=} {demol.destination=}')
+        print(f'[add_demolisher] Added: {demol.id=} {demol.name} {demol.rectangle} {demol.max_speed=} {demol.destination=}')
 
     def process(self, time_passed):
         self.time_passed = time_passed
@@ -231,13 +238,37 @@ class World(object):
             # obs.percept(self.obstacles[self.location])
             obs.process_(self.time_passed)
 
+    def make_explosion(self, xy):
+        print(f'[process demolishers] KA-BOOM!')
+        for i in range(randint(20, 50)):
+            demolisher_description = {
+                'snap to actor': -1,
+                'demolisher TTL': randint(50, 70),
+                'rect': pygame.Rect(xy[0], xy[1], 5, 5),
+                'destination': find_destination_behind_target_point(xy, (randint(xy[0] - 100, xy[0] + 100), randint(xy[1] - 100, xy[1] + 100)), MAXX),
+                'bounce': False,
+                'bounce factor': 0,
+                'flyer': True,
+                'aftermath': None,
+                'damage': 10,
+                'static': False,
+                'damage reduce': .1,
+                'speed': 0.8,
+                'collides': False,
+                'gravity affected': False
+            }
+            self.add_demolisher(demolisher_description)
+
     def processing_demolishers(self):
         dead = list()
+        explosions = list()
         for key in self.demolishers[self.location].keys():
             dem = self.demolishers[self.location][key]
             if dem.dead:
                 if dem.aftermath == 'explode':
-                    print(f'[process demolishers] KA-BOOM!')
+                    # print(f'[process demolishers] KA-BOOM!')
+                    explosions.append(dem.rectangle.center)
+                    # self.make_explosion(dem.rectangle.center)
                 dead.append(dem.id)
                 continue
             if dem.is_collideable:
@@ -249,6 +280,8 @@ class World(object):
 
         for dead_id in dead:
             del self.demolishers[self.location][dead_id]
+        for expl in explosions:
+            self.make_explosion(expl)
 
     def processing_actors(self):
         dead = list()
