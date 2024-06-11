@@ -15,10 +15,10 @@ kitchen_knife = {
     'ammo': 0,
     'label': 'KITCHEN KNIFE',
     'sprite': 'kitchen knife',
-    'demolisher offset': {
-        1:  (46, 36),
-        -1: (-46, 36),
-    },
+    # 'demolisher offset': {
+    #     1:  (46, 36),
+    #     -1: (-46, 36),
+    # },
     'reach': 50,
     'demolishers': (
         # None,

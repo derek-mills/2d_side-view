@@ -355,6 +355,10 @@ player_jake = {
                     'demolisher': True
                 },
             },
+            'demolisher offset': {
+                1: (46, 36),
+                -1: (-46, 36),
+            },
             'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 0
         },
         'stab left': {
@@ -379,6 +383,10 @@ player_jake = {
                 },
             },
             'speed': 1,
+            'demolisher offset': {
+                1: (46, 36),
+                -1: (-46, 36),
+            },
             'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 2
         },
     },

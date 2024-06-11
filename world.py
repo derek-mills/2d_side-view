@@ -159,7 +159,8 @@ class World(object):
         # demol.rectangle.topleft = (100, 750)
         # demol.origin_xy = description['rect'].topleft
 
-        demol.snapping_offset = actor.current_weapon['demolisher offset'][actor.look]
+        demol.snapping_offset = actor.animations[actor.current_animation]['demolisher offset'][actor.look]
+        # demol.snapping_offset = actor.current_weapon['demolisher offset'][actor.look]
         demol.update(actor.look, actor.rectangle)
 
         demol.damage = description['damage']
