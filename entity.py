@@ -274,18 +274,15 @@ class Entity(object):
                 if action == 'move':
                     self.speed = self.animations[self.current_animation]['activity at frames'][self.frame_number]['move']
                     # print(f'[process active frames] make step at frame {self.frame_number}')
-                    # self.active_frames = self.active_frames[1:]
                 elif action == 'demolisher':
                     # print(f'[process active frames] make attack at frame {self.frame_number}')
                     self.summon_demolisher = True
-                    # self.summon_demolisher_at_frame = self.frame_number
                     self.summon_demolisher_counter += 1
                 elif action == 'sound':
-                    print(f'[process active frames] make sound at frame {self.frame_number}')
+                    snd = self.animations[self.current_animation]['activity at frames'][self.frame_number]
+                    print(f'[process active frames] make {snd} at frame {self.frame_number}')
             self.active_frames = self.active_frames[1:]
-        # if self.frame_number in self.animations[self.current_animation]['activity at frames'].keys():
-        #     for action in self.animations[self.current_animation]['activity at frames'][self.frame_number]:
-        #         print(self.frame_number, action)
+
 
     def process_animation(self):
         # self.set_current_animation()

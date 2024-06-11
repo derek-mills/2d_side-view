@@ -7,7 +7,8 @@
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main .py" beforeDir="false" afterPath="$PROJECT_DIR$/main .py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demolisher.py" beforeDir="false" afterPath="$PROJECT_DIR$/demolisher.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
@@ -108,13 +109,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00081" summary="Improved some states interactions to avoid getting stuck into an obstacles after actor stance has changed.">
-      <created>1716780334891</created>
-      <option name="number" value="00081" />
-      <option name="presentableId" value="LOCAL-00081" />
-      <option name="project" value="LOCAL" />
-      <updated>1716780334891</updated>
     </task>
     <task id="LOCAL-00082" summary="Fixed suddenly broken top collision detector.">
       <created>1716783001268</created>
@@ -452,7 +446,14 @@
       <option name="project" value="LOCAL" />
       <updated>1718077330047</updated>
     </task>
-    <option name="localTasksCounter" value="130" />
+    <task id="LOCAL-00130" summary="Active frames behavior improvement.">
+      <created>1718084263835</created>
+      <option name="number" value="00130" />
+      <option name="presentableId" value="LOCAL-00130" />
+      <option name="project" value="LOCAL" />
+      <updated>1718084263835</updated>
+    </task>
+    <option name="localTasksCounter" value="131" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -467,7 +468,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Animation depends on __state of actor." />
     <MESSAGE value="Animation getting more complicated and proper." />
     <MESSAGE value="Animations apply efficiently." />
     <MESSAGE value="New actor rectangle measurements system implemented." />
@@ -492,6 +492,7 @@
     <MESSAGE value="Added demolishers floor bounce." />
     <MESSAGE value="Added demolishers horizontal and vertical speed reducing after bounce." />
     <MESSAGE value="Added explosions" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added explosions" />
+    <MESSAGE value="Active frames behavior improvement." />
+    <option name="LAST_COMMIT_MESSAGE" value="Active frames behavior improvement." />
   </component>
 </project>

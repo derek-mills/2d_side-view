@@ -108,7 +108,8 @@ class World(object):
         entity.ai_controlled = description['AI controlled']
         entity.think_type = description['think type']
         entity.add_items_to_inventory(description['items'])
-        entity.activate_weapon(0)
+        entity.activate_weapon('KITCHEN KNIFE')
+        # entity.activate_weapon('SHORT SWORD')
 
         # entity.change_animation()
         # entity.process_animation_counter()
@@ -164,7 +165,8 @@ class World(object):
             demol.snap_to_actor = description['snap to actor']
             actor = self.actors[self.location][description['snap to actor']]
             demol.parent_id = actor.id
-            demol.snapping_offset = actor.animations[actor.current_animation]['demolisher offset'][actor.look]
+            demol.snapping_offset = description['snapping offset']
+            # demol.snapping_offset = actor.animations[actor.current_animation]['demolisher offset'][actor.look]
             demol.update(actor.look, actor.rectangle)
             if demol.flyer:
                 demol.destination = (self.camera.max_offset_x + MAXX, demol.rectangle.y) if actor.look == 1 else (-100, demol.rectangle.y)
@@ -357,6 +359,7 @@ class World(object):
                 # demolisher = actor.current_weapon['demolishers'][actor.summon_demolisher_at_frame]
                 # demolisher = actor.current_weapon['demolisher reveals at frame'][actor.frame_number]
                 demolisher['snap to actor'] = actor.id
+                demolisher['snapping offset'] = actor.animations[actor.current_animation]['demolisher offset'][actor.look]
                 # demolisher['snap points']['right'] = (0, 8)
                 # demolisher['snap points']['left'] = (0, 8)
                 # for k in demolisher:
@@ -598,7 +601,12 @@ class World(object):
                     self.is_attack = True
 
                 if event.key == K_TAB:
-                    ...
+                    lst = list(self.actors[self.location][0].inventory['weapons'].keys())
+                    indx =  lst.index(self.actors[self.location][0].current_weapon['label'])
+                    if indx + 1 > len(lst) - 1:
+                        self.actors[self.location][0].activate_weapon(0)
+                    else:
+                        self.actors[self.location][0].activate_weapon(lst[indx+1])
                 if event.key == K_d:
                     self.is_input_right_arrow = True
                 if event.key == K_a:
@@ -730,7 +738,7 @@ class World(object):
             (' IS GRABBING: ' + str(self.actors[self.location][0].is_edge_grabbed), WHITE),
             (' INFLUENCED BY PLATFORM #: ' + str(self.actors[self.location][0].influenced_by_obstacle), WHITE),
             ('', WHITE),
-            (' WEAPON: ' + str(self.actors[self.location][0].current_weapon['label']), PINK),
+            (' WEAPON: ' + str(self.actors[self.location][0].current_weapon['label']) + ' | ALL WEAPONS: ' + str(self.actors[self.location][0].inventory['weapons'].keys()), PINK),
             (str([str(self.demolishers[self.location][k].id) + str(self.demolishers[self.location][k].rectangle.topleft) for k in self.demolishers[self.location].keys()]),GRAY),
         )
         for p in params:

@@ -173,7 +173,6 @@ class Demolisher(Entity):
         if self.is_collideable:
             # print('Demolisher check collisions with ', self.obstacles_around.keys())
             self.calculate_colliders()
-            # self.detect_collisions()
             self.detect_collisions_with_obstacles()
             if self.is_being_collided_now:
                 if self.bounce:

@@ -319,10 +319,10 @@ player_jake = {
                 'sequence': (28,29,30,31,32,33,34,35,36,37,38,39,40), 'speed': 1,
                 'activity at frames': {
                     1: {
-                        'sound': True,
+                        'sound': 'step',
                     },
                 },
-                'sound': 'step', 'repeat from frame': 0
+                'repeat from frame': 0
             },
         'run left': {
                 'repeat': True, 'interruptable': True,

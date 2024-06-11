@@ -59,15 +59,6 @@ kitchen_knife = {
     # },
     'reach': 50,
     'demolishers': (
-        # None,
-        # {
-        #     'rect': pygame.Rect(0, 0, 50, 10),
-        #     'pierce': False, 'demolisher TTL': 4, 'flyer': False,
-        #     'damage': 10, 'static': True, 'damage reduce': .1,
-        #     'speed': .1, 'collides': False, 'gravity affected': False,
-        #     'bounce': False, 'bounce factor': 0.,
-        #     'aftermath': 'disappear'
-        # },
         {
             'rect': pygame.Rect(0, 0, 10, 10), 'flyer': False,
             'pierce': False, 'demolisher TTL': 50, 'speed': 22,
@@ -81,7 +72,7 @@ kitchen_knife = {
             'pierce': False, 'demolisher TTL': 100, 'speed': 12,
             'damage': 10, 'static': False, 'damage reduce': .1,
             'collides': True, 'gravity affected': True,
-            'bounce': True, 'bounce factor': .6,
+            'bounce': True, 'bounce factor': 1.,
             'aftermath': 'explode'
         },
     ),
