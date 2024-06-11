@@ -164,6 +164,9 @@ class World(object):
         demol.update(actor.look, actor.rectangle)
         demol.bounce = description['bounce']
         demol.flyer = description['flyer']
+        if demol.flyer:
+            # if not demol.static:
+            demol.destination = (self.camera.max_offset_x + MAXX, demol.rectangle.y) if actor.look == 1 else (-100, demol.rectangle.y)
         demol.aftermath = description['aftermath']
         demol.damage = description['damage']
         demol.static = description['static']
@@ -174,8 +177,6 @@ class World(object):
         demol.is_gravity_affected = description['gravity affected']
         # demol.rectangle.y += randint(-150, 150)
         demol.look = actor.look
-        if not demol.static:
-            demol.destination = (self.camera.max_offset_x + MAXX, demol.rectangle.y) if actor.look == 1 else (-100, demol.rectangle.y)
         # self.demolishers[self.location][self.demolisher_id] = ent
         self.demolishers[self.location][demol.id] = demol
         print(f'[add_demolisher] Added: {demol.id=} {demol.name} {demol.rectangle} {demol.max_speed=} {demol.destination=}')
