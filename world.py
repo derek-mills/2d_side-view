@@ -179,7 +179,7 @@ class World(object):
         demol.look = actor.look
         # self.demolishers[self.location][self.demolisher_id] = ent
         self.demolishers[self.location][demol.id] = demol
-        print(f'[add_demolisher] Added: {demol.id=} {demol.name} {demol.rectangle} {demol.max_speed=} {demol.destination=}')
+        # print(f'[add_demolisher] Added: {demol.id=} {demol.name} {demol.rectangle} {demol.max_speed=} {demol.destination=}')
 
     def process(self, time_passed):
         self.time_passed = time_passed

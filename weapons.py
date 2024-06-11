@@ -31,7 +31,7 @@ kitchen_knife = {
         },
         {
             'rect': pygame.Rect(0, 0, 30, 30), 'flyer': False,
-            'pierce': False, 'demolisher TTL': 200, 'speed': 12,
+            'pierce': False, 'demolisher TTL': 1200, 'speed': 12,
             'damage': 10, 'static': False, 'damage reduce': .1,
             'collides': True, 'gravity affected': True,
             'bounce': True, 'aftermath': 'explode'

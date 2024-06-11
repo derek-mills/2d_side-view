@@ -118,10 +118,10 @@ class Demolisher(Entity):
         for key in sorted_obs['below']:
             obs = self.obstacles_around[key]
             if obs.rectangle.colliderect(self.collision_detector_bottom):
-                if bottom_already_changed and obs.rectangle.top > self.rectangle.bottom:
-                    # Current obstacle lower than the actor's rectangle after at least one bottom collision has been registered.
-                    # Skip it.
-                    continue
+                # if bottom_already_changed and obs.rectangle.top > self.rectangle.bottom:
+                #     # Current obstacle lower than the actor's rectangle after at least one bottom collision has been registered.
+                #     # Skip it.
+                #     continue
 
                 self.collided_bottom = True
                 self.is_being_collided_now = True
@@ -132,7 +132,6 @@ class Demolisher(Entity):
                 bottom_already_changed = True
                 # break
                     # continue
-
         # -----------------------------------
         # Check top
         for key in sorted_obs['above']:
@@ -182,6 +181,9 @@ class Demolisher(Entity):
                         self.look = 1
                     elif self.collided_right:
                         self.look = -1
+                    elif self.collided_bottom:
+                        self.fall_speed *= -1  # Bounce up from the floor.
+                        self.is_stand_on_ground = False
                 else:
                     self.die()
                     return
