@@ -20,6 +20,7 @@ class Demolisher(Entity):
         self.parent_id: int = -1
         self.static = True
         self.bounce = False
+        self.bounce_factor: float = 0.  # Vertical and horizontal speed reducing after every bounce.
         self.aftermath: str = ''  # Description of the demolisher behavior after TTL timer runs out.
         self.flyer = False
         # self.rectangle = Rect(0, 0, 50, 50)
@@ -71,7 +72,6 @@ class Demolisher(Entity):
             if obs.rectangle.colliderect(self.collision_detector_right):
                 # obs.is_being_collided_now = True
                 self.is_being_collided_now = True
-
                 self.collided_right = True
                 # if self.look == 1: # Obstacle is on the right, and actor also looks to the right, and hangs on the edge.
                 #     if self.get_state() == 'hanging on edge' and self.influenced_by_obstacle != obs.id:
@@ -177,12 +177,13 @@ class Demolisher(Entity):
             self.detect_collisions_with_obstacles()
             if self.is_being_collided_now:
                 if self.bounce:
+                    self.speed *= self.bounce_factor
                     if self.collided_left:
                         self.look = 1
                     elif self.collided_right:
                         self.look = -1
                     elif self.collided_bottom:
-                        self.fall_speed *= -1  # Bounce up from the floor.
+                        self.fall_speed *= -self.bounce_factor  # Bounce up from the floor.
                         self.is_stand_on_ground = False
                 else:
                     self.die()

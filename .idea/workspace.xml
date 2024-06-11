@@ -7,7 +7,8 @@
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demolisher.py" beforeDir="false" afterPath="$PROJECT_DIR$/demolisher.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -107,20 +108,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00077" summary="Bottom-left and bottom-right colliders are slightly shortened to avoid unwanted fatal collisions on moving platforms.">
-      <created>1716539361322</created>
-      <option name="number" value="00077" />
-      <option name="presentableId" value="LOCAL-00077" />
-      <option name="project" value="LOCAL" />
-      <updated>1716539361323</updated>
-    </task>
-    <task id="LOCAL-00078" summary="Grabbing is now available if actor do not stand on the ground&#10;Free space check to the right and to the left from actor's rectangle is slightly vertically shortened.">
-      <created>1716540038049</created>
-      <option name="number" value="00078" />
-      <option name="presentableId" value="LOCAL-00078" />
-      <option name="project" value="LOCAL" />
-      <updated>1716540038049</updated>
     </task>
     <task id="LOCAL-00079" summary="Smooth animation for climbing up added.">
       <created>1716541925295</created>
@@ -451,7 +438,21 @@
       <option name="project" value="LOCAL" />
       <updated>1718071024555</updated>
     </task>
-    <option name="localTasksCounter" value="126" />
+    <task id="LOCAL-00126" summary="Added demolishers own collisions detector and processing.">
+      <created>1718071570780</created>
+      <option name="number" value="00126" />
+      <option name="presentableId" value="LOCAL-00126" />
+      <option name="project" value="LOCAL" />
+      <updated>1718071570780</updated>
+    </task>
+    <task id="LOCAL-00127" summary="Added demolishers floor bounce.">
+      <created>1718072089917</created>
+      <option name="number" value="00127" />
+      <option name="presentableId" value="LOCAL-00127" />
+      <option name="project" value="LOCAL" />
+      <updated>1718072089917</updated>
+    </task>
+    <option name="localTasksCounter" value="128" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -466,8 +467,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Grab colliders improving, go on." />
-    <MESSAGE value="Fine-tuning of grab and release functions." />
     <MESSAGE value="Improved pushing actor to the back if moving obstacle has crawled from behind." />
     <MESSAGE value="Added raw animation mechanism." />
     <MESSAGE value="Animation depends on __state of actor." />
@@ -491,6 +490,8 @@
     <MESSAGE value="Demolishers revealing and other actions are now described in actor animation sequences" />
     <MESSAGE value="Demolishers revealing offset description moved to actor's animation set." />
     <MESSAGE value="Demolishers have got some new properties and ability to collide, as far as ability choose type of movement: fly or classic." />
-    <option name="LAST_COMMIT_MESSAGE" value="Demolishers have got some new properties and ability to collide, as far as ability choose type of movement: fly or classic." />
+    <MESSAGE value="Added demolishers own collisions detector and processing." />
+    <MESSAGE value="Added demolishers floor bounce." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added demolishers floor bounce." />
   </component>
 </project>

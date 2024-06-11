@@ -163,6 +163,7 @@ class World(object):
         # demol.snapping_offset = actor.current_weapon['demolisher offset'][actor.look]
         demol.update(actor.look, actor.rectangle)
         demol.bounce = description['bounce']
+        demol.bounce_factor = description['bounce factor']
         demol.flyer = description['flyer']
         if demol.flyer:
             # if not demol.static:
