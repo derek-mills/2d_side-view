@@ -1,4 +1,42 @@
 import pygame
+sword = {
+    # 'aimed fire': True,
+    'attack animation': 'stab',
+    'ignore user input': True,  # Steal the ability to control a character for a while.
+    # 'actor forward moving speed': 0.3,  # During attack an actor may uncontrollably move forward (min 0.5).
+    'animation speed modifier': 1.,  # 0 < x < 1: speed animation up, x > 1: slow down.
+    'leave particles': False,
+    'class': 'weapons',
+    'type': 'melee',
+    'attack type': 'pierce',
+    'sound': 'sound_swing_2',
+    'droppable': True,
+    'need ammo': False,
+    'ammo': 0,
+    'label': 'SHORT SWORD',
+    'sprite': 'short sword',
+    'reach': 50,
+    'demolishers': (
+        {
+            'rect': pygame.Rect(0, 0, 70, 10), 'flyer': False,
+            'pierce': False, 'demolisher TTL': 2, 'speed': 0,
+            'damage': 50, 'static': True, 'damage reduce': 0,
+            'collides': True, 'gravity affected': False,
+            'bounce': False, 'bounce factor': 0,
+            'aftermath': 'disappear'
+        },
+        {
+            'rect': pygame.Rect(0, 0, 75, 10), 'flyer': False,
+            'pierce': False, 'demolisher TTL': 2, 'speed': 0,
+            'damage': 60, 'static': True, 'damage reduce': 0,
+            'collides': True, 'gravity affected': False,
+            'bounce': False, 'bounce factor': 0,
+            'aftermath': 'disappear'
+        },
+    ),
+    'description': 'Casual kitchen knife.',
+}
+
 kitchen_knife = {
     'aimed fire': True,
     'attack animation': 'stab',
@@ -48,67 +86,4 @@ kitchen_knife = {
         },
     ),
     'description': 'Casual kitchen knife.',
-}
-shotgun = {
-    'aimed fire': False,
-    'attack animation': 'shotgun attack',
-    'leave particles': True,
-    'particle radius': 2,
-    'particle fly speed': .6,
-    'particle TTL': 550,
-    'particle fade out speed': 5,
-    'particle is gravity affected': True,
-    'particles quantity': 6,
-    'particles density': 1,  # The lesser, the oftener particles appear.
-    'particles color': (255, 'x', 0, 'x'),
-    'class': 'weapons',
-    'type': 'firearms',
-    'sub-type': 'rifles',
-    'sound': 'sound_shotgun_shot',
-    'droppable': True,
-    'need ammo': True,
-    'ammo': 222,
-    'max ammo': 222,
-    'attack AP needed': 30,
-    'reload AP needed': 50,
-    'reload sound': 'sound_reload',
-    'label': 'Shotgun 12',
-    'sprite': 'shotgun',
-    'pierce': False, 'damager TTL': 300, 'damagers spread': True,
-    'damager static': False, 'damager radius': 1, 'damagers quantity': 8,
-    'damager reveal delay': 1, 'damager reveals with flash': True,
-    'damager brings light': False, 'damager fly speed reduce': 0.005,
-    'damager fly speed': 1.2, 'damager invisible': False,
-    'damager weight': 2,
-    'description': 'Good old boomstick.', 'reach': 14,
-    'weight': 15, 'hardness': 10, 'special': ('pain', 'bleeding', 'consistency')
-}
-
-pistol_9mm = {
-    'aimed fire': True,
-    'attack animation': 'firearm attack',
-    'leave particles': True,
-    'particle radius': 2,
-    'particle fly speed': 0.3,
-    'particle TTL': 200,
-    'particle fade out speed': 5,
-    'particle is gravity affected': True,
-    'particles quantity': 3,
-    'particles density': 2, # The lesser, the oftener particles appear.
-    'particles color': (255, 'x', 0, 'x'),
-    'class': 'weapons', 'type': 'firearms',
-    'sub-type': 'pistols',
-    'sound': 'sound_pistol_shot',
-    'droppable': True,
-    'need ammo': True, 'ammo': 88, 'max ammo': 88,
-    'attack AP needed': 25, 'reload AP needed': 30,
-    'sprite': '9mm_pistol',
-    'pierce': False, 'damager TTL': 200, 'damagers spread': False,
-    'damager static': False, 'damager radius': 3, 'damagers quantity': 1,
-    'damager reveal delay': 3, 'damager reveals with flash': True,
-    'damager brings light': False, 'damager fly speed reduce': 0.005,
-    'damager fly speed': 1.5, 'damager invisible': False,
-    'damager weight': 3,
-    'description': 'Handy.', 'label': '9mm standard pistol',
-    'reach': 25, 'weight': 6, 'hardness': 10, 'special': ('pain', )
 }

@@ -304,13 +304,15 @@ class Entity(object):
                 self.animation_sequence_done = True
                 self.animation_not_interruptable = False
                 self.performing_an_interruptable_deed = False
-                self.active_frames = list()
+                # self.active_frames = list()
                 self.summon_demolisher_counter = -1
                 # self.force_visible = False
                 # print(f'[actor_process_animation_counter] {self.name} Animation sequence done, release lock from world activity.')
                 if not self.animations[self.current_animation]['repeat']:
                     # self.apply_default_animation()
+                    self.active_frames = list()
                     return
+                self.active_frames = list(self.animations[self.current_animation]['activity at frames'].keys())
             else:
                 self.animation_sequence_done = False
                 # SOUND !!

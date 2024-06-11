@@ -85,6 +85,7 @@ class World(object):
         entity.rectangle.height = description['height']
         entity.rectangle.width = description['width']
         entity.rectangle.center = description['start_xy']
+        entity.rectangle.x += randint(-200, 300)
         entity.apply_measurements()
         entity.destination[0] = entity.rectangle.centerx
         entity.destination[1] = entity.rectangle.centery
@@ -187,7 +188,7 @@ class World(object):
 
         # self.demolishers[self.location][self.demolisher_id] = ent
         self.demolishers[self.location][demol.id] = demol
-        print(f'[add_demolisher] Added: {demol.id=} {demol.name} {demol.rectangle} {demol.max_speed=} {demol.destination=}')
+        # print(f'[add_demolisher] Added: {demol.id=} {demol.name} {demol.rectangle} {demol.max_speed=} {demol.destination=}')
 
     def process(self, time_passed):
         self.time_passed = time_passed
@@ -249,12 +250,12 @@ class World(object):
                 'bounce': False,
                 'bounce factor': 0,
                 'flyer': True,
-                'aftermath': None,
+                'aftermath': '',
                 'damage': 10,
                 'static': False,
                 'damage reduce': .1,
                 'speed': 0.8,
-                'collides': False,
+                'collides': True,
                 'gravity affected': False
             }
             self.add_demolisher(demolisher_description)
@@ -431,7 +432,8 @@ class World(object):
             # if key not in self.active_obstacles:
             #     continue
             dem = self.demolishers[self.location][key]
-            pygame.draw.rect(self.screen, PINK, (dem.rectangle.x - self.camera.offset_x, dem.rectangle.y - self.camera.offset_y,
+            color = (max(0, 255 - dem.ttl*4), 10,0) if dem.ttl < 50 else PINK
+            pygame.draw.rect(self.screen, color, (dem.rectangle.x - self.camera.offset_x, dem.rectangle.y - self.camera.offset_y,
                                                   dem.rectangle.width, dem.rectangle.height))
             # self.screen.blit(fonts.all_fonts[20].render(str(dem.id) + ' ' + str(dem.speed) + ' ' + str(dem.rectangle.y), True, CYAN),
             #                  (dem.rectangle.x - self.camera.offset_x, dem.rectangle.bottom - self.camera.offset_y + dem.id * 20))
@@ -595,6 +597,8 @@ class World(object):
                 if event.key == K_RIGHT:
                     self.is_attack = True
 
+                if event.key == K_TAB:
+                    ...
                 if event.key == K_d:
                     self.is_input_right_arrow = True
                 if event.key == K_a:
@@ -726,6 +730,7 @@ class World(object):
             (' IS GRABBING: ' + str(self.actors[self.location][0].is_edge_grabbed), WHITE),
             (' INFLUENCED BY PLATFORM #: ' + str(self.actors[self.location][0].influenced_by_obstacle), WHITE),
             ('', WHITE),
+            (' WEAPON: ' + str(self.actors[self.location][0].current_weapon['label']), PINK),
             (str([str(self.demolishers[self.location][k].id) + str(self.demolishers[self.location][k].rectangle.topleft) for k in self.demolishers[self.location].keys()]),GRAY),
         )
         for p in params:
