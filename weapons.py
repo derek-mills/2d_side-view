@@ -78,3 +78,33 @@ kitchen_knife = {
     ),
     'description': 'Casual kitchen knife.',
 }
+
+fireball_staff = {
+    # 'aimed fire': True,
+    'attack animation': 'cast',
+    'ignore user input': True,  # Steal the ability to control a character for a while.
+    # 'actor forward moving speed': 0.3,  # During attack an actor may uncontrollably move forward (min 0.5).
+    'animation speed modifier': 1.,  # 0 < x < 1: speed animation up, x > 1: slow down.
+    'leave particles': False,
+    'class': 'weapons',
+    'type': 'melee',
+    'attack type': 'pierce',
+    'sound': 'sound_swing_2',
+    'droppable': True,
+    'need ammo': False,
+    'ammo': 0,
+    'label': 'FIREBALL STAFF',
+    'sprite': 'staff',
+    'reach': 50,
+    'demolishers': (
+        {
+            'rect': pygame.Rect(0, 0, 70, 70), 'flyer': False,
+            'pierce': False, 'demolisher TTL': 150, 'speed': 30,
+            'damage': 150, 'static': False, 'damage reduce': 0,
+            'collides': True, 'gravity affected': True,
+            'bounce': True, 'bounce factor': 0.3,
+            'aftermath': 'disappear'
+        },
+    ),
+    'description': 'Casual kitchen fireball staff.',
+}

@@ -299,7 +299,7 @@ player_jake = {
     'max speed': 10,
     # 'reflexes': randint(100, 150),
     # 'uses light source': False,
-    'items': (sword,kitchen_knife,),
+    'items': (fireball_staff, sword,kitchen_knife,),
     # 'avatar': 'Jake',
     'animations': {
         'stand still right': {
@@ -404,7 +404,7 @@ player_jake = {
                 1: (46, 36),
                 -1: (-46, 36),
             },
-            'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 0
+            'repeat from frame': 0
         },
         'stab left': {
             'repeat': False, 'interruptable': True,
@@ -433,6 +433,52 @@ player_jake = {
                 -1: (-46, 36),
             },
             'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 2
+        },
+        'cast right': {
+            'repeat': False, 'interruptable': True,
+            'sequence': (74, 74, 74, 74, 74,  # 0 - 4
+                         74, 74, 74, 74, 75, 75),  # 5 - 9
+            # 74,74,74,74,74,  # 5 - 9
+            # 74,74,74,75,75,  # 10 - 14
+            # 74,74,74,74,74,  # 15 - 19
+            # 74,74,74,74,74,  # 20 - 24
+            # 74,74,74,75,75), # 25 - 29
+            # 'demolisher offset': (46, 36),
+            'speed': 2,
+            'activity at frames': {
+                9: {
+                    'sound': True,
+                    'demolisher': True
+                },
+            },
+            'demolisher offset': {
+                1: (46, 36),
+                -1: (-46, 36),
+            },
+            'repeat from frame': 0
+        },
+        'cast left': {
+            'repeat': False, 'interruptable': True,
+            'sequence': (74, 74, 74, 74, 74,  # 0 - 4
+                         74, 74, 74, 74, 75, 75),  # 5 - 9
+            # 74,74,74,74,74,  # 5 - 9
+            # 74,74,74,75,75,  # 10 - 14
+            # 74,74,74,74,74,  # 15 - 19
+            # 74,74,74,74,74,  # 20 - 24
+            # 74,74,74,75,75), # 25 - 29
+            # 'demolisher offset': (46, 36),
+            'speed': 3,
+            'activity at frames': {
+                9: {
+                    'sound': True,
+                    'demolisher': True
+                },
+            },
+            'demolisher offset': {
+                1: (46, 36),
+                -1: (-46, 36),
+            },
+            'repeat from frame': 0
         },
     },
     'think type': '',
