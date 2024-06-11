@@ -276,9 +276,9 @@ class Entity(object):
                     # print(f'[process active frames] make step at frame {self.frame_number}')
                     # self.active_frames = self.active_frames[1:]
                 elif action == 'demolisher':
-                    print(f'[process active frames] make attack at frame {self.frame_number}')
+                    # print(f'[process active frames] make attack at frame {self.frame_number}')
                     self.summon_demolisher = True
-                    self.summon_demolisher_at_frame = self.frame_number
+                    # self.summon_demolisher_at_frame = self.frame_number
                     self.summon_demolisher_counter += 1
                 elif action == 'sound':
                     print(f'[process active frames] make sound at frame {self.frame_number}')

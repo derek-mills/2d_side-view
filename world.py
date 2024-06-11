@@ -162,12 +162,14 @@ class World(object):
         demol.snapping_offset = actor.animations[actor.current_animation]['demolisher offset'][actor.look]
         # demol.snapping_offset = actor.current_weapon['demolisher offset'][actor.look]
         demol.update(actor.look, actor.rectangle)
-
+        demol.bounce = description['bounce']
+        demol.flyer = description['flyer']
+        demol.aftermath = description['aftermath']
         demol.damage = description['damage']
         demol.static = description['static']
         demol.damage_reduce = description['damage reduce']
         demol.max_speed = description['speed']
-        # demol.speed = description['speed']
+        demol.speed = description['speed']
         demol.is_collideable = description['collides']
         demol.is_gravity_affected = description['gravity affected']
         # demol.rectangle.y += randint(-150, 150)
@@ -176,7 +178,7 @@ class World(object):
             demol.destination = (self.camera.max_offset_x + MAXX, demol.rectangle.y) if actor.look == 1 else (-100, demol.rectangle.y)
         # self.demolishers[self.location][self.demolisher_id] = ent
         self.demolishers[self.location][demol.id] = demol
-        # print(f'[add_demolisher] Added: {demol.id=} {demol.name} {demol.rectangle} {demol.max_speed=}')
+        print(f'[add_demolisher] Added: {demol.id=} {demol.name} {demol.rectangle} {demol.max_speed=} {demol.destination=}')
 
     def process(self, time_passed):
         self.time_passed = time_passed
@@ -232,6 +234,8 @@ class World(object):
         for key in self.demolishers[self.location].keys():
             dem = self.demolishers[self.location][key]
             if dem.dead:
+                if dem.aftermath == 'explode':
+                    print(f'[process demolishers] KA-BOOM!')
                 dead.append(dem.id)
                 continue
             if dem.is_collideable:
@@ -239,7 +243,6 @@ class World(object):
             if dem.static:
                 actor = self.actors[self.location][dem.snap_to_actor]
                 dem.update(actor.look, actor.rectangle)
-                print('dfdf')
             dem.process_demolisher(self.time_passed)
 
         for dead_id in dead:
@@ -395,8 +398,8 @@ class World(object):
             dem = self.demolishers[self.location][key]
             pygame.draw.rect(self.screen, PINK, (dem.rectangle.x - self.camera.offset_x, dem.rectangle.y - self.camera.offset_y,
                                                   dem.rectangle.width, dem.rectangle.height))
-            self.screen.blit(fonts.all_fonts[20].render(str(dem.id) + ' ' + str(dem.speed) + ' ' + str(dem.rectangle.y), True, CYAN),
-                             (dem.rectangle.x - self.camera.offset_x, dem.rectangle.bottom - self.camera.offset_y + dem.id * 20))
+            # self.screen.blit(fonts.all_fonts[20].render(str(dem.id) + ' ' + str(dem.speed) + ' ' + str(dem.rectangle.y), True, CYAN),
+            #                  (dem.rectangle.x - self.camera.offset_x, dem.rectangle.bottom - self.camera.offset_y + dem.id * 20))
 
     def render_obstacles(self):
         for key in self.obstacles[self.location].keys():

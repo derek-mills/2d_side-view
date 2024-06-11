@@ -24,15 +24,17 @@ kitchen_knife = {
         # None,
         {
             'rect': pygame.Rect(0, 0, 50, 10),
-            'pierce': False, 'demolisher TTL': 150,
-            'damage': 10, 'static': False, 'damage reduce': .1,
-            'speed': .1, 'collides': False, 'gravity affected': False
+            'pierce': False, 'demolisher TTL': 4, 'flyer': False,
+            'damage': 10, 'static': True, 'damage reduce': .1,
+            'speed': .1, 'collides': False, 'gravity affected': False,
+            'bounce': False, 'aftermath': 'disappear'
         },
         {
-            'rect': pygame.Rect(0, 0, 30, 30),
-            'pierce': False, 'demolisher TTL': 100,
+            'rect': pygame.Rect(0, 0, 30, 30), 'flyer': False,
+            'pierce': False, 'demolisher TTL': 200, 'speed': 12,
             'damage': 10, 'static': False, 'damage reduce': .1,
-            'speed': 2, 'collides': True, 'gravity affected': True
+            'collides': True, 'gravity affected': True,
+            'bounce': True, 'aftermath': 'explode'
         },
     ),
     'description': 'Casual kitchen knife.',
