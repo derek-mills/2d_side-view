@@ -10,6 +10,7 @@ class Actor(Entity):
         self.inventory = dict()
         self.current_weapon = dict()
         self.current_weapon_demolishers_reveal_frames = list()
+        self.is_collideable = True
 
         # self.weapon_snap_points ={
         #     'left hand': {},
@@ -215,6 +216,8 @@ class Actor(Entity):
 
     def process(self, time_passed):
         self.state_machine()
+        self.processing_rectangle_size()
+        self.check_space_around()
         super().process(time_passed)
         # self.reset_self_flags()
 

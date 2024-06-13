@@ -78,11 +78,9 @@ class Obstacle(Entity):
                 self.fly(time_passed)
                 if self.is_destination_reached:
                     self.need_next_action = True
-
-            # if self.need_next_action:
-            #     self.need_next_action = False
-            #     self.next_action()
-            #     return
+        super().process(time_passed)
+        # if self.is_gravity_affected:
+        #     self.calculate_fall_speed()
 
 
     def detect_collisions(self):
@@ -233,20 +231,20 @@ class Obstacle(Entity):
             self.active = False
         elif self.actions[self.actions_set_number][self.current_action][0] == 'wait':
             self.wait_counter = self.actions[self.actions_set_number][self.current_action][1]
-        elif self.actions[self.actions_set_number][self.current_action][0] == 'find route':
-            self.destination_list = list()
-            # self.destination = self.rectangle.center
-            self.need_to_build_new_route_to_point = self.actions[self.actions_set_number][self.current_action][1]
+        # elif self.actions[self.actions_set_number][self.current_action][0] == 'find route':
+        #     self.destination_list = list()
+        #     # self.destination = self.rectangle.center
+        #     self.need_to_build_new_route_to_point = self.actions[self.actions_set_number][self.current_action][1]
         elif self.actions[self.actions_set_number][self.current_action][0] == 'switch visibility':
             self.invisible = False if self.invisible else True
         elif self.actions[self.actions_set_number][self.current_action][0] == 'switch passability':
             self.passable = False if self.passable else True
         elif self.actions[self.actions_set_number][self.current_action][0] == 'make inactive':
             self.active = False
-        elif self.actions[self.actions_set_number][self.current_action][0] == 'teleport':
-            self.destination_list = list()
-            # self.destination = None
-            # self.destination_point = self.point_on_map
-            self.rectangle.center = self.homeland_location['points'][self.actions[self.actions_set_number][self.current_action][1]]['rect'].center
-            # self.rectangle.center = locations[self.location]['points'][self.actions[self.current_action][1]]['rect'].center
-            self.destination = self.rectangle.center
+        # elif self.actions[self.actions_set_number][self.current_action][0] == 'teleport':
+        #     self.destination_list = list()
+        #     # self.destination = None
+        #     # self.destination_point = self.point_on_map
+        #     self.rectangle.center = self.homeland_location['points'][self.actions[self.actions_set_number][self.current_action][1]]['rect'].center
+        #     # self.rectangle.center = locations[self.location]['points'][self.actions[self.current_action][1]]['rect'].center
+        #     self.destination = self.rectangle.center

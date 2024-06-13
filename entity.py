@@ -31,8 +31,8 @@ class Entity(object):
         # ANIMATION
         self.animations = dict()
         self.animation_descriptor: str = ''
-        self.animation_sequence = None
-        self.animation_sequence_default = None
+        self.animation_sequence = list()
+        self.animation_sequence_default = list()
         self.animation_sequence_done = False
         self.animation_not_interruptable = False
         self.current_animation: str = ''
@@ -221,7 +221,37 @@ class Entity(object):
         self.process_animation()
         self.process_activity_at_current_animation_frame()
         if self.is_jump:
-        # if self.is_jump and self.jump_attempts_counter > 0:
+            # Jump
+            self.fall_speed = -self.jump_height
+            self.is_jump = False
+            self.is_stand_on_ground = False
+
+        # self.processing_rectangle_size()
+        # self.check_space_around()  # Detect obstacles on the right and left sides
+        # self.calculate_fall_speed()  # Discover speed and potential fall distance
+        self.calculate_speed()       # Discover fall speed and potential move distance
+        if self.is_collideable:
+            self.calculate_colliders()  # Calculate colliders around actor based on his current movement and fall speeds.
+            self.detect_collisions()
+        self.detect_demolishers_collisions()
+
+        if self.is_gravity_affected:
+            if not self.is_stand_on_ground and not self.is_edge_grabbed:
+                self.calculate_fall_speed()  # Discover speed and potential fall distance
+                # print('fall!')
+                self.fall()
+        self.move(time_passed)
+        # self.fly(time_passed)
+        self.correct_position_if_influenced()
+
+    def process_backup(self, time_passed):
+        if self.ttl > 0:
+            self.ttl -= 1
+            if self.ttl == 0:
+                self.die()
+        self.process_animation()
+        self.process_activity_at_current_animation_frame()
+        if self.is_jump:
             # Jump
             self.fall_speed = -self.jump_height
             self.is_jump = False
@@ -236,20 +266,12 @@ class Entity(object):
         self.detect_demolishers_collisions()
 
         if self.is_gravity_affected:
-            # if self.influenced_by_obstacle:
-            #     self.rectangle.bottom = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
-            # else:
-            # if not self.is_stand_on_ground or not self.is_edge_grabbed:
             if not self.is_stand_on_ground and not self.is_edge_grabbed:
-                # self.influenced_by_obstacle = None
                 # print('fall!')
                 self.fall()
         self.move(time_passed)
         # self.fly(time_passed)
         self.correct_position_if_influenced()
-        # if self.influenced_by_obstacle:
-        #     print('dd')
-        #     self.rectangle.x += self.obstacles_around[self.influenced_by_obstacle].vec_to_destination[0]
 
     def set_current_animation(self):
         state = self.get_state()
@@ -292,37 +314,38 @@ class Entity(object):
 
     def process_animation(self):
         # self.set_current_animation()
-        self.frame_change_counter += 1
-        if self.frame_change_counter > self.frames_changing_threshold:
-            # It is time to change a frame in sequence:
-            self.frame_change_counter = 0
-            self.frame_number += 1
-            if self.frame_number > (len(self.animation_sequence) - 1):
-                # Sequence has come to an end.
-                self.frame_number = self.animations[self.current_animation]['repeat from frame']
-                # SOUND !!
-                # if self.animations[self.current_animation][self.gaze_direction]['sound']:
-                #     if self.frame_number in self.animations[self.current_animation][self.gaze_direction]['sound at frames']:
-                #         self.consider_which_sound_to_make()
-                self.animation_sequence_done = True
-                self.animation_not_interruptable = False
-                self.performing_an_interruptable_deed = False
-                # self.active_frames = list()
-                self.summon_demolisher_counter = -1
-                # self.force_visible = False
-                # print(f'[actor_process_animation_counter] {self.name} Animation sequence done, release lock from world activity.')
-                if not self.animations[self.current_animation]['repeat']:
-                    # self.apply_default_animation()
-                    self.active_frames = list()
-                    return
-                self.active_frames = list(self.animations[self.current_animation]['activity at frames'].keys())
-            else:
-                self.animation_sequence_done = False
-                # SOUND !!
-                # if self.animations[self.current_animation][self.look]['sound']:
-                #     if self.frame_number in self.animations[self.current_animation][self.look]['sound at frames']:
-                #         self.consider_which_sound_to_make()
-            self.set_current_sprite()
+        if self.animation_sequence:
+            self.frame_change_counter += 1
+            if self.frame_change_counter > self.frames_changing_threshold:
+                # It is time to change a frame in sequence:
+                self.frame_change_counter = 0
+                self.frame_number += 1
+                if self.frame_number > (len(self.animation_sequence) - 1):
+                    # Sequence has come to an end.
+                    self.frame_number = self.animations[self.current_animation]['repeat from frame']
+                    # SOUND !!
+                    # if self.animations[self.current_animation][self.gaze_direction]['sound']:
+                    #     if self.frame_number in self.animations[self.current_animation][self.gaze_direction]['sound at frames']:
+                    #         self.consider_which_sound_to_make()
+                    self.animation_sequence_done = True
+                    self.animation_not_interruptable = False
+                    self.performing_an_interruptable_deed = False
+                    # self.active_frames = list()
+                    self.summon_demolisher_counter = -1
+                    # self.force_visible = False
+                    # print(f'[actor_process_animation_counter] {self.name} Animation sequence done, release lock from world activity.')
+                    if not self.animations[self.current_animation]['repeat']:
+                        # self.apply_default_animation()
+                        self.active_frames = list()
+                        return
+                    self.active_frames = list(self.animations[self.current_animation]['activity at frames'].keys())
+                else:
+                    self.animation_sequence_done = False
+                    # SOUND !!
+                    # if self.animations[self.current_animation][self.look]['sound']:
+                    #     if self.frame_number in self.animations[self.current_animation][self.look]['sound at frames']:
+                    #         self.consider_which_sound_to_make()
+                self.set_current_sprite()
 
     def set_current_sprite(self):
         self.current_frame = self.animation_descriptor + ' ' + str(self.animation_sequence[self.frame_number])  # For ex., 'Jane 8'
@@ -434,6 +457,7 @@ class Entity(object):
     #         self.dead = True
 
     def detect_demolishers_collisions(self):
+        # print(self.demolishers_around)
         for key in self.demolishers_around.keys():
             dem = self.demolishers_around[key]
             if dem.id in self.got_immunity_to_demolishers or dem.parent_id == self.id:

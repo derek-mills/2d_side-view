@@ -142,11 +142,13 @@ class World(object):
             entity.active = True
             entity.actions = self.locations[self.location]['obstacles']['actions'][entity.id]
             entity.max_speed = self.locations[self.location]['obstacles']['settings'][entity.id]['speed']
-            print(f'[add_obstacle] Added active obstacle: {entity.actions=}')
+            # print(f'[add_obstacle] Added active obstacle: {entity.actions=} {entity.is_gravity_affected=}')
         # Add an obstacle to the world storage:
         # if self.location not in self.obstacles.keys():
         #     self.obstacles[self.location] = dict()
         self.obstacles[self.location][entity.id] = entity
+        # if entity.id == 20:
+        print(f'[add_obstacle] Added obstacle: {entity.id=} {entity.is_collideable=} {entity.is_gravity_affected=}')
         self.obstacle_id += 1
 
     def add_demolisher(self, description):
@@ -237,8 +239,7 @@ class World(object):
         for key in self.obstacles[self.location].keys():
         # for key in self.obstacles[self.location].keys():
             obs = self.obstacles[self.location][key]
-            obs.percept({k: self.obstacles[self.location][k] for k in self.active_obstacles}, self.demolishers)
-            # obs.percept(self.obstacles[self.location])
+            obs.percept({k: self.obstacles[self.location][k] for k in self.active_obstacles}, self.demolishers[self.location])
             obs.process_(self.time_passed)
 
     def make_explosion(self, xy):
@@ -347,23 +348,8 @@ class World(object):
             actor.process(self.time_passed)
             if actor.summon_demolisher:
                 actor.summon_demolisher = False
-                # print('ATTACK!', actor.frame_number, actor.current_weapon_demolishers_reveal_frames)
-                # print(actor.summon_demolisher_counter)
-                # demolisher = actor.current_weapon['demolishers'][actor.summon_demolisher_counter]
-                # demolisher['snap to actor'] = actor.id
-                # demolisher['snapping offset'] = actor.animations[actor.current_animation]['demolisher offset'][actor.look]
-                # for k in demolisher:
-                #     print(k, demolisher[k])
-                # print('*' * 100)
-                # self.press_any_key()
                 self.add_demolisher(actor.summoned_demolisher_description)
-                # self.add_demolisher(demolisher)
-                # If, for example, actor.current_weapon_demolishers_reveal_frames at the very beginning was: [13, 17, 23, 28], so:
-                # ATTACK! 13 [17, 23, 28]
-                # ATTACK! 17 [23, 28]
-                # ATTACK! 23 [28]
-                # ATTACK! 28 []
-            # actor.reset_self_flags()
+
         for dead_id in dead:
             del self.actors[self.location][dead_id]
 

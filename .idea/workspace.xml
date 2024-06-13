@@ -7,6 +7,8 @@
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obstacle.py" beforeDir="false" afterPath="$PROJECT_DIR$/obstacle.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -106,13 +108,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00084" summary="Initiated system for obstacles action handling.">
-      <created>1716794489955</created>
-      <option name="number" value="00084" />
-      <option name="presentableId" value="LOCAL-00084" />
-      <option name="project" value="LOCAL" />
-      <updated>1716794489955</updated>
     </task>
     <task id="LOCAL-00085" summary="Obstacle actions handling system improved.">
       <created>1716798492029</created>
@@ -450,7 +445,14 @@
       <option name="project" value="LOCAL" />
       <updated>1718093118941</updated>
     </task>
-    <option name="localTasksCounter" value="133" />
+    <task id="LOCAL-00133" summary="Revealing demolishers description is now forming within the summoner class, not within world() to prevent errors">
+      <created>1718244000944</created>
+      <option name="number" value="00133" />
+      <option name="presentableId" value="LOCAL-00133" />
+      <option name="project" value="LOCAL" />
+      <updated>1718244000944</updated>
+    </task>
+    <option name="localTasksCounter" value="134" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -465,7 +467,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="New actor rectangle measurements system implemented." />
     <MESSAGE value="Crouch animation" />
     <MESSAGE value="Added attack animation and fixed some bugs around it" />
     <MESSAGE value="Added demolishers summoning mechanism based on key frames, described in weapons.py for every weapon." />
@@ -490,6 +491,7 @@
     <MESSAGE value="Active frames behavior improvement." />
     <MESSAGE value="Some experiments.&#10;TAB now switches weapons in cycle." />
     <MESSAGE value="Some experiments." />
-    <option name="LAST_COMMIT_MESSAGE" value="Some experiments." />
+    <MESSAGE value="Revealing demolishers description is now forming within the summoner class, not within world() to prevent errors" />
+    <option name="LAST_COMMIT_MESSAGE" value="Revealing demolishers description is now forming within the summoner class, not within world() to prevent errors" />
   </component>
 </project>
