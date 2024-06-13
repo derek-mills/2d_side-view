@@ -347,26 +347,17 @@ class World(object):
             actor.process(self.time_passed)
             if actor.summon_demolisher:
                 actor.summon_demolisher = False
-                # actor.current_weapon_demolishers_reveal_frames = actor.current_weapon_demolishers_reveal_frames[1:]
                 # print('ATTACK!', actor.frame_number, actor.current_weapon_demolishers_reveal_frames)
-                # frame =
-                # frame = actor.active_frames[0]
-                # actor.active_frames = actor.active_frames[1:]
-                # frame = actor.current_weapon_demolishers_reveal_frames[0]
-                # actor.current_weapon_demolishers_reveal_frames = actor.current_weapon_demolishers_reveal_frames[1:]
                 # print(actor.summon_demolisher_counter)
-                demolisher = actor.current_weapon['demolishers'][actor.summon_demolisher_counter]
-                # demolisher = actor.current_weapon['demolishers'][actor.summon_demolisher_at_frame]
-                # demolisher = actor.current_weapon['demolisher reveals at frame'][actor.frame_number]
-                demolisher['snap to actor'] = actor.id
-                demolisher['snapping offset'] = actor.animations[actor.current_animation]['demolisher offset'][actor.look]
-                # demolisher['snap points']['right'] = (0, 8)
-                # demolisher['snap points']['left'] = (0, 8)
+                # demolisher = actor.current_weapon['demolishers'][actor.summon_demolisher_counter]
+                # demolisher['snap to actor'] = actor.id
+                # demolisher['snapping offset'] = actor.animations[actor.current_animation]['demolisher offset'][actor.look]
                 # for k in demolisher:
                 #     print(k, demolisher[k])
                 # print('*' * 100)
                 # self.press_any_key()
-                self.add_demolisher(demolisher)
+                self.add_demolisher(actor.summoned_demolisher_description)
+                # self.add_demolisher(demolisher)
                 # If, for example, actor.current_weapon_demolishers_reveal_frames at the very beginning was: [13, 17, 23, 28], so:
                 # ATTACK! 13 [17, 23, 28]
                 # ATTACK! 17 [23, 28]
@@ -413,10 +404,10 @@ class World(object):
             #                                       actor.collision_detector_bottom_right.width, actor.collision_detector_bottom_right.height))
             # pygame.draw.rect(self.screen, MAGENTA, (actor.collision_detector_bottom_left.x - self.camera.offset_x, actor.collision_detector_bottom_left.y - self.camera.offset_y,
             #                                       actor.collision_detector_bottom_left.width, actor.collision_detector_bottom_left.height))
-            # pygame.draw.rect(self.screen, CYAN, (actor.collision_grabber_right.x - self.camera.offset_x, actor.collision_grabber_right.y - self.camera.offset_y,
-            #                                       actor.collision_grabber_right.width, actor.collision_grabber_right.height))
-            # pygame.draw.rect(self.screen, CYAN, (actor.collision_grabber_left.x - self.camera.offset_x, actor.collision_grabber_left.y - self.camera.offset_y,
-            #                                       actor.collision_grabber_left.width, actor.collision_grabber_left.height))
+            pygame.draw.rect(self.screen, CYAN, (actor.collision_grabber_right.x - self.camera.offset_x, actor.collision_grabber_right.y - self.camera.offset_y,
+                                                  actor.collision_grabber_right.width, actor.collision_grabber_right.height))
+            pygame.draw.rect(self.screen, CYAN, (actor.collision_grabber_left.x - self.camera.offset_x, actor.collision_grabber_left.y - self.camera.offset_y,
+                                                  actor.collision_grabber_left.width, actor.collision_grabber_left.height))
 
             # The eye
             gaze_direction_mod = 0 if actor.look == -1 else actor.rectangle.width - 10

@@ -6,9 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,13 +106,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00083" summary="Tuning the hopping down.">
-      <created>1716786567005</created>
-      <option name="number" value="00083" />
-      <option name="presentableId" value="LOCAL-00083" />
-      <option name="project" value="LOCAL" />
-      <updated>1716786567006</updated>
     </task>
     <task id="LOCAL-00084" summary="Initiated system for obstacles action handling.">
       <created>1716794489955</created>
@@ -451,7 +443,14 @@
       <option name="project" value="LOCAL" />
       <updated>1718091284178</updated>
     </task>
-    <option name="localTasksCounter" value="132" />
+    <task id="LOCAL-00132" summary="Some experiments.">
+      <created>1718093118941</created>
+      <option name="number" value="00132" />
+      <option name="presentableId" value="LOCAL-00132" />
+      <option name="project" value="LOCAL" />
+      <updated>1718093118941</updated>
+    </task>
+    <option name="localTasksCounter" value="133" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -466,7 +465,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Animations apply efficiently." />
     <MESSAGE value="New actor rectangle measurements system implemented." />
     <MESSAGE value="Crouch animation" />
     <MESSAGE value="Added attack animation and fixed some bugs around it" />
@@ -491,6 +489,7 @@
     <MESSAGE value="Added explosions" />
     <MESSAGE value="Active frames behavior improvement." />
     <MESSAGE value="Some experiments.&#10;TAB now switches weapons in cycle." />
-    <option name="LAST_COMMIT_MESSAGE" value="Some experiments.&#10;TAB now switches weapons in cycle." />
+    <MESSAGE value="Some experiments." />
+    <option name="LAST_COMMIT_MESSAGE" value="Some experiments." />
   </component>
 </project>

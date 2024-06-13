@@ -21,10 +21,12 @@ class Entity(object):
         self.performing_an_interruptable_deed: bool = False
         self.think_type: str = ''
         self.summon_demolisher = False
+        self.summoned_demolisher_description = dict()
         # self.summon_demolisher_at_frame = 0
         self.summon_demolisher_counter = -1
         self.ttl = 0
         self.dead = False
+        self.current_weapon = dict()
 
         # ANIMATION
         self.animations = dict()
@@ -276,8 +278,12 @@ class Entity(object):
                     # print(f'[process active frames] make step at frame {self.frame_number}')
                 elif action == 'demolisher':
                     # print(f'[process active frames] make attack at frame {self.frame_number}')
-                    self.summon_demolisher = True
-                    self.summon_demolisher_counter += 1
+                    if self.summon_demolisher_counter < len(self.current_weapon['demolishers']) - 1:
+                        self.summon_demolisher = True
+                        self.summon_demolisher_counter += 1
+                        self.summoned_demolisher_description = self.current_weapon['demolishers'][self.summon_demolisher_counter]
+                        self.summoned_demolisher_description['snap to actor'] = self.id
+                        self.summoned_demolisher_description['snapping offset'] = self.animations[self.current_animation]['demolisher offset'][self.look]
                 elif action == 'sound':
                     snd = self.animations[self.current_animation]['activity at frames'][self.frame_number]
                     print(f'[process active frames] make {snd} at frame {self.frame_number}')
@@ -398,11 +404,13 @@ class Entity(object):
         # Grabbers:
         if self.is_grabbers_active:
             if self.look == 1:
-                self.collision_grabber_right.update(self.rectangle.right-5, self.rectangle.top - 10, 30, 50)
+                self.collision_grabber_right.update(self.rectangle.right-5, self.rectangle.top, 30, 40)
+                # self.collision_grabber_right.update(self.rectangle.right-5, self.rectangle.top - 10, 30, 50)
                 self.collision_grabber_left.update(0,0,0,0)
             elif self.look == -1:
                 self.collision_grabber_right.update(0,0,0,0)
-                self.collision_grabber_left.update(self.rectangle.left - 25, self.rectangle.top - 10, 30, 50)
+                self.collision_grabber_left.update(self.rectangle.left - 25, self.rectangle.top, 30, 40)
+                # self.collision_grabber_left.update(self.rectangle.left - 25, self.rectangle.top - 10, 30, 50)
         else:
             self.collision_grabber_right.update(0, 0, 0, 0)
             self.collision_grabber_left.update(0, 0, 0, 0)
