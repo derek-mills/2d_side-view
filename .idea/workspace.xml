@@ -6,9 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,13 +107,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00086" summary="Obstacles are divided into four lists during collisions detection depends on their position relative to actor rectangle center.">
-      <created>1716873456581</created>
-      <option name="number" value="00086" />
-      <option name="presentableId" value="LOCAL-00086" />
-      <option name="project" value="LOCAL" />
-      <updated>1716873456581</updated>
     </task>
     <task id="LOCAL-00087" summary="Bottom collision detection improved.">
       <created>1716874162317</created>
@@ -451,7 +444,14 @@
       <option name="project" value="LOCAL" />
       <updated>1718249713390</updated>
     </task>
-    <option name="localTasksCounter" value="135" />
+    <task id="LOCAL-00135" summary="Messing around active moving obstacles.">
+      <created>1718266802983</created>
+      <option name="number" value="00135" />
+      <option name="presentableId" value="LOCAL-00135" />
+      <option name="project" value="LOCAL" />
+      <updated>1718266802984</updated>
+    </task>
+    <option name="localTasksCounter" value="136" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -466,7 +466,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added attack animation and fixed some bugs around it" />
     <MESSAGE value="Added demolishers summoning mechanism based on key frames, described in weapons.py for every weapon." />
     <MESSAGE value="Added animation speed modifier depends on every weapon settings." />
     <MESSAGE value="Demolishers appear, they snap to the player rectangle." />
@@ -491,6 +490,7 @@
     <MESSAGE value="Some experiments." />
     <MESSAGE value="Revealing demolishers description is now forming within the summoner class, not within world() to prevent errors" />
     <MESSAGE value="some improvements to get obstacles being collideable." />
-    <option name="LAST_COMMIT_MESSAGE" value="some improvements to get obstacles being collideable." />
+    <MESSAGE value="Messing around active moving obstacles." />
+    <option name="LAST_COMMIT_MESSAGE" value="Messing around active moving obstacles." />
   </component>
 </project>

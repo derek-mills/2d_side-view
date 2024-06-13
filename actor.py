@@ -231,6 +231,8 @@ class Actor(Entity):
 
         # RIGHT actions
         if new_action == 'right action':
+            if self.__state == 'hanging on edge':
+                return
             if self.__state == 'crouch':
                 if self.look == -1:
                     self.set_state('crouch turn right')
@@ -243,12 +245,15 @@ class Actor(Entity):
                     self.set_state('turn right')
             elif self.__state == 'prone':
                 self.set_state('crawl prone right')
-            elif self.__state == 'run left':
-                self.set_action('right action cancel')
+            elif self.__state in ('run left', 'fly left'):
+                self.set_action('left action cancel')
+            if not self.is_stand_on_ground:
+                self.set_state('fly right')
+
         elif new_action == 'right action cancel':
             if self.__state == 'crawl right':
                 self.set_state('crouch')
-            elif self.__state == 'run right':
+            elif self.__state in ('run right', 'fly right'):
                 self.set_state('stand still')
             elif self.__state == 'crawl prone right':
             # elif self.__state in ('crawl prone left', 'crawl prone right'):
@@ -256,6 +261,8 @@ class Actor(Entity):
 
         # LEFT actions
         elif new_action == 'left action':
+            if self.__state == 'hanging on edge':
+                return
             if self.__state == 'crouch':
                 if self.look == 1:
                     self.set_state('crouch turn left')
@@ -270,18 +277,20 @@ class Actor(Entity):
             # elif self.__state in ('prone', 'crawl prone'):
                 # self.look = -1
                 self.set_state('crawl prone left')
-            elif self.__state == 'run right':
+            elif self.__state in ('run right', 'fly right'):
                 # self.set_state('turn left')
-                self.set_action('left action cancel')
+                self.set_action('right action cancel')
+            if not self.is_stand_on_ground:
+                self.set_state('fly left')
+
         elif new_action == 'left action cancel':
             if self.__state == 'crawl left':
                 self.set_state('crouch')
-            elif self.__state == 'run left':
+            elif self.__state in ('run left', 'fly left'):
                 self.set_state('stand still')
             elif self.__state == 'crawl prone left':
             # elif self.__state in ('crawl prone left', 'crawl prone right'):
                 self.set_state('prone')
-
 
         # DOWN actions
         elif new_action == 'down action':
@@ -291,7 +300,6 @@ class Actor(Entity):
             if self.is_stand_on_ground:
                 if self.__state in ('stand still', 'run right', 'run left' ):
                     self.set_state('crouch down')
-
         elif new_action == 'down action cancel':
             if self.__state == 'crouch':
                 if self.is_enough_height:
@@ -324,7 +332,6 @@ class Actor(Entity):
             if self.__state in ('crouch down', 'crouch rise', 'crouch', 'crawl right', 'crawl left') and self.is_stand_on_ground:
                 if self.influenced_by_obstacle >= 0:
                     # Jump off a ghost platform:
-                    # print('sdad111111111111111111111111111111111111111')
                     if self.obstacles_around[self.influenced_by_obstacle].is_ghost_platform:
                         self.set_state('hop down from ghost')
                         return
@@ -335,8 +342,10 @@ class Actor(Entity):
                     self.set_state('slide')
             else:
                 if self.is_enough_space_above:
+                    # self.is_grabbers_active = True
                     self.set_state('jump')
         elif new_action == 'jump action cancel':
+            # self.is_grabbers_active = False
             if self.just_got_jumped:
                 self.set_state('jump cancel')
 
@@ -570,9 +579,32 @@ class Actor(Entity):
         elif self.__state == 'crouch turn right':               # CROUCH TURN LEFT
             self.look = 1
             self.set_state('crouch')
+        elif self.__state == 'fly left':                        # IN MID-AIR FLY LEFT
+            if self.is_stand_on_ground:
+                self.set_state('stand still')
+                return
+            self.look = -1
+            self.heading[0] = -1
+            self.is_grabbers_active = True
+            if self.rectangle.height != self.rectangle_height_default:
+                self.set_new_desired_height(self.rectangle_height_default,5)
+            if self.rectangle.width != self.rectangle_width_default:
+                self.set_new_desired_width(self.rectangle_width_default,5)
         elif self.__state == 'run left':                        # RUN LEFT
             self.look = -1
             self.heading[0] = -1
+            # self.is_grabbers_active = True
+            if self.rectangle.height != self.rectangle_height_default:
+                self.set_new_desired_height(self.rectangle_height_default,5)
+            if self.rectangle.width != self.rectangle_width_default:
+                self.set_new_desired_width(self.rectangle_width_default,5)
+        elif self.__state == 'fly right':                        # IN MID-AIR MOVE RIGHT
+            if self.is_stand_on_ground:
+                self.set_state('stand still')
+                return
+
+            self.look = 1
+            self.heading[0] = 1
             self.is_grabbers_active = True
             if self.rectangle.height != self.rectangle_height_default:
                 self.set_new_desired_height(self.rectangle_height_default,5)
@@ -581,7 +613,7 @@ class Actor(Entity):
         elif self.__state == 'run right':                        # RUN RIGHT
             self.look = 1
             self.heading[0] = 1
-            self.is_grabbers_active = True
+            # self.is_grabbers_active = True
             if self.rectangle.height != self.rectangle_height_default:
                 self.set_new_desired_height(self.rectangle_height_default,5)
             if self.rectangle.width != self.rectangle_width_default:

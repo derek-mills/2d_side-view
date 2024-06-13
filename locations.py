@@ -100,11 +100,11 @@ locations = {
                 ((700, 750), (1100, 50), 24),  #24
                 ((900, 550), (250, 50), 25),  #25
                 ((1050, 300), (300, 50), 26),  #26
-                ((1050, 200), (50, 50), 'collideable' , 'gravity affected', 27),  #27
-                ((1150, 200), (50, 50), 'collideable' , 'gravity affected', 28),  #28
-                ((1250, 200), (50, 50), 'collideable' , 'gravity affected', 29),  #29
-                ((1050, 100), (250, 50), 'collideable' , 'gravity affected', 30),  #30
-                ((1100, 50), (50, 50), 'collideable' , 'gravity affected', 31),  #31
+#                ((1050, 200), (50, 50), 'collideable' , 'gravity affected', 27),  #27
+#                ((1150, 200), (50, 50), 'collideable' , 'gravity affected', 28),  #28
+#                ((1250, 200), (50, 50), 'collideable' , 'gravity affected', 29),  #29
+#                ((1050, 100), (250, 50), 'collideable' , 'gravity affected', 30),  #30
+#                ((1100, 50), (50, 50), 'collideable' , 'gravity affected', 31),  #31
 
                 ),
                 
