@@ -8,7 +8,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obstacle.py" beforeDir="false" afterPath="$PROJECT_DIR$/obstacle.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -108,13 +107,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00085" summary="Obstacle actions handling system improved.">
-      <created>1716798492029</created>
-      <option name="number" value="00085" />
-      <option name="presentableId" value="LOCAL-00085" />
-      <option name="project" value="LOCAL" />
-      <updated>1716798492029</updated>
     </task>
     <task id="LOCAL-00086" summary="Obstacles are divided into four lists during collisions detection depends on their position relative to actor rectangle center.">
       <created>1716873456581</created>
@@ -452,7 +444,14 @@
       <option name="project" value="LOCAL" />
       <updated>1718244000944</updated>
     </task>
-    <option name="localTasksCounter" value="134" />
+    <task id="LOCAL-00134" summary="some improvements to get obstacles being collideable.">
+      <created>1718249713390</created>
+      <option name="number" value="00134" />
+      <option name="presentableId" value="LOCAL-00134" />
+      <option name="project" value="LOCAL" />
+      <updated>1718249713390</updated>
+    </task>
+    <option name="localTasksCounter" value="135" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -467,7 +466,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Crouch animation" />
     <MESSAGE value="Added attack animation and fixed some bugs around it" />
     <MESSAGE value="Added demolishers summoning mechanism based on key frames, described in weapons.py for every weapon." />
     <MESSAGE value="Added animation speed modifier depends on every weapon settings." />
@@ -492,6 +490,7 @@
     <MESSAGE value="Some experiments.&#10;TAB now switches weapons in cycle." />
     <MESSAGE value="Some experiments." />
     <MESSAGE value="Revealing demolishers description is now forming within the summoner class, not within world() to prevent errors" />
-    <option name="LAST_COMMIT_MESSAGE" value="Revealing demolishers description is now forming within the summoner class, not within world() to prevent errors" />
+    <MESSAGE value="some improvements to get obstacles being collideable." />
+    <option name="LAST_COMMIT_MESSAGE" value="some improvements to get obstacles being collideable." />
   </component>
 </project>

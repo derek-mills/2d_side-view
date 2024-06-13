@@ -218,24 +218,29 @@ class Entity(object):
             self.ttl -= 1
             if self.ttl == 0:
                 self.die()
+
         self.process_animation()
         self.process_activity_at_current_animation_frame()
+
         if self.is_jump:
             # Jump
             self.fall_speed = -self.jump_height
             self.is_jump = False
             self.is_stand_on_ground = False
+            self.influenced_by_obstacle = -1
 
         # self.processing_rectangle_size()
         # self.check_space_around()  # Detect obstacles on the right and left sides
         # self.calculate_fall_speed()  # Discover speed and potential fall distance
-        self.calculate_speed()       # Discover fall speed and potential move distance
+        self.calculate_speed()       # Discover speed and potential move distance
         if self.is_collideable:
             self.calculate_colliders()  # Calculate colliders around actor based on his current movement and fall speeds.
             self.detect_collisions()
         self.detect_demolishers_collisions()
 
         if self.is_gravity_affected:
+            # self.calculate_fall_speed()  # Discover speed and potential fall distance
+            # self.fall()
             if not self.is_stand_on_ground and not self.is_edge_grabbed:
                 self.calculate_fall_speed()  # Discover speed and potential fall distance
                 # print('fall!')
@@ -486,7 +491,7 @@ class Entity(object):
         self.collided_right = False
         self.collided_bottom =False
         self.is_being_collided_now = False
-        # self.ignore_user_input = False
+        # self.influenced_by_obstacle = -1
         self.is_stand_on_ground = False
         bottom_already_changed = False
 
@@ -769,8 +774,6 @@ class Entity(object):
                 continue
 
             # Check if there is enough space ABOVE to perform a jump, for example.
-            # if obs.rectangle.colliderect(self.rectangle.left + 2, self.rectangle.bottom - self.target_height - abs(self.fall_speed) - 4,
-            #                              self.rectangle.width - 4, abs(self.fall_speed)):
             if obs.rectangle.colliderect(self.rectangle.left + 2, self.rectangle.top - abs(self.fall_speed) - 1,
                                          self.rectangle.width - 4, abs(self.fall_speed) + 1):
                 self.is_enough_space_above = False

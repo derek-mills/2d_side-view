@@ -205,15 +205,29 @@ class World(object):
         self.processing_demolishers()
 
         # Applying camera offset:
-        if self.actors[self.location][0].speed > 0:
-            y_offset_speed = self.actors[self.location][0].speed
-        elif self.actors[self.location][0].influenced_by_obstacle >= 0:
-            y_offset_speed = self.obstacles[self.location][self.actors[self.location][0].influenced_by_obstacle].speed
+        if self.actors[self.location][0].influenced_by_obstacle >= 0 and  self.obstacles[self.location][self.actors[self.location][0].influenced_by_obstacle].active:
+            x_offset_speed = 2
+            y_offset_speed = 5
+            # y_offset_speed = 5 if self.obstacles[self.location][self.actors[self.location][0].influenced_by_obstacle].vec_to_destination[1] > 0 else -5
+
+            # x_offset_speed = round(self.obstacles[self.location][self.actors[self.location][0].influenced_by_obstacle].vec_to_destination[0])
+            # y_offset_speed = round(self.obstacles[self.location][self.actors[self.location][0].influenced_by_obstacle].vec_to_destination[1])
         else:
-            y_offset_speed = 1
+            x_offset_speed = self.actors[self.location][0].speed  # * self.actors[self.location][0].look
+            y_offset_speed = self.actors[self.location][0].fall_speed        # if self.actors[self.location][0].speed > 0:
+        # # Applying camera offset:
+        # if self.actors[self.location][0].speed > 0:
+        #     y_offset_speed = self.actors[self.location][0].speed
+        # elif self.actors[self.location][0].influenced_by_obstacle >= 0:
+        #     y_offset_speed = self.obstacles[self.location][self.actors[self.location][0].influenced_by_obstacle].speed
+        # else:
+        #     y_offset_speed = 1
+        #
+        # self.camera.apply_offset((self.actors[self.location][0].rectangle.centerx, self.actors[self.location][0].rectangle.bottom),
+        #                          y_offset_speed, 5)
 
         self.camera.apply_offset((self.actors[self.location][0].rectangle.centerx, self.actors[self.location][0].rectangle.bottom),
-                                 y_offset_speed, 5)
+                                 x_offset_speed, y_offset_speed)
                                  # self.actors[self.location][0].speed * 0.9, self.actors[self.location][0].fall_speed)
         # self.detect_active_actors()
         self.detect_active_obstacles()
@@ -297,7 +311,7 @@ class World(object):
             if not actor.rectangle.colliderect(self.camera.active_objects_rectangle):
                 continue
             actor.percept({k: self.obstacles[self.location][k] for k in self.active_obstacles}, self.demolishers[self.location])
-            # actor.percept(self.obstacles[self.location])
+
             if actor.ai_controlled:
                 actor.get_target(self.actors[self.location][0])
                 if not actor.ignore_user_input:
@@ -346,6 +360,7 @@ class World(object):
                         actor.set_action('attack')
 
             actor.process(self.time_passed)
+
             if actor.summon_demolisher:
                 actor.summon_demolisher = False
                 self.add_demolisher(actor.summoned_demolisher_description)
