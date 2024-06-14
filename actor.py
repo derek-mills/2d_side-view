@@ -210,7 +210,7 @@ class Actor(Entity):
         return self.__state
 
     def set_state(self, new_state):
-        print(f'[actor.set_state] new state: {new_state}')
+        print(f'[actor.set_state] new state: {new_state} {self.cycles_passed}')
         self.__state = new_state
         self.set_current_animation()
 
@@ -270,25 +270,27 @@ class Actor(Entity):
             if self.__state not in ('crouch', 'stand still', 'prone', 'run right', 'fly right'):
             # if self.__state == 'hanging on edge'
                 return
-            if self.__state == 'crouch':
-                if self.look == 1:
-                    self.set_state('crouch turn left')
-                else:
-                    self.set_state('crawl left')
-            elif self.__state == 'stand still':
-                if self.look == -1:
-                    self.set_state('run left')
-                else:
-                    self.set_state('turn left')
-            elif self.__state == 'prone':
-            # elif self.__state in ('prone', 'crawl prone'):
-                # self.look = -1
-                self.set_state('crawl prone left')
-            elif self.__state in ('run right', 'fly right'):
-                # self.set_state('turn left')
-                self.set_action('right action cancel')
             if not self.is_stand_on_ground:
                 self.set_state('fly left')
+            else:
+                if self.__state == 'crouch':
+                    if self.look == 1:
+                        self.set_state('crouch turn left')
+                    else:
+                        self.set_state('crawl left')
+                elif self.__state == 'stand still':
+                    if self.look == -1:
+                        self.set_state('run left')
+                    else:
+                        self.set_state('turn left')
+                elif self.__state == 'prone':
+                # elif self.__state in ('prone', 'crawl prone'):
+                    # self.look = -1
+                    self.set_state('crawl prone left')
+                elif self.__state in ('run right', 'fly right'):
+                    # self.set_state('turn left')
+                    self.set_action('right action cancel')
+
 
         elif new_action == 'left action cancel':
             if self.__state == 'crawl left':
@@ -334,9 +336,9 @@ class Actor(Entity):
         # JUMP
         elif new_action == 'jump action':
             # Apply filter of unwanted actions:
-            # if self.__state not in ('hanging on edge', 'hanging on ghost', 'crouch down', 'crouch rise', 'jump',
-            #                         'crouch', 'crawl right', 'crawl left', 'run right', 'run left', 'stand still'):
-            #     return
+            if self.__state not in ('jump', 'crouch', 'crawl right', 'crawl left',
+                                    'run right', 'run left', 'stand still', 'fly left', 'fly right'):
+                return
 
             # if self.__state == 'hanging on ghost':
             #     self.set_state('release edge')
@@ -369,8 +371,9 @@ class Actor(Entity):
                     self.set_state('jump')
         elif new_action == 'jump action cancel':
             # self.is_grabbers_active = False
-            if self.just_got_jumped:
-                self.set_state('jump cancel')
+            if self.__state in ('jump', ):
+                if self.just_got_jumped:
+                    self.set_state('jump cancel')
 
         # HOP BACK
         elif new_action == 'hop back':
@@ -460,14 +463,14 @@ class Actor(Entity):
                 self.is_jump = True
                 self.influenced_by_obstacle = -1
                 self.jump_height = self.max_jump_height
-                self.set_new_desired_height(self.rectangle_height_default + 15, 1)
-                self.set_new_desired_width(self.rectangle_width_default - 15, 1)
+                # self.set_new_desired_height(self.rectangle_height_default + 15, 1)
+                # self.set_new_desired_width(self.rectangle_width_default - 15, 1)
             self.is_abort_jump = False
         elif self.__state == 'jump cancel':                     # CANCEL JUMP
             self.just_got_jumped = False
             self.is_abort_jump = True
-            self.set_new_desired_height(self.rectangle_height_default, 5)
-            self.set_new_desired_width(self.rectangle_width_default, 5)
+            # self.set_new_desired_height(self.rectangle_height_default, 5)
+            # self.set_new_desired_width(self.rectangle_width_default, 5)
             self.set_state('stand still')
         elif self.__state == 'slide':                           # SLIDE PREPARING
             self.speed = self.max_speed * 2.5
@@ -680,12 +683,17 @@ class Actor(Entity):
             self.fall_speed = 0
             self.heading[0] = 0
             self.speed = 0
+            self.rectangle.width = self.rectangle_width_default
+            self.rectangle.height = self.rectangle_height_default
+            # self.set_new_desired_height(self.rectangle_height_default)
+            # self.set_new_desired_width(self.rectangle_width_default)
+            # self.processing_rectangle_size()
             self.rectangle.top = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
             if self.look == -1:
-                self.rectangle.left = self.obstacles_around[self.influenced_by_obstacle].rectangle.right
+                self.rectangle.left = self.obstacles_around[self.influenced_by_obstacle].rectangle.right + 1
                 self.is_enough_space_left = False
             else:
-                self.rectangle.right = self.obstacles_around[self.influenced_by_obstacle].rectangle.left
+                self.rectangle.right = self.obstacles_around[self.influenced_by_obstacle].rectangle.left - 1
                 self.is_enough_space_right = False
             self.jump_attempts_counter = 0
             # self.jump_attempts_counter = self.max_jump_attempts
@@ -725,8 +733,8 @@ class Actor(Entity):
         elif self.__state == 'release edge':                    # RELEASE
             self.is_edge_grabbed = False
             self.is_grabbers_active = False
-            # self.look *= -1
-            self.rectangle.y += self.obstacles_around[self.influenced_by_obstacle].vec_to_destination[1] * -4
+            self.rectangle.y += self.look * -10
+            # self.rectangle.y += self.obstacles_around[self.influenced_by_obstacle].vec_to_destination[1] * -4
             self.influenced_by_obstacle = -1
             self.speed = 0
             self.ignore_user_input = False

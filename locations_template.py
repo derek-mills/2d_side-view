@@ -80,24 +80,27 @@ locations = {
                 # HERE WILL BE A GEOMETRY DESCRIPTION OF EVERY PLATFORM AFTER level_editor.py USAGE:
                 'obs rectangles': (
 
+
                 ),
                 
                 'actions': {
-
-
+                     21: {
+                         0: (('move', (650, 500)), ),
+                     },
+                     22: {
+                         0: (('move', (1550, 500)),),
+                     }
                 },
                 'settings': {
-                    0: {
+                    21: {
                         'speed': 0.1,
                     },
-                    13: {
-                        'speed': 0.1,
-                    },
-                    4: {
+                    22: {
                         'speed': 0.1,
                     },
 
                 }
+                ####################################
             },
             'items': {
                 'central light switcher': {

@@ -7,13 +7,9 @@
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demolisher.py" beforeDir="false" afterPath="$PROJECT_DIR$/demolisher.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main .py" beforeDir="false" afterPath="$PROJECT_DIR$/main .py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obstacle.py" beforeDir="false" afterPath="$PROJECT_DIR$/obstacle.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locations_template.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations_template.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,20 +108,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00090" summary="Fixed prone crawling under the low obstacles.">
-      <created>1716883370657</created>
-      <option name="number" value="00090" />
-      <option name="presentableId" value="LOCAL-00090" />
-      <option name="project" value="LOCAL" />
-      <updated>1716883370657</updated>
-    </task>
-    <task id="LOCAL-00091" summary="Fixed sizes of sit stance.">
-      <created>1716883895931</created>
-      <option name="number" value="00091" />
-      <option name="presentableId" value="LOCAL-00091" />
-      <option name="project" value="LOCAL" />
-      <updated>1716883895931</updated>
     </task>
     <task id="LOCAL-00092" summary="Fixed errors in crouch\stand stances swaps.">
       <created>1716886040946</created>
@@ -456,7 +438,21 @@
       <option name="project" value="LOCAL" />
       <updated>1718328427279</updated>
     </task>
-    <option name="localTasksCounter" value="139" />
+    <task id="LOCAL-00139" summary="Improved id applying for obstacles in level editor and main program.&#10;time_passed is now a private property for every object in the world.">
+      <created>1718339414893</created>
+      <option name="number" value="00139" />
+      <option name="presentableId" value="LOCAL-00139" />
+      <option name="project" value="LOCAL" />
+      <updated>1718339414893</updated>
+    </task>
+    <task id="LOCAL-00140" summary="sorted obstacles is now a private property of all active objects of the world.">
+      <created>1718339609593</created>
+      <option name="number" value="00140" />
+      <option name="presentableId" value="LOCAL-00140" />
+      <option name="project" value="LOCAL" />
+      <updated>1718339609593</updated>
+    </task>
+    <option name="localTasksCounter" value="141" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -471,8 +467,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Demolishers appear improvement." />
-    <MESSAGE value="Added AI-controlled primitive actor." />
     <MESSAGE value="Actor get damage from demolishers and could die." />
     <MESSAGE value="Demolishers behavior improvements." />
     <MESSAGE value="Added health bars.&#10;Fixed demolishers incorrect first reveal without proper rectangle update." />
@@ -496,6 +490,8 @@
     <MESSAGE value="Fixed some states behavior which were broken after new states 'fly right' and 'fly left' added." />
     <MESSAGE value="Decided to apply a filters before setting every new action in set_action() to get a bunch just allowed actions to handle." />
     <MESSAGE value="States improvement." />
-    <option name="LAST_COMMIT_MESSAGE" value="States improvement." />
+    <MESSAGE value="Improved id applying for obstacles in level editor and main program.&#10;time_passed is now a private property for every object in the world." />
+    <MESSAGE value="sorted obstacles is now a private property of all active objects of the world." />
+    <option name="LAST_COMMIT_MESSAGE" value="sorted obstacles is now a private property of all active objects of the world." />
   </component>
 </project>

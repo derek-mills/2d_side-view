@@ -303,6 +303,7 @@ class World(object):
         if self.location not in self.obstacles.keys():
             self.obstacles[self.location] = dict()
         self.obstacles[self.location][entity.id] = entity
+        self.obstacle_id = entity.id + 1
         # self.obstacle_id += 1
 
     def add_demolisher(self, description):
@@ -325,6 +326,7 @@ class World(object):
         if self.location not in self.demolishers.keys():
             self.demolishers[self.location] = dict()
         self.demolishers[self.location][entity.id] = entity
+        self.demolishers_id = entity.id + 1
         # self.demolishers_id += 1
 
     def load(self):
