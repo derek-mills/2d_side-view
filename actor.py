@@ -231,6 +231,7 @@ class Actor(Entity):
 
         # RIGHT actions
         if new_action == 'right action':
+            # Apply filter of unwanted actions:
             if self.__state not in ('crouch', 'stand still', 'prone', 'run left', 'fly left'):
             # if self.__state == 'hanging on edge':
                 return
@@ -255,6 +256,7 @@ class Actor(Entity):
             if self.__state == 'crawl right':
                 self.set_state('crouch')
             elif self.__state in ('run right', 'fly right'):
+                # self.speed = 0
                 self.set_state('stand still')
             elif self.__state == 'crawl prone right':
             # elif self.__state in ('crawl prone left', 'crawl prone right'):
@@ -262,6 +264,7 @@ class Actor(Entity):
 
         # LEFT actions
         elif new_action == 'left action':
+            # Apply filter of unwanted actions:
             if self.__state not in ('crouch', 'stand still', 'prone', 'run right', 'fly right'):
             # if self.__state == 'hanging on edge'
                 return
@@ -289,6 +292,7 @@ class Actor(Entity):
             if self.__state == 'crawl left':
                 self.set_state('crouch')
             elif self.__state in ('run left', 'fly left'):
+                # self.speed = 0
                 self.set_state('stand still')
             elif self.__state == 'crawl prone left':
             # elif self.__state in ('crawl prone left', 'crawl prone right'):
@@ -296,9 +300,9 @@ class Actor(Entity):
 
         # DOWN actions
         elif new_action == 'down action':
-            # if self.__state in ('hanging on edge', 'hanging on ghost'):
-            #     self.set_state('release edge')
-            #     return
+            # Apply filter of unwanted actions:
+            if self.__state not in ('stand still', 'run right', 'run left'):
+                return
             if self.is_stand_on_ground:
                 if self.__state in ('stand still', 'run right', 'run left' ):
                     self.set_state('crouch down')
@@ -312,6 +316,9 @@ class Actor(Entity):
 
         # UP action
         elif new_action == 'up action':
+            # Apply filter of unwanted actions:
+            if self.__state not in ('hanging on edge', 'hanging on ghost'):
+                return
             if self.__state in ('hanging on edge', 'hanging on ghost') and self.is_enough_height:
             # if self.__state == 'hanging on edge' and self.is_enough_space_above:
                 self.set_state('climb on')
@@ -320,11 +327,15 @@ class Actor(Entity):
 
         # JUMP
         elif new_action == 'jump action':
-            if self.__state in ('prone', 'crawl prone right', 'crawl prone left'):
+            # Apply filter of unwanted actions:
+            if self.__state not in ('hanging on edge', 'hanging on ghost', 'crouch down', 'crouch rise',
+                                    'crouch', 'crawl right', 'crawl left', 'run right', 'run left', 'stand still'):
                 return
+
             if self.__state == 'hanging on ghost':
                 self.set_state('release edge')
                 return
+
             elif self.__state == 'hanging on edge':
                 self.set_state('release edge')
                 return
@@ -353,6 +364,7 @@ class Actor(Entity):
 
         # HOP BACK
         elif new_action == 'hop back':
+            # Apply filter of unwanted actions:
             if self.__state not in ('run left', 'run right', 'stand still', ):
                 return
             if self.is_stand_on_ground and self.is_enough_space_above:
@@ -585,13 +597,30 @@ class Actor(Entity):
             if self.is_stand_on_ground:
                 self.set_state('stand still')
                 return
-            self.look = -1
-            self.heading[0] = -1
-            self.is_grabbers_active = True
-            if self.rectangle.height != self.rectangle_height_default:
-                self.set_new_desired_height(self.rectangle_height_default,5)
-            if self.rectangle.width != self.rectangle_width_default:
-                self.set_new_desired_width(self.rectangle_width_default,5)
+            if self.look == 1 and self.speed > 0:
+                # Actor moves to the opposite direction.
+                # Need to slow him down.
+                self.heading[0] = 0
+                self.is_grabbers_active = False
+            else:
+                self.look = -1
+                self.heading[0] = -1
+                self.is_grabbers_active = True
+                if self.rectangle.height != self.rectangle_height_default:
+                    self.set_new_desired_height(self.rectangle_height_default,5)
+                if self.rectangle.width != self.rectangle_width_default:
+                    self.set_new_desired_width(self.rectangle_width_default,5)
+            # if self.is_stand_on_ground:
+            #     self.set_state('stand still')
+            #     return
+            # # if self.look == 1
+            # self.look = -1
+            # self.heading[0] = -1
+            # self.is_grabbers_active = True
+            # if self.rectangle.height != self.rectangle_height_default:
+            #     self.set_new_desired_height(self.rectangle_height_default,5)
+            # if self.rectangle.width != self.rectangle_width_default:
+            #     self.set_new_desired_width(self.rectangle_width_default,5)
         elif self.__state == 'run left':                        # RUN LEFT
             self.look = -1
             self.heading[0] = -1
@@ -604,14 +633,26 @@ class Actor(Entity):
             if self.is_stand_on_ground:
                 self.set_state('stand still')
                 return
-
-            self.look = 1
-            self.heading[0] = 1
-            self.is_grabbers_active = True
-            if self.rectangle.height != self.rectangle_height_default:
-                self.set_new_desired_height(self.rectangle_height_default,5)
-            if self.rectangle.width != self.rectangle_width_default:
-                self.set_new_desired_width(self.rectangle_width_default,5)
+            if self.look == -1 and self.speed > 0:
+                # Actor moves to the opposite direction.
+                # Need to slow him down.
+                self.heading[0] = 0
+                self.is_grabbers_active = False
+            else:
+                self.look = 1
+                self.heading[0] = 1
+                self.is_grabbers_active = True
+                if self.rectangle.height != self.rectangle_height_default:
+                    self.set_new_desired_height(self.rectangle_height_default,5)
+                if self.rectangle.width != self.rectangle_width_default:
+                    self.set_new_desired_width(self.rectangle_width_default,5)
+            # self.look = 1
+            # self.heading[0] = 1
+            # self.is_grabbers_active = True
+            # if self.rectangle.height != self.rectangle_height_default:
+            #     self.set_new_desired_height(self.rectangle_height_default,5)
+            # if self.rectangle.width != self.rectangle_width_default:
+            #     self.set_new_desired_width(self.rectangle_width_default,5)
         elif self.__state == 'run right':                        # RUN RIGHT
             self.look = 1
             self.heading[0] = 1
@@ -688,7 +729,7 @@ class Actor(Entity):
                 self.check_space_around()
                 if self.is_enough_height:
                     self.rectangle.bottom = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
-                    self.rectangle.centerx += 20 * self.look  # Slightly pushing an actor far from the edge of an obstacle to let his bottom collider do the job.
+                    self.rectangle.centerx += self.rectangle.width // 2 * self.look  # Slightly pushing an actor far from the edge of an obstacle to let his bottom collider do the job.
                     self.ignore_user_input = False
                     # self.jump_attempts_counter = 0
                     self.is_edge_grabbed = False
