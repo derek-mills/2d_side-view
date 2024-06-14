@@ -106,6 +106,11 @@ class Entity(object):
         # Collisions
         self.is_collideable = False
         self.obstacles_around = None
+        self.sorted_obs = dict()
+            # 'above': list(),
+            # 'below': list(),
+            # 'right': list(),
+            # 'left': list(),
         self.demolishers_around = None
         self.collision_detector_right = pygame.Rect(0,0,0,0)
         self.collision_detector_left = pygame.Rect(0,0,0,0)
@@ -137,6 +142,23 @@ class Entity(object):
 
     def percept(self, obstacles, demolishers):
         self.obstacles_around = obstacles
+        self.sorted_obs = {
+            'above': list(),
+            'below': list(),
+            'right': list(),
+            'left': list(),
+        }
+        for key in self.obstacles_around.keys():
+            obs = self.obstacles_around[key]
+            if obs.rectangle.centery < self.rectangle.centery:
+                self.sorted_obs['above'].append(obs.id)
+            elif obs.rectangle.centery > self.rectangle.centery:
+                self.sorted_obs['below'].append(obs.id)
+            if obs.rectangle.right < self.rectangle.centerx:
+                self.sorted_obs['left'].append(obs.id)
+            elif obs.rectangle.left > self.rectangle.centerx:
+                self.sorted_obs['right'].append(obs.id)
+
         self.demolishers_around = demolishers
         # print(self.obstacles_around)
         # print(self.demolishers_around)
@@ -489,12 +511,12 @@ class Entity(object):
 
     def detect_collisions(self):
         # self.influenced_by_obstacle = None
-        sorted_obs = {
-            'above': list(),
-            'below': list(),
-            'right': list(),
-            'left': list(),
-        }
+        # sorted_obs = {
+        #     'above': list(),
+        #     'below': list(),
+        #     'right': list(),
+        #     'left': list(),
+        # }
         self.collided_top = False
         self.collided_left = False
         self.collided_right = False
@@ -504,20 +526,20 @@ class Entity(object):
         self.is_stand_on_ground = False
         bottom_already_changed = False
 
-        for key in self.obstacles_around.keys():
-            obs = self.obstacles_around[key]
-            if obs.rectangle.centery < self.rectangle.centery:
-                sorted_obs['above'].append(obs.id)
-            elif obs.rectangle.centery > self.rectangle.centery:
-                sorted_obs['below'].append(obs.id)
-            if obs.rectangle.right < self.rectangle.centerx:
-                sorted_obs['left'].append(obs.id)
-            elif obs.rectangle.left > self.rectangle.centerx:
-                sorted_obs['right'].append(obs.id)
+        # for key in self.obstacles_around.keys():
+        #     obs = self.obstacles_around[key]
+        #     if obs.rectangle.centery < self.rectangle.centery:
+        #         sorted_obs['above'].append(obs.id)
+        #     elif obs.rectangle.centery > self.rectangle.centery:
+        #         sorted_obs['below'].append(obs.id)
+        #     if obs.rectangle.right < self.rectangle.centerx:
+        #         sorted_obs['left'].append(obs.id)
+        #     elif obs.rectangle.left > self.rectangle.centerx:
+        #         sorted_obs['right'].append(obs.id)
 
         #-----------------------------------
         # Check RIGHT
-        for key in sorted_obs['right']:
+        for key in self.sorted_obs['right']:
             obs = self.obstacles_around[key]
             obs.is_being_collided_now = False
             if obs.is_ghost_platform:
@@ -557,8 +579,8 @@ class Entity(object):
                     self.speed = 0
                     if self.get_state() in ('hanging on edge', 'hanging on ghost'):
                         self.set_state('release edge')
-                    if key in sorted_obs['above']:
-                        sorted_obs['above'].remove(key)
+                    if key in self.sorted_obs['above']:
+                        self.sorted_obs['above'].remove(key)
                     continue
 
                 if self.look == 1: # Obstacle is on the right, and actor also looks to the right, and hangs on the edge.
@@ -602,7 +624,7 @@ class Entity(object):
                         # continue
         #-----------------------------------
         # Check LEFT
-        for key in sorted_obs['left']:
+        for key in self.sorted_obs['left']:
             obs = self.obstacles_around[key]
             if obs.is_ghost_platform:
                 continue
@@ -636,8 +658,8 @@ class Entity(object):
                     # self.speed = 0
                     if self.get_state() in ('hanging on edge', 'hanging on ghost'):
                         self.set_state('release edge')
-                    if key in sorted_obs['above']:
-                        sorted_obs['above'].remove(key)
+                    if key in self.sorted_obs['above']:
+                        self.sorted_obs['above'].remove(key)
 
                     continue
 
@@ -682,7 +704,7 @@ class Entity(object):
 
         # -----------------------------------
         # Check bottom
-        for key in sorted_obs['below']:
+        for key in self.sorted_obs['below']:
             obs = self.obstacles_around[key]
             obs.is_being_collided_now = False
             # if obs.is_ghost_platform:
@@ -711,7 +733,7 @@ class Entity(object):
 
         # -----------------------------------
         # Check top
-        for key in sorted_obs['above']:
+        for key in self.sorted_obs['above']:
             obs = self.obstacles_around[key]
             obs.is_being_collided_now = False
             if obs.is_ghost_platform:
