@@ -830,10 +830,10 @@ class Entity(object):
             self.vec_to_destination[1] *= l
 
             # print(f'BEFORe: {self.rectangle.center=} {self.vec_to_destination=}')
-            self.rectangle.x += round(self.vec_to_destination[0])
-            # self.rectangle.centerx += round(self.vec_to_destination[0])
-            self.rectangle.y += round(self.vec_to_destination[1])
-            # self.rectangle.centery += round(self.vec_to_destination[1])
+            # self.rectangle.x += round(self.vec_to_destination[0])
+            self.rectangle.x += self.vec_to_destination[0]
+            # self.rectangle.y += round(self.vec_to_destination[1])
+            self.rectangle.y += self.vec_to_destination[1]
 
 
     def calculate_fall_speed(self):
@@ -862,8 +862,10 @@ class Entity(object):
         if self.influenced_by_obstacle >= 0:
             obs = self.obstacles_around[self.influenced_by_obstacle]
             if obs.active:
-                self.rectangle.x += round(obs.vec_to_destination[0])
-                self.rectangle.y += round(obs.vec_to_destination[1])
+                self.rectangle.x += obs.vec_to_destination[0]
+                self.rectangle.y += obs.vec_to_destination[1]
+                # self.rectangle.x += round(obs.vec_to_destination[0])
+                # self.rectangle.y += round(obs.vec_to_destination[1])
 
     def calculate_speed(self):
         if self.heading[0] == 0:
