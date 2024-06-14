@@ -210,7 +210,7 @@ class Actor(Entity):
         return self.__state
 
     def set_state(self, new_state):
-        print(f'[actor.set_state] new state: {new_state} {self.cycles_passed}')
+        # print(f'[actor.set_state] new state: {new_state} {self.cycles_passed}')
         self.__state = new_state
         self.set_current_animation()
 
@@ -237,22 +237,23 @@ class Actor(Entity):
             if self.__state not in ('crouch', 'stand still', 'prone', 'run left', 'fly left'):
             # if self.__state == 'hanging on edge':
                 return
-            if self.__state == 'crouch':
-                if self.look == -1:
-                    self.set_state('crouch turn right')
-                else:
-                    self.set_state('crawl right')
-            elif self.__state == 'stand still':
-                if self.look == 1:
-                    self.set_state('run right')
-                else:
-                    self.set_state('turn right')
-            elif self.__state == 'prone':
-                self.set_state('crawl prone right')
-            elif self.__state in ('run left', 'fly left'):
-                self.set_action('left action cancel')
             if not self.is_stand_on_ground:
                 self.set_state('fly right')
+            else:
+                if self.__state == 'crouch':
+                    if self.look == -1:
+                        self.set_state('crouch turn right')
+                    else:
+                        self.set_state('crawl right')
+                elif self.__state == 'stand still':
+                    if self.look == 1:
+                        self.set_state('run right')
+                    else:
+                        self.set_state('turn right')
+                elif self.__state == 'prone':
+                    self.set_state('crawl prone right')
+                elif self.__state in ('run left', 'fly left'):
+                    self.set_action('left action cancel')
 
         elif new_action == 'right action cancel':
             if self.__state == 'crawl right':
@@ -290,7 +291,6 @@ class Actor(Entity):
                 elif self.__state in ('run right', 'fly right'):
                     # self.set_state('turn left')
                     self.set_action('right action cancel')
-
 
         elif new_action == 'left action cancel':
             if self.__state == 'crawl left':
@@ -366,14 +366,14 @@ class Actor(Entity):
                         (self.look == -1 and self.is_enough_space_left):
                     self.set_state('slide')
             else:
-                if self.is_enough_space_above:
+                if self.is_enough_space_above and self.__state != 'jump':
                     # self.is_grabbers_active = True
                     self.set_state('jump')
         elif new_action == 'jump action cancel':
             # self.is_grabbers_active = False
-            if self.__state in ('jump', ):
-                if self.just_got_jumped:
-                    self.set_state('jump cancel')
+            # if self.__state in ('jump', ):
+            if self.just_got_jumped:
+                self.set_state('jump cancel')
 
         # HOP BACK
         elif new_action == 'hop back':
@@ -456,7 +456,9 @@ class Actor(Entity):
             self.speed = self.max_speed // 3
             # self.heading[0] = -1
         elif self.__state == 'jump':
+            # print('try to jump...')
             if not self.just_got_jumped:
+
                 self.just_got_jumped = True
                 self.jump_attempts_counter -= 1
                 self.is_grabbers_active = True
@@ -465,6 +467,8 @@ class Actor(Entity):
                 self.jump_height = self.max_jump_height
                 # self.set_new_desired_height(self.rectangle_height_default + 15, 1)
                 # self.set_new_desired_width(self.rectangle_width_default - 15, 1)
+            # else:
+            #     print('...but failed')
             self.is_abort_jump = False
         elif self.__state == 'jump cancel':                     # CANCEL JUMP
             self.just_got_jumped = False

@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
+    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="fixing come bugs with incorrect collisions while jumping">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locations_template.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations_template.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,13 +107,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00092" summary="Fixed errors in crouch\stand stances swaps.">
-      <created>1716886040946</created>
-      <option name="number" value="00092" />
-      <option name="presentableId" value="LOCAL-00092" />
-      <option name="project" value="LOCAL" />
-      <updated>1716886040946</updated>
     </task>
     <task id="LOCAL-00093" summary="Fixed hop back.">
       <created>1716887152992</created>
@@ -452,7 +444,14 @@
       <option name="project" value="LOCAL" />
       <updated>1718339609593</updated>
     </task>
-    <option name="localTasksCounter" value="141" />
+    <task id="LOCAL-00141" summary="fixing come bugs with incorrect collisions while jumping">
+      <created>1718344568869</created>
+      <option name="number" value="00141" />
+      <option name="presentableId" value="LOCAL-00141" />
+      <option name="project" value="LOCAL" />
+      <updated>1718344568869</updated>
+    </task>
+    <option name="localTasksCounter" value="142" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -467,7 +466,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Actor get damage from demolishers and could die." />
     <MESSAGE value="Demolishers behavior improvements." />
     <MESSAGE value="Added health bars.&#10;Fixed demolishers incorrect first reveal without proper rectangle update." />
     <MESSAGE value="Added moving demolishers." />
@@ -492,6 +490,7 @@
     <MESSAGE value="States improvement." />
     <MESSAGE value="Improved id applying for obstacles in level editor and main program.&#10;time_passed is now a private property for every object in the world." />
     <MESSAGE value="sorted obstacles is now a private property of all active objects of the world." />
-    <option name="LAST_COMMIT_MESSAGE" value="sorted obstacles is now a private property of all active objects of the world." />
+    <MESSAGE value="fixing come bugs with incorrect collisions while jumping" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixing come bugs with incorrect collisions while jumping" />
   </component>
 </project>
