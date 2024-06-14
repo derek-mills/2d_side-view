@@ -27,6 +27,8 @@ class Entity(object):
         self.ttl = 0
         self.dead = False
         self.current_weapon = dict()
+        self.time_passed: int = 0
+        self.cycles_passed: int = 0
 
         # ANIMATION
         self.animations = dict()
@@ -213,7 +215,8 @@ class Entity(object):
         self.rectangle_width_slide = self.rectangle.height // 4 * 3
 
 
-    def process(self, time_passed):
+    def process(self):
+    # def process(self, time_passed):
         if self.ttl > 0:
             self.ttl -= 1
             if self.ttl == 0:
@@ -245,7 +248,8 @@ class Entity(object):
                 self.calculate_fall_speed()  # Discover speed and potential fall distance
                 # print('fall!')
                 self.fall()
-        self.move(time_passed)
+        self.move()
+        # self.move(time_passed)
         # self.fly(time_passed)
         self.correct_position_if_influenced()
 
@@ -445,14 +449,15 @@ class Entity(object):
 
         # TOP and BOTTOM colliders:
         if self.fall_speed < 0:
-            self.collision_detector_top.update(self.rectangle.left + 2, self.rectangle.top - abs(self.fall_speed) - 4, self.rectangle.width - 4, abs(self.fall_speed))
+            self.collision_detector_top.update(self.rectangle.left + 1, self.rectangle.top - abs(self.fall_speed) - 4, self.rectangle.width - 2, abs(self.fall_speed))
+            # self.collision_detector_top.update(self.rectangle.left + 2, self.rectangle.top - abs(self.fall_speed) - 4, self.rectangle.width - 4, abs(self.fall_speed))
             self.collision_detector_bottom.update(0,0,0,0)
             # self.collision_detector_bottom.update(self.rectangle.left + 2, self.rectangle.bottom, self.rectangle.width - 4, 1)
         elif self.fall_speed >= 0:
             # self.collision_detector_top.update(0,0,0,0)
             self.collision_detector_top.update(self.rectangle.left + 2, self.rectangle.top - 1, self.rectangle.width - 4, 1)
-            self.collision_detector_bottom.update(self.rectangle.left, self.rectangle.bottom, self.rectangle.width, self.fall_speed + 2)
-            # self.collision_detector_bottom.update(self.rectangle.left +2, self.rectangle.bottom, self.rectangle.width-4, self.fall_speed + 2)
+            # self.collision_detector_bottom.update(self.rectangle.left, self.rectangle.bottom, self.rectangle.width, self.fall_speed + 2)
+            self.collision_detector_bottom.update(self.rectangle.left +2, self.rectangle.bottom, self.rectangle.width-4, self.fall_speed + 2)
 
     # @staticmethod
     # def get_damage(self, amount):
@@ -460,6 +465,10 @@ class Entity(object):
     #     self.health -= amount
     #     if self.health <= 0:
     #         self.dead = True
+
+    def get_time(self, time_passed, cycles_passed):
+        self.time_passed = time_passed
+        self.cycles_passed = cycles_passed
 
     def detect_demolishers_collisions(self):
         # print(self.demolishers_around)
@@ -506,17 +515,6 @@ class Entity(object):
             elif obs.rectangle.left > self.rectangle.centerx:
                 sorted_obs['right'].append(obs.id)
 
-        # for key in self.obstacles_around.keys():
-        #     obs = self.obstacles_around[key]
-        #     if obs.rectangle.centery < self.rectangle.centery:
-        #         sorted_obs['above'].append(obs.id)
-        #     elif obs.rectangle.centery > self.rectangle.centery:
-        #         sorted_obs['below'].append(obs.id)
-        #     if obs.rectangle.centerx < self.rectangle.centerx:
-        #         sorted_obs['left'].append(obs.id)
-        #     elif obs.rectangle.centerx > self.rectangle.centerx:
-        #         sorted_obs['right'].append(obs.id)
-
         #-----------------------------------
         # Check RIGHT
         for key in sorted_obs['right']:
@@ -546,7 +544,7 @@ class Entity(object):
 
                 # Check if obstacle has crawled FROM BEHIND and pushed actor to his back:
                 if self.look == -1:  # Obstacle is on the right, but actor looks to the left.
-                    self.rectangle.right = obs.rectangle.left  # Push the actor
+                    self.rectangle.right = obs.rectangle.left - 1  # Push the actor
                     self.rectangle.x += obs.vec_to_destination[0]
                     self.rectangle.y += obs.vec_to_destination[1]
                     # self.speed = 0
@@ -626,7 +624,7 @@ class Entity(object):
 
                 # Check if obstacle has crawled FROM BEHIND and pushed actor to his back:
                 if self.look == 1:  # Obstacle is on the left, but actor looks to the right.
-                    self.rectangle.left = obs.rectangle.right  # Push the actor
+                    self.rectangle.left = obs.rectangle.right + 1  # Push the actor
                     self.rectangle.x += obs.vec_to_destination[0]
                     self.rectangle.y += obs.vec_to_destination[1]
 
@@ -777,7 +775,8 @@ class Entity(object):
                 self.is_enough_space_below = False
                 continue
 
-    def fly(self, time_passed):
+    def fly(self):
+    # def fly(self, time_passed):
         self.vec_to_destination = list((self.destination[0] - self.rectangle.x, self.destination[1] - self.rectangle.y))
         # self.vec_to_destination = list((self.destination[0] - self.rectangle.centerx, self.destination[1] - self.rectangle.centery))
 
@@ -799,7 +798,7 @@ class Entity(object):
 
             self.speed = self.max_speed * self.max_speed_penalty  # * 0.5
             # Define the potential length of current move, depends on basic speed and passed amount of time:
-            self.potential_moving_distance = time_passed * self.speed
+            self.potential_moving_distance = self.time_passed * self.speed
             # Define current distance to travel:
             self.travel_distance = min(distance_to_destination, self.potential_moving_distance)
             # Set the length of moving vector equal to travel distance, which had already just been calculated:
@@ -814,38 +813,7 @@ class Entity(object):
             # self.rectangle.centery += round(self.vec_to_destination[1])
 
 
-    # def calculate_colliders_backup(self):
-    #     if self.look * self.movement_direction_inverter == 1:
-    #         self.collision_detector_right.update(self.rectangle.right, self.rectangle.top, self.speed + 1, self.rectangle.height - 35)
-    #         self.collision_detector_bottom_right.update(self.rectangle.right, self.rectangle.bottom - 35, self.speed + 1, 35)
-    #
-    #         self.collision_detector_left.update(self.rectangle.left - 1, self.rectangle.top, 1, self.rectangle.height - 35)
-    #         self.collision_detector_bottom_left.update(self.rectangle.left - 1, self.rectangle.bottom - 35, 1, 35)
-    #     elif self.look * self.movement_direction_inverter == -1:
-    #         self.collision_detector_right.update(self.rectangle.right, self.rectangle.top, 1, self.rectangle.height - 35)
-    #         self.collision_detector_bottom_right.update(self.rectangle.right, self.rectangle.bottom - 35, 1, 35)
-    #
-    #         self.collision_detector_left.update(self.rectangle.left - self.speed - 1, self.rectangle.top, self.speed + 1, self.rectangle.height - 35)
-    #         self.collision_detector_bottom_left.update(self.rectangle.left - self.speed - 1, self.rectangle.bottom - 35, self.speed + 1, 35)
-    #     if self.fall_speed < 0:
-    #         self.collision_detector_top.update(self.rectangle.left + 2, self.rectangle.top - abs(self.fall_speed), self.rectangle.width - 4, abs(self.fall_speed))
-    #         self.collision_detector_bottom.update(0,0,0,0)
-    #         # self.collision_detector_bottom.update(self.rectangle.left + 2, self.rectangle.bottom, self.rectangle.width - 4, 1)
-    #     elif self.fall_speed >= 0:
-    #         self.collision_detector_top.update(0,0,0,0)
-    #         # self.collision_detector_top.update(self.rectangle.left + 2, self.rectangle.top - 1, self.rectangle.width - 4, 1)
-    #         self.collision_detector_bottom.update(self.rectangle.left + 2, self.rectangle.bottom - 2, self.rectangle.width - 4, self.fall_speed + 2)
-    #     # else:
-    #     #     self.collision_detector_top.update(0,0,0,0)
-    #     #     # self.collision_detector_top.update(self.rectangle.left + 2, self.rectangle.top - 1, self.rectangle.width - 4, 1)
-    #     #     self.collision_detector_bottom.update(self.rectangle.left + 2, self.rectangle.bottom - 2, self.rectangle.width - 4, 2)
-
     def calculate_fall_speed(self):
-        # if self.influenced_by_obstacle >= 0:
-        #     self.rectangle.bottom = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
-        #     self.potential_falling_distance = 1
-        #     self.fall_speed = 1
-        # else:
         if not self.is_stand_on_ground:
             if self.fall_speed > GRAVITY_G:
                 self.fall_speed = GRAVITY_G
@@ -894,16 +862,7 @@ class Entity(object):
 
         self.potential_moving_distance = self.speed
 
-    def move(self, time_passed):
-        # if self.id != 0:
-        #     print('Now moves: ', self.type, self.id)
-        # if self.heading[0] == 1:
-        #     self.destination[0] = self.rectangle.centerx + 500
-        # elif self.heading[0] == -1:
-        #     self.destination[0] = self.rectangle.centerx - 500
-        # else:
-        #     self.destination[0] = self.rectangle.x
-        # self.fly(time_passed)
+    def move(self):
         self.rectangle.x += (self.potential_moving_distance * self.look * self.movement_direction_inverter)
 
     def die(self):

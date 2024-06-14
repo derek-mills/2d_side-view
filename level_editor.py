@@ -285,7 +285,8 @@ class World(object):
 
     def add_obstacle(self, description):
         entity = Obstacle()
-        entity.id = self.obstacle_id
+        entity.id = description[-1]
+        # entity.id = self.obstacle_id
         entity.is_gravity_affected = True if 'gravity affected' in description else False
         entity.is_collideable = True if 'collideable' in description else False
         entity.rectangle.topleft = description[0]
@@ -302,11 +303,12 @@ class World(object):
         if self.location not in self.obstacles.keys():
             self.obstacles[self.location] = dict()
         self.obstacles[self.location][entity.id] = entity
-        self.obstacle_id += 1
+        # self.obstacle_id += 1
 
     def add_demolisher(self, description):
         entity = Demolisher()
-        entity.id = self.demolishers_id
+        entity.id = description[-1]
+        # entity.id = self.demolishers_id
         entity.is_gravity_affected = True if 'gravity affected' in description else False
         entity.is_collideable = True if 'collideable' in description else False
         entity.rectangle.topleft = description[0]
@@ -323,7 +325,7 @@ class World(object):
         if self.location not in self.demolishers.keys():
             self.demolishers[self.location] = dict()
         self.demolishers[self.location][entity.id] = entity
-        self.demolishers_id += 1
+        # self.demolishers_id += 1
 
     def load(self):
         # Loading with pickle:
@@ -681,10 +683,13 @@ class World(object):
                 # Add new obs.
 
                 if self.new_obs_rect.width != 0 and self.new_obs_rect.height != 0:
-                    description = (self.new_obs_rect.topleft, self.new_obs_rect.size)
                     if self.object_types[self.current_object_type] == 'obstacle':
+                        description = (self.new_obs_rect.topleft, self.new_obs_rect.size, self.obstacle_id)
+                        self.obstacle_id += 1
                         self.add_obstacle(description)
                     elif self.object_types[self.current_object_type] == 'demolisher':
+                        description = (self.new_obs_rect.topleft, self.new_obs_rect.size, self.demolishers_id)
+                        self.demolishers_id += 1
                         self.add_demolisher(description)
                 self.new_obs_rect_started = False
                 self.new_obs_rect_start_xy = [0, 0]

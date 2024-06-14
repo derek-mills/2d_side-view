@@ -56,7 +56,8 @@ class Obstacle(Entity):
     #                 self.rectangle.y = 1000
     #         self.move()
 
-    def process_(self, time_passed):
+    def process_(self):
+    # def process_(self, time_passed):
         if self.active:
             if self.idle:
                 return
@@ -75,12 +76,12 @@ class Obstacle(Entity):
             if self.actions[self.actions_set_number][self.current_action][0] == 'repeat':
                 self.need_next_action = True
             elif self.actions[self.actions_set_number][self.current_action][0] == 'move':
-                self.fly(time_passed)
+                self.fly()
+                # self.fly(time_passed)
                 if self.is_destination_reached:
                     self.need_next_action = True
-        super().process(time_passed)
-        # if self.is_gravity_affected:
-        #     self.calculate_fall_speed()
+        super().process()
+        # super().process(time_passed)
 
 
     def detect_collisions(self):
@@ -188,8 +189,8 @@ class Obstacle(Entity):
         self.repeat_counter = -1
 
     def next_action(self):
-        # print('ENTERING NEXT ACTION')
-        # print('current_action:', self.actions[self.actions_set_number][self.current_action])
+        print('ENTERING NEXT ACTION')
+        print('current_action:', self.actions[self.actions_set_number][self.current_action])
         if not self.actions:
             return
         if self.actions[self.actions_set_number][self.current_action][0] == 'repeat':

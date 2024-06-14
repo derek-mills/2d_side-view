@@ -210,15 +210,17 @@ class Actor(Entity):
         return self.__state
 
     def set_state(self, new_state):
-        # print(f'[actor.set_state] new state: {new_state}')
+        print(f'[actor.set_state] new state: {new_state}')
         self.__state = new_state
         self.set_current_animation()
 
-    def process(self, time_passed):
+    def process(self):
+    # def process(self, time_passed):
         self.state_machine()
         self.processing_rectangle_size()
         self.check_space_around()
-        super().process(time_passed)
+        super().process()
+        # super().process(time_passed)
         # self.reset_self_flags()
 
         # if (self.collided_top and self.collided_bottom) or (self.collided_right and self.collided_left):
@@ -301,7 +303,11 @@ class Actor(Entity):
         # DOWN actions
         elif new_action == 'down action':
             # Apply filter of unwanted actions:
-            if self.__state not in ('stand still', 'run right', 'run left'):
+            if self.__state not in ('stand still', 'run right', 'run left', 'hanging on edge', 'hanging on ghost'):
+                return
+
+            if self.__state in ('hanging on edge', 'hanging on ghost'):
+                self.set_state('release edge')
                 return
             if self.is_stand_on_ground:
                 if self.__state in ('stand still', 'run right', 'run left' ):
@@ -328,20 +334,24 @@ class Actor(Entity):
         # JUMP
         elif new_action == 'jump action':
             # Apply filter of unwanted actions:
-            if self.__state not in ('hanging on edge', 'hanging on ghost', 'crouch down', 'crouch rise',
-                                    'crouch', 'crawl right', 'crawl left', 'run right', 'run left', 'stand still'):
+            # if self.__state not in ('hanging on edge', 'hanging on ghost', 'crouch down', 'crouch rise', 'jump',
+            #                         'crouch', 'crawl right', 'crawl left', 'run right', 'run left', 'stand still'):
+            #     return
+
+            # if self.__state == 'hanging on ghost':
+            #     self.set_state('release edge')
+            #     return
+            #
+            # elif self.__state == 'hanging on edge':
+            #     self.set_state('release edge')
+            #     return
+            # else:
+            #     if self.jump_attempts_counter == 0:
+            #         return
+
+            if self.jump_attempts_counter == 0:
                 return
 
-            if self.__state == 'hanging on ghost':
-                self.set_state('release edge')
-                return
-
-            elif self.__state == 'hanging on edge':
-                self.set_state('release edge')
-                return
-            else:
-                if self.jump_attempts_counter == 0:
-                    return
             if self.__state in ('crouch down', 'crouch rise', 'crouch', 'crawl right', 'crawl left') and self.is_stand_on_ground:
                 if self.influenced_by_obstacle >= 0:
                     # Jump off a ghost platform:
@@ -365,12 +375,14 @@ class Actor(Entity):
         # HOP BACK
         elif new_action == 'hop back':
             # Apply filter of unwanted actions:
-            if self.__state not in ('run left', 'run right', 'stand still', ):
+            if self.__state not in ('run left', 'run right', 'stand still', 'fly right', 'fly left', 'jump'):
                 return
-            if self.is_stand_on_ground and self.is_enough_space_above:
-                self.set_state('hop back')
+            if self.is_stand_on_ground:
+                if self.is_enough_space_above:
+                    self.set_state('hop back')
         elif new_action == 'hop back action cancel':
             # self.set_state('jump cancel')
+            # self.is_grabbers_active = False
             if self.just_got_jumped:
                 self.just_got_jumped = False
             self.is_abort_jump = True

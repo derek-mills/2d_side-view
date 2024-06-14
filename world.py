@@ -124,7 +124,8 @@ class World(object):
 
     def add_obstacle(self, description):
         entity = Obstacle()
-        entity.id = self.obstacle_id
+        entity.id = description[-1]
+        # entity.id = self.obstacle_id
         entity.is_gravity_affected = True if 'gravity affected' in description else False
         entity.rectangle.topleft = description[0]
         entity.origin_xy = description[0]
@@ -149,7 +150,7 @@ class World(object):
         self.obstacles[self.location][entity.id] = entity
         # if entity.id == 20:
         print(f'[add_obstacle] Added obstacle: {entity.id=} {entity.is_collideable=} {entity.is_gravity_affected=}')
-        self.obstacle_id += 1
+        # self.obstacle_id += 1
 
     def add_demolisher(self, description):
         demol = Demolisher()
@@ -194,6 +195,7 @@ class World(object):
         self.demolishers[self.location][demol.id] = demol
         # print(f'[add_demolisher] Added: {demol.id=} {demol.name} {demol.rectangle} {demol.max_speed=} {demol.destination=}')
 
+    # def process(self):
     def process(self, time_passed):
         self.time_passed = time_passed
 
@@ -254,7 +256,9 @@ class World(object):
         # for key in self.obstacles[self.location].keys():
             obs = self.obstacles[self.location][key]
             obs.percept({k: self.obstacles[self.location][k] for k in self.active_obstacles}, self.demolishers[self.location])
-            obs.process_(self.time_passed)
+            obs.get_time(self.time_passed, self.game_cycles_counter)
+            obs.process_()
+            # obs.process_(self.time_passed)
 
     def make_explosion(self, xy):
         print(f'[process demolishers] KA-BOOM!')
@@ -294,7 +298,10 @@ class World(object):
             if dem.static:
                 actor = self.actors[self.location][dem.snap_to_actor]
                 dem.update(actor.look, actor.rectangle)
-            dem.process_demolisher(self.time_passed)
+
+            dem.get_time(self.time_passed, self.game_cycles_counter)
+            dem.process_demolisher()
+            # dem.process_demolisher(self.time_passed)
 
         for dead_id in dead:
             del self.demolishers[self.location][dead_id]
@@ -359,7 +366,8 @@ class World(object):
                         self.is_attack = False
                         actor.set_action('attack')
 
-            actor.process(self.time_passed)
+            actor.get_time(self.time_passed, self.game_cycles_counter)
+            actor.process()
 
             if actor.summon_demolisher:
                 actor.summon_demolisher = False
@@ -450,19 +458,15 @@ class World(object):
                 gap = 1
                 font_size = 10
                 params = (
-                    #
-                    #(' IS ON OBS: ' + str(self.actors[self.location][0].is_on_obstacle), WHITE),
-                    ('      ACTIVE    : ' + str(obs.active), BLACK),
-                    ('WAIT COUNTER    : ' + str(obs.wait_counter), BLACK),
-                    ('DEST REACHED    : ' + str(obs.is_destination_reached), BLACK),
-                    ('RECTANGLE       : ' + str(obs.rectangle), BLACK),
-                    ('ACTION          : ' + str(obs.actions[obs.actions_set_number][obs.current_action]), BLACK),
-                    ('NEED NEXT ACTION: ' + str(obs.need_next_action), BLACK),
-                    ('VEC TO DESTINTON: ' + str(obs.vec_to_destination), BLACK),
-                    'CR',
+                    ('ID: ' + str(obs.id), BLACK),
+                    # ('      ACTIVE    : ' + str(obs.active), BLACK),
+                    # ('WAIT COUNTER    : ' + str(obs.wait_counter), BLACK),
+                    # ('DEST REACHED    : ' + str(obs.is_destination_reached), BLACK),
+                    # ('RECTANGLE       : ' + str(obs.rectangle), BLACK),
+                    # ('ACTION          : ' + str(obs.actions[obs.actions_set_number][obs.current_action]), BLACK),
+                    # ('NEED NEXT ACTION: ' + str(obs.need_next_action), BLACK),
                     # ('VEC TO DESTINTON: ' + str(obs.vec_to_destination), BLACK),
-
-
+                    # 'CR',
                 )
                 for p in params:
                     if p == 'CR':
@@ -478,10 +482,10 @@ class World(object):
                 gap = 1
                 font_size = 10
                 params = (
-                    #
+                    ('ID: ' + str(obs.id), BLACK),
                     #(' IS ON OBS: ' + str(self.actors[self.location][0].is_on_obstacle), WHITE),
-                    ('RECTANGLE       : ' + str(obs.rectangle), BLACK),
-                    ('VEC TO DESTINTON: ' + str(obs.vec_to_destination), BLACK),
+                    # ('RECTANGLE       : ' + str(obs.rectangle), BLACK),
+                    # ('VEC TO DESTINTON: ' + str(obs.vec_to_destination), BLACK),
                     # ('VEC TO DESTINTON: ' + str(obs.vec_to_destination), BLACK),
 
 

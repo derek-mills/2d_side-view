@@ -7,6 +7,13 @@
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demolisher.py" beforeDir="false" afterPath="$PROJECT_DIR$/demolisher.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main .py" beforeDir="false" afterPath="$PROJECT_DIR$/main .py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obstacle.py" beforeDir="false" afterPath="$PROJECT_DIR$/obstacle.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,13 +112,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00089" summary="Improved collision detect while hanging the edge.">
-      <created>1716875801021</created>
-      <option name="number" value="00089" />
-      <option name="presentableId" value="LOCAL-00089" />
-      <option name="project" value="LOCAL" />
-      <updated>1716875801021</updated>
     </task>
     <task id="LOCAL-00090" summary="Fixed prone crawling under the low obstacles.">
       <created>1716883370657</created>
@@ -449,7 +449,14 @@
       <option name="project" value="LOCAL" />
       <updated>1718327538340</updated>
     </task>
-    <option name="localTasksCounter" value="138" />
+    <task id="LOCAL-00138" summary="States improvement.">
+      <created>1718328427279</created>
+      <option name="number" value="00138" />
+      <option name="presentableId" value="LOCAL-00138" />
+      <option name="project" value="LOCAL" />
+      <updated>1718328427279</updated>
+    </task>
+    <option name="localTasksCounter" value="139" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -464,7 +471,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Demolishers appear, they snap to the player rectangle." />
     <MESSAGE value="Demolishers appear improvement." />
     <MESSAGE value="Added AI-controlled primitive actor." />
     <MESSAGE value="Actor get damage from demolishers and could die." />
@@ -489,6 +495,7 @@
     <MESSAGE value="Messing around active moving obstacles." />
     <MESSAGE value="Fixed some states behavior which were broken after new states 'fly right' and 'fly left' added." />
     <MESSAGE value="Decided to apply a filters before setting every new action in set_action() to get a bunch just allowed actions to handle." />
-    <option name="LAST_COMMIT_MESSAGE" value="Decided to apply a filters before setting every new action in set_action() to get a bunch just allowed actions to handle." />
+    <MESSAGE value="States improvement." />
+    <option name="LAST_COMMIT_MESSAGE" value="States improvement." />
   </component>
 </project>

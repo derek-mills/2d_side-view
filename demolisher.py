@@ -161,7 +161,8 @@ class Demolisher(Entity):
                 self.is_being_collided_now = True
                 return
 
-    def process_demolisher(self, time_passed):
+    def process_demolisher(self):
+    # def process_demolisher(self, time_passed):
         if self.ttl > 0:
             self.ttl -= 1
             if self.ttl == 0:
@@ -190,9 +191,11 @@ class Demolisher(Entity):
         if not self.static:
             self.calculate_speed()
             if self.flyer:
-                self.fly(time_passed)
+                self.fly()
+                # self.fly(time_passed)
             else:
-                self.move(time_passed)
+                self.move()
+                # self.move(time_passed)
             if self.is_gravity_affected:
                 self.calculate_fall_speed()  # Discover speed and potential fall distance
                 self.fall()

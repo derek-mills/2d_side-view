@@ -66,7 +66,7 @@ def main():
     while not world.is_quit:
         time_passed = clock.tick(FPS)
         world.game_cycles_counter += 1
-        if world.game_cycles_counter > 1000:
+        if world.game_cycles_counter > 100000:
             world.game_cycles_counter = 0
 
         # if world.load_new_location:
@@ -136,6 +136,7 @@ def main():
         #     continue
 
         world.process(time_passed)
+        # world.process(time_passed)
         fps = int(clock.get_fps())
         if fps > max_fps:
             max_fps = fps
