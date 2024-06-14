@@ -210,7 +210,7 @@ class Actor(Entity):
         return self.__state
 
     def set_state(self, new_state):
-        # print(f'[actor.set_state] new state: {new_state} {self.cycles_passed}')
+        print(f'[actor.set_state] new state: {new_state} {self.cycles_passed}')
         self.__state = new_state
         self.set_current_animation()
 
@@ -371,9 +371,9 @@ class Actor(Entity):
                     self.set_state('jump')
         elif new_action == 'jump action cancel':
             # self.is_grabbers_active = False
-            # if self.__state in ('jump', ):
-            if self.just_got_jumped:
-                self.set_state('jump cancel')
+            if self.__state in ('jump', ):
+                if self.just_got_jumped:
+                    self.set_state('jump cancel')
 
         # HOP BACK
         elif new_action == 'hop back':
@@ -458,7 +458,6 @@ class Actor(Entity):
         elif self.__state == 'jump':
             # print('try to jump...')
             if not self.just_got_jumped:
-
                 self.just_got_jumped = True
                 self.jump_attempts_counter -= 1
                 self.is_grabbers_active = True
@@ -703,7 +702,8 @@ class Actor(Entity):
             # self.jump_attempts_counter = self.max_jump_attempts
             self.set_state('hanging on edge')
         elif self.__state == 'hanging on edge':                 # HANGING ON THE EDGE
-            ...
+            self.just_got_jumped = False
+            self.is_abort_jump = True
             # self.rectangle.top = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
         elif self.__state == 'hanging on ghost':                # HANGING ON THE GHOST PLATFORM
             self.rectangle.top = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
