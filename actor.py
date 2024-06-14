@@ -234,7 +234,7 @@ class Actor(Entity):
         # RIGHT actions
         if new_action == 'right action':
             # Apply filter of unwanted actions:
-            if self.__state not in ('crouch', 'stand still', 'prone', 'run left', 'fly left'):
+            if self.__state not in ('crouch', 'stand still', 'prone', 'run left', 'fly left', 'run right'):
             # if self.__state == 'hanging on edge':
                 return
             if not self.is_stand_on_ground:
@@ -268,7 +268,7 @@ class Actor(Entity):
         # LEFT actions
         elif new_action == 'left action':
             # Apply filter of unwanted actions:
-            if self.__state not in ('crouch', 'stand still', 'prone', 'run right', 'fly right'):
+            if self.__state not in ('crouch', 'stand still', 'prone', 'run right', 'fly right', 'run left'):
             # if self.__state == 'hanging on edge'
                 return
             if not self.is_stand_on_ground:
@@ -460,7 +460,8 @@ class Actor(Entity):
             if not self.just_got_jumped:
                 self.just_got_jumped = True
                 self.jump_attempts_counter -= 1
-                self.is_grabbers_active = True
+                if self.fall_speed > -2:
+                    self.is_grabbers_active = True
                 self.is_jump = True
                 self.influenced_by_obstacle = -1
                 self.jump_height = self.max_jump_height

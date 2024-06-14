@@ -442,18 +442,16 @@ class Entity(object):
             self.collision_detector_left.update(self.rectangle.left - 1, self.rectangle.top, 1, self.rectangle.height)
             self.collision_detector_bottom_right.update(self.rectangle.right, self.rectangle.bottom - bottom_indent, self.speed + 1, bottom_indent)
             self.collision_detector_bottom_left.update(0, 0, 0, 0)
-            self.collision_grabber_right.update(self.rectangle.right-5, self.rectangle.top - 10, 30, 50)
-            self.collision_grabber_left.update(0,0,0,0)
-            # self.collision_grabber_left.update(self.rectangle.top, self.rectangle.left - 20, 20, 40)
+            # self.collision_grabber_right.update(self.rectangle.right-5, self.rectangle.top - 10, 30, 50)
+            # self.collision_grabber_left.update(0,0,0,0)
 
         elif self.look * self.movement_direction_inverter == -1:
             self.collision_detector_right.update(self.rectangle.right, self.rectangle.top, 1, self.rectangle.height)
             self.collision_detector_left.update(self.rectangle.left - self.speed - 1, self.rectangle.top, self.speed + 1, self.rectangle.height - bottom_indent)
             self.collision_detector_bottom_right.update(0,0,0,0)
             self.collision_detector_bottom_left.update(self.rectangle.left - self.speed - 1, self.rectangle.bottom - bottom_indent, self.speed + 1, bottom_indent)
-            self.collision_grabber_right.update(0,0,0,0)
-            # self.collision_grabber_right.update(self.rectangle.top, self.rectangle.right, 20, 40)
-            self.collision_grabber_left.update(self.rectangle.left - 25, self.rectangle.top - 10, 30, 50)
+            # self.collision_grabber_right.update(0,0,0,0)
+            # self.collision_grabber_left.update(self.rectangle.left - 25, self.rectangle.top - 10, 30, 50)
 
         # Grabbers:
         if self.is_grabbers_active:
@@ -478,8 +476,8 @@ class Entity(object):
         elif self.fall_speed >= 0:
             # self.collision_detector_top.update(0,0,0,0)
             self.collision_detector_top.update(self.rectangle.left + 2, self.rectangle.top - 1, self.rectangle.width - 4, 1)
-            self.collision_detector_bottom.update(self.rectangle.left, self.rectangle.bottom, self.rectangle.width, self.fall_speed + 2)
-            # self.collision_detector_bottom.update(self.rectangle.left +2, self.rectangle.bottom, self.rectangle.width-4, self.fall_speed + 2)
+            # self.collision_detector_bottom.update(self.rectangle.left, self.rectangle.bottom, self.rectangle.width, self.fall_speed + 2)
+            self.collision_detector_bottom.update(self.rectangle.left +2, self.rectangle.bottom, self.rectangle.width-4, self.fall_speed + 2)
 
     # @staticmethod
     # def get_damage(self, amount):
@@ -549,6 +547,7 @@ class Entity(object):
             if not self.is_stand_on_ground:
                 if self.get_state() in ('jump', 'jump cancel', 'fly right', 'fly left','stand still'):
                 # if self.get_state() in ('jump', 'jump cancel', 'run right', 'run left', 'stand still'):
+
                     if self.collision_grabber_right.collidepoint(obs.rectangle.topleft):
                         self.influenced_by_obstacle = obs.id
                         self.set_state('has just grabbed edge')
@@ -618,6 +617,7 @@ class Entity(object):
                         # print('ksdjhdakjdhsakjdh')
                         bottom_already_changed = True
                         self.rectangle.bottom = obs.rectangle.top
+                        self.rectangle.y += self.look * 2 * self.movement_direction_inverter
                         self.is_stand_on_ground = True
                         self.influenced_by_obstacle = obs.id
                         self.jump_attempts_counter = self.max_jump_attempts
@@ -696,6 +696,7 @@ class Entity(object):
                         self.set_state('release edge')
                     else:
                         self.rectangle.bottom = obs.rectangle.top
+                        self.rectangle.y += self.look * 2 * self.movement_direction_inverter
                         bottom_already_changed = True
                         self.is_stand_on_ground = True
                         self.influenced_by_obstacle = obs.id

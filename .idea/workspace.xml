@@ -7,7 +7,7 @@
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,13 +106,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00095" summary="Slightly modified colliders and collision detection in case of tiny steps by 35 px of height.">
-      <created>1717048791917</created>
-      <option name="number" value="00095" />
-      <option name="presentableId" value="LOCAL-00095" />
-      <option name="project" value="LOCAL" />
-      <updated>1717048791917</updated>
     </task>
     <task id="LOCAL-00096" summary="Demolishers class added. They are passive yet.&#10;Added demolishers handling within the level editor routines.">
       <created>1717055325769</created>
@@ -450,7 +443,14 @@
       <option name="project" value="LOCAL" />
       <updated>1718351232667</updated>
     </task>
-    <option name="localTasksCounter" value="144" />
+    <task id="LOCAL-00144" summary="fixed minor jump issue">
+      <created>1718352939782</created>
+      <option name="number" value="00144" />
+      <option name="presentableId" value="LOCAL-00144" />
+      <option name="project" value="LOCAL" />
+      <updated>1718352939782</updated>
+    </task>
+    <option name="localTasksCounter" value="145" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -465,7 +465,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added moving demolishers." />
     <MESSAGE value="Fixed annoying bug, when all the members of class Demolisher share the same rectangle." />
     <MESSAGE value="Some minor changes." />
     <MESSAGE value="Redesigned active frames, which cause some custom actions of actor." />
@@ -490,6 +489,7 @@
     <MESSAGE value="fixing come bugs with incorrect collisions while jumping" />
     <MESSAGE value="fixed bug when jump hasn't performed while on the very edge of an obstacle" />
     <MESSAGE value="added whip animation" />
-    <option name="LAST_COMMIT_MESSAGE" value="added whip animation" />
+    <MESSAGE value="fixed minor jump issue" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed minor jump issue" />
   </component>
 </project>
