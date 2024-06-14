@@ -7,8 +7,7 @@
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,13 +106,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00087" summary="Bottom collision detection improved.">
-      <created>1716874162317</created>
-      <option name="number" value="00087" />
-      <option name="presentableId" value="LOCAL-00087" />
-      <option name="project" value="LOCAL" />
-      <updated>1716874162317</updated>
     </task>
     <task id="LOCAL-00088" summary="Just save.">
       <created>1716874532399</created>
@@ -451,7 +443,14 @@
       <option name="project" value="LOCAL" />
       <updated>1718266802984</updated>
     </task>
-    <option name="localTasksCounter" value="136" />
+    <task id="LOCAL-00136" summary="Fixed some states behavior which were broken after new states 'fly right' and 'fly left' added.">
+      <created>1718269857743</created>
+      <option name="number" value="00136" />
+      <option name="presentableId" value="LOCAL-00136" />
+      <option name="project" value="LOCAL" />
+      <updated>1718269857743</updated>
+    </task>
+    <option name="localTasksCounter" value="137" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -466,7 +465,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added demolishers summoning mechanism based on key frames, described in weapons.py for every weapon." />
     <MESSAGE value="Added animation speed modifier depends on every weapon settings." />
     <MESSAGE value="Demolishers appear, they snap to the player rectangle." />
     <MESSAGE value="Demolishers appear improvement." />
@@ -491,6 +489,7 @@
     <MESSAGE value="Revealing demolishers description is now forming within the summoner class, not within world() to prevent errors" />
     <MESSAGE value="some improvements to get obstacles being collideable." />
     <MESSAGE value="Messing around active moving obstacles." />
-    <option name="LAST_COMMIT_MESSAGE" value="Messing around active moving obstacles." />
+    <MESSAGE value="Fixed some states behavior which were broken after new states 'fly right' and 'fly left' added." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed some states behavior which were broken after new states 'fly right' and 'fly left' added." />
   </component>
 </project>

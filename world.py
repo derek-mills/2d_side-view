@@ -214,7 +214,7 @@ class World(object):
             # y_offset_speed = round(self.obstacles[self.location][self.actors[self.location][0].influenced_by_obstacle].vec_to_destination[1])
         else:
             x_offset_speed = self.actors[self.location][0].speed  # * self.actors[self.location][0].look
-            y_offset_speed = self.actors[self.location][0].fall_speed        # if self.actors[self.location][0].speed > 0:
+            y_offset_speed = abs(self.actors[self.location][0].fall_speed)        # if self.actors[self.location][0].speed > 0:
         # # Applying camera offset:
         # if self.actors[self.location][0].speed > 0:
         #     y_offset_speed = self.actors[self.location][0].speed
