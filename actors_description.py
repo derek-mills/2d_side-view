@@ -299,7 +299,7 @@ player_jake = {
     'max speed': 10,
     # 'reflexes': randint(100, 150),
     # 'uses light source': False,
-    'items': (fireball_staff, sword,kitchen_knife,),
+    'items': (whip,fireball_staff,sword,kitchen_knife,),
     # 'avatar': 'Jake',
     'animations': {
         'stand still right': {
@@ -377,6 +377,50 @@ player_jake = {
             'sequence': (70,71,72,), 'speed': 1,
             'activity at frames': {},
             'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 2
+        },
+        'whip right': {
+            'repeat': False, 'interruptable': True,
+            'sequence': (74, 74, 74, 74, 74,74,74,75),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            # 74,74,74,74,74,  # 5 - 9
+            # 74,74,74,75,75,  # 10 - 14
+            # 74,74,74,74,74,  # 15 - 19
+            # 74,74,74,74,74,  # 20 - 24
+            # 74,74,74,75,75), # 25 - 29
+            # 'demolisher offset': (46, 36),
+            'speed': 2,
+            'activity at frames': {
+                7: {
+                    'sound': True,
+                    'demolisher': True
+                },
+                },
+            'demolisher offset': {
+                1: (46, 36),
+                -1: (-46, 36),
+            },
+            'repeat from frame': 0
+        },
+        'whip left': {
+            'repeat': False, 'interruptable': True,
+            'sequence': (89,89,89,89,89,89,89,88),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            # 74,74,74,74,74,  # 5 - 9
+            # 74,74,74,75,75,  # 10 - 14
+            # 74,74,74,74,74,  # 15 - 19
+            # 74,74,74,74,74,  # 20 - 24
+            # 74,74,74,75,75), # 25 - 29
+            # 'demolisher offset': (46, 36),
+            'speed': 2,
+            'activity at frames': {
+                7: {
+                    'sound': True,
+                    'demolisher': True
+                },
+            },
+            'demolisher offset': {
+                1: (46, 36),
+                -1: (-46, 36),
+            },
+            'repeat from frame': 0
         },
         'stab right': {
             'repeat': False, 'interruptable': True,
@@ -459,8 +503,8 @@ player_jake = {
         },
         'cast left': {
             'repeat': False, 'interruptable': True,
-            'sequence': (74, 74, 74, 74, 74,  # 0 - 4
-                         74, 74, 74, 74, 75, 75),  # 5 - 9
+            'sequence': (89,89,89,89,89,89,  # 0 - 4
+                         89,89,89,89,88,88),  # 5 - 9
             # 74,74,74,74,74,  # 5 - 9
             # 74,74,74,75,75,  # 10 - 14
             # 74,74,74,74,74,  # 15 - 19

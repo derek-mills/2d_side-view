@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="fixing come bugs with incorrect collisions while jumping">
+    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,13 +107,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00093" summary="Fixed hop back.">
-      <created>1716887152992</created>
-      <option name="number" value="00093" />
-      <option name="presentableId" value="LOCAL-00093" />
-      <option name="project" value="LOCAL" />
-      <updated>1716887152992</updated>
     </task>
     <task id="LOCAL-00094" summary="WHen actor is stuck between two opposite moving obstacles, he's fucked up.&#10;Collisions improved.&#10;Grabbing over the edges is now available only in several modes: 'jump', 'run right', 'run left', 'stand still'.">
       <created>1717046691720</created>
@@ -451,7 +444,14 @@
       <option name="project" value="LOCAL" />
       <updated>1718344568869</updated>
     </task>
-    <option name="localTasksCounter" value="142" />
+    <task id="LOCAL-00142" summary="fixed bug when jump hasn't performed while on the very edge of an obstacle">
+      <created>1718350143268</created>
+      <option name="number" value="00142" />
+      <option name="presentableId" value="LOCAL-00142" />
+      <option name="project" value="LOCAL" />
+      <updated>1718350143268</updated>
+    </task>
+    <option name="localTasksCounter" value="143" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -466,7 +466,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Demolishers behavior improvements." />
     <MESSAGE value="Added health bars.&#10;Fixed demolishers incorrect first reveal without proper rectangle update." />
     <MESSAGE value="Added moving demolishers." />
     <MESSAGE value="Fixed annoying bug, when all the members of class Demolisher share the same rectangle." />
@@ -491,6 +490,7 @@
     <MESSAGE value="Improved id applying for obstacles in level editor and main program.&#10;time_passed is now a private property for every object in the world." />
     <MESSAGE value="sorted obstacles is now a private property of all active objects of the world." />
     <MESSAGE value="fixing come bugs with incorrect collisions while jumping" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixing come bugs with incorrect collisions while jumping" />
+    <MESSAGE value="fixed bug when jump hasn't performed while on the very edge of an obstacle" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed bug when jump hasn't performed while on the very edge of an obstacle" />
   </component>
 </project>

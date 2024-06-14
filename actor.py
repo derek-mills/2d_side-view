@@ -413,7 +413,7 @@ class Actor(Entity):
             # self.current_weapon_demolishers_reveal_frames = list(self.current_weapon['demolisher reveals at frame'].keys())
             # self.ignore_user_input = True
 
-        elif self.__state in ('stab', 'cast'):                          # ATTACKING IN PROCESS...
+        elif self.__state in ('stab', 'cast', 'whip'):                          # ATTACKING IN PROCESS...
             # if self.current_weapon['actor forward moving speed'] > 0:
             #     self.speed = self.current_weapon['actor forward moving speed']
             #     self.heading[0] = self.look
