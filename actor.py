@@ -337,6 +337,8 @@ class Actor(Entity):
 
         # JUMP
         elif new_action == 'jump action':
+            if self.is_jump_performed:
+                return
             # Apply filter of unwanted actions:
             if self.__state not in ('jump', 'crouch', 'crawl right', 'crawl left',
                                     # 'run right', 'run left', 'stand still', ):
@@ -460,6 +462,7 @@ class Actor(Entity):
                 if self.is_stand_on_ground:
                     # self.just_got_jumped = False
                     # self.is_abort_jump = True
+                    self.is_jump_performed = True
                     self.heading[0] = 0
                     self.set_state('free')
                     # self.set_state('jump cancel')
@@ -468,6 +471,7 @@ class Actor(Entity):
         elif self.__state == 'jump cancel':                     # CANCEL JUMP
             self.just_got_jumped = False
             self.is_abort_jump = True
+            self.is_jump_performed = False
             # self.set_new_desired_height(self.rectangle_height_default, 5)
             # self.set_new_desired_width(self.rectangle_width_default, 5)
             self.set_state('stand still')

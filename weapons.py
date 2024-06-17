@@ -129,7 +129,7 @@ whip = {
         {
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
             'pierce': False, 'demolisher TTL': 5, 'speed': 0,
-            'damage': 150, 'static': False, 'damage reduce': 0,
+            'damage': 150, 'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
             'aftermath': 'disappear'

@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,20 +105,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00101" summary="Grab colliders improving, go on.">
-      <created>1717132961325</created>
-      <option name="number" value="00101" />
-      <option name="presentableId" value="LOCAL-00101" />
-      <option name="project" value="LOCAL" />
-      <updated>1717132961325</updated>
-    </task>
-    <task id="LOCAL-00102" summary="Fine-tuning of grab and release functions.">
-      <created>1717139157509</created>
-      <option name="number" value="00102" />
-      <option name="presentableId" value="LOCAL-00102" />
-      <option name="project" value="LOCAL" />
-      <updated>1717139157509</updated>
     </task>
     <task id="LOCAL-00103" summary="Improved pushing actor to the back if moving obstacle has crawled from behind.">
       <created>1717141860994</created>
@@ -451,7 +435,21 @@
       <option name="project" value="LOCAL" />
       <updated>1718608173015</updated>
     </task>
-    <option name="localTasksCounter" value="150" />
+    <task id="LOCAL-00150" summary="Messing around jump function, once again">
+      <created>1718611353845</created>
+      <option name="number" value="00150" />
+      <option name="presentableId" value="LOCAL-00150" />
+      <option name="project" value="LOCAL" />
+      <updated>1718611353845</updated>
+    </task>
+    <task id="LOCAL-00151" summary="Corrected bottom colliders">
+      <created>1718611502643</created>
+      <option name="number" value="00151" />
+      <option name="presentableId" value="LOCAL-00151" />
+      <option name="project" value="LOCAL" />
+      <updated>1718611502644</updated>
+    </task>
+    <option name="localTasksCounter" value="152" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -466,8 +464,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Demolishers have got some new properties and ability to collide, as far as ability choose type of movement: fly or classic." />
-    <MESSAGE value="Added demolishers own collisions detector and processing." />
     <MESSAGE value="Added demolishers floor bounce." />
     <MESSAGE value="Added demolishers horizontal and vertical speed reducing after bounce." />
     <MESSAGE value="Added explosions" />
@@ -491,6 +487,8 @@
     <MESSAGE value="Processing is now handle only active obstacles." />
     <MESSAGE value="Optimized slide process" />
     <MESSAGE value="Messing around jump function" />
-    <option name="LAST_COMMIT_MESSAGE" value="Messing around jump function" />
+    <MESSAGE value="Messing around jump function, once again" />
+    <MESSAGE value="Corrected bottom colliders" />
+    <option name="LAST_COMMIT_MESSAGE" value="Corrected bottom colliders" />
   </component>
 </project>

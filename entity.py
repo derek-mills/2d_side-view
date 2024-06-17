@@ -75,6 +75,7 @@ class Entity(object):
         self.is_jump: bool = False
         self.is_crouch: bool = False
         self.is_abort_jump: bool = False
+        self.is_jump_performed: bool = False
         self.default_acceleration: float = .8
         self.acceleration: float = self.default_acceleration
         self.default_air_acceleration: float = .1
