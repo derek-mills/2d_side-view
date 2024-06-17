@@ -234,10 +234,15 @@ class Actor(Entity):
         # RIGHT actions
         if new_action == 'right action':
             # Apply filter of unwanted actions:
-            if self.__state not in ('free', 'crouch', 'stand still', 'prone', 'run left', 'fly left', 'run right'):
+            if self.__state not in ('jump', 'free', 'crouch', 'stand still', 'prone', 'run left', 'fly left', 'run right'):
             # if self.__state == 'hanging on edge':
                 return
             if not self.is_stand_on_ground:
+                if self.__state == 'jump':
+                    self.is_jump_performed = True
+                else:
+                    self.is_jump_performed = False
+
                 self.set_state('fly right')
             else:
                 if self.__state == 'crouch':
@@ -269,10 +274,14 @@ class Actor(Entity):
         # LEFT actions
         elif new_action == 'left action':
             # Apply filter of unwanted actions:
-            if self.__state not in ('free', 'crouch', 'stand still', 'prone', 'run right', 'fly right', 'run left'):
+            if self.__state not in ('jump', 'free', 'crouch', 'stand still', 'prone', 'run right', 'fly right', 'run left'):
             # if self.__state == 'hanging on edge'
                 return
             if not self.is_stand_on_ground:
+                if self.__state == 'jump':
+                    self.is_jump_performed = True
+                else:
+                    self.is_jump_performed = False
                 self.set_state('fly left')
             else:
                 if self.__state == 'crouch':
