@@ -252,7 +252,7 @@ class World(object):
     #             self.active_obstacles.append(k
 
     def processing_obstacles(self):
-        for key in self.obstacles[self.location].keys():
+        for key in self.active_obstacles:
         # for key in self.obstacles[self.location].keys():
             obs = self.obstacles[self.location][key]
             obs.percept({k: self.obstacles[self.location][k] for k in self.active_obstacles}, self.demolishers[self.location])

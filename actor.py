@@ -210,7 +210,7 @@ class Actor(Entity):
         return self.__state
 
     def set_state(self, new_state):
-        print(f'[actor.set_state] new state: {new_state} {self.cycles_passed}')
+        # print(f'[actor.set_state] new state: {new_state} {self.cycles_passed}')
         self.__state = new_state
         self.set_current_animation()
 
