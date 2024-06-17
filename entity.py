@@ -557,8 +557,13 @@ class Entity(object):
             if obs.rectangle.colliderect(self.collision_detector_right):
                 obs.is_being_collided_now = True
                 self.is_being_collided_now = True
-
                 self.collided_right = True
+                # if obs.rectangle.top >= self.rectangle.top + self.collision_grabber_right.height:
+                #     print('Hop over ', obs.id)
+                #     # self.rectangle.bottom = obs.rectangle.top
+                #     self.influenced_by_obstacle = obs.id
+                #     self.set_state('climb on')
+                #     # return
                 # if self.collided_left:
                     # Actor's stuck.
                     # self.ignore_user_input = True
@@ -754,6 +759,9 @@ class Entity(object):
                     self.is_stand_on_ground = False
                     self.fall_speed = 0
                     # continue
+
+    def check_space_above(self, desired_height):
+        pass
 
     def check_space_around(self):
         self.is_enough_space_left = True

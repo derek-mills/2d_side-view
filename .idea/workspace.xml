@@ -7,6 +7,10 @@
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -106,13 +110,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00098" summary="Integrated x and y coordinates correction if object is influenced by other moving object.">
-      <created>1717123278648</created>
-      <option name="number" value="00098" />
-      <option name="presentableId" value="LOCAL-00098" />
-      <option name="project" value="LOCAL" />
-      <updated>1717123278648</updated>
     </task>
     <task id="LOCAL-00099" summary="Added grab colliders to hang over the edges more accurate.">
       <created>1717125321738</created>
@@ -450,7 +447,14 @@
       <option name="project" value="LOCAL" />
       <updated>1718354652888</updated>
     </task>
-    <option name="localTasksCounter" value="147" />
+    <task id="LOCAL-00147" summary="Processing is now handle only active obstacles.">
+      <created>1718595716705</created>
+      <option name="number" value="00147" />
+      <option name="presentableId" value="LOCAL-00147" />
+      <option name="project" value="LOCAL" />
+      <updated>1718595716705</updated>
+    </task>
+    <option name="localTasksCounter" value="148" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -465,7 +469,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Redesigned active frames, which cause some custom actions of actor." />
     <MESSAGE value="Demolishers revealing and other actions are now described in actor animation sequences" />
     <MESSAGE value="Demolishers revealing offset description moved to actor's animation set." />
     <MESSAGE value="Demolishers have got some new properties and ability to collide, as far as ability choose type of movement: fly or classic." />
@@ -490,6 +493,7 @@
     <MESSAGE value="fixed minor jump issue" />
     <MESSAGE value="Grabbers appear now if actor just fell off the cliff and fly forward pressing down direction button." />
     <MESSAGE value="Corrected behavior while on moving platforms." />
-    <option name="LAST_COMMIT_MESSAGE" value="Corrected behavior while on moving platforms." />
+    <MESSAGE value="Processing is now handle only active obstacles." />
+    <option name="LAST_COMMIT_MESSAGE" value="Processing is now handle only active obstacles." />
   </component>
 </project>

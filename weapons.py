@@ -124,7 +124,7 @@ whip = {
     'ammo': 0,
     'label': 'WHIP',
     'sprite': 'whip',
-    'reach': 50,
+    'reach': 170,
     'demolishers': (
         {
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,

@@ -108,7 +108,8 @@ class World(object):
         entity.ai_controlled = description['AI controlled']
         entity.think_type = description['think type']
         entity.add_items_to_inventory(description['items'])
-        entity.activate_weapon('KITCHEN KNIFE')
+        entity.activate_weapon(0)
+        # entity.activate_weapon('WHIP')
         # entity.activate_weapon('SHORT SWORD')
 
         # entity.change_animation()

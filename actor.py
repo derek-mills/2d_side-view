@@ -210,7 +210,7 @@ class Actor(Entity):
         return self.__state
 
     def set_state(self, new_state):
-        # print(f'[actor.set_state] new state: {new_state} {self.cycles_passed}')
+        print(f'[actor.set_state] new state: {new_state} {self.cycles_passed}')
         self.__state = new_state
         self.set_current_animation()
 
@@ -360,11 +360,11 @@ class Actor(Entity):
                     if self.obstacles_around[self.influenced_by_obstacle].is_ghost_platform:
                         self.set_state('hop down from ghost')
                         return
-                self.set_new_desired_height(self.rectangle_height_slide, 0)
-                self.check_space_around()
-                if (self.look == 1 and self.is_enough_space_right) or\
-                        (self.look == -1 and self.is_enough_space_left):
-                    self.set_state('slide')
+                # self.set_new_desired_height(self.rectangle_height_slide, 0)
+                # self.check_space_around()
+                # if (self.look == 1 and self.is_enough_space_right) or\
+                #         (self.look == -1 and self.is_enough_space_left):
+                self.set_state('slide')
             else:
                 if self.is_enough_space_above and self.__state != 'jump':
                     # self.is_grabbers_active = True
@@ -393,8 +393,8 @@ class Actor(Entity):
             # self.movement_direction_inverter = 1
 
         elif new_action == 'attack':
-            if self.is_stand_on_ground:
-                self.set_state('attack')
+            # if self.is_stand_on_ground:
+            self.set_state('attack')
 
 
     def state_machine(self):
@@ -489,7 +489,7 @@ class Actor(Entity):
             else:
                 self.speed = 0
                 # self.speed = self.max_speed // 2
-                self.set_new_desired_height(self.rectangle_height_sit, 5)
+                self.set_new_desired_height(self.rectangle_height_sit)
                 self.set_new_desired_width(self.rectangle_width_sit, 4)
                 # self.set_rect_width(self.rectangle_width_sit)
                 # self.set_rect_height(self.rectangle_height_sit)
