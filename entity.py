@@ -440,7 +440,9 @@ class Entity(object):
             # if self.speed > 0:
             self.collision_detector_right.update(self.rectangle.right, self.rectangle.top, self.speed + 1, self.rectangle.height - bottom_indent)
             self.collision_detector_left.update(self.rectangle.left - 1, self.rectangle.top, 1, self.rectangle.height)
-            self.collision_detector_bottom_right.update(self.rectangle.right, self.rectangle.bottom - bottom_indent, self.speed + 1, bottom_indent)
+
+            self.collision_detector_bottom_right.update(self.rectangle.right, self.rectangle.bottom - bottom_indent, self.speed, bottom_indent)
+            # self.collision_detector_bottom_right.update(self.rectangle.right, self.rectangle.bottom - bottom_indent, self.speed + 1, bottom_indent)
             self.collision_detector_bottom_left.update(0, 0, 0, 0)
             # self.collision_grabber_right.update(self.rectangle.right-5, self.rectangle.top - 10, 30, 50)
             # self.collision_grabber_left.update(0,0,0,0)
@@ -448,8 +450,10 @@ class Entity(object):
         elif self.look * self.movement_direction_inverter == -1:
             self.collision_detector_right.update(self.rectangle.right, self.rectangle.top, 1, self.rectangle.height)
             self.collision_detector_left.update(self.rectangle.left - self.speed - 1, self.rectangle.top, self.speed + 1, self.rectangle.height - bottom_indent)
+
             self.collision_detector_bottom_right.update(0,0,0,0)
-            self.collision_detector_bottom_left.update(self.rectangle.left - self.speed - 1, self.rectangle.bottom - bottom_indent, self.speed + 1, bottom_indent)
+            self.collision_detector_bottom_left.update(self.rectangle.left - self.speed - 1, self.rectangle.bottom - bottom_indent, self.speed , bottom_indent)
+            # self.collision_detector_bottom_left.update(self.rectangle.left - self.speed - 1, self.rectangle.bottom - bottom_indent, self.speed + 1, bottom_indent)
             # self.collision_grabber_right.update(0,0,0,0)
             # self.collision_grabber_left.update(self.rectangle.left - 25, self.rectangle.top - 10, 30, 50)
 
