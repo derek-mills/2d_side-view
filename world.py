@@ -615,6 +615,7 @@ class World(object):
                 if event.key == K_SPACE:
                     if not self.spacebar_multiple_press_prevent:
                         self.is_spacebar = True
+                    # self.is_spacebar = True
                 # if event.key == K_F5:
                 #     self.need_quick_save = True
                 # elif event.key == K_F8:

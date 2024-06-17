@@ -7,6 +7,8 @@
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,13 +107,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00100" summary="Grab colliders improving.">
-      <created>1717126298318</created>
-      <option name="number" value="00100" />
-      <option name="presentableId" value="LOCAL-00100" />
-      <option name="project" value="LOCAL" />
-      <updated>1717126298318</updated>
     </task>
     <task id="LOCAL-00101" summary="Grab colliders improving, go on.">
       <created>1717132961325</created>
@@ -449,7 +444,14 @@
       <option name="project" value="LOCAL" />
       <updated>1718605753544</updated>
     </task>
-    <option name="localTasksCounter" value="149" />
+    <task id="LOCAL-00149" summary="Messing around jump function">
+      <created>1718608173015</created>
+      <option name="number" value="00149" />
+      <option name="presentableId" value="LOCAL-00149" />
+      <option name="project" value="LOCAL" />
+      <updated>1718608173015</updated>
+    </task>
+    <option name="localTasksCounter" value="150" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -464,7 +466,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Demolishers revealing offset description moved to actor's animation set." />
     <MESSAGE value="Demolishers have got some new properties and ability to collide, as far as ability choose type of movement: fly or classic." />
     <MESSAGE value="Added demolishers own collisions detector and processing." />
     <MESSAGE value="Added demolishers floor bounce." />
@@ -489,6 +490,7 @@
     <MESSAGE value="Corrected behavior while on moving platforms." />
     <MESSAGE value="Processing is now handle only active obstacles." />
     <MESSAGE value="Optimized slide process" />
-    <option name="LAST_COMMIT_MESSAGE" value="Optimized slide process" />
+    <MESSAGE value="Messing around jump function" />
+    <option name="LAST_COMMIT_MESSAGE" value="Messing around jump function" />
   </component>
 </project>

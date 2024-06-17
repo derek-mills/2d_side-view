@@ -234,7 +234,7 @@ class Actor(Entity):
         # RIGHT actions
         if new_action == 'right action':
             # Apply filter of unwanted actions:
-            if self.__state not in ('crouch', 'stand still', 'prone', 'run left', 'fly left', 'run right'):
+            if self.__state not in ('free', 'crouch', 'stand still', 'prone', 'run left', 'fly left', 'run right'):
             # if self.__state == 'hanging on edge':
                 return
             if not self.is_stand_on_ground:
@@ -245,7 +245,8 @@ class Actor(Entity):
                         self.set_state('crouch turn right')
                     else:
                         self.set_state('crawl right')
-                elif self.__state == 'stand still':
+                elif self.__state in ('free', 'stand still'):
+                # elif self.__state == 'stand still':
                     if self.look == 1:
                         self.set_state('run right')
                     else:
@@ -268,7 +269,7 @@ class Actor(Entity):
         # LEFT actions
         elif new_action == 'left action':
             # Apply filter of unwanted actions:
-            if self.__state not in ('crouch', 'stand still', 'prone', 'run right', 'fly right', 'run left'):
+            if self.__state not in ('free', 'crouch', 'stand still', 'prone', 'run right', 'fly right', 'run left'):
             # if self.__state == 'hanging on edge'
                 return
             if not self.is_stand_on_ground:
@@ -279,7 +280,8 @@ class Actor(Entity):
                         self.set_state('crouch turn left')
                     else:
                         self.set_state('crawl left')
-                elif self.__state == 'stand still':
+                elif self.__state in ('free', 'stand still'):
+                # elif self.__state == 'stand still':
                     if self.look == -1:
                         self.set_state('run left')
                     else:
@@ -305,7 +307,7 @@ class Actor(Entity):
         # DOWN actions
         elif new_action == 'down action':
             # Apply filter of unwanted actions:
-            if self.__state not in ('stand still', 'run right', 'run left', 'hanging on edge', 'hanging on ghost'):
+            if self.__state not in ('free', 'stand still', 'run right', 'run left', 'hanging on edge', 'hanging on ghost'):
                 return
 
             if self.__state in ('hanging on edge', 'hanging on ghost'):
@@ -337,10 +339,8 @@ class Actor(Entity):
         elif new_action == 'jump action':
             # Apply filter of unwanted actions:
             if self.__state not in ('jump', 'crouch', 'crawl right', 'crawl left',
+                                    # 'run right', 'run left', 'stand still', ):
                                     'run right', 'run left', 'stand still', 'fly left', 'fly right'):
-                return
-
-            if self.jump_attempts_counter == 0:
                 return
 
             if self.__state in ('crouch down', 'crouch rise', 'crouch', 'crawl right', 'crawl left') and self.is_stand_on_ground:
@@ -355,14 +355,21 @@ class Actor(Entity):
                 #         (self.look == -1 and self.is_enough_space_left):
                 self.set_state('slide')
             else:
+                if self.jump_attempts_counter == 0:
+                    # self.set_state('free')
+                    return
                 if self.is_enough_space_above and self.__state != 'jump':
                     # self.is_grabbers_active = True
                     self.set_state('jump')
+                # else:
+                #     self.set_state('jump cancel')
         elif new_action == 'jump action cancel':
             # self.is_grabbers_active = False
-            if self.__state in ('jump', ):
-                if self.just_got_jumped:
-                    self.set_state('jump cancel')
+            # if self.__state in ('jump', ):
+            #     if self.just_got_jumped:
+            #         self.set_state('jump cancel')
+            if self.just_got_jumped:
+                self.set_state('jump cancel')
 
         # HOP BACK
         elif new_action == 'hop back':
@@ -433,6 +440,9 @@ class Actor(Entity):
             # self.look = 1
             self.speed = self.max_speed // 3
             # self.heading[0] = -1
+        elif self.__state == 'free':
+            # self.heading[0] = 0
+            ...
         elif self.__state == 'jump':
             # print('try to jump...')
             if not self.just_got_jumped:
@@ -451,7 +461,7 @@ class Actor(Entity):
                     # self.just_got_jumped = False
                     # self.is_abort_jump = True
                     self.heading[0] = 0
-                    # self.set_state('stand still')
+                    self.set_state('free')
                     # self.set_state('jump cancel')
             self.is_abort_jump = False
 
