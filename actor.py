@@ -340,17 +340,6 @@ class Actor(Entity):
                                     'run right', 'run left', 'stand still', 'fly left', 'fly right'):
                 return
 
-            # if self.__state == 'hanging on ghost':
-            #     self.set_state('release edge')
-            #     return
-            #
-            # elif self.__state == 'hanging on edge':
-            #     self.set_state('release edge')
-            #     return
-            # else:
-            #     if self.jump_attempts_counter == 0:
-            #         return
-
             if self.jump_attempts_counter == 0:
                 return
 
@@ -380,9 +369,9 @@ class Actor(Entity):
             # Apply filter of unwanted actions:
             if self.__state not in ('run left', 'run right', 'stand still', 'fly right', 'fly left', 'jump'):
                 return
-            if self.is_stand_on_ground:
-                if self.is_enough_space_above:
-                    self.set_state('hop back')
+            # if self.is_stand_on_ground:
+            #     if self.is_enough_space_above:
+            self.set_state('hop back')
         elif new_action == 'hop back action cancel':
             # self.set_state('jump cancel')
             # self.is_grabbers_active = False
@@ -396,7 +385,6 @@ class Actor(Entity):
             # if self.is_stand_on_ground:
             self.set_state('attack')
 
-
     def state_machine(self):
         if self.__state == 'crouch down':                       # CROUCH DOWN PROCESS
             self.is_crouch = True
@@ -409,19 +397,9 @@ class Actor(Entity):
             self.frames_changing_threshold_modifier = self.current_weapon['animation speed modifier']
             self.set_current_animation()
             self.ignore_user_input = self.current_weapon['ignore user input']
-            # self.current_weapon_demolishers_reveal_frames = self.current_weapon['demolisher reveals at frames']
-            # self.current_weapon_demolishers_reveal_frames = list(self.current_weapon['demolisher reveals at frame'].keys())
-            # self.ignore_user_input = True
-
         elif self.__state in ('stab', 'cast', 'whip'):                          # ATTACKING IN PROCESS...
-            # if self.current_weapon['actor forward moving speed'] > 0:
-            #     self.speed = self.current_weapon['actor forward moving speed']
-            #     self.heading[0] = self.look
-            # else:
-            #     self.heading[0] = 0
-            #     self.speed = 0
-            self.heading[0] = 0
-            self.speed = 0
+            # self.heading[0] = 0
+            # self.speed = 0
             # print(self.frame_number, '-', self.current_frame)
             # if self.current_weapon_demolishers_reveal_frames:
             #     if self.frame_number == self.current_weapon_demolishers_reveal_frames[0]:
@@ -465,17 +443,55 @@ class Actor(Entity):
                 self.is_jump = True
                 self.influenced_by_obstacle = -1
                 self.jump_height = self.max_jump_height
+                # self.is_stand_on_ground = False
                 # self.set_new_desired_height(self.rectangle_height_default + 15, 1)
                 # self.set_new_desired_width(self.rectangle_width_default - 15, 1)
-            # else:
-            #     print('...but failed')
+            else:
+                if self.is_stand_on_ground:
+                    # self.just_got_jumped = False
+                    # self.is_abort_jump = True
+                    self.heading[0] = 0
+                    # self.set_state('stand still')
+                    # self.set_state('jump cancel')
             self.is_abort_jump = False
+
         elif self.__state == 'jump cancel':                     # CANCEL JUMP
             self.just_got_jumped = False
             self.is_abort_jump = True
             # self.set_new_desired_height(self.rectangle_height_default, 5)
             # self.set_new_desired_width(self.rectangle_width_default, 5)
             self.set_state('stand still')
+        elif self.__state == 'hop back':                        # HOP BACK
+            if self.is_stand_on_ground:
+                if self.is_enough_space_above:
+                    self.ignore_user_input = True
+                    self.is_grabbers_active = False
+                    if not self.just_got_jumped:
+                        self.just_got_jumped = True
+                        self.jump_attempts_counter -= 1
+                        self.is_jump = True
+                        self.influenced_by_obstacle = -1
+                        self.jump_height = self.max_jump_height // 2
+                        self.speed = self.max_speed
+                        self.movement_direction_inverter = -1
+                        self.heading[0] = 0
+                        self.idle_counter = 30
+                    self.is_abort_jump = False
+                    self.set_state('hopping back process')
+            else:
+                self.set_state('stand still')
+        elif self.__state == 'hopping back process':            # HOPPING BACK PROCESS
+            if self.idle_counter > 0:
+                self.idle_counter -= 1
+            else:
+                if self.speed <= 0:
+                    self.ignore_user_input = False
+                    if self.just_got_jumped:
+                        self.just_got_jumped = False
+                    self.is_abort_jump = True
+                    # self.movement_direction_inverter = 1
+                    # self.set_state('crouch')
+                    self.set_state('stand still')
         elif self.__state == 'slide':                           # SLIDE PREPARING
             self.speed = self.max_speed * 2.5
             self.set_new_desired_height(self.rectangle_height_slide, 0)
@@ -494,33 +510,6 @@ class Actor(Entity):
                 # self.set_rect_width(self.rectangle_width_sit)
                 # self.set_rect_height(self.rectangle_height_sit)
                 self.set_state('crouch')
-        elif self.__state == 'hop back':                        # HOP BACK
-            self.ignore_user_input = True
-            self.is_grabbers_active = False
-            if not self.just_got_jumped:
-                self.just_got_jumped = True
-                self.jump_attempts_counter -= 1
-                self.is_jump = True
-                self.influenced_by_obstacle = -1
-                self.jump_height = self.max_jump_height // 2
-                self.speed = self.max_speed
-                self.movement_direction_inverter = -1
-                self.heading[0] = 0
-                self.idle_counter = 30
-            self.is_abort_jump = False
-            self.set_state('hopping back process')
-        elif self.__state == 'hopping back process':            # HOPPING BACK PROCESS
-            if self.idle_counter > 0:
-                self.idle_counter -= 1
-            else:
-                if self.speed <= 0:
-                    self.ignore_user_input = False
-                    if self.just_got_jumped:
-                        self.just_got_jumped = False
-                    self.is_abort_jump = True
-                    # self.movement_direction_inverter = 1
-                    # self.set_state('crouch')
-                    self.set_state('stand still')
         elif self.__state == 'sliding':                         # SLIDING PROCESS
             self.heading[0] = 0
             if self.speed == 0:
@@ -568,6 +557,8 @@ class Actor(Entity):
             # self.set_new_desired_height(self.rectangle_height_slide, 0)
         elif self.__state == 'stand still':                     # STANDING STILL
             self.heading[0] = 0
+            # self.just_got_jumped = False
+            # self.is_abort_jump = True
             # self.is_grabbers_active = True
             self.is_grabbers_active = False
             if self.rectangle.height != self.rectangle_height_default:
