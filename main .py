@@ -49,9 +49,9 @@ world.load()
 #     'xy': (200, 200)
 # }
 world.add_actor(player_jake)
-# world.add_actor(demon_1)
-# world.add_actor(demon_1)
-# world.add_actor(demon_1)
+world.add_actor(demon_1)
+world.add_actor(demon_1)
+world.add_actor(demon_1)
 # world.add_actor(demon_1)
 
 

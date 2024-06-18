@@ -271,6 +271,9 @@ class Entity(object):
                 self.calculate_fall_speed()  # Discover speed and potential fall distance
                 # print('fall!')
                 self.fall()
+            else:
+                self.potential_falling_distance = 1
+                self.fall_speed = 1
         self.move()
         # self.move(time_passed)
         # self.fly(time_passed)
@@ -850,22 +853,22 @@ class Entity(object):
 
 
     def calculate_fall_speed(self):
-        if not self.is_stand_on_ground:
-            if self.fall_speed > GRAVITY_G:
-                self.fall_speed = GRAVITY_G
-            else:
-                self.fall_speed += GRAVITY
-
-            if self.is_abort_jump:
-                if self.fall_speed >= 0:
-                    self.is_abort_jump = False
-                else:
-                    self.fall_speed = 0
-                    self.is_abort_jump = False
-            self.potential_falling_distance = self.fall_speed
+        # if not self.is_stand_on_ground:
+        if self.fall_speed > GRAVITY_G:
+            self.fall_speed = GRAVITY_G
         else:
-            self.potential_falling_distance = 1
-            self.fall_speed = 1
+            self.fall_speed += GRAVITY
+
+        if self.is_abort_jump:
+            if self.fall_speed >= 0:
+                self.is_abort_jump = False
+            else:
+                self.fall_speed = 0
+                self.is_abort_jump = False
+        self.potential_falling_distance = self.fall_speed
+        # else:
+        #     self.potential_falling_distance = 1
+        #     self.fall_speed = 1
 
     def fall(self):
         # print(f'[FALL]')

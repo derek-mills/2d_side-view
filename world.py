@@ -217,22 +217,14 @@ class World(object):
             # y_offset_speed = round(self.obstacles[self.location][self.actors[self.location][0].influenced_by_obstacle].vec_to_destination[1])
         else:
             x_offset_speed = self.actors[self.location][0].speed  # * self.actors[self.location][0].look
-            y_offset_speed = abs(self.actors[self.location][0].fall_speed)        # if self.actors[self.location][0].speed > 0:
-        # # Applying camera offset:
-        # if self.actors[self.location][0].speed > 0:
-        #     y_offset_speed = self.actors[self.location][0].speed
-        # elif self.actors[self.location][0].influenced_by_obstacle >= 0:
-        #     y_offset_speed = self.obstacles[self.location][self.actors[self.location][0].influenced_by_obstacle].speed
-        # else:
-        #     y_offset_speed = 1
-        #
-        # self.camera.apply_offset((self.actors[self.location][0].rectangle.centerx, self.actors[self.location][0].rectangle.bottom),
-        #                          y_offset_speed, 5)
+            y_offset_speed = 2 if not self.actors[self.location][0].is_stand_on_ground and self.actors[self.location][0].fall_speed < 20 \
+                               else self.actors[self.location][0].fall_speed
+            # y_offset_speed = abs(self.actors[self.location][0].fall_speed)        # if self.actors[self.location][0].speed > 0:
 
         self.camera.apply_offset((self.actors[self.location][0].rectangle.centerx, self.actors[self.location][0].rectangle.bottom),
                                  x_offset_speed, y_offset_speed)
                                  # self.actors[self.location][0].speed * 0.9, self.actors[self.location][0].fall_speed)
-        # self.detect_active_actors()
+
         self.detect_active_obstacles()
 
         self.render_all()
