@@ -6,13 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demolisher.py" beforeDir="false" afterPath="$PROJECT_DIR$/demolisher.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locations_template.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations_template.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main .py" beforeDir="false" afterPath="$PROJECT_DIR$/main .py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obstacle.py" beforeDir="false" afterPath="$PROJECT_DIR$/obstacle.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -112,13 +106,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00108" summary="New actor rectangle measurements system implemented.">
-      <created>1717487383986</created>
-      <option name="number" value="00108" />
-      <option name="presentableId" value="LOCAL-00108" />
-      <option name="project" value="LOCAL" />
-      <updated>1717487383986</updated>
     </task>
     <task id="LOCAL-00109" summary="Crouch animation">
       <created>1717491325166</created>
@@ -456,7 +443,14 @@
       <option name="project" value="LOCAL" />
       <updated>1718692580375</updated>
     </task>
-    <option name="localTasksCounter" value="157" />
+    <task id="LOCAL-00157" summary="Added trigger obstacles which react if actor passes through or stand on them">
+      <created>1718701200196</created>
+      <option name="number" value="00157" />
+      <option name="presentableId" value="LOCAL-00157" />
+      <option name="project" value="LOCAL" />
+      <updated>1718701200196</updated>
+    </task>
+    <option name="localTasksCounter" value="158" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -471,7 +465,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Some experiments." />
     <MESSAGE value="Revealing demolishers description is now forming within the summoner class, not within world() to prevent errors" />
     <MESSAGE value="some improvements to get obstacles being collideable." />
     <MESSAGE value="Messing around active moving obstacles." />
@@ -496,6 +489,7 @@
     <MESSAGE value="Fixed bug when is_jump_performed trigger did not switch off during rising after crouch, and jumping ability became unavailable." />
     <MESSAGE value="Jumping on up button press" />
     <MESSAGE value="Improved fall speed calculations" />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved fall speed calculations" />
+    <MESSAGE value="Added trigger obstacles which react if actor passes through or stand on them" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added trigger obstacles which react if actor passes through or stand on them" />
   </component>
 </project>

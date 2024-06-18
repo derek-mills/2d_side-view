@@ -124,11 +124,15 @@ locations = {
                      }
                 },
                 'settings': {
-                    21: {
-                        'speed': 0.1,
+                    75: {
+                        'speed': 0.1, 'active': False,
+                        'trigger description': {
+	                       	'make active': 22,
+                        	'disappear': True,
+                        },
                     },
                     22: {
-                        'speed': 0.1,
+                        'speed': 0.1, 'active': False,
                     },
 
                 }

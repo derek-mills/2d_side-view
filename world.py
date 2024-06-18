@@ -129,6 +129,8 @@ class World(object):
         # entity.id = self.obstacle_id
         entity.is_gravity_affected = True if 'gravity affected' in description else False
         entity.trigger = True if 'trigger' in description else False
+        if entity.trigger:
+            entity.trigger_description = self.locations[self.location]['obstacles']['settings'][entity.id]['trigger description']
         entity.let_actors_pass_through = True if 'actors pass through' in description else False
         entity.is_ghost_platform = True if 'ghost' in description else False
         entity.is_collideable = True if 'collideable' in description else False
@@ -137,7 +139,7 @@ class World(object):
         entity.rectangle.width = description[1][0]
         entity.rectangle.height = description[1][1]
         if entity.id in self.locations[self.location]['obstacles']['actions'].keys():
-            entity.active = self.locations[self.location]['obstacles']['settings']['active'][entity.id]
+            entity.active = self.locations[self.location]['obstacles']['settings'][entity.id]['active']
             # entity.active = True
             entity.actions = self.locations[self.location]['obstacles']['actions'][entity.id]
             entity.max_speed = self.locations[self.location]['obstacles']['settings'][entity.id]['speed']
@@ -243,8 +245,16 @@ class World(object):
     #             self.active_obstacles.append(k
 
     def processing_obstacles(self):
+        dead = list()
         for key in self.active_obstacles:
             obs = self.obstacles[self.location][key]
+            if obs.trigger:
+                if obs.trigger_activated:
+                    if 'make active' in obs.trigger_description.keys():
+                        self.obstacles[self.location][obs.trigger_description['make active']].active = True
+                    if obs.trigger_description['disappear']:
+                        dead.append(obs.id)
+                        continue
             obs.percept({k: self.obstacles[self.location][k] for k in self.active_obstacles}, self.demolishers[self.location])
             obs.get_time(self.time_passed, self.game_cycles_counter)
             obs.process_()
