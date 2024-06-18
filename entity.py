@@ -260,6 +260,8 @@ class Entity(object):
         # self.calculate_fall_speed()  # Discover speed and potential fall distance
         self.calculate_speed()       # Discover speed and potential move distance
         if self.is_collideable:
+            if self.ai_controlled:
+                self.is_grabbers_active = False  # "Werewolves can't climb oak trees."
             self.calculate_colliders()  # Calculate colliders around actor based on his current movement and fall speeds.
             self.detect_collisions()
         self.detect_demolishers_collisions()
@@ -528,20 +530,8 @@ class Entity(object):
         self.collided_right = False
         self.collided_bottom =False
         self.is_being_collided_now = False
-        # self.influenced_by_obstacle = -1
         self.is_stand_on_ground = False
         bottom_already_changed = False
-
-        # for key in self.obstacles_around.keys():
-        #     obs = self.obstacles_around[key]
-        #     if obs.rectangle.centery < self.rectangle.centery:
-        #         sorted_obs['above'].append(obs.id)
-        #     elif obs.rectangle.centery > self.rectangle.centery:
-        #         sorted_obs['below'].append(obs.id)
-        #     if obs.rectangle.right < self.rectangle.centerx:
-        #         sorted_obs['left'].append(obs.id)
-        #     elif obs.rectangle.left > self.rectangle.centerx:
-        #         sorted_obs['right'].append(obs.id)
 
         #-----------------------------------
         # Check RIGHT
@@ -551,6 +541,16 @@ class Entity(object):
             if obs.is_ghost_platform:
                 continue
 
+            # Check if obstacle is just a passable trigger for some event:
+            if obs.let_actors_pass_through:
+                if obs.trigger:
+                    if self.id == 0:
+                        if obs.rectangle.colliderect(self.rectangle):
+                            obs.is_being_collided_now = True
+                            obs.trigger_activated = True
+                            continue
+                continue
+
             # GRAB over the top of an obstacle.
             if not self.is_stand_on_ground:
                 if self.get_state() in ('jump', 'jump cancel', 'fly right', 'fly left','stand still'):
@@ -558,23 +558,17 @@ class Entity(object):
 
                     if self.collision_grabber_right.collidepoint(obs.rectangle.topleft):
                         self.influenced_by_obstacle = obs.id
+                        # obs.trigger_activated = True
                         self.set_state('has just grabbed edge')
                         self.state_machine()
                         continue
 
             if obs.rectangle.colliderect(self.collision_detector_right):
+                # if self.id == 0:
+                #     obs.trigger_activated = True
                 obs.is_being_collided_now = True
                 self.is_being_collided_now = True
                 self.collided_right = True
-                # if obs.rectangle.top >= self.rectangle.top + self.collision_grabber_right.height:
-                #     print('Hop over ', obs.id)
-                #     # self.rectangle.bottom = obs.rectangle.top
-                #     self.influenced_by_obstacle = obs.id
-                #     self.set_state('climb on')
-                #     # return
-                # if self.collided_left:
-                    # Actor's stuck.
-                    # self.ignore_user_input = True
 
                 # Check if obstacle has crawled FROM BEHIND and pushed actor to his back:
                 if self.look == -1:  # Obstacle is on the right, but actor looks to the left.
@@ -640,6 +634,15 @@ class Entity(object):
         for key in self.sorted_obs['left']:
             obs = self.obstacles_around[key]
             if obs.is_ghost_platform:
+                continue
+
+            # Check if obstacle is just a passable trigger for some event:
+            if obs.let_actors_pass_through:
+                if obs.trigger:
+                    if obs.rectangle.colliderect(self.rectangle):
+                        if self.id == 0:
+                            obs.trigger_activated = True
+                            continue
                 continue
 
             # GRAB over the top of an obstacle.
@@ -721,6 +724,16 @@ class Entity(object):
         for key in self.sorted_obs['below']:
             obs = self.obstacles_around[key]
             obs.is_being_collided_now = False
+
+            # Check if obstacle is just a passable trigger for some event:
+            if obs.let_actors_pass_through:
+                if obs.trigger:
+                    if obs.rectangle.colliderect(self.rectangle):
+                        if self.id == 0:
+                            obs.trigger_activated = True
+                            continue
+                continue
+
             # if obs.is_ghost_platform:
             if obs.rectangle.colliderect(self.collision_detector_bottom):
                 if bottom_already_changed and obs.rectangle.top > self.rectangle.bottom:
@@ -728,6 +741,8 @@ class Entity(object):
                     # Skip it.
                     continue
 
+                if self.id == 0:
+                    obs.trigger_activated = True
                 self.collided_bottom = True
                 # if self.collided_top:
                 #     self.ignore_user_input = True
@@ -752,6 +767,16 @@ class Entity(object):
             obs.is_being_collided_now = False
             if obs.is_ghost_platform:
                 continue
+
+            # Check if obstacle is just a passable trigger for some event:
+            if obs.let_actors_pass_through:
+                if obs.trigger:
+                    if obs.rectangle.colliderect(self.rectangle):
+                        if self.id == 0:
+                            obs.trigger_activated = True
+                            continue
+                continue
+
             if obs.rectangle.colliderect(self.collision_detector_top):
                 obs.is_being_collided_now = True
                 self.is_being_collided_now = True

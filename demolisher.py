@@ -3,7 +3,6 @@ from entity import *
 from pygame import Rect
 
 class Demolisher(Entity):
-# class Demolisher(object):
 # class Demolisher(Obstacle):
 
     def __init__(self):

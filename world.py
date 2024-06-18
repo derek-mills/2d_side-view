@@ -128,20 +128,17 @@ class World(object):
         entity.id = description[-1]
         # entity.id = self.obstacle_id
         entity.is_gravity_affected = True if 'gravity affected' in description else False
+        entity.trigger = True if 'trigger' in description else False
+        entity.let_actors_pass_through = True if 'actors pass through' in description else False
+        entity.is_ghost_platform = True if 'ghost' in description else False
+        entity.is_collideable = True if 'collideable' in description else False
         entity.rectangle.topleft = description[0]
         entity.origin_xy = description[0]
         entity.rectangle.width = description[1][0]
         entity.rectangle.height = description[1][1]
-        # entity.max_speed = 0.6
-        # entity
-        # entity.is_move_right = True if 'move right' in description else False
-        # entity.is_move_up = True if 'move up' in description else False
-        # entity.is_move_down = True if 'move down' in description else False
-        # entity.is_move_left = True if 'move left' in description else False
-        entity.is_ghost_platform = True if 'ghost' in description else False
-        entity.is_collideable = True if 'collideable' in description else False
         if entity.id in self.locations[self.location]['obstacles']['actions'].keys():
-            entity.active = True
+            entity.active = self.locations[self.location]['obstacles']['settings']['active'][entity.id]
+            # entity.active = True
             entity.actions = self.locations[self.location]['obstacles']['actions'][entity.id]
             entity.max_speed = self.locations[self.location]['obstacles']['settings'][entity.id]['speed']
             # print(f'[add_obstacle] Added active obstacle: {entity.actions=} {entity.is_gravity_affected=}')
@@ -155,6 +152,7 @@ class World(object):
 
     def add_demolisher(self, description):
         demol = Demolisher()
+        # demol.id = description[-1]
         demol.id = self.demolisher_id
         self.demolisher_id += 1
         demol.name = 'demolisher ' + str(demol.id)
@@ -246,7 +244,6 @@ class World(object):
 
     def processing_obstacles(self):
         for key in self.active_obstacles:
-        # for key in self.obstacles[self.location].keys():
             obs = self.obstacles[self.location][key]
             obs.percept({k: self.obstacles[self.location][k] for k in self.active_obstacles}, self.demolishers[self.location])
             obs.get_time(self.time_passed, self.game_cycles_counter)
@@ -452,6 +449,7 @@ class World(object):
                 font_size = 10
                 params = (
                     ('ID: ' + str(obs.id), BLACK),
+                    ('TRGGR: ' + str(obs.trigger_activated), BLACK),
                     # ('      ACTIVE    : ' + str(obs.active), BLACK),
                     # ('WAIT COUNTER    : ' + str(obs.wait_counter), BLACK),
                     # ('DEST REACHED    : ' + str(obs.is_destination_reached), BLACK),
@@ -476,6 +474,7 @@ class World(object):
                 font_size = 10
                 params = (
                     ('ID: ' + str(obs.id), BLACK),
+                    ('TRGGR: ' + str(obs.trigger_activated), YELLOW),
                     #(' IS ON OBS: ' + str(self.actors[self.location][0].is_on_obstacle), WHITE),
                     # ('RECTANGLE       : ' + str(obs.rectangle), BLACK),
                     # ('VEC TO DESTINTON: ' + str(obs.vec_to_destination), BLACK),

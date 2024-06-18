@@ -54,10 +54,10 @@ locations = {
             },
             'obstacles': {
 #, 'ghost'
-#, 'move right'
-#, 'move left'
 #, 'collideable'
 #, 'gravity affected'
+#, 'trigger'
+#, 'actors pass through'
                 # 'actions': {
                 #     3: {
                 #         0: (('move', (950, 750)), ('move', 'start'), ('wait', 2), ('repeat', 0)),

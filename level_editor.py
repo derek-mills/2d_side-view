@@ -418,7 +418,7 @@ class World(object):
         if self.location in self.demolishers:
             for k in self.demolishers[self.location].keys():
                 dem = self.demolishers[self.location][k]
-                ghost = ', \'ghost\' ' if dem.is_ghost_platform else ''
+                # ghost = ', \'ghost\' ' if dem.is_ghost_platform else ''
                 # move_right = ', \'move right\' ' if dem.is_move_right else ''
                 # move_left = ', \'move left\' ' if dem.is_move_left else ''
                 collideable = ', \'collideable\' ' if dem.is_collideable else ''

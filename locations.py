@@ -58,6 +58,8 @@ locations = {
 #, 'move left'
 #, 'collideable'
 #, 'gravity affected'
+#, 'trigger'
+#, 'actors pass through'
                 # 'actions': {
                 #     3: {
                 #         0: (('move', (950, 750)), ('move', 'start'), ('wait', 2), ('repeat', 0)),
@@ -108,6 +110,7 @@ locations = {
                 ((1350, 950), (75, 50), 72),  #72
                 ((1275, 975), (75, 25), 73),  #73
                 ((625, 200), (375, 25), 74),  #74
+                ((650, 250), (50, 400), 'trigger', 'actors pass through', 75),  #75
 
 
                 ),

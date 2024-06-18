@@ -8,6 +8,7 @@ class Obstacle(Entity):
         self.is_ghost_platform: bool = False
         self.max_speed = .2
         self.is_being_collided_now: bool = False
+        self.let_actors_pass_through: bool = False
         self.idle = False
 
         self.active = False
@@ -17,47 +18,11 @@ class Obstacle(Entity):
         self.need_next_action = True
         self.wait_counter = 0
         self.repeat_counter = -1
-
-
-    # def process_old(self, time_passed):
-    #     # ...
-    #     # super().process(time_passed)
-    #     if self.is_move_left:
-    #         if self.look == 1 and self.speed > 0:  # Actor looks to the other side and runs.
-    #             # Switch off heading to force actor start reducing his speed and slow it down to zero.
-    #             # After that self is going to be able to start acceleration to proper direction.
-    #             self.heading[0] = 0
-    #         else:
-    #             self.look = -1
-    #             self.heading[0] = -1
-    #     elif self.is_move_right:
-    #         if self.look == -1 and self.speed > 0:  #
-    #             self.heading[0] = 0
-    #         else:
-    #             self.look = 1
-    #             self.heading[0] = 1
-    #     elif self.is_move_up:
-    #         self.fall_speed = -2
-    #     else:
-    #         self.heading[0] = 0
-    #
-    #     if self.is_gravity_affected:
-    #         # self.check_space_around()  # Detect obstacles on the right and left sides
-    #         self.fall_speed_calc()  # Discover speed and potential fall distance
-    #         self.speed_calc()  # Discover fall speed and potential move distance
-    #
-    #         if self.is_collideable:
-    #             self.colliders_calc()  # Calculate colliders around actor based on his current movement and fall speeds.
-    #             self.detect_collisions()
-    #         if not self.is_stand_on_ground:
-    #             self.fall()
-    #             # !!! RUDE HACK FOR TESTING PURPOSE!!!
-    #             if self.rectangle.y < 0:
-    #                 self.rectangle.y = 1000
-    #         self.move()
+        self.trigger = False
+        self.trigger_activated: bool = False
+        self.trigger_description = dict()
 
     def process_(self):
-    # def process_(self, time_passed):
         if self.active:
             if self.idle:
                 return
