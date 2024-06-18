@@ -722,8 +722,9 @@ class World(object):
             (' IDLE COUNT: ' + str(self.actors[self.location][0].idle_counter), (200, 100, 50)),
             (' ACTIVE FRAMES: ' + str(self.actors[self.location][0].active_frames), (200, 100, 50)),
 
-            (' JUMP ATTEMPTS: ' + str(self.actors[self.location][0].jump_attempts_counter), YELLOW),
-            (' JUST JUMPED: ' + str(self.actors[self.location][0].just_got_jumped), YELLOW),
+            (' JUMP ATTEMPTS : ' + str(self.actors[self.location][0].jump_attempts_counter), YELLOW),
+            (' JUST JUMPED   : ' + str(self.actors[self.location][0].just_got_jumped), YELLOW),
+            (' JUMP PERFORMED: ' + str(self.actors[self.location][0].is_jump_performed), YELLOW),
             (' IGNORES INPUT: ' + str(self.actors[self.location][0].ignore_user_input), WHITE),
             (' __STATE: ' + str(self.actors[self.location][0].get_state()), CYAN),
 

@@ -210,7 +210,7 @@ class Actor(Entity):
         return self.__state
 
     def set_state(self, new_state):
-        print(f'[actor.set_state] new state: {new_state} {self.cycles_passed}')
+        # print(f'[actor.set_state] new state: {new_state} {self.cycles_passed}')
         self.__state = new_state
         self.set_current_animation()
 
@@ -429,20 +429,23 @@ class Actor(Entity):
         elif self.__state == 'crouch':                          # CROUCH
             self.speed = 0
             self.heading[0] = 0
+        elif self.__state == 'crouch turn left':                # CROUCH TURN RIGHT
+            self.look = -1
+            self.set_state('crouch')
+        elif self.__state == 'crouch turn right':               # CROUCH TURN LEFT
+            self.look = 1
+            self.set_state('crouch')
         elif self.__state == 'crouch rise':  # CROUCH UP PROCESS
             self.is_crouch = False
             self.speed = 0
-            # self.state_machine()
             self.set_new_desired_height(self.rectangle_height_default, 5)
             self.check_space_around()
             if self.is_enough_height:
+                self.is_jump_performed = False
                 self.set_state('stand still')
             else:
-                # self.set_new_desired_height(self.rectangle_height_sit, 0)
                 self.set_state('crouch down')
                 self.state_machine()
-            # else:
-            #     self.set_state('stand still')
         elif self.__state == 'crawl right':
             # self.look = 1
             self.speed = self.max_speed // 3
@@ -471,6 +474,8 @@ class Actor(Entity):
                 if self.is_stand_on_ground:
                     # self.just_got_jumped = False
                     # self.is_abort_jump = True
+                    # Have to switch off jump attempts after actor has landed to the ground, but
+                    # human player still holding down a jump button:
                     self.is_jump_performed = True
                     self.heading[0] = 0
                     self.set_state('free')
@@ -542,18 +547,11 @@ class Actor(Entity):
             self.set_new_desired_height(self.rectangle_height_sit, 5)
             self.check_space_around()
             if self.is_enough_height:
-                # self.ignore_user_input = False
-                # self.set_new_desired_height(self.rectangle_height_sit, 5)
                 self.set_new_desired_width(self.rectangle_width_sit,10)
                 self.set_state('crouch')
             else:
                 self.set_new_desired_height(self.rectangle_height_slide, 0)
-                # self.check_space_around()
                 self.set_state('prone')
-            #     self.set_state('crouch')
-            #     self.speed = self.max_speed // 3
-                # if self.is_enough_space_above:
-                #     self.set_state('crouch down')
         elif self.__state == 'crawl prone left':
             self.speed = self.max_speed // 3
             self.look = -1
@@ -620,12 +618,6 @@ class Actor(Entity):
             # self.is_move_right = True
             # self.look = 1
             # self.set_state('stand still')
-        elif self.__state == 'crouch turn left':                # CROUCH TURN RIGHT
-            self.look = -1
-            self.set_state('crouch')
-        elif self.__state == 'crouch turn right':               # CROUCH TURN LEFT
-            self.look = 1
-            self.set_state('crouch')
         elif self.__state == 'fly left':                        # IN MID-AIR FLY LEFT
             if self.is_stand_on_ground:
                 self.set_state('stand still')
