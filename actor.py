@@ -404,19 +404,14 @@ class Actor(Entity):
             self.set_state('attack')
 
     def state_machine(self):
-        if self.__state == 'crouch down':                       # CROUCH DOWN PROCESS
-            self.is_crouch = True
-            self.is_grabbers_active = False
-            self.set_new_desired_height(self.rectangle_height_sit, 5)
-            self.set_new_desired_width(self.rectangle_width_sit, 3)
-            self.set_state('crouch')
-        elif self.__state == 'attack':                          # PREPARING ATTACK
+        if self.__state == 'attack':                          # PREPARING ATTACK
             self.set_state(self.current_weapon['attack animation'])
             self.frames_changing_threshold_modifier = self.current_weapon['animation speed modifier']
             self.set_current_animation()
             self.ignore_user_input = self.current_weapon['ignore user input']
+            if self.is_stand_on_ground:
+                self.heading[0] = 0
         elif self.__state in ('stab', 'cast', 'whip'):                          # ATTACKING IN PROCESS...
-            # self.heading[0] = 0
             # self.speed = 0
             # print(self.frame_number, '-', self.current_frame)
             # if self.current_weapon_demolishers_reveal_frames:
@@ -424,8 +419,14 @@ class Actor(Entity):
             #         self.summon_demolisher = True
             if self.animation_sequence_done:
                 self.ignore_user_input = False
-                self.heading[0] = 0
+                # self.heading[0] = 0
                 self.set_state('stand still')
+        elif self.__state == 'crouch down':                       # CROUCH DOWN PROCESS
+            self.is_crouch = True
+            self.is_grabbers_active = False
+            self.set_new_desired_height(self.rectangle_height_sit, 5)
+            self.set_new_desired_width(self.rectangle_width_sit, 3)
+            self.set_state('crouch')
         elif self.__state == 'crouch':                          # CROUCH
             self.speed = 0
             self.heading[0] = 0
@@ -481,7 +482,6 @@ class Actor(Entity):
                     self.set_state('free')
                     # self.set_state('jump cancel')
             self.is_abort_jump = False
-
         elif self.__state == 'jump cancel':                     # CANCEL JUMP
             self.just_got_jumped = False
             self.is_abort_jump = True
@@ -506,8 +506,8 @@ class Actor(Entity):
                         self.idle_counter = 30
                     self.is_abort_jump = False
                     self.set_state('hopping back process')
-            else:
-                self.set_state('stand still')
+            # else:
+            #     self.set_state('stand still')
         elif self.__state == 'hopping back process':            # HOPPING BACK PROCESS
             if self.idle_counter > 0:
                 self.idle_counter -= 1

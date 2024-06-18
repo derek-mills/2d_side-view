@@ -47,8 +47,8 @@ class World(object):
         self.is_x = False
         self.is_n = False
         self.is_b = False
-        self.is_spacebar = False
-        self.spacebar_multiple_press_prevent = False
+        self.is_attack_button = False
+        self.attack_button_multiple_press_prevent = False
         self.is_l_shift = False
         self.is_l_ctrl = False
         self.is_l_alt = False
@@ -351,7 +351,7 @@ class World(object):
                         # if actor.get_state() == 'left action':
                         actor.set_action('left action cancel')
 
-                    if self.is_spacebar:
+                    if self.is_attack_button:
                         actor.set_action('jump action')
                     else:
                         actor.set_action('jump action cancel')
@@ -584,9 +584,10 @@ class World(object):
                     self.is_input_up_arrow = False
                 if event.key == K_s:
                     self.is_input_down_arrow = False
-                if event.key == K_SPACE:
-                    self.is_spacebar = False
-                    self.spacebar_multiple_press_prevent = False
+                if event.key == K_UP:
+                # if event.key == K_SPACE:
+                    self.is_attack_button = False
+                    self.attack_button_multiple_press_prevent = False
                 # if event.key == K_RIGHT:
                 #     self.is_attack = False
             if event.type == KEYDOWN:
@@ -612,10 +613,11 @@ class World(object):
                     self.is_input_up_arrow = True
                 if event.key == K_s:
                     self.is_input_down_arrow = True
-                if event.key == K_SPACE:
-                    if not self.spacebar_multiple_press_prevent:
-                        self.is_spacebar = True
-                    # self.is_spacebar = True
+                if event.key == K_UP:
+                # if event.key == K_SPACE:
+                    if not self.attack_button_multiple_press_prevent:
+                        self.is_attack_button = True
+                    # self.is_attack_button = True
                 # if event.key == K_F5:
                 #     self.need_quick_save = True
                 # elif event.key == K_F8:
@@ -779,7 +781,7 @@ class World(object):
     #                 checking_unit.fall_speed = 0
     #                 checking_unit.is_enough_space_below = False
     #                 checking_unit.jump_attempts_counter = checking_unit.max_jump_attempts
-    #                 self.is_spacebar = False
+    #                 self.is_attack_button = False
     #                 continue
     #
     #         # CHECK LEFT
@@ -800,8 +802,8 @@ class World(object):
     #                         return
     #
     #                     # # Bounce from the wall
-    #                     # if self.is_spacebar and self.is_input_left_arrow:
-    #                     # # if self.is_spacebar and checking_unit.speed > 0:
+    #                     # if self.is_attack_button and self.is_input_left_arrow:
+    #                     # # if self.is_attack_button and checking_unit.speed > 0:
     #                     #     checking_unit.look = 1
     #                     #     checking_unit.jump_attempts_counter = 1
     #                     #     checking_unit.rectangle.left = obs.rectangle.right  # - 2
@@ -838,8 +840,8 @@ class World(object):
     #                     return
     #
     #                 # # Bounce from the wall
-    #                 # if self.is_spacebar and self.is_input_right_arrow:
-    #                 #     # if self.is_spacebar and checking_unit.speed > 0:
+    #                 # if self.is_attack_button and self.is_input_right_arrow:
+    #                 #     # if self.is_attack_button and checking_unit.speed > 0:
     #                 #     checking_unit.look = -1
     #                 #     checking_unit.jump_attempts_counter = 1
     #                 #     checking_unit.is_jump = True
