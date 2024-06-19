@@ -1,8 +1,12 @@
+# IMPORTANT NOTE:
+# To modify level content edit locations_template.py file only!
+# locations.py will be overwritten after the level editor has done saving.
+
 # from game_objects import *
+
 # from actors_description import *
 from constants import *
 # import pygame
-
 
 
 locations = {
@@ -10,12 +14,16 @@ locations = {
         {
             'music': music_ambient_1,
             'description': 'apartment #1',
-            'size': (2*MAXX, MAXY),
+            'size': (5500,MAXY),
             'hostiles': {
                 'demon 1': {
                 	'already added': False,
                 	'start xy': ((1500, 200), (1600, 200), (1700, 200)),
                 },
+                # 'demon Hildegarda': {
+                #     'already added': False,
+                #     'point on map': 103,
+                # }
 
             },
             'demolishers': {
@@ -27,39 +35,12 @@ locations = {
             'obstacles': {
                 # HERE WILL BE A GEOMETRY DESCRIPTION OF EVERY PLATFORM AFTER level_editor.py USAGE:
                 'obs rectangles': (
-                ((0, 0), (50, 2100), 0),  #0
-                ((50, 2050), (5700, 50), 1),  #1
-                ((5700, 0), (50, 2050), 2),  #2
-                ((50, 1000), (850, 50), 3),  #3
-                ((1200, 1000), (200, 50), 4),  #4
-                ((1750, 1000), (200, 50), 5),  #5
-                ((2300, 1000), (100, 50), 6),  #6
-                ((2450, 1000), (50, 50), 7),  #7
-                ((2550, 1000), (50, 50), 8),  #8
-                ((2650, 1000), (3050, 50), 9),  #9
-                ((2650, 0), (400, 700), 11),  #11
-                ((3050, 0), (2650, 150), 12),  #12
-                ((900, 1300), (300, 50), 13),  #13
-                ((1350, 1500), (100, 550), 14),  #14
-                ((2650, 1500), (100, 550), 15),  #15
-                ((2900, 1700), (1450, 50), 16),  #16
-                ((2575, 1525), (75, 525), 17),  #17
-                ((2500, 1550), (75, 500), 18),  #18
-                ((2425, 1575), (75, 475), 19),  #19
-                ((2350, 1600), (75, 450), 20),  #20
-                ((2275, 1625), (75, 450), 22),  #22
-                ((2200, 1650), (75, 400), 23),  #23
-                ((2125, 1675), (75, 375), 24),  #24
-                ((1575, 1700), (550, 50), 25),  #25
-                ((3150, 1050), (50, 300), 26),  #26
-                ((3200, 1350), (50, 350), 27),  #27
-                ((3250, 1050), (50, 300), 28),  #28
-                ((3300, 1350), (50, 350), 29),  #29
-                ((3350, 1050), (50, 300), 30),  #30
-                ((3400, 1350), (50, 350), 31),  #31
-                ((4300, 1750), (50, 50), 32),  #32
-                ((4300, 1900), (50, 150), 33),  #33
-                ((2900, 1050), (25, 650), 34),  #34
+                ((0, 900), (5450, 150), 0),  #0
+                ((0, 0), (50, 900), 2),  #2
+                ((5100, 550), (350, 50), 3),  #3
+                ((5300, 0), (150, 550), 4),  #4
+                ((50, 0), (5250, 50), 5),  #5
+                ((100, 100), (50, 50), 6),  #6
 
 
                 ),
@@ -79,10 +60,10 @@ locations = {
                         },
                         'actions': {},
                     },
-                    26: {
+                    6: {
                         'ghost': False,
-                        'speed': 0.1, 'active': False,
-                        'collideable': True,
+                        'speed': 1., 'active': True,
+                        'collideable': False,
                         'gravity affected': False,
                         'actors pass through': False,
                         'invisible': False,                        
@@ -93,7 +74,7 @@ locations = {
 	                        # ('die', 0), ('switch visibility', 0), ('switch passability', 0),
 	                        # ('turn on actions set', 0), ('switch gravity', 0),  
                                  
-                                 0: (('switch passability', 0), ('move', (3150,1350)),),
+                                 0: (('move', (1800,100)), ('move', 'start'), ('repeat', 0)),
                                  1: (('move', (0, 0)),),
                              }
 		            },

@@ -722,7 +722,8 @@ class World(object):
             ('SAVE: F2 | LOAD: F8 | WASD: MOVE CAMERA | + - : CHANGE SNAP MESH SCALE | [ ] : change inserting object type | ESC: QUIT', BLUE),
 
             ('OBJECT TYPE        : ' + str(self.object_types[self.current_object_type]), BLACK),
-            ('WORLD SIZE         : ' + str(self.camera.max_offset_x) + ':' + str(self.camera.max_offset_y), BLACK),
+            ('WORLD SIZE         : ' + str(self.camera.max_x) + ':' + str(self.camera.max_y), BLACK),
+            ('MAX OFFSET         : ' + str(self.camera.max_offset_x) + ':' + str(self.camera.max_offset_y), BLACK),
             ('SNAP MESH SCALE    : ' + str(self.snap_mesh_size), BLACK),
             ('OFFSET GLOBAL      : ' + str(self.global_offset_xy), BLACK),
             ('CAMERA INNER OFFSET: ' + str(self.camera.offset_x) + ' ' + str(self.camera.offset_y), BLACK),
@@ -741,8 +742,10 @@ class World(object):
 
     def create_snap_mesh(self):
         self.snap_mesh = dict()
-        for x in range(0, self.camera.max_offset_x + MAXX, self.snap_mesh_size):
-            for y in range(0, self.camera.max_offset_y + MAXY, self.snap_mesh_size):
+        for x in range(0, self.camera.max_x + self.snap_mesh_size, self.snap_mesh_size):
+            for y in range(0, self.camera.max_y + self.snap_mesh_size, self.snap_mesh_size):
+        # for x in range(0, self.camera.max_offset_x + MAXX, self.snap_mesh_size):
+        #     for y in range(0, self.camera.max_offset_y + MAXY, self.snap_mesh_size):
                 self.snap_mesh[(x, y)] = (x, y)
 
     def check_mouse_xy_collides_obs(self):

@@ -844,11 +844,13 @@ class Entity(object):
                 continue
 
     def fly(self):
-
+        # print('fly', self.id)
         self.vec_to_destination = list((self.destination[0] - self.rectangle.x, self.destination[1] - self.rectangle.y))
         # self.vec_to_destination = list((self.destination[0] - self.rectangle.centerx, self.destination[1] - self.rectangle.centery))
 
-        if self.vec_to_destination == (0, 0) or self.destination == self.rectangle.topleft:
+        if (self.vec_to_destination[0] > -3 and self.vec_to_destination[0] < 3) or \
+                self.destination == self.rectangle.topleft:
+        # if self.vec_to_destination == (0, 0) or self.destination == self.rectangle.topleft:
         # if self.vec_to_destination == (0, 0) or self.destination == self.rectangle.center:
             self.is_destination_reached = True
             self.speed = 0

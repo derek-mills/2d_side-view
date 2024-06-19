@@ -5,6 +5,8 @@ from constants import *
 
 class Camera(object):
     def __init__(self):
+        self.max_x: int = 0
+        self.max_y: int = 0
         self.max_offset_x: int = 0
         self.max_offset_y: int = 0
         self.offset_x: int = 0
@@ -19,9 +21,11 @@ class Camera(object):
         self.active_objects_rectangle = pygame.Rect(0, 0, 0, 0)
 
 
-    def setup(self, max_offset_x, max_offset_y):
-        self.max_offset_x = max_offset_x
-        self.max_offset_y = max_offset_y
+    def setup(self, max_x, max_y):
+        self.max_x = max_x
+        self.max_offset_x = max_x - MAXX
+        self.max_y = max_y
+        self.max_offset_y = max_y - MAXY
 
     def apply_offset(self, xy, velocity_x, velocity_y, instant_follow=False):
 
@@ -65,5 +69,5 @@ class Camera(object):
                 self.offset_y = int(self.target_offset_y)
 
         self.rectangle.update(self.offset_x, self.offset_y, MAXX, MAXY)
-        self.active_objects_rectangle.update(self.offset_x - 400, self.offset_y - 400, MAXX + 800, MAXY + 800)
-        # self.active_objects_rectangle.inflate(400, 400)
+        self.active_objects_rectangle.update(self.offset_x - 400, 0, MAXX + 800, self.max_y)
+        # self.active_objects_rectangle.update(self.offset_x - 400, self.offset_y - 400, MAXX + 800, MAXY + 800)

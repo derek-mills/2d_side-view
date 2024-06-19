@@ -181,7 +181,7 @@ class Obstacle(Entity):
 
     def next_action(self):
         print('ENTERING NEXT ACTION')
-        print('current_action:', self.actions[self.actions_set_number][self.current_action])
+
         if not self.actions:
             return
         if self.actions[self.actions_set_number][self.current_action][0] == 'repeat':
@@ -217,6 +217,7 @@ class Obstacle(Entity):
                 self.destination = self.origin_xy
             else:
                 self.destination = self.actions[self.actions_set_number][self.current_action][1]
+        print('current_action:', self.actions[self.actions_set_number][self.current_action])
         # elif self.actions[self.actions_set_number][self.current_action][0] == 'die':
         #     self.die()
         # elif self.actions[self.actions_set_number][self.current_action][0] == 'stop':

@@ -14,7 +14,7 @@ locations = {
         {
             'music': music_ambient_1,
             'description': 'apartment #1',
-            'size': (2*MAXX, MAXY),
+            'size': (5500,MAXY),
             'hostiles': {
                 'demon 1': {
                 	'already added': False,
@@ -54,9 +54,9 @@ locations = {
                         },
                         'actions': {},
                     },
-                    26: {
+                    6: {
                         'ghost': False,
-                        'speed': 0.1, 'active': False,
+                        'speed': 1., 'active': True,
                         'collideable': True,
                         'gravity affected': False,
                         'actors pass through': False,
@@ -68,7 +68,7 @@ locations = {
 	                        # ('die', 0), ('switch visibility', 0), ('switch passability', 0),
 	                        # ('turn on actions set', 0), ('switch gravity', 0),  
                                  
-                                 0: (('switch passability', 0), ('move', (3150,1350)),),
+                                 0: (('move', (3150,1350)), ('move', 'start'), ('repeat', 0)),
                                  1: (('move', (0, 0)),),
                              }
 		            },

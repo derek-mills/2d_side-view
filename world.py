@@ -67,7 +67,7 @@ class World(object):
 
         self.screen = None
         self.camera = camera.Camera()
-        self.camera.setup(MAXX*2, MAXY)
+        # self.camera.setup(MAXX*2, MAXY)
         self.time_passed: int = 0
         self.game_cycles_counter: int = 0
         self.is_quit:bool = False
@@ -86,7 +86,7 @@ class World(object):
         entity.rectangle.width = description['width']
         entity.rectangle.center = start_xy
         # entity.rectangle.center = description['start_xy']
-        entity.rectangle.x += randint(-200, 300)
+        # entity.rectangle.x += randint(-200, 300)
         entity.apply_measurements()
         entity.destination[0] = entity.rectangle.centerx
         entity.destination[1] = entity.rectangle.centery
@@ -220,7 +220,7 @@ class World(object):
                                else self.actors[self.location][0].fall_speed
             # y_offset_speed = abs(self.actors[self.location][0].fall_speed)        # if self.actors[self.location][0].speed > 0:
 
-        self.camera.apply_offset((self.actors[self.location][0].rectangle.centerx, self.actors[self.location][0].rectangle.bottom),
+        self.camera.apply_offset((self.actors[self.location][0].rectangle.centerx, self.actors[self.location][0].rectangle.top),
                                  x_offset_speed, y_offset_speed)
                                  # self.actors[self.location][0].speed * 0.9, self.actors[self.location][0].fall_speed)
 
@@ -319,8 +319,11 @@ class World(object):
         dead = list()
         for key in self.actors[self.location].keys():
             actor = self.actors[self.location][key]
-            if not actor.rectangle.colliderect(self.camera.rectangle):
+
+            if not actor.rectangle.colliderect(self.camera.active_objects_rectangle):
+            # if not actor.rectangle.colliderect(self.camera.rectangle):
                 continue
+
             if actor.dead:
                 dead.append(actor.id)
                 continue
@@ -470,14 +473,14 @@ class World(object):
                 font_size = 10
                 params = (
                     ('ID: ' + str(obs.id), RED),
-                    ('TRGGR: ' + str(obs.trigger_activated), RED),
-                    ('ACTV: ' + str(obs.active), RED),
-                    # ('WAIT COUNTER    : ' + str(obs.wait_counter), BLACK),
-                    # ('DEST REACHED    : ' + str(obs.is_destination_reached), BLACK),
-                    # ('RECTANGLE       : ' + str(obs.rectangle), BLACK),
-                    # ('ACTION          : ' + str(obs.actions[obs.actions_set_number][obs.current_action]), BLACK),
-                    # ('NEED NEXT ACTION: ' + str(obs.need_next_action), BLACK),
-                    # ('VEC TO DESTINTON: ' + str(obs.vec_to_destination), BLACK),
+                    # ('ACTV: ' + str(obs.active), RED),
+                    # ('TRGGRED: ' + str(obs.trigger_activated), RED),
+                    # ('WAIT COUNTER    : ' + str(obs.wait_counter), RED),
+                    # ('DEST REACHED    : ' + str(obs.is_destination_reached), RED),
+                    # ('RECTANGLE       : ' + str(obs.rectangle), RED),
+                    # ('ACTION          : ' + str(obs.actions[obs.actions_set_number][obs.current_action]), RED),
+                    # ('NEED NEXT ACTION: ' + str(obs.need_next_action), RED),
+                    # ('VEC TO DESTINTON: ' + str(obs.vec_to_destination), RED),
                     # 'CR',
                 )
                 for p in params:
@@ -485,7 +488,7 @@ class World(object):
                         dx += 300
                         gap = 1
                         continue
-                    self.screen.blit(fonts.all_fonts[font_size].render(p[0], True, p[1]),
+                    self.screen.blit(fonts.all_fonts[font_size].render(p[0], True, p[1], WHITE),
                                      (obs.rectangle.x + dx - self.camera.offset_x, obs.rectangle.y + gap - self.camera.offset_y))
                     gap += font_size
             else:
@@ -550,6 +553,7 @@ class World(object):
         for enemy in self.locations[self.location]['hostiles'].keys():
             for xy in self.locations[self.location]['hostiles'][enemy]['start xy']:
                 self.add_actor(all_hostiles[enemy], xy)
+
         self.camera.setup(self.locations[self.location]['size'][0], self.locations[self.location]['size'][1])
 
     def processing_human_input(self):
