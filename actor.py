@@ -11,6 +11,7 @@ class Actor(Entity):
         self.current_weapon = dict()
         self.current_weapon_demolishers_reveal_frames = list()
         self.is_collideable = True
+        self.is_destructible = True
 
         # self.weapon_snap_points ={
         #     'left hand': {},

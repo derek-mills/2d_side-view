@@ -26,6 +26,7 @@ class Entity(object):
         self.summon_demolisher_counter = -1
         self.ttl = 0
         self.dead = False
+        self.is_destructible: bool = False
         self.current_weapon = dict()
         self.time_passed: int = 0
         self.cycles_passed: int = 0
@@ -265,7 +266,9 @@ class Entity(object):
                 self.is_grabbers_active = False  # "Werewolves can't climb oak trees."
             self.calculate_colliders()  # Calculate colliders around actor based on his current movement and fall speeds.
             self.detect_collisions()
-        self.detect_demolishers_collisions()
+
+        if self.is_destructible:
+            self.detect_demolishers_collisions()
 
         if self.is_gravity_affected:
             # self.calculate_fall_speed()  # Discover speed and potential fall distance
@@ -513,7 +516,7 @@ class Entity(object):
                 self.set_state('hop back')
 
     def get_damage(self, amount):
-        print('AUCH!')
+        print(f'[entity.get_damage] {self.name} gets damage: {amount}')
         self.health -= amount
         if self.health <= 0:
             self.dead = True
