@@ -1,5 +1,5 @@
-import pygame
-
+# import pygame
+from actors_description import *
 from actor import *
 from obstacle import *
 from demolisher import *
@@ -75,7 +75,7 @@ class World(object):
     def set_screen(self, surface):
         self.screen = surface
 
-    def add_actor(self, description):
+    def add_actor(self, description, start_xy):
         entity = Actor()
         entity.id = self.actor_id
         entity.name = description['name']
@@ -84,7 +84,8 @@ class World(object):
         entity.is_gravity_affected = description['gravity affected']
         entity.rectangle.height = description['height']
         entity.rectangle.width = description['width']
-        entity.rectangle.center = description['start_xy']
+        entity.rectangle.center = start_xy
+        # entity.rectangle.center = description['start_xy']
         entity.rectangle.x += randint(-200, 300)
         entity.apply_measurements()
         entity.destination[0] = entity.rectangle.centerx
@@ -139,6 +140,7 @@ class World(object):
             entity.let_actors_pass_through = self.locations[self.location]['obstacles']['settings'][entity.id]['actors pass through']
             entity.is_ghost_platform = self.locations[self.location]['obstacles']['settings'][entity.id]['ghost']
             entity.is_collideable = self.locations[self.location]['obstacles']['settings'][entity.id]['collideable']
+            entity.invisible = self.locations[self.location]['obstacles']['settings'][entity.id]['invisible']
             entity.max_speed = self.locations[self.location]['obstacles']['settings'][entity.id]['speed']
             # print(f'[add_obstacle] Added active obstacle: {entity.actions=} {entity.is_gravity_affected=}')
         # Add an obstacle to the world storage:
@@ -534,17 +536,6 @@ class World(object):
             gap_between_stripes += font_size
 
     def load(self):
-        # try:
-        #     with open('locations_'+self.location+'.dat', 'rb') as f:
-        #         loaded_data = pickle.load(f)
-        # except FileNotFoundError:
-        #     self.obstacles[self.location] = dict()
-        #     return
-
-        # for d in loaded_data:
-        # print(f'{d}: {loaded_data[d]}')  #
-        # print('*' * 100)
-        # self.obstacles[self.location] = loaded_data
         if self.location not in self.locations.keys():
             self.locations[self.location] = dict()
             self.obstacles[self.location] = dict()
@@ -554,7 +545,9 @@ class World(object):
             self.add_obstacle(obs)
         for dem in self.locations[self.location]['demolishers']['dem rectangles']:
             self.add_demolisher(dem)
-
+        for enemy in self.locations[self.location]['hostiles'].keys():
+            for xy in self.locations[self.location]['hostiles'][enemy]['start xy']:
+                self.add_actor(all_hostiles[enemy], xy)
         self.camera.setup(self.locations[self.location]['size'][0], self.locations[self.location]['size'][1])
 
     def processing_human_input(self):

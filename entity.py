@@ -844,7 +844,7 @@ class Entity(object):
                 continue
 
     def fly(self):
-    # def fly(self, time_passed):
+
         self.vec_to_destination = list((self.destination[0] - self.rectangle.x, self.destination[1] - self.rectangle.y))
         # self.vec_to_destination = list((self.destination[0] - self.rectangle.centerx, self.destination[1] - self.rectangle.centery))
 
@@ -880,11 +880,19 @@ class Entity(object):
             # self.rectangle.y += round(self.vec_to_destination[1])
             self.rectangle.y += self.vec_to_destination[1]
 
+        # elif self.MovementType == 'sin':
+        #     # y = a + b * sin (cx + d)
+        #     # a: смещает график по оси Y;
+        #     # b: растяжение по оси Y (амплитуда);
+        #     # c: растяжение по оси Х (с увеличением с растёт частота колебаний);
+        #     # d: сдвиг графика по оси Х.
+        #     self.Location[0] -= self.Speed * 10
+        #     self.Location[1] = 200 + 200*sin(self.Location[0] * 0.01 )
 
     def calculate_fall_speed(self):
         # if not self.is_stand_on_ground:
-        if self.fall_speed > GRAVITY_G:
-            self.fall_speed = GRAVITY_G
+        if self.fall_speed > GRAVITY_CAP:
+            self.fall_speed = GRAVITY_CAP
         else:
             self.fall_speed += GRAVITY
 

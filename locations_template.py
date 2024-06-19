@@ -1,19 +1,25 @@
+# IMPORTANT NOTE:
+# To modify level content edit locations_template.py file only!
+# locations.py will be overwritten after the level editor has done saving.
+
 # from game_objects import *
+
 # from actors_description import *
 from constants import *
 # import pygame
+
 
 locations = {
     '01':
         {
             'music': music_ambient_1,
             'description': 'apartment #1',
-            'size': (MAXX, MAXY),
+            'size': (2*MAXX, MAXY),
             'hostiles': {
-                # 'demon Hula': {
-                #     'already added': False,
-                #     'point on map': 121,
-                # },
+                'demon 1': {
+                	'already added': False,
+                	'start xy': ((1500, 200), (1600, 200), (1700, 200)),
+                },
                 # 'demon Hildegarda': {
                 #     'already added': False,
                 #     'point on map': 103,
@@ -34,42 +40,45 @@ locations = {
                 ),
                 
                 'settings': {
-                    75: {
+                    34: {
                         'ghost': False,
                         'speed': 0.1, 'active': False,
                         'collideable': False,
                         'gravity affected': False,
                         'actors pass through': True,
+                        'invisible': True,                        
                         'trigger': True,
                         'trigger description': {
-	                       	'make active': (76, 83,84,85,86),
+	                       	'make active': (26,28,30),
                         	'disappear': True,
                         },
                         'actions': {},
                     },
-                    76: {
+                    26: {
                         'ghost': False,
                         'speed': 0.1, 'active': False,
                         'collideable': True,
                         'gravity affected': False,
                         'actors pass through': False,
+                        'invisible': False,                        
                         'trigger': False,
                         'trigger description': {},
                         'actions': {
 	                        # (('move', (1100,450)), ('move', 'start'), ('wait', 2), ('repeat', 0))  
 	                        # ('die', 0), ('switch visibility', 0), ('switch passability', 0),
-	                        # ('turn on actions set', 0), 
-                                 #0: (('switch passability', 0), ('move', (1050, 650)), ('turn on actions set', 1),),
-                                 0: (('switch passability', 0), ('move', (1050, 650)),('die', 0)),
-                                 1: (('move', (1550, 500)),),
+	                        # ('turn on actions set', 0), ('switch gravity', 0),  
+                                 
+                                 0: (('switch passability', 0), ('move', (3150,1350)),),
+                                 1: (('move', (0, 0)),),
                              }
 		            },
-                    83: {
+                    28: {
                         'ghost': False,
                         'speed': 0.1, 'active': False,
                         'collideable': True,
                         'gravity affected': False,
                         'actors pass through': False,
+                        'invisible': False,                                                
                         'trigger': False,
                         'trigger description': {},
                         'actions': {
@@ -77,33 +86,17 @@ locations = {
 	                        # ('die', 0), ('switch visibility', 0), ('switch passability', 0),
 	                        # ('turn on actions set', 0), 
                                  #0: (('switch passability', 0), ('move', (1050, 650)), ('turn on actions set', 1),),
-                                 0: (('switch passability', 0), ('wait', 20), ('move', (1100, 650)),('die', 0)),
-                                 1: (('move', (1550, 500)),),
-                             }
-		            },
-                    84: {
-                        'ghost': False,
-                        'speed': 0.1, 'active': False,
-                        'collideable': True,
-                        'gravity affected': False,
-                        'actors pass through': False,
-                        'trigger': False,
-                        'trigger description': {},
-                        'actions': {
-	                        # (('move', (1100,450)), ('move', 'start'), ('wait', 2), ('repeat', 0))  
-	                        # ('die', 0), ('switch visibility', 0), ('switch passability', 0),
-	                        # ('turn on actions set', 0), 
-                                 #0: (('switch passability', 0), ('move', (1050, 650)), ('turn on actions set', 1),),
-                                 0: (('switch passability', 0), ('wait', 30), ('move', (1150, 650)),('die', 0)),
+                                 0: (('switch passability', 0), ('wait', 30), ('move', (3250, 1350)),),
                                  1: (('move', (1550, 500)),),
                              }
 		            },		
-                    85: {
+                    30: {
                         'ghost': False,
                         'speed': 0.1, 'active': False,
                         'collideable': True,
                         'gravity affected': False,
                         'actors pass through': False,
+                        'invisible': False,                                                
                         'trigger': False,
                         'trigger description': {},
                         'actions': {
@@ -111,24 +104,7 @@ locations = {
 	                        # ('die', 0), ('switch visibility', 0), ('switch passability', 0),
 	                        # ('turn on actions set', 0), 
                                  #0: (('switch passability', 0), ('move', (1050, 650)), ('turn on actions set', 1),),
-                                 0: (('switch passability', 0), ('wait', 40), ('move', (1200, 650)),('die', 0)),
-                                 1: (('move', (1550, 500)),),
-                             }
-		            },
-                    86: {
-                        'ghost': False,
-                        'speed': 0.1, 'active': False,
-                        'collideable': True,
-                        'gravity affected': False,
-                        'actors pass through': False,
-                        'trigger': False,
-                        'trigger description': {},
-                        'actions': {
-	                        # (('move', (1100,450)), ('move', 'start'), ('wait', 2), ('repeat', 0))  
-	                        # ('die', 0), ('switch visibility', 0), ('switch passability', 0),
-	                        # ('turn on actions set', 0), 
-                                 #0: (('switch passability', 0), ('move', (1050, 650)), ('turn on actions set', 1),),
-                                 0: (('switch passability', 0), ('wait', 50), ('move', (1250, 650)),('die', 0)),
+                                 0: (('switch passability', 0), ('wait', 40), ('move', (3350, 1350)),),
                                  1: (('move', (1550, 500)),),
                              }
 		            },

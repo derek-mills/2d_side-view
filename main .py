@@ -40,15 +40,13 @@ fades_speed = 100
 # black_out(world.screen, world.screen, 5)
 # ---------------------------------------------------
 world.location = '01'
-# if world.location not in world.locations.keys():
-#     world.locations[world.location] = dict()
-
+world.add_actor(player_jake, (200, 200))
 world.load()
 
 # player = {
 #     'xy': (200, 200)
 # }
-world.add_actor(player_jake)
+
 # world.add_actor(demon_1)
 # world.add_actor(demon_1)
 # world.add_actor(demon_1)

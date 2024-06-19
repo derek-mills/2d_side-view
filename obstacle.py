@@ -67,6 +67,10 @@ class Obstacle(Entity):
                 self.is_collideable = False if self.is_collideable else True
                 print(f'[obs process] {self.name} changed collision status: {self.is_collideable=}')
                 self.need_next_action = True
+            elif self.actions[self.actions_set_number][self.current_action][0] == 'switch gravity':
+                self.is_gravity_affected = False if self.is_gravity_affected else True
+                # print(f'[obs process] {self.name} changed collision status: {self.is_collideable=}')
+                self.need_next_action = True
         super().process()
         # super().process(time_passed)
 

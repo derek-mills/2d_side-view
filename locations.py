@@ -3,21 +3,19 @@
 from constants import *
 # import pygame
 
+
+
 locations = {
     '01':
         {
             'music': music_ambient_1,
             'description': 'apartment #1',
-            'size': (MAXX, MAXY),
+            'size': (2*MAXX, MAXY),
             'hostiles': {
-                # 'demon Hula': {
-                #     'already added': False,
-                #     'point on map': 121,
-                # },
-                # 'demon Hildegarda': {
-                #     'already added': False,
-                #     'point on map': 103,
-                # }
+                'demon 1': {
+                	'already added': False,
+                	'start xy': ((1500, 200), (1600, 200), (1700, 200)),
+                },
 
             },
             'demolishers': {
@@ -29,85 +27,83 @@ locations = {
             'obstacles': {
                 # HERE WILL BE A GEOMETRY DESCRIPTION OF EVERY PLATFORM AFTER level_editor.py USAGE:
                 'obs rectangles': (
-                ((0, 1000), (1900, 50), 0),  #0
-                ((0, 0), (50, 1000), 1),  #1
-                ((1900, 1000), (1900, 50), 13),  #13
-                ((3750, 250), (50, 750), 14),  #14
-                ((3050, 250), (700, 50), 15),  #15
-                ((2700, 300), (550, 50), 16),  #16
-                ((2450, 350), (500, 50), 17),  #17
-                ((50, 450), (200, 550), 38),  #38
-                ((1000, 650), (150, 350), 42),  #42
-                ((1150, 650), (550, 50), 43),  #43
-                ((450, 850), (150, 150), 47),  #47
-                ((650, 650), (350, 50), 49),  #49
-                ((2400, 350), (50, 400), 55),  #55
-                ((1000, 0), (150, 450), 59),  #59
-                ((2575, 325), (125, 25), 60),  #60
-                ((2950, 275), (100, 25), 61),  #61
-                ((2000, 350), (50, 400), 62),  #62
-                ((2050, 700), (350, 50), 63),  #63
-                ((2050, 350), (350, 25), 64),  #64
-                ((2075, 400), (300, 275), 65),  #65
-                ((1150, 200), (450, 25), 66),  #66
-                ((1825, 975), (75, 25), 67),  #67
-                ((1725, 950), (100, 50), 68),  #68
-                ((1625, 925), (100, 75), 69),  #69
-                ((1525, 900), (100, 100), 70),  #70
-                ((1425, 925), (100, 75), 71),  #71
-                ((1350, 950), (75, 50), 72),  #72
-                ((1275, 975), (75, 25), 73),  #73
-                ((625, 200), (375, 25), 74),  #74
-                ((650, 250), (50, 400), 75),  #75
-                ((1050, 450), (50, 200), 76),  #76
-                ((250, 650), (400, 50), 77),  #77
-                ((650, 750), (150, 250), 78),  #78
-                ((850, 750), (100, 250), 79),  #79
-                ((1100, 450), (50, 200), 83),  #83
-                ((1150, 450), (50, 200), 84),  #84
-                ((1200, 450), (50, 200), 85),  #85
-                ((1250, 450), (50, 200), 86),  #86
+                ((0, 0), (50, 2100), 0),  #0
+                ((50, 2050), (5700, 50), 1),  #1
+                ((5700, 0), (50, 2050), 2),  #2
+                ((50, 1000), (850, 50), 3),  #3
+                ((1200, 1000), (200, 50), 4),  #4
+                ((1750, 1000), (200, 50), 5),  #5
+                ((2300, 1000), (100, 50), 6),  #6
+                ((2450, 1000), (50, 50), 7),  #7
+                ((2550, 1000), (50, 50), 8),  #8
+                ((2650, 1000), (3050, 50), 9),  #9
+                ((2650, 0), (400, 700), 11),  #11
+                ((3050, 0), (2650, 150), 12),  #12
+                ((900, 1300), (300, 50), 13),  #13
+                ((1350, 1500), (100, 550), 14),  #14
+                ((2650, 1500), (100, 550), 15),  #15
+                ((2900, 1700), (1450, 50), 16),  #16
+                ((2575, 1525), (75, 525), 17),  #17
+                ((2500, 1550), (75, 500), 18),  #18
+                ((2425, 1575), (75, 475), 19),  #19
+                ((2350, 1600), (75, 450), 20),  #20
+                ((2275, 1625), (75, 450), 22),  #22
+                ((2200, 1650), (75, 400), 23),  #23
+                ((2125, 1675), (75, 375), 24),  #24
+                ((1575, 1700), (550, 50), 25),  #25
+                ((3150, 1050), (50, 300), 26),  #26
+                ((3200, 1350), (50, 350), 27),  #27
+                ((3250, 1050), (50, 300), 28),  #28
+                ((3300, 1350), (50, 350), 29),  #29
+                ((3350, 1050), (50, 300), 30),  #30
+                ((3400, 1350), (50, 350), 31),  #31
+                ((4300, 1750), (50, 50), 32),  #32
+                ((4300, 1900), (50, 150), 33),  #33
+                ((2900, 1050), (25, 650), 34),  #34
 
 
                 ),
                 
                 'settings': {
-                    75: {
+                    34: {
                         'ghost': False,
                         'speed': 0.1, 'active': False,
                         'collideable': False,
                         'gravity affected': False,
                         'actors pass through': True,
+                        'invisible': True,                        
                         'trigger': True,
                         'trigger description': {
-	                       	'make active': (76, 83,84,85,86),
+	                       	'make active': (26,28,30),
                         	'disappear': True,
                         },
                         'actions': {},
                     },
-                    76: {
+                    26: {
                         'ghost': False,
                         'speed': 0.1, 'active': False,
                         'collideable': True,
                         'gravity affected': False,
                         'actors pass through': False,
+                        'invisible': False,                        
                         'trigger': False,
                         'trigger description': {},
                         'actions': {
 	                        # (('move', (1100,450)), ('move', 'start'), ('wait', 2), ('repeat', 0))  
 	                        # ('die', 0), ('switch visibility', 0), ('switch passability', 0),
-	                        # ('turn on actions set', 0), 
-                                 #0: (('switch passability', 0), ('move', (1050, 650)), ('turn on actions set', 1),),
-                                 0: (('switch passability', 0), ('move', (1050, 650)),('die', 0)),
-                                 1: (('move', (1550, 500)),),
+	                        # ('turn on actions set', 0), ('switch gravity', 0),  
+                                 
+                                 0: (('switch passability', 0), ('move', (3150,1350)),),
+                                 1: (('move', (0, 0)),),
                              }
 		            },
-                    83: {
+                    28: {
                         'ghost': False,
                         'speed': 0.1, 'active': False,
                         'collideable': True,
                         'gravity affected': False,
                         'actors pass through': False,
+                        'invisible': False,                                                
                         'trigger': False,
                         'trigger description': {},
                         'actions': {
@@ -115,33 +111,17 @@ locations = {
 	                        # ('die', 0), ('switch visibility', 0), ('switch passability', 0),
 	                        # ('turn on actions set', 0), 
                                  #0: (('switch passability', 0), ('move', (1050, 650)), ('turn on actions set', 1),),
-                                 0: (('switch passability', 0), ('wait', 20), ('move', (1100, 650)),('die', 0)),
-                                 1: (('move', (1550, 500)),),
-                             }
-		            },
-                    84: {
-                        'ghost': False,
-                        'speed': 0.1, 'active': False,
-                        'collideable': True,
-                        'gravity affected': False,
-                        'actors pass through': False,
-                        'trigger': False,
-                        'trigger description': {},
-                        'actions': {
-	                        # (('move', (1100,450)), ('move', 'start'), ('wait', 2), ('repeat', 0))  
-	                        # ('die', 0), ('switch visibility', 0), ('switch passability', 0),
-	                        # ('turn on actions set', 0), 
-                                 #0: (('switch passability', 0), ('move', (1050, 650)), ('turn on actions set', 1),),
-                                 0: (('switch passability', 0), ('wait', 30), ('move', (1150, 650)),('die', 0)),
+                                 0: (('switch passability', 0), ('wait', 30), ('move', (3250, 1350)),),
                                  1: (('move', (1550, 500)),),
                              }
 		            },		
-                    85: {
+                    30: {
                         'ghost': False,
                         'speed': 0.1, 'active': False,
                         'collideable': True,
                         'gravity affected': False,
                         'actors pass through': False,
+                        'invisible': False,                                                
                         'trigger': False,
                         'trigger description': {},
                         'actions': {
@@ -149,27 +129,10 @@ locations = {
 	                        # ('die', 0), ('switch visibility', 0), ('switch passability', 0),
 	                        # ('turn on actions set', 0), 
                                  #0: (('switch passability', 0), ('move', (1050, 650)), ('turn on actions set', 1),),
-                                 0: (('switch passability', 0), ('wait', 40), ('move', (1200, 650)),('die', 0)),
+                                 0: (('switch passability', 0), ('wait', 40), ('move', (3350, 1350)),),
                                  1: (('move', (1550, 500)),),
                              }
 		            },
-                    86: {
-                        'ghost': False,
-                        'speed': 0.1, 'active': False,
-                        'collideable': True,
-                        'gravity affected': False,
-                        'actors pass through': False,
-                        'trigger': False,
-                        'trigger description': {},
-                        'actions': {
-	                        # (('move', (1100,450)), ('move', 'start'), ('wait', 2), ('repeat', 0))  
-	                        # ('die', 0), ('switch visibility', 0), ('switch passability', 0),
-	                        # ('turn on actions set', 0), 
-                                 #0: (('switch passability', 0), ('move', (1050, 650)), ('turn on actions set', 1),),
-                                 0: (('switch passability', 0), ('wait', 50), ('move', (1250, 650)),('die', 0)),
-                                 1: (('move', (1550, 500)),),
-                             }
-		            },		            		                        		            
                 },
                 ####################################
             },
