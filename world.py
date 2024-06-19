@@ -126,22 +126,19 @@ class World(object):
     def add_obstacle(self, description):
         entity = Obstacle()
         entity.id = description[-1]
-        # entity.id = self.obstacle_id
-        entity.is_gravity_affected = True if 'gravity affected' in description else False
-        entity.trigger = True if 'trigger' in description else False
-        if entity.trigger:
-            entity.trigger_description = self.locations[self.location]['obstacles']['settings'][entity.id]['trigger description']
-        entity.let_actors_pass_through = True if 'actors pass through' in description else False
-        entity.is_ghost_platform = True if 'ghost' in description else False
-        entity.is_collideable = True if 'collideable' in description else False
         entity.rectangle.topleft = description[0]
         entity.origin_xy = description[0]
         entity.rectangle.width = description[1][0]
         entity.rectangle.height = description[1][1]
-        if entity.id in self.locations[self.location]['obstacles']['actions'].keys():
+
+        if entity.id in self.locations[self.location]['obstacles']['settings'].keys():
             entity.active = self.locations[self.location]['obstacles']['settings'][entity.id]['active']
-            # entity.active = True
-            entity.actions = self.locations[self.location]['obstacles']['actions'][entity.id]
+            entity.actions = self.locations[self.location]['obstacles']['settings'][entity.id]['actions']
+            entity.trigger = self.locations[self.location]['obstacles']['settings'][entity.id]['trigger']
+            entity.trigger_description = self.locations[self.location]['obstacles']['settings'][entity.id]['trigger description']
+            entity.let_actors_pass_through = self.locations[self.location]['obstacles']['settings'][entity.id]['actors pass through']
+            entity.is_ghost_platform = self.locations[self.location]['obstacles']['settings'][entity.id]['ghost']
+            entity.is_collideable = self.locations[self.location]['obstacles']['settings'][entity.id]['collideable']
             entity.max_speed = self.locations[self.location]['obstacles']['settings'][entity.id]['speed']
             # print(f'[add_obstacle] Added active obstacle: {entity.actions=} {entity.is_gravity_affected=}')
         # Add an obstacle to the world storage:
@@ -258,7 +255,12 @@ class World(object):
             obs.percept({k: self.obstacles[self.location][k] for k in self.active_obstacles}, self.demolishers[self.location])
             obs.get_time(self.time_passed, self.game_cycles_counter)
             obs.process_()
-            # obs.process_(self.time_passed)
+
+        if dead:
+            for dead_id in dead:
+                del self.obstacles[self.location][dead_id]
+            self.detect_active_obstacles()
+
 
     def make_explosion(self, xy):
         print(f'[process demolishers] KA-BOOM!')

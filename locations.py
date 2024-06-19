@@ -54,8 +54,6 @@ locations = {
             },
             'obstacles': {
 #, 'ghost'
-#, 'move right'
-#, 'move left'
 #, 'collideable'
 #, 'gravity affected'
 #, 'trigger'
@@ -110,32 +108,41 @@ locations = {
                 ((1350, 950), (75, 50), 72),  #72
                 ((1275, 975), (75, 25), 73),  #73
                 ((625, 200), (375, 25), 74),  #74
-                ((650, 250), (50, 400), 'trigger', 'actors pass through', 75),  #75
+                ((650, 250), (50, 400), 75),  #75
+                ((1050, 450), (50, 200), 76),  #76
 
 
                 ),
                 
-                'actions': {
-                     21: {
-                         0: (('move', (650, 500)), ),
-                     },
-                     22: {
-                         0: (('move', (1550, 500)),),
-                     }
-                },
                 'settings': {
                     75: {
+                        'ghost': False,
                         'speed': 0.1, 'active': False,
+                        'collideable': False,
+                        'gravity affected': False,
+                        'actors pass through': True,
+                        'trigger': True,
                         'trigger description': {
-	                       	'make active': 22,
+	                       	'make active': 76,
                         	'disappear': True,
                         },
+                        'actions': {},
                     },
-                    22: {
+                    76: {
+                        'ghost': False,
                         'speed': 0.1, 'active': False,
-                    },
-
-                }
+                        'collideable': False,
+                        'gravity affected': False,
+                        'actors pass through': True,
+                        'trigger': False,
+                        'trigger description': {},
+                        'actions': {
+	                        # (('move', (1100,450)), ('move', 'start'), ('wait', 2), ('repeat', 0))                        
+                                 0: (('move', (1050, 650)), ),
+                                 1: (('move', (1550, 500)),),
+                             }
+		            },
+                },
                 ####################################
             },
             'items': {

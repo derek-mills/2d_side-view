@@ -83,26 +83,35 @@ locations = {
 
                 ),
                 
-                'actions': {
-                     21: {
-                         0: (('move', (650, 500)), ),
-                     },
-                     22: {
-                         0: (('move', (1550, 500)),),
-                     }
-                },
                 'settings': {
-                    21: {
+                    75: {
+                        'ghost': False,
                         'speed': 0.1, 'active': False,
+                        'collideable': False,
+                        'gravity affected': False,
+                        'actors pass through': True,
+                        'trigger': True,
                         'trigger description': {
-                        	'make active': 22,
+	                       	'make active': 22,
                         	'disappear': True,
+                        },
+                        'actions': {},
                     },
                     22: {
+                        'ghost': False,
                         'speed': 0.1, 'active': False,
-                    },
-
-                }
+                        'collideable': False,
+                        'gravity affected': False,
+                        'actors pass through': True,
+                        'trigger': False,
+                        'trigger description': {},
+                        'actions': {
+	                        # (('move', (1100,450)), ('move', 'start'), ('wait', 2), ('repeat', 0))                        
+                                 0: (('move', (650, 500)), ),
+                                 1: (('move', (1550, 500)),),
+                             }
+		            },
+                },
                 ####################################
             },
             'items': {

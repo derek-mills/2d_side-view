@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locations_template.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations_template.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
@@ -106,13 +107,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00109" summary="Crouch animation">
-      <created>1717491325166</created>
-      <option name="number" value="00109" />
-      <option name="presentableId" value="LOCAL-00109" />
-      <option name="project" value="LOCAL" />
-      <updated>1717491325166</updated>
     </task>
     <task id="LOCAL-00110" summary="Added attack animation and fixed some bugs around it">
       <created>1717567487824</created>
@@ -450,7 +444,14 @@
       <option name="project" value="LOCAL" />
       <updated>1718701200196</updated>
     </task>
-    <option name="localTasksCounter" value="158" />
+    <task id="LOCAL-00158" summary="Prepare to change some settings in active obstacle description (locations.py)">
+      <created>1718702022155</created>
+      <option name="number" value="00158" />
+      <option name="presentableId" value="LOCAL-00158" />
+      <option name="project" value="LOCAL" />
+      <updated>1718702022155</updated>
+    </task>
+    <option name="localTasksCounter" value="159" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -465,7 +466,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Revealing demolishers description is now forming within the summoner class, not within world() to prevent errors" />
     <MESSAGE value="some improvements to get obstacles being collideable." />
     <MESSAGE value="Messing around active moving obstacles." />
     <MESSAGE value="Fixed some states behavior which were broken after new states 'fly right' and 'fly left' added." />
@@ -490,6 +490,7 @@
     <MESSAGE value="Jumping on up button press" />
     <MESSAGE value="Improved fall speed calculations" />
     <MESSAGE value="Added trigger obstacles which react if actor passes through or stand on them" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added trigger obstacles which react if actor passes through or stand on them" />
+    <MESSAGE value="Prepare to change some settings in active obstacle description (locations.py)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Prepare to change some settings in active obstacle description (locations.py)" />
   </component>
 </project>
