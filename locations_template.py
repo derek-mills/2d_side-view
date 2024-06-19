@@ -25,58 +25,8 @@ locations = {
                 'dem rectangles': (
 
                 ),            	
-                'actions': {
-                    0: {
-                        0: (('move', (300,450)), ('move', 'start'), ('wait', 2), ('repeat', 0)),
-                    },
-                    
-		    13: {		
-                        0: (('move', (1000,600)), ('move', 'start'), ('wait', 2), ('repeat', 0)),
-                        },
-                        
-		    4: {
-		        0: (('move', (1100,450)), ('move', 'start'), ('wait', 2), ('repeat', 0)),
-		    },
-
-                },
-                'settings': {
-                    0: {
-                        'speed': 0.1,
-                    },
-                    13: {
-                        'speed': 0.1,
-                    },
-                    4: {
-                        'speed': 0.1,
-                    },
-
-                }
             },
             'obstacles': {
-#, 'ghost'
-#, 'collideable'
-#, 'gravity affected'
-#, 'trigger'
-#, 'actors pass through'
-                # 'actions': {
-                #     3: {
-                #         0: (('move', (950, 750)), ('move', 'start'), ('wait', 2), ('repeat', 0)),
-                #     },
-                #
-                #     4: {
-                #         0: (('move', (250, 600)), ('move', 'start'), ('wait', 2), ('repeat', 0)),
-                #     },
-                #
-                # },
-                # 'settings': {
-                #     3: {
-                #         'speed': 0.1,
-                #     },
-                #     4: {
-                #         'speed': 0.3,
-                #     },
-                #
-                # }
                 # HERE WILL BE A GEOMETRY DESCRIPTION OF EVERY PLATFORM AFTER level_editor.py USAGE:
                 'obs rectangles': (
 
@@ -106,8 +56,9 @@ locations = {
                         'trigger': False,
                         'trigger description': {},
                         'actions': {
-	                        # (('move', (1100,450)), ('move', 'start'), ('wait', 2), ('repeat', 0))                        
-                                 0: (('move', (650, 500)), ),
+	                        # (('move', (1100,450)), ('move', 'start'), ('wait', 2), ('repeat', 0))  
+	                        # ('die', 0), ('switch visibility', 0), ('switch passability', 0),
+                                 0: (('switch passability', 0), ('move', (650, 500)), ),
                                  1: (('move', (1550, 500)),),
                              }
 		            },

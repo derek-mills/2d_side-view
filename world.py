@@ -146,7 +146,7 @@ class World(object):
         #     self.obstacles[self.location] = dict()
         self.obstacles[self.location][entity.id] = entity
         # if entity.id == 20:
-        print(f'[add_obstacle] Added obstacle: {entity.id=} {entity.is_collideable=} {entity.is_gravity_affected=}')
+        # print(f'[add_obstacle] Added obstacle: {entity.id=} {entity.is_collideable=} {entity.is_gravity_affected=}')
         # self.obstacle_id += 1
 
     def add_demolisher(self, description):
@@ -245,6 +245,9 @@ class World(object):
         dead = list()
         for key in self.active_obstacles:
             obs = self.obstacles[self.location][key]
+            if obs.dead:
+                dead.append(obs.id)
+                continue
             if obs.trigger:
                 if obs.trigger_activated:
                     if 'make active' in obs.trigger_description.keys():
@@ -260,7 +263,6 @@ class World(object):
             for dead_id in dead:
                 del self.obstacles[self.location][dead_id]
             self.detect_active_obstacles()
-
 
     def make_explosion(self, xy):
         print(f'[process demolishers] KA-BOOM!')
@@ -448,6 +450,8 @@ class World(object):
             if key not in self.active_obstacles:
                 continue
             obs = self.obstacles[self.location][key]
+            if obs.invisible:
+                continue
             if obs.is_being_collided_now:
                 color = RED
             else:
@@ -460,9 +464,9 @@ class World(object):
                 gap = 1
                 font_size = 10
                 params = (
-                    ('ID: ' + str(obs.id), BLACK),
-                    ('TRGGR: ' + str(obs.trigger_activated), BLACK),
-                    # ('      ACTIVE    : ' + str(obs.active), BLACK),
+                    ('ID: ' + str(obs.id), RED),
+                    ('TRGGR: ' + str(obs.trigger_activated), RED),
+                    ('ACTV: ' + str(obs.active), RED),
                     # ('WAIT COUNTER    : ' + str(obs.wait_counter), BLACK),
                     # ('DEST REACHED    : ' + str(obs.is_destination_reached), BLACK),
                     # ('RECTANGLE       : ' + str(obs.rectangle), BLACK),

@@ -6,8 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locations_template.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations_template.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obstacle.py" beforeDir="false" afterPath="$PROJECT_DIR$/obstacle.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -107,13 +109,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00110" summary="Added attack animation and fixed some bugs around it">
-      <created>1717567487824</created>
-      <option name="number" value="00110" />
-      <option name="presentableId" value="LOCAL-00110" />
-      <option name="project" value="LOCAL" />
-      <updated>1717567487824</updated>
     </task>
     <task id="LOCAL-00111" summary="Added demolishers summoning mechanism based on key frames, described in weapons.py for every weapon.">
       <created>1717661866521</created>
@@ -451,7 +446,14 @@
       <option name="project" value="LOCAL" />
       <updated>1718702022155</updated>
     </task>
-    <option name="localTasksCounter" value="159" />
+    <task id="LOCAL-00159" summary="Active objects and triggers improved.">
+      <created>1718758529314</created>
+      <option name="number" value="00159" />
+      <option name="presentableId" value="LOCAL-00159" />
+      <option name="project" value="LOCAL" />
+      <updated>1718758529314</updated>
+    </task>
+    <option name="localTasksCounter" value="160" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -466,7 +468,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="some improvements to get obstacles being collideable." />
     <MESSAGE value="Messing around active moving obstacles." />
     <MESSAGE value="Fixed some states behavior which were broken after new states 'fly right' and 'fly left' added." />
     <MESSAGE value="Decided to apply a filters before setting every new action in set_action() to get a bunch just allowed actions to handle." />
@@ -491,6 +492,7 @@
     <MESSAGE value="Improved fall speed calculations" />
     <MESSAGE value="Added trigger obstacles which react if actor passes through or stand on them" />
     <MESSAGE value="Prepare to change some settings in active obstacle description (locations.py)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Prepare to change some settings in active obstacle description (locations.py)" />
+    <MESSAGE value="Active objects and triggers improved." />
+    <option name="LAST_COMMIT_MESSAGE" value="Active objects and triggers improved." />
   </component>
 </project>

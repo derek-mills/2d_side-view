@@ -25,58 +25,8 @@ locations = {
                 'dem rectangles': (
 
                 ),            	
-                'actions': {
-                    0: {
-                        0: (('move', (300,450)), ('move', 'start'), ('wait', 2), ('repeat', 0)),
-                    },
-                    
-		    13: {		
-                        0: (('move', (1000,600)), ('move', 'start'), ('wait', 2), ('repeat', 0)),
-                        },
-                        
-		    4: {
-		        0: (('move', (1100,450)), ('move', 'start'), ('wait', 2), ('repeat', 0)),
-		    },
-
-                },
-                'settings': {
-                    0: {
-                        'speed': 0.1,
-                    },
-                    13: {
-                        'speed': 0.1,
-                    },
-                    4: {
-                        'speed': 0.1,
-                    },
-
-                }
             },
             'obstacles': {
-#, 'ghost'
-#, 'collideable'
-#, 'gravity affected'
-#, 'trigger'
-#, 'actors pass through'
-                # 'actions': {
-                #     3: {
-                #         0: (('move', (950, 750)), ('move', 'start'), ('wait', 2), ('repeat', 0)),
-                #     },
-                #
-                #     4: {
-                #         0: (('move', (250, 600)), ('move', 'start'), ('wait', 2), ('repeat', 0)),
-                #     },
-                #
-                # },
-                # 'settings': {
-                #     3: {
-                #         'speed': 0.1,
-                #     },
-                #     4: {
-                #         'speed': 0.3,
-                #     },
-                #
-                # }
                 # HERE WILL BE A GEOMETRY DESCRIPTION OF EVERY PLATFORM AFTER level_editor.py USAGE:
                 'obs rectangles': (
                 ((0, 1000), (1900, 50), 0),  #0
@@ -110,6 +60,7 @@ locations = {
                 ((625, 200), (375, 25), 74),  #74
                 ((650, 250), (50, 400), 75),  #75
                 ((1050, 450), (50, 200), 76),  #76
+                ((250, 650), (400, 50), 77),  #77
 
 
                 ),
@@ -131,14 +82,16 @@ locations = {
                     76: {
                         'ghost': False,
                         'speed': 0.1, 'active': False,
-                        'collideable': False,
+                        'collideable': True,
                         'gravity affected': False,
-                        'actors pass through': True,
+                        'actors pass through': False,
                         'trigger': False,
                         'trigger description': {},
                         'actions': {
-	                        # (('move', (1100,450)), ('move', 'start'), ('wait', 2), ('repeat', 0))                        
-                                 0: (('move', (1050, 650)), ),
+	                        # (('move', (1100,450)), ('move', 'start'), ('wait', 2), ('repeat', 0))  
+	                        # ('die', 0), ('switch visibility', 0), ('switch passability', 0),
+	                        # ('turn on actions set', 0), 
+                                 0: (('switch passability', 0), ('move', (1050, 650)), ('turn on actions set', 1),),
                                  1: (('move', (1550, 500)),),
                              }
 		            },

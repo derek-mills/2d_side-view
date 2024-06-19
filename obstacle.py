@@ -38,13 +38,33 @@ class Obstacle(Entity):
             # print(self.actions[self.actions_set_number])
             # print(self.actions[self.actions_set_number][self.current_action])
             # print(self.actions_set_number, self.current_action)
+
             if self.actions[self.actions_set_number][self.current_action][0] == 'repeat':
                 self.need_next_action = True
             elif self.actions[self.actions_set_number][self.current_action][0] == 'move':
                 self.fly()
-                # self.fly(time_passed)
                 if self.is_destination_reached:
                     self.need_next_action = True
+            elif self.actions[self.actions_set_number][self.current_action][0] == 'die':
+                self.die()
+            elif self.actions[self.actions_set_number][self.current_action][0] == 'stop':
+                self.active = False
+            elif self.actions[self.actions_set_number][self.current_action][0] == 'wait':
+                self.wait_counter = self.actions[self.actions_set_number][self.current_action][1]
+            elif self.actions[self.actions_set_number][self.current_action][0] == 'turn on actions set':
+                if self.actions[self.actions_set_number][self.current_action][1] != 0:
+                    self.actions_set_number = self.actions[self.actions_set_number][self.current_action][1]
+                else:
+                    self.actions_set_number += 1
+                self.current_action = -1
+                self.need_next_action = True
+            elif self.actions[self.actions_set_number][self.current_action][0] == 'switch visibility':
+                self.invisible = False if self.invisible else True
+                self.need_next_action = True
+            elif self.actions[self.actions_set_number][self.current_action][0] == 'switch passability':
+                self.is_collideable = False if self.is_collideable else True
+                print(f'[obs process] {self.name} changed collision status: {self.is_collideable=}')
+                self.need_next_action = True
         super().process()
         # super().process(time_passed)
 
@@ -178,7 +198,7 @@ class Obstacle(Entity):
 
         if self.current_action == len(self.actions[self.actions_set_number]):
             # End of action sequence reached.
-            # print('ENd reached '*5)
+            print('ENd reached '*5)
             self.active = False
             self.current_action = -1
             return
@@ -192,25 +212,13 @@ class Obstacle(Entity):
             else:
                 self.destination = self.actions[self.actions_set_number][self.current_action][1]
         # elif self.actions[self.actions_set_number][self.current_action][0] == 'die':
-        #     self.get_suicide()
-        elif self.actions[self.actions_set_number][self.current_action][0] == 'stop':
-            self.active = False
-        elif self.actions[self.actions_set_number][self.current_action][0] == 'wait':
-            self.wait_counter = self.actions[self.actions_set_number][self.current_action][1]
-        # elif self.actions[self.actions_set_number][self.current_action][0] == 'find route':
-        #     self.destination_list = list()
-        #     # self.destination = self.rectangle.center
-        #     self.need_to_build_new_route_to_point = self.actions[self.actions_set_number][self.current_action][1]
-        elif self.actions[self.actions_set_number][self.current_action][0] == 'switch visibility':
-            self.invisible = False if self.invisible else True
-        elif self.actions[self.actions_set_number][self.current_action][0] == 'switch passability':
-            self.passable = False if self.passable else True
-        elif self.actions[self.actions_set_number][self.current_action][0] == 'make inactive':
-            self.active = False
-        # elif self.actions[self.actions_set_number][self.current_action][0] == 'teleport':
-        #     self.destination_list = list()
-        #     # self.destination = None
-        #     # self.destination_point = self.point_on_map
-        #     self.rectangle.center = self.homeland_location['points'][self.actions[self.actions_set_number][self.current_action][1]]['rect'].center
-        #     # self.rectangle.center = locations[self.location]['points'][self.actions[self.current_action][1]]['rect'].center
-        #     self.destination = self.rectangle.center
+        #     self.die()
+        # elif self.actions[self.actions_set_number][self.current_action][0] == 'stop':
+        #     self.active = False
+        # elif self.actions[self.actions_set_number][self.current_action][0] == 'wait':
+        #     self.wait_counter = self.actions[self.actions_set_number][self.current_action][1]
+        # elif self.actions[self.actions_set_number][self.current_action][0] == 'switch visibility':
+        #     self.invisible = False if self.invisible else True
+        # elif self.actions[self.actions_set_number][self.current_action][0] == 'switch passability':
+        #     self.is_collideable = False if self.is_collideable else True
+        #     print(f'[next_action] {self.name} changed collision status: {self.is_collideable=}')

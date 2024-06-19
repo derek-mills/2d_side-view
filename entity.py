@@ -50,6 +50,7 @@ class Entity(object):
         self.current_mask_xy = (0, 0)
         self.current_mask_flip = False
         self.active_frames = list()
+        self.invisible: bool = False
 
         # GEOMETRY
         self.origin_xy: tuple = (0, 0)
@@ -901,12 +902,13 @@ class Entity(object):
 
     def correct_position_if_influenced(self):
         if self.influenced_by_obstacle >= 0:
-            obs = self.obstacles_around[self.influenced_by_obstacle]
-            if obs.active:
-                self.rectangle.x += obs.vec_to_destination[0]
-                self.rectangle.y += obs.vec_to_destination[1]
-                # self.rectangle.x += round(obs.vec_to_destination[0])
-                # self.rectangle.y += round(obs.vec_to_destination[1])
+            if self.influenced_by_obstacle in self.obstacles_around.keys():
+                obs = self.obstacles_around[self.influenced_by_obstacle]
+                if obs.active:
+                    self.rectangle.x += obs.vec_to_destination[0]
+                    self.rectangle.y += obs.vec_to_destination[1]
+                    # self.rectangle.x += round(obs.vec_to_destination[0])
+                    # self.rectangle.y += round(obs.vec_to_destination[1])
 
     def calculate_speed(self):
         if self.heading[0] == 0:
