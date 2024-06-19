@@ -28,8 +28,8 @@ class Obstacle(Entity):
                 return
             if self.wait_counter > 0:
                 self.wait_counter -= 1
-                if self.wait_counter == 0:
-                    self.need_next_action = True
+                # if self.wait_counter == 0:
+                #     self.need_next_action = True
                 return
             if self.need_next_action:
                 self.need_next_action = False
@@ -49,8 +49,10 @@ class Obstacle(Entity):
                 self.die()
             elif self.actions[self.actions_set_number][self.current_action][0] == 'stop':
                 self.active = False
+                self.need_next_action = True
             elif self.actions[self.actions_set_number][self.current_action][0] == 'wait':
                 self.wait_counter = self.actions[self.actions_set_number][self.current_action][1]
+                self.need_next_action = True
             elif self.actions[self.actions_set_number][self.current_action][0] == 'turn on actions set':
                 if self.actions[self.actions_set_number][self.current_action][1] != 0:
                     self.actions_set_number = self.actions[self.actions_set_number][self.current_action][1]

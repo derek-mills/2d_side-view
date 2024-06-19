@@ -396,6 +396,151 @@ class World(object):
         obs_rects = list()
         for k in self.obstacles[self.location].keys():
             obs = self.obstacles[self.location][k]
+            # ghost = ', \'ghost\' ' if obs.is_ghost_platform else ''
+            # move_right = ', \'move right\' ' if obs.is_move_right else ''
+            # move_left = ', \'move left\' ' if obs.is_move_left else ''
+            # collideable = ', \'collideable\' ' if obs.is_collideable else ''
+            # actions = ', \'active\' ' if obs.actions else ''
+            # gravity_affected = ', \'gravity affected\' ' if obs.is_gravity_affected else ''
+            # str(obs.rectangle.size) + ghost + move_right + move_left + \
+
+            total_strg = '                ' + \
+                         '(' + \
+                         str(obs.rectangle.topleft) + ', ' + \
+                         str(obs.rectangle.size) + \
+                         ', ' + str(k) + '),  #' + str(k) + '\n'
+            obs_rects.append(total_strg)
+            # str(obs.rectangle.size) + ghost + move_right + move_left + collideable + gravity_affected + '),  #' + str(obs.id) + '\n'
+
+
+        dem_rects = list()
+        if self.location in self.demolishers:
+            for k in self.demolishers[self.location].keys():
+                dem = self.demolishers[self.location][k]
+                # ghost = ', \'ghost\' ' if dem.is_ghost_platform else ''
+                # move_right = ', \'move right\' ' if dem.is_move_right else ''
+                # move_left = ', \'move left\' ' if dem.is_move_left else ''
+                # collideable = ', \'collideable\' ' if dem.is_collideable else ''
+                # actions = ', \'active\' ' if dem.actions else ''
+                # gravity_affected = ', \'gravity affected\' ' if dem.is_gravity_affected else ''
+
+                # str(dem.rectangle.size) + ghost + move_right + move_left + \
+                total_strg = '                ' + \
+                       '(' + \
+                       str(dem.rectangle.topleft) + ', ' + \
+                       str(dem.rectangle.size) + ', ' + str(k) + \
+                       '),  #' + str(k) + '\n'
+                dem_rects.append(total_strg)
+                       # str(dem.rectangle.size) + ghost + move_right + move_left + collideable + gravity_affected + '),  #' + str(dem.id) + '\n'
+
+        # print(obs_rects)
+        # print(dem_rects)
+        # exit()
+        # ['                ((100, 950), (1550, 50), 0),  #0\n',
+        #  '                ((1300, 500), (300, 250), 1),  #1\n',
+        #  '                ((950, 350), (100, 150), 2),  #2\n',
+        #  '                ((650, 300), (200, 200), 3),  #3\n']
+
+        # ['                ((550, 750), (200, 200), 0),  #0\n']
+
+
+        loc_found = False
+        f_dest = open('locations.py', 'w')
+        with open('locations_template.py', 'r') as f_source:
+            for line in f_source:
+                f_dest.write(line)
+                if loc_found:
+                    if '\'obs rectangles\':' in line:
+                        for obs_rect_line in obs_rects:
+                            f_dest.write(obs_rect_line)
+                    if '\'dem rectangles\':' in line:
+                        for dem_rect_line in dem_rects:
+                            f_dest.write(dem_rect_line)
+                        # print('obs found!!')
+                        # for k in self.obstacles[self.location].keys():
+                        #     obs = self.obstacles[self.location][k]
+                        #     ghost = ', \'ghost\' ' if obs.is_ghost_platform else ''
+                        #     # move_right = ', \'move right\' ' if obs.is_move_right else ''
+                        #     # move_left = ', \'move left\' ' if obs.is_move_left else ''
+                        #     collideable = ', \'collideable\' ' if obs.is_collideable else ''
+                        #     actions = ', \'active\' ' if obs.actions else ''
+                        #     gravity_affected = ', \'gravity affected\' ' if obs.is_gravity_affected else ''
+                        #
+                        #     # str(obs.rectangle.size) + ghost + move_right + move_left + \
+                        #     total_strg = '                ' + \
+                        #            '(' + \
+                        #            str(obs.rectangle.topleft) + ', ' + \
+                        #            str(obs.rectangle.size) + ghost + \
+                        #            collideable + gravity_affected + actions + ', ' + str(k) + \
+                        #            '),  #' + str(k) + '\n'
+                        #            # str(obs.rectangle.size) + ghost + move_right + move_left + collideable + gravity_affected + '),  #' + str(obs.id) + '\n'
+
+                        # loc_found = False
+                if '\''+self.location+'\':' in line and not loc_found:
+                    # print('Location found!')
+                    loc_found = True
+        f_dest.close()
+
+        # loc_found = False
+        # f_dest = open('locations.py', 'w')
+        # with open('locations_template.py', 'r') as f_source:
+        #     for line in f_source:
+        #         f_dest.write(line)
+        #         if loc_found:
+        #             if '\'dem rectangles\':' in line:
+        #                 for k in self.demolishers[self.location].keys():
+        #                     dem = self.demolishers[self.location][k]
+        #                     ghost = ', \'ghost\' ' if dem.is_ghost_platform else ''
+        #                     # move_right = ', \'move right\' ' if dem.is_move_right else ''
+        #                     # move_left = ', \'move left\' ' if dem.is_move_left else ''
+        #                     collideable = ', \'collideable\' ' if dem.is_collideable else ''
+        #                     actions = ', \'active\' ' if dem.actions else ''
+        #                     gravity_affected = ', \'gravity affected\' ' if dem.is_gravity_affected else ''
+        #
+        #                     # str(dem.rectangle.size) + ghost + move_right + move_left + \
+        #                     total_strg = '                ' + \
+        #                            '(' + \
+        #                            str(dem.rectangle.topleft) + ', ' + \
+        #                            str(dem.rectangle.size) + ghost + \
+        #                            collideable + gravity_affected + actions + ', ' + str(k) + \
+        #                            '),  #' + str(k) + '\n'
+        #                            # str(dem.rectangle.size) + ghost + move_right + move_left + collideable + gravity_affected + '),  #' + str(dem.id) + '\n'
+        #                     f_dest.write(total_strg)
+        #                 loc_found = False
+        #         if '\''+self.location+'\':' in line and not loc_found:
+        #             # print('Location found!')
+        #             loc_found = True
+        # f_dest.close()
+
+        self.allow_import_locations = True
+        # exit()
+        # with open('locations_' + self.location + '.dat', 'w') as f:
+        #     for k in self.obstacles[self.location].keys():
+        #         obs = self.obstacles[self.location][k]
+        #         obs_geometry = (obs.id, obs.rectangle.topleft, obs.rectangle.size)
+        #         # obs_geometry.append((obs.id, obs.rectangle.topleft, obs.rectangle.size))
+        #         # f.write(str(obs.id) + ' ' + str(obs_geometry) + '\n')
+        #         f.write(obs_geometry)
+        #         # f.write(json.dumps(obs_geometry))
+
+            # json.dump(obs_geometry, f)
+
+            # settings = {
+            #     ''
+            # }
+            # pickle.dump(settings, f)
+
+    def save_old(self):
+        # Saving with pickle:
+        # with open('locations_'+self.location+'.dat', 'wb') as f:
+        #     pickle.dump(self.obstacles[self.location], f)
+
+        # Saving using JSON:
+        # obs_geometry = list()
+
+        obs_rects = list()
+        for k in self.obstacles[self.location].keys():
+            obs = self.obstacles[self.location][k]
             ghost = ', \'ghost\' ' if obs.is_ghost_platform else ''
             # move_right = ', \'move right\' ' if obs.is_move_right else ''
             # move_left = ', \'move left\' ' if obs.is_move_left else ''

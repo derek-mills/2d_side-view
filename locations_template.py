@@ -42,26 +42,28 @@ locations = {
                         'actors pass through': True,
                         'trigger': True,
                         'trigger description': {
-	                       	'make active': 22,
+	                       	'make active': 76,
                         	'disappear': True,
                         },
                         'actions': {},
                     },
-                    22: {
+                    76: {
                         'ghost': False,
                         'speed': 0.1, 'active': False,
-                        'collideable': False,
+                        'collideable': True,
                         'gravity affected': False,
-                        'actors pass through': True,
+                        'actors pass through': False,
                         'trigger': False,
                         'trigger description': {},
                         'actions': {
 	                        # (('move', (1100,450)), ('move', 'start'), ('wait', 2), ('repeat', 0))  
 	                        # ('die', 0), ('switch visibility', 0), ('switch passability', 0),
-                                 0: (('switch passability', 0), ('move', (650, 500)), ),
+	                        # ('turn on actions set', 0), 
+                                 0: (('switch passability', 0), ('move', (1050, 650)), ('turn on actions set', 1),),
                                  1: (('move', (1550, 500)),),
                              }
 		            },
+                },
                 },
                 ####################################
             },
