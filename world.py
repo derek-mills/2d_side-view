@@ -319,6 +319,8 @@ class World(object):
         dead = list()
         for key in self.actors[self.location].keys():
             actor = self.actors[self.location][key]
+            if not actor.rectangle.colliderect(self.camera.rectangle):
+                continue
             if actor.dead:
                 dead.append(actor.id)
                 continue
