@@ -131,8 +131,10 @@ class World(object):
         entity.origin_xy = description[0]
         entity.rectangle.width = description[1][0]
         entity.rectangle.height = description[1][1]
-
         if entity.id in self.locations[self.location]['obstacles']['settings'].keys():
+            entity.exotic_movement = self.locations[self.location]['obstacles']['settings'][entity.id]['exotic movement'] \
+                if 'exotic movement' in self.locations[self.location]['obstacles']['settings'][entity.id] else ''
+
             entity.active = self.locations[self.location]['obstacles']['settings'][entity.id]['active']
             entity.actions = self.locations[self.location]['obstacles']['settings'][entity.id]['actions']
             entity.trigger = self.locations[self.location]['obstacles']['settings'][entity.id]['trigger']

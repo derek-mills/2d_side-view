@@ -1,5 +1,5 @@
 import pygame
-from math import sqrt
+from math import sqrt, sin
 from constants import *
 from graphics import *
 
@@ -101,10 +101,9 @@ class Entity(object):
         self.fall_speed: float = 0.
         self.is_stand_on_ground: bool = False
         self.is_gravity_affected: bool = False
-        # self.destination_list = list()
-        # self.destination_point = 0
         self.destination: list = [0, 0]
         self.vec_to_destination: list = [0, 0]
+        self.exotic_movement = ''
 
         # Collisions
         self.is_collideable = False
@@ -880,7 +879,10 @@ class Entity(object):
             # self.rectangle.x += round(self.vec_to_destination[0])
             self.rectangle.x += self.vec_to_destination[0]
             # self.rectangle.y += round(self.vec_to_destination[1])
-            self.rectangle.y += self.vec_to_destination[1]
+            if self.exotic_movement == 'sin':
+                self.rectangle.y = 200 + 20 * sin(self.rectangle.x * 0.01)
+            else:
+                self.rectangle.y += self.vec_to_destination[1]
 
         # elif self.MovementType == 'sin':
         #     # y = a + b * sin (cx + d)
@@ -889,7 +891,8 @@ class Entity(object):
         #     # c: растяжение по оси Х (с увеличением с растёт частота колебаний);
         #     # d: сдвиг графика по оси Х.
         #     self.Location[0] -= self.Speed * 10
-        #     self.Location[1] = 200 + 200*sin(self.Location[0] * 0.01 )
+        #     self.Location[1] = 200 + 200*sin(self.Location[0] * 0.02 )
+
 
     def calculate_fall_speed(self):
         # if not self.is_stand_on_ground:

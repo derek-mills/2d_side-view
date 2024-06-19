@@ -6,14 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/camera.py" beforeDir="false" afterPath="$PROJECT_DIR$/camera.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locations (1-я копия).py" beforeDir="false" afterPath="$PROJECT_DIR$/locations (1-я копия).py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locations_template.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations_template.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obstacle.py" beforeDir="false" afterPath="$PROJECT_DIR$/obstacle.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -113,13 +107,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00118" summary="Added health bars.&#10;Fixed demolishers incorrect first reveal without proper rectangle update.">
-      <created>1717984772067</created>
-      <option name="number" value="00118" />
-      <option name="presentableId" value="LOCAL-00118" />
-      <option name="project" value="LOCAL" />
-      <updated>1717984772067</updated>
     </task>
     <task id="LOCAL-00119" summary="Added moving demolishers.">
       <created>1717989466206</created>
@@ -457,7 +444,14 @@
       <option name="project" value="LOCAL" />
       <updated>1718777599567</updated>
     </task>
-    <option name="localTasksCounter" value="167" />
+    <task id="LOCAL-00167" summary="Some minor changes.">
+      <created>1718786347747</created>
+      <option name="number" value="00167" />
+      <option name="presentableId" value="LOCAL-00167" />
+      <option name="project" value="LOCAL" />
+      <updated>1718786347747</updated>
+    </task>
+    <option name="localTasksCounter" value="168" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -472,7 +466,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fixing come bugs with incorrect collisions while jumping" />
     <MESSAGE value="fixed bug when jump hasn't performed while on the very edge of an obstacle" />
     <MESSAGE value="added whip animation" />
     <MESSAGE value="fixed minor jump issue" />
@@ -497,6 +490,7 @@
     <MESSAGE value="Trigger activates a bunch of active obstacles now." />
     <MESSAGE value="Added monsters spawn points description in locations.py" />
     <MESSAGE value="Actors become inactive if they do not collide camera rectangle. Just in case, not to get them fell down, because of far obstacles are off." />
-    <option name="LAST_COMMIT_MESSAGE" value="Actors become inactive if they do not collide camera rectangle. Just in case, not to get them fell down, because of far obstacles are off." />
+    <MESSAGE value="Some minor changes." />
+    <option name="LAST_COMMIT_MESSAGE" value="Some minor changes." />
   </component>
 </project>

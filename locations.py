@@ -66,6 +66,7 @@ locations = {
                         'collideable': False,
                         'gravity affected': False,
                         'actors pass through': False,
+                        'exotic movement': 'sin',
                         'invisible': False,                        
                         'trigger': False,
                         'trigger description': {},
