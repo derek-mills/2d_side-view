@@ -251,7 +251,8 @@ class World(object):
             if obs.trigger:
                 if obs.trigger_activated:
                     if 'make active' in obs.trigger_description.keys():
-                        self.obstacles[self.location][obs.trigger_description['make active']].active = True
+                        for make_active_id in obs.trigger_description['make active']:
+                            self.obstacles[self.location][make_active_id].active = True
                     if obs.trigger_description['disappear']:
                         dead.append(obs.id)
                         continue

@@ -6,8 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demolisher.py" beforeDir="false" afterPath="$PROJECT_DIR$/demolisher.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locations_template.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations_template.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,13 +107,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00114" summary="Demolishers appear improvement.">
-      <created>1717737810007</created>
-      <option name="number" value="00114" />
-      <option name="presentableId" value="LOCAL-00114" />
-      <option name="project" value="LOCAL" />
-      <updated>1717737810007</updated>
     </task>
     <task id="LOCAL-00115" summary="Added AI-controlled primitive actor.">
       <created>1717743037076</created>
@@ -450,7 +444,14 @@
       <option name="project" value="LOCAL" />
       <updated>1718765302137</updated>
     </task>
-    <option name="localTasksCounter" value="163" />
+    <task id="LOCAL-00163" summary="Demolishers pass through triggers">
+      <created>1718765633726</created>
+      <option name="number" value="00163" />
+      <option name="presentableId" value="LOCAL-00163" />
+      <option name="project" value="LOCAL" />
+      <updated>1718765633726</updated>
+    </task>
+    <option name="localTasksCounter" value="164" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -465,7 +466,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Decided to apply a filters before setting every new action in set_action() to get a bunch just allowed actions to handle." />
     <MESSAGE value="States improvement." />
     <MESSAGE value="Improved id applying for obstacles in level editor and main program.&#10;time_passed is now a private property for every object in the world." />
     <MESSAGE value="sorted obstacles is now a private property of all active objects of the world." />
@@ -490,6 +490,7 @@
     <MESSAGE value="Active objects and triggers improved." />
     <MESSAGE value="Fine tune active obstacles and triggers" />
     <MESSAGE value="Destructibility status implemented for all entities." />
-    <option name="LAST_COMMIT_MESSAGE" value="Destructibility status implemented for all entities." />
+    <MESSAGE value="Demolishers pass through triggers" />
+    <option name="LAST_COMMIT_MESSAGE" value="Demolishers pass through triggers" />
   </component>
 </project>
