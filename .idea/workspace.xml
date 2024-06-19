@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demolisher.py" beforeDir="false" afterPath="$PROJECT_DIR$/demolisher.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -105,13 +106,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00113" summary="Demolishers appear, they snap to the player rectangle.">
-      <created>1717737393117</created>
-      <option name="number" value="00113" />
-      <option name="presentableId" value="LOCAL-00113" />
-      <option name="project" value="LOCAL" />
-      <updated>1717737393117</updated>
     </task>
     <task id="LOCAL-00114" summary="Demolishers appear improvement.">
       <created>1717737810007</created>
@@ -449,7 +443,14 @@
       <option name="project" value="LOCAL" />
       <updated>1718763957672</updated>
     </task>
-    <option name="localTasksCounter" value="162" />
+    <task id="LOCAL-00162" summary="Destructibility status implemented for all entities.">
+      <created>1718765302137</created>
+      <option name="number" value="00162" />
+      <option name="presentableId" value="LOCAL-00162" />
+      <option name="project" value="LOCAL" />
+      <updated>1718765302137</updated>
+    </task>
+    <option name="localTasksCounter" value="163" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -464,7 +465,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed some states behavior which were broken after new states 'fly right' and 'fly left' added." />
     <MESSAGE value="Decided to apply a filters before setting every new action in set_action() to get a bunch just allowed actions to handle." />
     <MESSAGE value="States improvement." />
     <MESSAGE value="Improved id applying for obstacles in level editor and main program.&#10;time_passed is now a private property for every object in the world." />
@@ -489,6 +489,7 @@
     <MESSAGE value="Prepare to change some settings in active obstacle description (locations.py)" />
     <MESSAGE value="Active objects and triggers improved." />
     <MESSAGE value="Fine tune active obstacles and triggers" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fine tune active obstacles and triggers" />
+    <MESSAGE value="Destructibility status implemented for all entities." />
+    <option name="LAST_COMMIT_MESSAGE" value="Destructibility status implemented for all entities." />
   </component>
 </project>

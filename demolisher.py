@@ -51,6 +51,8 @@ class Demolisher(Entity):
 
         for key in self.obstacles_around.keys():
             obs = self.obstacles_around[key]
+            if obs.let_actors_pass_through:
+                continue
             if obs.rectangle.centery < self.rectangle.centery:
                 sorted_obs['above'].append(obs.id)
             elif obs.rectangle.centery > self.rectangle.centery:

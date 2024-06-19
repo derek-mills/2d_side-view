@@ -349,7 +349,7 @@ class Entity(object):
                         self.summoned_demolisher_description['snapping offset'] = self.animations[self.current_animation]['demolisher offset'][self.look]
                 elif action == 'sound':
                     snd = self.animations[self.current_animation]['activity at frames'][self.frame_number]
-                    print(f'[process active frames] make {snd} at frame {self.frame_number}')
+                    # print(f'[entity.process_activity_at_current_animation_frame] make {snd} at frame {self.frame_number}')
             self.active_frames = self.active_frames[1:]
 
 
