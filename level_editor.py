@@ -109,7 +109,7 @@ class World(object):
                 existing_locations_description = f.readlines()
 
             # Using the template to build a structure of new map's description:
-            with open('location_template.txt', 'r') as template_source:
+            with open('locations_template.py', 'r') as template_source:
                 for line in template_source:
                     if 'new_map_name' in line:
                         new_line = '    \'' + map_name + '\':\n'
@@ -532,7 +532,7 @@ class World(object):
                     if '\'dem rectangles\':' in line:
                         for dem_rect_line in dem_rects:
                             f_dest.write(dem_rect_line)
-                        loc_found = False
+                        # loc_found = False
 
                 if '\''+self.location+'\':' in line and not loc_found:
                     # print('Location found!')
