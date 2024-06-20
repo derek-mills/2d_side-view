@@ -8,6 +8,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obstacle.py" beforeDir="false" afterPath="$PROJECT_DIR$/obstacle.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -107,13 +108,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00119" summary="Added moving demolishers.">
-      <created>1717989466206</created>
-      <option name="number" value="00119" />
-      <option name="presentableId" value="LOCAL-00119" />
-      <option name="project" value="LOCAL" />
-      <updated>1717989466206</updated>
     </task>
     <task id="LOCAL-00120" summary="Fixed annoying bug, when all the members of class Demolisher share the same rectangle.">
       <created>1718004119083</created>
@@ -451,7 +445,14 @@
       <option name="project" value="LOCAL" />
       <updated>1718786347747</updated>
     </task>
-    <option name="localTasksCounter" value="168" />
+    <task id="LOCAL-00168" summary="Some minor changes.&#10;Experiment with sine wave-like movement.">
+      <created>1718787907240</created>
+      <option name="number" value="00168" />
+      <option name="presentableId" value="LOCAL-00168" />
+      <option name="project" value="LOCAL" />
+      <updated>1718787907240</updated>
+    </task>
+    <option name="localTasksCounter" value="169" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -466,7 +467,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fixed bug when jump hasn't performed while on the very edge of an obstacle" />
     <MESSAGE value="added whip animation" />
     <MESSAGE value="fixed minor jump issue" />
     <MESSAGE value="Grabbers appear now if actor just fell off the cliff and fly forward pressing down direction button." />
@@ -491,6 +491,7 @@
     <MESSAGE value="Added monsters spawn points description in locations.py" />
     <MESSAGE value="Actors become inactive if they do not collide camera rectangle. Just in case, not to get them fell down, because of far obstacles are off." />
     <MESSAGE value="Some minor changes." />
-    <option name="LAST_COMMIT_MESSAGE" value="Some minor changes." />
+    <MESSAGE value="Some minor changes.&#10;Experiment with sine wave-like movement." />
+    <option name="LAST_COMMIT_MESSAGE" value="Some minor changes.&#10;Experiment with sine wave-like movement." />
   </component>
 </project>

@@ -493,6 +493,9 @@ class World(object):
                     self.screen.blit(fonts.all_fonts[font_size].render(p[0], True, p[1], WHITE),
                                      (obs.rectangle.x + dx - self.camera.offset_x, obs.rectangle.y + gap - self.camera.offset_y))
                     gap += font_size
+                # pygame.draw.rect(self.screen, MAGENTA, (obs.destination_area.x - self.camera.offset_x, obs.destination_area.y - self.camera.offset_y,
+                #                                       obs.destination_area.width, obs.destination_area.height))
+
             else:
                 dx = 10
                 stats_y = 1

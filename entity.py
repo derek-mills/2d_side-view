@@ -102,6 +102,9 @@ class Entity(object):
         self.is_stand_on_ground: bool = False
         self.is_gravity_affected: bool = False
         self.destination: list = [0, 0]
+        self.destination_point: list = [0, 0]
+        # self.destination_area = None
+        self.destination_area = pygame.Rect(0,0,0,0)
         self.vec_to_destination: list = [0, 0]
         self.exotic_movement = ''
 
@@ -844,13 +847,26 @@ class Entity(object):
 
     def fly(self):
         # print('fly', self.id)
-        self.vec_to_destination = list((self.destination[0] - self.rectangle.x, self.destination[1] - self.rectangle.y))
-        # self.vec_to_destination = list((self.destination[0] - self.rectangle.centerx, self.destination[1] - self.rectangle.centery))
+        destination_reached_flag = False
+        if self.destination_area:
+            self.destination = self.destination_area.center
+            if self.destination_area.collidepoint(self.rectangle.topleft):
+                destination_reached_flag = True
+        else:
+            self.destination = self.destination_point
+            if self.destination == self.rectangle.topleft:
+                destination_reached_flag = True
 
-        if (self.vec_to_destination[0] > -3 and self.vec_to_destination[0] < 3) or \
-                self.destination == self.rectangle.topleft:
-        # if self.vec_to_destination == (0, 0) or self.destination == self.rectangle.topleft:
+        self.vec_to_destination = list((self.destination[0] - self.rectangle.x, self.destination[1] - self.rectangle.y))
+
+        # if (self.vec_to_destination[0] > -3 and self.vec_to_destination[0] < 3) or \
+        #         self.destination == self.rectangle.topleft:
         # if self.vec_to_destination == (0, 0) or self.destination == self.rectangle.center:
+        if self.vec_to_destination == (0, 0):
+        # if self.vec_to_destination == (0, 0) or self.destination == self.rectangle.topleft:
+            destination_reached_flag = True
+
+        if destination_reached_flag:
             self.is_destination_reached = True
             self.speed = 0
             self.heading = [0, 0]
@@ -880,7 +896,7 @@ class Entity(object):
             self.rectangle.x += self.vec_to_destination[0]
             # self.rectangle.y += round(self.vec_to_destination[1])
             if self.exotic_movement == 'sin':
-                self.rectangle.y = 200 + 20 * sin(self.rectangle.x * 0.01)
+                self.rectangle.y = self.origin_xy[1] + 200 * sin(self.rectangle.x * 0.01)
             else:
                 self.rectangle.y += self.vec_to_destination[1]
 

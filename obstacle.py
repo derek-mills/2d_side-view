@@ -213,10 +213,21 @@ class Obstacle(Entity):
 
         if self.actions[self.actions_set_number][self.current_action][0] == 'move':
             self.is_destination_reached = False
-            if self.actions[self.actions_set_number][self.current_action][1] == 'start':
+            if self.actions[self.actions_set_number][self.current_action][1] == 'start point':
                 self.destination = self.origin_xy
+                self.destination_area.update(0,0,0,0)
+            elif self.actions[self.actions_set_number][self.current_action][1] == 'start area':
+                self.destination_area.update(0,0, 100, 100)
+                self.destination_area.center = self.origin_xy
+                # self.destination_area.update(self.origin_xy[0], self.origin_xy[1], 100, 100)
             else:
-                self.destination = self.actions[self.actions_set_number][self.current_action][1]
+                if len(self.actions[self.actions_set_number][self.current_action][1]) == 4:
+                    # Destination described by four digits, so this is a square area, not a single point:
+                    self.destination_area.update(self.actions[self.actions_set_number][self.current_action][1])
+                else:
+                    # Destination is just a single point:
+                    self.destination = self.actions[self.actions_set_number][self.current_action][1]
+                    self.destination_area.update(0, 0, 0, 0)
         print('current_action:', self.actions[self.actions_set_number][self.current_action])
         # elif self.actions[self.actions_set_number][self.current_action][0] == 'die':
         #     self.die()

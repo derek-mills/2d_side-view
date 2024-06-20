@@ -40,7 +40,7 @@ locations = {
                 ((5100, 550), (350, 50), 3),  #3
                 ((5300, 0), (150, 550), 4),  #4
                 ((50, 0), (5250, 50), 5),  #5
-                ((100, 100), (50, 50), 6),  #6
+                ((300, 600), (150, 50), 6),  #6
 
 
                 ),
@@ -75,7 +75,7 @@ locations = {
 	                        # ('die', 0), ('switch visibility', 0), ('switch passability', 0),
 	                        # ('turn on actions set', 0), ('switch gravity', 0),  
                                  
-                                 0: (('move', (1800,100)), ('move', 'start'), ('repeat', 0)),
+                                 0: (('move', (1800,0, 150, 1500)), ('move', 'start area'), ('repeat', 0)),
                                  1: (('move', (0, 0)),),
                              }
 		            },
