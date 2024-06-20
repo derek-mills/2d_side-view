@@ -1,17 +1,16 @@
-import pygame
-
-from constants import *
+# import pygame
+# from constants import *
 # from world import *
-try:
-    from locations import *
-except ModuleNotFoundError:
-    pass
+# try:
+#     from locations import *
+# except ModuleNotFoundError:
+#     pass
 from obstacle import *
 from demolisher import *
 import camera
-# from sound import *
 import fonts
-import json
+# from sound import *
+# import json
 # import pickle
 # import setup_box
 # import menu
@@ -67,7 +66,7 @@ class World(object):
         self.demolishers = dict()
         self.demolishers_id: int = 0
         # self.location = '01'
-        self.location = 'room #1'
+        self.location = ''
         self.screen = None
         self.camera = camera.Camera()
         # self.camera.setup(MAXX*2, MAXY)
@@ -87,7 +86,62 @@ class World(object):
         self.screen = surface
 
     def setup(self):
-        ...
+        i= ''
+        while i not in ('e', 'E', 'n', 'N'):
+            i = input('Edit [E]xisting level or create [N]ew? :>')
+        if i in ('n', 'N'):
+            width = 0
+            height = 0
+            while width < MAXX or width > MAXX * 4:
+                width = input(f'Input map width in range [{MAXX}..{MAXX*4}], default {MAXX} :>')
+                if not width:
+                    width = MAXX
+            while height < MAXY or height > MAXY * 4:
+                height = input(f'Input map height in range [{MAXY}..{MAXY*4}], default {MAXY} :>')
+                if not height:
+                    height = MAXY
+            map_name = str(input(f'Input map name :>'))
+
+            new_location_description = list()
+            with open('locations.py', 'r') as f:
+                existing_locations_description = f.readlines()
+            # for l in existing_locations_description:
+            #     print(l)
+            # exit()
+            with open('location_template.txt', 'r') as template_source:
+                for line in template_source:
+                    if 'new_map_name' in line:
+                        new_line = '    \'' + map_name + '\':\n'
+                        new_location_description.append(new_line)
+                    elif 'new_map_size' in line:
+                        new_line = '            \'size\': (' + str(width) + ', ' + str(height) + '), \n'
+                        new_location_description.append(new_line)
+                    else:
+                        new_location_description.append(line)
+            # for l in new_location_description:
+            #     print(l)
+
+            line_count = 0
+            for line in existing_locations_description:
+                if 'locations = {' in line:
+                    line_index = existing_locations_description.index(line) + 1
+                    for new_line in new_location_description:
+                        existing_locations_description.insert(line_index, new_line)
+                        line_index += 1
+                    break
+
+            with open('locations.py', 'w') as f_dest:
+                f_dest.writelines(existing_locations_description)
+
+            self.location = map_name
+
+        else:
+            ...
+        # print(f'{width}, {height}')
+        # for l in existing_locations_description:
+        #     print(l)
+        #
+        # exit()
 
     def processing_human_input(self):
         self.mouse_xy = pygame.mouse.get_pos()
@@ -400,6 +454,67 @@ class World(object):
         obs_rects = list()
         for k in self.obstacles[self.location].keys():
             obs = self.obstacles[self.location][k]
+            total_strg = '                ' + \
+                         '(' + \
+                         str(obs.rectangle.topleft) + ', ' + \
+                         str(obs.rectangle.size) + \
+                         ', ' + str(k) + '),  #' + str(k) + '\n'
+            obs_rects.append(total_strg)
+
+        dem_rects = list()
+        if self.location in self.demolishers:
+            for k in self.demolishers[self.location].keys():
+                dem = self.demolishers[self.location][k]
+                total_strg = '                ' + \
+                       '(' + \
+                       str(dem.rectangle.topleft) + ', ' + \
+                       str(dem.rectangle.size) + ', ' + str(k) + \
+                       '),  #' + str(k) + '\n'
+                dem_rects.append(total_strg)
+
+
+        # print(obs_rects)
+        # print(dem_rects)
+        # exit()
+        # ['                ((100, 950), (1550, 50), 0),  #0\n',
+        #  '                ((1300, 500), (300, 250), 1),  #1\n',
+        #  '                ((950, 350), (100, 150), 2),  #2\n',
+        #  '                ((650, 300), (200, 200), 3),  #3\n']
+
+        # ['                ((550, 750), (200, 200), 0),  #0\n']
+        new_location_description = list()
+        with open('locations.py', 'r') as f:
+            existing_locations_description = f.readlines()
+
+        loc_found = False
+        with open('locations.py', 'w') as f_dest:
+            for line in existing_locations_description:
+                f_dest.write(line)
+                if loc_found:
+                    if '\'obs rectangles\':' in line:
+                        for obs_rect_line in obs_rects:
+                            f_dest.write(obs_rect_line)
+                    if '\'dem rectangles\':' in line:
+                        for dem_rect_line in dem_rects:
+                            f_dest.write(dem_rect_line)
+                if '\''+self.location+'\':' in line and not loc_found:
+                    # print('Location found!')
+                    loc_found = True
+        # f_dest.close()
+
+        self.allow_import_locations = True
+
+    def save_old(self):
+        # Saving with pickle:
+        # with open('locations_'+self.location+'.dat', 'wb') as f:
+        #     pickle.dump(self.obstacles[self.location], f)
+
+        # Saving using JSON:
+        # obs_geometry = list()
+
+        obs_rects = list()
+        for k in self.obstacles[self.location].keys():
+            obs = self.obstacles[self.location][k]
             # ghost = ', \'ghost\' ' if obs.is_ghost_platform else ''
             # move_right = ', \'move right\' ' if obs.is_move_right else ''
             # move_left = ', \'move left\' ' if obs.is_move_left else ''
@@ -466,153 +581,6 @@ class World(object):
         f_dest.close()
 
         self.allow_import_locations = True
-
-    def save_old(self):
-        # Saving with pickle:
-        # with open('locations_'+self.location+'.dat', 'wb') as f:
-        #     pickle.dump(self.obstacles[self.location], f)
-
-        # Saving using JSON:
-        # obs_geometry = list()
-
-        obs_rects = list()
-        for k in self.obstacles[self.location].keys():
-            obs = self.obstacles[self.location][k]
-            ghost = ', \'ghost\' ' if obs.is_ghost_platform else ''
-            # move_right = ', \'move right\' ' if obs.is_move_right else ''
-            # move_left = ', \'move left\' ' if obs.is_move_left else ''
-            collideable = ', \'collideable\' ' if obs.is_collideable else ''
-            actions = ', \'active\' ' if obs.actions else ''
-            gravity_affected = ', \'gravity affected\' ' if obs.is_gravity_affected else ''
-
-            # str(obs.rectangle.size) + ghost + move_right + move_left + \
-            total_strg = '                ' + \
-                         '(' + \
-                         str(obs.rectangle.topleft) + ', ' + \
-                         str(obs.rectangle.size) + ghost + \
-                         collideable + gravity_affected + actions + ', ' + str(k) + \
-                         '),  #' + str(k) + '\n'
-            obs_rects.append(total_strg)
-            # str(obs.rectangle.size) + ghost + move_right + move_left + collideable + gravity_affected + '),  #' + str(obs.id) + '\n'
-
-
-        dem_rects = list()
-        if self.location in self.demolishers:
-            for k in self.demolishers[self.location].keys():
-                dem = self.demolishers[self.location][k]
-                # ghost = ', \'ghost\' ' if dem.is_ghost_platform else ''
-                # move_right = ', \'move right\' ' if dem.is_move_right else ''
-                # move_left = ', \'move left\' ' if dem.is_move_left else ''
-                collideable = ', \'collideable\' ' if dem.is_collideable else ''
-                actions = ', \'active\' ' if dem.actions else ''
-                gravity_affected = ', \'gravity affected\' ' if dem.is_gravity_affected else ''
-
-                # str(dem.rectangle.size) + ghost + move_right + move_left + \
-                total_strg = '                ' + \
-                       '(' + \
-                       str(dem.rectangle.topleft) + ', ' + \
-                       str(dem.rectangle.size) + ghost + \
-                       collideable + gravity_affected + actions + ', ' + str(k) + \
-                       '),  #' + str(k) + '\n'
-                dem_rects.append(total_strg)
-                       # str(dem.rectangle.size) + ghost + move_right + move_left + collideable + gravity_affected + '),  #' + str(dem.id) + '\n'
-
-        # print(obs_rects)
-        # print(dem_rects)
-        # exit()
-        # ['                ((100, 950), (1550, 50), 0),  #0\n',
-        #  '                ((1300, 500), (300, 250), 1),  #1\n',
-        #  '                ((950, 350), (100, 150), 2),  #2\n',
-        #  '                ((650, 300), (200, 200), 3),  #3\n']
-
-        # ['                ((550, 750), (200, 200), 0),  #0\n']
-
-
-        loc_found = False
-        f_dest = open('locations.py', 'w')
-        with open('locations_template.py', 'r') as f_source:
-            for line in f_source:
-                f_dest.write(line)
-                if loc_found:
-                    if '\'obs rectangles\':' in line:
-                        for obs_rect_line in obs_rects:
-                            f_dest.write(obs_rect_line)
-                    if '\'dem rectangles\':' in line:
-                        for dem_rect_line in dem_rects:
-                            f_dest.write(dem_rect_line)
-                        # print('obs found!!')
-                        # for k in self.obstacles[self.location].keys():
-                        #     obs = self.obstacles[self.location][k]
-                        #     ghost = ', \'ghost\' ' if obs.is_ghost_platform else ''
-                        #     # move_right = ', \'move right\' ' if obs.is_move_right else ''
-                        #     # move_left = ', \'move left\' ' if obs.is_move_left else ''
-                        #     collideable = ', \'collideable\' ' if obs.is_collideable else ''
-                        #     actions = ', \'active\' ' if obs.actions else ''
-                        #     gravity_affected = ', \'gravity affected\' ' if obs.is_gravity_affected else ''
-                        #
-                        #     # str(obs.rectangle.size) + ghost + move_right + move_left + \
-                        #     total_strg = '                ' + \
-                        #            '(' + \
-                        #            str(obs.rectangle.topleft) + ', ' + \
-                        #            str(obs.rectangle.size) + ghost + \
-                        #            collideable + gravity_affected + actions + ', ' + str(k) + \
-                        #            '),  #' + str(k) + '\n'
-                        #            # str(obs.rectangle.size) + ghost + move_right + move_left + collideable + gravity_affected + '),  #' + str(obs.id) + '\n'
-
-                        # loc_found = False
-                if '\''+self.location+'\':' in line and not loc_found:
-                    # print('Location found!')
-                    loc_found = True
-        f_dest.close()
-
-        # loc_found = False
-        # f_dest = open('locations.py', 'w')
-        # with open('locations_template.py', 'r') as f_source:
-        #     for line in f_source:
-        #         f_dest.write(line)
-        #         if loc_found:
-        #             if '\'dem rectangles\':' in line:
-        #                 for k in self.demolishers[self.location].keys():
-        #                     dem = self.demolishers[self.location][k]
-        #                     ghost = ', \'ghost\' ' if dem.is_ghost_platform else ''
-        #                     # move_right = ', \'move right\' ' if dem.is_move_right else ''
-        #                     # move_left = ', \'move left\' ' if dem.is_move_left else ''
-        #                     collideable = ', \'collideable\' ' if dem.is_collideable else ''
-        #                     actions = ', \'active\' ' if dem.actions else ''
-        #                     gravity_affected = ', \'gravity affected\' ' if dem.is_gravity_affected else ''
-        #
-        #                     # str(dem.rectangle.size) + ghost + move_right + move_left + \
-        #                     total_strg = '                ' + \
-        #                            '(' + \
-        #                            str(dem.rectangle.topleft) + ', ' + \
-        #                            str(dem.rectangle.size) + ghost + \
-        #                            collideable + gravity_affected + actions + ', ' + str(k) + \
-        #                            '),  #' + str(k) + '\n'
-        #                            # str(dem.rectangle.size) + ghost + move_right + move_left + collideable + gravity_affected + '),  #' + str(dem.id) + '\n'
-        #                     f_dest.write(total_strg)
-        #                 loc_found = False
-        #         if '\''+self.location+'\':' in line and not loc_found:
-        #             # print('Location found!')
-        #             loc_found = True
-        # f_dest.close()
-
-        self.allow_import_locations = True
-        # exit()
-        # with open('locations_' + self.location + '.dat', 'w') as f:
-        #     for k in self.obstacles[self.location].keys():
-        #         obs = self.obstacles[self.location][k]
-        #         obs_geometry = (obs.id, obs.rectangle.topleft, obs.rectangle.size)
-        #         # obs_geometry.append((obs.id, obs.rectangle.topleft, obs.rectangle.size))
-        #         # f.write(str(obs.id) + ' ' + str(obs_geometry) + '\n')
-        #         f.write(obs_geometry)
-        #         # f.write(json.dumps(obs_geometry))
-
-            # json.dump(obs_geometry, f)
-
-            # settings = {
-            #     ''
-            # }
-            # pickle.dump(settings, f)
 
     def render_background(self):
         pygame.draw.rect(self.screen, BLACK, (0,0,MAXX, MAXY))
@@ -816,6 +784,11 @@ class World(object):
         self.render_snap_mesh()
 
 world = World()
+world.setup()
+try:
+    from locations import *
+except ModuleNotFoundError:
+    pass
 world.set_screen(screen)
 world.obstacles[world.location] = dict()
 world.load()
