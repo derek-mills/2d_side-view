@@ -86,6 +86,9 @@ class World(object):
     def set_screen(self, surface):
         self.screen = surface
 
+    def setup(self):
+        ...
+
     def processing_human_input(self):
         self.mouse_xy = pygame.mouse.get_pos()
         self.mouse_xy_global = (self.mouse_xy[0] + self.camera.offset_x, self.mouse_xy[1] + self.camera.offset_y)

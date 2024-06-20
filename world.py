@@ -456,7 +456,7 @@ class World(object):
                         # if actor.get_state() == 'left action':
                         actor.set_action('left action cancel')
 
-                    if self.is_attack_button:
+                    if self.is_jump_button:
                         actor.set_action('jump action')
                     else:
                         actor.set_action('jump action cancel')
@@ -597,10 +597,11 @@ class World(object):
             obs = self.obstacles[self.location][key]
             if obs.invisible:
                 continue
-            if obs.is_being_collided_now:
-                color = RED
-            else:
-                color = WHITE if obs.is_ghost_platform else CYAN
+            # if obs.is_being_collided_now:
+            #     color = RED
+            # else:
+            #     color = WHITE if obs.is_ghost_platform else CYAN
+            color = WHITE if obs.is_ghost_platform else CYAN
             pygame.draw.rect(self.screen, color, (obs.rectangle.x - self.camera.offset_x, obs.rectangle.y - self.camera.offset_y,
                                                   obs.rectangle.width, obs.rectangle.height))
             if obs.active:
