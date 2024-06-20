@@ -219,9 +219,9 @@ locations = {
             'obstacles': {
                 # HERE WILL BE A GEOMETRY DESCRIPTION OF EVERY PLATFORM AFTER level_editor.py USAGE:
                 'obs rectangles': (
-                ((0, 950), (5450, 50), 0),  #0
+                ((0, 1000), (5450, 50), 0),  #0
                 ((0, 0), (50, 950), 1),  #1
-#                ((50, 0), (1600, 50), 2),  #2
+                ((50, 0), (1600, 50), 2),  #2
                 ((650, 50), (50, 900), 3),  #3
 
 

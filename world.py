@@ -208,7 +208,6 @@ class World(object):
     # def process(self):
     def process(self, time_passed):
         self.time_passed = time_passed
-
         self.processing_obstacles()
         if self.location_has_been_changed:
             self.location_has_been_changed = False
@@ -258,12 +257,18 @@ class World(object):
     #             self.active_obstacles.append(k
 
     def change_location(self, new_location):
+        # print('Before location change:', self.actors.keys())
+        self.location_has_been_changed = True
         self.location = new_location['new location']
+        if self.location not in self.actors.keys():
+            self.actors[self.location] = dict()
+            self.actors[self.location][0] = self.actors['player']
         self.actors['player'].rectangle.topleft = new_location['xy']
         self.load()
-        self.actors[self.location] = dict()
-        self.actors[self.location][0] = self.actors['player']
-        self.location_has_been_changed = True
+        self.detect_active_obstacles()
+
+
+        # print('After location change:', self.actors.keys())
 
     def processing_obstacles(self):
         dead = list()
@@ -278,6 +283,7 @@ class World(object):
                         for make_active_id in obs.trigger_description['make active']:
                             self.obstacles[self.location][make_active_id].active = True
                     if 'change location' in obs.trigger_description.keys():
+                        obs.trigger_activated = False
                         self.change_location(obs.trigger_description['change location'])
                         return
                     if obs.trigger_description['disappear']:
@@ -401,7 +407,7 @@ class World(object):
             # if key == 0:
             #     continue
             actor = self.actors[self.location][key]
-
+            # print(actor.name)
             if not actor.rectangle.colliderect(self.camera.active_objects_rectangle):
             # if not actor.rectangle.colliderect(self.camera.rectangle):
                 continue
@@ -680,14 +686,15 @@ class World(object):
             self.locations[self.location] = dict()
             self.obstacles[self.location] = dict()
             self.demolishers[self.location] = dict()
-        self.locations[self.location] = locations[self.location]
-        for obs in self.locations[self.location]['obstacles']['obs rectangles']:
-            self.add_obstacle(obs)
-        for dem in self.locations[self.location]['demolishers']['dem rectangles']:
-            self.add_demolisher(dem)
-        for enemy in self.locations[self.location]['hostiles'].keys():
-            for xy in self.locations[self.location]['hostiles'][enemy]['start xy']:
-                self.add_actor(all_hostiles[enemy], xy)
+            # self.actors[self.location] = dict()
+            self.locations[self.location] = locations[self.location]
+            for obs in self.locations[self.location]['obstacles']['obs rectangles']:
+                self.add_obstacle(obs)
+            for dem in self.locations[self.location]['demolishers']['dem rectangles']:
+                self.add_demolisher(dem)
+            for enemy in self.locations[self.location]['hostiles'].keys():
+                for xy in self.locations[self.location]['hostiles'][enemy]['start xy']:
+                    self.add_actor(all_hostiles[enemy], xy)
 
         self.camera.setup(self.locations[self.location]['size'][0], self.locations[self.location]['size'][1])
 
@@ -864,13 +871,11 @@ class World(object):
             (' HEADING: ' + str(self.actors['player'].heading), WHITE),
             (' IDLE COUNT: ' + str(self.actors['player'].idle_counter), (200, 100, 50)),
             (' ACTIVE FRAMES: ' + str(self.actors['player'].active_frames), (200, 100, 50)),
-
             (' JUMP ATTEMPTS : ' + str(self.actors['player'].jump_attempts_counter), YELLOW),
             (' JUST JUMPED   : ' + str(self.actors['player'].just_got_jumped), YELLOW),
             (' JUMP PERFORMED: ' + str(self.actors['player'].is_jump_performed), YELLOW),
             (' IGNORES INPUT: ' + str(self.actors['player'].ignore_user_input), WHITE),
             (' __STATE: ' + str(self.actors['player'].get_state()), CYAN),
-
             (' STAND ON GROUND: ' + str(self.actors['player'].is_stand_on_ground), WHITE),
             ('HEIGHT SPACE: ' + str(self.actors['player'].is_enough_height), GREEN),
             (' ABOVE SPACE: ' + str(self.actors['player'].is_enough_space_above), GREEN),
@@ -879,9 +884,10 @@ class World(object):
             (' LEFT SPACE: ' + str(self.actors['player'].is_enough_space_left), GREEN),
             (' IS GRABBING: ' + str(self.actors['player'].is_edge_grabbed), WHITE),
             (' INFLUENCED BY PLATFORM #: ' + str(self.actors['player'].influenced_by_obstacle), WHITE),
-            ('', WHITE),
             (' WEAPON: ' + str(self.actors['player'].current_weapon['label']) + ' | ALL WEAPONS: ' + str(self.actors['player'].inventory['weapons'].keys()), PINK),
-            (str([str(self.demolishers[self.location][k].id) + str(self.demolishers[self.location][k].rectangle.topleft) for k in self.demolishers[self.location].keys()]),GRAY),
+            ('', WHITE),
+            (' ACTORS: ' + str(self.actors[self.location].keys()), WHITE),
+            # (str([str(self.demolishers[self.location][k].id) + str(self.demolishers[self.location][k].rectangle.topleft) for k in self.demolishers[self.location].keys()]),GRAY),
         )
         for p in params:
             self.screen.blit(fonts.all_fonts[font_size].render(p[0], True, p[1], BLACK), (stats_x, stats_y + gap))
