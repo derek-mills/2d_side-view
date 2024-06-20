@@ -527,9 +527,13 @@ class World(object):
                     if '\'obs rectangles\':' in line:
                         for obs_rect_line in obs_rects:
                             f_dest.write(obs_rect_line)
+                        loc_found = False
+
                     if '\'dem rectangles\':' in line:
                         for dem_rect_line in dem_rects:
                             f_dest.write(dem_rect_line)
+                        loc_found = False
+
                 if '\''+self.location+'\':' in line and not loc_found:
                     # print('Location found!')
                     loc_found = True
