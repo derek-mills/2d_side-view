@@ -29,6 +29,7 @@ class World(object):
 
         self.locations = dict()
         self.location: str = ''
+        self.location_has_been_changed = False
         self.is_new_location_loading: bool = True
         self.new_location_description = dict()
 
@@ -47,6 +48,8 @@ class World(object):
         self.is_x = False
         self.is_n = False
         self.is_b = False
+        self.is_jump_button = False
+        self.jump_button_multiple_press_prevent = False
         self.is_attack_button = False
         self.attack_button_multiple_press_prevent = False
         self.is_l_shift = False
@@ -121,6 +124,11 @@ class World(object):
 
         if self.location not in self.actors.keys():
             self.actors[self.location] = dict()
+
+        if entity.id == 0:
+            # This is the player actor:
+            self.actors['player'] = entity
+
         self.actors[self.location][entity.id] = entity
         self.actor_id += 1
 
@@ -202,29 +210,33 @@ class World(object):
         self.time_passed = time_passed
 
         self.processing_obstacles()
+        if self.location_has_been_changed:
+            self.location_has_been_changed = False
+            return
         self.processing_human_input()
+        # self.processing_player_actor()
         self.processing_actors()
-        if self.actors[self.location][0].dead:
+        if self.actors['player'].dead:
             self.game_over()
         self.processing_demolishers()
 
         # Applying camera offset:
-        if self.actors[self.location][0].influenced_by_obstacle >= 0 and  self.obstacles[self.location][self.actors[self.location][0].influenced_by_obstacle].active:
+        if self.actors['player'].influenced_by_obstacle >= 0 and  self.obstacles[self.location][self.actors['player'].influenced_by_obstacle].active:
             x_offset_speed = 2
             y_offset_speed = 5
-            # y_offset_speed = 5 if self.obstacles[self.location][self.actors[self.location][0].influenced_by_obstacle].vec_to_destination[1] > 0 else -5
+            # y_offset_speed = 5 if self.obstacles[self.location][self.actors['player'].influenced_by_obstacle].vec_to_destination[1] > 0 else -5
 
-            # x_offset_speed = round(self.obstacles[self.location][self.actors[self.location][0].influenced_by_obstacle].vec_to_destination[0])
-            # y_offset_speed = round(self.obstacles[self.location][self.actors[self.location][0].influenced_by_obstacle].vec_to_destination[1])
+            # x_offset_speed = round(self.obstacles[self.location][self.actors['player'].influenced_by_obstacle].vec_to_destination[0])
+            # y_offset_speed = round(self.obstacles[self.location][self.actors['player'].influenced_by_obstacle].vec_to_destination[1])
         else:
-            x_offset_speed = self.actors[self.location][0].speed  # * self.actors[self.location][0].look
-            y_offset_speed = 2 if not self.actors[self.location][0].is_stand_on_ground and self.actors[self.location][0].fall_speed < 20 \
-                               else self.actors[self.location][0].fall_speed
-            # y_offset_speed = abs(self.actors[self.location][0].fall_speed)        # if self.actors[self.location][0].speed > 0:
+            x_offset_speed = self.actors['player'].speed  # * self.actors['player'].look
+            y_offset_speed = 2 if not self.actors['player'].is_stand_on_ground and self.actors['player'].fall_speed < 20 \
+                               else self.actors['player'].fall_speed
+            # y_offset_speed = abs(self.actors['player'].fall_speed)        # if self.actors['player'].speed > 0:
 
-        self.camera.apply_offset((self.actors[self.location][0].rectangle.centerx, self.actors[self.location][0].rectangle.top),
+        self.camera.apply_offset((self.actors['player'].rectangle.centerx, self.actors['player'].rectangle.top),
                                  x_offset_speed, y_offset_speed)
-                                 # self.actors[self.location][0].speed * 0.9, self.actors[self.location][0].fall_speed)
+                                 # self.actors['player'].speed * 0.9, self.actors['player'].fall_speed)
 
         self.detect_active_obstacles()
 
@@ -245,6 +257,14 @@ class World(object):
     #         if obs.rectangle.colliderect(self.camera.rectangle):
     #             self.active_obstacles.append(k
 
+    def change_location(self, new_location):
+        self.location = new_location['new location']
+        self.actors['player'].rectangle.topleft = new_location['xy']
+        self.load()
+        self.actors[self.location] = dict()
+        self.actors[self.location][0] = self.actors['player']
+        self.location_has_been_changed = True
+
     def processing_obstacles(self):
         dead = list()
         for key in self.active_obstacles:
@@ -257,6 +277,9 @@ class World(object):
                     if 'make active' in obs.trigger_description.keys():
                         for make_active_id in obs.trigger_description['make active']:
                             self.obstacles[self.location][make_active_id].active = True
+                    if 'change location' in obs.trigger_description.keys():
+                        self.change_location(obs.trigger_description['change location'])
+                        return
                     if obs.trigger_description['disappear']:
                         dead.append(obs.id)
                         continue
@@ -317,9 +340,66 @@ class World(object):
         for expl in explosions:
             self.make_explosion(expl)
 
+    def processing_player_actor(self):
+        actor = self.actors['player']
+        if actor.dead:
+            self.game_over()
+
+        actor.percept({k: self.obstacles[self.location][k] for k in self.active_obstacles}, self.demolishers[self.location])
+
+        if not actor.ignore_user_input:
+            if self.is_input_up_arrow:
+                actor.set_action('up action')
+            else:
+                # if actor.get_state() == 'up action':
+                actor.set_action('up action cancel')
+
+            if self.is_input_down_arrow:
+                actor.set_action('down action')
+            else:
+                # if actor.get_state() == 'down action':
+                actor.set_action('down action cancel')
+
+            if self.is_input_right_arrow:
+                actor.set_action('right action')
+            else:
+                # if actor.get_state() == 'right action':
+                actor.set_action('right action cancel')
+
+            if self.is_input_left_arrow:
+                actor.set_action('left action')
+            else:
+                # if actor.get_state() == 'left action':
+                actor.set_action('left action cancel')
+
+            if self.is_jump_button:
+                actor.set_action('jump action')
+            else:
+                actor.set_action('jump action cancel')
+
+            if self.is_l_alt and not self.l_alt_multiple_press_prevent:
+                self.l_alt_multiple_press_prevent = True
+                actor.set_action('hop back')
+            else:
+                if actor.get_state() == 'hop back progress':
+                    actor.set_action('hop back action cancel')
+
+            if self.is_attack:
+                self.is_attack = False
+                actor.set_action('attack')
+
+        actor.get_time(self.time_passed, self.game_cycles_counter)
+        actor.process()
+
+        if actor.summon_demolisher:
+            actor.summon_demolisher = False
+            self.add_demolisher(actor.summoned_demolisher_description)
+
     def processing_actors(self):
         dead = list()
         for key in self.actors[self.location].keys():
+            # if key == 0:
+            #     continue
             actor = self.actors[self.location][key]
 
             if not actor.rectangle.colliderect(self.camera.active_objects_rectangle):
@@ -329,12 +409,18 @@ class World(object):
             if actor.dead:
                 dead.append(actor.id)
                 continue
+
             if not actor.rectangle.colliderect(self.camera.active_objects_rectangle):
                 continue
+
             actor.percept({k: self.obstacles[self.location][k] for k in self.active_obstacles}, self.demolishers[self.location])
 
+            # actor.get_target(self.actors['player'])
+            # if not actor.ignore_user_input:
+            #     actor.think()
+
             if actor.ai_controlled:
-                actor.get_target(self.actors[self.location][0])
+                actor.get_target(self.actors['player'])
                 if not actor.ignore_user_input:
                     actor.think()
             else:
@@ -392,6 +478,49 @@ class World(object):
 
     def render_background(self):
         pygame.draw.rect(self.screen, BLACK, (0,0,MAXX, MAXY))
+
+    def render_player_actor(self):
+        actor = self.actors['player']
+        size = actor.current_sprite['sprite'].get_size()
+        # Offset sprite to the left from the center of rectangle using anchor point.
+        if actor.current_sprite_flip:
+            if actor.current_sprite['sprite asymmetric']:
+                x = actor.rectangle.centerx - self.camera.offset_x \
+                    - size[0] + actor.current_sprite['sprite center']
+            else:
+                x = actor.rectangle.centerx - self.camera.offset_x \
+                    - actor.current_sprite['sprite center']
+        else:
+            x = actor.rectangle.centerx - self.camera.offset_x - actor.current_sprite['sprite center']
+
+        y = actor.rectangle.bottom - self.camera.offset_y - size[1]
+
+        self.screen.blit(actor.current_sprite['sprite'], (x, y))
+
+        pygame.draw.rect(self.screen, GREEN, (actor.rectangle.x - self.camera.offset_x, actor.rectangle.y - self.camera.offset_y,
+                                              actor.rectangle.width, actor.rectangle.height), 5)
+        # Colliders rects:
+        # pygame.draw.rect(self.screen, DARK_ORANGE, (actor.collision_detector_right.x - self.camera.offset_x, actor.collision_detector_right.y - self.camera.offset_y,
+        #                                       actor.collision_detector_right.width, actor.collision_detector_right.height))
+        # pygame.draw.rect(self.screen, DARK_ORANGE, (actor.collision_detector_left.x - self.camera.offset_x, actor.collision_detector_left.y - self.camera.offset_y,
+        #                                       actor.collision_detector_left.width, actor.collision_detector_left.height))
+        # pygame.draw.rect(self.screen, DARK_ORANGE, (actor.collision_detector_top.x - self.camera.offset_x, actor.collision_detector_top.y - self.camera.offset_y,
+        #                                       actor.collision_detector_top.width, actor.collision_detector_top.height))
+        # pygame.draw.rect(self.screen, DARK_ORANGE, (actor.collision_detector_bottom.x - self.camera.offset_x, actor.collision_detector_bottom.y - self.camera.offset_y,
+        #                                       actor.collision_detector_bottom.width, actor.collision_detector_bottom.height))
+        # pygame.draw.rect(self.screen, MAGENTA, (actor.collision_detector_bottom_right.x - self.camera.offset_x, actor.collision_detector_bottom_right.y - self.camera.offset_y,
+        #                                       actor.collision_detector_bottom_right.width, actor.collision_detector_bottom_right.height))
+        # pygame.draw.rect(self.screen, MAGENTA, (actor.collision_detector_bottom_left.x - self.camera.offset_x, actor.collision_detector_bottom_left.y - self.camera.offset_y,
+        #                                       actor.collision_detector_bottom_left.width, actor.collision_detector_bottom_left.height))
+        pygame.draw.rect(self.screen, CYAN, (actor.collision_grabber_right.x - self.camera.offset_x, actor.collision_grabber_right.y - self.camera.offset_y,
+                                              actor.collision_grabber_right.width, actor.collision_grabber_right.height))
+        pygame.draw.rect(self.screen, CYAN, (actor.collision_grabber_left.x - self.camera.offset_x, actor.collision_grabber_left.y - self.camera.offset_y,
+                                              actor.collision_grabber_left.width, actor.collision_grabber_left.height))
+
+        # The eye
+        gaze_direction_mod = 0 if actor.look == -1 else actor.rectangle.width - 10
+        pygame.draw.rect(self.screen, CYAN, (actor.rectangle.x + gaze_direction_mod - self.camera.offset_x, actor.rectangle.centery - 10 - self.camera.offset_y,
+                                              10, 20))
 
     def render_actors(self):
         for key in self.actors[self.location].keys():
@@ -504,7 +633,7 @@ class World(object):
                 params = (
                     ('ID: ' + str(obs.id), BLACK),
                     ('TRGGR: ' + str(obs.trigger_activated), YELLOW),
-                    #(' IS ON OBS: ' + str(self.actors[self.location][0].is_on_obstacle), WHITE),
+                    #(' IS ON OBS: ' + str(self.actors['player'].is_on_obstacle), WHITE),
                     # ('RECTANGLE       : ' + str(obs.rectangle), BLACK),
                     # ('VEC TO DESTINTON: ' + str(obs.vec_to_destination), BLACK),
                     # ('VEC TO DESTINTON: ' + str(obs.vec_to_destination), BLACK),
@@ -526,6 +655,7 @@ class World(object):
         self.render_obstacles()
         self.render_demolishers()
         self.render_actors()
+        # self.render_player_actor()
         self.render_debug_info()
         self.render_info_panel_overlay()
 
@@ -537,7 +667,7 @@ class World(object):
         gap_between_stripes = 10
         font_size = 12
         params = (
-            ('HEALTH:' + str(int(self.actors[self.location][0].max_health)) + '/' + str(int(self.actors[self.location][0].health)),int(self.actors[self.location][0].health * max_stripes_width // self.actors[self.location][0].max_health), RED),
+            ('HEALTH:' + str(int(self.actors['player'].max_health)) + '/' + str(int(self.actors['player'].health)),int(self.actors['player'].health * max_stripes_width // self.actors['player'].max_health), RED),
             # ('BLOOD VOLUME(' + str(int(actor.body_state['blood volume'])) + '):', int(actor.body_state['blood volume']*stripes_width//actor.body_state['max blood volume']), RED),
         )
         for p in params:
@@ -598,8 +728,8 @@ class World(object):
                     self.is_input_down_arrow = False
                 if event.key == K_UP:
                 # if event.key == K_SPACE:
-                    self.is_attack_button = False
-                    self.attack_button_multiple_press_prevent = False
+                    self.is_jump_button = False
+                    self.jump_button_multiple_press_prevent = False
                 # if event.key == K_RIGHT:
                 #     self.is_attack = False
             if event.type == KEYDOWN:
@@ -609,14 +739,13 @@ class World(object):
                     raise SystemExit()
                 if event.key == K_RIGHT:
                     self.is_attack = True
-
                 if event.key == K_TAB:
-                    lst = list(self.actors[self.location][0].inventory['weapons'].keys())
-                    indx =  lst.index(self.actors[self.location][0].current_weapon['label'])
+                    lst = list(self.actors['player'].inventory['weapons'].keys())
+                    indx =  lst.index(self.actors['player'].current_weapon['label'])
                     if indx + 1 > len(lst) - 1:
-                        self.actors[self.location][0].activate_weapon(0)
+                        self.actors['player'].activate_weapon(0)
                     else:
-                        self.actors[self.location][0].activate_weapon(lst[indx+1])
+                        self.actors['player'].activate_weapon(lst[indx+1])
                 if event.key == K_d:
                     self.is_input_right_arrow = True
                 if event.key == K_a:
@@ -627,8 +756,8 @@ class World(object):
                     self.is_input_down_arrow = True
                 if event.key == K_UP:
                 # if event.key == K_SPACE:
-                    if not self.attack_button_multiple_press_prevent:
-                        self.is_attack_button = True
+                    if not self.jump_button_multiple_press_prevent:
+                        self.is_jump_button = True
                     # self.is_attack_button = True
                 # if event.key == K_F5:
                 #     self.need_quick_save = True
@@ -723,35 +852,35 @@ class World(object):
         # m_hover_cell = 'None' if self.point_mouse_cursor_shows is None else str(self.locations[self.location]['points'][self.point_mouse_cursor_shows]['rect'].center)
         params = (
             #
-            #(' IS ON OBS: ' + str(self.actors[self.location][0].is_on_obstacle), WHITE),
+            ('LOCATION: ' + str(self.location), GREEN),
             ('SCREEN OFFSETS: ' + str(self.camera.offset_x) + ' ' + str(self.camera.offset_y), GREEN),
             ('', WHITE),
-            (' RECT: ' + str(self.actors[self.location][0].rectangle), WHITE),
-            ('╔ TARGET HEIGHT ╗: ' + str(self.actors[self.location][0].target_height), YELLOW),
-            ('╚ TARGET WIDTH  ╝: ' + str(self.actors[self.location][0].target_width), YELLOW),
-            (' FALL SPEED: ' + str(self.actors[self.location][0].fall_speed), WHITE),
-            (' SPEED: ' + str(self.actors[self.location][0].speed), WHITE),
-            (' LOOK: ' + str(self.actors[self.location][0].look), WHITE),
-            (' HEADING: ' + str(self.actors[self.location][0].heading), WHITE),
-            (' IDLE COUNT: ' + str(self.actors[self.location][0].idle_counter), (200, 100, 50)),
-            (' ACTIVE FRAMES: ' + str(self.actors[self.location][0].active_frames), (200, 100, 50)),
+            (' RECT: ' + str(self.actors['player'].rectangle), WHITE),
+            ('╔ TARGET HEIGHT ╗: ' + str(self.actors['player'].target_height), YELLOW),
+            ('╚ TARGET WIDTH  ╝: ' + str(self.actors['player'].target_width), YELLOW),
+            (' FALL SPEED: ' + str(self.actors['player'].fall_speed), WHITE),
+            (' SPEED: ' + str(self.actors['player'].speed), WHITE),
+            (' LOOK: ' + str(self.actors['player'].look), WHITE),
+            (' HEADING: ' + str(self.actors['player'].heading), WHITE),
+            (' IDLE COUNT: ' + str(self.actors['player'].idle_counter), (200, 100, 50)),
+            (' ACTIVE FRAMES: ' + str(self.actors['player'].active_frames), (200, 100, 50)),
 
-            (' JUMP ATTEMPTS : ' + str(self.actors[self.location][0].jump_attempts_counter), YELLOW),
-            (' JUST JUMPED   : ' + str(self.actors[self.location][0].just_got_jumped), YELLOW),
-            (' JUMP PERFORMED: ' + str(self.actors[self.location][0].is_jump_performed), YELLOW),
-            (' IGNORES INPUT: ' + str(self.actors[self.location][0].ignore_user_input), WHITE),
-            (' __STATE: ' + str(self.actors[self.location][0].get_state()), CYAN),
+            (' JUMP ATTEMPTS : ' + str(self.actors['player'].jump_attempts_counter), YELLOW),
+            (' JUST JUMPED   : ' + str(self.actors['player'].just_got_jumped), YELLOW),
+            (' JUMP PERFORMED: ' + str(self.actors['player'].is_jump_performed), YELLOW),
+            (' IGNORES INPUT: ' + str(self.actors['player'].ignore_user_input), WHITE),
+            (' __STATE: ' + str(self.actors['player'].get_state()), CYAN),
 
-            (' STAND ON GROUND: ' + str(self.actors[self.location][0].is_stand_on_ground), WHITE),
-            ('HEIGHT SPACE: ' + str(self.actors[self.location][0].is_enough_height), GREEN),
-            (' ABOVE SPACE: ' + str(self.actors[self.location][0].is_enough_space_above), GREEN),
-            (' BELOW SPACE: ' + str(self.actors[self.location][0].is_enough_space_below), GREEN),
-            (' RIGHT SPACE: ' + str(self.actors[self.location][0].is_enough_space_right), GREEN),
-            (' LEFT SPACE: ' + str(self.actors[self.location][0].is_enough_space_left), GREEN),
-            (' IS GRABBING: ' + str(self.actors[self.location][0].is_edge_grabbed), WHITE),
-            (' INFLUENCED BY PLATFORM #: ' + str(self.actors[self.location][0].influenced_by_obstacle), WHITE),
+            (' STAND ON GROUND: ' + str(self.actors['player'].is_stand_on_ground), WHITE),
+            ('HEIGHT SPACE: ' + str(self.actors['player'].is_enough_height), GREEN),
+            (' ABOVE SPACE: ' + str(self.actors['player'].is_enough_space_above), GREEN),
+            (' BELOW SPACE: ' + str(self.actors['player'].is_enough_space_below), GREEN),
+            (' RIGHT SPACE: ' + str(self.actors['player'].is_enough_space_right), GREEN),
+            (' LEFT SPACE: ' + str(self.actors['player'].is_enough_space_left), GREEN),
+            (' IS GRABBING: ' + str(self.actors['player'].is_edge_grabbed), WHITE),
+            (' INFLUENCED BY PLATFORM #: ' + str(self.actors['player'].influenced_by_obstacle), WHITE),
             ('', WHITE),
-            (' WEAPON: ' + str(self.actors[self.location][0].current_weapon['label']) + ' | ALL WEAPONS: ' + str(self.actors[self.location][0].inventory['weapons'].keys()), PINK),
+            (' WEAPON: ' + str(self.actors['player'].current_weapon['label']) + ' | ALL WEAPONS: ' + str(self.actors['player'].inventory['weapons'].keys()), PINK),
             (str([str(self.demolishers[self.location][k].id) + str(self.demolishers[self.location][k].rectangle.topleft) for k in self.demolishers[self.location].keys()]),GRAY),
         )
         for p in params:

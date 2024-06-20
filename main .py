@@ -43,19 +43,6 @@ world.location = '01'
 world.add_actor(player_jake, (200, 200))
 world.load()
 
-# player = {
-#     'xy': (200, 200)
-# }
-
-# world.add_actor(demon_1)
-# world.add_actor(demon_1)
-# world.add_actor(demon_1)
-# world.add_actor(demon_1)
-
-
-# for obs in locations['01']['obstacles']['platforms']:
-#     world.add_obstacle(obs)
-
 def main():
     max_fps = 0
     # location = ('apartment_01_main_room', 172)

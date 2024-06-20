@@ -35,6 +35,10 @@ locations = {
             'obstacles': {
                 # HERE WILL BE A GEOMETRY DESCRIPTION OF EVERY PLATFORM AFTER level_editor.py USAGE:
                 'obs rectangles': (
+                ((0, 950), (5450, 50), 0),  #0
+                ((0, 0), (50, 950), 1),  #1
+                ((50, 0), (1600, 50), 2),  #2
+                ((650, 50), (50, 900), 3),  #3
 
 
                 ),
@@ -54,12 +58,30 @@ locations = {
                         },
                         'actions': {},
                     },
-                    6: {
+                     3: {
+                        'ghost': False,
+                        'speed': 0., 'active': False,
+                        'collideable': False,
+                        'gravity affected': False,
+                        'actors pass through': True,
+                        'invisible': True,
+                        'trigger': True,
+                        'trigger description': {
+                        	'disappear': False,
+                        	'change location': {
+                        		'new location': 'room #1',
+                        		'xy': (100, 100),
+                        	},
+                        },
+                        'actions': {}
+		     },                    
+                     6: {
                         'ghost': False,
                         'speed': 1., 'active': True,
-                        'collideable': True,
+                        'collideable': False,
                         'gravity affected': False,
                         'actors pass through': False,
+                        'exotic movement': 'sin',
                         'invisible': False,                        
                         'trigger': False,
                         'trigger description': {},
@@ -68,7 +90,7 @@ locations = {
 	                        # ('die', 0), ('switch visibility', 0), ('switch passability', 0),
 	                        # ('turn on actions set', 0), ('switch gravity', 0),  
                                  
-                                 0: (('move', (3150,1350)), ('move', 'start'), ('repeat', 0)),
+                                 0: (('move', (1800,0, 150, 1500)), ('move', 'start area'), ('repeat', 0)),
                                  1: (('move', (0, 0)),),
                              }
 		            },
@@ -180,5 +202,122 @@ locations = {
                 },
             },
     },
+
+    'room #1':
+        {
+            'music': music_ambient_1,
+            'description': 'room #1',
+            'size': (MAXX,MAXY),
+            'hostiles': {
+            },
+            'demolishers': {
+                # HERE WILL BE A GEOMETRY DESCRIPTION OF EVERY PLATFORM AFTER level_editor.py USAGE:
+                'dem rectangles': (
+
+                ),            	
+            },
+            'obstacles': {
+                # HERE WILL BE A GEOMETRY DESCRIPTION OF EVERY PLATFORM AFTER level_editor.py USAGE:
+                'obs rectangles': (
+                ((0, 950), (5450, 50), 0),  #0
+                ((0, 0), (50, 950), 1),  #1
+                ((50, 0), (1600, 50), 2),  #2
+                ((650, 50), (50, 900), 3),  #3
+
+                ),
+                
+                'settings': {
+                    34: {
+                        'ghost': False,
+                        'speed': 0.1, 'active': False,
+                        'collideable': False,
+                        'gravity affected': False,
+                        'actors pass through': True,
+                        'invisible': True,                        
+                        'trigger': True,
+                        'trigger description': {
+	                       	'make active': (26,28,30),
+                        	'disappear': True,
+                        },
+                        'actions': {},
+                    },
+                     3: {
+                        'ghost': False,
+                        'speed': 0., 'active': False,
+                        'collideable': False,
+                        'gravity affected': False,
+                        'actors pass through': True,
+                        'invisible': True,
+                        'trigger': True,
+                        'trigger description': {
+                        	'disappear': False,
+                        	'change location': {
+                        		'new location': '01',
+                        		'xy': (100, 100),
+                        	},
+                        },
+                        'actions': {}
+		     },                    
+                     6: {
+                        'ghost': False,
+                        'speed': 1., 'active': True,
+                        'collideable': False,
+                        'gravity affected': False,
+                        'actors pass through': False,
+                        'exotic movement': 'sin',
+                        'invisible': False,                        
+                        'trigger': False,
+                        'trigger description': {},
+                        'actions': {
+	                        # (('move', (1100,450)), ('move', 'start'), ('wait', 2), ('repeat', 0))  
+	                        # ('die', 0), ('switch visibility', 0), ('switch passability', 0),
+	                        # ('turn on actions set', 0), ('switch gravity', 0),  
+                                 
+                                 0: (('move', (1800,0, 150, 1500)), ('move', 'start area'), ('repeat', 0)),
+                                 1: (('move', (0, 0)),),
+                             }
+		            },
+                    28: {
+                        'ghost': False,
+                        'speed': 0.1, 'active': False,
+                        'collideable': True,
+                        'gravity affected': False,
+                        'actors pass through': False,
+                        'invisible': False,                                                
+                        'trigger': False,
+                        'trigger description': {},
+                        'actions': {
+	                        # (('move', (1100,450)), ('move', 'start'), ('wait', 2), ('repeat', 0))  
+	                        # ('die', 0), ('switch visibility', 0), ('switch passability', 0),
+	                        # ('turn on actions set', 0), 
+                                 #0: (('switch passability', 0), ('move', (1050, 650)), ('turn on actions set', 1),),
+                                 0: (('switch passability', 0), ('wait', 30), ('move', (3250, 1350)),),
+                                 1: (('move', (1550, 500)),),
+                             }
+		            },		
+                    30: {
+                        'ghost': False,
+                        'speed': 0.1, 'active': False,
+                        'collideable': True,
+                        'gravity affected': False,
+                        'actors pass through': False,
+                        'invisible': False,                                                
+                        'trigger': False,
+                        'trigger description': {},
+                        'actions': {
+	                        # (('move', (1100,450)), ('move', 'start'), ('wait', 2), ('repeat', 0))  
+	                        # ('die', 0), ('switch visibility', 0), ('switch passability', 0),
+	                        # ('turn on actions set', 0), 
+                                 #0: (('switch passability', 0), ('move', (1050, 650)), ('turn on actions set', 1),),
+                                 0: (('switch passability', 0), ('wait', 40), ('move', (3350, 1350)),),
+                                 1: (('move', (1550, 500)),),
+                             }
+		            },
+                },
+            },
+            'items': {
+            },
+    },
+
 
 }
