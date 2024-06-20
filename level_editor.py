@@ -1,5 +1,6 @@
 # import pygame
-# from constants import *
+from constants import *
+# from locations import *
 # from world import *
 # try:
 #     from locations import *
@@ -90,13 +91,14 @@ class World(object):
         while i not in ('e', 'E', 'n', 'N'):
             i = input('Edit [E]xisting level or create [N]ew? :>')
         if i in ('n', 'N'):
+            # Setting up the new map:
             width = 0
             height = 0
-            while width < MAXX or width > MAXX * 4:
+            while int(width) < MAXX or int(width) > MAXX * 4:
                 width = input(f'Input map width in range [{MAXX}..{MAXX*4}], default {MAXX} :>')
                 if not width:
                     width = MAXX
-            while height < MAXY or height > MAXY * 4:
+            while int(height) < MAXY or int(height) > MAXY * 4:
                 height = input(f'Input map height in range [{MAXY}..{MAXY*4}], default {MAXY} :>')
                 if not height:
                     height = MAXY
@@ -105,9 +107,8 @@ class World(object):
             new_location_description = list()
             with open('locations.py', 'r') as f:
                 existing_locations_description = f.readlines()
-            # for l in existing_locations_description:
-            #     print(l)
-            # exit()
+
+            # Using the template to build a structure of new map's description:
             with open('location_template.txt', 'r') as template_source:
                 for line in template_source:
                     if 'new_map_name' in line:
@@ -118,10 +119,8 @@ class World(object):
                         new_location_description.append(new_line)
                     else:
                         new_location_description.append(line)
-            # for l in new_location_description:
-            #     print(l)
 
-            line_count = 0
+            # Insert the new map description into the existing locations.py file:
             for line in existing_locations_description:
                 if 'locations = {' in line:
                     line_index = existing_locations_description.index(line) + 1
@@ -136,7 +135,13 @@ class World(object):
             self.location = map_name
 
         else:
-            ...
+            # User wants to edit an existing map.
+            import locations
+            map_names = list(locations.locations.keys())
+            for name in map_names:
+                print(f'{name} [{map_names.index(name)}]')
+            i = input('Please, select map number :> ')
+            self.location = map_names[int(i)]
         # print(f'{width}, {height}')
         # for l in existing_locations_description:
         #     print(l)
@@ -361,7 +366,7 @@ class World(object):
         if self.location not in self.obstacles.keys():
             self.obstacles[self.location] = dict()
         self.obstacles[self.location][entity.id] = entity
-        self.obstacle_id = entity.id + 1
+        # self.obstacle_id = entity.id + 1
         # self.obstacle_id += 1
 
     def add_demolisher(self, description):
@@ -432,10 +437,14 @@ class World(object):
         #             loc_found = True
 
         try:
+            max_obs_id = 0
             for obs in locations[self.location]['obstacles']['obs rectangles']:
                 self.add_obstacle(obs)
-            for dem in locations[self.location]['demolishers']['dem rectangles']:
-                self.add_demolisher(dem)
+                if max_obs_id < obs[-1]:
+                    max_obs_id = obs[-1]
+            self.obstacle_id = max_obs_id + 1
+            # for dem in locations[self.location]['demolishers']['dem rectangles']:
+            #     self.add_demolisher(dem)
             self.camera.setup(locations[self.location]['size'][0], locations[self.location]['size'][1])
         except NameError:
             self.obstacles[self.location] = dict()
@@ -482,9 +491,33 @@ class World(object):
         #  '                ((650, 300), (200, 200), 3),  #3\n']
 
         # ['                ((550, 750), (200, 200), 0),  #0\n']
-        new_location_description = list()
+        # new_location_description = list()
         with open('locations.py', 'r') as f:
             existing_locations_description = f.readlines()
+
+        print(f'Start searching {self.location} to remove obsolete rectangles...')
+        loc_found = False
+        lines_counter = 0
+        for line in existing_locations_description:
+            if '\'' + self.location + '\':' in line and not loc_found:
+                print(f'Location {self.location} found.')
+                loc_found = True
+
+            if loc_found:
+                if '\'obs rectangles\':' in line:
+                    # Now need to delete all obsolete information about rectangles:
+                    start_index_to_delete = lines_counter + 1
+                    # start_index_to_delete = existing_locations_description.index(line) + 1
+                    print(f'Start index to delete records: {start_index_to_delete}')
+                elif 'OBSTACLE RECTANGLES SECTION END' in line:
+                    end_index_to_delete = lines_counter
+                    # end_index_to_delete = existing_locations_description.index(line)
+                    print(f'Ending index to delete records: {end_index_to_delete}. Abort search.')
+                    break
+            lines_counter += 1
+
+        if loc_found:
+            del existing_locations_description[start_index_to_delete:end_index_to_delete]
 
         loc_found = False
         with open('locations.py', 'w') as f_dest:
@@ -785,10 +818,12 @@ class World(object):
 
 world = World()
 world.setup()
-try:
-    from locations import *
-except ModuleNotFoundError:
-    pass
+from locations import *
+
+# try:
+#     from locations import *
+# except ModuleNotFoundError:
+#     pass
 world.set_screen(screen)
 world.obstacles[world.location] = dict()
 world.load()

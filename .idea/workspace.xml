@@ -7,9 +7,7 @@
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locations (1-я копия).py" beforeDir="false" afterPath="$PROJECT_DIR$/locations (1-я копия).py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locations_template.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations_template.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,13 +106,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00124" summary="Demolishers revealing offset description moved to actor's animation set.">
-      <created>1718068009016</created>
-      <option name="number" value="00124" />
-      <option name="presentableId" value="LOCAL-00124" />
-      <option name="project" value="LOCAL" />
-      <updated>1718068009016</updated>
     </task>
     <task id="LOCAL-00125" summary="Demolishers have got some new properties and ability to collide, as far as ability choose type of movement: fly or classic.">
       <created>1718071024555</created>
@@ -452,7 +443,14 @@
       <option name="project" value="LOCAL" />
       <updated>1718861522318</updated>
     </task>
-    <option name="localTasksCounter" value="173" />
+    <task id="LOCAL-00173" summary="Improving level editor: added opportunity to set up a new map before editor starts.&#10;Saving function redesigned.">
+      <created>1718866352548</created>
+      <option name="number" value="00173" />
+      <option name="presentableId" value="LOCAL-00173" />
+      <option name="project" value="LOCAL" />
+      <updated>1718866352548</updated>
+    </task>
+    <option name="localTasksCounter" value="174" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -467,7 +465,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Processing is now handle only active obstacles." />
     <MESSAGE value="Optimized slide process" />
     <MESSAGE value="Messing around jump function" />
     <MESSAGE value="Messing around jump function, once again" />
@@ -492,6 +489,7 @@
     <MESSAGE value="Player actor possesses separate field in world.actors dict&#10;Try to develop locations changing system." />
     <MESSAGE value="Locations change in correct way." />
     <MESSAGE value="Corrected incorrect naming for jump action." />
-    <option name="LAST_COMMIT_MESSAGE" value="Corrected incorrect naming for jump action." />
+    <MESSAGE value="Improving level editor: added opportunity to set up a new map before editor starts.&#10;Saving function redesigned." />
+    <option name="LAST_COMMIT_MESSAGE" value="Improving level editor: added opportunity to set up a new map before editor starts.&#10;Saving function redesigned." />
   </component>
 </project>
