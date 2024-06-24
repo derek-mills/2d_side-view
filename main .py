@@ -39,7 +39,7 @@ fades_speed = 100
 # world.press_any_key()
 # black_out(world.screen, world.screen, 5)
 # ---------------------------------------------------
-world.location = 'Entrance alley'
+world.location = 'Alley'
 world.add_actor(player_jake, (200, 200))
 world.load()
 

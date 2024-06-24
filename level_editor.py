@@ -80,6 +80,7 @@ class World(object):
         self.snap_mesh = dict()
         self.snap_mesh_size = 50
         self.snap_mesh_size_change_step = 25
+        self.zoom_factor = 1.
 
         # self.setup_box = list()
 
@@ -150,7 +151,13 @@ class World(object):
 
     def processing_human_input(self):
         self.mouse_xy = pygame.mouse.get_pos()
-        self.mouse_xy_global = (self.mouse_xy[0] + self.camera.offset_x, self.mouse_xy[1] + self.camera.offset_y)
+        self.mouse_xy_global = ((self.mouse_xy[0] + self.camera.offset_x) // self.zoom_factor,
+                                (self.mouse_xy[1] + self.camera.offset_y) // self.zoom_factor)
+        # self.mouse_xy_global = (self.zoom_factor * (self.mouse_xy[0] + self.camera.offset_x),
+        #                         self.zoom_factor * (self.mouse_xy[1] + self.camera.offset_y))
+        # self.mouse_xy_global = (self.mouse_xy[0] + self.camera.offset_x, self.mouse_xy[1] + self.camera.offset_y)
+        # self.mouse_xy_snapped_to_mesh = (self.zoom_factor * self.mouse_xy_global[0] // self.snap_mesh_size * self.snap_mesh_size,
+        #                                  self.zoom_factor * self.mouse_xy_global[1] // self.snap_mesh_size * self.snap_mesh_size)
         self.mouse_xy_snapped_to_mesh = (self.mouse_xy_global[0] // self.snap_mesh_size * self.snap_mesh_size,
                                          self.mouse_xy_global[1] // self.snap_mesh_size * self.snap_mesh_size)
         for event in pygame.event.get():
@@ -326,19 +333,19 @@ class World(object):
                 if buttons[2]:
                     self.is_mouse_button_down = True
                     self.is_right_mouse_button_down = True
-            # elif event.type == MOUSEWHEEL:
-            #     # print(event)
-            #     # print(event.x, event.y)
-            #     # print(event.flipped)
-            #     # print(event.which)
-            #     self.is_mouse_wheel_rolls = True
-            #     if event.y == 1:
-            #         # Mouse wheel up:
-            #         self.is_mouse_wheel_up = True
-            #         # self.wandering_screen_target_scale += self.wandering_scale_amount
-            #     elif event.y == -1:
-            #         # Mouse wheel down:
-            #         self.is_mouse_wheel_down = True
+            elif event.type == MOUSEWHEEL:
+                # print(event)
+                # print(event.x, event.y)
+                # print(event.flipped)
+                # print(event.which)
+                self.is_mouse_wheel_rolls = True
+                if event.y == 1:
+                    # Mouse wheel up:
+                    self.is_mouse_wheel_up = True
+                    # self.wandering_screen_target_scale += self.wandering_scale_amount
+                elif event.y == -1:
+                    # Mouse wheel down:
+                    self.is_mouse_wheel_down = True
             if event.type == MOUSEBUTTONUP:
                 self.is_mouse_button_down = False
                 if self.is_right_mouse_button_down:
@@ -625,6 +632,17 @@ class World(object):
     def render_obstacles(self):
         for key in self.obstacles[self.location].keys():
             obs = self.obstacles[self.location][key]
+            pygame.draw.rect(self.screen, WHITE, (self.zoom_factor * (obs.rectangle.x - self.camera.offset_x),
+                                                  self.zoom_factor * (obs.rectangle.y - self.camera.offset_y),
+                                                  self.zoom_factor * obs.rectangle.width,
+                                                  self.zoom_factor * obs.rectangle.height))
+            s = fonts.font15.render(str(obs.id), True, GREEN)
+            self.screen.blit(s, (self.zoom_factor * (obs.rectangle.x - self.camera.offset_x + 2),
+                                 self.zoom_factor * (obs.rectangle.y - self.camera.offset_y + 2)))
+
+    def render_obstacles_back(self):
+        for key in self.obstacles[self.location].keys():
+            obs = self.obstacles[self.location][key]
             pygame.draw.rect(self.screen, WHITE, (obs.rectangle.x - self.camera.offset_x, obs.rectangle.y - self.camera.offset_y,
                                                   obs.rectangle.width, obs.rectangle.height))
             s = fonts.font15.render(str(obs.id), True, GREEN)
@@ -648,6 +666,13 @@ class World(object):
 
     def render_new_obs(self):
 
+        pygame.draw.rect(self.screen, CYAN, (self.zoom_factor * (self.new_obs_rect.x - self.camera.offset_x),
+                                             self.zoom_factor * (self.new_obs_rect.y - self.camera.offset_y),
+                                             self.zoom_factor * self.new_obs_rect.width,
+                                             self.zoom_factor * self.new_obs_rect.height))
+
+    def render_new_obs_back(self):
+
         pygame.draw.rect(self.screen, CYAN, (self.new_obs_rect.x - self.camera.offset_x, self.new_obs_rect.y - self.camera.offset_y,
                                               self.new_obs_rect.width, self.new_obs_rect.height))
 
@@ -670,17 +695,25 @@ class World(object):
             ('OFFSET GLOBAL      : ' + str(self.global_offset_xy), BLACK),
             ('CAMERA INNER OFFSET: ' + str(self.camera.offset_x) + ' ' + str(self.camera.offset_y), BLACK),
             ('MOUSE XY           : ' + str(self.mouse_xy_snapped_to_mesh), WHITE),
+            ('ZOOM               : ' + str(self.zoom_factor), WHITE),
         )
         for p in params:
             self.screen.blit(fonts.all_fonts[font_size].render(p[0], True, p[1], GRAY), (stats_x, stats_y + gap))
             gap += font_size
 
     def render_snap_mesh(self):
+        pygame.draw.circle(self.screen, RED, (self.zoom_factor * (self.mouse_xy_snapped_to_mesh[0] - self.camera.offset_x),
+                                              self.zoom_factor * (self.mouse_xy_snapped_to_mesh[1] - self.camera.offset_y)), 5)
+        for k in self.snap_mesh.keys():
+            pygame.draw.circle(self.screen, YELLOW, (self.zoom_factor *(k[0] - self.camera.offset_x),
+                                                     self.zoom_factor *(k[1] - self.camera.offset_y)), 1)
+
+    def render_snap_mesh_back(self):
         pygame.draw.circle(self.screen, RED, (self.mouse_xy_snapped_to_mesh[0] - self.camera.offset_x,
                                               self.mouse_xy_snapped_to_mesh[1] - self.camera.offset_y), 5)
         for k in self.snap_mesh.keys():
-            # dot = self.snap_mesh[k]
             pygame.draw.circle(self.screen, YELLOW, (k[0] - self.camera.offset_x, k[1] - self.camera.offset_y), 1)
+
 
     def create_snap_mesh(self):
         self.snap_mesh = dict()
@@ -711,6 +744,13 @@ class World(object):
 
     def process(self):
         self.processing_human_input()
+
+        if self.is_mouse_wheel_up:
+            self.is_mouse_wheel_up = False
+            self.zoom_factor += .1
+        elif self.is_mouse_wheel_down:
+            self.is_mouse_wheel_down = False
+            self.zoom_factor -= .1
 
         if self.is_spacebar:
             obs_id = self.check_mouse_xy_collides_obs()
