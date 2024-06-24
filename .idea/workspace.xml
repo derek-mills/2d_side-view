@@ -8,7 +8,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main .py" beforeDir="false" afterPath="$PROJECT_DIR$/main .py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +48,7 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.customizations&quot;
   }
 }</component>
-  <component name="RunManager" selected="Python.main ">
+  <component name="RunManager" selected="Python.level_editor">
     <configuration name="level_editor" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ver_0.000.1" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -94,8 +93,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.main " />
         <item itemvalue="Python.level_editor" />
+        <item itemvalue="Python.main " />
       </list>
     </recent_temporary>
   </component>
@@ -107,13 +106,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00128" summary="Added demolishers horizontal and vertical speed reducing after bounce.">
-      <created>1718072812430</created>
-      <option name="number" value="00128" />
-      <option name="presentableId" value="LOCAL-00128" />
-      <option name="project" value="LOCAL" />
-      <updated>1718072812430</updated>
     </task>
     <task id="LOCAL-00129" summary="Added explosions">
       <created>1718077330047</created>
@@ -451,7 +443,14 @@
       <option name="project" value="LOCAL" />
       <updated>1718874948333</updated>
     </task>
-    <option name="localTasksCounter" value="177" />
+    <task id="LOCAL-00177" summary="Added zooming ability for level editor.">
+      <created>1719201346708</created>
+      <option name="number" value="00177" />
+      <option name="presentableId" value="LOCAL-00177" />
+      <option name="project" value="LOCAL" />
+      <updated>1719201346708</updated>
+    </task>
+    <option name="localTasksCounter" value="178" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -466,7 +465,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Messing around jump function" />
     <MESSAGE value="Messing around jump function, once again" />
     <MESSAGE value="Corrected bottom colliders" />
     <MESSAGE value="Finally fixed annoying stun after jump deed has done, but jump button has not released yet." />
@@ -491,6 +489,7 @@
     <MESSAGE value="Corrected incorrect naming for jump action." />
     <MESSAGE value="Improving level editor: added opportunity to set up a new map before editor starts.&#10;Saving function redesigned." />
     <MESSAGE value="Improving level editor: fixing minor bugs." />
-    <option name="LAST_COMMIT_MESSAGE" value="Improving level editor: fixing minor bugs." />
+    <MESSAGE value="Added zooming ability for level editor." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added zooming ability for level editor." />
   </component>
 </project>

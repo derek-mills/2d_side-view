@@ -151,8 +151,10 @@ class World(object):
 
     def processing_human_input(self):
         self.mouse_xy = pygame.mouse.get_pos()
-        self.mouse_xy_global = ((self.mouse_xy[0] + self.camera.offset_x) // self.zoom_factor,
-                                (self.mouse_xy[1] + self.camera.offset_y) // self.zoom_factor)
+        self.mouse_xy_global = (self.mouse_xy[0] // self.zoom_factor + self.camera.offset_x,
+                                self.mouse_xy[1] // self.zoom_factor + self.camera.offset_y)
+        # self.mouse_xy_global = ((self.mouse_xy[0] + self.camera.offset_x) // self.zoom_factor,
+        #                         (self.mouse_xy[1] + self.camera.offset_y) // self.zoom_factor)
         # self.mouse_xy_global = (self.zoom_factor * (self.mouse_xy[0] + self.camera.offset_x),
         #                         self.zoom_factor * (self.mouse_xy[1] + self.camera.offset_y))
         # self.mouse_xy_global = (self.mouse_xy[0] + self.camera.offset_x, self.mouse_xy[1] + self.camera.offset_y)
@@ -686,7 +688,7 @@ class World(object):
         # m_hover_actor = 'None' if not self.mouse_hovers_actor else self.wandering_actors[self.mouse_hovers_actor].name + ' ' + str(self.wandering_actors[self.mouse_hovers_actor].id)
         # m_hover_cell = 'None' if self.point_mouse_cursor_shows is None else str(self.locations[self.location]['points'][self.point_mouse_cursor_shows]['rect'].center)
         params = (
-            ('SAVE: F2 | LOAD: F8 | WASD: MOVE CAMERA | + - : CHANGE SNAP MESH SCALE | [ ] : change inserting object type | ESC: QUIT', BLUE),
+            ('SAVE: F2 | LOAD: F8 | W/A/S/D: MOVE CAMERA | [SHIFT+] +/- : CHANGE SNAP MESH SCALE | [/] : change inserting object type | MOUSE WHEEL : ZOOM| ESC: QUIT', BLUE),
 
             ('OBJECT TYPE        : ' + str(self.object_types[self.current_object_type]), BLACK),
             ('WORLD SIZE         : ' + str(self.camera.max_x) + ':' + str(self.camera.max_y), BLACK),
@@ -845,7 +847,7 @@ class World(object):
             if self.global_offset_xy[1] < MAXY_DIV_2:
                 self.global_offset_xy[1] = MAXY_DIV_2
         self.camera.apply_offset(self.global_offset_xy,
-                                 self.camera_scroll_speed, self.camera_scroll_speed, True)
+                                 self.camera_scroll_speed * 10, self.camera_scroll_speed * 10, False)
 
         # if self.menu:
         #     self.menu.process()

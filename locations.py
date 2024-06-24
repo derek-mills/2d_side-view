@@ -2,6 +2,78 @@ from constants import *
 
 locations = {
 
+    'Cellar':
+        {
+            'music': music_ambient_1,
+            'description': 'apartment #1',
+            'size': (7600, 4000), 
+            'hostiles': {
+            },
+            'demolishers': {
+                'dem rectangles': (
+                ),
+            },
+            'obstacles': {  
+	        #((0, 1000), (7650, 50), 1),  #1
+                'obs rectangles': ( 
+                ((50, 3950), (7550, 50), 1),  #1
+                ((7550, 0), (50, 3950), 2),  #2
+                ((9750, 4800), (50, 150), 3),  #3
+                ((7100, 3700), (400, 200), 4),  #4
+                ((8700, 350), (150, 150), 5),  #5
+                ((1500, 2850), (300, 200), 6),  #6
+                ((5250, 3500), (300, 450), 7),  #7
+                ((5300, 2100), (200, 1400), 8),  #8
+                ), # OBSTACLE RECTANGLES SECTION END
+
+                # 'settings': {
+                #     16: {
+                #         'ghost': False,
+                #         'speed': 0.1, 'active': False,
+                #         'collideable': False,
+                #         'gravity affected': False,
+                #         'actors pass through': True,
+                #         'invisible': True,
+                #         'trigger': True,
+                #         'trigger description': {
+                #            	#'make active': (26,28,30),
+                #         	'change location': {
+                #         		'new location': 'Mansion hall',
+                #         		'xy': (100, 100),
+                #         	},
+                #         	'disappear': False,
+                #         },
+                #         'actions': {},
+                #     },
+                # },
+
+                #  6: {
+                #     'ghost': False,
+                #     'speed': 1., 'active': True,
+                #     'collideable': False,
+                #     'gravity affected': False,
+                #     'actors pass through': False,
+                #     'exotic movement': 'sin',
+                #     'invisible': False,
+                #     'trigger': False,
+                #     'trigger description': {},
+                #     'actions': {
+                #         # (('move', (1100,450)), ('move', 'start'), ('wait', 2), ('repeat', 0))
+                #         # ('die', 0), ('switch visibility', 0), ('switch passability', 0),
+                #         # ('turn on actions set', 0), ('switch gravity', 0),
+                #
+                #              0: (('move', (1800,0, 150, 1500)), ('move', 'start area'), ('repeat', 0)),
+                #              1: (('move', (0, 0)),),
+                #          }
+                # },
+
+            },
+            'items': {
+                },
+    },
+
+
+
     'Attic room':
         {
             'music': music_ambient_1,
