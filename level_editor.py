@@ -1,4 +1,6 @@
 # import pygame
+import uuid
+
 from constants import *
 # from locations import *
 # from world import *
@@ -15,6 +17,7 @@ import fonts
 # import pickle
 # import setup_box
 # import menu
+from uuid import *
 
 class World(object):
     def __init__(self):
@@ -73,6 +76,9 @@ class World(object):
         # self.camera.setup(MAXX*2, MAXY)
         self.global_offset_xy = [MAXX_DIV_2, MAXY_DIV_2]
 
+        self.menu_items = dict()
+        self.menu_item_id = 1
+
         self.new_obs_rect = pygame.Rect(0,0,0,0)
         self.new_obs_rect_started = False
         self.new_obs_rect_start_xy = [0, 0]
@@ -87,7 +93,115 @@ class World(object):
     def set_screen(self, surface):
         self.screen = surface
 
+    def processing_menu_items(self):
+        selected_item = 0
+        for k in self.menu_items.keys():
+            menu_item = self.menu_items[k]
+            menu_item['hovered'] = False
+            if not menu_item['active']:
+                continue
+            if menu_item['rectangle'].collidepoint(self.mouse_xy):
+                menu_item['hovered'] = True
+                selected_item = k
+        return selected_item
+
+
     def setup(self):
+        self.add_menu_item(pygame.Rect(MAXX_DIV_2 // 2, 200, MAXX_DIV_2, 200), 'EDIT EXISTING OR CREATE NEW?', '', False)
+        self.add_menu_item(pygame.Rect(MAXX_DIV_2 // 2, 400, MAXX_DIV_2 // 2, 200), 'EXISTING', 'EXISTING', True)
+        self.add_menu_item(pygame.Rect(MAXX_DIV_2, 400, MAXX_DIV_2 // 2, 200), 'NEW', 'NEW', True)
+
+        # item = 0
+        command = ''
+        # human_choice = ''
+        while self.menu_items:
+            self.processing_human_input()
+            item = self.processing_menu_items()
+            if self.is_left_mouse_button_down:
+                if item != 0:
+                    # human_choice = ''
+                    command = self.menu_items[item]['command']
+                    self.menu_items = dict()
+                    self.menu_item_id = 1
+            self.render_menu_items()
+            pygame.display.flip()
+        # exec(command)
+        # print(human_choice)
+        if command == 'NEW':
+            print('make new')
+            # # Setting up the new map:
+            width = MAXX
+            height = MAXY
+
+
+            new_location_description = list()
+            with open('locations.py', 'r') as f:
+                existing_locations_description = f.readlines()
+
+            map_name = 'New map ' + str(uuid.uuid1())
+
+            # Using the template to build a structure of new map's description:
+            with open('locations_template.py', 'r') as template_source:
+                for line in template_source:
+                    if 'new_map_name' in line:
+                        new_line = '    \'' + map_name + '\':\n'
+                        new_location_description.append(new_line)
+                    elif 'new_map_size' in line:
+                        new_line = '            \'size\': (' + str(width) + ', ' + str(height) + '), \n'
+                        new_location_description.append(new_line)
+                    else:
+                        new_location_description.append(line)
+
+            # Insert the new map description into the existing locations.py file:
+            for line in existing_locations_description:
+                if 'locations = {' in line:
+                    line_index = existing_locations_description.index(line) + 1
+                    for new_line in new_location_description:
+                        existing_locations_description.insert(line_index, new_line)
+                        line_index += 1
+                    break
+
+            with open('locations.py', 'w') as f_dest:
+                f_dest.writelines(existing_locations_description)
+
+            self.location = map_name
+
+        else:
+            print('edit existing')
+            # User wants to edit an existing map.
+            import locations
+            self.reset_human_input()
+            self.render_background()
+            self.add_menu_item(pygame.Rect(MAXX_DIV_2 // 2, 20, MAXX_DIV_2, 100), 'CHOOSE AN EXISTING MAP', '', False)
+            # self.add_menu_item(pygame.Rect(MAXX_DIV_2 // 2, 400, MAXX_DIV_2 // 2, 200), 'EXISTING', 'EXISTING', True)
+            # self.add_menu_item(pygame.Rect(MAXX_DIV_2, 400, MAXX_DIV_2 // 2, 200), 'NEW', 'NEW', True)
+            map_names = list(locations.locations.keys())
+            menu_item_height = 50
+            for name in map_names:
+                self.add_menu_item(pygame.Rect(MAXX_DIV_2 // 2, 100+map_names.index(name)*menu_item_height, MAXX_DIV_2, menu_item_height), name, map_names.index(name), True)
+                # print(f'{name} [{map_names.index(name)}]')
+            print(self.menu_items)
+            while self.menu_items:
+                self.processing_human_input()
+                item = self.processing_menu_items()
+                if self.is_left_mouse_button_down:
+                    if item != 0:
+                        # human_choice = ''
+                        command = self.menu_items[item]['command']
+                        self.menu_items = dict()
+                        self.menu_item_id = 1
+                self.render_menu_items()
+                pygame.display.flip()
+
+            self.location = map_names[command]
+
+        # print(f'{width}, {height}')
+        # for l in existing_locations_description:
+        #     print(l)
+        #
+        # exit()
+
+    def setup_back(self):
         i= ''
         while i not in ('e', 'E', 'n', 'N'):
             i = input('Edit [E]xisting level or create [N]ew? :>')
@@ -148,6 +262,11 @@ class World(object):
         #     print(l)
         #
         # exit()
+
+    def reset_human_input(self):
+        self.is_mouse_button_down = False
+        self.is_left_mouse_button_down = False
+        self.is_right_mouse_button_down = False
 
     def processing_human_input(self):
         self.mouse_xy = pygame.mouse.get_pos()
@@ -400,6 +519,18 @@ class World(object):
         self.demolishers[self.location][entity.id] = entity
         self.demolishers_id = entity.id + 1
         # self.demolishers_id += 1
+
+    def add_menu_item(self, rectangle, text, command, active=True, frame_color=BLUE, bg_color=DARKGRAY, txt_color=WHITE):
+        self.menu_items[self.menu_item_id] = dict()
+        self.menu_items[self.menu_item_id]['text'] = text
+        self.menu_items[self.menu_item_id]['text color'] = txt_color
+        self.menu_items[self.menu_item_id]['frame color'] = frame_color
+        self.menu_items[self.menu_item_id]['back color'] = bg_color
+        self.menu_items[self.menu_item_id]['command'] = command
+        self.menu_items[self.menu_item_id]['active'] = active
+        self.menu_items[self.menu_item_id]['rectangle'] = rectangle
+        self.menu_items[self.menu_item_id]['hovered'] = False
+        self.menu_item_id += 1
 
     def load(self):
         # Loading with pickle:
@@ -660,11 +791,21 @@ class World(object):
             s = fonts.font15.render(str(dem.id), True, WHITE)
             self.screen.blit(s, (dem.rectangle.x - self.camera.offset_x + 2, dem.rectangle.y - self.camera.offset_y + 2))
 
+    def render_menu_items(self):
+        for k in self.menu_items.keys():
+            menu_item = self.menu_items[k]
+            # print(menu_item['rectangle'].x,menu_item['rectangle'].y,menu_item['rectangle'].w,menu_item['rectangle'].h)
+            pygame.draw.rect(self.screen, menu_item['back color'], (menu_item['rectangle'].x, menu_item['rectangle'].y,
+                                                                     menu_item['rectangle'].w,menu_item['rectangle'].h), 0)
+            pygame.draw.rect(self.screen, menu_item['frame color'], (menu_item['rectangle'].x, menu_item['rectangle'].y,
+                                                                     menu_item['rectangle'].w,menu_item['rectangle'].h), 1)
+            if menu_item['hovered']:
+                pygame.draw.rect(self.screen, RED, (menu_item['rectangle'].x + 1, menu_item['rectangle'].y + 1,
+                                                                         menu_item['rectangle'].w - 2, menu_item['rectangle'].h - 2), 1)
 
-    def render_menu(self):
-        ...
-        # if self.menu:
-        #     self.menu.draw()
+            s = fonts.font15.render(str(menu_item['text']), True, menu_item['text color'])
+
+            self.screen.blit(s, (menu_item['rectangle'].centerx - s.get_size()[0] // 2, menu_item['rectangle'].centery - s.get_size()[1] // 2))
 
     def render_new_obs(self):
 
@@ -747,122 +888,115 @@ class World(object):
     def process(self):
         self.processing_human_input()
 
-        if self.is_mouse_wheel_up:
-            self.is_mouse_wheel_up = False
-            self.zoom_factor += .1
-        elif self.is_mouse_wheel_down:
-            self.is_mouse_wheel_down = False
-            self.zoom_factor -= .1
-
-        if self.is_spacebar:
-            obs_id = self.check_mouse_xy_collides_obs()
-            if obs_id > -1:
-                # Try to delete existing obs:
-                del self.obstacles[self.location][obs_id]
-
-        if self.is_right_mouse_button_down:
-            ...
-            # obs_id = self.check_mouse_xy_collides_obs()
-            # if obs_id > -1:
-            #     menu_items = {
-            #         'IS GHOST?:': ('checkbox', 'is_ghost_platform'),
-            #         'MOVE RIGHT:': ('checkbox', 'is_move_right'),
-            #         'MOVE LEFT:': ('checkbox', 'is_move_left'),
-            #         'MOVE UP:': ('checkbox', 'is_move_up'),
-            #         'MOVE DOWN:': ('checkbox', 'is_move_down'),
-            #         'GRAVITY AFFECTED:': ('checkbox', 'is_gravity_affected'),
-            #         'COLLIDEABLE:': ('checkbox', 'is_collideable'),
-            #     }
-            #     # self.menu_bar(menu_items, self.mouse_xy)
-            #     self.obstacles[self.location][obs_id].is_ghost_platform = input('Is ghost? (True/False):')
-
-        if self.is_right_bracket:
-            self.is_right_bracket = False
-            self.current_object_type += 1
-            if self.current_object_type == len(self.object_types):
-                self.current_object_type = 0
-        if self.is_left_bracket:
-            self.is_left_bracket = False
-            self.current_object_type -= 1
-            if self.current_object_type < 0:
-                self.current_object_type = len(self.object_types) - 1
-
-        if self.is_left_mouse_button_down:
-            if self.new_obs_rect_started:
-                # Update new obs.
-                # last_point = (self.mouse_xy_global[0] // self.snap_mesh_size * self.snap_mesh_size,
-                #               self.mouse_xy_global[1] // self.snap_mesh_size * self.snap_mesh_size)
-                last_point = self.mouse_xy_snapped_to_mesh
-                if self.new_obs_rect_start_xy[0] < last_point[0]:
-                    x = self.new_obs_rect_start_xy[0]
-                    w = last_point[0] - self.new_obs_rect_start_xy[0]
-                else:
-                    x = last_point[0]
-                    w = self.new_obs_rect_start_xy[0] - last_point[0]
-
-                if self.new_obs_rect_start_xy[1] < last_point[1]:
-                    y = self.new_obs_rect_start_xy[1]
-                    h = last_point[1] - self.new_obs_rect_start_xy[1]
-                else:
-                    y = last_point[1]
-                    h = self.new_obs_rect_start_xy[1] - last_point[1]
-                self.new_obs_rect.update(x, y, w, h)
-            else:
-                # Start new obs.
-                self.new_obs_rect_started = True
-                self.new_obs_rect_start_xy = self.mouse_xy_snapped_to_mesh
-                # self.new_obs_rect_start_xy = self.mouse_xy_global  # Without snap to mesh.
+        if self.menu_items:
+            item = self.processing_menu_items()
+            if item != 0:
+                exec(self.menu_items[item]['command'])
+                self.menu_items = dict()
+                self.menu_item_id = 1
+            self.render_menu_items()
         else:
-            if self.new_obs_rect_started:
-                # Add new obs.
 
-                if self.new_obs_rect.width != 0 and self.new_obs_rect.height != 0:
-                    if self.object_types[self.current_object_type] == 'obstacle':
-                        description = (self.new_obs_rect.topleft, self.new_obs_rect.size, self.obstacle_id)
-                        self.obstacle_id += 1
-                        self.add_obstacle(description)
-                    elif self.object_types[self.current_object_type] == 'demolisher':
-                        description = (self.new_obs_rect.topleft, self.new_obs_rect.size, self.demolishers_id)
-                        self.demolishers_id += 1
-                        self.add_demolisher(description)
-                self.new_obs_rect_started = False
-                self.new_obs_rect_start_xy = [0, 0]
-                self.new_obs_rect.update(0,0,0,0)
+            if self.is_mouse_wheel_up:
+                self.is_mouse_wheel_up = False
+                self.zoom_factor += .1
+            elif self.is_mouse_wheel_down:
+                self.is_mouse_wheel_down = False
+                self.zoom_factor -= .1
 
-        # Update camera viewport:
-        if self.is_input_left_arrow:
-            self.global_offset_xy[0] -= self.camera_scroll_speed * 10
-            if self.global_offset_xy[0] < MAXX_DIV_2:
-                self.global_offset_xy[0] = MAXX_DIV_2
-        if self.is_input_right_arrow:
-            self.global_offset_xy[0] += self.camera_scroll_speed * 10
-            if self.global_offset_xy[0] > MAXX_DIV_2 + self.camera.max_offset_x:
-                self.global_offset_xy[0] = MAXX_DIV_2 + self.camera.max_offset_x
-        if self.is_input_down_arrow:
-            self.global_offset_xy[1] += self.camera_scroll_speed * 10
-            if self.global_offset_xy[1] > MAXY_DIV_2 + self.camera.max_offset_y:
-                self.global_offset_xy[1] = MAXY_DIV_2 + self.camera.max_offset_y
-        if self.is_input_up_arrow:
-            self.global_offset_xy[1] -= self.camera_scroll_speed * 10
-            if self.global_offset_xy[1] < MAXY_DIV_2:
-                self.global_offset_xy[1] = MAXY_DIV_2
-        self.camera.apply_offset(self.global_offset_xy,
-                                 self.camera_scroll_speed * 10, self.camera_scroll_speed * 10, False)
+            if self.is_spacebar:
+                obs_id = self.check_mouse_xy_collides_obs()
+                if obs_id > -1:
+                    # Try to delete existing obs:
+                    del self.obstacles[self.location][obs_id]
 
-        # if self.menu:
-        #     self.menu.process()
-        #     # self.menu.process(self.mouse_xy, self.is_left_mouse_button_down)
-        #
-        # Rendering:
-        self.render_background()
-        self.render_obstacles()
-        self.render_demolishers()
-        self.render_new_obs()
-        self.render_debug_info()
-        # self.render_menu()
-        self.render_snap_mesh()
+            if self.is_right_mouse_button_down:
+                ...
+
+            if self.is_right_bracket:
+                self.is_right_bracket = False
+                self.current_object_type += 1
+                if self.current_object_type == len(self.object_types):
+                    self.current_object_type = 0
+            if self.is_left_bracket:
+                self.is_left_bracket = False
+                self.current_object_type -= 1
+                if self.current_object_type < 0:
+                    self.current_object_type = len(self.object_types) - 1
+
+            if self.is_left_mouse_button_down:
+                if self.new_obs_rect_started:
+                    # Update new obs.
+                    # last_point = (self.mouse_xy_global[0] // self.snap_mesh_size * self.snap_mesh_size,
+                    #               self.mouse_xy_global[1] // self.snap_mesh_size * self.snap_mesh_size)
+                    last_point = self.mouse_xy_snapped_to_mesh
+                    if self.new_obs_rect_start_xy[0] < last_point[0]:
+                        x = self.new_obs_rect_start_xy[0]
+                        w = last_point[0] - self.new_obs_rect_start_xy[0]
+                    else:
+                        x = last_point[0]
+                        w = self.new_obs_rect_start_xy[0] - last_point[0]
+
+                    if self.new_obs_rect_start_xy[1] < last_point[1]:
+                        y = self.new_obs_rect_start_xy[1]
+                        h = last_point[1] - self.new_obs_rect_start_xy[1]
+                    else:
+                        y = last_point[1]
+                        h = self.new_obs_rect_start_xy[1] - last_point[1]
+                    self.new_obs_rect.update(x, y, w, h)
+                else:
+                    # Start new obs.
+                    self.new_obs_rect_started = True
+                    self.new_obs_rect_start_xy = self.mouse_xy_snapped_to_mesh
+                    # self.new_obs_rect_start_xy = self.mouse_xy_global  # Without snap to mesh.
+            else:
+                if self.new_obs_rect_started:
+                    # Add new obs.
+
+                    if self.new_obs_rect.width != 0 and self.new_obs_rect.height != 0:
+                        if self.object_types[self.current_object_type] == 'obstacle':
+                            description = (self.new_obs_rect.topleft, self.new_obs_rect.size, self.obstacle_id)
+                            self.obstacle_id += 1
+                            self.add_obstacle(description)
+                        elif self.object_types[self.current_object_type] == 'demolisher':
+                            description = (self.new_obs_rect.topleft, self.new_obs_rect.size, self.demolishers_id)
+                            self.demolishers_id += 1
+                            self.add_demolisher(description)
+                    self.new_obs_rect_started = False
+                    self.new_obs_rect_start_xy = [0, 0]
+                    self.new_obs_rect.update(0,0,0,0)
+
+            # Update camera viewport:
+            if self.is_input_left_arrow:
+                self.global_offset_xy[0] -= self.camera_scroll_speed * 10
+                if self.global_offset_xy[0] < MAXX_DIV_2:
+                    self.global_offset_xy[0] = MAXX_DIV_2
+            if self.is_input_right_arrow:
+                self.global_offset_xy[0] += self.camera_scroll_speed * 10
+                if self.global_offset_xy[0] > MAXX_DIV_2 + self.camera.max_offset_x:
+                    self.global_offset_xy[0] = MAXX_DIV_2 + self.camera.max_offset_x
+            if self.is_input_down_arrow:
+                self.global_offset_xy[1] += self.camera_scroll_speed * 10
+                if self.global_offset_xy[1] > MAXY_DIV_2 + self.camera.max_offset_y:
+                    self.global_offset_xy[1] = MAXY_DIV_2 + self.camera.max_offset_y
+            if self.is_input_up_arrow:
+                self.global_offset_xy[1] -= self.camera_scroll_speed * 10
+                if self.global_offset_xy[1] < MAXY_DIV_2:
+                    self.global_offset_xy[1] = MAXY_DIV_2
+            self.camera.apply_offset(self.global_offset_xy,
+                                     self.camera_scroll_speed * 10, self.camera_scroll_speed * 10, False)
+
+            # Rendering:
+            self.render_background()
+            self.render_obstacles()
+            self.render_demolishers()
+            self.render_new_obs()
+            self.render_debug_info()
+            # self.render_menu()
+            self.render_snap_mesh()
 
 world = World()
+world.set_screen(screen)
 world.setup()
 from locations import *
 
@@ -870,7 +1004,7 @@ from locations import *
 #     from locations import *
 # except ModuleNotFoundError:
 #     pass
-world.set_screen(screen)
+# world.set_screen(screen)
 world.obstacles[world.location] = dict()
 world.load()
 world.create_snap_mesh()

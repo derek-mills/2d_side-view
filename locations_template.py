@@ -15,7 +15,7 @@
                 'obs rectangles': ( 
                 ), # OBSTACLE RECTANGLES SECTION END
 
-                # 'settings': {
+                'settings': {
                 #     16: {
                 #         'ghost': False,
                 #         'speed': 0.1, 'active': False,
@@ -54,7 +54,7 @@
                 #              0: (('move', (1800,0, 150, 1500)), ('move', 'start area'), ('repeat', 0)),
                 #              1: (('move', (0, 0)),),
                 #          }
-                # },
+                },
 
             },
             'items': {
