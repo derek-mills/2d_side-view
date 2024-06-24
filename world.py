@@ -229,8 +229,8 @@ class World(object):
             # y_offset_speed = round(self.obstacles[self.location][self.actors['player'].influenced_by_obstacle].vec_to_destination[1])
         else:
             x_offset_speed = self.actors['player'].speed  # * self.actors['player'].look
-            y_offset_speed = 2 if not self.actors['player'].is_stand_on_ground and self.actors['player'].fall_speed < 20 \
-                               else self.actors['player'].fall_speed
+            y_offset_speed = 2 if not self.actors['player'].is_stand_on_ground and abs(self.actors['player'].fall_speed) < 5 \
+                               else abs(self.actors['player'].fall_speed)
             # y_offset_speed = abs(self.actors['player'].fall_speed)        # if self.actors['player'].speed > 0:
 
         self.camera.apply_offset((self.actors['player'].rectangle.centerx, self.actors['player'].rectangle.top),

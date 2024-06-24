@@ -2,6 +2,80 @@ from constants import *
 
 locations = {
 
+    'New map 2cee5978-31ff-11ef-8c0a-27a0e5deecc6':
+        {
+            'music': music_ambient_1,
+            'description': 'apartment #1',
+            'size': (1920, 1080), 
+            'hostiles': {
+            },
+            'demolishers': {
+                'dem rectangles': (
+                ),
+            },
+            'obstacles': {  
+	        #((0, 1000), (7650, 50), 1),  #1
+                'obs rectangles': ( 
+                ((0, 900), (200, 200), 1),  #1
+                ((200, 950), (200, 150), 2),  #2
+                ((400, 1000), (100, 100), 3),  #3
+                ((500, 1050), (1450, 50), 4),  #4
+                ((1900, 350), (50, 450), 5),  #5
+                ((1900, 800), (50, 250), 6),  #6
+                ((1350, 0), (600, 350), 8),  #8
+                ((0, 0), (1350, 50), 9),  #9
+                ((0, 50), (50, 850), 10),  #10
+                ((850, 300), (500, 50), 11),  #11
+                ), # OBSTACLE RECTANGLES SECTION END
+
+                'settings': {
+                #     16: {
+                #         'ghost': False,
+                #         'speed': 0.1, 'active': False,
+                #         'collideable': False,
+                #         'gravity affected': False,
+                #         'actors pass through': True,
+                #         'invisible': True,
+                #         'trigger': True,
+                #         'trigger description': {
+                #            	#'make active': (26,28,30),
+                #         	'change location': {
+                #         		'new location': 'Mansion hall',
+                #         		'xy': (100, 100),
+                #         	},
+                #         	'disappear': False,
+                #         },
+                #         'actions': {},
+                #     },
+                # },
+
+                #  6: {
+                #     'ghost': False,
+                #     'speed': 1., 'active': True,
+                #     'collideable': False,
+                #     'gravity affected': False,
+                #     'actors pass through': False,
+                #     'exotic movement': 'sin',
+                #     'invisible': False,
+                #     'trigger': False,
+                #     'trigger description': {},
+                #     'actions': {
+                #         # (('move', (1100,450)), ('move', 'start'), ('wait', 2), ('repeat', 0))
+                #         # ('die', 0), ('switch visibility', 0), ('switch passability', 0),
+                #         # ('turn on actions set', 0), ('switch gravity', 0),
+                #
+                #              0: (('move', (1800,0, 150, 1500)), ('move', 'start area'), ('repeat', 0)),
+                #              1: (('move', (0, 0)),),
+                #          }
+                },
+
+            },
+            'items': {
+                },
+    },
+
+
+
     'New map 6fa2b48a-31fa-11ef-8c0a-27a0e5deecc6':
         {
             'music': music_ambient_1,
@@ -16,6 +90,7 @@ locations = {
             'obstacles': {  
 	        #((0, 1000), (7650, 50), 1),  #1
                 'obs rectangles': ( 
+                ((0, 1050), (1950, 50), 1),  #1
                 ), # OBSTACLE RECTANGLES SECTION END
 
                 'settings': {
@@ -80,6 +155,14 @@ locations = {
             'obstacles': {  
 	        #((0, 1000), (7650, 50), 1),  #1
                 'obs rectangles': ( 
+                ((0, 1050), (1950, 50), 1),  #1
+                ((250, 850), (200, 100), 2),  #2
+                ((550, 750), (50, 50), 3),  #3
+                ((200, 500), (50, 50), 4),  #4
+                ((450, 450), (100, 50), 5),  #5
+                ((800, 350), (150, 150), 6),  #6
+                ((950, 600), (50, 100), 7),  #7
+                ((800, 800), (100, 100), 8),  #8
                 ), # OBSTACLE RECTANGLES SECTION END
 
                 'settings': {
@@ -179,6 +262,18 @@ locations = {
                 ((1200, 800), (450, 50), 36),  #36
                 ((1150, 2050), (400, 50), 37),  #37
                 ((1550, 850), (50, 350), 38),  #38
+                ((550, 2225), (450, 25), 39),  #39
+                ((575, 2200), (425, 25), 40),  #40
+                ((600, 2175), (400, 25), 41),  #41
+                ((625, 2150), (375, 25), 42),  #42
+                ((650, 2125), (350, 25), 43),  #43
+                ((675, 2100), (325, 25), 44),  #44
+                ((700, 2075), (300, 25), 45),  #45
+                ((725, 2050), (275, 25), 46),  #46
+                ((775, 2025), (225, 25), 47),  #47
+                ((800, 2000), (200, 25), 49),  #49
+                ((850, 1975), (150, 25), 50),  #50
+                ((900, 1950), (100, 25), 51),  #51
                 ), # OBSTACLE RECTANGLES SECTION END
 
                 'settings': {

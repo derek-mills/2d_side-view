@@ -1,23 +1,20 @@
-# import pygame
-import uuid
+import pygame
 
 from constants import *
-# from locations import *
 # from world import *
-# try:
-#     from locations import *
-# except ModuleNotFoundError:
-#     pass
+try:
+    from locations import *
+except ModuleNotFoundError:
+    pass
 from obstacle import *
 from demolisher import *
 import camera
-import fonts
 # from sound import *
-# import json
+import fonts
+import json
 # import pickle
 # import setup_box
 # import menu
-from uuid import *
 
 class World(object):
     def __init__(self):
@@ -70,14 +67,11 @@ class World(object):
         self.demolishers = dict()
         self.demolishers_id: int = 0
         # self.location = '01'
-        self.location = ''
+        self.location = 'room #1'
         self.screen = None
         self.camera = camera.Camera()
         # self.camera.setup(MAXX*2, MAXY)
         self.global_offset_xy = [MAXX_DIV_2, MAXY_DIV_2]
-
-        self.menu_items = dict()
-        self.menu_item_id = 1
 
         self.new_obs_rect = pygame.Rect(0,0,0,0)
         self.new_obs_rect_started = False
@@ -86,194 +80,18 @@ class World(object):
         self.snap_mesh = dict()
         self.snap_mesh_size = 50
         self.snap_mesh_size_change_step = 25
-        self.zoom_factor = 1.
 
         # self.setup_box = list()
 
     def set_screen(self, surface):
         self.screen = surface
 
-    def processing_menu_items(self):
-        while self.menu_items:
-            self.processing_human_input()
-            selected_item = 0
-            for k in self.menu_items.keys():
-                menu_item = self.menu_items[k]
-                menu_item['hovered'] = False
-                if not menu_item['active']:
-                    continue
-                if menu_item['rectangle'].collidepoint(self.mouse_xy):
-                    menu_item['hovered'] = True
-                    selected_item = k
-            if self.is_left_mouse_button_down:
-                if selected_item != 0:
-                    command = self.menu_items[selected_item]['command']
-                    self.menu_items = dict()
-                    self.menu_item_id = 1
-                    return command
-            self.render_menu_items()
-            pygame.display.flip()
-            # return selected_item
-
-    def processing_menu_items_back(self):
-        selected_item = 0
-        for k in self.menu_items.keys():
-            menu_item = self.menu_items[k]
-            menu_item['hovered'] = False
-            if not menu_item['active']:
-                continue
-            if menu_item['rectangle'].collidepoint(self.mouse_xy):
-                menu_item['hovered'] = True
-                selected_item = k
-        return selected_item
-
-
     def setup(self):
-        self.add_menu_item(pygame.Rect(MAXX_DIV_2 // 2, 200, MAXX_DIV_2, 200), 'EDIT EXISTING OR CREATE NEW?', '', False)
-        self.add_menu_item(pygame.Rect(MAXX_DIV_2 // 2, 400, MAXX_DIV_2 // 2, 200), 'EXISTING', 'EXISTING', True)
-        self.add_menu_item(pygame.Rect(MAXX_DIV_2, 400, MAXX_DIV_2 // 2, 200), 'NEW', 'NEW', True)
-
-        command = self.processing_menu_items()
-
-        # exec(command)
-        # print(human_choice)
-        if command == 'NEW':
-            # print('make new')
-            # # Setting up the new map:
-            width = MAXX
-            height = MAXY
-            new_location_description = list()
-            with open('locations.py', 'r') as f:
-                existing_locations_description = f.readlines()
-
-            map_name = 'New map ' + str(uuid.uuid1())
-
-            # Using the template to build a structure of new map's description:
-            with open('locations_template.py', 'r') as template_source:
-                for line in template_source:
-                    if 'new_map_name' in line:
-                        new_line = '    \'' + map_name + '\':\n'
-                        new_location_description.append(new_line)
-                    elif 'new_map_size' in line:
-                        new_line = '            \'size\': (' + str(width) + ', ' + str(height) + '), \n'
-                        new_location_description.append(new_line)
-                    else:
-                        new_location_description.append(line)
-
-            # Insert the new map description into the existing locations.py file:
-            for line in existing_locations_description:
-                if 'locations = {' in line:
-                    line_index = existing_locations_description.index(line) + 1
-                    for new_line in new_location_description:
-                        existing_locations_description.insert(line_index, new_line)
-                        line_index += 1
-                    break
-
-            with open('locations.py', 'w') as f_dest:
-                f_dest.writelines(existing_locations_description)
-
-            self.location = map_name
-
-        else:
-            # print('edit existing')
-            # User wants to edit an existing map.
-            import locations
-            self.reset_human_input()
-            self.render_background()
-            self.add_menu_item(pygame.Rect(MAXX_DIV_2 // 2, 20, MAXX_DIV_2, 100), 'CHOOSE AN EXISTING MAP', '', False)
-            map_names = list(locations.locations.keys())
-            menu_item_height = 50
-            for name in map_names:
-                self.add_menu_item(pygame.Rect(MAXX_DIV_2 // 2, 100+map_names.index(name)*menu_item_height, MAXX_DIV_2, menu_item_height), name, map_names.index(name), True)
-                # print(f'{name} [{map_names.index(name)}]')
-            # print(self.menu_items)
-            command = self.processing_menu_items()
-            self.location = map_names[command]
-
-        # print(f'{width}, {height}')
-        # for l in existing_locations_description:
-        #     print(l)
-        #
-        # exit()
-
-    def setup_back(self):
-        i= ''
-        while i not in ('e', 'E', 'n', 'N'):
-            i = input('Edit [E]xisting level or create [N]ew? :>')
-        if i in ('n', 'N'):
-            # Setting up the new map:
-            width = 0
-            height = 0
-            while int(width) < MAXX or int(width) > MAXX * 4:
-                width = input(f'Input map width in range [{MAXX}..{MAXX*4}], default {MAXX} :>')
-                if not width:
-                    width = MAXX
-            while int(height) < MAXY or int(height) > MAXY * 4:
-                height = input(f'Input map height in range [{MAXY}..{MAXY*4}], default {MAXY} :>')
-                if not height:
-                    height = MAXY
-            map_name = str(input(f'Input map name :>'))
-
-            new_location_description = list()
-            with open('locations.py', 'r') as f:
-                existing_locations_description = f.readlines()
-
-            # Using the template to build a structure of new map's description:
-            with open('locations_template.py', 'r') as template_source:
-                for line in template_source:
-                    if 'new_map_name' in line:
-                        new_line = '    \'' + map_name + '\':\n'
-                        new_location_description.append(new_line)
-                    elif 'new_map_size' in line:
-                        new_line = '            \'size\': (' + str(width) + ', ' + str(height) + '), \n'
-                        new_location_description.append(new_line)
-                    else:
-                        new_location_description.append(line)
-
-            # Insert the new map description into the existing locations.py file:
-            for line in existing_locations_description:
-                if 'locations = {' in line:
-                    line_index = existing_locations_description.index(line) + 1
-                    for new_line in new_location_description:
-                        existing_locations_description.insert(line_index, new_line)
-                        line_index += 1
-                    break
-
-            with open('locations.py', 'w') as f_dest:
-                f_dest.writelines(existing_locations_description)
-
-            self.location = map_name
-
-        else:
-            # User wants to edit an existing map.
-            import locations
-            map_names = list(locations.locations.keys())
-            for name in map_names:
-                print(f'{name} [{map_names.index(name)}]')
-            i = input('Please, select map number :> ')
-            self.location = map_names[int(i)]
-        # print(f'{width}, {height}')
-        # for l in existing_locations_description:
-        #     print(l)
-        #
-        # exit()
-
-    def reset_human_input(self):
-        self.is_mouse_button_down = False
-        self.is_left_mouse_button_down = False
-        self.is_right_mouse_button_down = False
+        ...
 
     def processing_human_input(self):
         self.mouse_xy = pygame.mouse.get_pos()
-        self.mouse_xy_global = (self.mouse_xy[0] // self.zoom_factor + self.camera.offset_x,
-                                self.mouse_xy[1] // self.zoom_factor + self.camera.offset_y)
-        # self.mouse_xy_global = ((self.mouse_xy[0] + self.camera.offset_x) // self.zoom_factor,
-        #                         (self.mouse_xy[1] + self.camera.offset_y) // self.zoom_factor)
-        # self.mouse_xy_global = (self.zoom_factor * (self.mouse_xy[0] + self.camera.offset_x),
-        #                         self.zoom_factor * (self.mouse_xy[1] + self.camera.offset_y))
-        # self.mouse_xy_global = (self.mouse_xy[0] + self.camera.offset_x, self.mouse_xy[1] + self.camera.offset_y)
-        # self.mouse_xy_snapped_to_mesh = (self.zoom_factor * self.mouse_xy_global[0] // self.snap_mesh_size * self.snap_mesh_size,
-        #                                  self.zoom_factor * self.mouse_xy_global[1] // self.snap_mesh_size * self.snap_mesh_size)
+        self.mouse_xy_global = (self.mouse_xy[0] + self.camera.offset_x, self.mouse_xy[1] + self.camera.offset_y)
         self.mouse_xy_snapped_to_mesh = (self.mouse_xy_global[0] // self.snap_mesh_size * self.snap_mesh_size,
                                          self.mouse_xy_global[1] // self.snap_mesh_size * self.snap_mesh_size)
         for event in pygame.event.get():
@@ -449,19 +267,19 @@ class World(object):
                 if buttons[2]:
                     self.is_mouse_button_down = True
                     self.is_right_mouse_button_down = True
-            elif event.type == MOUSEWHEEL:
-                # print(event)
-                # print(event.x, event.y)
-                # print(event.flipped)
-                # print(event.which)
-                self.is_mouse_wheel_rolls = True
-                if event.y == 1:
-                    # Mouse wheel up:
-                    self.is_mouse_wheel_up = True
-                    # self.wandering_screen_target_scale += self.wandering_scale_amount
-                elif event.y == -1:
-                    # Mouse wheel down:
-                    self.is_mouse_wheel_down = True
+            # elif event.type == MOUSEWHEEL:
+            #     # print(event)
+            #     # print(event.x, event.y)
+            #     # print(event.flipped)
+            #     # print(event.which)
+            #     self.is_mouse_wheel_rolls = True
+            #     if event.y == 1:
+            #         # Mouse wheel up:
+            #         self.is_mouse_wheel_up = True
+            #         # self.wandering_screen_target_scale += self.wandering_scale_amount
+            #     elif event.y == -1:
+            #         # Mouse wheel down:
+            #         self.is_mouse_wheel_down = True
             if event.type == MOUSEBUTTONUP:
                 self.is_mouse_button_down = False
                 if self.is_right_mouse_button_down:
@@ -489,7 +307,7 @@ class World(object):
         if self.location not in self.obstacles.keys():
             self.obstacles[self.location] = dict()
         self.obstacles[self.location][entity.id] = entity
-        # self.obstacle_id = entity.id + 1
+        self.obstacle_id = entity.id + 1
         # self.obstacle_id += 1
 
     def add_demolisher(self, description):
@@ -514,18 +332,6 @@ class World(object):
         self.demolishers[self.location][entity.id] = entity
         self.demolishers_id = entity.id + 1
         # self.demolishers_id += 1
-
-    def add_menu_item(self, rectangle, text, command, active=True, frame_color=BLUE, bg_color=DARKGRAY, txt_color=WHITE):
-        self.menu_items[self.menu_item_id] = dict()
-        self.menu_items[self.menu_item_id]['text'] = text
-        self.menu_items[self.menu_item_id]['text color'] = txt_color
-        self.menu_items[self.menu_item_id]['frame color'] = frame_color
-        self.menu_items[self.menu_item_id]['back color'] = bg_color
-        self.menu_items[self.menu_item_id]['command'] = command
-        self.menu_items[self.menu_item_id]['active'] = active
-        self.menu_items[self.menu_item_id]['rectangle'] = rectangle
-        self.menu_items[self.menu_item_id]['hovered'] = False
-        self.menu_item_id += 1
 
     def load(self):
         # Loading with pickle:
@@ -572,14 +378,10 @@ class World(object):
         #             loc_found = True
 
         try:
-            max_obs_id = 0
             for obs in locations[self.location]['obstacles']['obs rectangles']:
                 self.add_obstacle(obs)
-                if max_obs_id < obs[-1]:
-                    max_obs_id = obs[-1]
-            self.obstacle_id = max_obs_id + 1
-            # for dem in locations[self.location]['demolishers']['dem rectangles']:
-            #     self.add_demolisher(dem)
+            for dem in locations[self.location]['demolishers']['dem rectangles']:
+                self.add_demolisher(dem)
             self.camera.setup(locations[self.location]['size'][0], locations[self.location]['size'][1])
         except NameError:
             self.obstacles[self.location] = dict()
@@ -588,95 +390,6 @@ class World(object):
         # self.obstacle_id = len(self.obstacles[self.location].keys()) + 1
 
     def save(self):
-        # Saving with pickle:
-        # with open('locations_'+self.location+'.dat', 'wb') as f:
-        #     pickle.dump(self.obstacles[self.location], f)
-
-        # Saving using JSON:
-        # obs_geometry = list()
-
-        obs_rects = list()
-        for k in self.obstacles[self.location].keys():
-            obs = self.obstacles[self.location][k]
-            total_strg = '                ' + \
-                         '(' + \
-                         str(obs.rectangle.topleft) + ', ' + \
-                         str(obs.rectangle.size) + \
-                         ', ' + str(k) + '),  #' + str(k) + '\n'
-            obs_rects.append(total_strg)
-
-        dem_rects = list()
-        if self.location in self.demolishers:
-            for k in self.demolishers[self.location].keys():
-                dem = self.demolishers[self.location][k]
-                total_strg = '                ' + \
-                       '(' + \
-                       str(dem.rectangle.topleft) + ', ' + \
-                       str(dem.rectangle.size) + ', ' + str(k) + \
-                       '),  #' + str(k) + '\n'
-                dem_rects.append(total_strg)
-
-
-        # print(obs_rects)
-        # print(dem_rects)
-        # exit()
-        # ['                ((100, 950), (1550, 50), 0),  #0\n',
-        #  '                ((1300, 500), (300, 250), 1),  #1\n',
-        #  '                ((950, 350), (100, 150), 2),  #2\n',
-        #  '                ((650, 300), (200, 200), 3),  #3\n']
-
-        # ['                ((550, 750), (200, 200), 0),  #0\n']
-        # new_location_description = list()
-        with open('locations.py', 'r') as f:
-            existing_locations_description = f.readlines()
-
-        print(f'Start searching {self.location} to remove obsolete rectangles...')
-        loc_found = False
-        lines_counter = 0
-        for line in existing_locations_description:
-            if '\'' + self.location + '\':' in line and not loc_found:
-                print(f'Location {self.location} found.')
-                loc_found = True
-
-            if loc_found:
-                if '\'obs rectangles\':' in line:
-                    # Now need to delete all obsolete information about rectangles:
-                    start_index_to_delete = lines_counter + 1
-                    # start_index_to_delete = existing_locations_description.index(line) + 1
-                    print(f'Start index to delete records: {start_index_to_delete}')
-                elif 'OBSTACLE RECTANGLES SECTION END' in line:
-                    end_index_to_delete = lines_counter
-                    # end_index_to_delete = existing_locations_description.index(line)
-                    print(f'Ending index to delete records: {end_index_to_delete}. Abort search.')
-                    break
-            lines_counter += 1
-
-        if loc_found:
-            del existing_locations_description[start_index_to_delete:end_index_to_delete]
-
-        loc_found = False
-        with open('locations.py', 'w') as f_dest:
-            for line in existing_locations_description:
-                f_dest.write(line)
-                if loc_found:
-                    if '\'obs rectangles\':' in line:
-                        for obs_rect_line in obs_rects:
-                            f_dest.write(obs_rect_line)
-                        loc_found = False
-
-                    if '\'dem rectangles\':' in line:
-                        for dem_rect_line in dem_rects:
-                            f_dest.write(dem_rect_line)
-                        # loc_found = False
-
-                if '\''+self.location+'\':' in line and not loc_found:
-                    # print('Location found!')
-                    loc_found = True
-        # f_dest.close()
-
-        self.allow_import_locations = True
-
-    def save_old(self):
         # Saving with pickle:
         # with open('locations_'+self.location+'.dat', 'wb') as f:
         #     pickle.dump(self.obstacles[self.location], f)
@@ -754,21 +467,157 @@ class World(object):
 
         self.allow_import_locations = True
 
+    def save_old(self):
+        # Saving with pickle:
+        # with open('locations_'+self.location+'.dat', 'wb') as f:
+        #     pickle.dump(self.obstacles[self.location], f)
+
+        # Saving using JSON:
+        # obs_geometry = list()
+
+        obs_rects = list()
+        for k in self.obstacles[self.location].keys():
+            obs = self.obstacles[self.location][k]
+            ghost = ', \'ghost\' ' if obs.is_ghost_platform else ''
+            # move_right = ', \'move right\' ' if obs.is_move_right else ''
+            # move_left = ', \'move left\' ' if obs.is_move_left else ''
+            collideable = ', \'collideable\' ' if obs.is_collideable else ''
+            actions = ', \'active\' ' if obs.actions else ''
+            gravity_affected = ', \'gravity affected\' ' if obs.is_gravity_affected else ''
+
+            # str(obs.rectangle.size) + ghost + move_right + move_left + \
+            total_strg = '                ' + \
+                         '(' + \
+                         str(obs.rectangle.topleft) + ', ' + \
+                         str(obs.rectangle.size) + ghost + \
+                         collideable + gravity_affected + actions + ', ' + str(k) + \
+                         '),  #' + str(k) + '\n'
+            obs_rects.append(total_strg)
+            # str(obs.rectangle.size) + ghost + move_right + move_left + collideable + gravity_affected + '),  #' + str(obs.id) + '\n'
+
+
+        dem_rects = list()
+        if self.location in self.demolishers:
+            for k in self.demolishers[self.location].keys():
+                dem = self.demolishers[self.location][k]
+                # ghost = ', \'ghost\' ' if dem.is_ghost_platform else ''
+                # move_right = ', \'move right\' ' if dem.is_move_right else ''
+                # move_left = ', \'move left\' ' if dem.is_move_left else ''
+                collideable = ', \'collideable\' ' if dem.is_collideable else ''
+                actions = ', \'active\' ' if dem.actions else ''
+                gravity_affected = ', \'gravity affected\' ' if dem.is_gravity_affected else ''
+
+                # str(dem.rectangle.size) + ghost + move_right + move_left + \
+                total_strg = '                ' + \
+                       '(' + \
+                       str(dem.rectangle.topleft) + ', ' + \
+                       str(dem.rectangle.size) + ghost + \
+                       collideable + gravity_affected + actions + ', ' + str(k) + \
+                       '),  #' + str(k) + '\n'
+                dem_rects.append(total_strg)
+                       # str(dem.rectangle.size) + ghost + move_right + move_left + collideable + gravity_affected + '),  #' + str(dem.id) + '\n'
+
+        # print(obs_rects)
+        # print(dem_rects)
+        # exit()
+        # ['                ((100, 950), (1550, 50), 0),  #0\n',
+        #  '                ((1300, 500), (300, 250), 1),  #1\n',
+        #  '                ((950, 350), (100, 150), 2),  #2\n',
+        #  '                ((650, 300), (200, 200), 3),  #3\n']
+
+        # ['                ((550, 750), (200, 200), 0),  #0\n']
+
+
+        loc_found = False
+        f_dest = open('locations.py', 'w')
+        with open('locations_template.py', 'r') as f_source:
+            for line in f_source:
+                f_dest.write(line)
+                if loc_found:
+                    if '\'obs rectangles\':' in line:
+                        for obs_rect_line in obs_rects:
+                            f_dest.write(obs_rect_line)
+                    if '\'dem rectangles\':' in line:
+                        for dem_rect_line in dem_rects:
+                            f_dest.write(dem_rect_line)
+                        # print('obs found!!')
+                        # for k in self.obstacles[self.location].keys():
+                        #     obs = self.obstacles[self.location][k]
+                        #     ghost = ', \'ghost\' ' if obs.is_ghost_platform else ''
+                        #     # move_right = ', \'move right\' ' if obs.is_move_right else ''
+                        #     # move_left = ', \'move left\' ' if obs.is_move_left else ''
+                        #     collideable = ', \'collideable\' ' if obs.is_collideable else ''
+                        #     actions = ', \'active\' ' if obs.actions else ''
+                        #     gravity_affected = ', \'gravity affected\' ' if obs.is_gravity_affected else ''
+                        #
+                        #     # str(obs.rectangle.size) + ghost + move_right + move_left + \
+                        #     total_strg = '                ' + \
+                        #            '(' + \
+                        #            str(obs.rectangle.topleft) + ', ' + \
+                        #            str(obs.rectangle.size) + ghost + \
+                        #            collideable + gravity_affected + actions + ', ' + str(k) + \
+                        #            '),  #' + str(k) + '\n'
+                        #            # str(obs.rectangle.size) + ghost + move_right + move_left + collideable + gravity_affected + '),  #' + str(obs.id) + '\n'
+
+                        # loc_found = False
+                if '\''+self.location+'\':' in line and not loc_found:
+                    # print('Location found!')
+                    loc_found = True
+        f_dest.close()
+
+        # loc_found = False
+        # f_dest = open('locations.py', 'w')
+        # with open('locations_template.py', 'r') as f_source:
+        #     for line in f_source:
+        #         f_dest.write(line)
+        #         if loc_found:
+        #             if '\'dem rectangles\':' in line:
+        #                 for k in self.demolishers[self.location].keys():
+        #                     dem = self.demolishers[self.location][k]
+        #                     ghost = ', \'ghost\' ' if dem.is_ghost_platform else ''
+        #                     # move_right = ', \'move right\' ' if dem.is_move_right else ''
+        #                     # move_left = ', \'move left\' ' if dem.is_move_left else ''
+        #                     collideable = ', \'collideable\' ' if dem.is_collideable else ''
+        #                     actions = ', \'active\' ' if dem.actions else ''
+        #                     gravity_affected = ', \'gravity affected\' ' if dem.is_gravity_affected else ''
+        #
+        #                     # str(dem.rectangle.size) + ghost + move_right + move_left + \
+        #                     total_strg = '                ' + \
+        #                            '(' + \
+        #                            str(dem.rectangle.topleft) + ', ' + \
+        #                            str(dem.rectangle.size) + ghost + \
+        #                            collideable + gravity_affected + actions + ', ' + str(k) + \
+        #                            '),  #' + str(k) + '\n'
+        #                            # str(dem.rectangle.size) + ghost + move_right + move_left + collideable + gravity_affected + '),  #' + str(dem.id) + '\n'
+        #                     f_dest.write(total_strg)
+        #                 loc_found = False
+        #         if '\''+self.location+'\':' in line and not loc_found:
+        #             # print('Location found!')
+        #             loc_found = True
+        # f_dest.close()
+
+        self.allow_import_locations = True
+        # exit()
+        # with open('locations_' + self.location + '.dat', 'w') as f:
+        #     for k in self.obstacles[self.location].keys():
+        #         obs = self.obstacles[self.location][k]
+        #         obs_geometry = (obs.id, obs.rectangle.topleft, obs.rectangle.size)
+        #         # obs_geometry.append((obs.id, obs.rectangle.topleft, obs.rectangle.size))
+        #         # f.write(str(obs.id) + ' ' + str(obs_geometry) + '\n')
+        #         f.write(obs_geometry)
+        #         # f.write(json.dumps(obs_geometry))
+
+            # json.dump(obs_geometry, f)
+
+            # settings = {
+            #     ''
+            # }
+            # pickle.dump(settings, f)
+
     def render_background(self):
         pygame.draw.rect(self.screen, BLACK, (0,0,MAXX, MAXY))
 
     def render_obstacles(self):
-        for key in self.obstacles[self.location].keys():
-            obs = self.obstacles[self.location][key]
-            pygame.draw.rect(self.screen, WHITE, (self.zoom_factor * (obs.rectangle.x - self.camera.offset_x),
-                                                  self.zoom_factor * (obs.rectangle.y - self.camera.offset_y),
-                                                  self.zoom_factor * obs.rectangle.width,
-                                                  self.zoom_factor * obs.rectangle.height))
-            s = fonts.font15.render(str(obs.id), True, GREEN)
-            self.screen.blit(s, (self.zoom_factor * (obs.rectangle.x - self.camera.offset_x + 2),
-                                 self.zoom_factor * (obs.rectangle.y - self.camera.offset_y + 2)))
-
-    def render_obstacles_back(self):
         for key in self.obstacles[self.location].keys():
             obs = self.obstacles[self.location][key]
             pygame.draw.rect(self.screen, WHITE, (obs.rectangle.x - self.camera.offset_x, obs.rectangle.y - self.camera.offset_y,
@@ -786,30 +635,13 @@ class World(object):
             s = fonts.font15.render(str(dem.id), True, WHITE)
             self.screen.blit(s, (dem.rectangle.x - self.camera.offset_x + 2, dem.rectangle.y - self.camera.offset_y + 2))
 
-    def render_menu_items(self):
-        for k in self.menu_items.keys():
-            menu_item = self.menu_items[k]
-            # print(menu_item['rectangle'].x,menu_item['rectangle'].y,menu_item['rectangle'].w,menu_item['rectangle'].h)
-            pygame.draw.rect(self.screen, menu_item['back color'], (menu_item['rectangle'].x, menu_item['rectangle'].y,
-                                                                     menu_item['rectangle'].w,menu_item['rectangle'].h), 0)
-            pygame.draw.rect(self.screen, menu_item['frame color'], (menu_item['rectangle'].x, menu_item['rectangle'].y,
-                                                                     menu_item['rectangle'].w,menu_item['rectangle'].h), 1)
-            if menu_item['hovered']:
-                pygame.draw.rect(self.screen, RED, (menu_item['rectangle'].x + 1, menu_item['rectangle'].y + 1,
-                                                                         menu_item['rectangle'].w - 2, menu_item['rectangle'].h - 2), 1)
 
-            s = fonts.font15.render(str(menu_item['text']), True, menu_item['text color'])
-
-            self.screen.blit(s, (menu_item['rectangle'].centerx - s.get_size()[0] // 2, menu_item['rectangle'].centery - s.get_size()[1] // 2))
+    def render_menu(self):
+        ...
+        # if self.menu:
+        #     self.menu.draw()
 
     def render_new_obs(self):
-
-        pygame.draw.rect(self.screen, CYAN, (self.zoom_factor * (self.new_obs_rect.x - self.camera.offset_x),
-                                             self.zoom_factor * (self.new_obs_rect.y - self.camera.offset_y),
-                                             self.zoom_factor * self.new_obs_rect.width,
-                                             self.zoom_factor * self.new_obs_rect.height))
-
-    def render_new_obs_back(self):
 
         pygame.draw.rect(self.screen, CYAN, (self.new_obs_rect.x - self.camera.offset_x, self.new_obs_rect.y - self.camera.offset_y,
                                               self.new_obs_rect.width, self.new_obs_rect.height))
@@ -824,7 +656,7 @@ class World(object):
         # m_hover_actor = 'None' if not self.mouse_hovers_actor else self.wandering_actors[self.mouse_hovers_actor].name + ' ' + str(self.wandering_actors[self.mouse_hovers_actor].id)
         # m_hover_cell = 'None' if self.point_mouse_cursor_shows is None else str(self.locations[self.location]['points'][self.point_mouse_cursor_shows]['rect'].center)
         params = (
-            ('SAVE: F2 | LOAD: F8 | W/A/S/D: MOVE CAMERA | [SHIFT+] +/- : CHANGE SNAP MESH SCALE | [/] : change inserting object type | MOUSE WHEEL : ZOOM| ESC: QUIT', BLUE),
+            ('SAVE: F2 | LOAD: F8 | WASD: MOVE CAMERA | + - : CHANGE SNAP MESH SCALE | [ ] : change inserting object type | ESC: QUIT', BLUE),
 
             ('OBJECT TYPE        : ' + str(self.object_types[self.current_object_type]), BLACK),
             ('WORLD SIZE         : ' + str(self.camera.max_x) + ':' + str(self.camera.max_y), BLACK),
@@ -833,25 +665,17 @@ class World(object):
             ('OFFSET GLOBAL      : ' + str(self.global_offset_xy), BLACK),
             ('CAMERA INNER OFFSET: ' + str(self.camera.offset_x) + ' ' + str(self.camera.offset_y), BLACK),
             ('MOUSE XY           : ' + str(self.mouse_xy_snapped_to_mesh), WHITE),
-            ('ZOOM               : ' + str(self.zoom_factor), WHITE),
         )
         for p in params:
             self.screen.blit(fonts.all_fonts[font_size].render(p[0], True, p[1], GRAY), (stats_x, stats_y + gap))
             gap += font_size
 
     def render_snap_mesh(self):
-        pygame.draw.circle(self.screen, RED, (self.zoom_factor * (self.mouse_xy_snapped_to_mesh[0] - self.camera.offset_x),
-                                              self.zoom_factor * (self.mouse_xy_snapped_to_mesh[1] - self.camera.offset_y)), 5)
-        for k in self.snap_mesh.keys():
-            pygame.draw.circle(self.screen, YELLOW, (self.zoom_factor *(k[0] - self.camera.offset_x),
-                                                     self.zoom_factor *(k[1] - self.camera.offset_y)), 1)
-
-    def render_snap_mesh_back(self):
         pygame.draw.circle(self.screen, RED, (self.mouse_xy_snapped_to_mesh[0] - self.camera.offset_x,
                                               self.mouse_xy_snapped_to_mesh[1] - self.camera.offset_y), 5)
         for k in self.snap_mesh.keys():
+            # dot = self.snap_mesh[k]
             pygame.draw.circle(self.screen, YELLOW, (k[0] - self.camera.offset_x, k[1] - self.camera.offset_y), 1)
-
 
     def create_snap_mesh(self):
         self.snap_mesh = dict()
@@ -883,118 +707,116 @@ class World(object):
     def process(self):
         self.processing_human_input()
 
-        if self.menu_items:
-            command = self.processing_menu_items()
-            exec(command)
-        else:
-            if self.is_mouse_wheel_up:
-                self.is_mouse_wheel_up = False
-                self.zoom_factor += .1
-            elif self.is_mouse_wheel_down:
-                self.is_mouse_wheel_down = False
-                self.zoom_factor -= .1
+        if self.is_spacebar:
+            obs_id = self.check_mouse_xy_collides_obs()
+            if obs_id > -1:
+                # Try to delete existing obs:
+                del self.obstacles[self.location][obs_id]
 
-            if self.is_spacebar:
-                obs_id = self.check_mouse_xy_collides_obs()
-                if obs_id > -1:
-                    # Try to delete existing obs:
-                    del self.obstacles[self.location][obs_id]
+        if self.is_right_mouse_button_down:
+            ...
+            # obs_id = self.check_mouse_xy_collides_obs()
+            # if obs_id > -1:
+            #     menu_items = {
+            #         'IS GHOST?:': ('checkbox', 'is_ghost_platform'),
+            #         'MOVE RIGHT:': ('checkbox', 'is_move_right'),
+            #         'MOVE LEFT:': ('checkbox', 'is_move_left'),
+            #         'MOVE UP:': ('checkbox', 'is_move_up'),
+            #         'MOVE DOWN:': ('checkbox', 'is_move_down'),
+            #         'GRAVITY AFFECTED:': ('checkbox', 'is_gravity_affected'),
+            #         'COLLIDEABLE:': ('checkbox', 'is_collideable'),
+            #     }
+            #     # self.menu_bar(menu_items, self.mouse_xy)
+            #     self.obstacles[self.location][obs_id].is_ghost_platform = input('Is ghost? (True/False):')
 
-            if self.is_right_mouse_button_down:
-                ...
+        if self.is_right_bracket:
+            self.is_right_bracket = False
+            self.current_object_type += 1
+            if self.current_object_type == len(self.object_types):
+                self.current_object_type = 0
+        if self.is_left_bracket:
+            self.is_left_bracket = False
+            self.current_object_type -= 1
+            if self.current_object_type < 0:
+                self.current_object_type = len(self.object_types) - 1
 
-            if self.is_right_bracket:
-                self.is_right_bracket = False
-                self.current_object_type += 1
-                if self.current_object_type == len(self.object_types):
-                    self.current_object_type = 0
-            if self.is_left_bracket:
-                self.is_left_bracket = False
-                self.current_object_type -= 1
-                if self.current_object_type < 0:
-                    self.current_object_type = len(self.object_types) - 1
-
-            if self.is_left_mouse_button_down:
-                if self.new_obs_rect_started:
-                    # Update new obs.
-                    # last_point = (self.mouse_xy_global[0] // self.snap_mesh_size * self.snap_mesh_size,
-                    #               self.mouse_xy_global[1] // self.snap_mesh_size * self.snap_mesh_size)
-                    last_point = self.mouse_xy_snapped_to_mesh
-                    if self.new_obs_rect_start_xy[0] < last_point[0]:
-                        x = self.new_obs_rect_start_xy[0]
-                        w = last_point[0] - self.new_obs_rect_start_xy[0]
-                    else:
-                        x = last_point[0]
-                        w = self.new_obs_rect_start_xy[0] - last_point[0]
-
-                    if self.new_obs_rect_start_xy[1] < last_point[1]:
-                        y = self.new_obs_rect_start_xy[1]
-                        h = last_point[1] - self.new_obs_rect_start_xy[1]
-                    else:
-                        y = last_point[1]
-                        h = self.new_obs_rect_start_xy[1] - last_point[1]
-                    self.new_obs_rect.update(x, y, w, h)
+        if self.is_left_mouse_button_down:
+            if self.new_obs_rect_started:
+                # Update new obs.
+                # last_point = (self.mouse_xy_global[0] // self.snap_mesh_size * self.snap_mesh_size,
+                #               self.mouse_xy_global[1] // self.snap_mesh_size * self.snap_mesh_size)
+                last_point = self.mouse_xy_snapped_to_mesh
+                if self.new_obs_rect_start_xy[0] < last_point[0]:
+                    x = self.new_obs_rect_start_xy[0]
+                    w = last_point[0] - self.new_obs_rect_start_xy[0]
                 else:
-                    # Start new obs.
-                    self.new_obs_rect_started = True
-                    self.new_obs_rect_start_xy = self.mouse_xy_snapped_to_mesh
-                    # self.new_obs_rect_start_xy = self.mouse_xy_global  # Without snap to mesh.
+                    x = last_point[0]
+                    w = self.new_obs_rect_start_xy[0] - last_point[0]
+
+                if self.new_obs_rect_start_xy[1] < last_point[1]:
+                    y = self.new_obs_rect_start_xy[1]
+                    h = last_point[1] - self.new_obs_rect_start_xy[1]
+                else:
+                    y = last_point[1]
+                    h = self.new_obs_rect_start_xy[1] - last_point[1]
+                self.new_obs_rect.update(x, y, w, h)
             else:
-                if self.new_obs_rect_started:
-                    # Add new obs.
+                # Start new obs.
+                self.new_obs_rect_started = True
+                self.new_obs_rect_start_xy = self.mouse_xy_snapped_to_mesh
+                # self.new_obs_rect_start_xy = self.mouse_xy_global  # Without snap to mesh.
+        else:
+            if self.new_obs_rect_started:
+                # Add new obs.
 
-                    if self.new_obs_rect.width != 0 and self.new_obs_rect.height != 0:
-                        if self.object_types[self.current_object_type] == 'obstacle':
-                            description = (self.new_obs_rect.topleft, self.new_obs_rect.size, self.obstacle_id)
-                            self.obstacle_id += 1
-                            self.add_obstacle(description)
-                        elif self.object_types[self.current_object_type] == 'demolisher':
-                            description = (self.new_obs_rect.topleft, self.new_obs_rect.size, self.demolishers_id)
-                            self.demolishers_id += 1
-                            self.add_demolisher(description)
-                    self.new_obs_rect_started = False
-                    self.new_obs_rect_start_xy = [0, 0]
-                    self.new_obs_rect.update(0,0,0,0)
+                if self.new_obs_rect.width != 0 and self.new_obs_rect.height != 0:
+                    if self.object_types[self.current_object_type] == 'obstacle':
+                        description = (self.new_obs_rect.topleft, self.new_obs_rect.size, self.obstacle_id)
+                        self.obstacle_id += 1
+                        self.add_obstacle(description)
+                    elif self.object_types[self.current_object_type] == 'demolisher':
+                        description = (self.new_obs_rect.topleft, self.new_obs_rect.size, self.demolishers_id)
+                        self.demolishers_id += 1
+                        self.add_demolisher(description)
+                self.new_obs_rect_started = False
+                self.new_obs_rect_start_xy = [0, 0]
+                self.new_obs_rect.update(0,0,0,0)
 
-            # Update camera viewport:
-            if self.is_input_left_arrow:
-                self.global_offset_xy[0] -= self.camera_scroll_speed * 10
-                if self.global_offset_xy[0] < MAXX_DIV_2:
-                    self.global_offset_xy[0] = MAXX_DIV_2
-            if self.is_input_right_arrow:
-                self.global_offset_xy[0] += self.camera_scroll_speed * 10
-                if self.global_offset_xy[0] > MAXX_DIV_2 + self.camera.max_offset_x:
-                    self.global_offset_xy[0] = MAXX_DIV_2 + self.camera.max_offset_x
-            if self.is_input_down_arrow:
-                self.global_offset_xy[1] += self.camera_scroll_speed * 10
-                if self.global_offset_xy[1] > MAXY_DIV_2 + self.camera.max_offset_y:
-                    self.global_offset_xy[1] = MAXY_DIV_2 + self.camera.max_offset_y
-            if self.is_input_up_arrow:
-                self.global_offset_xy[1] -= self.camera_scroll_speed * 10
-                if self.global_offset_xy[1] < MAXY_DIV_2:
-                    self.global_offset_xy[1] = MAXY_DIV_2
-            self.camera.apply_offset(self.global_offset_xy,
-                                     self.camera_scroll_speed * 10, self.camera_scroll_speed * 10, False)
+        # Update camera viewport:
+        if self.is_input_left_arrow:
+            self.global_offset_xy[0] -= self.camera_scroll_speed * 10
+            if self.global_offset_xy[0] < MAXX_DIV_2:
+                self.global_offset_xy[0] = MAXX_DIV_2
+        if self.is_input_right_arrow:
+            self.global_offset_xy[0] += self.camera_scroll_speed * 10
+            if self.global_offset_xy[0] > MAXX_DIV_2 + self.camera.max_offset_x:
+                self.global_offset_xy[0] = MAXX_DIV_2 + self.camera.max_offset_x
+        if self.is_input_down_arrow:
+            self.global_offset_xy[1] += self.camera_scroll_speed * 10
+            if self.global_offset_xy[1] > MAXY_DIV_2 + self.camera.max_offset_y:
+                self.global_offset_xy[1] = MAXY_DIV_2 + self.camera.max_offset_y
+        if self.is_input_up_arrow:
+            self.global_offset_xy[1] -= self.camera_scroll_speed * 10
+            if self.global_offset_xy[1] < MAXY_DIV_2:
+                self.global_offset_xy[1] = MAXY_DIV_2
+        self.camera.apply_offset(self.global_offset_xy,
+                                 self.camera_scroll_speed, self.camera_scroll_speed, True)
 
-            # Rendering:
-            self.render_background()
-            self.render_obstacles()
-            self.render_demolishers()
-            self.render_new_obs()
-            self.render_debug_info()
-            # self.render_menu()
-            self.render_snap_mesh()
+        # if self.menu:
+        #     self.menu.process()
+        #     # self.menu.process(self.mouse_xy, self.is_left_mouse_button_down)
+        #
+        # Rendering:
+        self.render_background()
+        self.render_obstacles()
+        self.render_demolishers()
+        self.render_new_obs()
+        self.render_debug_info()
+        # self.render_menu()
+        self.render_snap_mesh()
 
 world = World()
 world.set_screen(screen)
-world.setup()
-from locations import *
-
-# try:
-#     from locations import *
-# except ModuleNotFoundError:
-#     pass
-# world.set_screen(screen)
 world.obstacles[world.location] = dict()
 world.load()
 world.create_snap_mesh()
