@@ -7,7 +7,7 @@
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main .py" beforeDir="false" afterPath="$PROJECT_DIR$/main .py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -107,13 +107,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00131" summary="Some experiments.&#10;TAB now switches weapons in cycle.">
-      <created>1718091284178</created>
-      <option name="number" value="00131" />
-      <option name="presentableId" value="LOCAL-00131" />
-      <option name="project" value="LOCAL" />
-      <updated>1718091284178</updated>
     </task>
     <task id="LOCAL-00132" summary="Some experiments.">
       <created>1718093118941</created>
@@ -451,7 +444,14 @@
       <option name="project" value="LOCAL" />
       <updated>1719214193574</updated>
     </task>
-    <option name="localTasksCounter" value="180" />
+    <task id="LOCAL-00180" summary="Improved menu items processing in level editor.&#10;Camera offset speed improved.">
+      <created>1719216272878</created>
+      <option name="number" value="00180" />
+      <option name="presentableId" value="LOCAL-00180" />
+      <option name="project" value="LOCAL" />
+      <updated>1719216272878</updated>
+    </task>
+    <option name="localTasksCounter" value="181" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -466,7 +466,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Finally fixed annoying stun after jump deed has done, but jump button has not released yet." />
     <MESSAGE value="Slightly improved fly-after-jump behavior" />
     <MESSAGE value="Fixed bug when is_jump_performed trigger did not switch off during rising after crouch, and jumping ability became unavailable." />
     <MESSAGE value="Jumping on up button press" />
@@ -491,6 +490,7 @@
     <MESSAGE value="Added zooming ability for level editor." />
     <MESSAGE value="Fixed bugs while zooming in level editor." />
     <MESSAGE value="Level editor is now possessed by graphic UI." />
-    <option name="LAST_COMMIT_MESSAGE" value="Level editor is now possessed by graphic UI." />
+    <MESSAGE value="Improved menu items processing in level editor.&#10;Camera offset speed improved." />
+    <option name="LAST_COMMIT_MESSAGE" value="Improved menu items processing in level editor.&#10;Camera offset speed improved." />
   </component>
 </project>

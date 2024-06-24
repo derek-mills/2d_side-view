@@ -868,18 +868,6 @@ class World(object):
                 return obs.id
         return -1
 
-    # def menu_bar(self, menu_items, xy):
-    #     items = list()
-    #     dx = xy[0]
-    #     dy = xy[1]
-    #     for i in menu_items.keys():
-    #         items.append((i, dx, dy, menu_items[i][0], menu_items[i][1]))
-    #         dy += 20
-    #
-    #     pygame.draw.rect(self.screen, pygame.Color(100, 100, 100, 10), (dx - 2, dy - 2, self.menu_item_width + 4, self.menu_height + self.menu_items_spacing + 2), 0)
-    #     print(items)
-    #     exit()
-
     def process(self):
         self.processing_human_input()
 

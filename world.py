@@ -190,7 +190,7 @@ class World(object):
             demol.parent_id = -1
             demol.snap_to_actor = -1
             demol.look = description['look'] if 'look' in description.keys() else 1
-            demol.destination = description['destination'] if 'destination' in description.keys() else (0, 0)
+            demol.destination_point = description['destination'] if 'destination' in description.keys() else (0, 0)
         demol.aftermath = description['aftermath']
         demol.damage = description['damage']
         demol.static = description['static']
@@ -299,11 +299,12 @@ class World(object):
             self.detect_active_obstacles()
 
     def make_explosion(self, xy):
-        print(f'[process demolishers] KA-BOOM!')
+        # print(f'[process demolishers] KA-BOOM!')
         for i in range(randint(20, 50)):
             demolisher_description = {
+
                 'snap to actor': -1,
-                'demolisher TTL': randint(50, 70),
+                'demolisher TTL': randint(150, 170),
                 'rect': pygame.Rect(xy[0], xy[1], 5, 5),
                 'destination': find_destination_behind_target_point(xy, (randint(xy[0] - 100, xy[0] + 100), randint(xy[1] - 100, xy[1] + 100)), MAXX),
                 'bounce': False,
@@ -313,10 +314,12 @@ class World(object):
                 'damage': 10,
                 'static': False,
                 'damage reduce': .1,
-                'speed': 0.8,
+                'speed': 0.5 + randint(1, 5) / 10,
                 'collides': True,
                 'gravity affected': False
             }
+            dest = demolisher_description['destination']
+            # print(f'[process demolishers] Adding frag #{i}: {dest=}')
             self.add_demolisher(demolisher_description)
 
     def processing_demolishers(self):
