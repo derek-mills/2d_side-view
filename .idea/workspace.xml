@@ -8,7 +8,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,13 +106,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00134" summary="some improvements to get obstacles being collideable.">
-      <created>1718249713390</created>
-      <option name="number" value="00134" />
-      <option name="presentableId" value="LOCAL-00134" />
-      <option name="project" value="LOCAL" />
-      <updated>1718249713390</updated>
     </task>
     <task id="LOCAL-00135" summary="Messing around active moving obstacles.">
       <created>1718266802983</created>
@@ -451,7 +443,14 @@
       <option name="project" value="LOCAL" />
       <updated>1719292932235</updated>
     </task>
-    <option name="localTasksCounter" value="183" />
+    <task id="LOCAL-00183" summary="Keep upgrading level editor saving system.">
+      <created>1719299742781</created>
+      <option name="number" value="00183" />
+      <option name="presentableId" value="LOCAL-00183" />
+      <option name="project" value="LOCAL" />
+      <updated>1719299742781</updated>
+    </task>
+    <option name="localTasksCounter" value="184" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -466,7 +465,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Jumping on up button press" />
     <MESSAGE value="Improved fall speed calculations" />
     <MESSAGE value="Added trigger obstacles which react if actor passes through or stand on them" />
     <MESSAGE value="Prepare to change some settings in active obstacle description (locations.py)" />
@@ -491,6 +489,7 @@
     <MESSAGE value="Improved menu items processing in level editor.&#10;Camera offset speed improved." />
     <MESSAGE value="Fixed demolishers fly ability." />
     <MESSAGE value="Level editor saving system upgraded." />
-    <option name="LAST_COMMIT_MESSAGE" value="Level editor saving system upgraded." />
+    <MESSAGE value="Keep upgrading level editor saving system." />
+    <option name="LAST_COMMIT_MESSAGE" value="Keep upgrading level editor saving system." />
   </component>
 </project>

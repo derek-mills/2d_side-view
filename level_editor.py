@@ -647,6 +647,8 @@ class World(object):
                 f.write('\n            \'hostiles\': {')
                 f.write('\n              },')
                 f.write('\n            \'demolishers\': {')
+
+                # Demolishers settings:
                 f.write('\n                \'dem rectangles\': (')
                 if k == self.location:
                     # Save demolishers rectangles which were edited right now.
@@ -658,6 +660,8 @@ class World(object):
                         f.write('\n                ' + str(dem) + ',' )
                 f.write('\n                  ), # DEMOLISHERS RECTANGLE SECTION END' )
                 f.write('\n            },')
+
+                # OBSTACLE SETTINGS:
                 f.write('\n            \'obstacles\': {' )
                 f.write('\n                \'obs rectangles\': (' )
                 if k == self.location:
@@ -670,15 +674,17 @@ class World(object):
                         f.write('\n                ' + str(obs) + ',' )
                 f.write('\n                  ), # OBSTACLE RECTANGLES SECTION END' )
 
+                # SAVE ACTIVE OBSTACLES SETTINGS:
                 f.write('\n                \'settings\': {')
-                # SAVE SETTINGS:
                 if k == self.location:
+                    # Save all settings we've just edited:
                     for s_key in self.obs_settings.keys():
-                        f.write('\n                    ' + str(s_key) + ': {')
+                        f.write('\n                    ' + str(s_key) + ': {')  # Dict key which is pointer to active obstacle ID.
                         for ss_key in self.obs_settings[s_key].keys():
                             f.write('\n                        \'' + ss_key + '\': ' + str(self.obs_settings[s_key][ss_key]) + ',')
                         f.write('\n                  },')
                 else:
+                    # Save settings of other levels remain unchanged:
                     for active_obs_key in loc[k]['obstacles']['settings'].keys():
                         l = loc[k]['obstacles']['settings'][active_obs_key]
                         f.write('\n                    ' + str(active_obs_key) + ': {')
@@ -686,7 +692,9 @@ class World(object):
                             # Save 'settings' section line by line:
                             f.write('\n                        \'' + i + '\': ' + str(l[i]) + ',')
                         f.write('\n                  },')
-                f.write('\n                  }')
+
+                # Closing tails:
+                f.write('\n                  } # OBSTACLE SETTINGS SECTION END')
                 f.write('\n              },')
                 f.write('\n            \'items\': {' +  '},')
                 f.write('\n    },')
