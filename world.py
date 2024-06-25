@@ -279,10 +279,12 @@ class World(object):
                 continue
             if obs.trigger:
                 if obs.trigger_activated:
-                    if 'make active' in obs.trigger_description.keys():
+                    if obs.trigger_description['make active'] is not None:
+                    # if 'make active' in obs.trigger_description.keys():
                         for make_active_id in obs.trigger_description['make active']:
                             self.obstacles[self.location][make_active_id].active = True
-                    if 'change location' in obs.trigger_description.keys():
+                    if obs.trigger_description['change location']:
+                    # if 'change location' in obs.trigger_description.keys():
                         obs.trigger_activated = False
                         self.change_location(obs.trigger_description['change location'])
                         return

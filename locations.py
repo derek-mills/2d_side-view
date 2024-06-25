@@ -156,15 +156,14 @@ locations = {
             },
             'obstacles': {
                 'obs rectangles': (
-                ((0, 1050), (1900, 50), 1),  #1
-                ((1850, 0), (50, 1050), 3),  #3
-                ((0, 850), (50, 200), 4),  #4
-                ((0, 0), (50, 850), 5),  #5
-                ((650, 800), (1300, 50), 6),  #6
-                ((400, 850), (250, 50), 7),  #7
-                ((275, 900), (125, 25), 8),  #8
-                ((150, 925), (125, 25), 9),  #9
-                ((550, 400), (500, 200), 10),  #10
+                ((0, 1050), (1900, 50), 1),
+                ((1850, 0), (50, 1050), 3),
+                ((0, 850), (50, 200), 4),
+                ((0, 0), (50, 850), 5),
+                ((650, 800), (1300, 50), 6),
+                ((400, 850), (250, 50), 7),
+                ((275, 900), (125, 25), 8),
+                ((150, 925), (125, 25), 9),
                   ), # OBSTACLE RECTANGLES SECTION END
                 'settings': {
                     4: {
@@ -178,7 +177,7 @@ locations = {
                         'trigger': True,
                         'trigger description': {'change location': {'new location': 'Alley', 'xy': (1750, 800)}, 'disappear': False},
                         'actions': {},
-                  }
+                  },
                   }
               },
             'items': {},
@@ -196,29 +195,43 @@ locations = {
             },
             'obstacles': {
                 'obs rectangles': (
-                ((0, 950), (1900, 100), 1),
-                ((0, 0), (50, 950), 2),
-                ((1850, 0), (50, 750), 3),
-                ((1850, 750), (50, 200), 4),
-                ((650, 200), (600, 100), 5),
-                ((700, 300), (50, 450), 6),
-                ((1150, 300), (50, 450), 7),
-                ((900, 650), (100, 50), 8),
-                ((900, 450), (100, 200), 9),
+                ((0, 950), (1900, 100), 1),  #1
+                ((0, 0), (50, 950), 2),  #2
+                ((1850, 0), (50, 750), 3),  #3
+                ((1850, 750), (50, 200), 4),  #4
+                ((650, 200), (600, 100), 5),  #5
+                ((700, 300), (50, 450), 6),  #6
+                ((1150, 300), (50, 450), 7),  #7
+                ((900, 650), (100, 50), 8),  #8
+                ((900, 450), (100, 200), 9),  #9
+                ((1450, 0), (50, 950), 10),  #10
+                ((1550, 750), (50, 200), 11),  #11
                   ), # OBSTACLE RECTANGLES SECTION END
                 'settings': {
-                    4: {
+                    10: {
                         'ghost': False,
-                        'speed': 0.1,
+                        'speed': 0.0,
                         'active': False,
                         'collideable': False,
                         'gravity affected': False,
                         'actors pass through': True,
                         'invisible': True,
                         'trigger': True,
-                        'trigger description': {'change location': {'new location': 'Hall', 'xy': (100, 900)}, 'disappear': False},
+                        'trigger description': {'change location': {}, 'disappear': False, 'make active': [4, 6, 8]},
                         'actions': {},
-                  }
+                  },
+                    11: {
+                        'ghost': False,
+                        'speed': 0.0,
+                        'active': False,
+                        'collideable': False,
+                        'gravity affected': False,
+                        'actors pass through': True,
+                        'invisible': True,
+                        'trigger': True,
+                        'trigger description': {'change location': {'new location': 'Alley', 'xy': (0, 0)}, 'disappear': False, 'make active': None},
+                        'actions': {},
+                  },
                   }
               },
             'items': {},

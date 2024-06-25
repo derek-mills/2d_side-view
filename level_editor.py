@@ -67,6 +67,7 @@ class World(object):
 
         self.obstacles = dict()
         self.obstacle_id: int = 0
+        self.obs_settings = dict()
         self.demolishers = dict()
         self.demolishers_id: int = 0
         # self.location = '01'
@@ -93,7 +94,7 @@ class World(object):
     def set_screen(self, surface):
         self.screen = surface
 
-    def processing_menu_items(self):
+    def processing_menu_items(self, close_after_use=False):
         while self.menu_items:
             self.processing_human_input()
             selected_item = 0
@@ -108,8 +109,9 @@ class World(object):
             if self.is_left_mouse_button_down:
                 if selected_item != 0:
                     command = self.menu_items[selected_item]['command']
-                    self.menu_items = dict()
-                    self.menu_item_id = 1
+                    if close_after_use:
+                        self.menu_items = dict()
+                        self.menu_item_id = 1
                     return command
             self.render_menu_items()
             pygame.display.flip()
@@ -133,7 +135,7 @@ class World(object):
         self.add_menu_item(pygame.Rect(MAXX_DIV_2 // 2, 400, MAXX_DIV_2 // 2, 200), 'EXISTING', 'EXISTING', True)
         self.add_menu_item(pygame.Rect(MAXX_DIV_2, 400, MAXX_DIV_2 // 2, 200), 'NEW', 'NEW', True)
 
-        command = self.processing_menu_items()
+        command = self.processing_menu_items(True)
 
         # exec(command)
         # print(human_choice)
@@ -187,7 +189,7 @@ class World(object):
                 self.add_menu_item(pygame.Rect(MAXX_DIV_2 // 2, 100+map_names.index(name)*menu_item_height, MAXX_DIV_2, menu_item_height), name, map_names.index(name), True)
                 # print(f'{name} [{map_names.index(name)}]')
             # print(self.menu_items)
-            command = self.processing_menu_items()
+            command = self.processing_menu_items(True)
             self.location = map_names[command]
 
         # print(f'{width}, {height}')
@@ -638,7 +640,7 @@ class World(object):
             f.write('from constants import *')
             f.write('\nlocations = {\n    ')
             for k in loc.keys():
-                f.write('\n    \'' + k + '\':\n        {')
+                f.write('\n    \'' + k + '\':\n        {')  # Map name
                 f.write('\n            \'music\': \'' + loc[k]['music'] + '\',')
                 f.write('\n            \'description\': \'' + loc[k]['description'] + '\',')
                 f.write('\n            \'size\': (' + str(loc[k]['size'][0]) + ', ' + str(loc[k]['size'][1]) + '),')
@@ -647,86 +649,48 @@ class World(object):
                 f.write('\n            \'demolishers\': {')
                 f.write('\n                \'dem rectangles\': (')
                 if k == self.location:
+                    # Save demolishers rectangles which were edited right now.
                     for dem in dem_rects:
                         f.write(dem)
                 else:
+                    # Save demolishers remain unchanged.
                     for dem in loc[k]['demolishers']['dem rectangles']:
-                        # d = loc[k]['demolishers']['dem rectangles'][dem_rec_key]
                         f.write('\n                ' + str(dem) + ',' )
                 f.write('\n                  ), # DEMOLISHERS RECTANGLE SECTION END' )
                 f.write('\n            },')
                 f.write('\n            \'obstacles\': {' )
                 f.write('\n                \'obs rectangles\': (' )
                 if k == self.location:
+                    # Save obstacles rectangles which were edited right now.
                     for rect in obs_rects:
                         f.write(rect)
                 else:
+                    # Save obstacles remain unchanged.
                     for obs in loc[k]['obstacles']['obs rectangles']:
                         f.write('\n                ' + str(obs) + ',' )
                 f.write('\n                  ), # OBSTACLE RECTANGLES SECTION END' )
+
                 f.write('\n                \'settings\': {')
-                for active_obs_key in loc[k]['obstacles']['settings'].keys():
-                    l = loc[k]['obstacles']['settings'][active_obs_key]
-                    f.write('\n                    ' + str(active_obs_key) + ': {')
-                    for i in obstacle_settings_list:
-                        # Save settings line by line:
-                        f.write('\n                        \'' + i + '\': ' + str(l[i]) + ',')
-                    f.write('\n                  }')
+                # SAVE SETTINGS:
+                if k == self.location:
+                    for s_key in self.obs_settings.keys():
+                        f.write('\n                    ' + str(s_key) + ': {')
+                        for ss_key in self.obs_settings[s_key].keys():
+                            f.write('\n                        \'' + ss_key + '\': ' + str(self.obs_settings[s_key][ss_key]) + ',')
+                        f.write('\n                  },')
+                else:
+                    for active_obs_key in loc[k]['obstacles']['settings'].keys():
+                        l = loc[k]['obstacles']['settings'][active_obs_key]
+                        f.write('\n                    ' + str(active_obs_key) + ': {')
+                        for i in obstacle_settings_list:
+                            # Save 'settings' section line by line:
+                            f.write('\n                        \'' + i + '\': ' + str(l[i]) + ',')
+                        f.write('\n                  },')
                 f.write('\n                  }')
                 f.write('\n              },')
                 f.write('\n            \'items\': {' +  '},')
                 f.write('\n    },')
             f.write('\n}')
-        exit()
-
-        with open('locations.py', 'r') as f:
-            existing_locations_description = f.readlines()
-
-        print(f'Start searching {self.location} to remove obsolete rectangles...')
-        loc_found = False
-        lines_counter = 0
-        for line in existing_locations_description:
-            if '\'' + self.location + '\':' in line and not loc_found:
-                print(f'Location {self.location} found.')
-                loc_found = True
-
-            if loc_found:
-                if '\'obs rectangles\':' in line:
-                    # Now need to delete all obsolete information about rectangles:
-                    start_index_to_delete = lines_counter + 1
-                    # start_index_to_delete = existing_locations_description.index(line) + 1
-                    print(f'Start index to delete records: {start_index_to_delete}')
-                elif 'OBSTACLE RECTANGLES SECTION END' in line:
-                    end_index_to_delete = lines_counter
-                    # end_index_to_delete = existing_locations_description.index(line)
-                    print(f'Ending index to delete records: {end_index_to_delete}. Abort search.')
-                    break
-            lines_counter += 1
-
-        if loc_found:
-            del existing_locations_description[start_index_to_delete:end_index_to_delete]
-
-        loc_found = False
-        with open('locations.py', 'w') as f_dest:
-            for line in existing_locations_description:
-                f_dest.write(line)
-                if loc_found:
-                    if '\'obs rectangles\':' in line:
-                        for obs_rect_line in obs_rects:
-                            f_dest.write(obs_rect_line)
-                        loc_found = False
-
-                    if '\'dem rectangles\':' in line:
-                        for dem_rect_line in dem_rects:
-                            f_dest.write(dem_rect_line)
-                        # loc_found = False
-
-                if '\''+self.location+'\':' in line and not loc_found:
-                    # print('Location found!')
-                    loc_found = True
-        # f_dest.close()
-
-        self.allow_import_locations = True
 
     def save_back(self):
         # Saving with pickle:
@@ -817,84 +781,6 @@ class World(object):
         # f_dest.close()
 
         self.allow_import_locations = True
-
-    # def save_old(self):
-    #     # Saving with pickle:
-    #     # with open('locations_'+self.location+'.dat', 'wb') as f:
-    #     #     pickle.dump(self.obstacles[self.location], f)
-    #
-    #     # Saving using JSON:
-    #     # obs_geometry = list()
-    #
-    #     obs_rects = list()
-    #     for k in self.obstacles[self.location].keys():
-    #         obs = self.obstacles[self.location][k]
-    #         # ghost = ', \'ghost\' ' if obs.is_ghost_platform else ''
-    #         # move_right = ', \'move right\' ' if obs.is_move_right else ''
-    #         # move_left = ', \'move left\' ' if obs.is_move_left else ''
-    #         # collideable = ', \'collideable\' ' if obs.is_collideable else ''
-    #         # actions = ', \'active\' ' if obs.actions else ''
-    #         # gravity_affected = ', \'gravity affected\' ' if obs.is_gravity_affected else ''
-    #         # str(obs.rectangle.size) + ghost + move_right + move_left + \
-    #
-    #         total_strg = '                ' + \
-    #                      '(' + \
-    #                      str(obs.rectangle.topleft) + ', ' + \
-    #                      str(obs.rectangle.size) + \
-    #                      ', ' + str(k) + '),  #' + str(k) + '\n'
-    #         obs_rects.append(total_strg)
-    #         # str(obs.rectangle.size) + ghost + move_right + move_left + collideable + gravity_affected + '),  #' + str(obs.id) + '\n'
-    #
-    #
-    #     dem_rects = list()
-    #     if self.location in self.demolishers:
-    #         for k in self.demolishers[self.location].keys():
-    #             dem = self.demolishers[self.location][k]
-    #             # ghost = ', \'ghost\' ' if dem.is_ghost_platform else ''
-    #             # move_right = ', \'move right\' ' if dem.is_move_right else ''
-    #             # move_left = ', \'move left\' ' if dem.is_move_left else ''
-    #             # collideable = ', \'collideable\' ' if dem.is_collideable else ''
-    #             # actions = ', \'active\' ' if dem.actions else ''
-    #             # gravity_affected = ', \'gravity affected\' ' if dem.is_gravity_affected else ''
-    #
-    #             # str(dem.rectangle.size) + ghost + move_right + move_left + \
-    #             total_strg = '                ' + \
-    #                    '(' + \
-    #                    str(dem.rectangle.topleft) + ', ' + \
-    #                    str(dem.rectangle.size) + ', ' + str(k) + \
-    #                    '),  #' + str(k) + '\n'
-    #             dem_rects.append(total_strg)
-    #                    # str(dem.rectangle.size) + ghost + move_right + move_left + collideable + gravity_affected + '),  #' + str(dem.id) + '\n'
-    #
-    #     # print(obs_rects)
-    #     # print(dem_rects)
-    #     # exit()
-    #     # ['                ((100, 950), (1550, 50), 0),  #0\n',
-    #     #  '                ((1300, 500), (300, 250), 1),  #1\n',
-    #     #  '                ((950, 350), (100, 150), 2),  #2\n',
-    #     #  '                ((650, 300), (200, 200), 3),  #3\n']
-    #
-    #     # ['                ((550, 750), (200, 200), 0),  #0\n']
-    #
-    #
-    #     loc_found = False
-    #     f_dest = open('locations.py', 'w')
-    #     with open('locations_template.py', 'r') as f_source:
-    #         for line in f_source:
-    #             f_dest.write(line)
-    #             if loc_found:
-    #                 if '\'obs rectangles\':' in line:
-    #                     for obs_rect_line in obs_rects:
-    #                         f_dest.write(obs_rect_line)
-    #                 if '\'dem rectangles\':' in line:
-    #                     for dem_rect_line in dem_rects:
-    #                         f_dest.write(dem_rect_line)
-    #             if '\''+self.location+'\':' in line and not loc_found:
-    #                 # print('Location found!')
-    #                 loc_found = True
-    #     f_dest.close()
-    #
-    #     self.allow_import_locations = True
 
     def render_background(self):
         pygame.draw.rect(self.screen, BLACK, (0,0,MAXX, MAXY))
@@ -1010,11 +896,90 @@ class World(object):
                 return obs.id
         return -1
 
+    def edit_obs(self, obs):
+        print(obs.id)
+        self.add_menu_item(pygame.Rect(MAXX_DIV_2 // 2, 200, MAXX_DIV_2, 200), 'EDIT OBSTACLE #' + str(obs.id), '', False)
+        self.add_menu_item(pygame.Rect(MAXX_DIV_2 // 2, 400, MAXX_DIV_2 // 2, 200), 'TRIGGER', 't', True)
+        self.add_menu_item(pygame.Rect(MAXX_DIV_2, 400, MAXX_DIV_2 // 2, 200), 'ACTIVE PLATFORM', 'a', True)
+        command = self.processing_menu_items(True)  # Close menu after use
+        self.reset_human_input()
+        self.render_background()
+        self.render_obstacles()
+
+        self.obs_settings[obs.id] = dict()
+        # Start new menu:
+        self.add_menu_item(pygame.Rect(MAXX_DIV_2 // 2, 200, MAXX_DIV_2, 200), 'GO ON EDIT OBSTACLE #' + str(obs.id), '', False)
+        if command == 't':
+            # obs_settings = {}
+            self.obs_settings[obs.id] = {
+                'ghost': False,
+                'speed': 0.,
+                'active': False,
+                'collideable': False,
+                'gravity affected': False,
+                'actors pass through': True,
+                'invisible': True,
+                'trigger': True,
+                'trigger description': {
+                    # 'make active': (26,28,30),
+                    'change location': {
+                        'new location': '',
+                        'xy': (0, 0),
+                    },
+                    'disappear': False,
+                },
+                'actions': {},
+            }
+
+            self.add_menu_item(pygame.Rect(MAXX_DIV_2 // 2, 400, MAXX_DIV_2//2, 100), 'Teleport', 'tel', True)
+            self.add_menu_item(pygame.Rect(MAXX_DIV_2, 400, MAXX_DIV_2//2, 100), 'Trigger', 'trig', True)
+            command = self.processing_menu_items(True)  # Close menu after use
+            self.reset_human_input()
+            self.render_background()
+            self.render_obstacles()
+
+            if command == 'trig':
+                self.add_menu_item(pygame.Rect(self.mouse_xy[0], self.mouse_xy[1] - 100, 400, 100), 'CHOOSE AN OBSTACLE(S) AND CLICK HERE TO FINISH ', 'stop', True)
+                menu_item_height = 20
+                for count, obs_key in enumerate(self.obstacles[self.location].keys()):
+                    self.add_menu_item(pygame.Rect(self.mouse_xy[0], self.mouse_xy[1] + count * menu_item_height, 400, menu_item_height), 'OBS #' + str(obs_key), obs_key, True)
+
+                self.obs_settings[obs.id]['trigger description']['make active'] = list()
+
+                # Choose a bunch of obstacles being triggered by this obstacle.
+                while command != 'stop':
+                    command = self.processing_menu_items()
+                    self.reset_human_input()
+                    if command != 'stop':
+                        self.obs_settings[obs.id]['trigger description']['make active'].append(command)
+                        print(self.obs_settings[obs.id]['trigger description']['make active'])
+
+                self.menu_items = dict()
+                self.menu_item_id = 1
+
+                self.obs_settings[obs.id]['trigger description']['change location'] = {}
+                print(self.obs_settings)
+            else:
+                # Teleport
+                import locations
+                self.add_menu_item(pygame.Rect(self.mouse_xy[0], self.mouse_xy[1], MAXX_DIV_2, 100), 'CHOOSE AN EXISTING MAP: ', '', False)
+                map_names = list(locations.locations.keys())
+                menu_item_height = 20
+                for name in map_names:
+                    self.add_menu_item(pygame.Rect(self.mouse_xy[0], self.mouse_xy[1] + map_names.index(name) * menu_item_height, 400, menu_item_height), name, map_names.index(name), True)
+                command = self.processing_menu_items(True)
+                self.obs_settings[obs.id]['trigger description']['make active'] = None
+                self.obs_settings[obs.id]['trigger description']['change location'] = {
+                    'new location': map_names[command],
+                    'xy': (0, 0),
+                }
+                print(self.obs_settings)
+            # exit()
     def process(self):
         self.processing_human_input()
 
         if self.menu_items:
-            command = self.processing_menu_items()
+            command = self.processing_menu_items(True)
             exec(command)
         else:
             if self.is_mouse_wheel_up:
@@ -1034,8 +999,8 @@ class World(object):
 
             if self.is_right_mouse_button_down:
                 if obs_id > -1:
-                    self.add_menu_item(pygame.Rect(MAXX_DIV_2 // 2, 200, MAXX_DIV_2, 200), 'MAK THIS OBSTACLE ACTIVE?', '', False)
-                    self.add_menu_item(pygame.Rect(MAXX_DIV_2 // 2, 400, MAXX_DIV_2 // 2, 200), 'YES', 'print(self.obstacles[self.location]['+str(obs_id)+'])', True)
+                    self.add_menu_item(pygame.Rect(MAXX_DIV_2 // 2, 200, MAXX_DIV_2, 200), 'MARK THIS OBSTACLE AS ACTIVE?', '', False)
+                    self.add_menu_item(pygame.Rect(MAXX_DIV_2 // 2, 400, MAXX_DIV_2 // 2, 200), 'YES', 'self.edit_obs(self.obstacles[self.location]['+str(obs_id)+'])', True)
                     self.add_menu_item(pygame.Rect(MAXX_DIV_2, 400, MAXX_DIV_2 // 2, 200), 'NO', 'pass', True)
 
             if self.is_right_bracket:
