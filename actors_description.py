@@ -382,11 +382,11 @@ player_jake = {
             'activity at frames': {
                 4: {
                     'sound': True,
-                    'move': 10,
+                    # 'move': 10,  # Slightly move actor forward,
                     'demolisher': True
                 },
                 9: {
-                    'move': 10,
+                    # 'move': 10,  # Slightly move actor forward,
                     'demolisher': True
                 },
             },
@@ -409,11 +409,11 @@ player_jake = {
             'activity at frames': {
                 4: {
                     'sound': True,
-                    'move': 10,
+                    # 'move': 10, # Slightly move actor forward,
                     'demolisher': True
                 },
                 9: {
-                    'move': 10,
+                    # 'move': 10, # Slightly move actor forward,
                     'demolisher': True
                 },
             },

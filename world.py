@@ -318,7 +318,7 @@ class World(object):
                 'collides': True,
                 'gravity affected': False
             }
-            dest = demolisher_description['destination']
+            # dest = demolisher_description['destination']
             # print(f'[process demolishers] Adding frag #{i}: {dest=}')
             self.add_demolisher(demolisher_description)
 
@@ -691,6 +691,9 @@ class World(object):
             self.obstacles[self.location] = dict()
             self.demolishers[self.location] = dict()
             # self.actors[self.location] = dict()
+            print(f'{self.location=}')
+            print(self.locations)
+            print(locations)
             self.locations[self.location] = locations[self.location]
             for obs in self.locations[self.location]['obstacles']['obs rectangles']:
                 self.add_obstacle(obs)
