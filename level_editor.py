@@ -18,9 +18,12 @@ import fonts
 # import setup_box
 # import menu
 from uuid import *
+import importlib
+
 
 class World(object):
     def __init__(self):
+        self.need_to_load = False
         self.allow_import_locations = False
         # CONTROLS
         self.is_key_pressed = False
@@ -363,8 +366,8 @@ class World(object):
                     self.is_left_bracket = True
                 if event.key == K_SPACE:
                     self.is_spacebar = True
-                if event.key == K_F8:
-                    self.load()
+                if event.key == K_F3:
+                    self.need_to_load = True
                 if event.key == K_F2:
                     self.save()
                 if event.key == K_d:
@@ -575,14 +578,14 @@ class World(object):
 
         try:
             max_obs_id = 0
-            for obs in locations[self.location]['obstacles']['obs rectangles']:
+            for obs in locations.locations[self.location]['obstacles']['obs rectangles']:
                 self.add_obstacle(obs)
                 if max_obs_id < obs[-1]:
                     max_obs_id = obs[-1]
             self.obstacle_id = max_obs_id + 1
             # for dem in locations[self.location]['demolishers']['dem rectangles']:
             #     self.add_demolisher(dem)
-            self.camera.setup(locations[self.location]['size'][0], locations[self.location]['size'][1])
+            self.camera.setup(locations.locations[self.location]['size'][0], locations.locations[self.location]['size'][1])
         except NameError:
             self.obstacles[self.location] = dict()
             self.demolishers[self.location] = dict()
@@ -1096,13 +1099,8 @@ class World(object):
 world = World()
 world.set_screen(screen)
 world.setup()
-from locations import *
-
-# try:
-#     from locations import *
-# except ModuleNotFoundError:
-#     pass
-# world.set_screen(screen)
+# from locations import *
+import locations
 world.obstacles[world.location] = dict()
 world.load()
 world.create_snap_mesh()
@@ -1110,16 +1108,35 @@ world.create_snap_mesh()
 allow_import_location = False
 def main():
     global allow_import_location
-    while True:
-        if world.allow_import_locations:
-            allow_import_location = True
-            world.allow_import_locations = False
-        world.process()
-        pygame.display.flip()
+    # while True:
+    #     if world.allow_import_locations:
+    #         allow_import_location = True
+    #         world.allow_import_locations = False
+
+        # if world.need_to_load:
+        #     world.need_to_load = False
+        #     world.setup()
+        #     allow_import_location = True
+        #     world.obstacles[world.location] = dict()
+        #     world.load()
+        #     world.create_snap_mesh()
+    world.process()
+    pygame.display.flip()
 
 
 if __name__ == "__main__":
-    if allow_import_location:
-        from locations import *
-        allow_import_location = False
-    main()
+    while True:
+        if world.need_to_load:
+            world.need_to_load = False
+            world.setup()
+            # allow_import_location = True
+            # locations = None
+            # from locations import *
+            importlib.reload(locations)
+            world.obstacles[world.location] = dict()
+            world.load()
+            world.create_snap_mesh()
+        # if allow_import_location:
+        #     from locations import *
+        #     allow_import_location = False
+        main()
