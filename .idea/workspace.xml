@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
+    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="Fixed: settings of currently editing map did not load and be wasted after the very first save by F2.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obstacle.py" beforeDir="false" afterPath="$PROJECT_DIR$/obstacle.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +45,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/media/sid/d90c7353-09c5-492a-aa88-66d695362d79/sid/scripts/python/pygame/1.turn_based_adv.ProjectOne/turn_based/game_objects.py",
+    "last_opened_file_path": "/home/sid/scripts/python/pygame/Arcade_side-view/SLASH/ver_0.000.1",
     "settings.editor.selected.configurable": "preferences.customizations"
   }
 }]]></component>
@@ -106,13 +107,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00137" summary="Decided to apply a filters before setting every new action in set_action() to get a bunch just allowed actions to handle.">
-      <created>1718327538340</created>
-      <option name="number" value="00137" />
-      <option name="presentableId" value="LOCAL-00137" />
-      <option name="project" value="LOCAL" />
-      <updated>1718327538340</updated>
     </task>
     <task id="LOCAL-00138" summary="States improvement.">
       <created>1718328427279</created>
@@ -450,7 +444,14 @@
       <option name="project" value="LOCAL" />
       <updated>1719304525349</updated>
     </task>
-    <option name="localTasksCounter" value="186" />
+    <task id="LOCAL-00186" summary="Fixed: settings of currently editing map did not load and be wasted after the very first save by F2.">
+      <created>1719361740149</created>
+      <option name="number" value="00186" />
+      <option name="presentableId" value="LOCAL-00186" />
+      <option name="project" value="LOCAL" />
+      <updated>1719361740149</updated>
+    </task>
+    <option name="localTasksCounter" value="187" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -465,7 +466,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added trigger obstacles which react if actor passes through or stand on them" />
     <MESSAGE value="Prepare to change some settings in active obstacle description (locations.py)" />
     <MESSAGE value="Active objects and triggers improved." />
     <MESSAGE value="Fine tune active obstacles and triggers" />
@@ -490,6 +490,7 @@
     <MESSAGE value="Level editor saving system upgraded." />
     <MESSAGE value="Keep upgrading level editor saving system." />
     <MESSAGE value="Added an opportunity to multiple load other maps by pressing F3 button during one session of level editor." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added an opportunity to multiple load other maps by pressing F3 button during one session of level editor." />
+    <MESSAGE value="Fixed: settings of currently editing map did not load and be wasted after the very first save by F2." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed: settings of currently editing map did not load and be wasted after the very first save by F2." />
   </component>
 </project>

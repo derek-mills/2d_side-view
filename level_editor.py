@@ -268,6 +268,31 @@ class World(object):
         self.is_left_mouse_button_down = False
         self.is_right_mouse_button_down = False
 
+    def main_menu(self):
+        if self.menu_items:
+            self.menu_items = dict()
+            self.menu_item_id = 1
+        else:
+            # if event.key == K_F3:
+            #     self.need_to_load = True
+            # if event.key == K_F2:
+            #     self.save()
+            self.add_menu_item(pygame.Rect(MAXX_DIV_2 // 2, 10, MAXX_DIV_2, 50), 'Editing map: ' + self.location, '', False)
+            self.add_menu_item(pygame.Rect(MAXX_DIV_2 // 2, 100, 200, 100), 'SAVE CURRENT', 'save', True)
+            self.add_menu_item(pygame.Rect(MAXX_DIV_2 // 2, 210, 200, 100), 'LOAD...', 'load', True)
+            self.add_menu_item(pygame.Rect(MAXX - 210, MAXY - 210, 200, 100), 'QUIT', 'quit', True)
+            command = self.processing_menu_items(True)  # Close menu after use
+            self.reset_human_input()
+            self.render_background()
+            self.render_obstacles()
+            if command == 'quit':
+                pygame.quit()
+                raise SystemExit()
+            elif command == 'load':
+                self.need_to_load = True
+            else:
+                self.save()
+
     def processing_human_input(self):
         self.mouse_xy = pygame.mouse.get_pos()
         self.mouse_xy_global = (self.mouse_xy[0] // self.zoom_factor + self.camera.offset_x,
@@ -331,8 +356,13 @@ class World(object):
             if event.type == KEYDOWN:
                 self.is_key_pressed = True
                 if event.key == K_ESCAPE:
-                    pygame.quit()
-                    raise SystemExit()
+                    self.main_menu()
+                    # if self.menu_items:
+                    #     self.menu_items = dict()
+                    #     self.menu_item_id = 1
+                    # else:
+                    #     pygame.quit()
+                    #     raise SystemExit()
                 if event.key == K_KP_PLUS:
                     if self.is_x:
                         self.camera.setup(self.camera.max_offset_x + 100, self.camera.max_offset_y)
@@ -585,6 +615,8 @@ class World(object):
             self.obstacle_id = max_obs_id + 1
 
             self.obs_settings = locations.locations[self.location]['obstacles']['settings']
+            for active_obs_id in self.obs_settings.keys():
+                self.obstacles[self.location][active_obs_id].active_flag = True
             # for dem in locations[self.location]['demolishers']['dem rectangles']:
             #     self.add_demolisher(dem)
             self.camera.setup(locations.locations[self.location]['size'][0], locations.locations[self.location]['size'][1])
@@ -801,13 +833,18 @@ class World(object):
     def render_obstacles(self):
         for key in self.obstacles[self.location].keys():
             obs = self.obstacles[self.location][key]
-            pygame.draw.rect(self.screen, WHITE, (self.zoom_factor * (obs.rectangle.x - self.camera.offset_x),
+            color = CYAN if obs.active_flag else WHITE
+            pygame.draw.rect(self.screen, color, (self.zoom_factor * (obs.rectangle.x - self.camera.offset_x),
                                                   self.zoom_factor * (obs.rectangle.y - self.camera.offset_y),
                                                   self.zoom_factor * obs.rectangle.width,
                                                   self.zoom_factor * obs.rectangle.height))
-            s = fonts.font15.render(str(obs.id), True, GREEN)
-            self.screen.blit(s, (self.zoom_factor * (obs.rectangle.x - self.camera.offset_x + 2),
-                                 self.zoom_factor * (obs.rectangle.y - self.camera.offset_y + 2)))
+            pygame.draw.rect(self.screen, BLUE, (self.zoom_factor * (obs.rectangle.x - self.camera.offset_x),
+                                                  self.zoom_factor * (obs.rectangle.y - self.camera.offset_y),
+                                                  self.zoom_factor * obs.rectangle.width,
+                                                  self.zoom_factor * obs.rectangle.height), 1)
+            s = fonts.font20.render(str(obs.id), True, GREEN)
+            self.screen.blit(s, (self.zoom_factor * (obs.rectangle.centerx - s.get_width() // 2 - self.camera.offset_x + 2),
+                                 self.zoom_factor * (obs.rectangle.centery - s.get_height() // 2 - self.camera.offset_y + 2)))
 
     def render_obstacles_back(self):
         for key in self.obstacles[self.location].keys():
@@ -910,8 +947,8 @@ class World(object):
         return -1
 
     def edit_obs(self, obs):
-        print(obs.id)
-        self.add_menu_item(pygame.Rect(MAXX_DIV_2 // 2, 200, MAXX_DIV_2, 200), 'EDIT OBSTACLE #' + str(obs.id), '', False)
+        # print(obs.id)
+        self.add_menu_item(pygame.Rect(MAXX_DIV_2 // 2, 200, MAXX_DIV_2, 100), 'EDIT OBSTACLE #' + str(obs.id) + '\n current map: ' + self.location, '', False)
         self.add_menu_item(pygame.Rect(MAXX_DIV_2 // 2, 400, MAXX_DIV_2 // 2, 200), 'TRIGGER', 't', True)
         self.add_menu_item(pygame.Rect(MAXX_DIV_2, 400, MAXX_DIV_2 // 2, 200), 'ACTIVE PLATFORM', 'a', True)
         command = self.processing_menu_items(True)  # Close menu after use
@@ -1012,9 +1049,10 @@ class World(object):
 
             if self.is_right_mouse_button_down:
                 if obs_id > -1:
-                    self.add_menu_item(pygame.Rect(MAXX_DIV_2 // 2, 200, MAXX_DIV_2, 200), 'MARK THIS OBSTACLE AS ACTIVE?', '', False)
-                    self.add_menu_item(pygame.Rect(MAXX_DIV_2 // 2, 400, MAXX_DIV_2 // 2, 200), 'YES', 'self.edit_obs(self.obstacles[self.location]['+str(obs_id)+'])', True)
-                    self.add_menu_item(pygame.Rect(MAXX_DIV_2, 400, MAXX_DIV_2 // 2, 200), 'NO', 'pass', True)
+                    self.edit_obs(self.obstacles[self.location][obs_id])
+                    # self.add_menu_item(pygame.Rect(MAXX_DIV_2 // 2, 200, MAXX_DIV_2, 200), 'MARK THIS OBSTACLE AS ACTIVE?', '', False)
+                    # self.add_menu_item(pygame.Rect(MAXX_DIV_2 // 2, 400, MAXX_DIV_2 // 2, 200), 'YES', 'self.edit_obs(self.obstacles[self.location]['+str(obs_id)+'])', True)
+                    # self.add_menu_item(pygame.Rect(MAXX_DIV_2, 400, MAXX_DIV_2 // 2, 200), 'NO', 'pass', True)
 
             if self.is_right_bracket:
                 self.is_right_bracket = False

@@ -11,6 +11,7 @@ class Obstacle(Entity):
         self.let_actors_pass_through: bool = False
         self.idle = False
 
+        self.active_flag = False
         self.active = False
         self.actions = dict()
         self.actions_set_number = 0
