@@ -32,7 +32,7 @@ class World(object):
         self.is_input_right_arrow = False
         self.is_input_left_arrow = False
         self.is_input_confirm = False
-        self.is_input_cancel = False
+        self.input_cancel = False
         self.is_z = False
         self.is_p = False
         self.is_i = False
@@ -100,6 +100,9 @@ class World(object):
     def processing_menu_items(self, close_after_use=False):
         while self.menu_items:
             self.processing_human_input()
+            if self.input_cancel:
+                self.input_cancel = False
+                return 'CANCEL MENU'
             selected_item = 0
             for k in self.menu_items.keys():
                 menu_item = self.menu_items[k]
@@ -356,11 +359,13 @@ class World(object):
             if event.type == KEYDOWN:
                 self.is_key_pressed = True
                 if event.key == K_ESCAPE:
-                    self.main_menu()
-                    # if self.menu_items:
-                    #     self.menu_items = dict()
-                    #     self.menu_item_id = 1
-                    # else:
+                    # self.main_menu()
+                    if self.menu_items:
+                        self.menu_items = dict()
+                        self.menu_item_id = 1
+                        self.input_cancel = True
+                    else:
+                        self.main_menu()
                     #     pygame.quit()
                     #     raise SystemExit()
                 if event.key == K_KP_PLUS:
@@ -948,9 +953,9 @@ class World(object):
 
     def edit_obs(self, obs):
         # print(obs.id)
-        self.add_menu_item(pygame.Rect(MAXX_DIV_2 // 2, 200, MAXX_DIV_2, 100), 'EDIT OBSTACLE #' + str(obs.id) + '\n current map: ' + self.location, '', False)
-        self.add_menu_item(pygame.Rect(MAXX_DIV_2 // 2, 400, MAXX_DIV_2 // 2, 200), 'TRIGGER', 't', True)
-        self.add_menu_item(pygame.Rect(MAXX_DIV_2, 400, MAXX_DIV_2 // 2, 200), 'ACTIVE PLATFORM', 'a', True)
+        self.add_menu_item(pygame.Rect(MAXX_DIV_2 // 2, 20, MAXX_DIV_2, 100), 'EDIT OBSTACLE #' + str(obs.id) + ' (current map: ' + self.location + ')', '', False)
+        self.add_menu_item(pygame.Rect(MAXX_DIV_2 // 2, 121, MAXX_DIV_2 // 2, 200), '[TRIGGER]', 't', True)
+        self.add_menu_item(pygame.Rect(MAXX_DIV_2, 121, MAXX_DIV_2 // 2, 200), '[ACTIVE PLATFORM]', 'a', True)
         command = self.processing_menu_items(True)  # Close menu after use
         self.reset_human_input()
         self.render_background()
@@ -958,8 +963,10 @@ class World(object):
 
         self.obs_settings[obs.id] = dict()
         # Start new menu:
-        self.add_menu_item(pygame.Rect(MAXX_DIV_2 // 2, 200, MAXX_DIV_2, 200), 'GO ON EDIT OBSTACLE #' + str(obs.id), '', False)
-        if command == 't':
+        # self.add_menu_item(pygame.Rect(MAXX_DIV_2 // 2, 200, MAXX_DIV_2, 200), 'GO ON EDIT OBSTACLE #' + str(obs.id), '', False)
+        if command == 'CANCEL MENU':
+            return
+        elif command == 't':
             # obs_settings = {}
             self.obs_settings[obs.id] = {
                 'ghost': False,
@@ -988,11 +995,18 @@ class World(object):
             self.render_background()
             self.render_obstacles()
 
-            if command == 'trig':
-                self.add_menu_item(pygame.Rect(self.mouse_xy[0], self.mouse_xy[1] - 100, 400, 100), 'CHOOSE AN OBSTACLE(S) AND CLICK HERE TO FINISH ', 'stop', True)
+            if command == 'CANCEL MENU':
+                return
+            elif command == 'trig':
+                self.add_menu_item(pygame.Rect(self.mouse_xy[0], self.mouse_xy[1] - 100, 400, 20), 'CHOOSE AN OBSTACLE(S):', '', False, BLUE, GRAY, YELLOW)
+                # self.add_menu_item(pygame.Rect(self.mouse_xy[0], self.mouse_xy[1] - 100, 400, 20), 'CHOOSE AN OBSTACLE(S):', '', False, BLUE, GRAY, YELLOW)
                 menu_item_height = 20
+                c = 0
                 for count, obs_key in enumerate(self.obstacles[self.location].keys()):
                     self.add_menu_item(pygame.Rect(self.mouse_xy[0], self.mouse_xy[1] + count * menu_item_height, 400, menu_item_height), 'OBS #' + str(obs_key), obs_key, True)
+                    c = count + 1
+
+                self.add_menu_item(pygame.Rect(self.mouse_xy[0] + 50, self.mouse_xy[1] + c * menu_item_height, 300, menu_item_height*1.5), '[CONFIRM]', 'stop', True)
 
                 self.obs_settings[obs.id]['trigger description']['make active'] = list()
 
@@ -1003,12 +1017,15 @@ class World(object):
                     if command != 'stop':
                         self.obs_settings[obs.id]['trigger description']['make active'].append(command)
                         print(self.obs_settings[obs.id]['trigger description']['make active'])
+                    elif command == 'CANCEL MENU':
+                        return
 
                 self.menu_items = dict()
                 self.menu_item_id = 1
 
                 self.obs_settings[obs.id]['trigger description']['change location'] = {}
-                print(self.obs_settings)
+                obs.active_flag = True
+                # print(self.obs_settings)
             else:
                 # Teleport
                 import locations
@@ -1023,6 +1040,7 @@ class World(object):
                     'new location': map_names[command],
                     'xy': (0, 0),
                 }
+                obs.active_flag = True
                 print(self.obs_settings)
             # exit()
     def process(self):

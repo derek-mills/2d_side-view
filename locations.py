@@ -14,7 +14,7 @@ locations = {
             },
             'obstacles': {
                 'obs rectangles': (
-                ((0, 1050), (1950, 50), 1),  #1
+                ((0, 1050), (1950, 50), 1),
                   ), # OBSTACLE RECTANGLES SECTION END
                 'settings': {
                   } # OBSTACLE SETTINGS SECTION END
@@ -113,18 +113,18 @@ locations = {
             },
             'obstacles': {
                 'obs rectangles': (
-                ((0, 950), (1900, 100), 1),
-                ((0, 0), (50, 950), 2),
-                ((1850, 0), (50, 750), 3),
-                ((1850, 750), (50, 200), 4),
-                ((600, 0), (650, 200), 5),
-                ((800, 200), (300, 150), 6),
-                ((600, 850), (250, 100), 7),
-                ((850, 800), (200, 150), 8),
-                ((1050, 750), (200, 200), 9),
-                ((1250, 750), (350, 50), 10),
-                ((1550, 800), (50, 150), 11),
-                ((1300, 850), (200, 50), 12),
+                ((0, 950), (1900, 100), 1),  #1
+                ((0, 0), (50, 950), 2),  #2
+                ((1850, 0), (50, 750), 3),  #3
+                ((1850, 750), (50, 200), 4),  #4
+                ((600, 0), (650, 200), 5),  #5
+                ((800, 200), (300, 150), 6),  #6
+                ((600, 850), (250, 100), 7),  #7
+                ((850, 800), (200, 150), 8),  #8
+                ((1050, 750), (200, 200), 9),  #9
+                ((1250, 750), (350, 50), 10),  #10
+                ((1550, 800), (50, 150), 11),  #11
+                ((1300, 850), (200, 50), 12),  #12
                   ), # OBSTACLE RECTANGLES SECTION END
                 'settings': {
                     6: {
@@ -149,6 +149,18 @@ locations = {
                         'invisible': True,
                         'trigger': True,
                         'trigger description': {'change location': {'new location': 'Hall', 'xy': (0, 0)}, 'disappear': False, 'make active': None},
+                        'actions': {},
+                  },
+                    5: {
+                        'ghost': False,
+                        'speed': 0.0,
+                        'active': False,
+                        'collideable': False,
+                        'gravity affected': False,
+                        'actors pass through': True,
+                        'invisible': True,
+                        'trigger': True,
+                        'trigger description': {'change location': {}, 'disappear': False, 'make active': [12, 11, 10]},
                         'actions': {},
                   },
                   } # OBSTACLE SETTINGS SECTION END
