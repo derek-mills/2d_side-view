@@ -107,13 +107,6 @@
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
     </task>
-    <task id="LOCAL-00136" summary="Fixed some states behavior which were broken after new states 'fly right' and 'fly left' added.">
-      <created>1718269857743</created>
-      <option name="number" value="00136" />
-      <option name="presentableId" value="LOCAL-00136" />
-      <option name="project" value="LOCAL" />
-      <updated>1718269857743</updated>
-    </task>
     <task id="LOCAL-00137" summary="Decided to apply a filters before setting every new action in set_action() to get a bunch just allowed actions to handle.">
       <created>1718327538340</created>
       <option name="number" value="00137" />
@@ -450,7 +443,14 @@
       <option name="project" value="LOCAL" />
       <updated>1719300645965</updated>
     </task>
-    <option name="localTasksCounter" value="185" />
+    <task id="LOCAL-00185" summary="Added an opportunity to multiple load other maps by pressing F3 button during one session of level editor.">
+      <created>1719304525349</created>
+      <option name="number" value="00185" />
+      <option name="presentableId" value="LOCAL-00185" />
+      <option name="project" value="LOCAL" />
+      <updated>1719304525349</updated>
+    </task>
+    <option name="localTasksCounter" value="186" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -465,7 +465,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Improved fall speed calculations" />
     <MESSAGE value="Added trigger obstacles which react if actor passes through or stand on them" />
     <MESSAGE value="Prepare to change some settings in active obstacle description (locations.py)" />
     <MESSAGE value="Active objects and triggers improved." />
@@ -490,6 +489,7 @@
     <MESSAGE value="Fixed demolishers fly ability." />
     <MESSAGE value="Level editor saving system upgraded." />
     <MESSAGE value="Keep upgrading level editor saving system." />
-    <option name="LAST_COMMIT_MESSAGE" value="Keep upgrading level editor saving system." />
+    <MESSAGE value="Added an opportunity to multiple load other maps by pressing F3 button during one session of level editor." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added an opportunity to multiple load other maps by pressing F3 button during one session of level editor." />
   </component>
 </project>

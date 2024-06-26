@@ -583,6 +583,8 @@ class World(object):
                 if max_obs_id < obs[-1]:
                     max_obs_id = obs[-1]
             self.obstacle_id = max_obs_id + 1
+
+            self.obs_settings = locations.locations[self.location]['obstacles']['settings']
             # for dem in locations[self.location]['demolishers']['dem rectangles']:
             #     self.add_demolisher(dem)
             self.camera.setup(locations.locations[self.location]['size'][0], locations.locations[self.location]['size'][1])
@@ -664,7 +666,7 @@ class World(object):
                 f.write('\n                  ), # DEMOLISHERS RECTANGLE SECTION END' )
                 f.write('\n            },')
 
-                # OBSTACLE SETTINGS:
+                # OBSTACLES:
                 f.write('\n            \'obstacles\': {' )
                 f.write('\n                \'obs rectangles\': (' )
                 if k == self.location:
@@ -863,7 +865,7 @@ class World(object):
         # m_hover_actor = 'None' if not self.mouse_hovers_actor else self.wandering_actors[self.mouse_hovers_actor].name + ' ' + str(self.wandering_actors[self.mouse_hovers_actor].id)
         # m_hover_cell = 'None' if self.point_mouse_cursor_shows is None else str(self.locations[self.location]['points'][self.point_mouse_cursor_shows]['rect'].center)
         params = (
-            ('SAVE: F2 | LOAD: F8 | W/A/S/D: MOVE CAMERA | [SHIFT+] +/- : CHANGE SNAP MESH SCALE | [/] : change inserting object type | MOUSE WHEEL : ZOOM| ESC: QUIT', BLUE),
+            ('SAVE: F2 | LOAD: F3 | W/A/S/D: MOVE CAMERA | [SHIFT] +/- : CHANGE SNAP MESH SCALE | [ ] : change inserting object type | MOUSE WHEEL : ZOOM | ESC: QUIT', BLUE),
 
             ('OBJECT TYPE        : ' + str(self.object_types[self.current_object_type]), BLACK),
             ('WORLD SIZE         : ' + str(self.camera.max_x) + ':' + str(self.camera.max_y), BLACK),
