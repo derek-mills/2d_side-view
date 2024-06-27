@@ -139,6 +139,7 @@ class World(object):
             if self.is_left_mouse_button_down:
                 if selected_item != 0:
                     command = self.menu_items[selected_item]['command']
+                    self.menu_items[selected_item]['checked'] = False if self.menu_items[selected_item]['checked'] else True
                     if close_after_use:
                         self.menu_items = dict()
                         self.menu_item_id = 1
@@ -550,6 +551,7 @@ class World(object):
         self.menu_items[self.menu_item_id]['active'] = active
         self.menu_items[self.menu_item_id]['rectangle'] = rectangle
         self.menu_items[self.menu_item_id]['hovered'] = False
+        self.menu_items[self.menu_item_id]['checked'] = False
         self.menu_item_id += 1
 
     def load(self):
@@ -858,7 +860,11 @@ class World(object):
         for k in self.menu_items.keys():
             menu_item = self.menu_items[k]
             # print(menu_item['rectangle'].x,menu_item['rectangle'].y,menu_item['rectangle'].w,menu_item['rectangle'].h)
-            pygame.draw.rect(self.screen, menu_item['back color'], (menu_item['rectangle'].x, menu_item['rectangle'].y,
+            if menu_item['checked']:
+                back_color = GRAY
+            else:
+                back_color = menu_item['back color']
+            pygame.draw.rect(self.screen, back_color, (menu_item['rectangle'].x, menu_item['rectangle'].y,
                                                                      menu_item['rectangle'].w,menu_item['rectangle'].h), 0)
             pygame.draw.rect(self.screen, menu_item['frame color'], (menu_item['rectangle'].x, menu_item['rectangle'].y,
                                                                      menu_item['rectangle'].w,menu_item['rectangle'].h), 1)
@@ -998,8 +1004,12 @@ class World(object):
                     if command != 'stop':
                         if command == 'CANCEL MENU':
                             return
-                        self.obs_settings[obs.id]['trigger description']['make active'].append(command)
-                        # print(self.obs_settings[obs.id]['trigger description']['make active'])
+                        else:
+                            if command in self.obs_settings[obs.id]['trigger description']['make active']:
+                                self.obs_settings[obs.id]['trigger description']['make active'].remove(command)
+                            else:
+                                self.obs_settings[obs.id]['trigger description']['make active'].append(command)
+                            print(self.obs_settings[obs.id]['trigger description']['make active'])
 
                 self.menu_items = dict()
                 self.menu_item_id = 1

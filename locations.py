@@ -193,6 +193,18 @@ locations = {
                         'trigger description': {'change location': {}, 'disappear': False, 'make active': [52, 38, 39]},
                         'actions': {},
                   },
+                    30: {
+                        'ghost': False,
+                        'speed': 0.0,
+                        'active': False,
+                        'collideable': False,
+                        'gravity affected': False,
+                        'actors pass through': True,
+                        'invisible': True,
+                        'trigger': True,
+                        'trigger description': {'change location': {}, 'disappear': False, 'make active': [41, 28, 55, 70]},
+                        'actions': {},
+                  },
                   } # OBSTACLE SETTINGS SECTION END
               },
             'items': {},
