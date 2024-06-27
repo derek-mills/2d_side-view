@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +48,7 @@
     "settings.editor.selected.configurable": "preferences.customizations"
   }
 }]]></component>
-  <component name="RunManager" selected="Python.level_editor">
+  <component name="RunManager" selected="Python.main ">
     <configuration name="level_editor" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ver_0.000.1" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -93,8 +93,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.level_editor" />
         <item itemvalue="Python.main " />
+        <item itemvalue="Python.level_editor" />
       </list>
     </recent_temporary>
   </component>
@@ -106,13 +106,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00145" summary="Grabbers appear now if actor just fell off the cliff and fly forward pressing down direction button.">
-      <created>1718353951109</created>
-      <option name="number" value="00145" />
-      <option name="presentableId" value="LOCAL-00145" />
-      <option name="project" value="LOCAL" />
-      <updated>1718353951109</updated>
     </task>
     <task id="LOCAL-00146" summary="Corrected behavior while on moving platforms.">
       <created>1718354652888</created>
@@ -450,7 +443,14 @@
       <option name="project" value="LOCAL" />
       <updated>1719468859894</updated>
     </task>
-    <option name="localTasksCounter" value="194" />
+    <task id="LOCAL-00194" summary="Level editor: added clipboard to store particular dot coordinates to use in the future.">
+      <created>1719470413944</created>
+      <option name="number" value="00194" />
+      <option name="presentableId" value="LOCAL-00194" />
+      <option name="project" value="LOCAL" />
+      <updated>1719470413944</updated>
+    </task>
+    <option name="localTasksCounter" value="195" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -465,7 +465,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Trigger activates a bunch of active obstacles now." />
     <MESSAGE value="Added monsters spawn points description in locations.py" />
     <MESSAGE value="Actors become inactive if they do not collide camera rectangle. Just in case, not to get them fell down, because of far obstacles are off." />
     <MESSAGE value="Some minor changes." />
@@ -490,6 +489,7 @@
     <MESSAGE value="Level editor: implemented standard bindings for menu elements on the screen." />
     <MESSAGE value="Level editor: improving menu elements placement and alignment." />
     <MESSAGE value="Level editor: menu bunches allow to select and deselect multiple objects." />
-    <option name="LAST_COMMIT_MESSAGE" value="Level editor: menu bunches allow to select and deselect multiple objects." />
+    <MESSAGE value="Level editor: added clipboard to store particular dot coordinates to use in the future." />
+    <option name="LAST_COMMIT_MESSAGE" value="Level editor: added clipboard to store particular dot coordinates to use in the future." />
   </component>
 </project>

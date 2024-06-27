@@ -413,15 +413,11 @@ class World(object):
             #     continue
             actor = self.actors[self.location][key]
             # print(actor.name)
-            if not actor.rectangle.colliderect(self.camera.active_objects_rectangle):
-            # if not actor.rectangle.colliderect(self.camera.rectangle):
-                continue
+            # if not actor.rectangle.colliderect(self.camera.active_objects_rectangle):
+            #     continue
 
             if actor.dead:
                 dead.append(actor.id)
-                continue
-
-            if not actor.rectangle.colliderect(self.camera.active_objects_rectangle):
                 continue
 
             actor.percept({k: self.obstacles[self.location][k] for k in self.active_obstacles}, self.demolishers[self.location])
