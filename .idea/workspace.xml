@@ -7,7 +7,6 @@
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,13 +105,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00139" summary="Improved id applying for obstacles in level editor and main program.&#10;time_passed is now a private property for every object in the world.">
-      <created>1718339414893</created>
-      <option name="number" value="00139" />
-      <option name="presentableId" value="LOCAL-00139" />
-      <option name="project" value="LOCAL" />
-      <updated>1718339414893</updated>
     </task>
     <task id="LOCAL-00140" summary="sorted obstacles is now a private property of all active objects of the world.">
       <created>1718339609593</created>
@@ -450,7 +442,14 @@
       <option name="project" value="LOCAL" />
       <updated>1719392282712</updated>
     </task>
-    <option name="localTasksCounter" value="188" />
+    <task id="LOCAL-00188" summary="Level editor: try to develop editing menu system.">
+      <created>1719393627898</created>
+      <option name="number" value="00188" />
+      <option name="presentableId" value="LOCAL-00188" />
+      <option name="project" value="LOCAL" />
+      <updated>1719393627898</updated>
+    </task>
+    <option name="localTasksCounter" value="189" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -465,7 +464,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Active objects and triggers improved." />
     <MESSAGE value="Fine tune active obstacles and triggers" />
     <MESSAGE value="Destructibility status implemented for all entities." />
     <MESSAGE value="Demolishers pass through triggers" />
@@ -490,6 +488,7 @@
     <MESSAGE value="Added an opportunity to multiple load other maps by pressing F3 button during one session of level editor." />
     <MESSAGE value="Fixed: settings of currently editing map did not load and be wasted after the very first save by F2." />
     <MESSAGE value="Level editor: added main menu." />
-    <option name="LAST_COMMIT_MESSAGE" value="Level editor: added main menu." />
+    <MESSAGE value="Level editor: try to develop editing menu system." />
+    <option name="LAST_COMMIT_MESSAGE" value="Level editor: try to develop editing menu system." />
   </component>
 </project>

@@ -82,6 +82,28 @@ class World(object):
 
         self.menu_items = dict()
         self.menu_item_id = 1
+        self.menu_buttons_height = 100
+        self.menu_buttons_width = 200
+        self.menu_small_buttons_height = 100
+        self.menu_small_buttons_width = 200
+        self.menu_headers_height = 100
+        self.menu_headers_width = MAXX_DIV_2
+        self.menu_screen_edge_margin = 50
+        self.menu_elements_bindings = {
+            'top header': (MAXX_DIV_2 - self.menu_headers_width // 2, self.menu_screen_edge_margin,
+                           self.menu_headers_width, self.menu_headers_height),
+            'central header': (MAXX_DIV_2 - self.menu_headers_width // 2, MAXY_DIV_2 - self.menu_headers_height // 2,
+                               self.menu_headers_width, self.menu_headers_height),
+            'central right button': (MAXX_DIV_2 + self.menu_screen_edge_margin, MAXY_DIV_2 + self.menu_headers_height // 2 + self.menu_screen_edge_margin,
+                               self.menu_buttons_width, self.menu_buttons_height),
+            'central left button': (MAXX_DIV_2 - self.menu_screen_edge_margin - self.menu_buttons_width, MAXY_DIV_2 + self.menu_headers_height // 2 + self.menu_screen_edge_margin,
+                               self.menu_buttons_width, self.menu_buttons_height),
+            'bottom right button': (MAXX - (self.menu_buttons_width + self.menu_screen_edge_margin),
+                                    MAXY - (self.menu_buttons_height + self.menu_screen_edge_margin),
+                                    self.menu_buttons_width, self.menu_buttons_height),
+            'bottom left button': (self.menu_screen_edge_margin, MAXY - (self.menu_buttons_height + self.menu_screen_edge_margin),
+                                   self.menu_buttons_width, self.menu_buttons_height),
+        }
 
         self.new_obs_rect = pygame.Rect(0,0,0,0)
         self.new_obs_rect_started = False
@@ -137,15 +159,22 @@ class World(object):
 
 
     def setup(self):
-        self.add_menu_item(pygame.Rect(MAXX_DIV_2 // 2, 200, MAXX_DIV_2, 200), 'EDIT EXISTING OR CREATE NEW?', '', False)
-        self.add_menu_item(pygame.Rect(MAXX_DIV_2 // 2, 400, MAXX_DIV_2 // 2, 200), 'EXISTING', 'EXISTING', True)
-        self.add_menu_item(pygame.Rect(MAXX_DIV_2, 400, MAXX_DIV_2 // 2, 200), 'NEW', 'NEW', True)
+        self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central header']), 'EDIT EXISTING OR CREATE NEW?', '', False)
+        self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central left button']), 'EXISTING', 'EXISTING', True)
+        self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central right button']), 'NEW', 'NEW', True)
+        self.add_menu_item(pygame.Rect(self.menu_elements_bindings['bottom right button']), 'QUIT', 'quit', True)
 
         command = self.processing_menu_items(True)
+        self.reset_human_input()
+        # self.render_background()
+        # self.render_obstacles()
 
         # exec(command)
         # print(human_choice)
-        if command == 'NEW':
+        if command in ('quit', 'CANCEL MENU'):
+            pygame.quit()
+            raise SystemExit()
+        elif command == 'NEW':
             # print('make new')
             # # Setting up the new map:
             width = MAXX
@@ -188,7 +217,7 @@ class World(object):
             import locations
             self.reset_human_input()
             self.render_background()
-            self.add_menu_item(pygame.Rect(MAXX_DIV_2 // 2, 20, MAXX_DIV_2, 100), 'CHOOSE AN EXISTING MAP', '', False)
+            self.add_menu_item(self.menu_elements_bindings['top header'], 'CHOOSE AN EXISTING MAP', '', False)
             map_names = list(locations.locations.keys())
             menu_item_height = 50
             for name in map_names:
@@ -280,10 +309,10 @@ class World(object):
             #     self.need_to_load = True
             # if event.key == K_F2:
             #     self.save()
-            self.add_menu_item(pygame.Rect(MAXX_DIV_2 // 2, 10, MAXX_DIV_2, 50), 'Editing map: ' + self.location, '', False)
-            self.add_menu_item(pygame.Rect(MAXX_DIV_2 // 2, 100, 200, 100), 'SAVE CURRENT', 'save', True)
-            self.add_menu_item(pygame.Rect(MAXX_DIV_2 // 2, 210, 200, 100), 'LOAD...', 'load', True)
-            self.add_menu_item(pygame.Rect(MAXX - 210, MAXY - 210, 200, 100), 'QUIT', 'quit', True)
+            self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central header']), 'Editing map: ' + self.location, '', False)
+            self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central left button']), 'SAVE CURRENT', 'save', True)
+            self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central right button']), 'LOAD...', 'load', True)
+            self.add_menu_item(pygame.Rect(self.menu_elements_bindings['bottom right button']), 'QUIT', 'quit', True)
             command = self.processing_menu_items(True)  # Close menu after use
             self.reset_human_input()
             self.render_background()
@@ -953,7 +982,7 @@ class World(object):
 
     def edit_obs(self, obs):
         # print(obs.id)
-        self.add_menu_item(pygame.Rect(MAXX_DIV_2 // 2, 20, MAXX_DIV_2, 100), 'EDIT OBSTACLE #' + str(obs.id) + ' (current map: ' + self.location + ')', '', False)
+        self.add_menu_item(pygame.Rect(self.menu_elements_bindings['top header']), 'EDIT OBSTACLE #' + str(obs.id) + ' (current map: ' + self.location + ')', '', False)
         self.add_menu_item(pygame.Rect(MAXX_DIV_2 // 2, 121, MAXX_DIV_2 // 2, 200), '[TRIGGER]', 't', True)
         self.add_menu_item(pygame.Rect(MAXX_DIV_2, 121, MAXX_DIV_2 // 2, 200), '[ACTIVE PLATFORM]', 'a', True)
         command = self.processing_menu_items(True)  # Close menu after use
