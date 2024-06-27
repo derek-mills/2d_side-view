@@ -159,6 +159,35 @@ class World(object):
                 selected_item = k
         return selected_item
 
+    def create_menu_items_from_list(self, a_list, menu_items_size, button_text):
+        if menu_items_size == 'small':
+            w = self.menu_small_buttons_width
+            h = self.menu_small_buttons_height
+        elif menu_items_size == 'medium':
+            w = self.menu_buttons_width
+            h = self.menu_buttons_height
+        start_y = self.menu_screen_edge_margin + self.menu_headers_height + self.menu_buttons_spacing
+        max_height_of_free_space = MAXY - self.menu_screen_edge_margin - start_y
+        max_menu_elements_fits = max_height_of_free_space // (h + self.menu_buttons_spacing)
+        columns_needed = len(a_list) // max_menu_elements_fits + 1
+        # print(f'{max_height_of_free_space=} {max_menu_elements_fits=} {len(obs_id_list)=} {columns_needed=}')
+        # Define start x coordinate:
+        if columns_needed / 2 == columns_needed // 2:
+            # if max_menu_elements_fits >= len(obs_id_list):
+            start_x = MAXX_DIV_2 - w * columns_needed // 2  # - self.menu_buttons_spacing // 2
+        else:
+            start_x = MAXX_DIV_2 - w // 2 * columns_needed // 2
+
+        c = 0
+        for element in a_list:
+            self.add_menu_item(pygame.Rect(start_x, start_y + c * (h + self.menu_buttons_spacing),
+                                           w, h),
+                               button_text + str(element), element, True)
+            c += 1
+            if c == max_menu_elements_fits:
+                c = 0
+                start_x += (w + self.menu_buttons_spacing)
+                start_y = self.menu_screen_edge_margin + self.menu_headers_height + self.menu_buttons_spacing
 
     def setup(self):
         self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central header']), 'EDIT EXISTING OR CREATE NEW?', '', False)
@@ -168,11 +197,6 @@ class World(object):
 
         command = self.processing_menu_items(True)
         self.reset_human_input()
-        # self.render_background()
-        # self.render_obstacles()
-
-        # exec(command)
-        # print(human_choice)
         if command in ('quit', 'CANCEL MENU'):
             pygame.quit()
             raise SystemExit()
@@ -222,31 +246,9 @@ class World(object):
             self.add_menu_item(pygame.Rect(self.menu_elements_bindings['top header']), 'CHOOSE AN EXISTING MAP', '', False)
 
             map_names = list(locations.locations.keys())
-            start_y = self.menu_screen_edge_margin + self.menu_headers_height + self.menu_buttons_spacing
-            max_height_of_free_space = MAXY - self.menu_screen_edge_margin - start_y
-            max_menu_elements_fits = max_height_of_free_space // (self.menu_buttons_height + (len(map_names) - 1) * self.menu_buttons_spacing)
-            # print(f'{max_height_of_free_space=} {max_menu_elements_fits=} {len(map_names)=}')
-            # Define start x coordinate:
-            if max_menu_elements_fits >= len(map_names):
-                start_x = MAXX_DIV_2 - self.menu_buttons_width // 2
-            else:
-                start_x = MAXX_DIV_2 - self.menu_buttons_width - self.menu_buttons_spacing // 2
-
-            for name in map_names:
-                self.add_menu_item(pygame.Rect(start_x, start_y + map_names.index(name) * (self.menu_buttons_height + self.menu_buttons_spacing),
-                                               self.menu_buttons_width, self.menu_buttons_height),
-                                   name, map_names.index(name), True)
-                # self.add_menu_item(pygame.Rect(MAXX_DIV_2 // 2, 100+map_names.index(name)*menu_item_height, MAXX_DIV_2, menu_item_height), name, map_names.index(name), True)
-                # print(f'{name} [{map_names.index(name)}]')
-            # print(self.menu_items)
+            self.create_menu_items_from_list(map_names, 'medium', '')
             command = self.processing_menu_items(True)
-            self.location = map_names[command]
-
-        # print(f'{width}, {height}')
-        # for l in existing_locations_description:
-        #     print(l)
-        #
-        # exit()
+            self.location = command
 
     def reset_human_input(self):
         self.is_mouse_button_down = False
@@ -266,10 +268,11 @@ class World(object):
             self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central left button']), 'SAVE CURRENT', 'save', True)
             self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central right button']), 'LOAD...', 'load', True)
             self.add_menu_item(pygame.Rect(self.menu_elements_bindings['bottom right button']), 'QUIT', 'quit', True)
+            self.render_background()
             command = self.processing_menu_items(True)  # Close menu after use
             self.reset_human_input()
-            self.render_background()
-            self.render_obstacles()
+            # self.render_background()
+            # self.render_obstacles()
             if command in ('quit', 'CANCEL MENU'):
                 pygame.quit()
                 raise SystemExit()
@@ -938,10 +941,11 @@ class World(object):
         self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central header']), 'EDIT OBSTACLE #' + str(obs.id) + ' (current map: ' + self.location + ')', '', False)
         self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central left button']), '[TRIGGER]', 't', True)
         self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central right button']), '[ACTIVE PLATFORM]', 'a', True)
+        self.render_background()
         command = self.processing_menu_items(True)  # Close menu after use
         self.reset_human_input()
-        self.render_background()
-        self.render_obstacles()
+        # self.render_background()
+        # self.render_obstacles()
 
         self.obs_settings[obs.id] = dict()
         if command == 'CANCEL MENU':
@@ -969,8 +973,8 @@ class World(object):
             }
             # Start new menu:
             self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central header']), 'EDIT OBSTACLE #' + str(obs.id) + ' (current map: ' + self.location + ')', '', False)
-            self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central left button']), '[TELEPORT]', 'tel', True)
-            self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central right button']), '[TRIGGER]', 'trig', True)
+            self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central right button']), '[TELEPORT]', 'tel', True)
+            self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central left button']), '[TRIGGER]', 'trig', True)
 
             command = self.processing_menu_items(True)  # Close menu after use
             self.reset_human_input()
@@ -981,37 +985,8 @@ class World(object):
                 return
             elif command == 'trig':
                 self.add_menu_item(pygame.Rect(self.menu_elements_bindings['top header']), 'CHOOSE AN OBSTACLE(S):', '', False, BLUE, GRAY, YELLOW)
-                # self.add_menu_item(pygame.Rect(self.mouse_xy[0], self.mouse_xy[1] - 100, 400, 20), 'CHOOSE AN OBSTACLE(S):', '', False, BLUE, GRAY, YELLOW)
 
-                obs_id_list = list(self.obstacles[self.location].keys())
-                start_y = self.menu_screen_edge_margin + self.menu_headers_height + self.menu_buttons_spacing
-                max_height_of_free_space = MAXY - self.menu_screen_edge_margin - start_y
-                max_menu_elements_fits = max_height_of_free_space // (self.menu_small_buttons_height + self.menu_buttons_spacing)
-                columns_needed = len(obs_id_list) // max_menu_elements_fits + 1
-                print(f'{max_height_of_free_space=} {max_menu_elements_fits=} {len(obs_id_list)=} {columns_needed=}')
-                # Define start x coordinate:
-                if columns_needed / 2 == columns_needed // 2:
-                # if max_menu_elements_fits >= len(obs_id_list):
-                    start_x = MAXX_DIV_2 - self.menu_small_buttons_width * columns_needed // 2  #- self.menu_buttons_spacing // 2
-                else:
-                    start_x = MAXX_DIV_2 - self.menu_small_buttons_width // 2 * columns_needed // 2
-
-
-
-                c = 0
-                for obs_key in self.obstacles[self.location].keys():
-                # for count, obs_key in enumerate(self.obstacles[self.location].keys()):
-                    self.add_menu_item(pygame.Rect(start_x, start_y + c * (self.menu_small_buttons_height + self.menu_buttons_spacing),
-                                                   self.menu_small_buttons_width, self.menu_small_buttons_height),
-                                       'OBS #' + str(obs_key), obs_key, True)
-                    c += 1
-                    if c == max_menu_elements_fits:
-                        c = 0
-                        start_x += (self.menu_small_buttons_width + self.menu_buttons_spacing)
-                        start_y = self.menu_screen_edge_margin + self.menu_headers_height + self.menu_buttons_spacing
-                    # self.add_menu_item(pygame.Rect(self.mouse_xy[0], self.mouse_xy[1] + count * menu_item_height, 400, menu_item_height), 'OBS #' + str(obs_key), obs_key, True)
-                    # c = count + 1
-
+                self.create_menu_items_from_list(list(self.obstacles[self.location].keys()), 'small', 'OBS#: ')
                 self.add_menu_item(pygame.Rect(self.menu_elements_bindings['bottom right button']), '[OK]', 'stop', True)
 
                 self.obs_settings[obs.id]['trigger description']['make active'] = list()
@@ -1047,7 +1022,7 @@ class World(object):
                     'xy': (0, 0),
                 }
                 obs.active_flag = True
-                print(self.obs_settings)
+                # print(self.obs_settings)
             # exit()
     def process(self):
         self.processing_human_input()

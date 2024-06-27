@@ -107,13 +107,6 @@
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
     </task>
-    <task id="LOCAL-00142" summary="fixed bug when jump hasn't performed while on the very edge of an obstacle">
-      <created>1718350143268</created>
-      <option name="number" value="00142" />
-      <option name="presentableId" value="LOCAL-00142" />
-      <option name="project" value="LOCAL" />
-      <updated>1718350143268</updated>
-    </task>
     <task id="LOCAL-00143" summary="added whip animation">
       <created>1718351232667</created>
       <option name="number" value="00143" />
@@ -450,7 +443,14 @@
       <option name="project" value="LOCAL" />
       <updated>1719457565211</updated>
     </task>
-    <option name="localTasksCounter" value="191" />
+    <task id="LOCAL-00191" summary="Level editor: improving menu elements placement and alignment.">
+      <created>1719460529603</created>
+      <option name="number" value="00191" />
+      <option name="presentableId" value="LOCAL-00191" />
+      <option name="project" value="LOCAL" />
+      <updated>1719460529603</updated>
+    </task>
+    <option name="localTasksCounter" value="192" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
