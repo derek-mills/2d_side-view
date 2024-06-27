@@ -25,6 +25,7 @@ class World(object):
     def __init__(self):
         self.need_to_load = False
         self.allow_import_locations = False
+        self.clipboard = dict()
         # CONTROLS
         self.is_key_pressed = False
         self.is_input_up_arrow = False
@@ -950,7 +951,6 @@ class World(object):
         self.render_background()
         command = self.processing_menu_items(True)  # Close menu after use
         self.reset_human_input()
-        # self.render_background()
         # self.render_obstacles()
 
         self.obs_settings[obs.id] = dict()
@@ -994,8 +994,12 @@ class World(object):
 
                 self.create_menu_items_from_list(list(self.obstacles[self.location].keys()), 'small', 'OBS#: ')
                 self.add_menu_item(pygame.Rect(self.menu_elements_bindings['bottom right button']), '[OK]', 'stop', True)
-
                 self.obs_settings[obs.id]['trigger description']['make active'] = list()
+
+                # Info window at the bottom of the screen:
+                self.add_menu_item(pygame.Rect(self.menu_screen_edge_margin,MAXY - self.menu_screen_edge_margin - self.menu_small_buttons_height,
+                                               MAXX_DIV_2, self.menu_small_buttons_height),
+                                   str(self.clipboard), '', False)
 
                 # Choose a bunch of obstacles being triggered by this obstacle.
                 while command != 'stop':
@@ -1020,16 +1024,26 @@ class World(object):
             else:
                 # Teleport
                 import locations
-                self.add_menu_item(pygame.Rect(self.mouse_xy[0], self.mouse_xy[1], MAXX_DIV_2, 100), 'CHOOSE AN EXISTING MAP: ', '', False)
+                self.add_menu_item(pygame.Rect(self.menu_elements_bindings['top header']), 'CHOOSE AN EXISTING MAP: ', '', False)
                 map_names = list(locations.locations.keys())
-                menu_item_height = 20
-                for name in map_names:
-                    self.add_menu_item(pygame.Rect(self.mouse_xy[0], self.mouse_xy[1] + map_names.index(name) * menu_item_height, 400, menu_item_height), name, map_names.index(name), True)
-                command = self.processing_menu_items(True)
+                self.create_menu_items_from_list(map_names, 'medium', '')
+                # menu_item_height = 20
+                # for name in map_names:
+                #     self.add_menu_item(pygame.Rect(self.mouse_xy[0], self.mouse_xy[1] + map_names.index(name) * menu_item_height, 400, menu_item_height), name, map_names.index(name), True)
+                map_name = self.processing_menu_items(True)
+                self.reset_human_input()
+                self.render_background()
+
+                self.add_menu_item(pygame.Rect(self.menu_elements_bindings['top header']), 'CHOOSE AN EXISTING MAP: ', '', False)
+                dots = list(self.clipboard.keys())
+                self.create_menu_items_from_list(dots, 'medium', '')
+                xy = self.processing_menu_items(True)
+                self.reset_human_input()
+
                 self.obs_settings[obs.id]['trigger description']['make active'] = None
                 self.obs_settings[obs.id]['trigger description']['change location'] = {
-                    'new location': map_names[command],
-                    'xy': (0, 0),
+                    'new location': map_name,
+                    'xy': self.clipboard[xy]['coordinate'],
                 }
                 obs.active_flag = True
                 # print(self.obs_settings)
@@ -1056,12 +1070,16 @@ class World(object):
                     # Try to delete existing obs:
                     del self.obstacles[self.location][obs_id]
 
+            # RMB
             if self.is_right_mouse_button_down:
                 if obs_id > -1:
                     self.edit_obs(self.obstacles[self.location][obs_id])
-                    # self.add_menu_item(pygame.Rect(MAXX_DIV_2 // 2, 200, MAXX_DIV_2, 200), 'MARK THIS OBSTACLE AS ACTIVE?', '', False)
-                    # self.add_menu_item(pygame.Rect(MAXX_DIV_2 // 2, 400, MAXX_DIV_2 // 2, 200), 'YES', 'self.edit_obs(self.obstacles[self.location]['+str(obs_id)+'])', True)
-                    # self.add_menu_item(pygame.Rect(MAXX_DIV_2, 400, MAXX_DIV_2 // 2, 200), 'NO', 'pass', True)
+                else:
+                    # Place current mouse coordinate to clipboard.
+                    self.clipboard[self.mouse_xy_snapped_to_mesh] = {
+                        'location': self.location,
+                        'coordinate': self.mouse_xy_snapped_to_mesh
+                    }
 
             if self.is_right_bracket:
                 self.is_right_bracket = False
