@@ -106,13 +106,6 @@
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
     </task>
-    <task id="LOCAL-00140" summary="sorted obstacles is now a private property of all active objects of the world.">
-      <created>1718339609593</created>
-      <option name="number" value="00140" />
-      <option name="presentableId" value="LOCAL-00140" />
-      <option name="project" value="LOCAL" />
-      <updated>1718339609593</updated>
-    </task>
     <task id="LOCAL-00141" summary="fixing come bugs with incorrect collisions while jumping">
       <created>1718344568869</created>
       <option name="number" value="00141" />
@@ -449,7 +442,14 @@
       <option name="project" value="LOCAL" />
       <updated>1719393627898</updated>
     </task>
-    <option name="localTasksCounter" value="189" />
+    <task id="LOCAL-00189" summary="Level editor: implemented standard bindings for menu elements on the screen.">
+      <created>1719455693073</created>
+      <option name="number" value="00189" />
+      <option name="presentableId" value="LOCAL-00189" />
+      <option name="project" value="LOCAL" />
+      <updated>1719455693073</updated>
+    </task>
+    <option name="localTasksCounter" value="190" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -464,7 +464,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fine tune active obstacles and triggers" />
     <MESSAGE value="Destructibility status implemented for all entities." />
     <MESSAGE value="Demolishers pass through triggers" />
     <MESSAGE value="Trigger activates a bunch of active obstacles now." />
@@ -489,6 +488,7 @@
     <MESSAGE value="Fixed: settings of currently editing map did not load and be wasted after the very first save by F2." />
     <MESSAGE value="Level editor: added main menu." />
     <MESSAGE value="Level editor: try to develop editing menu system." />
-    <option name="LAST_COMMIT_MESSAGE" value="Level editor: try to develop editing menu system." />
+    <MESSAGE value="Level editor: implemented standard bindings for menu elements on the screen." />
+    <option name="LAST_COMMIT_MESSAGE" value="Level editor: implemented standard bindings for menu elements on the screen." />
   </component>
 </project>

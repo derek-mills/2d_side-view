@@ -83,9 +83,10 @@ class World(object):
         self.menu_items = dict()
         self.menu_item_id = 1
         self.menu_buttons_height = 100
-        self.menu_buttons_width = 200
-        self.menu_small_buttons_height = 100
-        self.menu_small_buttons_width = 200
+        self.menu_buttons_width = 300
+        self.menu_small_buttons_height = 50
+        self.menu_small_buttons_width = 100
+        self.menu_buttons_spacing = 10
         self.menu_headers_height = 100
         self.menu_headers_width = MAXX_DIV_2
         self.menu_screen_edge_margin = 50
@@ -103,6 +104,7 @@ class World(object):
                                     self.menu_buttons_width, self.menu_buttons_height),
             'bottom left button': (self.menu_screen_edge_margin, MAXY - (self.menu_buttons_height + self.menu_screen_edge_margin),
                                    self.menu_buttons_width, self.menu_buttons_height),
+
         }
 
         self.new_obs_rect = pygame.Rect(0,0,0,0)
@@ -217,11 +219,23 @@ class World(object):
             import locations
             self.reset_human_input()
             self.render_background()
-            self.add_menu_item(self.menu_elements_bindings['top header'], 'CHOOSE AN EXISTING MAP', '', False)
+            self.add_menu_item(pygame.Rect(self.menu_elements_bindings['top header']), 'CHOOSE AN EXISTING MAP', '', False)
             map_names = list(locations.locations.keys())
-            menu_item_height = 50
+            start_y = self.menu_screen_edge_margin + self.menu_headers_height + self.menu_buttons_spacing
+            max_height_of_free_space = MAXY - self.menu_screen_edge_margin - start_y
+            max_menu_elements_fits = max_height_of_free_space // (self.menu_buttons_height + (len(map_names) - 1) * self.menu_buttons_spacing)
+            print(f'{max_height_of_free_space=} {max_menu_elements_fits=} {len(map_names)=}')
+            # Define start x coordinate:
+            if max_menu_elements_fits >= len(map_names):
+                start_x = MAXX_DIV_2 - self.menu_buttons_width // 2
+            else:
+                start_x = MAXX_DIV_2 - self.menu_buttons_width - self.menu_buttons_spacing // 2
+
             for name in map_names:
-                self.add_menu_item(pygame.Rect(MAXX_DIV_2 // 2, 100+map_names.index(name)*menu_item_height, MAXX_DIV_2, menu_item_height), name, map_names.index(name), True)
+                self.add_menu_item(pygame.Rect(start_x, start_y + map_names.index(name) * (self.menu_buttons_height + self.menu_buttons_spacing),
+                                               self.menu_buttons_width, self.menu_buttons_height),
+                                   name, map_names.index(name), True)
+                # self.add_menu_item(pygame.Rect(MAXX_DIV_2 // 2, 100+map_names.index(name)*menu_item_height, MAXX_DIV_2, menu_item_height), name, map_names.index(name), True)
                 # print(f'{name} [{map_names.index(name)}]')
             # print(self.menu_items)
             command = self.processing_menu_items(True)
