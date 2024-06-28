@@ -26,6 +26,7 @@ class World(object):
         self.need_to_load = False
         self.allow_import_locations = False
         self.clipboard = dict()
+        self.default_font_size = 15
         # CONTROLS
         self.is_key_pressed = False
         self.is_input_up_arrow = False
@@ -122,11 +123,19 @@ class World(object):
     def set_screen(self, surface):
         self.screen = surface
 
+    def reset_menu(self):
+        self.reset_human_input()
+        self.menu_items = dict()
+        self.menu_item_id = 1
+
     def processing_menu_items(self, close_after_use=False):
         while self.menu_items:
             self.processing_human_input()
             if self.input_cancel:
                 self.input_cancel = False
+                self.reset_human_input()
+                self.menu_items = dict()
+                self.menu_item_id = 1
                 return 'CANCEL MENU'
             selected_item = 0
             for k in self.menu_items.keys():
@@ -144,6 +153,7 @@ class World(object):
                     if close_after_use:
                         self.menu_items = dict()
                         self.menu_item_id = 1
+                    self.reset_human_input()
                     return command
             self.render_menu_items()
             pygame.display.flip()
@@ -175,10 +185,11 @@ class World(object):
         # print(f'{max_height_of_free_space=} {max_menu_elements_fits=} {len(obs_id_list)=} {columns_needed=}')
         # Define start x coordinate:
         if columns_needed / 2 == columns_needed // 2:
-            # if max_menu_elements_fits >= len(obs_id_list):
+            # Quantity of columns is even.
             start_x = MAXX_DIV_2 - w * columns_needed // 2  # - self.menu_buttons_spacing // 2
         else:
-            start_x = MAXX_DIV_2 - w // 2 * columns_needed // 2
+            # Quantity of columns is odd.
+            start_x = MAXX_DIV_2 - w // 2 - w // 2 * columns_needed // 2
 
         c = 0
         for element in a_list:
@@ -211,7 +222,7 @@ class World(object):
             with open('locations.py', 'r') as f:
                 existing_locations_description = f.readlines()
 
-            map_name = 'New map ' + str(uuid.uuid1())
+            map_name = str(uuid.uuid1())
 
             # Using the template to build a structure of new map's description:
             with open('locations_template.py', 'r') as template_source:
@@ -266,22 +277,31 @@ class World(object):
             #     self.need_to_load = True
             # if event.key == K_F2:
             #     self.save()
-            self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central header']), 'Editing map: ' + self.location, '', False)
+            self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central header']), 'Editing map (ESC quit program): ' + self.location, '', False)
             self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central left button']), 'SAVE CURRENT', 'save', True)
             self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central right button']), 'LOAD...', 'load', True)
-            self.add_menu_item(pygame.Rect(self.menu_elements_bindings['bottom right button']), 'QUIT', 'quit', True)
+            self.add_menu_item(pygame.Rect(self.menu_elements_bindings['bottom right button']), '[RESIZE MAP]', 'resize', True)
+            self.add_menu_item(pygame.Rect(self.menu_elements_bindings['bottom left button']), '[BACK TO EDITOR...]', 'return', True)
             self.render_background()
-            command = self.processing_menu_items(True)  # Close menu after use
-            self.reset_human_input()
-            # self.render_background()
-            # self.render_obstacles()
-            if command in ('quit', 'CANCEL MENU'):
-                pygame.quit()
-                raise SystemExit()
-            elif command == 'load':
-                self.need_to_load = True
-            else:
-                self.save()
+            command = ''
+            while command != 'return':
+                command = self.processing_menu_items()  # Do not Close menu after use
+                self.reset_human_input()
+                if command == 'CANCEL MENU':
+                    # if command in ('quit', 'CANCEL MENU'):
+                    pygame.quit()
+                    raise SystemExit()
+                elif command == 'load':
+                    self.reset_menu()
+                    self.need_to_load = True
+                    return
+                elif command == 'resize':
+                    x = self.create_text_input((MAXX_DIV_2, MAXY_DIV_2), 'ENTER MAX X:', 'digit')
+                    y = self.create_text_input((MAXX_DIV_2, MAXY_DIV_2 + 50), 'ENTER MAX Y:', 'digit')
+                    self.camera.setup(int(x), int(y))
+                    self.create_snap_mesh()
+                elif command == 'save':
+                    self.save()
 
     def processing_human_input(self):
         self.mouse_xy = pygame.mouse.get_pos()
@@ -555,50 +575,68 @@ class World(object):
         self.menu_items[self.menu_item_id]['checked'] = False
         self.menu_item_id += 1
 
+    def create_text_input(self, xy, prompt, input_type='str'):
+        txt_surf = fonts.all_fonts[self.default_font_size].render(prompt, True, WHITE, DARKGRAY)
+        back_color = GRAY
+
+        window_height = txt_surf.get_height() + 20
+        window_width = txt_surf.get_width() + 20
+        # window_width_inflate = 20
+        # text_to_return_list = list()
+        text_to_return_str = str()
+        text_to_return_surf = fonts.all_fonts[self.default_font_size].render(text_to_return_str, True, WHITE, DARKGRAY)
+        window_width_inflate = text_to_return_surf.get_width()
+
+        while True:
+            cursor_x_start = xy[0] + window_width
+            cursor_x = 0
+            pygame.draw.rect(self.screen, back_color, (xy[0], xy[1], window_width + window_width_inflate, window_height), 0)
+            pygame.draw.rect(self.screen, BLUE, (xy[0], xy[1], window_width + window_width_inflate, window_height), 3)
+            self.screen.blit(txt_surf, (xy[0] + 10, xy[1] + 10))
+            # pygame.draw.line(self.screen, BLACK, (cursor_x_start + cursor_x, xy[1] + 5), (cursor_x_start + cursor_x, xy[1] + window_height - 10), 3)
+            # self.processing_human_input()
+            for event in pygame.event.get():
+                if event.type == KEYDOWN:
+                    if event.key == K_ESCAPE:
+                        return 'CANCEL MENU'
+                    if event.key == K_RETURN:
+                        return text_to_return_str
+                    if event.key == K_BACKSPACE:
+                        if len(text_to_return_str) > 0:
+                            # text_to_return_list.pop()
+                            text_to_return_str = text_to_return_str[0:-1]
+                            break
+                    if input_type == 'digit':
+                        if pygame.key.name(event.key) in DIGITS:
+                            text_to_return_str += pygame.key.name(event.key)
+                            # text_to_return_surf = fonts.all_fonts[self.default_font_size].render(text_to_return_str, True, WHITE, DARKGRAY)
+                            # window_width_inflate = text_to_return_surf.get_width()
+                    elif input_type == 'str':
+                        # text_to_return_list.append(pygame.key.name(event.key))
+                        if pygame.key.name(event.key) in ALPHA or pygame.key.name(event.key) in DIGITS:
+                            text_to_return_str += pygame.key.name(event.key)
+                            # text_to_return_surf = fonts.all_fonts[self.default_font_size].render(text_to_return_str, True, WHITE, DARKGRAY)
+                            # window_width_inflate = text_to_return_surf.get_width()
+                        elif pygame.key.name(event.key) == 'space':
+                            text_to_return_str += ' '
+                            # text_to_return_surf = fonts.all_fonts[self.default_font_size].render(text_to_return_str, True, WHITE, DARKGRAY)
+                            # window_width_inflate = text_to_return_surf.get_width()
+
+            text_to_return_surf = fonts.all_fonts[self.default_font_size].render(text_to_return_str, True, WHITE, DARKGRAY)
+            window_width_inflate = text_to_return_surf.get_width()
+
+            self.screen.blit(text_to_return_surf, (cursor_x_start + cursor_x, xy[1] + 10))
+            # if self.input_cancel:
+            #     self.input_cancel = False
+            #     self.reset_human_input()
+            #     return 'CANCEL MENU'
+
+            pygame.display.flip()
+
+        # self.add_menu_item(pygame.Rect(xy[0], xy[1], txt_surf.get_width() + 20, txt_surf.get_height() + 20), prompt + ': ', '', False)
+
     def load(self):
-        # Loading with pickle:
-        # try:
-        #     with open('locations_'+self.location+'.dat', 'rb') as f:
-        #         loaded_data = pickle.load(f)
-        # except FileNotFoundError:
-        #     self.obstacles[self.location] = dict()
-        #     return
-
-        #Loading with JSON:
-        # try:
-        #     with open('locations.py', 'r') as f:
-        #     # with open('locations_'+self.location+'.dat', 'r') as f:
-        #         loaded_data = f.read()
-        #         print(loaded_data)
-        #         print(json.loads(loaded_data))
-        #         exit()
-        #         # loaded_data = json.load(f)
-        # except FileNotFoundError:
-        #     self.obstacles[self.location] = dict()
-        #     return
-
-        # self.obstacles[self.location] = dict()
-        # self.obstacle_id = 0
-        # loc_found = False
-        # platf_found = False
-        # with open('locations.py', 'r') as f:
-        #     # self.obstacles[self.location][self.obstacle_id] =
-        #     for line in f:
-        #         if platf_found:
-        #             if ')  # END' in line:
-        #                 break
-        #             obs_data = line.strip().split(',  #')[0]
-        #             print(list(obs_data))
-        #         if loc_found:
-        #             if '\'platforms\':' in line:
-        #                 platf_found = True
-        #                 # for k in self.obstacles[self.location].keys():
-        #                 #     obs = self.obstacles[self.location][k]
-        #                 loc_found = False
-        #         if '\''+self.location+'\':' in line and not loc_found:
-        #             # print('Location found!')
-        #             loc_found = True
-
+        self.obstacles[self.location] = dict()
         try:
             max_obs_id = 0
             for obs in locations.locations[self.location]['obstacles']['obs rectangles']:
@@ -609,14 +647,17 @@ class World(object):
 
             self.obs_settings = locations.locations[self.location]['obstacles']['settings']
             for active_obs_id in self.obs_settings.keys():
-                self.obstacles[self.location][active_obs_id].active_flag = True
+                if active_obs_id in self.obstacles[self.location].keys():
+                    self.obstacles[self.location][active_obs_id].active_flag = True
             # for dem in locations[self.location]['demolishers']['dem rectangles']:
             #     self.add_demolisher(dem)
             self.camera.setup(locations.locations[self.location]['size'][0], locations.locations[self.location]['size'][1])
+            self.create_snap_mesh()
         except NameError:
             self.obstacles[self.location] = dict()
             self.demolishers[self.location] = dict()
             self.camera.setup(MAXX, MAXY)
+            self.create_snap_mesh()
         # self.obstacle_id = len(self.obstacles[self.location].keys()) + 1
 
     def save(self):
@@ -673,7 +714,10 @@ class World(object):
                 f.write('\n    \'' + k + '\':\n        {')  # Map name
                 f.write('\n            \'music\': \'' + loc[k]['music'] + '\',')
                 f.write('\n            \'description\': \'' + loc[k]['description'] + '\',')
-                f.write('\n            \'size\': (' + str(loc[k]['size'][0]) + ', ' + str(loc[k]['size'][1]) + '),')
+                if k == self.location:
+                    f.write('\n            \'size\': (' + str(self.camera.max_x) + ', ' + str(self.camera.max_y) + '),')
+                else:
+                    f.write('\n            \'size\': (' + str(loc[k]['size'][0]) + ', ' + str(loc[k]['size'][1]) + '),')
                 f.write('\n            \'hostiles\': {')
                 f.write('\n              },')
                 f.write('\n            \'demolishers\': {')
@@ -950,7 +994,7 @@ class World(object):
         self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central right button']), '[ACTIVE PLATFORM]', 'a', True)
         self.render_background()
         command = self.processing_menu_items(True)  # Close menu after use
-        self.reset_human_input()
+        # self.reset_human_input()
         # self.render_obstacles()
 
         self.obs_settings[obs.id] = dict()
@@ -983,7 +1027,7 @@ class World(object):
             self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central left button']), '[TRIGGER]', 'trig', True)
 
             command = self.processing_menu_items(True)  # Close menu after use
-            self.reset_human_input()
+            # self.reset_human_input()
             self.render_background()
             self.render_obstacles()
 
@@ -1031,29 +1075,58 @@ class World(object):
                 # for name in map_names:
                 #     self.add_menu_item(pygame.Rect(self.mouse_xy[0], self.mouse_xy[1] + map_names.index(name) * menu_item_height, 400, menu_item_height), name, map_names.index(name), True)
                 map_name = self.processing_menu_items(True)
-                self.reset_human_input()
+                # self.reset_human_input()
                 self.render_background()
 
-                self.add_menu_item(pygame.Rect(self.menu_elements_bindings['top header']), 'CHOOSE AN EXISTING MAP: ', '', False)
-                dots = list(self.clipboard.keys())
-                self.create_menu_items_from_list(dots, 'medium', '')
-                xy = self.processing_menu_items(True)
-                self.reset_human_input()
 
-                self.obs_settings[obs.id]['trigger description']['make active'] = None
-                self.obs_settings[obs.id]['trigger description']['change location'] = {
-                    'new location': map_name,
-                    'xy': self.clipboard[xy]['coordinate'],
-                }
+                if self.clipboard:
+                    self.add_menu_item(pygame.Rect(self.menu_elements_bindings['top header']), 'ENTER A POSITION TO WRAP: ', '', False)
+                    self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central left button']), '[FROM CLIP BOARD]', 'clip', True)
+                    self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central right button']), '[MANUAL]', 'manual', True)
+                    command = self.processing_menu_items(True)
+                    self.render_background()
+                    if command == 'CANCEL MENU':
+                        return
+                else:
+                    command = 'manual'
+
+                if command == 'clip':
+                    self.reset_menu()
+                    dots = list(self.clipboard.keys())
+                    self.create_menu_items_from_list(dots, 'medium', '')
+                    xy = self.processing_menu_items(True)
+                    self.render_background()
+                    # self.reset_human_input()
+
+                    self.obs_settings[obs.id]['trigger description']['make active'] = None
+                    self.obs_settings[obs.id]['trigger description']['change location'] = {
+                        'new location': map_name,
+                        'xy': self.clipboard[xy]['coordinate'],
+                    }
+                elif command == 'manual':
+                    x = self.create_text_input((self.menu_elements_bindings['central header'][0], self.menu_elements_bindings['central header'][1] +
+                                                self.menu_elements_bindings['central header'][3] + 10),
+                                               'Enter X coordinate of position to teleport: ', 'digit')
+                    y = self.create_text_input((self.menu_elements_bindings['central header'][0], self.menu_elements_bindings['central header'][1] +
+                                                self.menu_elements_bindings['central header'][3] + 50),
+                                               'Enter Y coordinate of position to teleport: ', 'digit')
+                    self.obs_settings[obs.id]['trigger description']['make active'] = None
+                    self.obs_settings[obs.id]['trigger description']['change location'] = {
+                        'new location': map_name,
+                        'xy': (int(x), int(y)),
+                    }
+
                 obs.active_flag = True
+                return
                 # print(self.obs_settings)
             # exit()
     def process(self):
+        # self.create_text_input((100, 100), 'INPUT TEXT XXXXXXXXXXXXXXXXXXXXXXXXXXX:', 'str')
         self.processing_human_input()
 
         if self.menu_items:
             command = self.processing_menu_items(True)
-            exec(command)
+            # exec(command)
         else:
             if self.is_mouse_wheel_up:
                 self.is_mouse_wheel_up = False
@@ -1168,9 +1241,10 @@ world.set_screen(screen)
 world.setup()
 # from locations import *
 import locations
-world.obstacles[world.location] = dict()
+# world.obstacles[world.location] = dict()
 world.load()
-world.create_snap_mesh()
+# world.create_snap_mesh()
+# world.create_text_input((100, 100), 'INPUT TEXT:', 'str')
 
 allow_import_location = False
 def main():
@@ -1195,14 +1269,11 @@ if __name__ == "__main__":
     while True:
         if world.need_to_load:
             world.need_to_load = False
-            world.setup()
-            # allow_import_location = True
-            # locations = None
-            # from locations import *
             importlib.reload(locations)
-            world.obstacles[world.location] = dict()
+            world.setup()
+            # importlib.reload(locations)
             world.load()
-            world.create_snap_mesh()
+            # world.create_snap_mesh()
         # if allow_import_location:
         #     from locations import *
         #     allow_import_location = False

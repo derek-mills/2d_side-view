@@ -702,6 +702,8 @@ class World(object):
                     self.add_actor(all_hostiles[enemy], xy)
 
         self.camera.setup(self.locations[self.location]['size'][0], self.locations[self.location]['size'][1])
+        self.camera.apply_offset((self.actors['player'].rectangle.centerx, self.actors['player'].rectangle.top),
+                                 0, 0, True)
 
     def processing_human_input(self):
         # self.mouse_xy = pygame.mouse.get_pos()
