@@ -6,10 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/constants.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main .py" beforeDir="false" afterPath="$PROJECT_DIR$/main .py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,13 +107,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00147" summary="Processing is now handle only active obstacles.">
-      <created>1718595716705</created>
-      <option name="number" value="00147" />
-      <option name="presentableId" value="LOCAL-00147" />
-      <option name="project" value="LOCAL" />
-      <updated>1718595716705</updated>
     </task>
     <task id="LOCAL-00148" summary="Optimized slide process">
       <created>1718605753544</created>
@@ -452,7 +444,14 @@
       <option name="project" value="LOCAL" />
       <updated>1719477471270</updated>
     </task>
-    <option name="localTasksCounter" value="196" />
+    <task id="LOCAL-00196" summary="Several tiny, but important improvement">
+      <created>1719555983450</created>
+      <option name="number" value="00196" />
+      <option name="presentableId" value="LOCAL-00196" />
+      <option name="project" value="LOCAL" />
+      <updated>1719555983450</updated>
+    </task>
+    <option name="localTasksCounter" value="197" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -467,7 +466,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Actors become inactive if they do not collide camera rectangle. Just in case, not to get them fell down, because of far obstacles are off." />
     <MESSAGE value="Some minor changes." />
     <MESSAGE value="Some minor changes.&#10;Experiment with sine wave-like movement." />
     <MESSAGE value="Enhanced exotic sine-wave movement." />
@@ -492,6 +490,7 @@
     <MESSAGE value="Level editor: menu bunches allow to select and deselect multiple objects." />
     <MESSAGE value="Level editor: added clipboard to store particular dot coordinates to use in the future." />
     <MESSAGE value="Removed inactivation of actors if they do not collide with camera rectangle." />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed inactivation of actors if they do not collide with camera rectangle." />
+    <MESSAGE value="Several tiny, but important improvement" />
+    <option name="LAST_COMMIT_MESSAGE" value="Several tiny, but important improvement" />
   </component>
 </project>

@@ -210,6 +210,7 @@ class World(object):
         self.time_passed = time_passed
         self.processing_obstacles()
         if self.location_has_been_changed:
+            self.actors['player'].influenced_by_obstacle = -1
             self.location_has_been_changed = False
             return
         self.processing_human_input()

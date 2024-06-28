@@ -989,9 +989,9 @@ class World(object):
 
     def edit_obs(self, obs):
         # print(obs.id)
-        self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central header']), 'EDIT OBSTACLE #' + str(obs.id) + ' (current map: ' + self.location + ')', '', False)
-        self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central left button']), '[TRIGGER]', 't', True)
-        self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central right button']), '[ACTIVE PLATFORM]', 'a', True)
+        self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central header']), 'SET OBSTACLE #' + str(obs.id) + ' AS:', '', False)
+        self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central left button']), '[ACTION INITIATOR]', 'action', True)
+        self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central right button']), '[MOVING PLATFORM]', 'a', True)
         self.render_background()
         command = self.processing_menu_items(True)  # Close menu after use
         # self.reset_human_input()
@@ -1000,7 +1000,7 @@ class World(object):
         self.obs_settings[obs.id] = dict()
         if command == 'CANCEL MENU':
             return
-        elif command == 't':
+        elif command == 'action':
             # obs_settings = {}
             self.obs_settings[obs.id] = {
                 'ghost': False,
@@ -1023,8 +1023,9 @@ class World(object):
             }
             # Start new menu:
             self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central header']), 'EDIT OBSTACLE #' + str(obs.id) + ' (current map: ' + self.location + ')', '', False)
+            self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central left button']), '[ACTION TRIGGER]', 'trig', True)
             self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central right button']), '[TELEPORT]', 'tel', True)
-            self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central left button']), '[TRIGGER]', 'trig', True)
+
 
             command = self.processing_menu_items(True)  # Close menu after use
             # self.reset_human_input()
