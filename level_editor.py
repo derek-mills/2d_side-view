@@ -969,8 +969,6 @@ class World(object):
             gap += font_size
 
     def render_snap_mesh(self):
-        pygame.draw.circle(self.screen, RED, (self.zoom_factor * (self.mouse_xy_snapped_to_mesh[0] - self.camera.offset_x),
-                                              self.zoom_factor * (self.mouse_xy_snapped_to_mesh[1] - self.camera.offset_y)), 5)
         for k in self.snap_mesh.keys():
             pygame.draw.circle(self.screen, YELLOW, (self.zoom_factor *(k[0] - self.camera.offset_x),
                                                      self.zoom_factor *(k[1] - self.camera.offset_y)), 1)
@@ -980,6 +978,10 @@ class World(object):
                 xy = self.clipboard[dot]['coordinate']
                 pygame.draw.circle(self.screen, DARK_ORANGE, (self.zoom_factor * (xy[0] - self.camera.offset_x),
                                                               self.zoom_factor * (xy[1] - self.camera.offset_y)), 8)
+
+        pygame.draw.circle(self.screen, RED, (self.zoom_factor * (self.mouse_xy_snapped_to_mesh[0] - self.camera.offset_x),
+                                              self.zoom_factor * (self.mouse_xy_snapped_to_mesh[1] - self.camera.offset_y)), 5)
+
 
     def create_snap_mesh(self):
         self.snap_mesh = dict()
@@ -1168,14 +1170,18 @@ class World(object):
 
             # RMB
             if self.is_right_mouse_button_down:
+                self.is_right_mouse_button_down = False
                 if obs_id > -1:
                     self.edit_obs(self.obstacles[self.location][obs_id])
                 else:
                     # Place current mouse coordinate to clipboard.
-                    self.clipboard[self.mouse_xy_snapped_to_mesh] = {
-                        'location': self.location,
-                        'coordinate': self.mouse_xy_snapped_to_mesh
-                    }
+                    if self.mouse_xy_snapped_to_mesh in self.clipboard.keys():
+                        del self.clipboard[self.mouse_xy_snapped_to_mesh]
+                    else:
+                        self.clipboard[self.mouse_xy_snapped_to_mesh] = {
+                            'location': self.location,
+                            'coordinate': self.mouse_xy_snapped_to_mesh
+                        }
 
             if self.is_right_bracket:
                 self.is_right_bracket = False

@@ -117,13 +117,6 @@
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
     </task>
-    <task id="LOCAL-00151" summary="Corrected bottom colliders">
-      <created>1718611502643</created>
-      <option name="number" value="00151" />
-      <option name="presentableId" value="LOCAL-00151" />
-      <option name="project" value="LOCAL" />
-      <updated>1718611502644</updated>
-    </task>
     <task id="LOCAL-00152" summary="Finally fixed annoying stun after jump deed has done, but jump button has not released yet.">
       <created>1718613845616</created>
       <option name="number" value="00152" />
@@ -460,7 +453,14 @@
       <option name="project" value="LOCAL" />
       <updated>1719816320203</updated>
     </task>
-    <option name="localTasksCounter" value="200" />
+    <task id="LOCAL-00200" summary="Level editor: dots placed into clipboard are now render as individual points.">
+      <created>1719816600763</created>
+      <option name="number" value="00200" />
+      <option name="presentableId" value="LOCAL-00200" />
+      <option name="project" value="LOCAL" />
+      <updated>1719816600763</updated>
+    </task>
+    <option name="localTasksCounter" value="201" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -475,7 +475,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Enhanced exotic sine-wave movement." />
     <MESSAGE value="Player actor possesses separate field in world.actors dict&#10;Try to develop locations changing system." />
     <MESSAGE value="Locations change in correct way." />
     <MESSAGE value="Corrected incorrect naming for jump action." />
@@ -500,6 +499,7 @@
     <MESSAGE value="Several tiny, but important improvement" />
     <MESSAGE value="Level editor: text input routine modified." />
     <MESSAGE value="Level editor: if obstacle has been deleted, all info in 'settings' section about it is also deleted too." />
-    <option name="LAST_COMMIT_MESSAGE" value="Level editor: if obstacle has been deleted, all info in 'settings' section about it is also deleted too." />
+    <MESSAGE value="Level editor: dots placed into clipboard are now render as individual points." />
+    <option name="LAST_COMMIT_MESSAGE" value="Level editor: dots placed into clipboard are now render as individual points." />
   </component>
 </project>
