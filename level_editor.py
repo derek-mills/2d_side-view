@@ -1080,7 +1080,7 @@ class World(object):
             ('[ACTION INITIATOR]', 'action', True),
             ('[MOVING PLATFORM]', 'a', True)
         )
-        self.add_menu(self.mouse_xy, 400, 15, menu_items)
+        self.add_menu(self.mouse_xy, 400, 20, menu_items)
         # self.render_background()
         command = self.processing_menu_items(True)  # Close menu after use
         # self.reset_human_input()
@@ -1119,7 +1119,7 @@ class World(object):
                 ('[ACTION TRIGGER]', 'trig', True),
                 ('[TELEPORT]', 'tel', True)
             )
-            self.add_menu(self.mouse_xy, 400, 15, menu_items)
+            self.add_menu(self.mouse_xy, 400, 20, menu_items)
 
             command = self.processing_menu_items(True)  # Close menu after use
             # self.reset_human_input()
@@ -1130,7 +1130,6 @@ class World(object):
                 return
             elif command == 'trig':
                 self.add_menu_item(pygame.Rect(self.menu_elements_bindings['top header']), 'CHOOSE AN OBSTACLE(S):', '', False, BLUE, GRAY, YELLOW)
-
                 self.create_menu_items_from_list(list(self.obstacles[self.location].keys()), 'small', 'OBS#: ')
                 self.add_menu_item(pygame.Rect(self.menu_elements_bindings['bottom right button']), '[OK]', 'stop', True)
                 self.obs_settings[obs.id]['trigger description']['make active'] = list()
@@ -1143,7 +1142,7 @@ class World(object):
                 # Choose a bunch of obstacles being triggered by this obstacle.
                 while command != 'stop':
                     command = self.processing_menu_items()
-                    self.reset_human_input()
+                    # self.reset_human_input()
                     if command != 'stop':
                         if command == 'CANCEL MENU':
                             return
@@ -1185,7 +1184,9 @@ class World(object):
                 else:
                     command = 'manual'
 
-                if command == 'clip':
+                if command == 'CANCEL MENU':
+                    return
+                elif command == 'clip':
                     self.reset_menu()
                     dots = list(self.clipboard.keys())
                     self.create_menu_items_from_list(dots, 'medium', '')
