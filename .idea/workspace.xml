@@ -117,13 +117,6 @@
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
     </task>
-    <task id="LOCAL-00152" summary="Finally fixed annoying stun after jump deed has done, but jump button has not released yet.">
-      <created>1718613845616</created>
-      <option name="number" value="00152" />
-      <option name="presentableId" value="LOCAL-00152" />
-      <option name="project" value="LOCAL" />
-      <updated>1718613845616</updated>
-    </task>
     <task id="LOCAL-00153" summary="Slightly improved fly-after-jump behavior">
       <created>1718615190820</created>
       <option name="number" value="00153" />
@@ -460,7 +453,14 @@
       <option name="project" value="LOCAL" />
       <updated>1719816600763</updated>
     </task>
-    <option name="localTasksCounter" value="201" />
+    <task id="LOCAL-00201" summary="Level editor: dots placed into clipboard could now be removed by pressing RMB again.">
+      <created>1719816794055</created>
+      <option name="number" value="00201" />
+      <option name="presentableId" value="LOCAL-00201" />
+      <option name="project" value="LOCAL" />
+      <updated>1719816794055</updated>
+    </task>
+    <option name="localTasksCounter" value="202" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -475,7 +475,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Player actor possesses separate field in world.actors dict&#10;Try to develop locations changing system." />
     <MESSAGE value="Locations change in correct way." />
     <MESSAGE value="Corrected incorrect naming for jump action." />
     <MESSAGE value="Improving level editor: added opportunity to set up a new map before editor starts.&#10;Saving function redesigned." />
@@ -500,6 +499,7 @@
     <MESSAGE value="Level editor: text input routine modified." />
     <MESSAGE value="Level editor: if obstacle has been deleted, all info in 'settings' section about it is also deleted too." />
     <MESSAGE value="Level editor: dots placed into clipboard are now render as individual points." />
-    <option name="LAST_COMMIT_MESSAGE" value="Level editor: dots placed into clipboard are now render as individual points." />
+    <MESSAGE value="Level editor: dots placed into clipboard could now be removed by pressing RMB again." />
+    <option name="LAST_COMMIT_MESSAGE" value="Level editor: dots placed into clipboard could now be removed by pressing RMB again." />
   </component>
 </project>

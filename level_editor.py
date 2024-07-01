@@ -976,6 +976,9 @@ class World(object):
         for dot in self.clipboard.keys():
             if self.clipboard[dot]['location'] == self.location:
                 xy = self.clipboard[dot]['coordinate']
+                self.screen.blit(fonts.all_fonts[10].render(str(xy[0]) + ', ' + str(xy[1]), True, WHITE),
+                                                            (self.zoom_factor * (xy[0] - self.camera.offset_x) - 30,
+                                                             self.zoom_factor * (xy[1] - self.camera.offset_y) - 30))
                 pygame.draw.circle(self.screen, DARK_ORANGE, (self.zoom_factor * (xy[0] - self.camera.offset_x),
                                                               self.zoom_factor * (xy[1] - self.camera.offset_y)), 8)
 
@@ -1174,10 +1177,12 @@ class World(object):
                 if obs_id > -1:
                     self.edit_obs(self.obstacles[self.location][obs_id])
                 else:
-                    # Place current mouse coordinate to clipboard.
+
                     if self.mouse_xy_snapped_to_mesh in self.clipboard.keys():
+                        # Delete existing dot from the clipboard.
                         del self.clipboard[self.mouse_xy_snapped_to_mesh]
                     else:
+                        # Place current mouse coordinate to clipboard.
                         self.clipboard[self.mouse_xy_snapped_to_mesh] = {
                             'location': self.location,
                             'coordinate': self.mouse_xy_snapped_to_mesh
