@@ -1115,16 +1115,27 @@ class World(object):
                         'xy': self.clipboard[xy]['coordinate'],
                     }
                 elif command == 'manual':
+
                     x = self.create_text_input((self.menu_elements_bindings['central header'][0], self.menu_elements_bindings['central header'][1] +
                                                 self.menu_elements_bindings['central header'][3] + 10),
-                                               'Enter X coordinate of position to teleport: ', 'digit')
+                                               'Enter X coordinate of position to teleport (just hit [ENTER] to force keeping X after location change): ', 'digit')
+                    if len(x) == 0:
+                        x = 'keep X'
+                    else:
+                        x = int(x)
                     y = self.create_text_input((self.menu_elements_bindings['central header'][0], self.menu_elements_bindings['central header'][1] +
                                                 self.menu_elements_bindings['central header'][3] + 50),
-                                               'Enter Y coordinate of position to teleport: ', 'digit')
+                                               'Enter Y coordinate of position to teleport (just hit [ENTER] to force keeping Y after location change): ', 'digit')
+                    if len(y) == 0:
+                        y = 'keep Y'
+                    else:
+                        y = int(y)
+
                     self.obs_settings[obs.id]['trigger description']['make active'] = None
                     self.obs_settings[obs.id]['trigger description']['change location'] = {
                         'new location': map_name,
-                        'xy': (int(x), int(y)),
+                        'xy': (x, y),
+                        # 'xy': (int(x), int(y)),
                     }
 
                 obs.active_flag = True
@@ -1153,6 +1164,8 @@ class World(object):
                 if obs_id > -1:
                     # Try to delete existing obs:
                     del self.obstacles[self.location][obs_id]
+                    if obs_id in self.obs_settings.keys():
+                        del self.obs_settings[obs_id]
 
             # RMB
             if self.is_right_mouse_button_down:
@@ -1249,7 +1262,7 @@ class World(object):
 
 world = World()
 world.set_screen(screen)
-world.create_text_input((100, 100), 'INPUT TEXT:', 'digit')
+# world.create_text_input((100, 100), 'INPUT TEXT:', 'digit')
 
 world.setup()
 import locations
