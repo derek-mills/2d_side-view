@@ -975,12 +975,11 @@ class World(object):
             pygame.draw.circle(self.screen, YELLOW, (self.zoom_factor *(k[0] - self.camera.offset_x),
                                                      self.zoom_factor *(k[1] - self.camera.offset_y)), 1)
 
-    def render_snap_mesh_back(self):
-        pygame.draw.circle(self.screen, RED, (self.mouse_xy_snapped_to_mesh[0] - self.camera.offset_x,
-                                              self.mouse_xy_snapped_to_mesh[1] - self.camera.offset_y), 5)
-        for k in self.snap_mesh.keys():
-            pygame.draw.circle(self.screen, YELLOW, (k[0] - self.camera.offset_x, k[1] - self.camera.offset_y), 1)
-
+        for dot in self.clipboard.keys():
+            if self.clipboard[dot]['location'] == self.location:
+                xy = self.clipboard[dot]['coordinate']
+                pygame.draw.circle(self.screen, DARK_ORANGE, (self.zoom_factor * (xy[0] - self.camera.offset_x),
+                                                              self.zoom_factor * (xy[1] - self.camera.offset_y)), 8)
 
     def create_snap_mesh(self):
         self.snap_mesh = dict()

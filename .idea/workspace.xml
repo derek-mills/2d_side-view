@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,13 +116,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00150" summary="Messing around jump function, once again">
-      <created>1718611353845</created>
-      <option name="number" value="00150" />
-      <option name="presentableId" value="LOCAL-00150" />
-      <option name="project" value="LOCAL" />
-      <updated>1718611353845</updated>
     </task>
     <task id="LOCAL-00151" summary="Corrected bottom colliders">
       <created>1718611502643</created>
@@ -462,7 +453,14 @@
       <option name="project" value="LOCAL" />
       <updated>1719815880377</updated>
     </task>
-    <option name="localTasksCounter" value="199" />
+    <task id="LOCAL-00199" summary="Level editor: if obstacle has been deleted, all info in 'settings' section about it is also deleted too.">
+      <created>1719816320203</created>
+      <option name="number" value="00199" />
+      <option name="presentableId" value="LOCAL-00199" />
+      <option name="project" value="LOCAL" />
+      <updated>1719816320203</updated>
+    </task>
+    <option name="localTasksCounter" value="200" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -477,7 +475,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Some minor changes.&#10;Experiment with sine wave-like movement." />
     <MESSAGE value="Enhanced exotic sine-wave movement." />
     <MESSAGE value="Player actor possesses separate field in world.actors dict&#10;Try to develop locations changing system." />
     <MESSAGE value="Locations change in correct way." />
@@ -502,6 +499,7 @@
     <MESSAGE value="Removed inactivation of actors if they do not collide with camera rectangle." />
     <MESSAGE value="Several tiny, but important improvement" />
     <MESSAGE value="Level editor: text input routine modified." />
-    <option name="LAST_COMMIT_MESSAGE" value="Level editor: text input routine modified." />
+    <MESSAGE value="Level editor: if obstacle has been deleted, all info in 'settings' section about it is also deleted too." />
+    <option name="LAST_COMMIT_MESSAGE" value="Level editor: if obstacle has been deleted, all info in 'settings' section about it is also deleted too." />
   </component>
 </project>
