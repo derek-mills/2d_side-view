@@ -159,18 +159,6 @@ class World(object):
             pygame.display.flip()
             # return selected_item
 
-    def processing_menu_items_back(self):
-        selected_item = 0
-        for k in self.menu_items.keys():
-            menu_item = self.menu_items[k]
-            menu_item['hovered'] = False
-            if not menu_item['active']:
-                continue
-            if menu_item['rectangle'].collidepoint(self.mouse_xy):
-                menu_item['hovered'] = True
-                selected_item = k
-        return selected_item
-
     def create_menu_items_from_list(self, a_list, menu_items_size, button_text):
         if menu_items_size == 'small':
             w = self.menu_small_buttons_width
@@ -562,7 +550,7 @@ class World(object):
         self.demolishers_id = entity.id + 1
         # self.demolishers_id += 1
 
-    def add_menu_item(self, rectangle, text, command, active=True, frame_color=BLUE, bg_color=DARKGRAY, txt_color=WHITE):
+    def add_menu_item(self, rectangle, text, command, active=True, frame_color=GREEN, bg_color=DARKGRAY, txt_color=WHITE):
         self.menu_items[self.menu_item_id] = dict()
         self.menu_items[self.menu_item_id]['text'] = text
         self.menu_items[self.menu_item_id]['text color'] = txt_color
@@ -570,10 +558,18 @@ class World(object):
         self.menu_items[self.menu_item_id]['back color'] = bg_color
         self.menu_items[self.menu_item_id]['command'] = command
         self.menu_items[self.menu_item_id]['active'] = active
-        self.menu_items[self.menu_item_id]['rectangle'] = rectangle
+        self.menu_items[self.menu_item_id]['rectangle'] = pygame.Rect(rectangle)
         self.menu_items[self.menu_item_id]['hovered'] = False
         self.menu_items[self.menu_item_id]['checked'] = False
         self.menu_item_id += 1
+
+    def add_menu(self, top_left_corner, width, font_size, items):
+        dy = 0
+        height = font_size + 16
+        for i in items:
+            print(i)
+            self.add_menu_item((top_left_corner[0], top_left_corner[1] + dy, width, height), i[0], i[1], i[2])
+            dy += height
 
     def create_text_input(self, xy, prompt, input_type='str'):
         txt_surf = fonts.all_fonts[self.default_font_size].render(prompt, True, WHITE, DARKGRAY)
@@ -912,17 +908,90 @@ class World(object):
             self.screen.blit(s, (dem.rectangle.x - self.camera.offset_x + 2, dem.rectangle.y - self.camera.offset_y + 2))
 
     def render_menu_items(self):
+        # pygame.draw.rect(self.screen, BLACK, (self.menu_items[0]['rectangle'].x + 10, self.menu_items[0]['rectangle'].y)
         for k in self.menu_items.keys():
             menu_item = self.menu_items[k]
             # print(menu_item['rectangle'].x,menu_item['rectangle'].y,menu_item['rectangle'].w,menu_item['rectangle'].h)
+            if menu_item['active']:
+                # Active menu items.
+                # SHADOW:
+                pygame.draw.rect(self.screen, BLACK, (menu_item['rectangle'].x + 10, menu_item['rectangle'].y + 10,
+                                                                         menu_item['rectangle'].w,menu_item['rectangle'].h), 0)
+                if menu_item['hovered']:
+                    back_color = TINY_TMP
+                    txt_color = WHITE
+                else:
+                    if menu_item['checked']:
+                        back_color = WHITE
+                        txt_color = BLACK
+                    else:
+                        back_color = menu_item['back color']
+                        txt_color = menu_item['text color']
+
+                # BACKGROUND:
+                pygame.draw.rect(self.screen, back_color, (menu_item['rectangle'].x, menu_item['rectangle'].y,
+                                                                         menu_item['rectangle'].w,menu_item['rectangle'].h), 0, 5)
+                # # FRAME:
+                # pygame.draw.rect(self.screen, BLACK, (menu_item['rectangle'].x+1, menu_item['rectangle'].y+1,
+                #                                                          menu_item['rectangle'].w,menu_item['rectangle'].h), 1)
+                # pygame.draw.rect(self.screen, menu_item['frame color'], (menu_item['rectangle'].x, menu_item['rectangle'].y,
+                #                                                          menu_item['rectangle'].w,menu_item['rectangle'].h), 1)
+
+
+                # pygame.draw.rect(self.screen, RED, (menu_item['rectangle'].x + 1, menu_item['rectangle'].y + 1,
+                #                                                          menu_item['rectangle'].w - 2, menu_item['rectangle'].h - 2), 1)
+
+                s = fonts.font15.render(str(menu_item['text']), True, txt_color)
+                self.screen.blit(s, (menu_item['rectangle'].centerx - s.get_size()[0] // 2, menu_item['rectangle'].centery - s.get_size()[1] // 2))
+            else:
+                # Inactive menu items (mostly, the headers)
+                # SHADOW:
+                pygame.draw.rect(self.screen, BLACK, (menu_item['rectangle'].x + 10, menu_item['rectangle'].y + 10,
+                                                                         menu_item['rectangle'].w,menu_item['rectangle'].h), 0)
+
+                back_color = GRAY
+                txt_color = YELLOW
+
+                # BACKGROUND:
+                pygame.draw.rect(self.screen, back_color, (menu_item['rectangle'].x, menu_item['rectangle'].y,
+                                                                         menu_item['rectangle'].w,menu_item['rectangle'].h), 0)
+                # # FRAME:
+                # pygame.draw.rect(self.screen, BLACK, (menu_item['rectangle'].x+1, menu_item['rectangle'].y+1,
+                #                                                          menu_item['rectangle'].w,menu_item['rectangle'].h), 1)
+                pygame.draw.rect(self.screen, menu_item['frame color'], (menu_item['rectangle'].x, menu_item['rectangle'].y,
+                                                                         menu_item['rectangle'].w,menu_item['rectangle'].h), 2)
+
+
+                # pygame.draw.rect(self.screen, RED, (menu_item['rectangle'].x + 1, menu_item['rectangle'].y + 1,
+                #                                                          menu_item['rectangle'].w - 2, menu_item['rectangle'].h - 2), 1)
+
+                s = fonts.font15.render(str(menu_item['text']), True, txt_color)
+
+                self.screen.blit(s, (menu_item['rectangle'].centerx - s.get_size()[0] // 2, menu_item['rectangle'].centery - s.get_size()[1] // 2))
+
+    def render_menu_items_old(self):
+        # pygame.draw.rect(self.screen, BLACK, (self.menu_items[0]['rectangle'].x + 10, self.menu_items[0]['rectangle'].y)
+        for k in self.menu_items.keys():
+            menu_item = self.menu_items[k]
+            # print(menu_item['rectangle'].x,menu_item['rectangle'].y,menu_item['rectangle'].w,menu_item['rectangle'].h)
+            # SHADOW:
+            pygame.draw.rect(self.screen, DARKGRAY, (menu_item['rectangle'].x + 10, menu_item['rectangle'].y + 10,
+                                                                     menu_item['rectangle'].w,menu_item['rectangle'].h), 0)
+
             if menu_item['checked']:
                 back_color = GRAY
             else:
                 back_color = menu_item['back color']
+
+            # BACKGROUND:
             pygame.draw.rect(self.screen, back_color, (menu_item['rectangle'].x, menu_item['rectangle'].y,
                                                                      menu_item['rectangle'].w,menu_item['rectangle'].h), 0)
+            # FRAME:
+            pygame.draw.rect(self.screen, BLACK, (menu_item['rectangle'].x+1, menu_item['rectangle'].y+1,
+                                                                     menu_item['rectangle'].w,menu_item['rectangle'].h), 1)
             pygame.draw.rect(self.screen, menu_item['frame color'], (menu_item['rectangle'].x, menu_item['rectangle'].y,
                                                                      menu_item['rectangle'].w,menu_item['rectangle'].h), 1)
+
             if menu_item['hovered']:
                 pygame.draw.rect(self.screen, RED, (menu_item['rectangle'].x + 1, menu_item['rectangle'].y + 1,
                                                                          menu_item['rectangle'].w - 2, menu_item['rectangle'].h - 2), 1)
@@ -1003,10 +1072,16 @@ class World(object):
 
     def edit_obs(self, obs):
         # print(obs.id)
-        self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central header']), 'SET OBSTACLE #' + str(obs.id) + ' AS:', '', False)
-        self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central left button']), '[ACTION INITIATOR]', 'action', True)
-        self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central right button']), '[MOVING PLATFORM]', 'a', True)
-        self.render_background()
+        # self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central header']), 'INTRODUCE OBSTACLE #' + str(obs.id) + ' AS:', '', False)
+        # self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central left button']), '[ACTION INITIATOR]', 'action', True)
+        # self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central right button']), '[MOVING PLATFORM]', 'a', True)
+        menu_items = (
+            ('INTRODUCE OBSTACLE #' + str(obs.id) + ' AS:', '', False),
+            ('[ACTION INITIATOR]', 'action', True),
+            ('[MOVING PLATFORM]', 'a', True)
+        )
+        self.add_menu(self.mouse_xy, 400, 15, menu_items)
+        # self.render_background()
         command = self.processing_menu_items(True)  # Close menu after use
         # self.reset_human_input()
         # self.render_obstacles()
@@ -1036,10 +1111,15 @@ class World(object):
                 'actions': {},
             }
             # Start new menu:
-            self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central header']), 'EDIT OBSTACLE #' + str(obs.id) + ' (current map: ' + self.location + ')', '', False)
-            self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central left button']), '[ACTION TRIGGER]', 'trig', True)
-            self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central right button']), '[TELEPORT]', 'tel', True)
-
+            # self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central header']), 'EDIT OBSTACLE #' + str(obs.id) + ' (current map: ' + self.location + ')', '', False)
+            # self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central left button']), '[ACTION TRIGGER]', 'trig', True)
+            # self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central right button']), '[TELEPORT]', 'tel', True)
+            menu_items = (
+                ('EDIT OBSTACLE #' + str(obs.id) + ' (current map: ' + self.location + ')', '', False),
+                ('[ACTION TRIGGER]', 'trig', True),
+                ('[TELEPORT]', 'tel', True)
+            )
+            self.add_menu(self.mouse_xy, 400, 15, menu_items)
 
             command = self.processing_menu_items(True)  # Close menu after use
             # self.reset_human_input()
