@@ -597,30 +597,40 @@ class World(object):
             # self.processing_human_input()
             for event in pygame.event.get():
                 if event.type == KEYDOWN:
+                    k = pygame.key.name(event.key)
+                    print(k)
                     if event.key == K_ESCAPE:
                         return 'CANCEL MENU'
-                    if event.key == K_RETURN:
+                    if event.key == K_RETURN or event.key == K_KP_ENTER:
                         return text_to_return_str
                     if event.key == K_BACKSPACE:
                         if len(text_to_return_str) > 0:
-                            # text_to_return_list.pop()
                             text_to_return_str = text_to_return_str[0:-1]
                             break
                     if input_type == 'digit':
-                        if pygame.key.name(event.key) in DIGITS:
-                            text_to_return_str += pygame.key.name(event.key)
-                            # text_to_return_surf = fonts.all_fonts[self.default_font_size].render(text_to_return_str, True, WHITE, DARKGRAY)
-                            # window_width_inflate = text_to_return_surf.get_width()
+
+                        if k in DIGITS:
+                            if k[0] == '[':
+                                text_to_return_str += k[1]
+                            else:
+                                text_to_return_str += k
+                                # text_to_return_str += pygame.key.name(event.key)
                     elif input_type == 'str':
-                        # text_to_return_list.append(pygame.key.name(event.key))
-                        if pygame.key.name(event.key) in ALPHA or pygame.key.name(event.key) in DIGITS:
-                            text_to_return_str += pygame.key.name(event.key)
-                            # text_to_return_surf = fonts.all_fonts[self.default_font_size].render(text_to_return_str, True, WHITE, DARKGRAY)
-                            # window_width_inflate = text_to_return_surf.get_width()
-                        elif pygame.key.name(event.key) == 'space':
+                        if k in ALPHA or pygame.key.name(event.key) in DIGITS:
+                        # if pygame.key.name(event.key) in ALPHA or pygame.key.name(event.key) in DIGITS:
+                            if k[0] == '[':
+                                text_to_return_str += k[1]
+                            else:
+                                text_to_return_str += k
+                            # text_to_return_str += pygame.key.name(event.key)
+                        elif k == 'space':
+                        # elif pygame.key.name(event.key) == 'space':
                             text_to_return_str += ' '
                             # text_to_return_surf = fonts.all_fonts[self.default_font_size].render(text_to_return_str, True, WHITE, DARKGRAY)
                             # window_width_inflate = text_to_return_surf.get_width()
+                    elif input_type == 'any':
+                        text_to_return_str += k
+                        # text_to_return_str += pygame.key.name(event.key)
 
             text_to_return_surf = fonts.all_fonts[self.default_font_size].render(text_to_return_str, True, WHITE, DARKGRAY)
             window_width_inflate = text_to_return_surf.get_width()
@@ -1239,13 +1249,11 @@ class World(object):
 
 world = World()
 world.set_screen(screen)
+world.create_text_input((100, 100), 'INPUT TEXT:', 'digit')
+
 world.setup()
-# from locations import *
 import locations
-# world.obstacles[world.location] = dict()
 world.load()
-# world.create_snap_mesh()
-# world.create_text_input((100, 100), 'INPUT TEXT:', 'str')
 
 allow_import_location = False
 def main():

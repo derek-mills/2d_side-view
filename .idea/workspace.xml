@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/constants.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
@@ -46,10 +47,18 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "last_opened_file_path": "/home/sid/scripts/python/pygame/Arcade_side-view/SLASH/ver_0.000.1",
-    "settings.editor.selected.configurable": "preferences.customizations"
+    "settings.editor.selected.configurable": "advanced.settings"
   }
 }]]></component>
-  <component name="RunManager" selected="Python.main ">
+  <component name="PyConsoleOptionsProvider">
+    <option name="myPythonConsoleState">
+      <console-settings module-name="ver_0.000.1" is-module-sdk="true">
+        <option name="myUseModuleSdk" value="true" />
+        <option name="myModuleName" value="ver_0.000.1" />
+      </console-settings>
+    </option>
+  </component>
+  <component name="RunManager" selected="Python.level_editor">
     <configuration name="level_editor" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ver_0.000.1" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -71,7 +80,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="main " type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="main " type="PythonConfigurationType" factoryName="Python" singleton="false" temporary="true" nameIsGenerated="true">
       <module name="ver_0.000.1" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -92,10 +101,14 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python.level_editor" />
+      <item itemvalue="Python.main " />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.main " />
         <item itemvalue="Python.level_editor" />
+        <item itemvalue="Python.main " />
       </list>
     </recent_temporary>
   </component>
@@ -107,13 +120,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00148" summary="Optimized slide process">
-      <created>1718605753544</created>
-      <option name="number" value="00148" />
-      <option name="presentableId" value="LOCAL-00148" />
-      <option name="project" value="LOCAL" />
-      <updated>1718605753544</updated>
     </task>
     <task id="LOCAL-00149" summary="Messing around jump function">
       <created>1718608173015</created>
@@ -451,7 +457,14 @@
       <option name="project" value="LOCAL" />
       <updated>1719555983450</updated>
     </task>
-    <option name="localTasksCounter" value="197" />
+    <task id="LOCAL-00197" summary="Several tiny, but important improvement">
+      <created>1719562147452</created>
+      <option name="number" value="00197" />
+      <option name="presentableId" value="LOCAL-00197" />
+      <option name="project" value="LOCAL" />
+      <updated>1719562147452</updated>
+    </task>
+    <option name="localTasksCounter" value="198" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

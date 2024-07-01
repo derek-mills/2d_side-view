@@ -264,7 +264,15 @@ class World(object):
         if self.location not in self.actors.keys():
             self.actors[self.location] = dict()
             self.actors[self.location][0] = self.actors['player']
-        self.actors['player'].rectangle.topleft = new_location['xy']
+        if new_location['xy'][0] == 'keep X':
+            x = self.actors['player'].rectangle.x
+        else:
+            x = new_location['xy'][0]
+        if new_location['xy'][1] == 'keep Y':
+            y = self.actors['player'].rectangle.y
+        else:
+            y = new_location['xy'][1]
+        self.actors['player'].rectangle.topleft = (x, y)
         self.load()
         self.detect_active_obstacles()
 
