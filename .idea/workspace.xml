@@ -119,13 +119,6 @@
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
     </task>
-    <task id="LOCAL-00157" summary="Added trigger obstacles which react if actor passes through or stand on them">
-      <created>1718701200196</created>
-      <option name="number" value="00157" />
-      <option name="presentableId" value="LOCAL-00157" />
-      <option name="project" value="LOCAL" />
-      <updated>1718701200196</updated>
-    </task>
     <task id="LOCAL-00158" summary="Prepare to change some settings in active obstacle description (locations.py)">
       <created>1718702022155</created>
       <option name="number" value="00158" />
@@ -462,7 +455,14 @@
       <option name="project" value="LOCAL" />
       <updated>1719909063391</updated>
     </task>
-    <option name="localTasksCounter" value="206" />
+    <task id="LOCAL-00206" summary="Level editor: go on ruining level editor.">
+      <created>1719910352981</created>
+      <option name="number" value="00206" />
+      <option name="presentableId" value="LOCAL-00206" />
+      <option name="project" value="LOCAL" />
+      <updated>1719910352981</updated>
+    </task>
+    <option name="localTasksCounter" value="207" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -477,7 +477,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Improving level editor: fixing minor bugs." />
     <MESSAGE value="Added zooming ability for level editor." />
     <MESSAGE value="Fixed bugs while zooming in level editor." />
     <MESSAGE value="Level editor is now possessed by graphic UI." />
@@ -502,6 +501,7 @@
     <MESSAGE value="Level editor: dots placed into clipboard rendered now with text description." />
     <MESSAGE value="Level editor: Try to make classic menus." />
     <MESSAGE value="Level editor: ruined everything. Try to get menus as separate piles of objects, which could be discarded or revoked again, like classic pop-up menu." />
-    <option name="LAST_COMMIT_MESSAGE" value="Level editor: ruined everything. Try to get menus as separate piles of objects, which could be discarded or revoked again, like classic pop-up menu." />
+    <MESSAGE value="Level editor: go on ruining level editor." />
+    <option name="LAST_COMMIT_MESSAGE" value="Level editor: go on ruining level editor." />
   </component>
 </project>

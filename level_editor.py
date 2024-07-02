@@ -1,6 +1,8 @@
 # import pygame
 import uuid
 
+import pygame
+
 from constants import *
 # from locations import *
 # from world import *
@@ -120,7 +122,13 @@ class World(object):
         self.zoom_factor = 1.
 
         self.menu_action_pending = ''
+        # import locations
+        self.locations_names = list()
         self.menu_structure = {
+            'list maps': {
+                  # list(locations.locations.keys())
+                  'generate list from': self.locations_names,
+            },
             'teleport/trigger': {
                 'header': {
                     'rectangle': None,
@@ -329,8 +337,18 @@ class World(object):
                             if menu_item['on hover action'][0] == 'submenu':
                                 self.active_menu_pile += 1
                                 menu_name = menu_item['on hover action'][1]
-                                if menu_name == 'list maps':
-                                    ...
+                                if 'generate list from' in self.menu_structure[menu_name].keys():
+                                    # Let's generate a new menu items from the given list:
+                                    for l in self.menu_structure[menu_name]['generate list from']:
+                                        print(l)
+                                        self.menu_structure[menu_name][l] = dict()
+                                        self.menu_structure[menu_name]['rectangle'] = pygame.Rect(0,0,0,0)
+                                        self.menu_structure[menu_name]['label'] = l
+                                        self.menu_structure[menu_name]['on hover action'] = None
+                                        self.menu_structure[menu_name]['on LMB action'] = ('string', l)
+                                        self.menu_structure[menu_name]['active'] = True
+                                        self.menu_structure[menu_name]['after action'] = None
+
                                 self.add_menu((menu_item['rectangle'].x + menu_item['rectangle'].width, menu_item['rectangle'].centery),
                                               menu_item['rectangle'].width, 20, [self.menu_structure[menu_name][i] for i in self.menu_structure[menu_name].keys()])
                                 return
@@ -1796,6 +1814,7 @@ world.set_screen(screen)
 
 world.setup()
 import locations
+world.locations_names = list(locations.locations.keys())
 world.load()
 
 allow_import_location = False
