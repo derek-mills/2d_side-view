@@ -1,6 +1,371 @@
 from constants import *
 locations = {
+
+    'f981073c-384a-11ef-aa3e-63422c966797':
+        {
+            'music': music_ambient_1,
+            'description': 'apartment #1',
+            'size': (1920, 1080), 
+            'hostiles': {
+            },
+            'demolishers': {
+                'dem rectangles': (
+                ),
+            },
+            'obstacles': {  
+	        #((0, 1000), (7650, 50), 1),  #1
+                'obs rectangles': ( 
+                ), # OBSTACLE RECTANGLES SECTION END
+
+                'settings': {
+                #     16: {
+                #         'ghost': False,
+                #         'speed': 0.1, 'active': False,
+                #         'collideable': False,
+                #         'gravity affected': False,
+                #         'actors pass through': True,
+                #         'invisible': True,
+                #         'trigger': True,
+                #         'trigger description': {
+                #            	#'make active': (26,28,30),
+                #         	'change location': {
+                #         		'new location': 'Mansion hall',
+                #         		'xy': (100, 100),
+                #         	},
+                #         	'disappear': False,
+                #         },
+                #         'actions': {},
+                #     },
+                # },
+
+                #  6: {
+                #     'ghost': False,
+                #     'speed': 1., 'active': True,
+                #     'collideable': False,
+                #     'gravity affected': False,
+                #     'actors pass through': False,
+                #     'exotic movement': 'sin',
+                #     'invisible': False,
+                #     'trigger': False,
+                #     'trigger description': {},
+                #     'actions': {
+                #         # (('move', (1100,450)), ('move', 'start'), ('wait', 2), ('repeat', 0))
+                #         # ('die', 0), ('switch visibility', 0), ('switch passability', 0),
+                #         # ('turn on actions set', 0), ('switch gravity', 0),
+                #
+                #              0: (('move', (1800,0, 150, 1500)), ('move', 'start area'), ('repeat', 0)),
+                #              1: (('move', (0, 0)),),
+                #          }
+                },
+
+            },
+            'items': {
+                },
+    },
+
+
+
+    '019542d6-384a-11ef-aa3e-63422c966797':
+        {
+            'music': music_ambient_1,
+            'description': 'apartment #1',
+            'size': (1920, 1080), 
+            'hostiles': {
+            },
+            'demolishers': {
+                'dem rectangles': (
+                ),
+            },
+            'obstacles': {  
+	        #((0, 1000), (7650, 50), 1),  #1
+                'obs rectangles': ( 
+                ), # OBSTACLE RECTANGLES SECTION END
+
+                'settings': {
+                #     16: {
+                #         'ghost': False,
+                #         'speed': 0.1, 'active': False,
+                #         'collideable': False,
+                #         'gravity affected': False,
+                #         'actors pass through': True,
+                #         'invisible': True,
+                #         'trigger': True,
+                #         'trigger description': {
+                #            	#'make active': (26,28,30),
+                #         	'change location': {
+                #         		'new location': 'Mansion hall',
+                #         		'xy': (100, 100),
+                #         	},
+                #         	'disappear': False,
+                #         },
+                #         'actions': {},
+                #     },
+                # },
+
+                #  6: {
+                #     'ghost': False,
+                #     'speed': 1., 'active': True,
+                #     'collideable': False,
+                #     'gravity affected': False,
+                #     'actors pass through': False,
+                #     'exotic movement': 'sin',
+                #     'invisible': False,
+                #     'trigger': False,
+                #     'trigger description': {},
+                #     'actions': {
+                #         # (('move', (1100,450)), ('move', 'start'), ('wait', 2), ('repeat', 0))
+                #         # ('die', 0), ('switch visibility', 0), ('switch passability', 0),
+                #         # ('turn on actions set', 0), ('switch gravity', 0),
+                #
+                #              0: (('move', (1800,0, 150, 1500)), ('move', 'start area'), ('repeat', 0)),
+                #              1: (('move', (0, 0)),),
+                #          }
+                },
+
+            },
+            'items': {
+                },
+    },
+
+
+
+    '0259a79e-3849-11ef-aa3e-63422c966797':
+        {
+            'music': music_ambient_1,
+            'description': 'apartment #1',
+            'size': (1920, 1080), 
+            'hostiles': {
+            },
+            'demolishers': {
+                'dem rectangles': (
+                ),
+            },
+            'obstacles': {  
+	        #((0, 1000), (7650, 50), 1),  #1
+                'obs rectangles': ( 
+                ), # OBSTACLE RECTANGLES SECTION END
+
+                'settings': {
+                #     16: {
+                #         'ghost': False,
+                #         'speed': 0.1, 'active': False,
+                #         'collideable': False,
+                #         'gravity affected': False,
+                #         'actors pass through': True,
+                #         'invisible': True,
+                #         'trigger': True,
+                #         'trigger description': {
+                #            	#'make active': (26,28,30),
+                #         	'change location': {
+                #         		'new location': 'Mansion hall',
+                #         		'xy': (100, 100),
+                #         	},
+                #         	'disappear': False,
+                #         },
+                #         'actions': {},
+                #     },
+                # },
+
+                #  6: {
+                #     'ghost': False,
+                #     'speed': 1., 'active': True,
+                #     'collideable': False,
+                #     'gravity affected': False,
+                #     'actors pass through': False,
+                #     'exotic movement': 'sin',
+                #     'invisible': False,
+                #     'trigger': False,
+                #     'trigger description': {},
+                #     'actions': {
+                #         # (('move', (1100,450)), ('move', 'start'), ('wait', 2), ('repeat', 0))
+                #         # ('die', 0), ('switch visibility', 0), ('switch passability', 0),
+                #         # ('turn on actions set', 0), ('switch gravity', 0),
+                #
+                #              0: (('move', (1800,0, 150, 1500)), ('move', 'start area'), ('repeat', 0)),
+                #              1: (('move', (0, 0)),),
+                #          }
+                },
+
+            },
+            'items': {
+                },
+    },
+
+
     
+    '2ded0230-3848-11ef-aa3e-63422c966797':
+        {
+            'music': 'music/ambient_1.mp3',
+            'description': 'apartment #1',
+            'size': (1920, 1080),
+            'hostiles': {
+              },
+            'demolishers': {
+                'dem rectangles': (
+                  ), # DEMOLISHERS RECTANGLE SECTION END
+            },
+            'obstacles': {
+                'obs rectangles': (
+                ((800, 650), (300, 200), 1),  #1
+                ((800, 500), (500, 150), 2),  #2
+                  ), # OBSTACLE RECTANGLES SECTION END
+                'settings': {
+                  } # OBSTACLE SETTINGS SECTION END
+              },
+            'items': {},
+    },
+    '08abdb18-3848-11ef-aa3e-63422c966797':
+        {
+            'music': 'music/ambient_1.mp3',
+            'description': 'apartment #1',
+            'size': (1920, 1080),
+            'hostiles': {
+              },
+            'demolishers': {
+                'dem rectangles': (
+                  ), # DEMOLISHERS RECTANGLE SECTION END
+            },
+            'obstacles': {
+                'obs rectangles': (
+                  ), # OBSTACLE RECTANGLES SECTION END
+                'settings': {
+                  } # OBSTACLE SETTINGS SECTION END
+              },
+            'items': {},
+    },
+    '6dea1d1a-3847-11ef-aa3e-63422c966797':
+        {
+            'music': 'music/ambient_1.mp3',
+            'description': 'apartment #1',
+            'size': (1920, 1080),
+            'hostiles': {
+              },
+            'demolishers': {
+                'dem rectangles': (
+                  ), # DEMOLISHERS RECTANGLE SECTION END
+            },
+            'obstacles': {
+                'obs rectangles': (
+                  ), # OBSTACLE RECTANGLES SECTION END
+                'settings': {
+                  } # OBSTACLE SETTINGS SECTION END
+              },
+            'items': {},
+    },
+    '59694550-3847-11ef-aa3e-63422c966797':
+        {
+            'music': 'music/ambient_1.mp3',
+            'description': 'apartment #1',
+            'size': (1920, 1080),
+            'hostiles': {
+              },
+            'demolishers': {
+                'dem rectangles': (
+                  ), # DEMOLISHERS RECTANGLE SECTION END
+            },
+            'obstacles': {
+                'obs rectangles': (
+                  ), # OBSTACLE RECTANGLES SECTION END
+                'settings': {
+                  } # OBSTACLE SETTINGS SECTION END
+              },
+            'items': {},
+    },
+    '46b7e13c-3847-11ef-aa3e-63422c966797':
+        {
+            'music': 'music/ambient_1.mp3',
+            'description': 'apartment #1',
+            'size': (1920, 1080),
+            'hostiles': {
+              },
+            'demolishers': {
+                'dem rectangles': (
+                  ), # DEMOLISHERS RECTANGLE SECTION END
+            },
+            'obstacles': {
+                'obs rectangles': (
+                  ), # OBSTACLE RECTANGLES SECTION END
+                'settings': {
+                  } # OBSTACLE SETTINGS SECTION END
+              },
+            'items': {},
+    },
+    '2ca349b2-3847-11ef-aa3e-63422c966797':
+        {
+            'music': 'music/ambient_1.mp3',
+            'description': 'apartment #1',
+            'size': (1920, 1080),
+            'hostiles': {
+              },
+            'demolishers': {
+                'dem rectangles': (
+                  ), # DEMOLISHERS RECTANGLE SECTION END
+            },
+            'obstacles': {
+                'obs rectangles': (
+                  ), # OBSTACLE RECTANGLES SECTION END
+                'settings': {
+                  } # OBSTACLE SETTINGS SECTION END
+              },
+            'items': {},
+    },
+    '1bddde94-3847-11ef-aa3e-63422c966797':
+        {
+            'music': 'music/ambient_1.mp3',
+            'description': 'apartment #1',
+            'size': (1920, 1080),
+            'hostiles': {
+              },
+            'demolishers': {
+                'dem rectangles': (
+                  ), # DEMOLISHERS RECTANGLE SECTION END
+            },
+            'obstacles': {
+                'obs rectangles': (
+                  ), # OBSTACLE RECTANGLES SECTION END
+                'settings': {
+                  } # OBSTACLE SETTINGS SECTION END
+              },
+            'items': {},
+    },
+    '09b03028-3847-11ef-aa3e-63422c966797':
+        {
+            'music': 'music/ambient_1.mp3',
+            'description': 'apartment #1',
+            'size': (1920, 1080),
+            'hostiles': {
+              },
+            'demolishers': {
+                'dem rectangles': (
+                  ), # DEMOLISHERS RECTANGLE SECTION END
+            },
+            'obstacles': {
+                'obs rectangles': (
+                  ), # OBSTACLE RECTANGLES SECTION END
+                'settings': {
+                  } # OBSTACLE SETTINGS SECTION END
+              },
+            'items': {},
+    },
+    'a92862b6-3846-11ef-aa3e-63422c966797':
+        {
+            'music': 'music/ambient_1.mp3',
+            'description': 'apartment #1',
+            'size': (1920, 1080),
+            'hostiles': {
+              },
+            'demolishers': {
+                'dem rectangles': (
+                  ), # DEMOLISHERS RECTANGLE SECTION END
+            },
+            'obstacles': {
+                'obs rectangles': (
+                  ), # OBSTACLE RECTANGLES SECTION END
+                'settings': {
+                  } # OBSTACLE SETTINGS SECTION END
+              },
+            'items': {},
+    },
     '0c84e4ae-3772-11ef-aa3e-63422c966797':
         {
             'music': 'music/ambient_1.mp3',
@@ -138,18 +503,20 @@ locations = {
             },
             'obstacles': {
                 'obs rectangles': (
-                ((0, 1950), (3000, 50), 1),  #1
-                ((400, 1550), (2300, 50), 6),  #6
-                ((2950, 1750), (50, 200), 7),  #7
-                ((2950, 0), (50, 1750), 8),  #8
-                ((0, 0), (50, 1950), 9),  #9
-                ((950, 0), (100, 1150), 11),  #11
-                ((1350, 0), (100, 1250), 13),  #13
-                ((1550, 0), (100, 1300), 14),  #14
-                ((1650, 0), (1300, 50), 15),  #15
-                ((1850, 1200), (1100, 50), 16),  #16
-                ((1650, 950), (1150, 50), 17),  #17
-                ((1800, 700), (1150, 50), 18),  #18
+                ((0, 1950), (3000, 50), 1),
+                ((400, 1550), (2300, 50), 6),
+                ((2950, 1750), (50, 200), 7),
+                ((2950, 0), (50, 1750), 8),
+                ((0, 0), (50, 1950), 9),
+                ((1650, 0), (1300, 50), 15),
+                ((50, 750), (350, 50), 19),
+                ((450, 950), (400, 50), 20),
+                ((900, 1150), (350, 50), 21),
+                ((2300, 50), (400, 1250), 22),
+                ((400, 1650), (2300, 250), 23),
+                ((2700, 1150), (100, 150), 24),
+                ((2850, 600), (100, 150), 25),
+                ((2700, 250), (100, 50), 26),
                   ), # OBSTACLE RECTANGLES SECTION END
                 'settings': {
                     5: {
@@ -174,30 +541,6 @@ locations = {
                         'invisible': True,
                         'trigger': True,
                         'trigger description': {'change location': {'new location': 'room 2', 'xy': (100.0, 850.0)}, 'disappear': False, 'make active': None},
-                        'actions': {},
-                  },
-                    17: {
-                        'ghost': False,
-                        'speed': 0.0,
-                        'active': False,
-                        'collideable': False,
-                        'gravity affected': False,
-                        'actors pass through': True,
-                        'invisible': True,
-                        'trigger': True,
-                        'trigger description': {'change location': {}, 'disappear': False, 'make active': [10, 12]},
-                        'actions': {},
-                  },
-                    11: {
-                        'ghost': False,
-                        'speed': 0.0,
-                        'active': False,
-                        'collideable': False,
-                        'gravity affected': False,
-                        'actors pass through': True,
-                        'invisible': True,
-                        'trigger': True,
-                        'trigger description': {'change location': {'new location': 'room 1', 'xy': (750.0, 750.0)}, 'disappear': False, 'make active': None},
                         'actions': {},
                   },
                   } # OBSTACLE SETTINGS SECTION END
