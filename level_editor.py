@@ -121,6 +121,32 @@ class World(object):
 
         self.menu_action_pending = ''
         self.menu_structure = {
+            'teleport/trigger': {
+                'header': {
+                    'rectangle': None,
+                    'label': 'CHOOSE TYPE:',
+                    'on hover action': None,
+                    'on LMB action': None,
+                    'active': False,
+                    'after action': None
+                },
+                'trigger': {
+                    'rectangle': None,
+                    'label': '[TELEPORT]',
+                    'on hover action': ('submenu', 'list maps'),
+                    'on LMB action': None,
+                    'active': True,
+                    'after action': None
+                },
+                'moving platform': {
+                    'rectangle': None,
+                    'label': '[MOVING PLATFORM]',
+                    'on hover action': None,
+                    'on LMB action': ('string', 'moving platform'),
+                    'active': True,
+                    'after action': None
+                },
+            },
             'obstacle edit': {
                 'header': {
                     'rectangle': None,
@@ -133,9 +159,9 @@ class World(object):
                 'trigger': {
                     'rectangle': None,
                     'label': '[ACTION INITIATOR >]',
-                    'on hover action': ('submenu', ),
+                    'on hover action': ('submenu', 'teleport/trigger'),
                     'on LMB action': None,
-                    'active': False,
+                    'active': True,
                     'after action': None
                 },
                 'moving platform': {
@@ -143,7 +169,7 @@ class World(object):
                     'label': '[MOVING PLATFORM]',
                     'on hover action': None,
                     'on LMB action': None,
-                    'active': False,
+                    'active': True,
                     'after action': None
                 },
             },
@@ -302,8 +328,11 @@ class World(object):
                             # self.reset_human_input()
                             if menu_item['on hover action'][0] == 'submenu':
                                 self.active_menu_pile += 1
+                                menu_name = menu_item['on hover action'][1]
+                                if menu_name == 'list maps':
+                                    ...
                                 self.add_menu((menu_item['rectangle'].x + menu_item['rectangle'].width, menu_item['rectangle'].centery),
-                                              menu_item['rectangle'].width, 20, self.menu_structure['obstacle edit'])
+                                              menu_item['rectangle'].width, 20, [self.menu_structure[menu_name][i] for i in self.menu_structure[menu_name].keys()])
                                 return
                     if self.is_left_mouse_button_down:
                         if menu_item['LMB action']:
@@ -815,11 +844,8 @@ class World(object):
         dy = 0
         height = font_size + 16
         for i in items:
-            # print(i)
-            # { \
-            #     , i[0], i[1], i[2], i[3] \
-            #     } \
-            i['rectangle'].update(top_left_corner[0], top_left_corner[1] + dy, width, height)
+            print(i)
+            i['rectangle'] = pygame.Rect(top_left_corner[0], top_left_corner[1] + dy, width, height)
             self.add_menu_item(i)
 
             dy += height
@@ -1195,7 +1221,7 @@ class World(object):
                     # pygame.draw.rect(self.screen, RED, (menu_item['rectangle'].x + 1, menu_item['rectangle'].y + 1,
                     #                                                          menu_item['rectangle'].w - 2, menu_item['rectangle'].h - 2), 1)
 
-                    s = fonts.font15.render(str(menu_item['text'] + ' PILE: ' + str(pile_id) + ' #' + str(k)), True, txt_color)
+                    s = fonts.font15.render(str(menu_item['text']) + ' (PILE: ' + str(pile_id) + ' #' + str(k) + ')', True, txt_color)
                     # s = fonts.font15.render(str(menu_item['text'] + str(pile_id)), True, txt_color)
                     self.screen.blit(s, (menu_item['rectangle'].centerx - s.get_size()[0] // 2, menu_item['rectangle'].centery - s.get_size()[1] // 2))
                 else:
@@ -1220,7 +1246,7 @@ class World(object):
                     # pygame.draw.rect(self.screen, RED, (menu_item['rectangle'].x + 1, menu_item['rectangle'].y + 1,
                     #                                                          menu_item['rectangle'].w - 2, menu_item['rectangle'].h - 2), 1)
 
-                    s = fonts.font15.render(str(menu_item['text'] + ' PILE: ' + str(pile_id) + ' #' + str(k)), True, txt_color)
+                    s = fonts.font15.render(str(menu_item['text']) + ' (PILE: ' + str(pile_id) + ' #' + str(k) + ')', True, txt_color)
                     # s = fonts.font15.render(str(menu_item['text']), True, txt_color)
 
                     self.screen.blit(s, (menu_item['rectangle'].centerx - s.get_size()[0] // 2, menu_item['rectangle'].centery - s.get_size()[1] // 2))
@@ -1330,7 +1356,7 @@ class World(object):
 
     def edit_obs(self, obs):
         self.menu_action_pending = ''
-        self.add_menu(self.mouse_xy, 400, 20, self.menu_structure['obstacle edit'])
+        self.add_menu(self.mouse_xy, 400, 20, [self.menu_structure['obstacle edit'][i] for i in self.menu_structure['obstacle edit'].keys()])
 
         while self.menu_action_pending == '':
             self.processing_human_input()
