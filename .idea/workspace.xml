@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/constants.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,13 +117,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00161" summary="Fine tune active obstacles and triggers">
-      <created>1718763957672</created>
-      <option name="number" value="00161" />
-      <option name="presentableId" value="LOCAL-00161" />
-      <option name="project" value="LOCAL" />
-      <updated>1718763957672</updated>
     </task>
     <task id="LOCAL-00162" summary="Destructibility status implemented for all entities.">
       <created>1718765302137</created>
@@ -463,7 +454,14 @@
       <option name="project" value="LOCAL" />
       <updated>1719979052015</updated>
     </task>
-    <option name="localTasksCounter" value="210" />
+    <task id="LOCAL-00210" summary="Level editor: menu behavior became even much more elegant.">
+      <created>1719985210097</created>
+      <option name="number" value="00210" />
+      <option name="presentableId" value="LOCAL-00210" />
+      <option name="project" value="LOCAL" />
+      <updated>1719985210097</updated>
+    </task>
+    <option name="localTasksCounter" value="211" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -478,7 +476,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed bugs while zooming in level editor." />
     <MESSAGE value="Level editor is now possessed by graphic UI." />
     <MESSAGE value="Improved menu items processing in level editor.&#10;Camera offset speed improved." />
     <MESSAGE value="Fixed demolishers fly ability." />
@@ -503,6 +500,7 @@
     <MESSAGE value="Level editor: ruined everything. Try to get menus as separate piles of objects, which could be discarded or revoked again, like classic pop-up menu." />
     <MESSAGE value="Level editor: go on ruining level editor." />
     <MESSAGE value="Level editor: menu behavior became more or less elegant." />
-    <option name="LAST_COMMIT_MESSAGE" value="Level editor: menu behavior became more or less elegant." />
+    <MESSAGE value="Level editor: menu behavior became even much more elegant." />
+    <option name="LAST_COMMIT_MESSAGE" value="Level editor: menu behavior became even much more elegant." />
   </component>
 </project>

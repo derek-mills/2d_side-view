@@ -25,33 +25,6 @@ import importlib
 
 class World(object):
     def __init__(self):
-        self.menu_items = dict()
-        self.menu_item_id = 0
-        self.menu_pile_id = 0  # ID of a bunch of tied together menu items
-        self.active_menu_pile = 0
-        self.menu_buttons_height = 100
-        self.menu_buttons_width = 300
-        self.menu_small_buttons_height = 50
-        self.menu_small_buttons_width = 100
-        self.menu_buttons_spacing = 10
-        self.menu_headers_height = 100
-        self.menu_headers_width = MAXX_DIV_2
-        self.menu_screen_edge_margin = 50
-        self.menu_elements_bindings = {
-            'top header': (MAXX_DIV_2 - self.menu_headers_width // 2, self.menu_screen_edge_margin,
-                           self.menu_headers_width, self.menu_headers_height),
-            'central header': (MAXX_DIV_2 - self.menu_headers_width // 2, MAXY_DIV_2 - self.menu_headers_height // 2,
-                               self.menu_headers_width, self.menu_headers_height),
-            'central right button': (MAXX_DIV_2 + self.menu_screen_edge_margin, MAXY_DIV_2 + self.menu_headers_height // 2 + self.menu_screen_edge_margin,
-                               self.menu_buttons_width, self.menu_buttons_height),
-            'central left button': (MAXX_DIV_2 - self.menu_screen_edge_margin - self.menu_buttons_width, MAXY_DIV_2 + self.menu_headers_height // 2 + self.menu_screen_edge_margin,
-                               self.menu_buttons_width, self.menu_buttons_height),
-            'bottom right button': (MAXX - (self.menu_buttons_width + self.menu_screen_edge_margin),
-                                    MAXY - (self.menu_buttons_height + self.menu_screen_edge_margin),
-                                    self.menu_buttons_width, self.menu_buttons_height),
-            'bottom left button': (self.menu_screen_edge_margin, MAXY - (self.menu_buttons_height + self.menu_screen_edge_margin),
-                                   self.menu_buttons_width, self.menu_buttons_height),
-        }
 
         self.need_to_load = False
         self.allow_import_locations = False
@@ -121,6 +94,33 @@ class World(object):
         self.snap_mesh_size_change_step = 25
         self.zoom_factor = 1.
 
+        self.menu_items = dict()
+        self.menu_item_id = 0
+        self.menu_pile_id = 0  # ID of a bunch of tied together menu items
+        self.active_menu_pile = 0
+        self.menu_buttons_height = 100
+        self.menu_buttons_width = 300
+        self.menu_small_buttons_height = 50
+        self.menu_small_buttons_width = 100
+        self.menu_buttons_spacing = 10
+        self.menu_headers_height = 100
+        self.menu_headers_width = MAXX_DIV_2
+        self.menu_screen_edge_margin = 50
+        self.menu_elements_bindings = {
+            'top header': (MAXX_DIV_2 - self.menu_headers_width // 2, self.menu_screen_edge_margin,
+                           self.menu_headers_width, self.menu_headers_height),
+            'central header': (MAXX_DIV_2 - self.menu_headers_width // 2, MAXY_DIV_2 - self.menu_headers_height // 2,
+                               self.menu_headers_width, self.menu_headers_height),
+            'central right button': (MAXX_DIV_2 + self.menu_screen_edge_margin, MAXY_DIV_2 + self.menu_headers_height // 2 + self.menu_screen_edge_margin,
+                               self.menu_buttons_width, self.menu_buttons_height),
+            'central left button': (MAXX_DIV_2 - self.menu_screen_edge_margin - self.menu_buttons_width, MAXY_DIV_2 + self.menu_headers_height // 2 + self.menu_screen_edge_margin,
+                               self.menu_buttons_width, self.menu_buttons_height),
+            'bottom right button': (MAXX - (self.menu_buttons_width + self.menu_screen_edge_margin),
+                                    MAXY - (self.menu_buttons_height + self.menu_screen_edge_margin),
+                                    self.menu_buttons_width, self.menu_buttons_height),
+            'bottom left button': (self.menu_screen_edge_margin, MAXY - (self.menu_buttons_height + self.menu_screen_edge_margin),
+                                   self.menu_buttons_width, self.menu_buttons_height),
+        }
         self.menu_actions_done = False
         self.menu_actions_pending = list()
         # import locations
@@ -136,7 +136,7 @@ class World(object):
                     'rectangle': None,
                     'label': 'CHOOSE TYPE:',
                     'on hover action': None,
-                    'on LMB action': None,
+                    'LMB action': None,
                     'active': False,
                     'after action': None
                 },
@@ -144,7 +144,7 @@ class World(object):
                     'rectangle': None,
                     'label': '[ACTION TRIGGER]',
                     'on hover action': ('submenu', 'list maps'),
-                    'on LMB action': None,
+                    'LMB action': None,
                     'active': True,
                     'after action': None
                 },
@@ -152,7 +152,7 @@ class World(object):
                     'rectangle': None,
                     'label': '[TELEPORT]',
                     'on hover action': ('submenu', 'list maps'),
-                    'on LMB action': None,
+                    'LMB action': None,
                     'active': True,
                     'after action': None
                 },
@@ -162,49 +162,145 @@ class World(object):
                     'rectangle': None,
                     'label': 'INTRODUCE OBSTACLE AS:',
                     'on hover action': None,
-                    'on LMB action': None,
+                    'LMB action': None,
                     'active': False,
                     'after action': None
                 },
                 'trigger': {
                     'rectangle': None,
-                    'label': '[ACTION INITIATOR >]',
+                    'label': '[MAKE EVENT INITIATOR >]',
                     'on hover action': ('submenu', 'teleport/trigger'),
-                    'on LMB action': None,
+                    'LMB action': None,
                     'active': True,
                     'after action': None
                 },
                 'moving platform': {
                     'rectangle': None,
-                    'label': '[MOVING PLATFORM]',
+                    'label': '[MAKE MOVING PLATFORM]',
                     'on hover action': None,
-                    'on LMB action': ('return string', 'moving'),
+                    'LMB action': ('return string', 'moving'),
                     'active': True,
                     'after action': None
                 },
+                'custom': {
+                    'rectangle': None,
+                    'label': '[CUSTOM EDIT PROPERTIES]',
+                    'on hover action': None,
+                    'LMB action': ('submenu', 'custom obs properties'),
+                    # 'LMB action': ('return string', 'custom'),
+                    'active': True,
+                    'after action': None
+                },
+            },
+            'custom obs properties': {
+                'header': {
+                    'rectangle': self.menu_elements_bindings['central header'],
+                    'label': 'EDIT OBSTACLE PROPERTIES:',
+                    'on hover action': None,
+                    'LMB action': None,
+                    'active': False,
+                    'after action': None
+                },
+                'ghost': {
+                    'rectangle': pygame.Rect(0,0,0,0),
+                    'label': 'ghost',
+                    'on hover action': None,
+                    'LMB action': ['switch state', {'ghost': False}],
+                    'active': True,
+                    'also affects on': None,
+                    'after action': 'keep going'
+                },
+                'speed': {
+                    'rectangle': pygame.Rect(0,0,0,0),
+                    'label': 'speed',
+                    'on hover action': None,
+                    'LMB action': ('input number', ),
+                    'active': True,
+                    'also affects on': None,
+                    'after action': 'keep going'
+                },
+                'active': {
+                    'rectangle': pygame.Rect(0,0,0,0),
+                    'label': 'active',
+                    'on hover action': None,
+                    'LMB action': ['switch state', {'active': False}],
+                    'active': True,
+                    'also affects on': None,
+                    'after action': 'keep going'
+                },
+                'collideable': {
+                    'rectangle': pygame.Rect(0, 0, 0, 0),
+                    'label': 'collideable',
+                    'on hover action': None,
+                    'LMB action': ['switch state', {'collideable': False}],
+                    'active': True,
+                    'also affects on': None,
+                    'after action': 'keep going'
+                },
+                'gravity affected': {
+                    'rectangle': pygame.Rect(0, 0, 0, 0),
+                    'label': 'gravity affected',
+                    'on hover action': None,
+                    'LMB action': ['switch state', {'gravity affected': False}],
+                    'active': True,
+                    'also affects on': None,
+                    'after action': 'keep going'
+                },
+                'invisible': {
+                    'rectangle': pygame.Rect(0, 0, 0, 0),
+                    'label': 'invisible',
+                    'on hover action': None,
+                    'LMB action': ['switch state', {'invisible': False}],
+                    'active': True,
+                    'also affects on': None,
+                    'after action': 'keep going'
+                },
+                'trigger': {
+                    'rectangle': pygame.Rect(0, 0, 0, 0),
+                    'label': 'trigger',
+                    'on hover action': None,
+                    'LMB action': ['switch state', {'trigger': False}],
+                    'active': True,
+                    'also affects on': None,
+                    'after action': 'keep going'
+                    # self.obs_settings[]
+                },
+                'ok': {
+                    'rectangle': pygame.Rect(0, 0, 0, 0),
+                    'label': '[CONFIRM]',
+                    'on hover action': None,
+                    'LMB action': ('return string', 'custom edit done'),
+                    'active': True,
+                    'also affects on': None,
+                    'after action': None
+                },
+
+                # 'generate list from': (
+                #     'ghost', 'speed', 'active', 
+                # ),
             },
             'initial setup': {
                 'header': {
                     'rectangle': pygame.Rect(self.menu_elements_bindings['central header']),
                     'label': 'EDIT EXISTING OR CREATE NEW?',
                     'on hover action': None,
-                    'on LMB action': None,
+                    'LMB action': None,
                     'active': False,
                     'after action': None
                 },
                 'existing': {
-                    'rectangle': pygame.Rect(self.menu_elements_bindings['central left button']),
+                    'rectangle': pygame.Rect(self.menu_elements_bindings['central right button']),
                     'label': '[LOAD]',
                     'on hover action': None,
-                    'on LMB action': ('return string', 'load'),  # Return string type of 'load'
+                    'LMB action': ('return string', 'load'),  # Return string type of 'load'
                     'active': True,
                     'after action': None
                 },
                 'new': {
-                    'rectangle': pygame.Rect(self.menu_elements_bindings['central right button']),
+                    'rectangle': pygame.Rect(self.menu_elements_bindings['central left button']),
                     'label': '[CREATE NEW MAP]',
                     'on hover action': None,
-                    'on LMB action': ('return string', 'new'),  # Return string type of 'new'
+                    'LMB action': ('return string', 'new'),  # Return string type of 'new'
                     'active': True,
                     'after action': None
                 },
@@ -212,7 +308,7 @@ class World(object):
                     'rectangle': pygame.Rect(self.menu_elements_bindings['bottom right button']),
                     'label': 'QUIT',
                     'on hover action': None,
-                    'on LMB action': ('exec', 'pygame.quit()\nraise SystemExit()'),
+                    'LMB action': ('exec', 'pygame.quit()\nraise SystemExit()'),
                     'active': True,
                     'after action': None
                 },
@@ -222,7 +318,7 @@ class World(object):
                     'rectangle': pygame.Rect(self.menu_elements_bindings['central header']),
                     'label': 'Now edit map: ' + self.location + ' (ESC to quit)',
                     'on hover action': None,
-                    'on LMB action': None,
+                    'LMB action': None,
                     'active': False,
                     'after action': None
                 },
@@ -230,8 +326,8 @@ class World(object):
                     'rectangle': pygame.Rect(self.menu_elements_bindings['central left button']),
                     'label': '[SAVE CURRENT MAP]',
                     'on hover action': None,
-                    'on LMB action': ('return string', 'save'),
-                    # 'on LMB action': ('exec', 'self.save()'),
+                    'LMB action': ('return string', 'save'),
+                    # 'LMB action': ('exec', 'self.save()'),
                     'active': True,
                     'after action': None
                 },
@@ -239,8 +335,8 @@ class World(object):
                     'rectangle': pygame.Rect(self.menu_elements_bindings['central right button']),
                     'label': '[LOAD...]',
                     'on hover action': None,
-                    'on LMB action': ('return string', "load"),
-                    # 'on LMB action': ('exec', "self.reset_menu()\nself.need_to_load = True\nreturn"),
+                    'LMB action': ('return string', "load"),
+                    # 'LMB action': ('exec', "self.reset_menu()\nself.need_to_load = True\nreturn"),
                     'active': True,
                     'after action': None
                 },
@@ -248,8 +344,8 @@ class World(object):
                     'rectangle': pygame.Rect(self.menu_elements_bindings['bottom right button']),
                     'label': '[RESIZE MAP...]',
                     'on hover action': None,
-                    'on LMB action': ('return string', "resize"),
-                    # 'on LMB action': ('exec', "x = self.create_text_input((MAXX_DIV_2, MAXY_DIV_2), 'ENTER MAX X:', 'digit')\ny = self.create_text_input((MAXX_DIV_2, MAXY_DIV_2 + 50), 'ENTER MAX Y:', 'digit')\nself.camera.setup(int(x), int(y))\nself.create_snap_mesh()"),
+                    'LMB action': ('return string', "resize"),
+                    # 'LMB action': ('exec', "x = self.create_text_input((MAXX_DIV_2, MAXY_DIV_2), 'ENTER MAX X:', 'digit')\ny = self.create_text_input((MAXX_DIV_2, MAXY_DIV_2 + 50), 'ENTER MAX Y:', 'digit')\nself.camera.setup(int(x), int(y))\nself.create_snap_mesh()"),
                     'active': True,
                     'after action': None
                 },
@@ -257,8 +353,8 @@ class World(object):
                     'rectangle': pygame.Rect(self.menu_elements_bindings['bottom left button']),
                     'label': '[QUIT TO DOS...]',
                     'on hover action': None,
-                    'on LMB action': ('return string', "quit"),
-                    # 'on LMB action': ('exec', "self.reset_menu()"),
+                    'LMB action': ('return string', "quit"),
+                    # 'LMB action': ('exec', "self.reset_menu()"),
                     'active': True,
                     'after action': None
                 },
@@ -337,6 +433,7 @@ class World(object):
                 # self.menu_action_pending = 'CANCEL MENU'
 
         menu_item_has_been_already_checked = False
+
         for pile_id in reversed(self.menu_items.keys()):
             for k in self.menu_items[pile_id].keys():
                 menu_item = self.menu_items[pile_id][k]
@@ -372,7 +469,7 @@ class World(object):
                                         self.menu_structure[menu_name][l]['rectangle'] = pygame.Rect(0,0,0,0)
                                         self.menu_structure[menu_name][l]['label'] = l
                                         self.menu_structure[menu_name][l]['on hover action'] = None
-                                        self.menu_structure[menu_name][l]['on LMB action'] = ('return string', l)
+                                        self.menu_structure[menu_name][l]['LMB action'] = ('return string', l)
                                         self.menu_structure[menu_name][l]['active'] = True
                                         self.menu_structure[menu_name][l]['after action'] = None
                                 self.add_menu((menu_item['rectangle'].x + menu_item['rectangle'].width // 2, menu_item['rectangle'].centery),
@@ -383,14 +480,32 @@ class World(object):
                             self.delete_all_child_menu_piles(pile_id)
                             return
                     if self.is_left_mouse_button_down:
+                        self.is_left_mouse_button_down = False
                         if menu_item['LMB action']:
                             if menu_item['LMB action'][0] == 'exec':
-                                exec(menu_item['LMB action'][1])  # RAW CODE EXECUTION
+                                # RAW CODE EXECUTION
+                                exec(menu_item['LMB action'][1])
+                            elif menu_item['LMB action'][0] == 'submenu':
+                                # REVEAL SUBMENU
+                                menu_name = menu_item['LMB action'][1]
+                                self.add_menu((menu_item['rectangle'].x + menu_item['rectangle'].width // 2, menu_item['rectangle'].centery),
+                                              menu_item['rectangle'].width, 20, [self.menu_structure[menu_name][i] for i in self.menu_structure[menu_name].keys() if i != 'generate list from'])
+                                return
+                            elif menu_item['LMB action'][0] == 'switch state':
+                                menu_item['text'] = ''
+                                # menu_item['text'] = menu_item['text'].split(' ')[0]
+                                for k_tmp in menu_item['LMB action'][1].keys():
+                                    menu_item['LMB action'][1][k_tmp] = True if not menu_item['LMB action'][1][k_tmp] else False
+                                    menu_item['text'] += str(k_tmp) + ':' + str(menu_item['LMB action'][1][k_tmp]) + ' '
                             elif menu_item['LMB action'][0] == 'return string':
+                                # SIMPLY RETURN STRING SODE
                                 self.menu_actions_pending.append(menu_item['LMB action'][1])
                                 # self.menu_action_pending = menu_item['LMB action'][1]
+
+                            # Aftermath:
                             if menu_item['after action']:
-                                ...
+                                if menu_item['after action'] == 'keep going':
+                                    continue
                             else:
                                 self.menu_actions_done = True
                                 # self.reset_menu()
@@ -450,7 +565,7 @@ class World(object):
         for element in a_list:
             item = {
                 'label': button_text + str(element),
-                'on LMB action': ('return string', element),
+                'LMB action': ('return string', element),
                 'active': True,
                 'rectangle': pygame.Rect(start_x, start_y + c * (h + self.menu_buttons_spacing),
                                            w, h),
@@ -562,10 +677,10 @@ class World(object):
         self.is_right_mouse_button_down = False
 
     def main_menu(self):
-        if self.menu_items:
-            self.menu_items = dict()
-            self.menu_item_id = 1
-        else:
+        # if self.menu_items:
+        #     self.menu_items = dict()
+        #     self.menu_item_id = 0
+        # else:
             # if event.key == K_F3:
             #     self.need_to_load = True
             # if event.key == K_F2:
@@ -575,45 +690,45 @@ class World(object):
             # self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central right button']), 'LOAD...', 'load', True)
             # self.add_menu_item(pygame.Rect(self.menu_elements_bindings['bottom right button']), '[RESIZE MAP]', 'resize', True)
             # self.add_menu_item(pygame.Rect(self.menu_elements_bindings['bottom left button']), '[BACK TO EDITOR...]', 'return', True)
-            for i in self.menu_structure['main menu'].keys():
-                item = self.menu_structure['main menu'][i]
-                self.add_menu_item(item)
-                # self.add_menu_item(item['rectangle'], item['label'], item['on LMB action'], item['active'], item['on hover action'])
+        for i in self.menu_structure['main menu'].keys():
+            item = self.menu_structure['main menu'][i]
+            self.add_menu_item(item)
+            # self.add_menu_item(item['rectangle'], item['label'], item['LMB action'], item['active'], item['on hover action'])
 
-            while not self.menu_actions_done:
-            # while self.menu_action_pending == '':
-                self.processing_human_input()
-                self.processing_menu_items()
-                self.render_background()
-                self.render_menu_items()
-                pygame.display.flip()
-            self.reset_human_input()
-            self.reset_menu()
+        while not self.menu_actions_done:
+        # while self.menu_action_pending == '':
+            self.processing_human_input()
+            self.processing_menu_items()
+            self.render_background()
+            self.render_menu_items()
+            pygame.display.flip()
+        self.reset_human_input()
+        self.reset_menu()
 
-            if self.menu_actions_pending[-1] == 'CANCEL MENU':
+        if self.menu_actions_pending[-1] == 'CANCEL MENU':
+            self.reset_menu_actions_pending()
+            return
+        else:
+            if self.menu_actions_pending[-1] == 'save':
+                self.reset_menu_actions_pending()
+                self.save()
+            elif self.menu_actions_pending[-1] == 'load':
+                self.reset_menu_actions_pending()
+                self.need_to_load = True
+                return
+            elif self.menu_actions_pending[-1] == 'quit':
+                pygame.quit()
+                raise SystemExit()
+            elif self.menu_actions_pending[-1] == 'resize':
+                self.reset_menu_actions_pending()
+                # self.menu_action_pending = ''
+                x = self.create_text_input((MAXX_DIV_2, MAXY_DIV_2), 'ENTER MAX X:', 'digit')
+                y = self.create_text_input((MAXX_DIV_2, MAXY_DIV_2 + 50), 'ENTER MAX Y:', 'digit')
+                self.camera.setup(int(x), int(y))
+                self.create_snap_mesh()
+            else:
                 self.reset_menu_actions_pending()
                 return
-            else:
-                if self.menu_actions_pending[-1] == 'save':
-                    self.reset_menu_actions_pending()
-                    self.save()
-                elif self.menu_actions_pending[-1] == 'load':
-                    self.reset_menu_actions_pending()
-                    self.need_to_load = True
-                    return
-                elif self.menu_actions_pending[-1] == 'quit':
-                    pygame.quit()
-                    raise SystemExit()
-                elif self.menu_actions_pending[-1] == 'resize':
-                    self.reset_menu_actions_pending()
-                    # self.menu_action_pending = ''
-                    x = self.create_text_input((MAXX_DIV_2, MAXY_DIV_2), 'ENTER MAX X:', 'digit')
-                    y = self.create_text_input((MAXX_DIV_2, MAXY_DIV_2 + 50), 'ENTER MAX Y:', 'digit')
-                    self.camera.setup(int(x), int(y))
-                    self.create_snap_mesh()
-                else:
-                    self.reset_menu_actions_pending()
-                    return
 
             #     if command == 'CANCEL MENU':
             #         # if command in ('quit', 'CANCEL MENU'):
@@ -935,7 +1050,7 @@ class World(object):
 
         # Properties depends on menu_item dict:
         self.menu_items[self.active_menu_pile][self.menu_item_id]['text'] = menu_item['label']
-        self.menu_items[self.active_menu_pile][self.menu_item_id]['LMB action'] = menu_item['on LMB action']
+        self.menu_items[self.active_menu_pile][self.menu_item_id]['LMB action'] = menu_item['LMB action']
         self.menu_items[self.active_menu_pile][self.menu_item_id]['active'] = menu_item['active']  # Menu item responses on human input.
         self.menu_items[self.active_menu_pile][self.menu_item_id]['rectangle'] = menu_item['rectangle']
         self.menu_items[self.active_menu_pile][self.menu_item_id]['on hover action'] = menu_item['on hover action']  # Activate a command of this menu item just only if mouse cursor hovers over it.
@@ -1648,10 +1763,20 @@ class World(object):
         self.obs_settings[obs.id] = dict()
 
         print(f'[edit_obs] {self.menu_actions_pending=}')
+
         if self.menu_actions_pending[-1] == 'moving':
             self.reset_menu_actions_pending()
             # self.menu_actions_pending = ''
             print('make moving platform')
+            self.add_menu(self.mouse_xy, 400, 20, [i for i in self.obs_settings[obs.id].keys()])
+            while not self.menu_actions_done:
+                self.processing_human_input()
+                self.processing_menu_items()
+                self.render_background()
+                self.render_menu_items()
+                pygame.display.flip()
+            self.reset_human_input()
+            self.reset_menu()
         elif self.menu_actions_pending == 'teleport':
             self.reset_menu_actions_pending()
             # self.menu_action_pending = ''
