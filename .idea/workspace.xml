@@ -119,13 +119,6 @@
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
     </task>
-    <task id="LOCAL-00158" summary="Prepare to change some settings in active obstacle description (locations.py)">
-      <created>1718702022155</created>
-      <option name="number" value="00158" />
-      <option name="presentableId" value="LOCAL-00158" />
-      <option name="project" value="LOCAL" />
-      <updated>1718702022155</updated>
-    </task>
     <task id="LOCAL-00159" summary="Active objects and triggers improved.">
       <created>1718758529314</created>
       <option name="number" value="00159" />
@@ -462,7 +455,14 @@
       <option name="project" value="LOCAL" />
       <updated>1719910352981</updated>
     </task>
-    <option name="localTasksCounter" value="207" />
+    <task id="LOCAL-00207" summary="Level editor: go on ruining level editor.">
+      <created>1719912435883</created>
+      <option name="number" value="00207" />
+      <option name="presentableId" value="LOCAL-00207" />
+      <option name="project" value="LOCAL" />
+      <updated>1719912435883</updated>
+    </task>
+    <option name="localTasksCounter" value="208" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

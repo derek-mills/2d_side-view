@@ -123,11 +123,11 @@ class World(object):
 
         self.menu_action_pending = ''
         # import locations
-        self.locations_names = list()
+        self.location_names = dict()
+        self.location_names['names list'] = list()
         self.menu_structure = {
             'list maps': {
-                  # list(locations.locations.keys())
-                  'generate list from': self.locations_names,
+                  'generate list from': "self.location_names['list ref'] = self.location_names['names list']",
             },
             'teleport/trigger': {
                 'header': {
@@ -146,11 +146,11 @@ class World(object):
                     'active': True,
                     'after action': None
                 },
-                'moving platform': {
+                'teleport': {
                     'rectangle': None,
-                    'label': '[MOVING PLATFORM]',
+                    'label': '[TELEPORT]',
                     'on hover action': None,
-                    'on LMB action': ('string', 'moving platform'),
+                    'on LMB action': ('return string', 'teleport'),
                     'active': True,
                     'after action': None
                 },
@@ -176,7 +176,7 @@ class World(object):
                     'rectangle': None,
                     'label': '[MOVING PLATFORM]',
                     'on hover action': None,
-                    'on LMB action': None,
+                    'on LMB action': ('return string', 'moving'),
                     'active': True,
                     'after action': None
                 },
@@ -192,17 +192,17 @@ class World(object):
                 },
                 'existing': {
                     'rectangle': pygame.Rect(self.menu_elements_bindings['central left button']),
-                    'label': 'EXISTING',
+                    'label': '[LOAD]',
                     'on hover action': None,
-                    'on LMB action': None,
+                    'on LMB action': ('return string', 'load'),  # Return string type of 'load'
                     'active': True,
                     'after action': None
                 },
                 'new': {
                     'rectangle': pygame.Rect(self.menu_elements_bindings['central right button']),
-                    'label': 'NEW',
+                    'label': '[CREATE NEW MAP]',
                     'on hover action': None,
-                    'on LMB action': ('string', 'new'),
+                    'on LMB action': ('return string', 'new'),  # Return string type of 'new'
                     'active': True,
                     'after action': None
                 },
@@ -236,7 +236,7 @@ class World(object):
                     'rectangle': pygame.Rect(self.menu_elements_bindings['central right button']),
                     'label': '[LOAD...]',
                     'on hover action': None,
-                    'on LMB action': ('string', "load"),
+                    'on LMB action': ('return string', "load"),
                     # 'on LMB action': ('exec', "self.reset_menu()\nself.need_to_load = True\nreturn"),
                     'active': True,
                     'after action': None
@@ -245,7 +245,7 @@ class World(object):
                     'rectangle': pygame.Rect(self.menu_elements_bindings['bottom right button']),
                     'label': '[RESIZE MAP...]',
                     'on hover action': None,
-                    'on LMB action': ('string', "resize"),
+                    'on LMB action': ('return string', "resize"),
                     # 'on LMB action': ('exec', "x = self.create_text_input((MAXX_DIV_2, MAXY_DIV_2), 'ENTER MAX X:', 'digit')\ny = self.create_text_input((MAXX_DIV_2, MAXY_DIV_2 + 50), 'ENTER MAX Y:', 'digit')\nself.camera.setup(int(x), int(y))\nself.create_snap_mesh()"),
                     'active': True,
                     'after action': None
@@ -339,24 +339,27 @@ class World(object):
                                 menu_name = menu_item['on hover action'][1]
                                 if 'generate list from' in self.menu_structure[menu_name].keys():
                                     # Let's generate a new menu items from the given list:
-                                    for l in self.menu_structure[menu_name]['generate list from']:
-                                        print(l)
+                                    exec(self.menu_structure[menu_name]['generate list from'])
+                                    # print(self.location_names['list ref'])
+                                    # exit()
+                                    for l in self.location_names['list ref']:
+                                        print(f'[processing menu items] Adding new menu item {l} to {menu_name}:')
                                         self.menu_structure[menu_name][l] = dict()
-                                        self.menu_structure[menu_name]['rectangle'] = pygame.Rect(0,0,0,0)
-                                        self.menu_structure[menu_name]['label'] = l
-                                        self.menu_structure[menu_name]['on hover action'] = None
-                                        self.menu_structure[menu_name]['on LMB action'] = ('string', l)
-                                        self.menu_structure[menu_name]['active'] = True
-                                        self.menu_structure[menu_name]['after action'] = None
-
-                                self.add_menu((menu_item['rectangle'].x + menu_item['rectangle'].width, menu_item['rectangle'].centery),
-                                              menu_item['rectangle'].width, 20, [self.menu_structure[menu_name][i] for i in self.menu_structure[menu_name].keys()])
+                                        self.menu_structure[menu_name][l]['rectangle'] = pygame.Rect(0,0,0,0)
+                                        self.menu_structure[menu_name][l]['label'] = l
+                                        self.menu_structure[menu_name][l]['on hover action'] = None
+                                        self.menu_structure[menu_name][l]['on LMB action'] = ('return string', l)
+                                        self.menu_structure[menu_name][l]['active'] = True
+                                        self.menu_structure[menu_name][l]['after action'] = None
+                                self.add_menu((menu_item['rectangle'].x + menu_item['rectangle'].width // 2, menu_item['rectangle'].centery),
+                                              menu_item['rectangle'].width, 20, [self.menu_structure[menu_name][i] for i in self.menu_structure[menu_name].keys() if i != 'generate list from'])
                                 return
+
                     if self.is_left_mouse_button_down:
                         if menu_item['LMB action']:
                             if menu_item['LMB action'][0] == 'exec':
                                 exec(menu_item['LMB action'][1])  # RAW CODE EXECUTION
-                            elif menu_item['LMB action'][0] == 'string':
+                            elif menu_item['LMB action'][0] == 'return string':
                                 self.menu_action_pending = menu_item['LMB action'][1]
                             if not menu_item['after action']:
                                 self.reset_menu()
@@ -365,7 +368,7 @@ class World(object):
                     menu_item['hovered'] = False
                     menu_item['has been already activated'] = False
 
-    def create_menu_items_from_list(self, a_list, menu_items_size, button_text):
+    def create_menu_items_from_list(self, a_list, button_text, menu_items_size='medium'):
         if menu_items_size == 'small':
             w = self.menu_small_buttons_width
             h = self.menu_small_buttons_height
@@ -387,9 +390,17 @@ class World(object):
 
         c = 0
         for element in a_list:
-            self.add_menu_item(pygame.Rect(start_x, start_y + c * (h + self.menu_buttons_spacing),
+            item = {
+                'label': button_text + str(element),
+                'on LMB action': ('return string', element),
+                'active': True,
+                'rectangle': pygame.Rect(start_x, start_y + c * (h + self.menu_buttons_spacing),
                                            w, h),
-                               button_text + str(element), element, True)
+                'on hover action': None,
+                'after action': None
+            }
+
+            self.add_menu_item(item)
             c += 1
             if c == max_menu_elements_fits:
                 c = 0
@@ -420,7 +431,7 @@ class World(object):
 
         if self.menu_action_pending == 'new':
             self.menu_action_pending = ''
-            print('make new')
+            # print('make new')
             # # Setting up the new map:
             width = MAXX
             height = MAXY
@@ -464,13 +475,18 @@ class World(object):
             self.reset_human_input()
             self.render_background()
             map_names = list(locations.locations.keys())
+            # self.add_menu_item(pygame.Rect(self.menu_elements_bindings['top header']), 'CHOOSE AN EXISTING MAP', '', False)
+            self.create_menu_items_from_list(map_names, '', 'medium')
+            # command = self.processing_menu_items(True)
+            # self.location = command
+            while self.menu_action_pending == '':
+                self.processing_human_input()
+                self.processing_menu_items()
+                self.render_background()
+                self.render_menu_items()
+                pygame.display.flip()
 
-            self.add_menu_item(pygame.Rect(self.menu_elements_bindings['top header']), 'CHOOSE AN EXISTING MAP', '', False)
-
-
-            self.create_menu_items_from_list(map_names, 'medium', '')
-            command = self.processing_menu_items(True)
-            self.location = command
+            self.location = self.menu_action_pending
 
     def reset_human_input(self):
         self.is_mouse_button_down = False
@@ -623,8 +639,8 @@ class World(object):
                 if event.key == K_ESCAPE:
                     # self.main_menu()
                     if self.menu_items:
-                        self.menu_items = dict()
-                        self.menu_item_id = 1
+                        # self.menu_items = dict()
+                        # self.menu_item_id = 1
                         self.input_cancel = True
                     else:
                         self.main_menu()
@@ -825,11 +841,12 @@ class World(object):
         self.menu_items[self.active_menu_pile][self.menu_item_id]['hovered'] = False  # Flag to recognize if mouse cursor hovers over this menu item.
         self.menu_items[self.active_menu_pile][self.menu_item_id]['checked'] = False  # This menu item has been checked by the user.
         self.menu_items[self.active_menu_pile][self.menu_item_id]['has been already activated'] = False  # Menu item has been already activated, to avoid multiple triggers while cursor  hovers over.
-
-        self.menu_items[self.active_menu_pile][self.menu_item_id]['text'] = menu_item['label']
         self.menu_items[self.active_menu_pile][self.menu_item_id]['text color'] = txt_color
         self.menu_items[self.active_menu_pile][self.menu_item_id]['frame color'] = frame_color
         self.menu_items[self.active_menu_pile][self.menu_item_id]['back color'] = bg_color
+
+        # Properties depends on menu_item dict:
+        self.menu_items[self.active_menu_pile][self.menu_item_id]['text'] = menu_item['label']
         self.menu_items[self.active_menu_pile][self.menu_item_id]['LMB action'] = menu_item['on LMB action']
         self.menu_items[self.active_menu_pile][self.menu_item_id]['active'] = menu_item['active']  # Menu item responses on human input.
         self.menu_items[self.active_menu_pile][self.menu_item_id]['rectangle'] = menu_item['rectangle']
@@ -1372,8 +1389,166 @@ class World(object):
                 return obs.id
         return -1
 
+    def edit_obs_old(self, obs):
+        # print(obs.id)
+        # self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central header']), 'INTRODUCE OBSTACLE #' + str(obs.id) + ' AS:', '', False)
+        # self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central left button']), '[ACTION INITIATOR]', 'action', True)
+        # self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central right button']), '[MOVING PLATFORM]', 'a', True)
+        menu_items = (
+            ('INTRODUCE OBSTACLE #' + str(obs.id) + ' AS:', '', False),
+            ('[ACTION INITIATOR]', 'action', True),
+            ('[MOVING PLATFORM]', 'a', True)
+        )
+        self.add_menu(self.mouse_xy, 400, 20, menu_items)
+        # self.render_background()
+        command = self.processing_menu_items(True)  # Close menu after use
+        # self.reset_human_input()
+        # self.render_obstacles()
+
+        self.obs_settings[obs.id] = dict()
+        if command == 'CANCEL MENU':
+            return
+        elif command == 'action':
+            # obs_settings = {}
+            self.obs_settings[obs.id] = {
+                'ghost': False,
+                'speed': 0.,
+                'active': False,
+                'collideable': False,
+                'gravity affected': False,
+                'actors pass through': True,
+                'invisible': True,
+                'trigger': True,
+                'trigger description': {
+                    # 'make active': (26,28,30),
+                    'change location': {
+                        'new location': '',
+                        'xy': (0, 0),
+                    },
+                    'disappear': False,
+                },
+                'actions': {},
+            }
+            # Start new menu:
+            # self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central header']), 'EDIT OBSTACLE #' + str(obs.id) + ' (current map: ' + self.location + ')', '', False)
+            # self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central left button']), '[ACTION TRIGGER]', 'trig', True)
+            # self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central right button']), '[TELEPORT]', 'tel', True)
+            menu_items = (
+                ('EDIT OBSTACLE #' + str(obs.id) + ' (current map: ' + self.location + ')', '', False),
+                ('[ACTION TRIGGER]', 'trig', True),
+                ('[TELEPORT]', 'tel', True)
+            )
+            self.add_menu(self.mouse_xy, 400, 20, menu_items)
+
+            command = self.processing_menu_items(True)  # Close menu after use
+            # self.reset_human_input()
+            self.render_background()
+            self.render_obstacles()
+
+            if command == 'CANCEL MENU':
+                return
+            elif command == 'trig':
+                self.add_menu_item(pygame.Rect(self.menu_elements_bindings['top header']), 'CHOOSE AN OBSTACLE(S):', '', False, BLUE, GRAY, YELLOW)
+                self.create_menu_items_from_list(list(self.obstacles[self.location].keys()), 'small', 'OBS#: ')
+                self.add_menu_item(pygame.Rect(self.menu_elements_bindings['bottom right button']), '[OK]', 'stop', True)
+                self.obs_settings[obs.id]['trigger description']['make active'] = list()
+
+                # Info window at the bottom of the screen:
+                self.add_menu_item(pygame.Rect(self.menu_screen_edge_margin,MAXY - self.menu_screen_edge_margin - self.menu_small_buttons_height,
+                                               MAXX_DIV_2, self.menu_small_buttons_height),
+                                   str(self.clipboard), '', False)
+
+                # Choose a bunch of obstacles being triggered by this obstacle.
+                while command != 'stop':
+                    command = self.processing_menu_items()
+                    # self.reset_human_input()
+                    if command != 'stop':
+                        if command == 'CANCEL MENU':
+                            return
+                        else:
+                            if command in self.obs_settings[obs.id]['trigger description']['make active']:
+                                self.obs_settings[obs.id]['trigger description']['make active'].remove(command)
+                            else:
+                                self.obs_settings[obs.id]['trigger description']['make active'].append(command)
+                            print(self.obs_settings[obs.id]['trigger description']['make active'])
+
+                self.menu_items = dict()
+                self.menu_item_id = 1
+
+                self.obs_settings[obs.id]['trigger description']['change location'] = {}
+                obs.active_flag = True
+                # print(self.obs_settings)
+            else:
+                # Teleport
+                import locations
+                self.add_menu_item(pygame.Rect(self.menu_elements_bindings['top header']), 'CHOOSE AN EXISTING MAP: ', '', False)
+                map_names = list(locations.locations.keys())
+                self.create_menu_items_from_list(map_names, 'medium', '')
+                # menu_item_height = 20
+                # for name in map_names:
+                #     self.add_menu_item(pygame.Rect(self.mouse_xy[0], self.mouse_xy[1] + map_names.index(name) * menu_item_height, 400, menu_item_height), name, map_names.index(name), True)
+                map_name = self.processing_menu_items(True)
+                # self.reset_human_input()
+                self.render_background()
+
+
+                if self.clipboard:
+                    self.add_menu_item(pygame.Rect(self.menu_elements_bindings['top header']), 'ENTER A POSITION TO WRAP: ', '', False)
+                    self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central left button']), '[FROM CLIP BOARD]', 'clip', True)
+                    self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central right button']), '[MANUAL]', 'manual', True)
+                    command = self.processing_menu_items(True)
+                    self.render_background()
+                    if command == 'CANCEL MENU':
+                        return
+                else:
+                    command = 'manual'
+
+                if command == 'CANCEL MENU':
+                    return
+                elif command == 'clip':
+                    self.reset_menu()
+                    dots = list(self.clipboard.keys())
+                    self.create_menu_items_from_list(dots, 'medium', '')
+                    xy = self.processing_menu_items(True)
+                    self.render_background()
+                    # self.reset_human_input()
+
+                    self.obs_settings[obs.id]['trigger description']['make active'] = None
+                    self.obs_settings[obs.id]['trigger description']['change location'] = {
+                        'new location': map_name,
+                        'xy': self.clipboard[xy]['coordinate'],
+                    }
+                elif command == 'manual':
+
+                    x = self.create_text_input((self.menu_elements_bindings['central header'][0], self.menu_elements_bindings['central header'][1] +
+                                                self.menu_elements_bindings['central header'][3] + 10),
+                                               'Enter X coordinate of position to teleport (just hit [ENTER] to force keeping X after location change): ', 'digit')
+                    if len(x) == 0:
+                        x = 'keep X'
+                    else:
+                        x = int(x)
+                    y = self.create_text_input((self.menu_elements_bindings['central header'][0], self.menu_elements_bindings['central header'][1] +
+                                                self.menu_elements_bindings['central header'][3] + 50),
+                                               'Enter Y coordinate of position to teleport (just hit [ENTER] to force keeping Y after location change): ', 'digit')
+                    if len(y) == 0:
+                        y = 'keep Y'
+                    else:
+                        y = int(y)
+
+                    self.obs_settings[obs.id]['trigger description']['make active'] = None
+                    self.obs_settings[obs.id]['trigger description']['change location'] = {
+                        'new location': map_name,
+                        'xy': (x, y),
+                        # 'xy': (int(x), int(y)),
+                    }
+
+                obs.active_flag = True
+                return
+
+
     def edit_obs(self, obs):
         self.menu_action_pending = ''
+        # Create menu of 'obstacle edit' type, which was predefined in self.menu_structure:
         self.add_menu(self.mouse_xy, 400, 20, [self.menu_structure['obstacle edit'][i] for i in self.menu_structure['obstacle edit'].keys()])
 
         while self.menu_action_pending == '':
@@ -1387,13 +1562,17 @@ class World(object):
 
         self.obs_settings[obs.id] = dict()
 
-        if self.menu_action_pending == 'new':
+        print(f'[edit_obs] {self.menu_action_pending=}')
+        if self.menu_action_pending == 'moving':
             self.menu_action_pending = ''
-            print('make new')
-        # if command == 'CANCEL MENU':
-        #     return
-        if command == 'action':
-            # obs_settings = {}
+            print('make moving platform')
+        elif self.menu_action_pending == 'teleport':
+            self.menu_action_pending = ''
+            print('make teleport')
+        else:
+            print('make other deed')
+
+        return
             # self.obs_settings[obs.id] = {
             #     'ghost': False,
             #     'speed': 0.,
@@ -1413,148 +1592,104 @@ class World(object):
             #     },
             #     'actions': {},
             # }
-            # Start new menu:
-            # self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central header']), 'EDIT OBSTACLE #' + str(obs.id) + ' (current map: ' + self.location + ')', '', False)
-            # self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central left button']), '[ACTION TRIGGER]', 'trig', True)
-            # self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central right button']), '[TELEPORT]', 'tel', True)
-            menu_items = (
-                ('EDIT OBSTACLE #' + str(obs.id) + ' (current map: ' + self.location + ')', '', False, 'None'),
-                ('[ACTION TRIGGER]', 'trig', True, 'None'),
-                ('[TELEPORT]', 'tel', True, 'None')
-            )
-            prev_active_menu_ids = list(self.menu_items[self.active_menu_pile].keys())
-            xy = (self.menu_items[self.active_menu_pile][prev_active_menu_ids[0]]['rectangle'].x +
-                  self.menu_items[self.active_menu_pile][prev_active_menu_ids[0]]['rectangle'].width,
-                  self.mouse_xy[1])
-            self.active_menu_pile += 1
-            self.add_menu(xy, 400, 20, menu_items)
-            # self.add_menu(self.mouse_xy, 400, 20, menu_items)
-
-            command = self.processing_menu_items(True)  # Close menu after use
-            # self.reset_human_input()
-            self.render_background()
-            self.render_obstacles()
-
-            if command == 'CANCEL MENU':
-                return
-            else:
-                self.obs_settings[obs.id] = {
-                    'ghost': False,
-                    'speed': 0.,
-                    'active': False,
-                    'collideable': False,
-                    'gravity affected': False,
-                    'actors pass through': True,
-                    'invisible': True,
-                    'trigger': True,
-                    'trigger description': {
-                        # 'make active': (26,28,30),
-                        'change location': {
-                            'new location': '',
-                            'xy': (0, 0),
-                        },
-                        'disappear': False,
-                    },
-                    'actions': {},
-                }
-                if command == 'trig':
-
-                    self.add_menu_item(pygame.Rect(self.menu_elements_bindings['top header']), 'CHOOSE AN OBSTACLE(S):', '', False, BLUE, GRAY, YELLOW)
-                    self.create_menu_items_from_list(list(self.obstacles[self.location].keys()), 'small', 'OBS#: ')
-                    self.add_menu_item(pygame.Rect(self.menu_elements_bindings['bottom right button']), '[OK]', 'stop', True)
-                    self.obs_settings[obs.id]['trigger description']['make active'] = list()
-
-                    # Info window at the bottom of the screen:
-                    self.add_menu_item(pygame.Rect(self.menu_screen_edge_margin,MAXY - self.menu_screen_edge_margin - self.menu_small_buttons_height,
-                                                   MAXX_DIV_2, self.menu_small_buttons_height),
-                                       str(self.clipboard), '', False)
-
-                    # Choose a bunch of obstacles being triggered by this obstacle.
-                    while command != 'stop':
-                        command = self.processing_menu_items()
-                        # self.reset_human_input()
-                        if command != 'stop':
-                            if command == 'CANCEL MENU':
-                                return
-                            else:
-                                if command in self.obs_settings[obs.id]['trigger description']['make active']:
-                                    self.obs_settings[obs.id]['trigger description']['make active'].remove(command)
-                                else:
-                                    self.obs_settings[obs.id]['trigger description']['make active'].append(command)
-                                print(self.obs_settings[obs.id]['trigger description']['make active'])
-
-                    self.menu_items = dict()
-                    self.menu_item_id = 1
-
-                    self.obs_settings[obs.id]['trigger description']['change location'] = {}
-                    obs.active_flag = True
-                    # print(self.obs_settings)
-                else:
-                    # Teleport
-                    import locations
-                    self.add_menu_item(pygame.Rect(self.menu_elements_bindings['top header']), 'CHOOSE AN EXISTING MAP: ', '', False)
-                    map_names = list(locations.locations.keys())
-                    self.create_menu_items_from_list(map_names, 'medium', '')
-                    # menu_item_height = 20
-                    # for name in map_names:
-                    #     self.add_menu_item(pygame.Rect(self.mouse_xy[0], self.mouse_xy[1] + map_names.index(name) * menu_item_height, 400, menu_item_height), name, map_names.index(name), True)
-                    map_name = self.processing_menu_items(True)
-                    # self.reset_human_input()
-                    self.render_background()
-
-
-                    if self.clipboard:
-                        self.add_menu_item(pygame.Rect(self.menu_elements_bindings['top header']), 'ENTER A POSITION TO WRAP: ', '', False)
-                        self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central left button']), '[FROM CLIP BOARD]', 'clip', True)
-                        self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central right button']), '[MANUAL]', 'manual', True)
-                        command = self.processing_menu_items(True)
-                        self.render_background()
-                        if command == 'CANCEL MENU':
-                            return
-                    else:
-                        command = 'manual'
-
-                    if command == 'CANCEL MENU':
-                        return
-                    elif command == 'clip':
-                        self.reset_menu()
-                        dots = list(self.clipboard.keys())
-                        self.create_menu_items_from_list(dots, 'medium', '')
-                        xy = self.processing_menu_items(True)
-                        self.render_background()
-                        # self.reset_human_input()
-
-                        self.obs_settings[obs.id]['trigger description']['make active'] = None
-                        self.obs_settings[obs.id]['trigger description']['change location'] = {
-                            'new location': map_name,
-                            'xy': self.clipboard[xy]['coordinate'],
-                        }
-                    elif command == 'manual':
-
-                        x = self.create_text_input((self.menu_elements_bindings['central header'][0], self.menu_elements_bindings['central header'][1] +
-                                                    self.menu_elements_bindings['central header'][3] + 10),
-                                                   'Enter X coordinate of position to teleport (just hit [ENTER] to force keeping X after location change): ', 'digit')
-                        if len(x) == 0:
-                            x = 'keep X'
-                        else:
-                            x = int(x)
-                        y = self.create_text_input((self.menu_elements_bindings['central header'][0], self.menu_elements_bindings['central header'][1] +
-                                                    self.menu_elements_bindings['central header'][3] + 50),
-                                                   'Enter Y coordinate of position to teleport (just hit [ENTER] to force keeping Y after location change): ', 'digit')
-                        if len(y) == 0:
-                            y = 'keep Y'
-                        else:
-                            y = int(y)
-
-                        self.obs_settings[obs.id]['trigger description']['make active'] = None
-                        self.obs_settings[obs.id]['trigger description']['change location'] = {
-                            'new location': map_name,
-                            'xy': (x, y),
-                            # 'xy': (int(x), int(y)),
-                        }
-
-                    obs.active_flag = True
-                    return
+            # if command == 'trig':
+            #
+            #     self.add_menu_item(pygame.Rect(self.menu_elements_bindings['top header']), 'CHOOSE AN OBSTACLE(S):', '', False, BLUE, GRAY, YELLOW)
+            #     self.create_menu_items_from_list(list(self.obstacles[self.location].keys()), 'small', 'OBS#: ')
+            #     self.add_menu_item(pygame.Rect(self.menu_elements_bindings['bottom right button']), '[OK]', 'stop', True)
+            #     self.obs_settings[obs.id]['trigger description']['make active'] = list()
+            #
+            #     # Info window at the bottom of the screen:
+            #     self.add_menu_item(pygame.Rect(self.menu_screen_edge_margin,MAXY - self.menu_screen_edge_margin - self.menu_small_buttons_height,
+            #                                    MAXX_DIV_2, self.menu_small_buttons_height),
+            #                        str(self.clipboard), '', False)
+            #
+            #     # Choose a bunch of obstacles being triggered by this obstacle.
+            #     while command != 'stop':
+            #         command = self.processing_menu_items()
+            #         # self.reset_human_input()
+            #         if command != 'stop':
+            #             if command == 'CANCEL MENU':
+            #                 return
+            #             else:
+            #                 if command in self.obs_settings[obs.id]['trigger description']['make active']:
+            #                     self.obs_settings[obs.id]['trigger description']['make active'].remove(command)
+            #                 else:
+            #                     self.obs_settings[obs.id]['trigger description']['make active'].append(command)
+            #                 print(self.obs_settings[obs.id]['trigger description']['make active'])
+            #
+            #     self.menu_items = dict()
+            #     self.menu_item_id = 1
+            #
+            #     self.obs_settings[obs.id]['trigger description']['change location'] = {}
+            #     obs.active_flag = True
+            #     # print(self.obs_settings)
+            # else:
+            #     # Teleport
+            #     import locations
+            #     self.add_menu_item(pygame.Rect(self.menu_elements_bindings['top header']), 'CHOOSE AN EXISTING MAP: ', '', False)
+            #     map_names = list(locations.locations.keys())
+            #     self.create_menu_items_from_list(map_names, 'medium', '')
+            #     # menu_item_height = 20
+            #     # for name in map_names:
+            #     #     self.add_menu_item(pygame.Rect(self.mouse_xy[0], self.mouse_xy[1] + map_names.index(name) * menu_item_height, 400, menu_item_height), name, map_names.index(name), True)
+            #     map_name = self.processing_menu_items(True)
+            #     # self.reset_human_input()
+            #     self.render_background()
+            #
+            #
+            #     if self.clipboard:
+            #         self.add_menu_item(pygame.Rect(self.menu_elements_bindings['top header']), 'ENTER A POSITION TO WRAP: ', '', False)
+            #         self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central left button']), '[FROM CLIP BOARD]', 'clip', True)
+            #         self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central right button']), '[MANUAL]', 'manual', True)
+            #         command = self.processing_menu_items(True)
+            #         self.render_background()
+            #         if command == 'CANCEL MENU':
+            #             return
+            #     else:
+            #         command = 'manual'
+            #
+            #     if command == 'CANCEL MENU':
+            #         return
+            #     elif command == 'clip':
+            #         self.reset_menu()
+            #         dots = list(self.clipboard.keys())
+            #         self.create_menu_items_from_list(dots, 'medium', '')
+            #         xy = self.processing_menu_items(True)
+            #         self.render_background()
+            #         # self.reset_human_input()
+            #
+            #         self.obs_settings[obs.id]['trigger description']['make active'] = None
+            #         self.obs_settings[obs.id]['trigger description']['change location'] = {
+            #             'new location': map_name,
+            #             'xy': self.clipboard[xy]['coordinate'],
+            #         }
+            #     elif command == 'manual':
+            #
+            #         x = self.create_text_input((self.menu_elements_bindings['central header'][0], self.menu_elements_bindings['central header'][1] +
+            #                                     self.menu_elements_bindings['central header'][3] + 10),
+            #                                    'Enter X coordinate of position to teleport (just hit [ENTER] to force keeping X after location change): ', 'digit')
+            #         if len(x) == 0:
+            #             x = 'keep X'
+            #         else:
+            #             x = int(x)
+            #         y = self.create_text_input((self.menu_elements_bindings['central header'][0], self.menu_elements_bindings['central header'][1] +
+            #                                     self.menu_elements_bindings['central header'][3] + 50),
+            #                                    'Enter Y coordinate of position to teleport (just hit [ENTER] to force keeping Y after location change): ', 'digit')
+            #         if len(y) == 0:
+            #             y = 'keep Y'
+            #         else:
+            #             y = int(y)
+            #
+            #         self.obs_settings[obs.id]['trigger description']['make active'] = None
+            #         self.obs_settings[obs.id]['trigger description']['change location'] = {
+            #             'new location': map_name,
+            #             'xy': (x, y),
+            #             # 'xy': (int(x), int(y)),
+            #         }
+            #
+            #     obs.active_flag = True
+            #     return
 
                 # print(self.obs_settings)
             # exit()
@@ -1814,7 +1949,7 @@ world.set_screen(screen)
 
 world.setup()
 import locations
-world.locations_names = list(locations.locations.keys())
+world.location_names['names list'] = list(locations.locations.keys())
 world.load()
 
 allow_import_location = False
