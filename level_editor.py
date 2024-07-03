@@ -26,9 +26,9 @@ import importlib
 class World(object):
     def __init__(self):
         self.menu_items = dict()
-        self.menu_item_id = 1
-        self.menu_pile_id = 1  # ID of a bunch of tied together menu items
-        self.active_menu_pile = 1
+        self.menu_item_id = 0
+        self.menu_pile_id = 0  # ID of a bunch of tied together menu items
+        self.active_menu_pile = 0
         self.menu_buttons_height = 100
         self.menu_buttons_width = 300
         self.menu_small_buttons_height = 50
@@ -128,6 +128,7 @@ class World(object):
         self.menu_structure = {
             'list maps': {
                   'generate list from': "self.location_names['list ref'] = self.location_names['names list']",
+                  # 'generate list from': "self.location_names['list ref'] = self.location_names['names list']",
             },
             'teleport/trigger': {
                 'header': {
@@ -140,7 +141,7 @@ class World(object):
                 },
                 'trigger': {
                     'rectangle': None,
-                    'label': '[TELEPORT]',
+                    'label': '[ACTION TRIGGER]',
                     'on hover action': ('submenu', 'list maps'),
                     'on LMB action': None,
                     'active': True,
@@ -149,8 +150,8 @@ class World(object):
                 'teleport': {
                     'rectangle': None,
                     'label': '[TELEPORT]',
-                    'on hover action': None,
-                    'on LMB action': ('return string', 'teleport'),
+                    'on hover action': ('submenu', 'list maps'),
+                    'on LMB action': None,
                     'active': True,
                     'after action': None
                 },
@@ -268,13 +269,13 @@ class World(object):
     def reset_menu(self):
         self.reset_human_input()
         self.menu_items = dict()
-        self.menu_item_id = 1
-        self.active_menu_pile = 1
+        self.menu_item_id = 0
+        self.active_menu_pile = 0
 
     def reset_particular_menu(self, menu_id):
         self.reset_human_input()
         self.menu_items[menu_id] = dict()
-        self.menu_item_id = 1
+        self.menu_item_id = 0
         self.active_menu_pile = menu_id - 1
 
     # def close_all_menus(self):
@@ -321,20 +322,29 @@ class World(object):
             del self.menu_items[keys.pop()]
             self.active_menu_pile = keys[-1]
 
-
-        for pile_id in self.menu_items.keys():
+        menu_item_has_been_already_checked = False
+        for pile_id in reversed(self.menu_items.keys()):
             for k in self.menu_items[pile_id].keys():
                 menu_item = self.menu_items[pile_id][k]
-                if not menu_item['active']:
+                if menu_item_has_been_already_checked:
+                    menu_item['hovered'] = False
+                    menu_item['has been already activated'] = False
                     continue
+                # if not menu_item['active']:
+                #     continue
 
                 if menu_item['rectangle'].collidepoint(self.mouse_xy):
+                    menu_item_has_been_already_checked = True
+                    if not menu_item['active']:
+                        # If mouse cursor has collided with any single menu item, all further checks are futile:
+                        continue
                     menu_item['hovered'] = True
                     if menu_item['on hover action']:
                         if not menu_item['has been already activated']:
                             menu_item['has been already activated'] = True
                             # self.reset_human_input()
                             if menu_item['on hover action'][0] == 'submenu':
+                                self.delete_all_child_menu_piles(pile_id)
                                 self.active_menu_pile += 1
                                 menu_name = menu_item['on hover action'][1]
                                 if 'generate list from' in self.menu_structure[menu_name].keys():
@@ -354,7 +364,10 @@ class World(object):
                                 self.add_menu((menu_item['rectangle'].x + menu_item['rectangle'].width // 2, menu_item['rectangle'].centery),
                                               menu_item['rectangle'].width, 20, [self.menu_structure[menu_name][i] for i in self.menu_structure[menu_name].keys() if i != 'generate list from'])
                                 return
-
+                    else:
+                        if self.active_menu_pile > pile_id:
+                            self.delete_all_child_menu_piles(pile_id)
+                            return
                     if self.is_left_mouse_button_down:
                         if menu_item['LMB action']:
                             if menu_item['LMB action'][0] == 'exec':
@@ -364,9 +377,36 @@ class World(object):
                             if not menu_item['after action']:
                                 self.reset_menu()
                                 return
+
                 else:
                     menu_item['hovered'] = False
-                    menu_item['has been already activated'] = False
+                    # menu_item['has been already activated'] = False
+                    # Delete all already revealed submenus:
+                    # self.delete_all_child_menu_piles(pile_id)
+
+
+                    if menu_item['on hover action'] and menu_item['has been already activated']:
+                        menu_item['has been already activated'] = False
+                        # Delete all already revealed submenus:
+                        self.delete_all_child_menu_piles(pile_id)
+                        return
+
+            #                 delete_child_menus = True
+            #                 break
+            # if delete_child_menus:
+            #     break
+
+    def delete_all_child_menu_piles(self, parent_pile_number):
+        piles_to_delete = list()
+        print(f'[delete child menus] {parent_pile_number=} {list(self.menu_items.keys())}')
+        for pile in self.menu_items.keys():
+            if pile > parent_pile_number:
+                # if pile > self.active_menu_pile:
+                piles_to_delete.append(pile)
+        print(f'[delete child menus] {piles_to_delete=}')
+        for p in piles_to_delete:
+            del self.menu_items[p]
+        self.active_menu_pile = parent_pile_number
 
     def create_menu_items_from_list(self, a_list, button_text, menu_items_size='medium'):
         if menu_items_size == 'small':
@@ -876,10 +916,11 @@ class World(object):
     def add_menu(self, top_left_corner, width, font_size, items):
     # def add_menu(self, top_left_corner, width, font_size, items):
         self.menu_action_pending = ''
+        self.menu_item_id = 0
         dy = 0
         height = font_size + 16
         for i in items:
-            print(i)
+            # print(i)
             i['rectangle'] = pygame.Rect(top_left_corner[0], top_left_corner[1] + dy, width, height)
             self.add_menu_item(i)
 
