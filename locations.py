@@ -1,6 +1,26 @@
 from constants import *
 locations = {
     
+    'b6430b68-38fa-11ef-aa3e-63422c966797':
+        {
+            'music': 'music/ambient_1.mp3',
+            'description': 'apartment #1',
+            'size': (1920, 1000),
+            'hostiles': {
+              },
+            'demolishers': {
+                'dem rectangles': (
+                  ), # DEMOLISHERS RECTANGLE SECTION END
+            },
+            'obstacles': {
+                'obs rectangles': (
+                ((0, 950), (1950, 50), 1),
+                  ), # OBSTACLE RECTANGLES SECTION END
+                'settings': {
+                  } # OBSTACLE SETTINGS SECTION END
+              },
+            'items': {},
+    },
     'a1d4c0e2-38da-11ef-aa3e-63422c966797':
         {
             'music': 'music/ambient_1.mp3',

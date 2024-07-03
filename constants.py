@@ -10,13 +10,16 @@ from pygame.constants import *
 # K_BLOCK = 'a'
 # K_ATTACK = 'd'
 # K_SKIP = 'space'
-pygame.init()
-clock = pygame.time.Clock()
+# pygame.init()
+# clock = pygame.time.Clock()
 # screen = pygame.display.set_mode(SCREENSIZE)
 # attribs =  pygame.display.gl_get_attribute(pygame.OPENGL)
-pygame.display.init()
-modes = pygame.display.list_modes()
-screen = pygame.display.set_mode(modes[0])
+# pygame.display.init()
+# modes = pygame.display.list_modes()
+MAXX = 1920
+MAXY = 1000
+# screen = pygame.display.set_mode((MAXX, MAXY))
+# screen = pygame.display.set_mode(modes[0])
 # print(pygame.display.get_desktop_sizes())
 # print(f'{modes[0]}')
 # exit()
@@ -26,9 +29,9 @@ DIGITS = ('1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '[1]', '[2]', '[3]',
 FPS = 60
 MENU_FONT_SIZE = 20
 
-MAXX = modes[0][0]
+# MAXX = modes[0][0]
 # MAXX = 1366
-MAXY = modes[0][1]
+# MAXY = modes[0][1]
 # MAXY = 768
 # MAXY = int(MAXX // 1.4142857)
 MAXX_DIV_2 = MAXX // 2
@@ -51,7 +54,8 @@ OUTLINE_DOTS_COUNTER = 5
 FOREGROUND_PARALLAX_SPEED = 1.5
 # FOREGROUND_PARALLAX_SPEED = 0.7
 
-SCREENSIZE = (MAXX, MAXY + CONTROL_PANEL_HEIGHT)
+SCREENSIZE = (MAXX, MAXY)
+# SCREENSIZE = (MAXX, MAXY + CONTROL_PANEL_HEIGHT)
 SCREEN_SCALE: float = 1
 GOLDEN_RATIO_X_SMALL = int(MAXX / 100 * 38)
 GOLDEN_RATIO_X_BIG = int(MAXX / 100 * 62)

@@ -121,7 +121,8 @@ class World(object):
         self.snap_mesh_size_change_step = 25
         self.zoom_factor = 1.
 
-        self.menu_action_pending = ''
+        self.menu_actions_done = False
+        self.menu_actions_pending = list()
         # import locations
         self.location_names = dict()
         self.location_names['names list'] = list()
@@ -229,7 +230,8 @@ class World(object):
                     'rectangle': pygame.Rect(self.menu_elements_bindings['central left button']),
                     'label': '[SAVE CURRENT MAP]',
                     'on hover action': None,
-                    'on LMB action': ('exec', 'self.save()'),
+                    'on LMB action': ('return string', 'save'),
+                    # 'on LMB action': ('exec', 'self.save()'),
                     'active': True,
                     'after action': None
                 },
@@ -251,11 +253,12 @@ class World(object):
                     'active': True,
                     'after action': None
                 },
-                'back': {
+                'quit': {
                     'rectangle': pygame.Rect(self.menu_elements_bindings['bottom left button']),
-                    'label': '[BACK TO EDITOR...]',
+                    'label': '[QUIT TO DOS...]',
                     'on hover action': None,
-                    'on LMB action': ('exec', "self.reset_menu()"),
+                    'on LMB action': ('return string', "quit"),
+                    # 'on LMB action': ('exec', "self.reset_menu()"),
                     'active': True,
                     'after action': None
                 },
@@ -266,17 +269,22 @@ class World(object):
     def set_screen(self, surface):
         self.screen = surface
 
+    def reset_menu_actions_pending(self):
+        self.menu_actions_pending = list()
+
     def reset_menu(self):
         self.reset_human_input()
         self.menu_items = dict()
         self.menu_item_id = 0
+        self.menu_actions_done = False
         self.active_menu_pile = 0
+        # self.menu_actions_pending = list()
 
-    def reset_particular_menu(self, menu_id):
-        self.reset_human_input()
-        self.menu_items[menu_id] = dict()
-        self.menu_item_id = 0
-        self.active_menu_pile = menu_id - 1
+    # def reset_particular_menu(self, menu_id):
+    #     self.reset_human_input()
+    #     self.menu_items[menu_id] = dict()
+    #     self.menu_item_id = 0
+    #     self.active_menu_pile = menu_id - 1
 
     # def close_all_menus(self):
     #     self.active_menu_pile = 1
@@ -320,7 +328,13 @@ class World(object):
             # Delete LIFO menu pile:
             keys = list(self.menu_items.keys())
             del self.menu_items[keys.pop()]
-            self.active_menu_pile = keys[-1]
+            if keys:
+                self.active_menu_pile = keys[-1]
+            else:
+                self.active_menu_pile = 0
+                self.menu_actions_pending.append('CANCEL MENU')
+                self.menu_actions_done = True
+                # self.menu_action_pending = 'CANCEL MENU'
 
         menu_item_has_been_already_checked = False
         for pile_id in reversed(self.menu_items.keys()):
@@ -353,7 +367,7 @@ class World(object):
                                     # print(self.location_names['list ref'])
                                     # exit()
                                     for l in self.location_names['list ref']:
-                                        print(f'[processing menu items] Adding new menu item {l} to {menu_name}:')
+                                        # print(f'[processing menu items] Adding new menu item {l} to {menu_name}:')
                                         self.menu_structure[menu_name][l] = dict()
                                         self.menu_structure[menu_name][l]['rectangle'] = pygame.Rect(0,0,0,0)
                                         self.menu_structure[menu_name][l]['label'] = l
@@ -373,9 +387,13 @@ class World(object):
                             if menu_item['LMB action'][0] == 'exec':
                                 exec(menu_item['LMB action'][1])  # RAW CODE EXECUTION
                             elif menu_item['LMB action'][0] == 'return string':
-                                self.menu_action_pending = menu_item['LMB action'][1]
-                            if not menu_item['after action']:
-                                self.reset_menu()
+                                self.menu_actions_pending.append(menu_item['LMB action'][1])
+                                # self.menu_action_pending = menu_item['LMB action'][1]
+                            if menu_item['after action']:
+                                ...
+                            else:
+                                self.menu_actions_done = True
+                                # self.reset_menu()
                                 return
 
                 else:
@@ -398,12 +416,12 @@ class World(object):
 
     def delete_all_child_menu_piles(self, parent_pile_number):
         piles_to_delete = list()
-        print(f'[delete child menus] {parent_pile_number=} {list(self.menu_items.keys())}')
+        # print(f'[delete child menus] {parent_pile_number=} {list(self.menu_items.keys())}')
         for pile in self.menu_items.keys():
             if pile > parent_pile_number:
                 # if pile > self.active_menu_pile:
                 piles_to_delete.append(pile)
-        print(f'[delete child menus] {piles_to_delete=}')
+        # print(f'[delete child menus] {piles_to_delete=}')
         for p in piles_to_delete:
             del self.menu_items[p]
         self.active_menu_pile = parent_pile_number
@@ -460,7 +478,8 @@ class World(object):
             item = self.menu_structure['initial setup'][i]
             self.add_menu_item(item)
 
-        while self.menu_action_pending == '':
+        while not self.menu_actions_done:
+        # while self.menu_action_pending == '':
             self.processing_human_input()
             self.processing_menu_items()
             self.render_background()
@@ -469,64 +488,73 @@ class World(object):
         self.reset_human_input()
         self.reset_menu()
 
-        if self.menu_action_pending == 'new':
-            self.menu_action_pending = ''
-            # print('make new')
-            # # Setting up the new map:
-            width = MAXX
-            height = MAXY
-            new_location_description = list()
-            with open('locations.py', 'r') as f:
-                existing_locations_description = f.readlines()
-
-            map_name = str(uuid.uuid1())
-
-            # Using the template to build a structure of new map's description:
-            with open('locations_template.py', 'r') as template_source:
-                for line in template_source:
-                    if 'new_map_name' in line:
-                        new_line = '    \'' + map_name + '\':\n'
-                        new_location_description.append(new_line)
-                    elif 'new_map_size' in line:
-                        new_line = '            \'size\': (' + str(width) + ', ' + str(height) + '), \n'
-                        new_location_description.append(new_line)
-                    else:
-                        new_location_description.append(line)
-
-            # Insert the new map description into the existing locations.py file:
-            for line in existing_locations_description:
-                if 'locations = {' in line:
-                    line_index = existing_locations_description.index(line) + 1
-                    for new_line in new_location_description:
-                        existing_locations_description.insert(line_index, new_line)
-                        line_index += 1
-                    break
-
-            with open('locations.py', 'w') as f_dest:
-                f_dest.writelines(existing_locations_description)
-
-            self.location = map_name
-
+        if self.menu_actions_pending[-1] == 'CANCEL MENU':
+            pygame.quit()
+            raise SystemExit()
         else:
-            self.menu_action_pending = ''
-            # print('edit existing')
-            # User wants to edit an existing map.
-            import locations
-            self.reset_human_input()
-            self.render_background()
-            map_names = list(locations.locations.keys())
-            # self.add_menu_item(pygame.Rect(self.menu_elements_bindings['top header']), 'CHOOSE AN EXISTING MAP', '', False)
-            self.create_menu_items_from_list(map_names, '', 'medium')
-            # command = self.processing_menu_items(True)
-            # self.location = command
-            while self.menu_action_pending == '':
-                self.processing_human_input()
-                self.processing_menu_items()
-                self.render_background()
-                self.render_menu_items()
-                pygame.display.flip()
+            if self.menu_actions_pending[-1] == 'new':
+                self.reset_menu_actions_pending()
+                # self.menu_action_pending = ''
+                # print('make new')
+                # # Setting up the new map:
+                width = MAXX
+                height = MAXY
+                new_location_description = list()
+                with open('locations.py', 'r') as f:
+                    existing_locations_description = f.readlines()
 
-            self.location = self.menu_action_pending
+                map_name = str(uuid.uuid1())
+
+                # Using the template to build a structure of new map's description:
+                with open('locations_template.py', 'r') as template_source:
+                    for line in template_source:
+                        if 'new_map_name' in line:
+                            new_line = '    \'' + map_name + '\':\n'
+                            new_location_description.append(new_line)
+                        elif 'new_map_size' in line:
+                            new_line = '            \'size\': (' + str(width) + ', ' + str(height) + '), \n'
+                            new_location_description.append(new_line)
+                        else:
+                            new_location_description.append(line)
+
+                # Insert the new map description into the existing locations.py file:
+                for line in existing_locations_description:
+                    if 'locations = {' in line:
+                        line_index = existing_locations_description.index(line) + 1
+                        for new_line in new_location_description:
+                            existing_locations_description.insert(line_index, new_line)
+                            line_index += 1
+                        break
+
+                with open('locations.py', 'w') as f_dest:
+                    f_dest.writelines(existing_locations_description)
+
+                self.location = map_name
+
+            else:
+                self.reset_menu_actions_pending()
+                # self.menu_action_pending = ''
+                # print('edit existing')
+                # User wants to edit an existing map.
+                import locations
+                self.reset_human_input()
+                self.render_background()
+                map_names = list(locations.locations.keys())
+                # self.add_menu_item(pygame.Rect(self.menu_elements_bindings['top header']), 'CHOOSE AN EXISTING MAP', '', False)
+                self.create_menu_items_from_list(map_names, '', 'medium')
+                # command = self.processing_menu_items(True)
+                # self.location = command
+                while not self.menu_actions_done:
+                # while self.menu_action_pending == '':
+                    self.processing_human_input()
+                    self.processing_menu_items()
+                    self.render_background()
+                    self.render_menu_items()
+                    pygame.display.flip()
+                self.reset_menu()
+                self.reset_human_input()
+                self.location = self.menu_actions_pending[-1]
+                self.reset_menu_actions_pending()
 
     def reset_human_input(self):
         self.is_mouse_button_down = False
@@ -551,7 +579,9 @@ class World(object):
                 item = self.menu_structure['main menu'][i]
                 self.add_menu_item(item)
                 # self.add_menu_item(item['rectangle'], item['label'], item['on LMB action'], item['active'], item['on hover action'])
-            while self.menu_action_pending == '':
+
+            while not self.menu_actions_done:
+            # while self.menu_action_pending == '':
                 self.processing_human_input()
                 self.processing_menu_items()
                 self.render_background()
@@ -560,12 +590,30 @@ class World(object):
             self.reset_human_input()
             self.reset_menu()
 
-            if self.menu_action_pending == 'resize':
-                self.menu_action_pending = ''
-                x = self.create_text_input((MAXX_DIV_2, MAXY_DIV_2), 'ENTER MAX X:', 'digit')
-                y = self.create_text_input((MAXX_DIV_2, MAXY_DIV_2 + 50), 'ENTER MAX Y:', 'digit')
-                self.camera.setup(int(x), int(y))
-                self.create_snap_mesh()
+            if self.menu_actions_pending[-1] == 'CANCEL MENU':
+                self.reset_menu_actions_pending()
+                return
+            else:
+                if self.menu_actions_pending[-1] == 'save':
+                    self.reset_menu_actions_pending()
+                    self.save()
+                elif self.menu_actions_pending[-1] == 'load':
+                    self.reset_menu_actions_pending()
+                    self.need_to_load = True
+                    return
+                elif self.menu_actions_pending[-1] == 'quit':
+                    pygame.quit()
+                    raise SystemExit()
+                elif self.menu_actions_pending[-1] == 'resize':
+                    self.reset_menu_actions_pending()
+                    # self.menu_action_pending = ''
+                    x = self.create_text_input((MAXX_DIV_2, MAXY_DIV_2), 'ENTER MAX X:', 'digit')
+                    y = self.create_text_input((MAXX_DIV_2, MAXY_DIV_2 + 50), 'ENTER MAX Y:', 'digit')
+                    self.camera.setup(int(x), int(y))
+                    self.create_snap_mesh()
+                else:
+                    self.reset_menu_actions_pending()
+                    return
 
             #     if command == 'CANCEL MENU':
             #         # if command in ('quit', 'CANCEL MENU'):
@@ -895,36 +943,30 @@ class World(object):
 
         self.menu_item_id += 1
 
-    def add_menu_item_old(self, rectangle, label, lmb_action, active=True, on_hover_action='None', frame_color=GREEN, bg_color=DARKGRAY, txt_color=WHITE):
-        # self.active_menu_pile = parent_self.active_menu_pile + 1
-        if self.active_menu_pile not in self.menu_items.keys():
-            self.menu_items[self.active_menu_pile] = dict()
-        self.menu_items[self.active_menu_pile][self.menu_item_id] = dict()
-        self.menu_items[self.active_menu_pile][self.menu_item_id]['text'] = label
-        self.menu_items[self.active_menu_pile][self.menu_item_id]['text color'] = txt_color
-        self.menu_items[self.active_menu_pile][self.menu_item_id]['frame color'] = frame_color
-        self.menu_items[self.active_menu_pile][self.menu_item_id]['back color'] = bg_color
-        self.menu_items[self.active_menu_pile][self.menu_item_id]['LMB action'] = lmb_action
-        self.menu_items[self.active_menu_pile][self.menu_item_id]['active'] = active  # Menu item responses on human input.
-        self.menu_items[self.active_menu_pile][self.menu_item_id]['rectangle'] = pygame.Rect(rectangle)
-        self.menu_items[self.active_menu_pile][self.menu_item_id]['hovered'] = False  # Flag to recognize if mouse cursor hovers over this menu item.
-        self.menu_items[self.active_menu_pile][self.menu_item_id]['checked'] = False  # This menu item has been checked by the user.
-        self.menu_items[self.active_menu_pile][self.menu_item_id]['on hover action'] = on_hover_action  # Activate a command of this menu item just only if mouse cursor hovers over it.
-        self.menu_items[self.active_menu_pile][self.menu_item_id]['has been already activated'] = False  # Menu item has been already activated, to avoid multiple triggers while cursor  hovers over.
-        self.menu_item_id += 1
 
     def add_menu(self, top_left_corner, width, font_size, items):
     # def add_menu(self, top_left_corner, width, font_size, items):
-        self.menu_action_pending = ''
+    #     self.menu_action_pending = ''
         self.menu_item_id = 0
         dy = 0
         height = font_size + 16
-        for i in items:
+        total_menu_height = height * len(items)
+        if MAXY - top_left_corner[1] < total_menu_height:
+            start_y = MAXY - height
+        else:
+            start_y = top_left_corner[1] + total_menu_height - height
+        for i in reversed(items):
             # print(i)
-            i['rectangle'] = pygame.Rect(top_left_corner[0], top_left_corner[1] + dy, width, height)
+            i['rectangle'] = pygame.Rect(top_left_corner[0], start_y - dy, width, height)
             self.add_menu_item(i)
 
             dy += height
+        # for i in items:
+        #     # print(i)
+        #     i['rectangle'] = pygame.Rect(top_left_corner[0], top_left_corner[1] + dy, width, height)
+        #     self.add_menu_item(i)
+        #
+        #     dy += height
 
     def create_text_input(self, xy, prompt, input_type='str'):
         txt_surf = fonts.all_fonts[self.default_font_size].render(prompt, True, WHITE, DARKGRAY)
@@ -1265,7 +1307,7 @@ class World(object):
     def render_menu_items(self):
         # pygame.draw.rect(self.screen, BLACK, (self.menu_items[0]['rectangle'].x + 10, self.menu_items[0]['rectangle'].y)
         for pile_id in self.menu_items.keys():
-            for k in self.menu_items[pile_id].keys():
+            for k in reversed(self.menu_items[pile_id].keys()):
                 menu_item = self.menu_items[pile_id][k]
                 # print(menu_item['rectangle'].x,menu_item['rectangle'].y,menu_item['rectangle'].w,menu_item['rectangle'].h)
                 if menu_item['active']:
@@ -1588,11 +1630,13 @@ class World(object):
 
 
     def edit_obs(self, obs):
-        self.menu_action_pending = ''
+        # self.menu_action_pending = ''
+        self.reset_menu_actions_pending()
         # Create menu of 'obstacle edit' type, which was predefined in self.menu_structure:
         self.add_menu(self.mouse_xy, 400, 20, [self.menu_structure['obstacle edit'][i] for i in self.menu_structure['obstacle edit'].keys()])
 
-        while self.menu_action_pending == '':
+        while not self.menu_actions_done:
+        # while self.menu_action_pending == '':
             self.processing_human_input()
             self.processing_menu_items()
             self.render_background()
@@ -1603,12 +1647,14 @@ class World(object):
 
         self.obs_settings[obs.id] = dict()
 
-        print(f'[edit_obs] {self.menu_action_pending=}')
-        if self.menu_action_pending == 'moving':
-            self.menu_action_pending = ''
+        print(f'[edit_obs] {self.menu_actions_pending=}')
+        if self.menu_actions_pending[-1] == 'moving':
+            self.reset_menu_actions_pending()
+            # self.menu_actions_pending = ''
             print('make moving platform')
-        elif self.menu_action_pending == 'teleport':
-            self.menu_action_pending = ''
+        elif self.menu_actions_pending == 'teleport':
+            self.reset_menu_actions_pending()
+            # self.menu_action_pending = ''
             print('make teleport')
         else:
             print('make other deed')
