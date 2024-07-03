@@ -7,6 +7,7 @@
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +56,7 @@
       </console-settings>
     </option>
   </component>
-  <component name="RunManager" selected="Python.level_editor">
+  <component name="RunManager" selected="Python.main ">
     <configuration name="level_editor" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ver_0.000.1" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -104,8 +105,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.level_editor" />
         <item itemvalue="Python.main " />
+        <item itemvalue="Python.level_editor" />
       </list>
     </recent_temporary>
   </component>
@@ -117,13 +118,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00162" summary="Destructibility status implemented for all entities.">
-      <created>1718765302137</created>
-      <option name="number" value="00162" />
-      <option name="presentableId" value="LOCAL-00162" />
-      <option name="project" value="LOCAL" />
-      <updated>1718765302137</updated>
     </task>
     <task id="LOCAL-00163" summary="Demolishers pass through triggers">
       <created>1718765633726</created>
@@ -461,7 +455,14 @@
       <option name="project" value="LOCAL" />
       <updated>1719985210097</updated>
     </task>
-    <option name="localTasksCounter" value="211" />
+    <task id="LOCAL-00211" summary="Level editor: menu behavior became even much more elegant.">
+      <created>1719992636366</created>
+      <option name="number" value="00211" />
+      <option name="presentableId" value="LOCAL-00211" />
+      <option name="project" value="LOCAL" />
+      <updated>1719992636366</updated>
+    </task>
+    <option name="localTasksCounter" value="212" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

@@ -214,7 +214,7 @@ class World(object):
                     'rectangle': pygame.Rect(0,0,0,0),
                     'label': 'speed',
                     'on hover action': None,
-                    'LMB action': ('input number', ),
+                    'LMB action': ('input number', {'speed': 0}),
                     'active': True,
                     'also affects on': None,
                     'after action': 'keep going'
@@ -265,11 +265,41 @@ class World(object):
                     'after action': 'keep going'
                     # self.obs_settings[]
                 },
+                'actors pass through': {
+                    'rectangle': pygame.Rect(0, 0, 0, 0),
+                    'label': 'actors pass through',
+                    'on hover action': None,
+                    'LMB action': ['switch state', {'actors pass through': False}],
+                    'active': True,
+                    'also affects on': None,
+                    'after action': 'keep going'
+                    # self.obs_settings[]
+                },
+                'trigger description': {
+                    'rectangle': pygame.Rect(0, 0, 0, 0),
+                    'label': 'trigger description',
+                    'on hover action': None,
+                    'LMB action': ['input string', {'trigger description': {}}],
+                    'active': True,
+                    'also affects on': None,
+                    'after action': 'keep going'
+                    # self.obs_settings[]
+                },
+                'actions': {
+                    'rectangle': pygame.Rect(0, 0, 0, 0),
+                    'label': 'actions',
+                    'on hover action': None,
+                    'LMB action': ['input string', {'actions': {}}],
+                    'active': True,
+                    'also affects on': None,
+                    'after action': 'keep going'
+                    # self.obs_settings[]
+                },
                 'ok': {
                     'rectangle': pygame.Rect(0, 0, 0, 0),
                     'label': '[CONFIRM]',
                     'on hover action': None,
-                    'LMB action': ('return string', 'custom edit done'),
+                    'LMB action': ('return string', 'custom obs edit done'),
                     'active': True,
                     'also affects on': None,
                     'after action': None
@@ -1777,7 +1807,21 @@ class World(object):
                 pygame.display.flip()
             self.reset_human_input()
             self.reset_menu()
-        elif self.menu_actions_pending == 'teleport':
+        elif self.menu_actions_pending[-1] == 'custom obs edit done':
+            summary = list()
+            for k in self.menu_structure['custom obs properties'].keys():
+                if obs.id not in self.obs_settings.keys():
+                    self.obs_settings[obs.id] = dict()
+                if self.menu_structure['custom obs properties'][k]['LMB action'] is not None and \
+                    self.menu_structure['custom obs properties'][k]['LMB action'][0] in \
+                        ('input number', 'switch state', 'input string'):
+                    for j in self.menu_structure['custom obs properties'][k]['LMB action'][1].keys():
+                        self.obs_settings[obs.id][j] =  self.menu_structure['custom obs properties'][k]['LMB action'][1][j]
+
+            for j in self.obs_settings[obs.id].keys():
+                print(j, self.obs_settings[obs.id][j])
+            self.reset_menu_actions_pending()
+        elif self.menu_actions_pending[-1] == 'teleport':
             self.reset_menu_actions_pending()
             # self.menu_action_pending = ''
             print('make teleport')
