@@ -119,13 +119,6 @@
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
     </task>
-    <task id="LOCAL-00164" summary="Trigger activates a bunch of active obstacles now.">
-      <created>1718766629021</created>
-      <option name="number" value="00164" />
-      <option name="presentableId" value="LOCAL-00164" />
-      <option name="project" value="LOCAL" />
-      <updated>1718766629021</updated>
-    </task>
     <task id="LOCAL-00165" summary="Added monsters spawn points description in locations.py">
       <created>1718777152707</created>
       <option name="number" value="00165" />
@@ -462,7 +455,14 @@
       <option name="project" value="LOCAL" />
       <updated>1719994295532</updated>
     </task>
-    <option name="localTasksCounter" value="213" />
+    <task id="LOCAL-00213" summary="Level editor: try to get menu system work with self.menu_structure dict as the only one source of settings.">
+      <created>1720064177381</created>
+      <option name="number" value="00213" />
+      <option name="presentableId" value="LOCAL-00213" />
+      <option name="project" value="LOCAL" />
+      <updated>1720064177381</updated>
+    </task>
+    <option name="localTasksCounter" value="214" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -477,7 +477,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Improved menu items processing in level editor.&#10;Camera offset speed improved." />
     <MESSAGE value="Fixed demolishers fly ability." />
     <MESSAGE value="Level editor saving system upgraded." />
     <MESSAGE value="Keep upgrading level editor saving system." />
@@ -502,6 +501,7 @@
     <MESSAGE value="Level editor: menu behavior became more or less elegant." />
     <MESSAGE value="Level editor: menu behavior became even much more elegant." />
     <MESSAGE value="Level editor: it is able to edit custom obstacle properties through context menu." />
-    <option name="LAST_COMMIT_MESSAGE" value="Level editor: it is able to edit custom obstacle properties through context menu." />
+    <MESSAGE value="Level editor: try to get menu system work with self.menu_structure dict as the only one source of settings." />
+    <option name="LAST_COMMIT_MESSAGE" value="Level editor: try to get menu system work with self.menu_structure dict as the only one source of settings." />
   </component>
 </project>
