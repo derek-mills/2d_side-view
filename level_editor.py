@@ -126,12 +126,13 @@ class World(object):
         # import locations
         # self.location_names = dict()
         # self.location_names['names list'] = list()
-        self.menu_structure = dict()
 
+        self.menu_structure = dict()
         self.menu_structure['_template_menu_item_'] = {
                 'rectangle': None,
                 'label': '',
                 'value': None,
+                'description': '',
                 'on hover action': None,
                 'LMB action': None,
                 'active': False,
@@ -143,6 +144,7 @@ class World(object):
                       'LMB action': 'return value',
                       'value': '@str(item)',
                       'label': '@str(item)',
+                      'description': '@str(item)',
                       'active': True
                   }
             }
@@ -150,6 +152,7 @@ class World(object):
                 'generate list from': 'self.obstacles[self.location].keys()',
                 'predefined keys': {
                     'LMB action': 'return value',
+                    # 'value': ("self.menu_structure['trigger description']['ok']['value']['make active']",),
                     'value': '@str(item)',
                     'label': 'Obstacle #: @str(item)',
                     'active': True
@@ -163,6 +166,7 @@ class World(object):
             'on hover action': None,
             'LMB action': 'return value',
             'value': list(),
+            'description': 'multiple obstacles list',
             'active': True,
             'also affects on': None,
             'after action': None
@@ -190,6 +194,7 @@ class World(object):
                     'rectangle': None,
                     'label': '[ACTION TRIGGER]',
                     'on hover action': 'submenu',
+                    'submenu name': 'obs multiple selection',
                     'value': 'obs multiple selection',
                     # 'on hover action': ('submenu', 'obs multiple selection'),
                     'LMB action': None,
@@ -220,6 +225,7 @@ class World(object):
                     'rectangle': None,
                     'label': '[MAKE EVENT INITIATOR] >',
                     'on hover action': 'submenu',
+                    'submenu name': 'teleport/trigger',
                     'value': 'teleport/trigger',
                     # 'on hover action': ('submenu', 'teleport/trigger'),
                     'LMB action': None,
@@ -239,6 +245,7 @@ class World(object):
                     'rectangle': None,
                     'label': '[CUSTOM PROPERTIES EDIT] >',
                     'on hover action': 'submenu',
+                    'submenu name': 'custom obs properties',
                     'value': 'custom obs properties',
                     # 'on hover action': ('submenu', 'custom obs properties'),
                     'LMB action': None,
@@ -254,6 +261,7 @@ class World(object):
             'label': '[CONFIRM]',
             'on hover action': None,
             'LMB action': 'return value',
+            'description': 'custom obs properties',
             'value': {
                 'ghost': False,
                 'speed': 0.,
@@ -387,6 +395,7 @@ class World(object):
                     'label': 'trigger description',
                     'on hover action': None,
                     'LMB action': 'submenu',
+                    'submenu name': 'trigger description',
                     'value': 'trigger description',
                     # 'value': self.menu_structure['custom obs properties']['ok']['value']['trigger description'],
                     # 'LMB action': ['submenu', 'trigger description'],
@@ -409,6 +418,41 @@ class World(object):
                     # self.obs_settings[]
                 }
 
+        self.menu_structure['trigger description'] = dict()
+        self.menu_structure['trigger description']['header'] = {
+                    'rectangle': self.menu_elements_bindings['central header'],
+                    'label': 'TRIGGER DESCRIPTION:',
+                    'on hover action': None,
+                    'LMB action': None,
+                    'active': False,
+                    'after action': None
+                },
+        self.menu_structure['trigger description']['ok'] = {
+            'rectangle': pygame.Rect(0, 0, 0, 0),
+            'label': '[CONFIRM]',
+            'on hover action': None,
+            'LMB action': 'return value',
+            'value': {
+                    'make active': list(),
+                    'change location': {
+                        'new location': '',
+                        'xy': [0, 0],
+                    },
+                    'disappear': False
+            },
+            'active': True,
+            'after action': None
+        }
+        self.menu_structure['trigger description']['make active'] = {
+            'rectangle': self.menu_elements_bindings['central header'],
+            'label': '[Make some other obstacles active] >',
+            'on hover action': 'submenu',
+            'submenu name': 'obs multiple selection',
+            # 'value': ("self.menu_structure['trigger description']['ok']['value']['make active']",),
+            'LMB action': None,
+            'active': True,
+            'after action': None
+        },
         self.menu_structure['trigger description'] = {
                 'header': {
                     'rectangle': self.menu_elements_bindings['central header'],
@@ -418,17 +462,9 @@ class World(object):
                     'active': False,
                     'after action': None
                 },
-                'make active': {
-                    'rectangle': self.menu_elements_bindings['central header'],
-                    'label': '[Make some other obstacles active] >',
-                    'on hover action': 'submenu',
-                    'value': 'obs multiple selection',
-                    # 'on hover action': ('submenu', 'list obs'),
-                    'LMB action': None,
-                    'active': True,
-                    'after action': None
-                },
+
             }
+
         self.menu_structure['initial setup'] = {
                 'header': {
                     'rectangle': pygame.Rect(self.menu_elements_bindings['central header']),
@@ -442,6 +478,7 @@ class World(object):
                     'rectangle': pygame.Rect(self.menu_elements_bindings['central right button']),
                     'label': '[LOAD]',
                     'on hover action': None,
+                    'description': 'existing',
                     'LMB action': 'return value',  # Return string type of 'load'
                     'value': 'load',  # Return string type of 'load'
                     'active': True,
@@ -451,8 +488,9 @@ class World(object):
                     'rectangle': pygame.Rect(self.menu_elements_bindings['central left button']),
                     'label': '[CREATE NEW MAP]',
                     'on hover action': None,
-                    'LMB action': 'return value',  # Return string type of 'new'
-                    'value': 'new',  # Return string type of 'new'
+                    'LMB action': 'return value',
+                    'value': None,
+                    'description': 'new',
                     'active': True,
                     'after action': None
                 },
@@ -460,6 +498,7 @@ class World(object):
                     'rectangle': pygame.Rect(self.menu_elements_bindings['bottom right button']),
                     'label': 'QUIT',
                     'on hover action': None,
+                    'description': 'quit',
                     'LMB action': 'exec',
                     'value': 'pygame.quit()\nraise SystemExit()',
                     'active': True,
@@ -1015,7 +1054,7 @@ class World(object):
                             if menu_item['on hover action'] == 'submenu':
                                 self.delete_all_child_menu_piles(pile_id)
                                 self.active_menu_pile += 1
-                                menu_name = menu_item['value']
+                                menu_name = menu_item['submenu name']
                                 if 'generate list from' in self.menu_structure[menu_name].keys():
                                     # Let's generate a list of new menu items from the given text-type description of sequence:
                                     self.generate_menu(menu_name)
@@ -1066,6 +1105,7 @@ class World(object):
                                     continue
                             else:
                                 self.menu_actions_done = True
+                                self.menu_actions_pending.append(menu_item['description'])
                                 # self.reset_menu()
                                 return
 
@@ -1144,85 +1184,85 @@ class World(object):
         self.reset_human_input()
         self.reset_menu()
 
-        if self.menu_actions_pending[-1] == 'CANCEL MENU':
+        if self.menu_actions_pending[-1] in ('CANCEL MENU', 'quit'):
             pygame.quit()
             raise SystemExit()
-        else:
-            if self.menu_actions_pending[-1] == 'new':
-                self.reset_menu_actions_pending()
-                # self.menu_action_pending = ''
-                # print('make new')
-                # # Setting up the new map:
-                width = MAXX
-                height = MAXY
-                new_location_description = list()
-                with open('locations.py', 'r') as f:
-                    existing_locations_description = f.readlines()
 
-                map_name = str(uuid.uuid1())
+        elif self.menu_actions_pending[-1] == 'new':
+            self.reset_menu_actions_pending()
+            # self.menu_action_pending = ''
+            # print('make new')
+            # # Setting up the new map:
+            width = MAXX
+            height = MAXY
+            new_location_description = list()
+            with open('locations.py', 'r') as f:
+                existing_locations_description = f.readlines()
 
-                # Using the template to build a structure of new map's description:
-                with open('locations_template.py', 'r') as template_source:
-                    for line in template_source:
-                        if 'new_map_name' in line:
-                            new_line = '    \'' + map_name + '\':\n'
-                            new_location_description.append(new_line)
-                        elif 'new_map_size' in line:
-                            new_line = '            \'size\': (' + str(width) + ', ' + str(height) + '), \n'
-                            new_location_description.append(new_line)
-                        else:
-                            new_location_description.append(line)
+            map_name = str(uuid.uuid1())
 
-                # Insert the new map description into the existing locations.py file:
-                for line in existing_locations_description:
-                    if 'locations = {' in line:
-                        line_index = existing_locations_description.index(line) + 1
-                        for new_line in new_location_description:
-                            existing_locations_description.insert(line_index, new_line)
-                            line_index += 1
-                        break
+            # Using the template to build a structure of new map's description:
+            with open('locations_template.py', 'r') as template_source:
+                for line in template_source:
+                    if 'new_map_name' in line:
+                        new_line = '    \'' + map_name + '\':\n'
+                        new_location_description.append(new_line)
+                    elif 'new_map_size' in line:
+                        new_line = '            \'size\': (' + str(width) + ', ' + str(height) + '), \n'
+                        new_location_description.append(new_line)
+                    else:
+                        new_location_description.append(line)
 
-                with open('locations.py', 'w') as f_dest:
-                    f_dest.writelines(existing_locations_description)
+            # Insert the new map description into the existing locations.py file:
+            for line in existing_locations_description:
+                if 'locations = {' in line:
+                    line_index = existing_locations_description.index(line) + 1
+                    for new_line in new_location_description:
+                        existing_locations_description.insert(line_index, new_line)
+                        line_index += 1
+                    break
 
-                self.location = map_name
+            with open('locations.py', 'w') as f_dest:
+                f_dest.writelines(existing_locations_description)
 
-            else:
-                # self.menu_action_pending = ''
-                # print('edit existing')
-                # User wants to edit an existing map.
-                # import locations
-                self.reset_human_input()
-                self.reset_menu()
-                self.reset_menu_actions_pending()
+            self.location = map_name
 
+        elif self.menu_actions_pending[-1] == 'existing':
+            # self.menu_action_pending = ''
+            # print('edit existing')
+            # User wants to edit an existing map.
+            # import locations
+            self.reset_human_input()
+            self.reset_menu()
+            self.reset_menu_actions_pending()
+
+            self.render_background()
+            # map_names = list(locations.locations.keys())
+            self.generate_menu('map single selection')
+            self.add_menu((MAXX_DIV_2 - 200, 300), 400, 20,
+                          [self.menu_structure['map single selection'][i] for i in self.menu_structure['map single selection'].keys()\
+                           if i not in ('generate list from', 'predefined keys', 'target object')])
+
+            # self.add_menu_item(pygame.Rect(self.menu_elements_bindings['top header']), 'CHOOSE AN EXISTING MAP', '', False)
+            # self.create_menu_items_from_list(map_names, '', 'medium')
+            # command = self.processing_menu_items(True)
+            # self.location = command
+            while not self.menu_actions_done:
+            # while self.menu_action_pending == '':
+                self.processing_human_input()
+                self.processing_menu_items()
                 self.render_background()
-                # map_names = list(locations.locations.keys())
-                self.generate_menu('map single selection')
-                self.add_menu((MAXX_DIV_2 - 200, 300), 400, 20,
-                              [self.menu_structure['map single selection'][i] for i in self.menu_structure['map single selection'].keys()\
-                               if i not in ('generate list from', 'predefined keys', 'target object')])
+                self.render_menu_items()
+                pygame.display.flip()
 
-                # self.add_menu_item(pygame.Rect(self.menu_elements_bindings['top header']), 'CHOOSE AN EXISTING MAP', '', False)
-                # self.create_menu_items_from_list(map_names, '', 'medium')
-                # command = self.processing_menu_items(True)
-                # self.location = command
-                while not self.menu_actions_done:
-                # while self.menu_action_pending == '':
-                    self.processing_human_input()
-                    self.processing_menu_items()
-                    self.render_background()
-                    self.render_menu_items()
-                    pygame.display.flip()
-
-                if self.menu_actions_pending[-1] == 'CANCEL MENU':
-                    pygame.quit()
-                    raise SystemExit()
-                self.reset_menu()
-                self.reset_human_input()
-                print(self.menu_actions_pending)
-                self.location = self.menu_actions_pending[-1]
-                self.reset_menu_actions_pending()
+            if self.menu_actions_pending[-1] == 'CANCEL MENU':
+                pygame.quit()
+                raise SystemExit()
+            self.reset_menu()
+            self.reset_human_input()
+            print(self.menu_actions_pending)
+            self.location = self.menu_actions_pending[-1]
+            self.reset_menu_actions_pending()
 
     def reset_human_input(self):
         self.is_mouse_button_down = False
@@ -2325,7 +2365,11 @@ class World(object):
 
         print(f'[edit_obs] {self.menu_actions_pending=}')
 
-        if self.menu_actions_pending[-1] == 'make moving platform':
+        if self.menu_actions_pending[-1] == 'custom obs properties':
+        # if type(self.menu_actions_pending[-1]) == dict:
+            # Menu has returned a dictionary, so obstacle properties edit is done.
+            self.obs_settings[obs.id] = self.menu_actions_pending[0]
+        elif self.menu_actions_pending[-1] == 'make moving platform':
             self.reset_menu_actions_pending()
             print('make moving platform')
             # self.add_menu(self.mouse_xy, 400, 20, [i for i in self.obs_settings[obs.id].keys()])
