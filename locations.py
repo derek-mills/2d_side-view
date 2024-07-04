@@ -1,70 +1,25 @@
 from constants import *
 locations = {
-
+    
     '79a4ecbe-39ca-11ef-aa3e-63422c966797':
         {
-            'music': music_ambient_1,
+            'music': 'music/ambient_1.mp3',
             'description': 'apartment #1',
-            'size': (1920, 1000), 
+            'size': (1920, 1000),
             'hostiles': {
-            },
+              },
             'demolishers': {
                 'dem rectangles': (
-                ),
+                  ), # DEMOLISHERS RECTANGLE SECTION END
             },
-            'obstacles': {  
-	        #((0, 1000), (7650, 50), 1),  #1
-                'obs rectangles': ( 
-                ), # OBSTACLE RECTANGLES SECTION END
-
+            'obstacles': {
+                'obs rectangles': (
+                  ), # OBSTACLE RECTANGLES SECTION END
                 'settings': {
-                #     16: {
-                #         'ghost': False,
-                #         'speed': 0.1, 'active': False,
-                #         'collideable': False,
-                #         'gravity affected': False,
-                #         'actors pass through': True,
-                #         'invisible': True,
-                #         'trigger': True,
-                #         'trigger description': {
-                #            	#'make active': (26,28,30),
-                #         	'change location': {
-                #         		'new location': 'Mansion hall',
-                #         		'xy': (100, 100),
-                #         	},
-                #         	'disappear': False,
-                #         },
-                #         'actions': {},
-                #     },
-                # },
-
-                #  6: {
-                #     'ghost': False,
-                #     'speed': 1., 'active': True,
-                #     'collideable': False,
-                #     'gravity affected': False,
-                #     'actors pass through': False,
-                #     'exotic movement': 'sin',
-                #     'invisible': False,
-                #     'trigger': False,
-                #     'trigger description': {},
-                #     'actions': {
-                #         # (('move', (1100,450)), ('move', 'start'), ('wait', 2), ('repeat', 0))
-                #         # ('die', 0), ('switch visibility', 0), ('switch passability', 0),
-                #         # ('turn on actions set', 0), ('switch gravity', 0),
-                #
-                #              0: (('move', (1800,0, 150, 1500)), ('move', 'start area'), ('repeat', 0)),
-                #              1: (('move', (0, 0)),),
-                #          }
-                },
-
-            },
-            'items': {
-                },
+                  } # OBSTACLE SETTINGS SECTION END
+              },
+            'items': {},
     },
-
-
-    
     'room 2':
         {
             'music': 'music/ambient_1.mp3',
@@ -146,7 +101,6 @@ locations = {
             'obstacles': {
                 'obs rectangles': (
                 ((0, 1950), (3000, 50), 1),  #1
-                ((400, 1550), (2300, 50), 6),  #6
                 ((2950, 1750), (50, 200), 7),  #7
                 ((2950, 0), (50, 1750), 8),  #8
                 ((0, 0), (50, 1950), 9),  #9
@@ -155,7 +109,6 @@ locations = {
                 ((450, 950), (400, 50), 20),  #20
                 ((900, 1150), (350, 50), 21),  #21
                 ((2300, 50), (400, 1250), 22),  #22
-                ((400, 1650), (2300, 250), 23),  #23
                 ((2700, 1150), (100, 150), 24),  #24
                 ((2850, 600), (100, 150), 25),  #25
                 ((2700, 250), (100, 50), 26),  #26
@@ -163,6 +116,7 @@ locations = {
                 ((300, 300), (100, 50), 28),  #28
                 ((800, 400), (50, 550), 29),  #29
                 ((1300, 700), (250, 200), 30),  #30
+                ((450, 1750), (2100, 200), 31),  #31
                   ), # OBSTACLE RECTANGLES SECTION END
                 'settings': {
                     5: {
@@ -201,7 +155,6 @@ locations = {
                         'trigger description': {},
                         'actions': {},
                   },
-
                     30: {
                         'ghost': False,
                         'speed': 0,

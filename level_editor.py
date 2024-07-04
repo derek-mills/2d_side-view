@@ -124,10 +124,11 @@ class World(object):
         self.menu_actions_done = False
         self.menu_actions_pending = list()
         # import locations
-        self.location_names = dict()
-        self.location_names['names list'] = list()
-        self.menu_structure = {
-            '_template_menu_item_': {
+        # self.location_names = dict()
+        # self.location_names['names list'] = list()
+        self.menu_structure = dict()
+
+        self.menu_structure['_template_menu_item_'] = {
                 'rectangle': None,
                 'label': '',
                 'value': None,
@@ -135,8 +136,8 @@ class World(object):
                 'LMB action': None,
                 'active': False,
                 'after action': None
-            },
-            'map single selection': {
+            }
+        self.menu_structure['map single selection'] = {
                   'generate list from': 'locations.locations.keys()',
                   'predefined keys': {
                       'LMB action': 'return value',
@@ -144,39 +145,39 @@ class World(object):
                       'label': '@str(item)',
                       'active': True
                   }
-            },
-            'obs single selection': {
+            }
+        self.menu_structure['obs single selection'] = {
                 'generate list from': 'self.obstacles[self.location].keys()',
                 'predefined keys': {
                     'LMB action': 'return value',
                     'value': '@str(item)',
-                    # 'LMB action': ('return value', ''),
                     'label': 'Obstacle #: @str(item)',
                     'active': True
                 },
-            },
-            'obs multiple selection': {
-                # 'target object': list(),
-                'generate list from': 'self.obstacles[self.location].keys()',
-                'predefined keys': {
+            }
+
+        self.menu_structure['obs multiple selection'] = dict()
+        self.menu_structure['obs multiple selection']['ok'] = {
+            'rectangle': pygame.Rect(0, 0, 0, 0),
+            'label': '[CONFIRM]',
+            'on hover action': None,
+            'LMB action': 'return value',
+            'value': list(),
+            'active': True,
+            'also affects on': None,
+            'after action': None
+        }
+        self.menu_structure['obs multiple selection']['generate list from'] = 'self.obstacles[self.location].keys()'
+        self.menu_structure['obs multiple selection']['predefined keys'] = {
                         'LMB action': 'return value',
                         'value': '@str(item)',
                         # 'LMB action': ('return value', '@item'),
                         'label': 'Obstacle #: @str(item)',
                         'active': True,
                         'after action': 'keep going'
-                },
-                'ok': {
-                    'rectangle': pygame.Rect(0, 0, 0, 0),
-                    'label': '[CONFIRM]',
-                    'on hover action': None,
-                    'LMB action': ('return value', 'obs selection done'),
-                    'active': True,
-                    'also affects on': None,
-                    'after action': None
-                },
-            },
-            'teleport/trigger': {
+                }
+
+        self.menu_structure['teleport/trigger'] = {
                 'header': {
                     'rectangle': None,
                     'label': 'CHOOSE TYPE:',
@@ -205,8 +206,8 @@ class World(object):
                     'active': True,
                     'after action': None
                 },
-            },
-            'obstacle edit': {
+            }
+        self.menu_structure['obstacle edit'] = {
                 'header': {
                     'rectangle': None,
                     'label': 'INTRODUCE OBSTACLE AS:',
@@ -230,14 +231,13 @@ class World(object):
                     'label': '[MAKE MOVING PLATFORM]',
                     'on hover action': None,
                     'LMB action': 'return value',
-                    'value': 'moving',
-                    # 'LMB action': ('return value', 'moving'),
+                    'value': 'make moving platform',
                     'active': True,
                     'after action': None
                 },
                 'custom': {
                     'rectangle': None,
-                    'label': '[CUSTOM EDIT PROPERTIES] >',
+                    'label': '[CUSTOM PROPERTIES EDIT] >',
                     'on hover action': 'submenu',
                     'value': 'custom obs properties',
                     # 'on hover action': ('submenu', 'custom obs properties'),
@@ -246,148 +246,170 @@ class World(object):
                     'active': True,
                     'after action': None
                 },
+            }
+
+        self.menu_structure['custom obs properties'] = dict()
+        self.menu_structure['custom obs properties']['ok'] = {
+            'rectangle': pygame.Rect(0, 0, 0, 0),
+            'label': '[CONFIRM]',
+            'on hover action': None,
+            'LMB action': 'return value',
+            'value': {
+                'ghost': False,
+                'speed': 0.,
+                'active': False,
+                'collideable': False,
+                'gravity affected': False,
+                'invisible': False,
+                'trigger': False,
+                'actors pass through': False,
+                'trigger description': {
+                    'make active': list(),
+                    'change location': {
+                        'new location': '',
+                        'xy': [0, 0]
+                    },
+                    'disappear': False
+                },
+                'actions': {
+                    #         # (('move', (1100,450)), ('move', 'start'), ('wait', 2), ('repeat', 0))
+                    #         # ('die', 0), ('switch visibility', 0), ('switch passability', 0),
+                    #         # ('turn on actions set', 0), ('switch gravity', 0),
+                    #
+                    #              0: (('move', (1800,0, 150, 1500)), ('move', 'start area'), ('repeat', 0)),
+                    #              1: (('move', (0, 0)),),
+                },
             },
-            'custom obs properties': {
-                'header': {
+            # 'value': 'custom obs edit done',
+            'active': True,
+            'after action': None
+        }
+        self.menu_structure['custom obs properties']['header'] = {
                     'rectangle': self.menu_elements_bindings['central header'],
                     'label': 'EDIT OBSTACLE PROPERTIES:',
                     'on hover action': None,
                     'LMB action': None,
                     'active': False,
                     'after action': None
-                },
-                'ghost': {
+                }
+        self.menu_structure['custom obs properties']['ghost'] = {
                     'rectangle': pygame.Rect(0,0,0,0),
                     'label': 'ghost',
                     'on hover action': None,
                     'LMB action': 'switch state',
-                    'value': {'ghost': False},
+                    'value': ("self.menu_structure['custom obs properties']['ok']['value']['ghost']",),
                     # 'LMB action': ['switch state', {'ghost': False}],
                     'active': True,
                     'also affects on': None,
                     'after action': 'keep going'
-                },
-                'speed': {
+                }
+        self.menu_structure['custom obs properties']['speed'] = {
                     'rectangle': pygame.Rect(0,0,0,0),
                     'label': 'speed',
                     'on hover action': None,
                     'LMB action': 'input number',
-                    'value': {'speed': 0},
+                    'value': "self.menu_structure['custom obs properties']['ok']['value']['speed']",
                     # 'LMB action': ('input number', {'speed': 0}),
                     'active': True,
                     'also affects on': None,
                     'after action': 'keep going'
-                },
-                'active': {
+                }
+        self.menu_structure['custom obs properties']['active'] = {
                     'rectangle': pygame.Rect(0,0,0,0),
                     'label': 'active',
                     'on hover action': None,
                     'LMB action': 'switch state',
-                    'value': {'active': False},
+                    'value': ("self.menu_structure['custom obs properties']['ok']['value']['active']",),
                     # 'LMB action': ['switch state', {'active': False}],
                     'active': True,
                     'also affects on': None,
                     'after action': 'keep going'
-                },
-                'collideable': {
+                }
+        self.menu_structure['custom obs properties']['collideable']= {
                     'rectangle': pygame.Rect(0, 0, 0, 0),
                     'label': 'collideable',
                     'on hover action': None,
                     'LMB action': 'switch state',
-                    'value': {'collideable': False},
+                    'value': ("self.menu_structure['custom obs properties']['ok']['value']['collideable']",),
                     # 'LMB action': ['switch state', {'collideable': False}],
                     'active': True,
                     'also affects on': None,
                     'after action': 'keep going'
-                },
-                'gravity affected': {
+                }
+        self.menu_structure['custom obs properties']['gravity affected'] = {
                     'rectangle': pygame.Rect(0, 0, 0, 0),
                     'label': 'gravity affected',
                     'on hover action': None,
                     'LMB action': 'switch state',
-                    'value': {'gravity affected': False},
+                    'value': ("self.menu_structure['custom obs properties']['ok']['value']['gravity affected']",),
                     # 'LMB action': ['switch state', {'gravity affected': False}],
                     'active': True,
                     'also affects on': None,
                     'after action': 'keep going'
-                },
-                'invisible': {
+                }
+        self.menu_structure['custom obs properties']['invisible'] = {
                     'rectangle': pygame.Rect(0, 0, 0, 0),
                     'label': 'invisible',
                     'on hover action': None,
                     'LMB action': 'switch state',
-                    'value': {'invisible': False},
-                    # 'LMB action': ['switch state', {'invisible': False}],
+                    'value': ("self.menu_structure['custom obs properties']['ok']['value']['invisible']",),
+                    # 'value': {'invisible': False},
                     'active': True,
                     'also affects on': None,
                     'after action': 'keep going'
-                },
-                'trigger': {
+                }
+        self.menu_structure['custom obs properties']['trigger'] = {
                     'rectangle': pygame.Rect(0, 0, 0, 0),
                     'label': 'trigger',
                     'on hover action': None,
                     'LMB action': 'switch state',
-                    'value': {'trigger': False},
+                    'value': ("self.menu_structure['custom obs properties']['ok']['value']['trigger']",),
                     # 'LMB action': ['switch state', {'trigger': False}],
                     'active': True,
                     'also affects on': None,
                     'after action': 'keep going'
                     # self.obs_settings[]
-                },
-                'actors pass through': {
+                }
+        self.menu_structure['custom obs properties']['actors pass through'] = {
                     'rectangle': pygame.Rect(0, 0, 0, 0),
                     'label': 'actors pass through',
                     'on hover action': None,
                     'LMB action': 'switch state',
-                    'value': {'actors pass through': False},
+                    'value': ("self.menu_structure['custom obs properties']['ok']['value']['actors pass through']",),
                     # 'LMB action': ['switch state', {'actors pass through': False}],
                     'active': True,
                     'also affects on': None,
                     'after action': 'keep going'
                     # self.obs_settings[]
-                },
-                'trigger description': {
+                }
+        self.menu_structure['custom obs properties']['trigger description'] = {
                     'rectangle': pygame.Rect(0, 0, 0, 0),
                     'label': 'trigger description',
                     'on hover action': None,
                     'LMB action': 'submenu',
                     'value': 'trigger description',
+                    # 'value': self.menu_structure['custom obs properties']['ok']['value']['trigger description'],
                     # 'LMB action': ['submenu', 'trigger description'],
                     # 'LMB action': ['input string', {'trigger description': {}}],
                     'active': True,
                     'also affects on': None,
                     'after action': None
                     # self.obs_settings[]
-                },
-                'actions': {
+                }
+        self.menu_structure['custom obs properties']['actions'] = {
                     'rectangle': pygame.Rect(0, 0, 0, 0),
                     'label': 'actions',
                     'on hover action': None,
                     'LMB action': 'input string',
-                    'value': {'actions': {}},
+                    'value': "self.menu_structure['custom obs properties']['ok']['value']['actions']",
                     # 'LMB action': ['input string', {'actions': {}}],
                     'active': True,
                     'also affects on': None,
                     'after action': 'keep going'
                     # self.obs_settings[]
-                },
-                'ok': {
-                    'rectangle': pygame.Rect(0, 0, 0, 0),
-                    'label': '[CONFIRM]',
-                    'on hover action': None,
-                    'LMB action': 'return value',
-                    'value': 'custom obs edit done',
-                    # 'LMB action': ('return value', 'custom obs edit done'),
-                    'active': True,
-                    'also affects on': None,
-                    'after action': None
-                },
+                }
 
-                # 'generate list from': (
-                #     'ghost', 'speed', 'active', 
-                # ),
-            },
-            'trigger description': {
+        self.menu_structure['trigger description'] = {
                 'header': {
                     'rectangle': self.menu_elements_bindings['central header'],
                     'label': 'EDIT OBSTACLE TRIGGERS:',
@@ -406,8 +428,8 @@ class World(object):
                     'active': True,
                     'after action': None
                 },
-            },
-            'initial setup': {
+            }
+        self.menu_structure['initial setup'] = {
                 'header': {
                     'rectangle': pygame.Rect(self.menu_elements_bindings['central header']),
                     'label': 'EDIT EXISTING OR CREATE NEW?',
@@ -443,8 +465,8 @@ class World(object):
                     'active': True,
                     'after action': None
                 },
-            },
-            'main menu': {
+            }
+        self.menu_structure['main menu'] = {
                 'header': {
                     'rectangle': pygame.Rect(self.menu_elements_bindings['central header']),
                     'label': 'Now edit map: ' + self.location + ' (ESC to quit)',
@@ -493,9 +515,388 @@ class World(object):
                     'active': True,
                     'after action': None
                 },
-            },
-        }
-        # self.setup_box = list()
+            }
+
+
+        # self.menu_structure = {
+        #     '_template_menu_item_': {
+        #         'rectangle': None,
+        #         'label': '',
+        #         'value': None,
+        #         'on hover action': None,
+        #         'LMB action': None,
+        #         'active': False,
+        #         'after action': None
+        #     },
+        #     'map single selection': {
+        #           'generate list from': 'locations.locations.keys()',
+        #           'predefined keys': {
+        #               'LMB action': 'return value',
+        #               'value': '@str(item)',
+        #               'label': '@str(item)',
+        #               'active': True
+        #           }
+        #     },
+        #     'obs single selection': {
+        #         'generate list from': 'self.obstacles[self.location].keys()',
+        #         'predefined keys': {
+        #             'LMB action': 'return value',
+        #             'value': '@str(item)',
+        #             'label': 'Obstacle #: @str(item)',
+        #             'active': True
+        #         },
+        #     },
+        #     'obs multiple selection': {
+        #         # 'target object': list(),
+        #         'generate list from': 'self.obstacles[self.location].keys()',
+        #         'predefined keys': {
+        #                 'LMB action': 'return value',
+        #                 'value': '@str(item)',
+        #                 # 'LMB action': ('return value', '@item'),
+        #                 'label': 'Obstacle #: @str(item)',
+        #                 'active': True,
+        #                 'after action': 'keep going'
+        #         },
+        #         'ok': {
+        #             'rectangle': pygame.Rect(0, 0, 0, 0),
+        #             'label': '[CONFIRM]',
+        #             'on hover action': None,
+        #             'LMB action': 'return value',
+        #             'value': 'obs selection done',
+        #             'active': True,
+        #             'also affects on': None,
+        #             'after action': None
+        #         },
+        #     },
+        #     'teleport/trigger': {
+        #         'header': {
+        #             'rectangle': None,
+        #             'label': 'CHOOSE TYPE:',
+        #             'on hover action': None,
+        #             'LMB action': None,
+        #             'active': False,
+        #             'after action': None
+        #         },
+        #         'trigger': {
+        #             'rectangle': None,
+        #             'label': '[ACTION TRIGGER]',
+        #             'on hover action': 'submenu',
+        #             'value': 'obs multiple selection',
+        #             # 'on hover action': ('submenu', 'obs multiple selection'),
+        #             'LMB action': None,
+        #             'active': True,
+        #             'after action': None
+        #         },
+        #         'teleport': {
+        #             'rectangle': None,
+        #             'label': '[TELEPORT]',
+        #             'on hover action': 'submenu',
+        #             'value': 'map single selection',
+        #             # 'on hover action': ('submenu', 'map single selection'),
+        #             'LMB action': None,
+        #             'active': True,
+        #             'after action': None
+        #         },
+        #     },
+        #     'obstacle edit': {
+        #         'header': {
+        #             'rectangle': None,
+        #             'label': 'INTRODUCE OBSTACLE AS:',
+        #             'on hover action': None,
+        #             'LMB action': None,
+        #             'active': False,
+        #             'after action': None
+        #         },
+        #         'trigger': {
+        #             'rectangle': None,
+        #             'label': '[MAKE EVENT INITIATOR] >',
+        #             'on hover action': 'submenu',
+        #             'value': 'teleport/trigger',
+        #             # 'on hover action': ('submenu', 'teleport/trigger'),
+        #             'LMB action': None,
+        #             'active': True,
+        #             'after action': None
+        #         },
+        #         'moving platform': {
+        #             'rectangle': None,
+        #             'label': '[MAKE MOVING PLATFORM]',
+        #             'on hover action': None,
+        #             'LMB action': 'return value',
+        #             'value': 'make moving platform',
+        #             'active': True,
+        #             'after action': None
+        #         },
+        #         'custom': {
+        #             'rectangle': None,
+        #             'label': '[CUSTOM PROPERTIES EDIT] >',
+        #             'on hover action': 'submenu',
+        #             'value': 'custom obs properties',
+        #             # 'on hover action': ('submenu', 'custom obs properties'),
+        #             'LMB action': None,
+        #             # 'LMB action': ('return value', 'custom'),
+        #             'active': True,
+        #             'after action': None
+        #         },
+        #     },
+        #     'custom obs properties': {
+        #         'header': {
+        #             'rectangle': self.menu_elements_bindings['central header'],
+        #             'label': 'EDIT OBSTACLE PROPERTIES:',
+        #             'on hover action': None,
+        #             'LMB action': None,
+        #             'active': False,
+        #             'after action': None
+        #         },
+        #         'ghost': {
+        #             'rectangle': pygame.Rect(0,0,0,0),
+        #             'label': 'ghost',
+        #             'on hover action': None,
+        #             'LMB action': 'switch state',
+        #             'value': {'ghost': False},
+        #             # 'LMB action': ['switch state', {'ghost': False}],
+        #             'active': True,
+        #             'also affects on': None,
+        #             'after action': 'keep going'
+        #         },
+        #         'speed': {
+        #             'rectangle': pygame.Rect(0,0,0,0),
+        #             'label': 'speed',
+        #             'on hover action': None,
+        #             'LMB action': 'input number',
+        #             'value': {'speed': 0},
+        #             # 'LMB action': ('input number', {'speed': 0}),
+        #             'active': True,
+        #             'also affects on': None,
+        #             'after action': 'keep going'
+        #         },
+        #         'active': {
+        #             'rectangle': pygame.Rect(0,0,0,0),
+        #             'label': 'active',
+        #             'on hover action': None,
+        #             'LMB action': 'switch state',
+        #             'value': {'active': False},
+        #             # 'LMB action': ['switch state', {'active': False}],
+        #             'active': True,
+        #             'also affects on': None,
+        #             'after action': 'keep going'
+        #         },
+        #         'collideable': {
+        #             'rectangle': pygame.Rect(0, 0, 0, 0),
+        #             'label': 'collideable',
+        #             'on hover action': None,
+        #             'LMB action': 'switch state',
+        #             'value': {'collideable': False},
+        #             # 'LMB action': ['switch state', {'collideable': False}],
+        #             'active': True,
+        #             'also affects on': None,
+        #             'after action': 'keep going'
+        #         },
+        #         'gravity affected': {
+        #             'rectangle': pygame.Rect(0, 0, 0, 0),
+        #             'label': 'gravity affected',
+        #             'on hover action': None,
+        #             'LMB action': 'switch state',
+        #             'value': {'gravity affected': False},
+        #             # 'LMB action': ['switch state', {'gravity affected': False}],
+        #             'active': True,
+        #             'also affects on': None,
+        #             'after action': 'keep going'
+        #         },
+        #         'invisible': {
+        #             'rectangle': pygame.Rect(0, 0, 0, 0),
+        #             'label': 'invisible',
+        #             'on hover action': None,
+        #             'LMB action': 'switch state',
+        #             'value': self.menu_structure['custom obs properties']['ok']['value']['invisible'],
+        #             # 'value': {'invisible': False},
+        #             'active': True,
+        #             'also affects on': None,
+        #             'after action': 'keep going'
+        #         },
+        #         'trigger': {
+        #             'rectangle': pygame.Rect(0, 0, 0, 0),
+        #             'label': 'trigger',
+        #             'on hover action': None,
+        #             'LMB action': 'switch state',
+        #             'value': {'trigger': False},
+        #             # 'LMB action': ['switch state', {'trigger': False}],
+        #             'active': True,
+        #             'also affects on': None,
+        #             'after action': 'keep going'
+        #             # self.obs_settings[]
+        #         },
+        #         'actors pass through': {
+        #             'rectangle': pygame.Rect(0, 0, 0, 0),
+        #             'label': 'actors pass through',
+        #             'on hover action': None,
+        #             'LMB action': 'switch state',
+        #             'value': {'actors pass through': False},
+        #             # 'LMB action': ['switch state', {'actors pass through': False}],
+        #             'active': True,
+        #             'also affects on': None,
+        #             'after action': 'keep going'
+        #             # self.obs_settings[]
+        #         },
+        #         'trigger description': {
+        #             'rectangle': pygame.Rect(0, 0, 0, 0),
+        #             'label': 'trigger description',
+        #             'on hover action': None,
+        #             'LMB action': 'submenu',
+        #             'value': 'trigger description',
+        #             # 'LMB action': ['submenu', 'trigger description'],
+        #             # 'LMB action': ['input string', {'trigger description': {}}],
+        #             'active': True,
+        #             'also affects on': None,
+        #             'after action': None
+        #             # self.obs_settings[]
+        #         },
+        #         'actions': {
+        #             'rectangle': pygame.Rect(0, 0, 0, 0),
+        #             'label': 'actions',
+        #             'on hover action': None,
+        #             'LMB action': 'input string',
+        #             'value': {'actions': {}},
+        #             # 'LMB action': ['input string', {'actions': {}}],
+        #             'active': True,
+        #             'also affects on': None,
+        #             'after action': 'keep going'
+        #             # self.obs_settings[]
+        #         },
+        #         'ok': {
+        #             'rectangle': pygame.Rect(0, 0, 0, 0),
+        #             'label': '[CONFIRM]',
+        #             'on hover action': None,
+        #             'LMB action': 'return value',
+        #             'value': {
+        #                 'ghost': False,
+        #                 'speed': 0.,
+        #                 'active': False,
+        #                 'collideable': False,
+        #                 'gravity affected': False,
+        #                 'invisible': False,
+        #                 'trigger': False,
+        #                 'actors pass through': False,
+        #                 'trigger description': {},
+        #                 'actions': {}
+        #             },
+        #             # 'value': 'custom obs edit done',
+        #             'active': True,
+        #             'after action': None
+        #         },
+        #
+        #         # 'generate list from': (
+        #         #     'ghost', 'speed', 'active',
+        #         # ),
+        #     },
+        #     'trigger description': {
+        #         'header': {
+        #             'rectangle': self.menu_elements_bindings['central header'],
+        #             'label': 'EDIT OBSTACLE TRIGGERS:',
+        #             'on hover action': None,
+        #             'LMB action': None,
+        #             'active': False,
+        #             'after action': None
+        #         },
+        #         'make active': {
+        #             'rectangle': self.menu_elements_bindings['central header'],
+        #             'label': '[Make some other obstacles active] >',
+        #             'on hover action': 'submenu',
+        #             'value': 'obs multiple selection',
+        #             # 'on hover action': ('submenu', 'list obs'),
+        #             'LMB action': None,
+        #             'active': True,
+        #             'after action': None
+        #         },
+        #     },
+        #     'initial setup': {
+        #         'header': {
+        #             'rectangle': pygame.Rect(self.menu_elements_bindings['central header']),
+        #             'label': 'EDIT EXISTING OR CREATE NEW?',
+        #             'on hover action': None,
+        #             'LMB action': None,
+        #             'active': False,
+        #             'after action': None
+        #         },
+        #         'existing': {
+        #             'rectangle': pygame.Rect(self.menu_elements_bindings['central right button']),
+        #             'label': '[LOAD]',
+        #             'on hover action': None,
+        #             'LMB action': 'return value',  # Return string type of 'load'
+        #             'value': 'load',  # Return string type of 'load'
+        #             'active': True,
+        #             'after action': None
+        #         },
+        #         'new': {
+        #             'rectangle': pygame.Rect(self.menu_elements_bindings['central left button']),
+        #             'label': '[CREATE NEW MAP]',
+        #             'on hover action': None,
+        #             'LMB action': 'return value',  # Return string type of 'new'
+        #             'value': 'new',  # Return string type of 'new'
+        #             'active': True,
+        #             'after action': None
+        #         },
+        #         'quit': {
+        #             'rectangle': pygame.Rect(self.menu_elements_bindings['bottom right button']),
+        #             'label': 'QUIT',
+        #             'on hover action': None,
+        #             'LMB action': 'exec',
+        #             'value': 'pygame.quit()\nraise SystemExit()',
+        #             'active': True,
+        #             'after action': None
+        #         },
+        #     },
+        #     'main menu': {
+        #         'header': {
+        #             'rectangle': pygame.Rect(self.menu_elements_bindings['central header']),
+        #             'label': 'Now edit map: ' + self.location + ' (ESC to quit)',
+        #             'on hover action': None,
+        #             'LMB action': None,
+        #             'active': False,
+        #             'after action': None
+        #         },
+        #         'save': {
+        #             'rectangle': pygame.Rect(self.menu_elements_bindings['central left button']),
+        #             'label': '[SAVE CURRENT MAP]',
+        #             'on hover action': None,
+        #             'LMB action': 'return value',
+        #             'value': 'save',
+        #             # 'LMB action': ('exec', 'self.save()'),
+        #             'active': True,
+        #             'after action': None
+        #         },
+        #         'load': {
+        #             'rectangle': pygame.Rect(self.menu_elements_bindings['central right button']),
+        #             'label': '[LOAD...]',
+        #             'on hover action': None,
+        #             'LMB action': 'return value',
+        #             'value': "load",
+        #             # 'LMB action': ('exec', "self.reset_menu()\nself.need_to_load = True\nreturn"),
+        #             'active': True,
+        #             'after action': None
+        #         },
+        #         'resize': {
+        #             'rectangle': pygame.Rect(self.menu_elements_bindings['bottom right button']),
+        #             'label': '[RESIZE MAP...]',
+        #             'on hover action': None,
+        #             'LMB action': 'return value',
+        #             'value': "resize",
+        #             # 'LMB action': ('exec', "x = self.create_text_input((MAXX_DIV_2, MAXY_DIV_2), 'ENTER MAX X:', 'digit')\ny = self.create_text_input((MAXX_DIV_2, MAXY_DIV_2 + 50), 'ENTER MAX Y:', 'digit')\nself.camera.setup(int(x), int(y))\nself.create_snap_mesh()"),
+        #             'active': True,
+        #             'after action': None
+        #         },
+        #         'quit': {
+        #             'rectangle': pygame.Rect(self.menu_elements_bindings['bottom left button']),
+        #             'label': '[QUIT TO DOS...]',
+        #             'on hover action': None,
+        #             'LMB action': 'return value',
+        #             'value': "quit",
+        #             # 'LMB action': ('exec', "self.reset_menu()"),
+        #             'active': True,
+        #             'after action': None
+        #         },
+        #     },
+        # }
+
 
     def set_screen(self, surface):
         self.screen = surface
@@ -615,25 +1016,10 @@ class World(object):
                                 self.delete_all_child_menu_piles(pile_id)
                                 self.active_menu_pile += 1
                                 menu_name = menu_item['value']
-                                # locations.locations[self.location]
                                 if 'generate list from' in self.menu_structure[menu_name].keys():
                                     # Let's generate a list of new menu items from the given text-type description of sequence:
                                     self.generate_menu(menu_name)
-                                #     menu_items_list = list(eval(self.menu_structure[menu_name]['generate list from']))
-                                #     for item in menu_items_list:
-                                #         self.menu_structure[menu_name][item] = dict()
-                                #         for reference_key in self.menu_structure['_template_menu_item_'].keys():
-                                #             if reference_key in self.menu_structure[menu_name]['predefined keys'].keys():
-                                #                 reference_menu_item = self.menu_structure[menu_name]['predefined keys'][reference_key]
-                                #                 if type(reference_menu_item) == str:
-                                #                     if '@' in reference_menu_item:
-                                #                         # '@' this is the sign of executability of all code which remains after this sign.
-                                #                         i = reference_menu_item.split('@')
-                                #                         reference_menu_item = i[0] + eval(i[1])
-                                #                 self.menu_structure[menu_name][item][reference_key] = reference_menu_item
-                                #             else:
-                                #                 self.menu_structure[menu_name][item][reference_key] = self.menu_structure['_template_menu_item_'][reference_key]
-                                #
+
                                 self.add_menu((menu_item['rectangle'].x + menu_item['rectangle'].width // 2, menu_item['rectangle'].centery),
                                           menu_item['rectangle'].width, 20,
                                           [self.menu_structure[menu_name][i] for i in self.menu_structure[menu_name].keys() if i not in ('generate list from',\
@@ -644,6 +1030,7 @@ class World(object):
                         if self.active_menu_pile > pile_id:
                             self.delete_all_child_menu_piles(pile_id)
                             return
+                    # LMB MENU ACTION:
                     if self.is_left_mouse_button_down:
                         self.is_left_mouse_button_down = False
                         if menu_item['LMB action']:
@@ -657,15 +1044,20 @@ class World(object):
                                               menu_item['rectangle'].width, 20, [self.menu_structure[menu_name][i] for i in self.menu_structure[menu_name].keys() if i != 'generate list from'])
                                 return
                             elif menu_item['LMB action'] == 'switch state':
-                                menu_item['label'] = ''
-                                # menu_item['text'] = menu_item['text'].split(' ')[0]
-                                for k_tmp in menu_item['value'].keys():
-                                    menu_item['value'][k_tmp] = True if not menu_item['value'][k_tmp] else False
-                                    menu_item['label'] += str(k_tmp) + ':' + str(menu_item['value'][k_tmp]) + ' '
+                                menu_item['label'] = menu_item['label'].split(':')[0]
+                                for_exec = ''
+                                for k_tmp_string in menu_item['value']:
+                                    for_exec = k_tmp_string + ' = True if not eval(k_tmp_string) else False'
+                                    exec(for_exec)
+                                    menu_item['label'] += ': ' + str(eval(k_tmp_string))
                             elif menu_item['LMB action'] == 'return value':
                                 # if menu_item['LMB action'][0][0] == '@':  # String contains an expression to evaluate:
                                 # SIMPLY RETURN STRING SODE
-                                self.menu_actions_pending.append(menu_item['value'])
+                                if menu_item['value'] in self.menu_actions_pending:
+                                    self.menu_actions_pending.remove(menu_item['value'])
+                                else:
+                                    self.menu_actions_pending.append(menu_item['value'])
+                                menu_item['checked'] = False if menu_item['checked'] else True
                                 # self.menu_action_pending = menu_item['LMB action'][1]
 
                             # Aftermath:
@@ -679,21 +1071,12 @@ class World(object):
 
                 else:
                     menu_item['hovered'] = False
-                    # menu_item['has been already activated'] = False
-                    # Delete all already revealed submenus:
-                    # self.delete_all_child_menu_piles(pile_id)
-
 
                     if menu_item['on hover action'] and menu_item['has been already activated']:
                         menu_item['has been already activated'] = False
                         # Delete all already revealed submenus:
                         self.delete_all_child_menu_piles(pile_id)
                         return
-
-            #                 delete_child_menus = True
-            #                 break
-            # if delete_child_menus:
-            #     break
 
     def delete_all_child_menu_piles(self, parent_pile_number):
         piles_to_delete = list()
@@ -1942,19 +2325,18 @@ class World(object):
 
         print(f'[edit_obs] {self.menu_actions_pending=}')
 
-        if self.menu_actions_pending[-1] == 'moving':
+        if self.menu_actions_pending[-1] == 'make moving platform':
             self.reset_menu_actions_pending()
-            # self.menu_actions_pending = ''
             print('make moving platform')
-            self.add_menu(self.mouse_xy, 400, 20, [i for i in self.obs_settings[obs.id].keys()])
-            while not self.menu_actions_done:
-                self.processing_human_input()
-                self.processing_menu_items()
-                self.render_background()
-                self.render_menu_items()
-                pygame.display.flip()
-            self.reset_human_input()
-            self.reset_menu()
+            # self.add_menu(self.mouse_xy, 400, 20, [i for i in self.obs_settings[obs.id].keys()])
+            # while not self.menu_actions_done:
+            #     self.processing_human_input()
+            #     self.processing_menu_items()
+            #     self.render_background()
+            #     self.render_menu_items()
+            #     pygame.display.flip()
+            # self.reset_human_input()
+            # self.reset_menu()
         elif self.menu_actions_pending[-1] == 'custom obs edit done':
             summary = list()
             for k in self.menu_structure['custom obs properties'].keys():
@@ -2353,7 +2735,7 @@ world.set_screen(screen)
 import locations
 world.setup()
 
-world.location_names['names list'] = list(locations.locations.keys())
+# world.location_names['names list'] = list(locations.locations.keys())
 world.load()
 
 allow_import_location = False

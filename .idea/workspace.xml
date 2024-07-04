@@ -119,13 +119,6 @@
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
     </task>
-    <task id="LOCAL-00165" summary="Added monsters spawn points description in locations.py">
-      <created>1718777152707</created>
-      <option name="number" value="00165" />
-      <option name="presentableId" value="LOCAL-00165" />
-      <option name="project" value="LOCAL" />
-      <updated>1718777152707</updated>
-    </task>
     <task id="LOCAL-00166" summary="Actors become inactive if they do not collide camera rectangle. Just in case, not to get them fell down, because of far obstacles are off.">
       <created>1718777599567</created>
       <option name="number" value="00166" />
@@ -462,7 +455,14 @@
       <option name="project" value="LOCAL" />
       <updated>1720064177381</updated>
     </task>
-    <option name="localTasksCounter" value="214" />
+    <task id="LOCAL-00214" summary="Level editor: try to get menu system work with self.menu_structure dict as the only one source of settings.">
+      <created>1720072841700</created>
+      <option name="number" value="00214" />
+      <option name="presentableId" value="LOCAL-00214" />
+      <option name="project" value="LOCAL" />
+      <updated>1720072841700</updated>
+    </task>
+    <option name="localTasksCounter" value="215" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
