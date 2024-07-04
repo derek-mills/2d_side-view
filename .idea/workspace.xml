@@ -40,14 +40,14 @@
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/home/sid/scripts/python/pygame/Arcade_side-view/SLASH/ver_0.000.1",
-    "settings.editor.selected.configurable": "advanced.settings"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/sid/scripts/python/pygame/Arcade_side-view/SLASH/ver_0.000.1&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;
   }
-}]]></component>
+}</component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
       <console-settings module-name="ver_0.000.1" is-module-sdk="true">
@@ -56,7 +56,7 @@
       </console-settings>
     </option>
   </component>
-  <component name="RunManager" selected="Python.main ">
+  <component name="RunManager" selected="Python.level_editor">
     <configuration name="level_editor" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ver_0.000.1" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -105,8 +105,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.main " />
         <item itemvalue="Python.level_editor" />
+        <item itemvalue="Python.main " />
       </list>
     </recent_temporary>
   </component>
@@ -118,13 +118,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00163" summary="Demolishers pass through triggers">
-      <created>1718765633726</created>
-      <option name="number" value="00163" />
-      <option name="presentableId" value="LOCAL-00163" />
-      <option name="project" value="LOCAL" />
-      <updated>1718765633726</updated>
     </task>
     <task id="LOCAL-00164" summary="Trigger activates a bunch of active obstacles now.">
       <created>1718766629021</created>
@@ -462,7 +455,14 @@
       <option name="project" value="LOCAL" />
       <updated>1719992636366</updated>
     </task>
-    <option name="localTasksCounter" value="212" />
+    <task id="LOCAL-00212" summary="Level editor: it is able to edit custom obstacle properties through context menu.">
+      <created>1719994295532</created>
+      <option name="number" value="00212" />
+      <option name="presentableId" value="LOCAL-00212" />
+      <option name="project" value="LOCAL" />
+      <updated>1719994295532</updated>
+    </task>
+    <option name="localTasksCounter" value="213" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -477,7 +477,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Level editor is now possessed by graphic UI." />
     <MESSAGE value="Improved menu items processing in level editor.&#10;Camera offset speed improved." />
     <MESSAGE value="Fixed demolishers fly ability." />
     <MESSAGE value="Level editor saving system upgraded." />
@@ -502,6 +501,7 @@
     <MESSAGE value="Level editor: go on ruining level editor." />
     <MESSAGE value="Level editor: menu behavior became more or less elegant." />
     <MESSAGE value="Level editor: menu behavior became even much more elegant." />
-    <option name="LAST_COMMIT_MESSAGE" value="Level editor: menu behavior became even much more elegant." />
+    <MESSAGE value="Level editor: it is able to edit custom obstacle properties through context menu." />
+    <option name="LAST_COMMIT_MESSAGE" value="Level editor: it is able to edit custom obstacle properties through context menu." />
   </component>
 </project>

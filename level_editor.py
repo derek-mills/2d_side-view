@@ -127,9 +127,31 @@ class World(object):
         self.location_names = dict()
         self.location_names['names list'] = list()
         self.menu_structure = {
+            '_template_menu_item_': {
+                'rectangle': None,
+                'label': '',
+                'on hover action': None,
+                'LMB action': None,
+                'active': False,
+                'after action': None
+            },
             'list maps': {
-                  'generate list from': "self.location_names['list ref'] = self.location_names['names list']",
+                  'generate list from': 'locations.locations.keys()',
+                  'predefined keys': {
+                      'LMB action': ('return string', '...'),
+                      'label': 'Map: @str(item)',
+                      'active': True
+                  }
                   # 'generate list from': "self.location_names['list ref'] = self.location_names['names list']",
+                  # 'generate list from': "self.location_names['list ref'] = self.location_names['names list']",
+            },
+            'list obs': {
+                  'generate list from': 'self.obstacles[self.location].keys()',
+                    'predefined keys': {
+                        'LMB action': ('return string', '...'),
+                        'label': 'Obstacle #: @str(item)',
+                        'active': True
+                    }
             },
             'teleport/trigger': {
                 'header': {
@@ -143,7 +165,7 @@ class World(object):
                 'trigger': {
                     'rectangle': None,
                     'label': '[ACTION TRIGGER]',
-                    'on hover action': ('submenu', 'list maps'),
+                    'on hover action': ('submenu', 'list obs'),
                     'LMB action': None,
                     'active': True,
                     'after action': None
@@ -168,7 +190,7 @@ class World(object):
                 },
                 'trigger': {
                     'rectangle': None,
-                    'label': '[MAKE EVENT INITIATOR >]',
+                    'label': '[MAKE EVENT INITIATOR] >',
                     'on hover action': ('submenu', 'teleport/trigger'),
                     'LMB action': None,
                     'active': True,
@@ -184,9 +206,9 @@ class World(object):
                 },
                 'custom': {
                     'rectangle': None,
-                    'label': '[CUSTOM EDIT PROPERTIES]',
-                    'on hover action': None,
-                    'LMB action': ('submenu', 'custom obs properties'),
+                    'label': '[CUSTOM EDIT PROPERTIES] >',
+                    'on hover action': ('submenu', 'custom obs properties'),
+                    'LMB action': None,
                     # 'LMB action': ('return string', 'custom'),
                     'active': True,
                     'after action': None
@@ -279,10 +301,11 @@ class World(object):
                     'rectangle': pygame.Rect(0, 0, 0, 0),
                     'label': 'trigger description',
                     'on hover action': None,
-                    'LMB action': ['input string', {'trigger description': {}}],
+                    'LMB action': ['submenu', 'trigger description'],
+                    # 'LMB action': ['input string', {'trigger description': {}}],
                     'active': True,
                     'also affects on': None,
-                    'after action': 'keep going'
+                    'after action': None
                     # self.obs_settings[]
                 },
                 'actions': {
@@ -308,6 +331,24 @@ class World(object):
                 # 'generate list from': (
                 #     'ghost', 'speed', 'active', 
                 # ),
+            },
+            'trigger description': {
+                'header': {
+                    'rectangle': self.menu_elements_bindings['central header'],
+                    'label': 'EDIT OBSTACLE TRIGGERS:',
+                    'on hover action': None,
+                    'LMB action': None,
+                    'active': False,
+                    'after action': None
+                },
+                'make active': {
+                    'rectangle': self.menu_elements_bindings['central header'],
+                    'label': '[Make some other obstacles active] >',
+                    'on hover action': ('submenu', 'list obs'),
+                    'LMB action': None,
+                    'active': True,
+                    'after action': None
+                },
             },
             'initial setup': {
                 'header': {
@@ -468,42 +509,57 @@ class World(object):
             for k in self.menu_items[pile_id].keys():
                 menu_item = self.menu_items[pile_id][k]
                 if menu_item_has_been_already_checked:
+                    # If mouse cursor has already collided with any other menu item, all further calculations are futile:
                     menu_item['hovered'] = False
                     menu_item['has been already activated'] = False
                     continue
-                # if not menu_item['active']:
-                #     continue
 
                 if menu_item['rectangle'].collidepoint(self.mouse_xy):
                     menu_item_has_been_already_checked = True
                     if not menu_item['active']:
-                        # If mouse cursor has collided with any single menu item, all further checks are futile:
                         continue
                     menu_item['hovered'] = True
                     if menu_item['on hover action']:
                         if not menu_item['has been already activated']:
                             menu_item['has been already activated'] = True
-                            # self.reset_human_input()
                             if menu_item['on hover action'][0] == 'submenu':
                                 self.delete_all_child_menu_piles(pile_id)
                                 self.active_menu_pile += 1
                                 menu_name = menu_item['on hover action'][1]
+                                # locations.locations[self.location]
                                 if 'generate list from' in self.menu_structure[menu_name].keys():
-                                    # Let's generate a new menu items from the given list:
-                                    exec(self.menu_structure[menu_name]['generate list from'])
+                                    # Let's generate a list of new menu items from the given text-type description of sequence:
+                                    menu_items_list = list(eval(self.menu_structure[menu_name]['generate list from']))
+                                    # print(menu_items_list)
+                                    # exit()
+                                    # exec(self.menu_structure[menu_name]['generate list from'])
                                     # print(self.location_names['list ref'])
                                     # exit()
-                                    for l in self.location_names['list ref']:
-                                        # print(f'[processing menu items] Adding new menu item {l} to {menu_name}:')
-                                        self.menu_structure[menu_name][l] = dict()
-                                        self.menu_structure[menu_name][l]['rectangle'] = pygame.Rect(0,0,0,0)
-                                        self.menu_structure[menu_name][l]['label'] = l
-                                        self.menu_structure[menu_name][l]['on hover action'] = None
-                                        self.menu_structure[menu_name][l]['LMB action'] = ('return string', l)
-                                        self.menu_structure[menu_name][l]['active'] = True
-                                        self.menu_structure[menu_name][l]['after action'] = None
+                                    for item in menu_items_list:
+                                        self.menu_structure[menu_name][item] = dict()
+                                        for reference_key in self.menu_structure['_template_menu_item_'].keys():
+                                            if reference_key in self.menu_structure[menu_name]['predefined keys'].keys():
+                                                reference_menu_item = self.menu_structure[menu_name]['predefined keys'][reference_key]
+                                                if type(reference_menu_item) == str:
+                                                    if '@' in reference_menu_item:
+                                                        # '@' this is the sign of executability of all code which remains after this sign.
+                                                        i = reference_menu_item.split('@')
+                                                        reference_menu_item = i[0] + eval(i[1])
+                                                # if type() == str:
+                                                #     if '@' in self.menu_structure[menu_name]['predefined keys'][reference_key]:
+                                                #         print('to be exec!')
+                                                #         split_string = self.menu_structure[menu_name]['predefined keys'][reference_key].split('@')
+                                                self.menu_structure[menu_name][item][reference_key] = reference_menu_item
+                                                # self.menu_structure[menu_name][l][reference_key] = self.menu_structure[menu_name]['predefined keys'][reference_key]
+                                            else:
+                                                self.menu_structure[menu_name][item][reference_key] = self.menu_structure['_template_menu_item_'][reference_key]
+
+                                # self.add_menu((menu_item['rectangle'].x + menu_item['rectangle'].width // 2, menu_item['rectangle'].centery),
+                                #               menu_item['rectangle'].width, 20, [menu_ for i in self.menu_structure[menu_name].keys() if i != 'generate list from'])
                                 self.add_menu((menu_item['rectangle'].x + menu_item['rectangle'].width // 2, menu_item['rectangle'].centery),
-                                              menu_item['rectangle'].width, 20, [self.menu_structure[menu_name][i] for i in self.menu_structure[menu_name].keys() if i != 'generate list from'])
+                                              menu_item['rectangle'].width, 20,
+                                              [self.menu_structure[menu_name][i] for i in self.menu_structure[menu_name].keys() if i not in ('generate list from',\
+                                                                                                                                             'predefined keys')])
                                 return
                     else:
                         if self.active_menu_pile > pile_id:
@@ -522,12 +578,13 @@ class World(object):
                                               menu_item['rectangle'].width, 20, [self.menu_structure[menu_name][i] for i in self.menu_structure[menu_name].keys() if i != 'generate list from'])
                                 return
                             elif menu_item['LMB action'][0] == 'switch state':
-                                menu_item['text'] = ''
+                                menu_item['label'] = ''
                                 # menu_item['text'] = menu_item['text'].split(' ')[0]
                                 for k_tmp in menu_item['LMB action'][1].keys():
                                     menu_item['LMB action'][1][k_tmp] = True if not menu_item['LMB action'][1][k_tmp] else False
-                                    menu_item['text'] += str(k_tmp) + ':' + str(menu_item['LMB action'][1][k_tmp]) + ' '
+                                    menu_item['label'] += str(k_tmp) + ':' + str(menu_item['LMB action'][1][k_tmp]) + ' '
                             elif menu_item['LMB action'][0] == 'return string':
+                                # if menu_item['LMB action'][0][0] == '@':  # String contains an expression to evaluate:
                                 # SIMPLY RETURN STRING SODE
                                 self.menu_actions_pending.append(menu_item['LMB action'][1])
                                 # self.menu_action_pending = menu_item['LMB action'][1]
@@ -1079,12 +1136,20 @@ class World(object):
         self.menu_items[self.active_menu_pile][self.menu_item_id]['back color'] = bg_color
 
         # Properties depends on menu_item dict:
-        self.menu_items[self.active_menu_pile][self.menu_item_id]['text'] = menu_item['label']
-        self.menu_items[self.active_menu_pile][self.menu_item_id]['LMB action'] = menu_item['LMB action']
-        self.menu_items[self.active_menu_pile][self.menu_item_id]['active'] = menu_item['active']  # Menu item responses on human input.
-        self.menu_items[self.active_menu_pile][self.menu_item_id]['rectangle'] = menu_item['rectangle']
-        self.menu_items[self.active_menu_pile][self.menu_item_id]['on hover action'] = menu_item['on hover action']  # Activate a command of this menu item just only if mouse cursor hovers over it.
-        self.menu_items[self.active_menu_pile][self.menu_item_id]['after action'] = menu_item['after action']  #
+        for key in menu_item.keys():
+            # if type(menu_item[key]) == str:
+            #     if '@' in menu_item[key]:
+            #         # '@' this is the sign of executability of all code which remains after this sign.
+            #         i = menu_item[key].split('@')
+            #         menu_item[key] = i[0] + eval(i[1])
+            self.menu_items[self.active_menu_pile][self.menu_item_id][key] = menu_item[key]
+
+        # self.menu_items[self.active_menu_pile][self.menu_item_id]['text'] = menu_item['label']
+        # self.menu_items[self.active_menu_pile][self.menu_item_id]['LMB action'] = menu_item['LMB action']
+        # self.menu_items[self.active_menu_pile][self.menu_item_id]['active'] = menu_item['active']  # Menu item responses on human input.
+        # self.menu_items[self.active_menu_pile][self.menu_item_id]['rectangle'] = menu_item['rectangle']
+        # self.menu_items[self.active_menu_pile][self.menu_item_id]['on hover action'] = menu_item['on hover action']  # Activate a command of this menu item just only if mouse cursor hovers over it.
+        # self.menu_items[self.active_menu_pile][self.menu_item_id]['after action'] = menu_item['after action']  #
 
         self.menu_item_id += 1
 
@@ -1484,8 +1549,8 @@ class World(object):
                     # pygame.draw.rect(self.screen, RED, (menu_item['rectangle'].x + 1, menu_item['rectangle'].y + 1,
                     #                                                          menu_item['rectangle'].w - 2, menu_item['rectangle'].h - 2), 1)
 
-                    s = fonts.font15.render(str(menu_item['text']) + ' (PILE: ' + str(pile_id) + ' #' + str(k) + ')', True, txt_color)
-                    # s = fonts.font15.render(str(menu_item['text'] + str(pile_id)), True, txt_color)
+                    # s = fonts.font15.render(str(menu_item['text']) + ' (PILE: ' + str(pile_id) + ' #' + str(k) + ')', True, txt_color)
+                    s = fonts.font15.render(str(menu_item['label']), True, txt_color)
                     self.screen.blit(s, (menu_item['rectangle'].centerx - s.get_size()[0] // 2, menu_item['rectangle'].centery - s.get_size()[1] // 2))
                 else:
                     # Inactive menu items (mostly, the headers)
@@ -1509,7 +1574,7 @@ class World(object):
                     # pygame.draw.rect(self.screen, RED, (menu_item['rectangle'].x + 1, menu_item['rectangle'].y + 1,
                     #                                                          menu_item['rectangle'].w - 2, menu_item['rectangle'].h - 2), 1)
 
-                    s = fonts.font15.render(str(menu_item['text']) + ' (PILE: ' + str(pile_id) + ' #' + str(k) + ')', True, txt_color)
+                    s = fonts.font15.render(str(menu_item['label']) + ' (PILE: ' + str(pile_id) + ' #' + str(k) + ')', True, txt_color)
                     # s = fonts.font15.render(str(menu_item['text']), True, txt_color)
 
                     self.screen.blit(s, (menu_item['rectangle'].centerx - s.get_size()[0] // 2, menu_item['rectangle'].centery - s.get_size()[1] // 2))

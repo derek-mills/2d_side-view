@@ -97,6 +97,8 @@ locations = {
                 ((2700, 250), (100, 50), 26),  #26
                 ((1300, 900), (250, 200), 27),  #27
                 ((300, 300), (100, 50), 28),  #28
+                ((800, 400), (50, 550), 29),  #29
+                ((1300, 700), (250, 200), 30),  #30
                   ), # OBSTACLE RECTANGLES SECTION END
                 'settings': {
                     5: {
@@ -127,11 +129,24 @@ locations = {
                         'ghost': False,
                         'speed': 0,
                         'active': False,
-                        'collideable': True,
+                        'collideable': False,
                         'gravity affected': True,
                         'invisible': False,
                         'trigger': False,
                         'actors pass through': False,
+                        'trigger description': {},
+                        'actions': {},
+                  },
+
+                    30: {
+                        'ghost': False,
+                        'speed': 0,
+                        'active': False,
+                        'collideable': False,
+                        'gravity affected': False,
+                        'invisible': False,
+                        'trigger': True,
+                        'actors pass through': True,
                         'trigger description': {},
                         'actions': {},
                   },
