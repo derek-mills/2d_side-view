@@ -293,6 +293,9 @@ class World(object):
                                     elif menu_item['value'][0] == '@':
                                         # Value have to be executed:
                                         exec(menu_item['value'][1:])
+                                    else:
+                                        # print(menu_item.keys())
+                                        value = menu_item['value']
                                 else:
                                     # print(menu_item.keys())
                                     value = menu_item['value']
@@ -570,23 +573,11 @@ class World(object):
         self.is_right_mouse_button_down = False
 
     def main_menu(self):
-        # if self.menu_items:
-        #     self.menu_items = dict()
-        #     self.menu_item_id = 0
-        # else:
-            # if event.key == K_F3:
-            #     self.need_to_load = True
-            # if event.key == K_F2:
-            #     self.save()
-            # self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central header']), 'Editing map (ESC quit program): ' + self.location, '', False)
-            # self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central left button']), 'SAVE CURRENT', 'save', True)
-            # self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central right button']), 'LOAD...', 'load', True)
-            # self.add_menu_item(pygame.Rect(self.menu_elements_bindings['bottom right button']), '[RESIZE MAP]', 'resize', True)
-            # self.add_menu_item(pygame.Rect(self.menu_elements_bindings['bottom left button']), '[BACK TO EDITOR...]', 'return', True)
-        for i in self.menu_structure['main menu'].keys():
-            item = self.menu_structure['main menu'][i]
-            self.add_menu_item(item)
-            # self.add_menu_item(item['rectangle'], item['label'], item['LMB action'], item['active'], item['on hover action'])
+        # for i in self.menu_structure['main menu'].keys():
+        #     item = self.menu_structure['main menu'][i]
+        #     self.add_menu_item(item)
+        # #    self.add_menu_item(item['rectangle'], item['label'], item['LMB action'], item['active'], item['on hover action'])
+        self.add_menu('main menu', (MAXX_DIV_2 - 200, 300), 400, 20)
 
         while not self.menu_actions_done:
         # while self.menu_action_pending == '':
@@ -599,15 +590,65 @@ class World(object):
         self.reset_menu()
 
         if self.menu_actions_pending[-1] == 'CANCEL MENU':
+            if not self.location:
+                pygame.quit()
+                raise SystemExit
             self.reset_menu_actions_pending()
             return
         else:
+            if 'map single selection' in self.menu_actions_pending:
+                print(f'[main menu] {self.menu_actions_pending=}')
+                self.location = self.menu_actions_pending[-1]
+                self.need_to_load = True
+                self.reset_menu_actions_pending()
+                return
+
             if self.menu_actions_pending[-1] == 'save':
                 self.reset_menu_actions_pending()
                 self.save()
-            elif self.menu_actions_pending[-1] == 'load':
+            elif self.menu_actions_pending[-1] == 'new':
                 self.reset_menu_actions_pending()
+                # self.menu_action_pending = ''
+                # print('make new')
+                # # Setting up the new map:
+                width = MAXX
+                height = MAXY
+                new_location_description = list()
+                with open('locations.py', 'r') as f:
+                    existing_locations_description = f.readlines()
+
+                map_name = str(uuid.uuid1())
+
+                # Using the template to build a structure of new map's description:
+                with open('locations_template.py', 'r') as template_source:
+                    for line in template_source:
+                        if 'new_map_name' in line:
+                            new_line = '    \'' + map_name + '\':\n'
+                            new_location_description.append(new_line)
+                        elif 'new_map_size' in line:
+                            new_line = '            \'size\': (' + str(width) + ', ' + str(height) + '), \n'
+                            new_location_description.append(new_line)
+                        else:
+                            new_location_description.append(line)
+
+                # Insert the new map description into the existing locations.py file:
+                for line in existing_locations_description:
+                    if 'locations = {' in line:
+                        line_index = existing_locations_description.index(line) + 1
+                        for new_line in new_location_description:
+                            existing_locations_description.insert(line_index, new_line)
+                            line_index += 1
+                        break
+
+                with open('locations.py', 'w') as f_dest:
+                    f_dest.writelines(existing_locations_description)
+
+                self.location = map_name
+            elif self.menu_actions_pending[-1] == 'load':
+                print(f'[main menu] {self.menu_actions_pending=}')
+                self.location = self.menu_actions_pending[-1]
                 self.need_to_load = True
+                self.reset_menu_actions_pending()
                 return
             elif self.menu_actions_pending[-1] == 'quit':
                 pygame.quit()
@@ -1072,27 +1113,45 @@ class World(object):
 
     def load(self):
         self.obstacles[self.location] = dict()
-        try:
-            max_obs_id = 0
-            for obs in locations.locations[self.location]['obstacles']['obs rectangles']:
-                self.add_obstacle(obs)
-                if max_obs_id < obs[-1]:
-                    max_obs_id = obs[-1]
-            self.obstacle_id = max_obs_id + 1
 
-            self.obs_settings = locations.locations[self.location]['obstacles']['settings']
-            for active_obs_id in self.obs_settings.keys():
-                if active_obs_id in self.obstacles[self.location].keys():
-                    self.obstacles[self.location][active_obs_id].active_flag = True
-            # for dem in locations[self.location]['demolishers']['dem rectangles']:
-            #     self.add_demolisher(dem)
-            self.camera.setup(locations.locations[self.location]['size'][0], locations.locations[self.location]['size'][1])
-            self.create_snap_mesh()
-        except NameError:
-            self.obstacles[self.location] = dict()
-            self.demolishers[self.location] = dict()
-            self.camera.setup(MAXX, MAXY)
-            self.create_snap_mesh()
+        max_obs_id = 0
+        for obs in locations.locations[self.location]['obstacles']['obs rectangles']:
+            self.add_obstacle(obs)
+            if max_obs_id < obs[-1]:
+                max_obs_id = obs[-1]
+        self.obstacle_id = max_obs_id + 1
+
+        self.obs_settings = locations.locations[self.location]['obstacles']['settings']
+        for active_obs_id in self.obs_settings.keys():
+            if active_obs_id in self.obstacles[self.location].keys():
+                self.obstacles[self.location][active_obs_id].active_flag = True
+        # for dem in locations[self.location]['demolishers']['dem rectangles']:
+        #     self.add_demolisher(dem)
+        self.camera.setup(locations.locations[self.location]['size'][0], locations.locations[self.location]['size'][1])
+        self.create_snap_mesh()
+
+        # self.obstacles[self.location] = dict()
+        # try:
+        #     max_obs_id = 0
+        #     for obs in locations.locations[self.location]['obstacles']['obs rectangles']:
+        #         self.add_obstacle(obs)
+        #         if max_obs_id < obs[-1]:
+        #             max_obs_id = obs[-1]
+        #     self.obstacle_id = max_obs_id + 1
+        #
+        #     self.obs_settings = locations.locations[self.location]['obstacles']['settings']
+        #     for active_obs_id in self.obs_settings.keys():
+        #         if active_obs_id in self.obstacles[self.location].keys():
+        #             self.obstacles[self.location][active_obs_id].active_flag = True
+        #     # for dem in locations[self.location]['demolishers']['dem rectangles']:
+        #     #     self.add_demolisher(dem)
+        #     self.camera.setup(locations.locations[self.location]['size'][0], locations.locations[self.location]['size'][1])
+        #     self.create_snap_mesh()
+        # except NameError:
+        #     self.obstacles[self.location] = dict()
+        #     self.demolishers[self.location] = dict()
+        #     self.camera.setup(MAXX, MAXY)
+        #     self.create_snap_mesh()
         # self.obstacle_id = len(self.obstacles[self.location].keys()) + 1
 
     def save(self):
@@ -1849,6 +1908,8 @@ class World(object):
     def process(self):
         # self.create_text_input((100, 100), 'INPUT TEXT XXXXXXXXXXXXXXXXXXXXXXXXXXX:', 'str')
         self.processing_human_input()
+        if self.need_to_load:
+            return
         # print('ok')
         if self.menu_items:
             # self.processing_menu_items(True)
@@ -2100,8 +2161,9 @@ world = World()
 world.set_screen(screen)
 # world.create_text_input((100, 100), 'INPUT TEXT:', 'digit')
 import locations
-world.setup()
-
+world.main_menu()
+# world.setup()
+importlib.reload(locations)
 # world.location_names['names list'] = list(locations.locations.keys())
 world.load()
 
@@ -2120,6 +2182,13 @@ def main():
         #     world.obstacles[world.location] = dict()
         #     world.load()
         #     world.create_snap_mesh()
+    # if world.need_to_load:
+    #     world.need_to_load = False
+    #     importlib.reload(locations)
+    #     # world.setup()
+    #     # importlib.reload(locations)
+    #     world.load()
+
     world.process()
     pygame.display.flip()
 
@@ -2129,10 +2198,10 @@ if __name__ == "__main__":
         if world.need_to_load:
             world.need_to_load = False
             importlib.reload(locations)
-            world.setup()
+            # world.setup()
             # importlib.reload(locations)
             world.load()
-            # world.create_snap_mesh()
+            world.create_snap_mesh()
         # if allow_import_location:
         #     from locations import *
         #     allow_import_location = False

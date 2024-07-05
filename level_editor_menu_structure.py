@@ -408,7 +408,7 @@ menu_structure = {
             'label': '[CREATE NEW MAP]',
             'on hover action': None,
             'LMB action': 'return value',
-            'value': None,
+            'value': 'new',
             'description': 'new',
             'active': True,
             'after action': None
@@ -434,9 +434,19 @@ menu_structure = {
             'active': False,
             'after action': None
         },
+        'new': {
+            'rectangle': pygame.Rect(menu_elements_bindings['central left button']),
+            'label': '[CREATE NEW MAP]',
+            'on hover action': None,
+            'LMB action': 'return value',
+            'value': 'new',
+            'description': 'new',
+            'active': True,
+            'after action': None
+        },
         'save': {
             'rectangle': pygame.Rect(menu_elements_bindings['central left button']),
-            'label': '[SAVE CURRENT MAP]',
+            'label': '[SAVE]',
             'on hover action': None,
             'LMB action': 'return value',
             'value': 'save',
@@ -446,17 +456,18 @@ menu_structure = {
         },
         'load': {
             'rectangle': pygame.Rect(menu_elements_bindings['central right button']),
-            'label': '[LOAD...]',
+            'label': '[LOAD]',
             'on hover action': None,
-            'LMB action': 'return value',
-            'value': "load",
-            # 'LMB action': ('exec', "reset_menu()\nneed_to_load = True\nreturn"),
+            'LMB action': 'submenu',
+            'value': "map single selection",
+            # 'LMB action': 'return value',
+            # 'value': "load",
             'active': True,
             'after action': None
         },
         'resize': {
             'rectangle': pygame.Rect(menu_elements_bindings['bottom right button']),
-            'label': '[RESIZE MAP...]',
+            'label': '[RESIZE MAP]',
             'on hover action': None,
             'LMB action': 'return value',
             'value': "resize",

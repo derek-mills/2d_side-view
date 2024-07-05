@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/level_editor_menu_structure.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/level_editor_menu_structure.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor_menu_structure.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -119,13 +119,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00168" summary="Some minor changes.&#10;Experiment with sine wave-like movement.">
-      <created>1718787907240</created>
-      <option name="number" value="00168" />
-      <option name="presentableId" value="LOCAL-00168" />
-      <option name="project" value="LOCAL" />
-      <updated>1718787907240</updated>
     </task>
     <task id="LOCAL-00169" summary="Enhanced exotic sine-wave movement.">
       <created>1718849288296</created>
@@ -463,7 +456,14 @@
       <option name="project" value="LOCAL" />
       <updated>1720084130937</updated>
     </task>
-    <option name="localTasksCounter" value="217" />
+    <task id="LOCAL-00217" summary="Level editor: once again doing remake of the menu system :^(.">
+      <created>1720156672855</created>
+      <option name="number" value="00217" />
+      <option name="presentableId" value="LOCAL-00217" />
+      <option name="project" value="LOCAL" />
+      <updated>1720156672855</updated>
+    </task>
+    <option name="localTasksCounter" value="218" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -478,7 +478,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed demolishers fly ability." />
     <MESSAGE value="Level editor saving system upgraded." />
     <MESSAGE value="Keep upgrading level editor saving system." />
     <MESSAGE value="Added an opportunity to multiple load other maps by pressing F3 button during one session of level editor." />
@@ -503,6 +502,7 @@
     <MESSAGE value="Level editor: menu behavior became even much more elegant." />
     <MESSAGE value="Level editor: it is able to edit custom obstacle properties through context menu." />
     <MESSAGE value="Level editor: try to get menu system work with self.menu_structure dict as the only one source of settings." />
-    <option name="LAST_COMMIT_MESSAGE" value="Level editor: try to get menu system work with self.menu_structure dict as the only one source of settings." />
+    <MESSAGE value="Level editor: once again doing remake of the menu system :^(." />
+    <option name="LAST_COMMIT_MESSAGE" value="Level editor: once again doing remake of the menu system :^(." />
   </component>
 </project>
