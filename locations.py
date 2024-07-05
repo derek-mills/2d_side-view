@@ -1,6 +1,6 @@
 from constants import *
 locations = {
-
+    
     'room 2':
         {
             'music': 'music/ambient_1.mp3',
@@ -28,7 +28,18 @@ locations = {
                 ((800, 750), (400, 50), 17),
                   ), # OBSTACLE RECTANGLES SECTION END
                 'settings': {
-			
+                    10: {
+                        'ghost': True,
+                        'speed': 0.0,
+                        'active': True,
+                        'collideable': True,
+                        'gravity affected': True,
+                        'actors pass through': True,
+                        'invisible': True,
+                        'trigger': True,
+                        'trigger description': {'make active': [], 'disappear': False},
+                        'actions': {0: (('move', (0, 0, 100, 1000)), ('move', 'start area'), ('repeat', 0))},
+                  },
                   } # OBSTACLE SETTINGS SECTION END
               },
             'items': {},
@@ -67,4 +78,4 @@ locations = {
               },
             'items': {},
     },
-}		
+}

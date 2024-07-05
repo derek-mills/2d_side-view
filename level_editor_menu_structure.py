@@ -54,8 +54,10 @@ menu_structure = {
             'LMB action': 'return value',
             'value': '$description',
             'label': '$description',
+            # 'target': '',
             # 'description': '*item',
-            'active': True
+            'active': True,
+            # 'after action': 'keep going'
         },
     },
 
@@ -101,31 +103,32 @@ menu_structure = {
         },
     },
 
-    'teleport/trigger': {
+    'teleport description': {
         'header': {
             'rectangle': None,
-            'label': 'CHOOSE TYPE:',
-            'description': 'teleport/trigger',
+            'label': 'DESCRIBE TELEPORT:',
+            'description': 'teleport description',
             'on hover action': None,
             'LMB action': None,
             'active': False,
             'after action': None
         },
-        'trigger': {
+        'select map': {
             'rectangle': None,
-            'label': '[ACTION TRIGGER]',
-            'on hover action': 'submenu',
-            'submenu name': 'obs multiple selection',
-            'value': 'obs multiple selection',
+            'label': '[SELECT MAP]',
+            'on hover action': None,
+            'submenu name': 'map single selection',
+            'value': "",
+            'target': "menu_structure['custom obs properties']['ok']['value']['teleport description']['new location']",
             'description': 'trigger',
-            'LMB action': None,
+            'LMB action': 'submenu',
             'active': True,
             'after action': None
         },
-        'teleport': {
+        'select point': {
             'rectangle': None,
-            'label': '[TELEPORT]',
-            'on hover action': 'submenu',
+            'label': '[SELECT POINT (X,Y) TO TELEPORT]',
+            'on hover action': None,
             'value': 'map single selection',
             'description': 'teleport',
             'LMB action': None,
@@ -133,7 +136,7 @@ menu_structure = {
             'after action': None
         },
     },
-    
+
     'obstacle edit': {
         'header': {
             'rectangle': None,
@@ -194,6 +197,7 @@ menu_structure = {
             'LMB action': 'switch state',
             'description': 'ghost',
             'value': ("menu_structure['custom obs properties']['ok']['value']['ghost']",),
+            'additional info': "*menu_structure['custom obs properties']['ok']['value']['ghost']",
             # 'LMB action': ['switch state', {'ghost': False}],
             'active': True,
             'also affects on': None,
@@ -205,6 +209,7 @@ menu_structure = {
             'on hover action': None,
             'LMB action': 'switch state',
             'value': ("menu_structure['custom obs properties']['ok']['value']['actors pass through']",),
+            'additional info': "*menu_structure['custom obs properties']['ok']['value']['actors pass through']",
             # 'LMB action': ['switch state', {'actors pass through': False}],
             'active': True,
             'also affects on': None,
@@ -217,6 +222,7 @@ menu_structure = {
             'on hover action': None,
             'LMB action': 'input number',
             'value': "menu_structure['custom obs properties']['ok']['value']['speed']",
+            'additional info': "*menu_structure['custom obs properties']['ok']['value']['speed']",
             # 'LMB action': ('input number', {'speed': 0}),
             'active': True,
             'also affects on': None,
@@ -228,6 +234,7 @@ menu_structure = {
             'on hover action': None,
             'LMB action': 'switch state',
             'value': ("menu_structure['custom obs properties']['ok']['value']['collideable']",),
+            'additional info': "*menu_structure['custom obs properties']['ok']['value']['collideable']",
             # 'LMB action': ['switch state', {'collideable': False}],
             'active': True,
             'also affects on': None,
@@ -239,6 +246,7 @@ menu_structure = {
             'on hover action': None,
             'LMB action': 'switch state',
             'value': ("menu_structure['custom obs properties']['ok']['value']['gravity affected']",),
+            'additional info': "*menu_structure['custom obs properties']['ok']['value']['gravity affected']",
             # 'LMB action': ['switch state', {'gravity affected': False}],
             'active': True,
             'also affects on': None,
@@ -250,6 +258,7 @@ menu_structure = {
             'on hover action': None,
             'LMB action': 'switch state',
             'value': ("menu_structure['custom obs properties']['ok']['value']['invisible']",),
+            'additional info': "*menu_structure['custom obs properties']['ok']['value']['invisible']",
             # 'value': {'invisible': False},
             'active': True,
             'also affects on': None,
@@ -274,8 +283,9 @@ menu_structure = {
             'label': 'teleport description',
             'on hover action': None,
             'LMB action': 'submenu',
-            'submenu name': 'map single selection',
+            'submenu name': 'teleport description',
             'value': 'trigger description',
+            # 'target': "menu_structure['custom obs properties']['ok']['value']['teleport description']",
             # 'value': menu_structure['custom obs properties']['ok']['value']['trigger description'],
             # 'LMB action': ['submenu', 'trigger description'],
             # 'LMB action': ['input string', {'trigger description': {}}],
@@ -319,6 +329,7 @@ menu_structure = {
             'on hover action': None,
             'LMB action': 'switch state',
             'value': ("menu_structure['custom obs properties']['ok']['value']['active']",),
+            'additional info': "*menu_structure['custom obs properties']['ok']['value']['active']",
             # 'LMB action': ['switch state', {'active': False}],
             'active': True,
             'also affects on': None,
@@ -374,7 +385,70 @@ menu_structure = {
             'after action': None
         },
     },
-    
+
+    'main menu': {
+        'header': {
+            'rectangle': pygame.Rect(menu_elements_bindings['central header']),
+            'label': 'Hit ESC to quit',
+            'on hover action': None,
+            'LMB action': None,
+            'active': False,
+            'after action': None
+        },
+        'new': {
+            'rectangle': pygame.Rect(menu_elements_bindings['central left button']),
+            'label': '[CREATE NEW MAP]',
+            'on hover action': None,
+            'LMB action': 'return value',
+            'value': 'new',
+            'description': 'new',
+            'active': True,
+            'after action': None
+        },
+        'save': {
+            'rectangle': pygame.Rect(menu_elements_bindings['central left button']),
+            'label': '[SAVE]',
+            'on hover action': None,
+            'LMB action': 'return value',
+            'value': 'save',
+            # 'LMB action': ('exec', 'save()'),
+            'active': True,
+            'after action': None
+        },
+        'load': {
+            'rectangle': pygame.Rect(menu_elements_bindings['central right button']),
+            'label': '[LOAD]',
+            'on hover action': None,
+            'LMB action': 'submenu',
+            'submenu name': "map single selection",
+            'value': "map single selection",
+            'target': "self.location",
+            # 'LMB action': 'return value',
+            # 'value': "load",
+            'active': True,
+            'after action': None
+        },
+        'resize': {
+            'rectangle': pygame.Rect(menu_elements_bindings['bottom right button']),
+            'label': '[RESIZE MAP]',
+            'on hover action': None,
+            'LMB action': 'return value',
+            'value': "resize",
+            # 'LMB action': ('exec', "x = create_text_input((MAXX_DIV_2, MAXY_DIV_2), 'ENTER MAX X:', 'digit')\ny = create_text_input((MAXX_DIV_2, MAXY_DIV_2 + 50), 'ENTER MAX Y:', 'digit')\ncamera.setup(int(x), int(y))\ncreate_snap_mesh()"),
+            'active': True,
+            'after action': None
+        },
+        'quit': {
+            'rectangle': pygame.Rect(menu_elements_bindings['bottom left button']),
+            'label': '[QUIT TO DOS...]',
+            'on hover action': None,
+            'LMB action': 'return value',
+            'value': "quit",
+            # 'LMB action': ('exec', "reset_menu()"),
+            'active': True,
+            'after action': None
+        },
+    },
     # 'trigger description': {
     #     'header': {
     #         'rectangle': menu_elements_bindings['central header'],
@@ -457,67 +531,6 @@ menu_structure = {
     #     },
     # },
 
-    'main menu': {
-        'header': {
-            'rectangle': pygame.Rect(menu_elements_bindings['central header']),
-            'label': 'Hit ESC to quit',
-            'on hover action': None,
-            'LMB action': None,
-            'active': False,
-            'after action': None
-        },
-        'new': {
-            'rectangle': pygame.Rect(menu_elements_bindings['central left button']),
-            'label': '[CREATE NEW MAP]',
-            'on hover action': None,
-            'LMB action': 'return value',
-            'value': 'new',
-            'description': 'new',
-            'active': True,
-            'after action': None
-        },
-        'save': {
-            'rectangle': pygame.Rect(menu_elements_bindings['central left button']),
-            'label': '[SAVE]',
-            'on hover action': None,
-            'LMB action': 'return value',
-            'value': 'save',
-            # 'LMB action': ('exec', 'save()'),
-            'active': True,
-            'after action': None
-        },
-        'load': {
-            'rectangle': pygame.Rect(menu_elements_bindings['central right button']),
-            'label': '[LOAD]',
-            'on hover action': None,
-            'LMB action': 'submenu',
-            'value': "map single selection",
-            # 'LMB action': 'return value',
-            # 'value': "load",
-            'active': True,
-            'after action': None
-        },
-        'resize': {
-            'rectangle': pygame.Rect(menu_elements_bindings['bottom right button']),
-            'label': '[RESIZE MAP]',
-            'on hover action': None,
-            'LMB action': 'return value',
-            'value': "resize",
-            # 'LMB action': ('exec', "x = create_text_input((MAXX_DIV_2, MAXY_DIV_2), 'ENTER MAX X:', 'digit')\ny = create_text_input((MAXX_DIV_2, MAXY_DIV_2 + 50), 'ENTER MAX Y:', 'digit')\ncamera.setup(int(x), int(y))\ncreate_snap_mesh()"),
-            'active': True,
-            'after action': None
-        },
-        'quit': {
-            'rectangle': pygame.Rect(menu_elements_bindings['bottom left button']),
-            'label': '[QUIT TO DOS...]',
-            'on hover action': None,
-            'LMB action': 'return value',
-            'value': "quit",
-            # 'LMB action': ('exec', "reset_menu()"),
-            'active': True,
-            'after action': None
-        },
-    },
 }
 
 # menu_structure = {

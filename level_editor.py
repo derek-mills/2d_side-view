@@ -134,7 +134,7 @@ class World(object):
             for reference_key in self.menu_structure['_template_menu_item_'].keys():
                 if reference_key in self.menu_structure[menu_name]['predefined keys'].keys():
                     reference_menu_item = self.menu_structure[menu_name]['predefined keys'][reference_key]
-                    if type(reference_menu_item) == str:
+                    if reference_menu_item and type(reference_menu_item) == str:
                         if reference_menu_item[0] == '*':
                         # if '*' in reference_menu_item:
                             # Has got a pointers to particular global variable:
@@ -250,13 +250,15 @@ class World(object):
                             if menu_item['on hover action'] == 'submenu':
                                 self.delete_all_child_menu_piles(pile_id)
                                 self.active_menu_pile += 1
-                                menu_name = menu_item['submenu name']
+                                # menu_name = menu_item['submenu name']
                                 # if 'generate list from' in self.menu_structure[menu_name].keys():
                                 #     # Let's generate a list of new menu items from the given text-type description of sequence:
                                 #     self.generate_menu(menu_name)
 
-                                self.add_menu(menu_name, (self.mouse_xy[0], menu_item['rectangle'].centery),
+                                self.add_menu(menu_item, (self.mouse_xy[0], menu_item['rectangle'].centery),
                                           menu_item['rectangle'].width, 20)
+                                # self.add_menu(menu_name, (self.mouse_xy[0], menu_item['rectangle'].centery),
+                                #           menu_item['rectangle'].width, 20)
                                 # self.add_menu(menu_name, (menu_item['rectangle'].x + menu_item['rectangle'].width // 2, menu_item['rectangle'].centery),
                                 #           menu_item['rectangle'].width, 20)
                                 return
@@ -274,12 +276,13 @@ class World(object):
                             # ----------SUBMENU-----------------------------------------
                             elif menu_item['LMB action'] == 'submenu':
                                 # REVEAL SUBMENU
-                                menu_name = menu_item['value']
+                                # menu_name = menu_item['value']
                                 self.delete_all_child_menu_piles(pile_id)
                                 self.active_menu_pile += 1
-
-                                self.add_menu(menu_name, (menu_item['rectangle'].x, menu_item['rectangle'].y),
+                                self.add_menu(menu_item, (menu_item['rectangle'].x, menu_item['rectangle'].y),
                                               menu_item['rectangle'].width, 20)
+                                # self.add_menu(menu_name, (menu_item['rectangle'].x, menu_item['rectangle'].y),
+                                #               menu_item['rectangle'].width, 20)
                                 # self.add_menu(menu_name, (menu_item['rectangle'].x + menu_item['rectangle'].width // 2, menu_item['rectangle'].centery),
                                 #               menu_item['rectangle'].width, 20, [self.menu_structure[menu_name][i] for i in self.menu_structure[menu_name].keys() if i != 'generate list from'])
                                 return
@@ -292,9 +295,9 @@ class World(object):
                                         value = eval(menu_item['value'][1:])
                                         # target.append(eval(menu_item['value'][1:]))
                                         # eval(menu_item['target']).append(eval(menu_item['value'][1:]))
-                                    elif menu_item['value'][0] == '@':
-                                        # Value have to be executed:
-                                        exec(menu_item['value'][1:])
+                                    # elif menu_item['value'][0] == '@':
+                                    #     # Value have to be executed:
+                                    #     exec(menu_item['value'][1:])
                                     else:
                                         # print(menu_item.keys())
                                         value = menu_item['value']
@@ -312,12 +315,12 @@ class World(object):
                                     menu_item['checked'] = True
                             # ----------SWITCH STATE-----------------------------------
                             elif menu_item['LMB action'] == 'switch state':
-                                menu_item['label'] = menu_item['label'].split(':')[0]
+                                # menu_item['label'] = menu_item['label'].split(':')[0]
                                 for_exec = ''
                                 for k_tmp_string in menu_item['value']:
                                     for_exec = k_tmp_string + ' = True if not eval(k_tmp_string) else False'
                                     exec(for_exec)
-                                    menu_item['label'] += ': ' + str(eval(k_tmp_string))
+                                    # menu_item['label'] += ': ' + str(eval(k_tmp_string))
                             # ----------RETURN------------------------------------------
                             elif menu_item['LMB action'] == 'return value':
                                 # if menu_item['LMB action'][0][0] == '@':  # String contains an expression to evaluate:
@@ -328,8 +331,14 @@ class World(object):
                                 else:
                                     self.menu_actions_pending.append(menu_item['value'])
                                     menu_item['checked'] = True
-                                # menu_item['checked'] = False if menu_item['checked'] else True
-                                # self.menu_action_pending = menu_item['LMB action'][1]
+
+                                if 'target' in menu_item.keys():
+                                    if menu_item['target']:
+                                        print('[process memu] menu item target is', menu_item['target'])
+
+                                        exec(menu_item['target'] + ' = menu_item[\'value\']')
+                                        # target = eval(menu_item['target'])
+                                        # target = menu_item['value']
 
                             # Aftermath:
                             if menu_item['after action']:
@@ -480,7 +489,8 @@ class World(object):
         #     item = self.menu_structure['main menu'][i]
         #     self.add_menu_item(item)
         # #    self.add_menu_item(item['rectangle'], item['label'], item['LMB action'], item['active'], item['on hover action'])
-        self.add_menu('main menu', (MAXX_DIV_2 - 200, 300), 400, 20)
+        self.add_menu({'submenu name': 'main menu', 'target': ''}, (MAXX_DIV_2 - 200, 300), 400, 20)
+        # self.add_menu('main menu', (MAXX_DIV_2 - 200, 300), 400, 20)
 
         while not self.menu_actions_done:
         # while self.menu_action_pending == '':
@@ -492,6 +502,7 @@ class World(object):
             pygame.display.flip()
         self.reset_human_input()
         self.reset_menu()
+        print(f'[main menu] {self.menu_actions_pending=}')
 
         if self.menu_actions_pending[-1] == 'CANCEL MENU':
             if not self.location:
@@ -501,8 +512,8 @@ class World(object):
             return
         else:
             if 'map single selection' in self.menu_actions_pending:
-                print(f'[main menu] {self.menu_actions_pending=}')
-                self.location = self.menu_actions_pending[-1]
+
+                # self.location = self.menu_actions_pending[-1]
                 self.need_to_load = True
                 self.reset_menu_actions_pending()
                 return
@@ -580,40 +591,6 @@ class World(object):
             #     elif command == 'save':
             #         self.save()
 
-    def main_menu_old(self):
-        if self.menu_items:
-            self.menu_items = dict()
-            self.menu_item_id = 1
-        else:
-            # if event.key == K_F3:
-            #     self.need_to_load = True
-            # if event.key == K_F2:
-            #     self.save()
-            self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central header']), 'Editing map (ESC quit program): ' + self.location, '', False)
-            self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central left button']), 'SAVE CURRENT', 'save', True)
-            self.add_menu_item(pygame.Rect(self.menu_elements_bindings['central right button']), 'LOAD...', 'load', True)
-            self.add_menu_item(pygame.Rect(self.menu_elements_bindings['bottom right button']), '[RESIZE MAP]', 'resize', True)
-            self.add_menu_item(pygame.Rect(self.menu_elements_bindings['bottom left button']), '[BACK TO EDITOR...]', 'return', True)
-            self.render_background()
-            command = ''
-            while command != 'return':
-                command = self.processing_menu_items()  # Do not Close menu after use
-                self.reset_human_input()
-                if command == 'CANCEL MENU':
-                    # if command in ('quit', 'CANCEL MENU'):
-                    pygame.quit()
-                    raise SystemExit()
-                elif command == 'load':
-                    self.reset_menu()
-                    self.need_to_load = True
-                    return
-                elif command == 'resize':
-                    x = self.create_text_input((MAXX_DIV_2, MAXY_DIV_2), 'ENTER MAX X:', 'digit')
-                    y = self.create_text_input((MAXX_DIV_2, MAXY_DIV_2 + 50), 'ENTER MAX Y:', 'digit')
-                    self.camera.setup(int(x), int(y))
-                    self.create_snap_mesh()
-                elif command == 'save':
-                    self.save()
 
     def processing_human_input(self):
         self.mouse_xy = pygame.mouse.get_pos()
@@ -906,13 +883,22 @@ class World(object):
         self.menu_item_id += 1
 
 
-    def add_menu(self, menu_name, top_left_corner, width, font_size):
+    def add_menu(self, parent_menu_item, top_left_corner, width, font_size):
+    # def add_menu(self, menu_name, top_left_corner, width, font_size):
     # def add_menu(self, menu_name, top_left_corner, width, font_size, items):
     # def add_menu(self, top_left_corner, width, font_size, items):
     #     self.menu_action_pending = ''
         self.menu_item_id = 0
         restricted = ('generate list from', 'predefined keys','target object')
-        items = self.menu_structure[menu_name].keys()
+        menu_name = parent_menu_item['submenu name']
+        if 'target' in parent_menu_item.keys():
+            if parent_menu_item['target']:
+                target = parent_menu_item['target']
+            else:
+                target = None
+        else:
+            target = None
+        # items = self.menu_structure[menu_name].keys()
 
         if menu_name not in self.menu_actions_pending:
                 self.menu_actions_pending.append(menu_name)
@@ -921,6 +907,7 @@ class World(object):
             # Let's generate a list of new menu items from the given text-type description of sequence:
             self.generate_menu(menu_name)
 
+        items = self.menu_structure[menu_name].keys()
         dy = 0
         height = font_size + 16
         total_menu_height = height * len([i for i in items if i not in restricted])
@@ -930,14 +917,17 @@ class World(object):
         else:
             start_y = top_left_corner[1] + total_menu_height - height
 
+
         for i in reversed(items):
             if i in restricted:
                 continue
             # print(i)
             item =  self.menu_structure[menu_name][i]
             item['rectangle'] = pygame.Rect(top_left_corner[0], start_y - dy, width, height)
+            print(f'[add_menu] try to set {target=} to item.target in {menu_name=}')
+            if 'target' not in item.keys() or not item['target']:
+                item['target'] = target
             self.add_menu_item(item)
-
             dy += height
 
         # print(f'[add_menu] Adding menu: {menu_name}')
@@ -1335,9 +1325,12 @@ class World(object):
 
                     # pygame.draw.rect(self.screen, RED, (menu_item['rectangle'].x + 1, menu_item['rectangle'].y + 1,
                     #                                                          menu_item['rectangle'].w - 2, menu_item['rectangle'].h - 2), 1)
-
-                    # s = fonts.font15.render(str(menu_item['text']) + ' (PILE: ' + str(pile_id) + ' #' + str(k) + ')', True, txt_color)
-                    s = fonts.font15.render(str(menu_item['label']), True, txt_color)
+                    if 'target' in menu_item.keys():
+                        add_txt = ' TARGET: ' + str(menu_item['target'])
+                    else:
+                        add_txt = ' (no target)'
+                    s = fonts.font15.render(str(menu_item['label']) + add_txt, True, txt_color)
+                    # s = fonts.font15.render(str(menu_item['label']), True, txt_color)
                     self.screen.blit(s, (menu_item['rectangle'].centerx - s.get_size()[0] // 2, menu_item['rectangle'].centery - s.get_size()[1] // 2))
 
                     if 'additional info' in menu_item.keys():
@@ -1643,7 +1636,8 @@ class World(object):
         # self.menu_action_pending = ''
         self.reset_menu_actions_pending()
         # Create menu of 'obstacle edit' type, which was predefined in self.menu_structure:
-        self.add_menu('custom obs properties', self.mouse_xy, 400, 20)
+        self.add_menu({'submenu name': 'custom obs properties', 'target': ''}, self.mouse_xy, 400, 20)
+        # self.add_menu('custom obs properties', self.mouse_xy, 400, 20)
         # self.add_menu('obstacle edit', self.mouse_xy, 400, 20)
         # self.add_menu(self.mouse_xy, 400, 20, [self.menu_structure['obstacle edit'][i] for i in self.menu_structure['obstacle edit'].keys()])
 
