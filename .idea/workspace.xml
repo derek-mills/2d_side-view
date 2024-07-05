@@ -120,13 +120,6 @@
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
     </task>
-    <task id="LOCAL-00169" summary="Enhanced exotic sine-wave movement.">
-      <created>1718849288296</created>
-      <option name="number" value="00169" />
-      <option name="presentableId" value="LOCAL-00169" />
-      <option name="project" value="LOCAL" />
-      <updated>1718849288296</updated>
-    </task>
     <task id="LOCAL-00170" summary="Player actor possesses separate field in world.actors dict&#10;Try to develop locations changing system.">
       <created>1718854049452</created>
       <option name="number" value="00170" />
@@ -463,7 +456,14 @@
       <option name="project" value="LOCAL" />
       <updated>1720156672855</updated>
     </task>
-    <option name="localTasksCounter" value="218" />
+    <task id="LOCAL-00218" summary="Level editor: setup() is deprecated.">
+      <created>1720159189897</created>
+      <option name="number" value="00218" />
+      <option name="presentableId" value="LOCAL-00218" />
+      <option name="project" value="LOCAL" />
+      <updated>1720159189897</updated>
+    </task>
+    <option name="localTasksCounter" value="219" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -478,7 +478,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Level editor saving system upgraded." />
     <MESSAGE value="Keep upgrading level editor saving system." />
     <MESSAGE value="Added an opportunity to multiple load other maps by pressing F3 button during one session of level editor." />
     <MESSAGE value="Fixed: settings of currently editing map did not load and be wasted after the very first save by F2." />
@@ -503,6 +502,7 @@
     <MESSAGE value="Level editor: it is able to edit custom obstacle properties through context menu." />
     <MESSAGE value="Level editor: try to get menu system work with self.menu_structure dict as the only one source of settings." />
     <MESSAGE value="Level editor: once again doing remake of the menu system :^(." />
-    <option name="LAST_COMMIT_MESSAGE" value="Level editor: once again doing remake of the menu system :^(." />
+    <MESSAGE value="Level editor: setup() is deprecated." />
+    <option name="LAST_COMMIT_MESSAGE" value="Level editor: setup() is deprecated." />
   </component>
 </project>

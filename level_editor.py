@@ -255,13 +255,10 @@ class World(object):
                                 #     # Let's generate a list of new menu items from the given text-type description of sequence:
                                 #     self.generate_menu(menu_name)
 
-                                self.add_menu(menu_name, (menu_item['rectangle'].x + menu_item['rectangle'].width // 2, menu_item['rectangle'].centery),
+                                self.add_menu(menu_name, (self.mouse_xy[0], menu_item['rectangle'].centery),
                                           menu_item['rectangle'].width, 20)
                                 # self.add_menu(menu_name, (menu_item['rectangle'].x + menu_item['rectangle'].width // 2, menu_item['rectangle'].centery),
-                                #           menu_item['rectangle'].width, 20,
-                                #           [self.menu_structure[menu_name][i] for i in self.menu_structure[menu_name].keys() if i not in ('generate list from',\
-                                #                                                                                                          'predefined keys',\
-                                #                                                                                                          'target object')])
+                                #           menu_item['rectangle'].width, 20)
                                 return
                     else:
                         if self.active_menu_pile > pile_id:
@@ -271,17 +268,22 @@ class World(object):
                     if self.is_left_mouse_button_down:
                         self.is_left_mouse_button_down = False
                         if menu_item['LMB action']:
+                            # ----------EXEC--------------------------------------------
                             if menu_item['LMB action'] == 'exec':
-                                # RAW CODE EXECUTION
                                 exec(menu_item['value'])
+                            # ----------SUBMENU-----------------------------------------
                             elif menu_item['LMB action'] == 'submenu':
                                 # REVEAL SUBMENU
                                 menu_name = menu_item['value']
-                                self.add_menu(menu_name, (menu_item['rectangle'].x + menu_item['rectangle'].width // 2, menu_item['rectangle'].centery),
+                                self.delete_all_child_menu_piles(pile_id)
+                                self.active_menu_pile += 1
+
+                                self.add_menu(menu_name, (menu_item['rectangle'].x, menu_item['rectangle'].y),
                                               menu_item['rectangle'].width, 20)
                                 # self.add_menu(menu_name, (menu_item['rectangle'].x + menu_item['rectangle'].width // 2, menu_item['rectangle'].centery),
                                 #               menu_item['rectangle'].width, 20, [self.menu_structure[menu_name][i] for i in self.menu_structure[menu_name].keys() if i != 'generate list from'])
                                 return
+                            # ----------APPEND------------------------------------------
                             elif menu_item['LMB action'] == 'append value':
                                 target = eval(menu_item['target'])
                                 if type(menu_item['value']) == str:
@@ -308,6 +310,7 @@ class World(object):
                                 else:
                                     target.append(value)
                                     menu_item['checked'] = True
+                            # ----------SWITCH STATE-----------------------------------
                             elif menu_item['LMB action'] == 'switch state':
                                 menu_item['label'] = menu_item['label'].split(':')[0]
                                 for_exec = ''
@@ -315,6 +318,7 @@ class World(object):
                                     for_exec = k_tmp_string + ' = True if not eval(k_tmp_string) else False'
                                     exec(for_exec)
                                     menu_item['label'] += ': ' + str(eval(k_tmp_string))
+                            # ----------RETURN------------------------------------------
                             elif menu_item['LMB action'] == 'return value':
                                 # if menu_item['LMB action'][0][0] == '@':  # String contains an expression to evaluate:
                                 # SIMPLY STORE STRING INTO PENDING LIST
@@ -400,172 +404,71 @@ class World(object):
     #             start_x += (w + self.menu_buttons_spacing)
     #             start_y = self.menu_screen_edge_margin + self.menu_headers_height + self.menu_buttons_spacing
 
-    def setup(self):
-        for i in self.menu_structure['initial setup'].keys():
-            item = self.menu_structure['initial setup'][i]
-            self.add_menu_item(item)
-        self.add_menu('initial setup', (MAXX_DIV_2 -200, 300), 400, 20)
-        # self.add_menu('initial setup', (MAXX_DIV_2 -200, 300), 400, 20, [self.menu_structure['initial setup'][i] for i in self.menu_structure['initial setup'].keys()])
-
-        while not self.menu_actions_done:
-        # while self.menu_action_pending == '':
-            self.processing_human_input()
-            self.processing_menu_items()
-            self.render_background()
-            self.render_menu_items()
-            self.render_debug_info()
-            pygame.display.flip()
-        self.reset_human_input()
-        self.reset_menu()
-
-        if self.menu_actions_pending[-1] in ('CANCEL MENU', 'quit'):
-            pygame.quit()
-            raise SystemExit()
-
-        if 'map single selection' in self.menu_actions_pending:
-            print(f'[setup] {self.menu_actions_pending=}')
-            self.location = self.menu_actions_pending[-1]
-            self.reset_menu_actions_pending()
-
-        elif self.menu_actions_pending[-1] == 'new':
-            self.reset_menu_actions_pending()
-            # self.menu_action_pending = ''
-            # print('make new')
-            # # Setting up the new map:
-            width = MAXX
-            height = MAXY
-            new_location_description = list()
-            with open('locations.py', 'r') as f:
-                existing_locations_description = f.readlines()
-
-            map_name = str(uuid.uuid1())
-
-            # Using the template to build a structure of new map's description:
-            with open('locations_template.py', 'r') as template_source:
-                for line in template_source:
-                    if 'new_map_name' in line:
-                        new_line = '    \'' + map_name + '\':\n'
-                        new_location_description.append(new_line)
-                    elif 'new_map_size' in line:
-                        new_line = '            \'size\': (' + str(width) + ', ' + str(height) + '), \n'
-                        new_location_description.append(new_line)
-                    else:
-                        new_location_description.append(line)
-
-            # Insert the new map description into the existing locations.py file:
-            for line in existing_locations_description:
-                if 'locations = {' in line:
-                    line_index = existing_locations_description.index(line) + 1
-                    for new_line in new_location_description:
-                        existing_locations_description.insert(line_index, new_line)
-                        line_index += 1
-                    break
-
-            with open('locations.py', 'w') as f_dest:
-                f_dest.writelines(existing_locations_description)
-
-            self.location = map_name
-
-
-
-
-    def setup_old(self):
-        for i in self.menu_structure['initial setup'].keys():
-            item = self.menu_structure['initial setup'][i]
-            self.add_menu_item(item)
-        self.add_menu('initial setup', (MAXX_DIV_2 -200, 300), 400, 20)
-        # self.add_menu('initial setup', (MAXX_DIV_2 -200, 300), 400, 20, [self.menu_structure['initial setup'][i] for i in self.menu_structure['initial setup'].keys()])
-
-        while not self.menu_actions_done:
-        # while self.menu_action_pending == '':
-            self.processing_human_input()
-            self.processing_menu_items()
-            self.render_background()
-            self.render_menu_items()
-            self.render_debug_info()
-            pygame.display.flip()
-        self.reset_human_input()
-        self.reset_menu()
-
-        if self.menu_actions_pending[-1] in ('CANCEL MENU', 'quit'):
-            pygame.quit()
-            raise SystemExit()
-
-        elif self.menu_actions_pending[-1] == 'new':
-            self.reset_menu_actions_pending()
-            # self.menu_action_pending = ''
-            # print('make new')
-            # # Setting up the new map:
-            width = MAXX
-            height = MAXY
-            new_location_description = list()
-            with open('locations.py', 'r') as f:
-                existing_locations_description = f.readlines()
-
-            map_name = str(uuid.uuid1())
-
-            # Using the template to build a structure of new map's description:
-            with open('locations_template.py', 'r') as template_source:
-                for line in template_source:
-                    if 'new_map_name' in line:
-                        new_line = '    \'' + map_name + '\':\n'
-                        new_location_description.append(new_line)
-                    elif 'new_map_size' in line:
-                        new_line = '            \'size\': (' + str(width) + ', ' + str(height) + '), \n'
-                        new_location_description.append(new_line)
-                    else:
-                        new_location_description.append(line)
-
-            # Insert the new map description into the existing locations.py file:
-            for line in existing_locations_description:
-                if 'locations = {' in line:
-                    line_index = existing_locations_description.index(line) + 1
-                    for new_line in new_location_description:
-                        existing_locations_description.insert(line_index, new_line)
-                        line_index += 1
-                    break
-
-            with open('locations.py', 'w') as f_dest:
-                f_dest.writelines(existing_locations_description)
-
-            self.location = map_name
-
-        elif self.menu_actions_pending[-1] == 'existing':
-            # self.menu_action_pending = ''
-            # print('edit existing')
-            # User wants to edit an existing map.
-            # import locations
-            self.reset_human_input()
-            self.reset_menu()
-            self.reset_menu_actions_pending()
-
-            self.render_background()
-            # map_names = list(locations.locations.keys())
-            self.generate_menu('map single selection')
-            self.add_menu('map single selection', (MAXX_DIV_2 - 200, 300), 400, 20,
-                          [self.menu_structure['map single selection'][i] for i in self.menu_structure['map single selection'].keys()\
-                           if i not in ('generate list from', 'predefined keys', 'target object')])
-
-            # self.add_menu_item(pygame.Rect(self.menu_elements_bindings['top header']), 'CHOOSE AN EXISTING MAP', '', False)
-            # self.create_menu_items_from_list(map_names, '', 'medium')
-            # command = self.processing_menu_items(True)
-            # self.location = command
-            while not self.menu_actions_done:
-            # while self.menu_action_pending == '':
-                self.processing_human_input()
-                self.processing_menu_items()
-                self.render_background()
-                self.render_menu_items()
-                pygame.display.flip()
-
-            if self.menu_actions_pending[-1] == 'CANCEL MENU':
-                pygame.quit()
-                raise SystemExit()
-            self.reset_menu()
-            self.reset_human_input()
-            print(self.menu_actions_pending)
-            self.location = self.menu_actions_pending[-1]
-            self.reset_menu_actions_pending()
+    # def setup(self):
+    #     for i in self.menu_structure['initial setup'].keys():
+    #         item = self.menu_structure['initial setup'][i]
+    #         self.add_menu_item(item)
+    #     self.add_menu('initial setup', (MAXX_DIV_2 -200, 300), 400, 20)
+    #     # self.add_menu('initial setup', (MAXX_DIV_2 -200, 300), 400, 20, [self.menu_structure['initial setup'][i] for i in self.menu_structure['initial setup'].keys()])
+    #
+    #     while not self.menu_actions_done:
+    #     # while self.menu_action_pending == '':
+    #         self.processing_human_input()
+    #         self.processing_menu_items()
+    #         self.render_background()
+    #         self.render_menu_items()
+    #         self.render_debug_info()
+    #         pygame.display.flip()
+    #     self.reset_human_input()
+    #     self.reset_menu()
+    #
+    #     if self.menu_actions_pending[-1] in ('CANCEL MENU', 'quit'):
+    #         pygame.quit()
+    #         raise SystemExit()
+    #
+    #     if 'map single selection' in self.menu_actions_pending:
+    #         print(f'[setup] {self.menu_actions_pending=}')
+    #         self.location = self.menu_actions_pending[-1]
+    #         self.reset_menu_actions_pending()
+    #
+    #     elif self.menu_actions_pending[-1] == 'new':
+    #         self.reset_menu_actions_pending()
+    #         # self.menu_action_pending = ''
+    #         # print('make new')
+    #         # # Setting up the new map:
+    #         width = MAXX
+    #         height = MAXY
+    #         new_location_description = list()
+    #         with open('locations.py', 'r') as f:
+    #             existing_locations_description = f.readlines()
+    #
+    #         map_name = str(uuid.uuid1())
+    #
+    #         # Using the template to build a structure of new map's description:
+    #         with open('locations_template.py', 'r') as template_source:
+    #             for line in template_source:
+    #                 if 'new_map_name' in line:
+    #                     new_line = '    \'' + map_name + '\':\n'
+    #                     new_location_description.append(new_line)
+    #                 elif 'new_map_size' in line:
+    #                     new_line = '            \'size\': (' + str(width) + ', ' + str(height) + '), \n'
+    #                     new_location_description.append(new_line)
+    #                 else:
+    #                     new_location_description.append(line)
+    #
+    #         # Insert the new map description into the existing locations.py file:
+    #         for line in existing_locations_description:
+    #             if 'locations = {' in line:
+    #                 line_index = existing_locations_description.index(line) + 1
+    #                 for new_line in new_location_description:
+    #                     existing_locations_description.insert(line_index, new_line)
+    #                     line_index += 1
+    #                 break
+    #
+    #         with open('locations.py', 'w') as f_dest:
+    #             f_dest.writelines(existing_locations_description)
+    #
+    #         self.location = map_name
 
     def reset_human_input(self):
         self.is_mouse_button_down = False
@@ -585,6 +488,7 @@ class World(object):
             self.processing_menu_items()
             self.render_background()
             self.render_menu_items()
+            self.render_debug_info()
             pygame.display.flip()
         self.reset_human_input()
         self.reset_menu()
@@ -609,7 +513,7 @@ class World(object):
             elif self.menu_actions_pending[-1] == 'new':
                 self.reset_menu_actions_pending()
                 # self.menu_action_pending = ''
-                # print('make new')
+                print('make new map')
                 # # Setting up the new map:
                 width = MAXX
                 height = MAXY
@@ -642,8 +546,8 @@ class World(object):
 
                 with open('locations.py', 'w') as f_dest:
                     f_dest.writelines(existing_locations_description)
-
                 self.location = map_name
+                self.need_to_load = True
             elif self.menu_actions_pending[-1] == 'load':
                 print(f'[main menu] {self.menu_actions_pending=}')
                 self.location = self.menu_actions_pending[-1]
@@ -1007,7 +911,7 @@ class World(object):
     # def add_menu(self, top_left_corner, width, font_size, items):
     #     self.menu_action_pending = ''
         self.menu_item_id = 0
-
+        restricted = ('generate list from', 'predefined keys','target object')
         items = self.menu_structure[menu_name].keys()
 
         if menu_name not in self.menu_actions_pending:
@@ -1019,14 +923,15 @@ class World(object):
 
         dy = 0
         height = font_size + 16
-        total_menu_height = height * len(items)
-        if MAXY - top_left_corner[1] < total_menu_height:
+        total_menu_height = height * len([i for i in items if i not in restricted])
+        if top_left_corner[1] + total_menu_height > MAXY:
+        # if MAXY - top_left_corner[1] < total_menu_height:
             start_y = MAXY - height
         else:
             start_y = top_left_corner[1] + total_menu_height - height
 
         for i in reversed(items):
-            if i in ('generate list from', 'predefined keys','target object'):
+            if i in restricted:
                 continue
             # print(i)
             item =  self.menu_structure[menu_name][i]
@@ -1268,95 +1173,95 @@ class World(object):
                 f.write('\n    },')
             f.write('\n}')
 
-    def save_back(self):
-        # Saving with pickle:
-        # with open('locations_'+self.location+'.dat', 'wb') as f:
-        #     pickle.dump(self.obstacles[self.location], f)
-
-        # Saving using JSON:
-        # obs_geometry = list()
-
-        obs_rects = list()
-        for k in self.obstacles[self.location].keys():
-            obs = self.obstacles[self.location][k]
-            total_strg = '                ' + \
-                         '(' + \
-                         str(obs.rectangle.topleft) + ', ' + \
-                         str(obs.rectangle.size) + \
-                         ', ' + str(k) + '),  #' + str(k) + '\n'
-            obs_rects.append(total_strg)
-
-        dem_rects = list()
-        if self.location in self.demolishers:
-            for k in self.demolishers[self.location].keys():
-                dem = self.demolishers[self.location][k]
-                total_strg = '                ' + \
-                       '(' + \
-                       str(dem.rectangle.topleft) + ', ' + \
-                       str(dem.rectangle.size) + ', ' + str(k) + \
-                       '),  #' + str(k) + '\n'
-                dem_rects.append(total_strg)
-
-        settings_list = list()
-
-        # print(obs_rects)
-        # print(dem_rects)
-        # exit()
-        # ['                ((100, 950), (1550, 50), 0),  #0\n',
-        #  '                ((1300, 500), (300, 250), 1),  #1\n',
-        #  '                ((950, 350), (100, 150), 2),  #2\n',
-        #  '                ((650, 300), (200, 200), 3),  #3\n']
-
-        # ['                ((550, 750), (200, 200), 0),  #0\n']
-        # new_location_description = list()
-        with open('locations.py', 'r') as f:
-            existing_locations_description = f.readlines()
-
-        print(f'Start searching {self.location} to remove obsolete rectangles...')
-        loc_found = False
-        lines_counter = 0
-        for line in existing_locations_description:
-            if '\'' + self.location + '\':' in line and not loc_found:
-                print(f'Location {self.location} found.')
-                loc_found = True
-
-            if loc_found:
-                if '\'obs rectangles\':' in line:
-                    # Now need to delete all obsolete information about rectangles:
-                    start_index_to_delete = lines_counter + 1
-                    # start_index_to_delete = existing_locations_description.index(line) + 1
-                    print(f'Start index to delete records: {start_index_to_delete}')
-                elif 'OBSTACLE RECTANGLES SECTION END' in line:
-                    end_index_to_delete = lines_counter
-                    # end_index_to_delete = existing_locations_description.index(line)
-                    print(f'Ending index to delete records: {end_index_to_delete}. Abort search.')
-                    break
-            lines_counter += 1
-
-        if loc_found:
-            del existing_locations_description[start_index_to_delete:end_index_to_delete]
-
-        loc_found = False
-        with open('locations.py', 'w') as f_dest:
-            for line in existing_locations_description:
-                f_dest.write(line)
-                if loc_found:
-                    if '\'obs rectangles\':' in line:
-                        for obs_rect_line in obs_rects:
-                            f_dest.write(obs_rect_line)
-                        loc_found = False
-
-                    if '\'dem rectangles\':' in line:
-                        for dem_rect_line in dem_rects:
-                            f_dest.write(dem_rect_line)
-                        # loc_found = False
-
-                if '\''+self.location+'\':' in line and not loc_found:
-                    # print('Location found!')
-                    loc_found = True
-        # f_dest.close()
-
-        self.allow_import_locations = True
+    # def save_back(self):
+    #     # Saving with pickle:
+    #     # with open('locations_'+self.location+'.dat', 'wb') as f:
+    #     #     pickle.dump(self.obstacles[self.location], f)
+    #
+    #     # Saving using JSON:
+    #     # obs_geometry = list()
+    #
+    #     obs_rects = list()
+    #     for k in self.obstacles[self.location].keys():
+    #         obs = self.obstacles[self.location][k]
+    #         total_strg = '                ' + \
+    #                      '(' + \
+    #                      str(obs.rectangle.topleft) + ', ' + \
+    #                      str(obs.rectangle.size) + \
+    #                      ', ' + str(k) + '),  #' + str(k) + '\n'
+    #         obs_rects.append(total_strg)
+    #
+    #     dem_rects = list()
+    #     if self.location in self.demolishers:
+    #         for k in self.demolishers[self.location].keys():
+    #             dem = self.demolishers[self.location][k]
+    #             total_strg = '                ' + \
+    #                    '(' + \
+    #                    str(dem.rectangle.topleft) + ', ' + \
+    #                    str(dem.rectangle.size) + ', ' + str(k) + \
+    #                    '),  #' + str(k) + '\n'
+    #             dem_rects.append(total_strg)
+    #
+    #     settings_list = list()
+    #
+    #     # print(obs_rects)
+    #     # print(dem_rects)
+    #     # exit()
+    #     # ['                ((100, 950), (1550, 50), 0),  #0\n',
+    #     #  '                ((1300, 500), (300, 250), 1),  #1\n',
+    #     #  '                ((950, 350), (100, 150), 2),  #2\n',
+    #     #  '                ((650, 300), (200, 200), 3),  #3\n']
+    #
+    #     # ['                ((550, 750), (200, 200), 0),  #0\n']
+    #     # new_location_description = list()
+    #     with open('locations.py', 'r') as f:
+    #         existing_locations_description = f.readlines()
+    #
+    #     print(f'Start searching {self.location} to remove obsolete rectangles...')
+    #     loc_found = False
+    #     lines_counter = 0
+    #     for line in existing_locations_description:
+    #         if '\'' + self.location + '\':' in line and not loc_found:
+    #             print(f'Location {self.location} found.')
+    #             loc_found = True
+    #
+    #         if loc_found:
+    #             if '\'obs rectangles\':' in line:
+    #                 # Now need to delete all obsolete information about rectangles:
+    #                 start_index_to_delete = lines_counter + 1
+    #                 # start_index_to_delete = existing_locations_description.index(line) + 1
+    #                 print(f'Start index to delete records: {start_index_to_delete}')
+    #             elif 'OBSTACLE RECTANGLES SECTION END' in line:
+    #                 end_index_to_delete = lines_counter
+    #                 # end_index_to_delete = existing_locations_description.index(line)
+    #                 print(f'Ending index to delete records: {end_index_to_delete}. Abort search.')
+    #                 break
+    #         lines_counter += 1
+    #
+    #     if loc_found:
+    #         del existing_locations_description[start_index_to_delete:end_index_to_delete]
+    #
+    #     loc_found = False
+    #     with open('locations.py', 'w') as f_dest:
+    #         for line in existing_locations_description:
+    #             f_dest.write(line)
+    #             if loc_found:
+    #                 if '\'obs rectangles\':' in line:
+    #                     for obs_rect_line in obs_rects:
+    #                         f_dest.write(obs_rect_line)
+    #                     loc_found = False
+    #
+    #                 if '\'dem rectangles\':' in line:
+    #                     for dem_rect_line in dem_rects:
+    #                         f_dest.write(dem_rect_line)
+    #                     # loc_found = False
+    #
+    #             if '\''+self.location+'\':' in line and not loc_found:
+    #                 # print('Location found!')
+    #                 loc_found = True
+    #     # f_dest.close()
+    #
+    #     self.allow_import_locations = True
 
     def render_background(self):
         pygame.draw.rect(self.screen, BLACK, (0,0,MAXX, MAXY))
@@ -1434,6 +1339,18 @@ class World(object):
                     # s = fonts.font15.render(str(menu_item['text']) + ' (PILE: ' + str(pile_id) + ' #' + str(k) + ')', True, txt_color)
                     s = fonts.font15.render(str(menu_item['label']), True, txt_color)
                     self.screen.blit(s, (menu_item['rectangle'].centerx - s.get_size()[0] // 2, menu_item['rectangle'].centery - s.get_size()[1] // 2))
+
+                    if 'additional info' in menu_item.keys():
+                        if menu_item['additional info'][0] == '*':
+                            info = eval(menu_item['additional info'][1:])
+                        else:
+                            info = menu_item['additional info']
+                        s = fonts.font15.render(str(info), True, BLACK)
+                        pygame.draw.rect(self.screen, GRAY, (menu_item['rectangle'].right, menu_item['rectangle'].y,
+                                                                   50, menu_item['rectangle'].h), 0)
+                        self.screen.blit(s, (menu_item['rectangle'].right + 25 - s.get_size()[0] // 2,
+                                             menu_item['rectangle'].centery - s.get_size()[1] // 2))
+
                 else:
                     # Inactive menu items (mostly, the headers)
                     # SHADOW:
@@ -1726,7 +1643,8 @@ class World(object):
         # self.menu_action_pending = ''
         self.reset_menu_actions_pending()
         # Create menu of 'obstacle edit' type, which was predefined in self.menu_structure:
-        self.add_menu('obstacle edit', self.mouse_xy, 400, 20)
+        self.add_menu('custom obs properties', self.mouse_xy, 400, 20)
+        # self.add_menu('obstacle edit', self.mouse_xy, 400, 20)
         # self.add_menu(self.mouse_xy, 400, 20, [self.menu_structure['obstacle edit'][i] for i in self.menu_structure['obstacle edit'].keys()])
 
         while not self.menu_actions_done:
