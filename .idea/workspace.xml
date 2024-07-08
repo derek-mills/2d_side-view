@@ -8,6 +8,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/level_editor_menu_structure.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor_menu_structure.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,13 +119,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00173" summary="Improving level editor: added opportunity to set up a new map before editor starts.&#10;Saving function redesigned.">
-      <created>1718866352548</created>
-      <option name="number" value="00173" />
-      <option name="presentableId" value="LOCAL-00173" />
-      <option name="project" value="LOCAL" />
-      <updated>1718866352548</updated>
     </task>
     <task id="LOCAL-00174" summary="Improving level editor: fixing minor bugs.">
       <created>1718870795654</created>
@@ -462,7 +456,14 @@
       <option name="project" value="LOCAL" />
       <updated>1720415046292</updated>
     </task>
-    <option name="localTasksCounter" value="222" />
+    <task id="LOCAL-00222" summary="Level editor: keep going.">
+      <created>1720420449103</created>
+      <option name="number" value="00222" />
+      <option name="presentableId" value="LOCAL-00222" />
+      <option name="project" value="LOCAL" />
+      <updated>1720420449103</updated>
+    </task>
+    <option name="localTasksCounter" value="223" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -477,7 +478,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed: settings of currently editing map did not load and be wasted after the very first save by F2." />
     <MESSAGE value="Level editor: added main menu." />
     <MESSAGE value="Level editor: try to develop editing menu system." />
     <MESSAGE value="Level editor: implemented standard bindings for menu elements on the screen." />
@@ -502,6 +502,7 @@
     <MESSAGE value="Level editor: setup() is deprecated." />
     <MESSAGE value="Level editor: too many tiny changes to describe ((." />
     <MESSAGE value="Level editor: once again try to create flexible menu system, which could be described using only menu_structure dict." />
-    <option name="LAST_COMMIT_MESSAGE" value="Level editor: once again try to create flexible menu system, which could be described using only menu_structure dict." />
+    <MESSAGE value="Level editor: keep going." />
+    <option name="LAST_COMMIT_MESSAGE" value="Level editor: keep going." />
   </component>
 </project>

@@ -299,28 +299,6 @@ class World(object):
                                 else:
                                     target.append(value)
                                     menu_item['checked'] = True
-                            # # ----------APPEND------------------------------------------
-                            # elif menu_item['LMB action'] == 'append value':
-                            #     target = eval(menu_item['target'])
-                            #     if type(menu_item['value']) == str:
-                            #         if menu_item['value'][0] == '*':
-                            #             # Pointer to a mutable type variable:
-                            #             value = eval(menu_item['value'][1:])
-                            #         else:
-                            #             # print(menu_item.keys())
-                            #             value = menu_item['value']
-                            #     else:
-                            #         # print(menu_item.keys())
-                            #         value = menu_item['value']
-                            #         # target.append(menu_item['value'])
-                            #         # eval(menu_item['target']).append(menu_item['value'])
-                            #
-                            #     if value in target:
-                            #         target.remove(value)
-                            #         menu_item['checked'] = False
-                            #     else:
-                            #         target.append(value)
-                            #         menu_item['checked'] = True
                             # ----------SWITCH STATE-----------------------------------
                             elif menu_item['LMB action'] == 'switch state':
                                 # menu_item['label'] = menu_item['label'].split(':')[0]
@@ -332,26 +310,7 @@ class World(object):
                             # ----------STORE VALUE------------------------------------------
                             elif menu_item['LMB action'] == 'store value':
                                 exec(menu_item['target'] + ' = menu_item[\'value\']')
-                            # # ----------RETURN------------------------------------------
-                            # elif menu_item['LMB action'] == 'return value':
-                            #     # if menu_item['LMB action'][0][0] == '@':  # String contains an expression to evaluate:
-                            #     # SIMPLY STORE STRING INTO PENDING LIST
-                            #     if menu_item['value'] in self.menu_walk_tree:
-                            #         self.menu_walk_tree.remove(menu_item['value'])
-                            #         menu_item['checked'] = False
-                            #     else:
-                            #         self.menu_walk_tree.append(menu_item['value'])
-                            #         menu_item['checked'] = True
-                            #
-                            #     if 'target' in menu_item.keys():
-                            #         if menu_item['target']:
-                            #             print('[process memu] menu item target is', menu_item['target'])
-                            #
-                            #             exec(menu_item['target'] + ' = menu_item[\'value\']')
-                            #             # target = eval(menu_item['target'])
-                            #             # target = menu_item['value']
 
-                            # Aftermath:
 
                             # ----------AFTERMATH ACTIONS--------------------------------
                             # if menu_item['after action']:
@@ -1403,12 +1362,14 @@ class World(object):
 
                     # pygame.draw.rect(self.screen, RED, (menu_item['rectangle'].x + 1, menu_item['rectangle'].y + 1,
                     #                                                          menu_item['rectangle'].w - 2, menu_item['rectangle'].h - 2), 1)
-                    if 'target' in menu_item.keys():
-                        add_txt = ' TARGET: ' + str(menu_item['target'])
-                    else:
-                        add_txt = ' (no target)'
-                    s = fonts.font15.render(str(menu_item['label']) + add_txt, True, txt_color)
-                    # s = fonts.font15.render(str(menu_item['label']), True, txt_color)
+
+                    # if 'target' in menu_item.keys():
+                    #     add_txt = ' TARGET: ' + str(menu_item['target'])
+                    # else:
+                    #     add_txt = ' (no target)'
+                    # s = fonts.font15.render(str(menu_item['label']) + add_txt, True, txt_color)
+
+                    s = fonts.font15.render(str(menu_item['label']), True, txt_color)
                     self.screen.blit(s, (menu_item['rectangle'].centerx - s.get_size()[0] // 2, menu_item['rectangle'].centery - s.get_size()[1] // 2))
 
                     if 'additional info' in menu_item.keys():
@@ -1729,18 +1690,18 @@ class World(object):
             self.render_debug_info()
             pygame.display.flip()
         self.reset_human_input()
-        # self.reset_menu()
-        print(f'[main menu] {self.menu_walk_tree=} {self.menu_return_value=}')
-        exit()
-        # self.obs_settings[obs.id] = dict()
-
-        print(f'[edit_obs] {self.menu_walk_tree=}')
-
         if 'CANCEL MENU' in self.menu_walk_tree:
             self.reset_menu_walk_tree()
+            self.reset_menu()
             return
-
+        print(f'[main menu] {self.menu_walk_tree=} {self.menu_return_value=}')
+        # exit()
+        self.obs_settings[obs.id] = dict()
         self.obs_settings[obs.id] = self.menu_return_value
+
+        for k in self.obs_settings[obs.id].keys():
+            o = self.obs_settings[obs.id][k]
+            print(f'[edit_obs] {k}: {o}')
         self.reset_menu_walk_tree()
         self.reset_menu()
 
