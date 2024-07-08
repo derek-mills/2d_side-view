@@ -549,7 +549,7 @@ class Entity(object):
 
             # Check if obstacle is just a passable trigger for some event:
             if obs.let_actors_pass_through:
-                if obs.trigger:
+                if obs.trigger or obs.teleport:
                     if self.id == 0:
                         if obs.rectangle.colliderect(self.rectangle):
                             obs.is_being_collided_now = True
@@ -644,7 +644,7 @@ class Entity(object):
 
             # Check if obstacle is just a passable trigger for some event:
             if obs.let_actors_pass_through:
-                if obs.trigger:
+                if obs.trigger or obs.teleport:
                     if obs.rectangle.colliderect(self.rectangle):
                         if self.id == 0:
                             obs.trigger_activated = True
@@ -733,7 +733,7 @@ class Entity(object):
 
             # Check if obstacle is just a passable trigger for some event:
             if obs.let_actors_pass_through:
-                if obs.trigger:
+                if obs.trigger or obs.teleport:
                     if obs.rectangle.colliderect(self.rectangle):
                         if self.id == 0:
                             obs.trigger_activated = True
@@ -776,7 +776,7 @@ class Entity(object):
 
             # Check if obstacle is just a passable trigger for some event:
             if obs.let_actors_pass_through:
-                if obs.trigger:
+                if obs.trigger or obs.teleport:
                     if obs.rectangle.colliderect(self.rectangle):
                         if self.id == 0:
                             obs.trigger_activated = True

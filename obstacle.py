@@ -19,6 +19,8 @@ class Obstacle(Entity):
         self.need_next_action = True
         self.wait_counter = 0
         self.repeat_counter = -1
+        self.teleport = False
+        self.teleport_description = dict()
         self.trigger = False
         self.trigger_activated: bool = False
         self.trigger_description = dict()

@@ -282,21 +282,23 @@ menu_structure = {
             'after action': 'keep going'
             # obs_settings[]
         },
-        'teleport description': {
+        'teleport destination': {
             'rectangle': pygame.Rect(0, 0, 0, 0),
-            'label': 'teleport description',
+            'label': 'teleport destination >',
             'on hover action': None,
-            'LMB action': 'submenu',
-            'submenu name': 'teleport description',
-            'value': 'trigger description',
+            'LMB action': 'reveal submenu',
+            'submenu name': 'map single selection',
+            'submenu exit action': 'store value',
+            'submenu after action': 'return to parent',
+            'value': "self.menu_structure['custom obs properties']['ok']['value']['teleport description']['new location']",
+            'target': "self.menu_structure['custom obs properties']['ok']['value']['teleport description']['new location']",
+            'additional info': "*self.menu_structure['custom obs properties']['ok']['value']['teleport description']['new location']",
             # 'target': "menu_structure['custom obs properties']['ok']['value']['teleport description']",
             # 'value': menu_structure['custom obs properties']['ok']['value']['trigger description'],
             # 'LMB action': ['submenu', 'trigger description'],
             # 'LMB action': ['input string', {'trigger description': {}}],
             'active': True,
-            'also affects on': None,
-            'after action': None
-            # obs_settings[]
+            'after action': 'return to parent',
         },
         'trigger': {
             'rectangle': pygame.Rect(0, 0, 0, 0),
@@ -318,16 +320,30 @@ menu_structure = {
             'LMB action': 'reveal submenu',
             'submenu name': 'obs multiple selection',
             'submenu exit action': 'store value',
+            'submenu after action': 'return to parent',
             # 'submenu exit action': 'append value',
             # 'submenu exit action': 'return self value',
             # 'value': list(),
             'value': "self.menu_structure['custom obs properties']['ok']['value']['trigger description']['make active']",
             'target': "self.menu_structure['custom obs properties']['ok']['value']['trigger description']['make active']",
+            'additional info': "*menu_structure['custom obs properties']['ok']['value']['trigger description']['make active']",
             'active': True,
             # 'also affects on': None,
             # 'after action': None,
             # 'after action': 'keep going',
             'after action': 'return to parent',
+        },
+        'trigger disappear': {
+            'rectangle': pygame.Rect(0, 0, 0, 0),
+            'label': 'trigger disappears after use?',
+            'on hover action': None,
+            'LMB action': 'switch state',
+            'target': ("menu_structure['custom obs properties']['ok']['value']['trigger description']['disappear']",),
+            # 'LMB action': ['switch state', {'trigger': False}],
+            'additional info': "*menu_structure['custom obs properties']['ok']['value']['trigger description']['disappear']",
+            'active': True,
+            'after action': 'keep going'
+            # obs_settings[]
         },
         'active': {
             'rectangle': pygame.Rect(0, 0, 0, 0),

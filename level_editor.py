@@ -228,6 +228,7 @@ class World(object):
                 self.active_menu_pile = 0
                 self.menu_walk_tree.append('CANCEL MENU')
                 self.menu_actions_done = True
+                return
 
         menu_item_has_been_already_checked = False
 
@@ -269,9 +270,8 @@ class World(object):
                             # ----------EXEC--------------------------------------------
                             if menu_item['LMB action'] == 'exec':
                                 exec(menu_item['value'])
-                            # ----------SUBMENU-----------------------------------------
+                            # ----------REVEAL SUBMENU---------------------------------
                             elif menu_item['LMB action'] == 'reveal submenu':
-                                # REVEAL SUBMENU
                                 self.delete_all_child_menu_piles(pile_id)
                                 # self.active_menu_pile += 1
                                 self.add_menu(menu_item, (menu_item['rectangle'].x, menu_item['rectangle'].y),
@@ -919,6 +919,11 @@ class World(object):
         else:
             parent_menu_pile = 0
 
+        if 'submenu after action' in parent_menu_item.keys():
+            after_action = parent_menu_item['submenu after action']
+        else:
+            after_action = None
+
         # Set the deed which will be performed after the newborn menu has done:
         if 'submenu exit action' in parent_menu_item.keys():
             exit_action = parent_menu_item['submenu exit action']
@@ -956,6 +961,8 @@ class World(object):
             item['menu pile'] = self.menu_pile_id
             item['parent menu pile'] = parent_menu_pile
             item['parent dict key'] = parent_dict_key
+            if after_action:
+                item['after action'] = after_action
             # item['submenu actions done'] = False
             item['rectangle'] = pygame.Rect(top_left_corner[0], start_y - dy, width, height)
             if 'target' not in item.keys() or not item['target']:

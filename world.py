@@ -147,6 +147,8 @@ class World(object):
             entity.actions = self.locations[self.location]['obstacles']['settings'][entity.id]['actions']
             entity.trigger = self.locations[self.location]['obstacles']['settings'][entity.id]['trigger']
             entity.trigger_description = self.locations[self.location]['obstacles']['settings'][entity.id]['trigger description']
+            entity.teleport = self.locations[self.location]['obstacles']['settings'][entity.id]['teleport']
+            entity.teleport_description = self.locations[self.location]['obstacles']['settings'][entity.id]['teleport description']
             entity.let_actors_pass_through = self.locations[self.location]['obstacles']['settings'][entity.id]['actors pass through']
             entity.is_ghost_platform = self.locations[self.location]['obstacles']['settings'][entity.id]['ghost']
             entity.is_collideable = self.locations[self.location]['obstacles']['settings'][entity.id]['collideable']
@@ -286,17 +288,22 @@ class World(object):
             if obs.dead:
                 dead.append(obs.id)
                 continue
+            if obs.teleport:
+                if obs.trigger_activated:
+                    print('obs')
+                    self.change_location(obs.teleport_description)
+                    obs.trigger_activated = False
+                    return
             if obs.trigger:
                 if obs.trigger_activated:
                     if obs.trigger_description['make active'] is not None:
                     # if 'make active' in obs.trigger_description.keys():
                         for make_active_id in obs.trigger_description['make active']:
                             self.obstacles[self.location][make_active_id].active = True
-                    if obs.trigger_description['change location']:
-                    # if 'change location' in obs.trigger_description.keys():
-                        obs.trigger_activated = False
-                        self.change_location(obs.trigger_description['change location'])
-                        return
+                    # if obs.trigger_description['change location']:
+                    #     obs.trigger_activated = False
+                    #     self.change_location(obs.trigger_description['change location'])
+                    #     return
                     if obs.trigger_description['disappear']:
                         dead.append(obs.id)
                         continue
