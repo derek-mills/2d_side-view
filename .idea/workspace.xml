@@ -119,13 +119,6 @@
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
     </task>
-    <task id="LOCAL-00172" summary="Corrected incorrect naming for jump action.">
-      <created>1718861522318</created>
-      <option name="number" value="00172" />
-      <option name="presentableId" value="LOCAL-00172" />
-      <option name="project" value="LOCAL" />
-      <updated>1718861522318</updated>
-    </task>
     <task id="LOCAL-00173" summary="Improving level editor: added opportunity to set up a new map before editor starts.&#10;Saving function redesigned.">
       <created>1718866352548</created>
       <option name="number" value="00173" />
@@ -462,7 +455,14 @@
       <option name="project" value="LOCAL" />
       <updated>1720170275927</updated>
     </task>
-    <option name="localTasksCounter" value="221" />
+    <task id="LOCAL-00221" summary="Level editor: once again try to create flexible menu system, which could be described using only menu_structure dict.">
+      <created>1720415046291</created>
+      <option name="number" value="00221" />
+      <option name="presentableId" value="LOCAL-00221" />
+      <option name="project" value="LOCAL" />
+      <updated>1720415046292</updated>
+    </task>
+    <option name="localTasksCounter" value="222" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -477,7 +477,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added an opportunity to multiple load other maps by pressing F3 button during one session of level editor." />
     <MESSAGE value="Fixed: settings of currently editing map did not load and be wasted after the very first save by F2." />
     <MESSAGE value="Level editor: added main menu." />
     <MESSAGE value="Level editor: try to develop editing menu system." />
@@ -502,6 +501,7 @@
     <MESSAGE value="Level editor: once again doing remake of the menu system :^(." />
     <MESSAGE value="Level editor: setup() is deprecated." />
     <MESSAGE value="Level editor: too many tiny changes to describe ((." />
-    <option name="LAST_COMMIT_MESSAGE" value="Level editor: too many tiny changes to describe ((." />
+    <MESSAGE value="Level editor: once again try to create flexible menu system, which could be described using only menu_structure dict." />
+    <option name="LAST_COMMIT_MESSAGE" value="Level editor: once again try to create flexible menu system, which could be described using only menu_structure dict." />
   </component>
 </project>

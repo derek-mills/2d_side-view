@@ -247,6 +247,7 @@ class World(object):
                     if not menu_item['active']:
                         continue
                     menu_item['hovered'] = True
+                    # ON HOVER ACTIONS:
                     if menu_item['on hover action']:
                         if not menu_item['has been already activated']:
                             menu_item['has been already activated'] = True
@@ -260,6 +261,7 @@ class World(object):
                         if self.active_menu_pile > pile_id:
                             self.delete_all_child_menu_piles(pile_id)
                             return
+
                     # LMB MENU ACTION:
                     if self.is_left_mouse_button_down:
                         self.is_left_mouse_button_down = False
@@ -282,11 +284,6 @@ class World(object):
                                     if menu_item['value'][0] == '*':
                                         # Pointer to a mutable type variable:
                                         value = eval(menu_item['value'][1:])
-                                        # target.append(eval(menu_item['value'][1:]))
-                                        # eval(menu_item['target']).append(eval(menu_item['value'][1:]))
-                                    # elif menu_item['value'][0] == '@':
-                                    #     # Value have to be executed:
-                                    #     exec(menu_item['value'][1:])
                                     else:
                                         # print(menu_item.keys())
                                         value = menu_item['value']
@@ -302,73 +299,102 @@ class World(object):
                                 else:
                                     target.append(value)
                                     menu_item['checked'] = True
+                            # # ----------APPEND------------------------------------------
+                            # elif menu_item['LMB action'] == 'append value':
+                            #     target = eval(menu_item['target'])
+                            #     if type(menu_item['value']) == str:
+                            #         if menu_item['value'][0] == '*':
+                            #             # Pointer to a mutable type variable:
+                            #             value = eval(menu_item['value'][1:])
+                            #         else:
+                            #             # print(menu_item.keys())
+                            #             value = menu_item['value']
+                            #     else:
+                            #         # print(menu_item.keys())
+                            #         value = menu_item['value']
+                            #         # target.append(menu_item['value'])
+                            #         # eval(menu_item['target']).append(menu_item['value'])
+                            #
+                            #     if value in target:
+                            #         target.remove(value)
+                            #         menu_item['checked'] = False
+                            #     else:
+                            #         target.append(value)
+                            #         menu_item['checked'] = True
                             # ----------SWITCH STATE-----------------------------------
                             elif menu_item['LMB action'] == 'switch state':
                                 # menu_item['label'] = menu_item['label'].split(':')[0]
                                 for_exec = ''
-                                for k_tmp_string in menu_item['value']:
+                                for k_tmp_string in menu_item['target']:
                                     for_exec = k_tmp_string + ' = True if not eval(k_tmp_string) else False'
                                     exec(for_exec)
                                     # menu_item['label'] += ': ' + str(eval(k_tmp_string))
                             # ----------STORE VALUE------------------------------------------
-                            elif menu_item['LMB action'] == 'store to parent value':
+                            elif menu_item['LMB action'] == 'store value':
                                 exec(menu_item['target'] + ' = menu_item[\'value\']')
-                                # Aftermath:
-                                if menu_item['after action']:
-                                    if menu_item['after action'] == 'keep going':
-                                        continue
-                                else:
-                                    # Submenu ends action.
-                                    if menu_item['parent menu pile'] == 0:
-                                        self.menu_return_value = eval(menu_item['target'])
-                                        # self.delete_all_child_menu_piles(menu_item['menu pile'])
-                                        self.menu_actions_done = True
-                                        return
-                                    if self.menu_items[menu_item['parent menu pile']][menu_item['parent dict key']]['after action']:
-                                        if self.menu_items[menu_item['parent menu pile']][menu_item['parent dict key']]['after action'] == 'keep going':
-                                            self.delete_all_child_menu_piles(menu_item['parent menu pile'])
-                                            # self.delete_all_child_menu_piles(menu_item['menu pile'] - 1)
-                                            print('[processing menu]', self.menu_structure['main menu']['load']['target'])
-                                            print('[processing menu]', self.menu_items.keys())
-                                            return
-                                        else:
-                                            self.menu_return_value = eval(menu_item['target'])
-                                            self.menu_actions_done = True
-                                            return
-                                    else:
-                                        # self.delete_all_child_menu_piles(menu_item['menu pile'])
-                                        # self.reset_menu()
-                                        self.menu_return_value = eval(menu_item['target'])
-                                        self.menu_actions_done = True
-                                        return
+                            # # ----------RETURN------------------------------------------
+                            # elif menu_item['LMB action'] == 'return value':
+                            #     # if menu_item['LMB action'][0][0] == '@':  # String contains an expression to evaluate:
+                            #     # SIMPLY STORE STRING INTO PENDING LIST
+                            #     if menu_item['value'] in self.menu_walk_tree:
+                            #         self.menu_walk_tree.remove(menu_item['value'])
+                            #         menu_item['checked'] = False
+                            #     else:
+                            #         self.menu_walk_tree.append(menu_item['value'])
+                            #         menu_item['checked'] = True
+                            #
+                            #     if 'target' in menu_item.keys():
+                            #         if menu_item['target']:
+                            #             print('[process memu] menu item target is', menu_item['target'])
+                            #
+                            #             exec(menu_item['target'] + ' = menu_item[\'value\']')
+                            #             # target = eval(menu_item['target'])
+                            #             # target = menu_item['value']
 
-                                # return
-                            # ----------RETURN------------------------------------------
-                            elif menu_item['LMB action'] == 'return value':
-                                # if menu_item['LMB action'][0][0] == '@':  # String contains an expression to evaluate:
-                                # SIMPLY STORE STRING INTO PENDING LIST
-                                if menu_item['value'] in self.menu_walk_tree:
-                                    self.menu_walk_tree.remove(menu_item['value'])
-                                    menu_item['checked'] = False
-                                else:
-                                    self.menu_walk_tree.append(menu_item['value'])
-                                    menu_item['checked'] = True
+                            # Aftermath:
 
-                                if 'target' in menu_item.keys():
-                                    if menu_item['target']:
-                                        print('[process memu] menu item target is', menu_item['target'])
-
-                                        exec(menu_item['target'] + ' = menu_item[\'value\']')
-                                        # target = eval(menu_item['target'])
-                                        # target = menu_item['value']
-
-                            # # Aftermath:
+                            # ----------AFTERMATH ACTIONS--------------------------------
                             # if menu_item['after action']:
-                            #     if menu_item['after action'] == 'keep going':
-                            #         continue
+                            if menu_item['after action'] == 'keep going':
+                                continue
+                            elif menu_item['after action'] == 'return to parent':
+                                print('[processing menu] returning to parent.')
+                                print(f'[processing menu] {self.active_menu_pile=} {self.menu_items.keys()=}')
+                                print('[processing menu] parent menu for current:', menu_item['parent menu pile'])
+                                self.delete_all_child_menu_piles(menu_item['parent menu pile'])
+
+                                # print('[processing menu]', self.menu_items.keys())
+                                return
+                            else:  # If None or something else
+                                self.menu_return_value = eval(menu_item['target'])
+                                # self.delete_all_child_menu_piles(menu_item['menu pile'])
+                                self.menu_actions_done = True
+                                return
                             # else:
-                            #     self.menu_actions_done = True
-                            #     return
+                            #     # Submenu ends action.
+                            #     if menu_item['parent menu pile'] == 0:
+                            #         self.menu_return_value = eval(menu_item['target'])
+                            #         # self.delete_all_child_menu_piles(menu_item['menu pile'])
+                            #         self.menu_actions_done = True
+                            #         return
+                            #     if self.menu_items[menu_item['parent menu pile']][menu_item['parent dict key']]['after action']:
+                            #         if self.menu_items[menu_item['parent menu pile']][menu_item['parent dict key']]['after action'] == 'keep going':
+                            #             self.delete_all_child_menu_piles(menu_item['parent menu pile'])
+                            #             # self.delete_all_child_menu_piles(menu_item['menu pile'] - 1)
+                            #             print('[processing menu]', self.menu_structure['main menu']['load']['target'])
+                            #             print('[processing menu]', self.menu_items.keys())
+                            #             return
+                            #         else:
+                            #             self.menu_return_value = eval(menu_item['target'])
+                            #             self.menu_actions_done = True
+                            #             return
+                            #     else:
+                            #         # self.delete_all_child_menu_piles(menu_item['menu pile'])
+                            #         # self.reset_menu()
+                            #         self.menu_return_value = eval(menu_item['target'])
+                            #         self.menu_actions_done = True
+                            #         return
+
 
                 else:
                     menu_item['hovered'] = False
@@ -912,6 +938,7 @@ class World(object):
         self.active_menu_pile = self.menu_pile_id
 
         restricted = ('generate list from', 'predefined keys','target object')
+
         menu_name = parent_menu_item['submenu name']
         print(f'[add_menu] Start adding new menu: {menu_name=}, pile: {self.menu_pile_id}')
         print(f'[add_menu] parent items: {parent_menu_item.keys()}')
@@ -928,8 +955,8 @@ class World(object):
             parent_dict_key = ''
 
         #
-        if 'parent menu pile' in parent_menu_item.keys():
-            parent_menu_pile = parent_menu_item['parent menu pile']
+        if 'menu pile' in parent_menu_item.keys():
+            parent_menu_pile = parent_menu_item['menu pile']
         else:
             parent_menu_pile = 0
 
@@ -1685,9 +1712,10 @@ class World(object):
 
     def edit_obs(self, obs):
         # self.menu_action_pending = ''
+        self.reset_menu()
         self.reset_menu_walk_tree()
         # Create menu of 'obstacle edit' type, which was predefined in self.menu_structure:
-        self.add_menu({'submenu name': 'custom obs properties', 'target': ''}, self.mouse_xy, 400, 20)
+        self.add_menu({'submenu name': 'custom obs properties', 'value': ''}, self.mouse_xy, 400, 20)
         # self.add_menu('custom obs properties', self.mouse_xy, 400, 20)
         # self.add_menu('obstacle edit', self.mouse_xy, 400, 20)
         # self.add_menu(self.mouse_xy, 400, 20, [self.menu_structure['obstacle edit'][i] for i in self.menu_structure['obstacle edit'].keys()])
@@ -1701,8 +1729,9 @@ class World(object):
             self.render_debug_info()
             pygame.display.flip()
         self.reset_human_input()
-        self.reset_menu()
-
+        # self.reset_menu()
+        print(f'[main menu] {self.menu_walk_tree=} {self.menu_return_value=}')
+        exit()
         # self.obs_settings[obs.id] = dict()
 
         print(f'[edit_obs] {self.menu_walk_tree=}')
@@ -1711,41 +1740,48 @@ class World(object):
             self.reset_menu_walk_tree()
             return
 
-        if 'custom obs properties' in self.menu_walk_tree:
-            # Menu has returned a dictionary, so obstacle properties edit is done.
-            self.obs_settings[obs.id] = self.menu_walk_tree[-1]
-        elif self.menu_walk_tree[-1] == 'make moving platform':
-            self.reset_menu_walk_tree()
-            print('make moving platform')
-            # self.add_menu(self.mouse_xy, 400, 20, [i for i in self.obs_settings[obs.id].keys()])
-            # while not self.menu_actions_done:
-            #     self.processing_human_input()
-            #     self.processing_menu_items()
-            #     self.render_background()
-            #     self.render_menu_items()
-            #     pygame.display.flip()
-            # self.reset_human_input()
-            # self.reset_menu()
-        elif self.menu_walk_tree[-1] == 'custom obs edit done':
-            summary = list()
-            for k in self.menu_structure['custom obs properties'].keys():
-                if obs.id not in self.obs_settings.keys():
-                    self.obs_settings[obs.id] = dict()
-                if self.menu_structure['custom obs properties'][k]['LMB action'] is not None and \
-                    self.menu_structure['custom obs properties'][k]['LMB action'][0] in \
-                        ('input number', 'switch state', 'input string'):
-                    for j in self.menu_structure['custom obs properties'][k]['LMB action'][1].keys():
-                        self.obs_settings[obs.id][j] =  self.menu_structure['custom obs properties'][k]['LMB action'][1][j]
+        self.obs_settings[obs.id] = self.menu_return_value
+        self.reset_menu_walk_tree()
+        self.reset_menu()
 
-            for j in self.obs_settings[obs.id].keys():
-                print(j, self.obs_settings[obs.id][j])
-            self.reset_menu_walk_tree()
-        elif self.menu_walk_tree[-1] == 'teleport':
-            self.reset_menu_walk_tree()
-            # self.menu_action_pending = ''
-            print('make teleport')
-        else:
-            print('make other deed')
+        # if 'custom obs properties' in self.menu_walk_tree:
+        #     # Menu has returned a dictionary, so obstacle properties edit is done.
+        #     self.obs_settings[obs.id] = self.menu_return_value
+        #     self.reset_menu_walk_tree()
+        #     self.reset_menu()
+        #     return
+        # elif self.menu_walk_tree[-1] == 'make moving platform':
+        #     self.reset_menu_walk_tree()
+        #     print('make moving platform')
+        #     # self.add_menu(self.mouse_xy, 400, 20, [i for i in self.obs_settings[obs.id].keys()])
+        #     # while not self.menu_actions_done:
+        #     #     self.processing_human_input()
+        #     #     self.processing_menu_items()
+        #     #     self.render_background()
+        #     #     self.render_menu_items()
+        #     #     pygame.display.flip()
+        #     # self.reset_human_input()
+        #     # self.reset_menu()
+        # elif self.menu_walk_tree[-1] == 'custom obs edit done':
+        #     summary = list()
+        #     for k in self.menu_structure['custom obs properties'].keys():
+        #         if obs.id not in self.obs_settings.keys():
+        #             self.obs_settings[obs.id] = dict()
+        #         if self.menu_structure['custom obs properties'][k]['LMB action'] is not None and \
+        #             self.menu_structure['custom obs properties'][k]['LMB action'][0] in \
+        #                 ('input number', 'switch state', 'input string'):
+        #             for j in self.menu_structure['custom obs properties'][k]['LMB action'][1].keys():
+        #                 self.obs_settings[obs.id][j] =  self.menu_structure['custom obs properties'][k]['LMB action'][1][j]
+        #
+        #     for j in self.obs_settings[obs.id].keys():
+        #         print(j, self.obs_settings[obs.id][j])
+        #     self.reset_menu_walk_tree()
+        # elif self.menu_walk_tree[-1] == 'teleport':
+        #     self.reset_menu_walk_tree()
+        #     # self.menu_action_pending = ''
+        #     print('make teleport')
+        # else:
+        #     print('make other deed')
 
         return
             # self.obs_settings[obs.id] = {
