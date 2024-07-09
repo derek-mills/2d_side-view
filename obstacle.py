@@ -52,7 +52,8 @@ class Obstacle(Entity):
                 self.die()
             elif self.actions[self.actions_set_number][self.current_action][0] == 'stop':
                 self.active = False
-                self.need_next_action = True
+                self.need_next_action = False
+                return
             elif self.actions[self.actions_set_number][self.current_action][0] == 'wait':
                 self.wait_counter = self.actions[self.actions_set_number][self.current_action][1]
                 self.need_next_action = True
@@ -217,7 +218,7 @@ class Obstacle(Entity):
         if self.actions[self.actions_set_number][self.current_action][0] == 'move':
             self.is_destination_reached = False
             if self.actions[self.actions_set_number][self.current_action][1] == 'start point':
-                self.destination = self.origin_xy
+                self.destination_point = self.origin_xy
                 self.destination_area.update(0,0,0,0)
             elif self.actions[self.actions_set_number][self.current_action][1] == 'start area':
                 self.destination_area.update(0,0, 100, 100)
@@ -229,7 +230,7 @@ class Obstacle(Entity):
                     self.destination_area.update(self.actions[self.actions_set_number][self.current_action][1])
                 else:
                     # Destination is just a single point:
-                    self.destination = self.actions[self.actions_set_number][self.current_action][1]
+                    self.destination_point = self.actions[self.actions_set_number][self.current_action][1]
                     self.destination_area.update(0, 0, 0, 0)
         print('current_action:', self.actions[self.actions_set_number][self.current_action])
         # elif self.actions[self.actions_set_number][self.current_action][0] == 'die':

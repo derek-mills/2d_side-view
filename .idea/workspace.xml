@@ -6,9 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/level_editor_menu_structure.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor_menu_structure.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obstacle.py" beforeDir="false" afterPath="$PROJECT_DIR$/obstacle.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -120,13 +122,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00179" summary="Level editor is now possessed by graphic UI.">
-      <created>1719214193574</created>
-      <option name="number" value="00179" />
-      <option name="presentableId" value="LOCAL-00179" />
-      <option name="project" value="LOCAL" />
-      <updated>1719214193574</updated>
     </task>
     <task id="LOCAL-00180" summary="Improved menu items processing in level editor.&#10;Camera offset speed improved.">
       <created>1719216272878</created>
@@ -464,7 +459,14 @@
       <option name="project" value="LOCAL" />
       <updated>1720503774339</updated>
     </task>
-    <option name="localTasksCounter" value="228" />
+    <task id="LOCAL-00228" summary="Level editor: fixed some bugs; 'action' section remains undone.">
+      <created>1720507636449</created>
+      <option name="number" value="00228" />
+      <option name="presentableId" value="LOCAL-00228" />
+      <option name="project" value="LOCAL" />
+      <updated>1720507636449</updated>
+    </task>
+    <option name="localTasksCounter" value="229" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -479,7 +481,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Level editor: added clipboard to store particular dot coordinates to use in the future." />
     <MESSAGE value="Removed inactivation of actors if they do not collide with camera rectangle." />
     <MESSAGE value="Several tiny, but important improvement" />
     <MESSAGE value="Level editor: text input routine modified." />
@@ -504,6 +505,7 @@
     <MESSAGE value="Level editor: editor now allow to choose a map to teleport and a XY coordinate for this action." />
     <MESSAGE value="Level editor: menu appearing is now dim the screen for the better visual percept." />
     <MESSAGE value="Level editor: fixed some bugs; edit obstacles menu appears corresponding the screen edges and does not hide out." />
-    <option name="LAST_COMMIT_MESSAGE" value="Level editor: fixed some bugs; edit obstacles menu appears corresponding the screen edges and does not hide out." />
+    <MESSAGE value="Level editor: fixed some bugs; 'action' section remains undone." />
+    <option name="LAST_COMMIT_MESSAGE" value="Level editor: fixed some bugs; 'action' section remains undone." />
   </component>
 </project>

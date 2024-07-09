@@ -858,10 +858,7 @@ class Entity(object):
                 destination_reached_flag = True
 
         self.vec_to_destination = list((self.destination[0] - self.rectangle.x, self.destination[1] - self.rectangle.y))
-
-        # if (self.vec_to_destination[0] > -3 and self.vec_to_destination[0] < 3) or \
-        #         self.destination == self.rectangle.topleft:
-        # if self.vec_to_destination == (0, 0) or self.destination == self.rectangle.center:
+        # print('fly', self.id, self.vec_to_destination)
         if self.vec_to_destination == (0, 0):
         # if self.vec_to_destination == (0, 0) or self.destination == self.rectangle.topleft:
             destination_reached_flag = True
@@ -875,13 +872,14 @@ class Entity(object):
             self.is_destination_reached = False
 
         distance_to_destination = sqrt(self.vec_to_destination[0] * self.vec_to_destination[0] + self.vec_to_destination[1] * self.vec_to_destination[1])
-
+        # print(f'[fly] {self.id=} {self.vec_to_destination=} {distance_to_destination=}')
         if distance_to_destination > 0:
             # Calculate normalized vector to apply animation set correctly in the future:
             # self.heading = self.vec_to_destination.get_normalized()
             self.heading = [self.vec_to_destination[0] / distance_to_destination, self.vec_to_destination[1] / distance_to_destination]
-
+            # print(f'[fly] {self.id=} {self.vec_to_destination} {distance_to_destination} {self.heading}')
             self.speed = self.max_speed * self.max_speed_penalty  # * 0.5
+            # print(f'[fly] {self.id=} {self.vec_to_destination} {distance_to_destination} {self.heading} {self.speed=}')
             # Define the potential length of current move, depends on basic speed and passed amount of time:
             self.potential_moving_distance = self.time_passed * self.speed
             # Define current distance to travel:
@@ -899,6 +897,8 @@ class Entity(object):
                 self.rectangle.y = self.origin_xy[1] + 200 * sin(self.rectangle.x * 0.01)
             else:
                 self.rectangle.y += self.vec_to_destination[1]
+
+            # self.rectangle.y += self.vec_to_destination[1]
 
         # elif self.MovementType == 'sin':
         #     # y = a + b * sin (cx + d)

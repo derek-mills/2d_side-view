@@ -141,7 +141,7 @@ class World(object):
         entity.rectangle.height = description[1][1]
         if entity.id in self.locations[self.location]['obstacles']['settings'].keys():
             entity.exotic_movement = self.locations[self.location]['obstacles']['settings'][entity.id]['exotic movement'] \
-                if 'exotic movement' in self.locations[self.location]['obstacles']['settings'][entity.id] else ''
+                if 'exotic movement' in self.locations[self.location]['obstacles']['settings'][entity.id] else None
 
             entity.active = self.locations[self.location]['obstacles']['settings'][entity.id]['active']
             entity.actions = self.locations[self.location]['obstacles']['settings'][entity.id]['actions']
@@ -628,14 +628,17 @@ class World(object):
                 font_size = 10
                 params = (
                     ('ID: ' + str(obs.id), RED),
-                    # ('ACTV: ' + str(obs.active), RED),
-                    # ('TRGGRED: ' + str(obs.trigger_activated), RED),
-                    # ('WAIT COUNTER    : ' + str(obs.wait_counter), RED),
-                    # ('DEST REACHED    : ' + str(obs.is_destination_reached), RED),
-                    # ('RECTANGLE       : ' + str(obs.rectangle), RED),
-                    # ('ACTION          : ' + str(obs.actions[obs.actions_set_number][obs.current_action]), RED),
-                    # ('NEED NEXT ACTION: ' + str(obs.need_next_action), RED),
-                    # ('VEC TO DESTINTON: ' + str(obs.vec_to_destination), RED),
+                    ('ACTV: ' + str(obs.active), RED),
+                    ('TRGGRED: ' + str(obs.trigger_activated), RED),
+                    ('WAIT COUNTER    : ' + str(obs.wait_counter), RED),
+                    ('DEST REACHED    : ' + str(obs.is_destination_reached), RED),
+                    ('RECTANGLE       : ' + str(obs.rectangle), RED),
+                    ('ACTION          : ' + str(obs.actions[obs.actions_set_number][obs.current_action]), RED),
+                    ('NEED NEXT ACTION: ' + str(obs.need_next_action), RED),
+                    ('VEC TO DESTINTON: ' + str(obs.vec_to_destination), RED),
+                    ('DESTINATION AREA: ' + str(obs.destination_area), RED),
+                    ('DESTINATION PNT : ' + str(obs.destination_point), RED),
+                    ('DESTINATION     : ' + str(obs.destination), RED),
                     # 'CR',
                 )
                 for p in params:
