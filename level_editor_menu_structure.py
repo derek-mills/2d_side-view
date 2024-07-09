@@ -64,10 +64,26 @@ menu_structure = {
     'obs single selection': {
         'generate list from': '*self.obstacles[location].keys()',
         'predefined keys': {
-            'LMB action': 'return value',
+            # 'LMB action': None,
             'value': '$description',
-            'label': 'Obstacle #: $description',
-            'active': True
+            'label': '$description',
+            # 'target': '',
+            # 'description': '*item',
+            'active': True,
+            # 'after action': 'keep going'
+        },
+    },
+
+    'clipboard single selection': {
+        'generate list from': '*self.clipboard',
+        'predefined keys': {
+            # 'LMB action': None,
+            'value': '$description',
+            'label': '$description',
+            # 'target': '',
+            # 'description': '*item',
+            'active': True,
+            # 'after action': 'keep going'
         },
     },
 
@@ -93,6 +109,11 @@ menu_structure = {
         },
         'ok': {
             'rectangle': pygame.Rect(0, 0, 0, 0),
+            'colors': {
+                'frame color': BLUE,
+                'bg color': YELLOW,
+                'txt color': DARKGRAY
+            },
             'label': '[CONFIRM]',
             'on hover action': None,
             'LMB action': 'store value',
@@ -103,83 +124,6 @@ menu_structure = {
             'after action': 'return to parent',
             # 'after action': 'keep going',
             # 'after action': None,
-        },
-    },
-
-    'teleport description': {
-        'header': {
-            'rectangle': None,
-            'label': 'DESCRIBE TELEPORT:',
-            'description': 'teleport description',
-            'on hover action': None,
-            'LMB action': None,
-            'active': False,
-            'after action': None
-        },
-        'select map': {
-            'rectangle': None,
-            'label': '[SELECT MAP]',
-            'on hover action': None,
-            'submenu name': 'map single selection',
-            'value': "",
-            'target': "menu_structure['custom obs properties']['ok']['value']['teleport description']['new location']",
-            'description': 'trigger',
-            'LMB action': 'submenu',
-            'active': True,
-            'after action': None
-        },
-        'select point': {
-            'rectangle': None,
-            'label': '[SELECT POINT (X,Y) TO TELEPORT]',
-            'on hover action': None,
-            'value': 'map single selection',
-            'description': 'teleport',
-            'LMB action': None,
-            'active': True,
-            'after action': None
-        },
-    },
-
-    'obstacle edit': {
-        'header': {
-            'rectangle': None,
-            'label': 'INTRODUCE OBSTACLE AS:',
-            'on hover action': None,
-            'LMB action': None,
-            'active': False,
-            'after action': None
-        },
-        'trigger': {
-            'rectangle': None,
-            'label': '[MAKE EVENT INITIATOR] >',
-            'on hover action': 'submenu',
-            'submenu name': 'teleport/trigger',
-            'value': 'teleport/trigger',
-            # 'on hover action': ('submenu', 'teleport/trigger'),
-            'LMB action': None,
-            'active': True,
-            'after action': None
-        },
-        'moving platform': {
-            'rectangle': None,
-            'label': '[MAKE MOVING PLATFORM]',
-            'on hover action': None,
-            'LMB action': 'return value',
-            'value': 'make moving platform',
-            'active': True,
-            'after action': None
-        },
-        'custom': {
-            'rectangle': None,
-            'label': '[CUSTOM PROPERTIES EDIT] >',
-            'on hover action': 'submenu',
-            'submenu name': 'custom obs properties',
-            'value': 'custom obs properties',
-            # 'on hover action': ('submenu', 'custom obs properties'),
-            'LMB action': None,
-            # 'LMB action': ('return value', 'custom'),
-            'active': True,
-            'after action': None
         },
     },
 
@@ -282,9 +226,9 @@ menu_structure = {
             'after action': 'keep going'
             # obs_settings[]
         },
-        'teleport destination': {
+        'teleport to map': {
             'rectangle': pygame.Rect(0, 0, 0, 0),
-            'label': 'teleport destination >',
+            'label': 'teleport to map >',
             'on hover action': None,
             'LMB action': 'reveal submenu',
             'submenu name': 'map single selection',
@@ -293,6 +237,24 @@ menu_structure = {
             'value': "self.menu_structure['custom obs properties']['ok']['value']['teleport description']['new location']",
             'target': "self.menu_structure['custom obs properties']['ok']['value']['teleport description']['new location']",
             'additional info': "*self.menu_structure['custom obs properties']['ok']['value']['teleport description']['new location']",
+            # 'target': "menu_structure['custom obs properties']['ok']['value']['teleport description']",
+            # 'value': menu_structure['custom obs properties']['ok']['value']['trigger description'],
+            # 'LMB action': ['submenu', 'trigger description'],
+            # 'LMB action': ['input string', {'trigger description': {}}],
+            'active': True,
+            'after action': 'return to parent',
+        },
+        'teleport to point (x,y) on map': {
+            'rectangle': pygame.Rect(0, 0, 0, 0),
+            'label': 'teleport to point (x,y) on map >',
+            'on hover action': None,
+            'LMB action': 'reveal submenu',
+            'submenu name': 'clipboard single selection',
+            'submenu exit action': 'store value',
+            'submenu after action': 'return to parent',
+            'value': "self.menu_structure['custom obs properties']['ok']['value']['teleport description']['xy']",
+            'target': "self.menu_structure['custom obs properties']['ok']['value']['teleport description']['xy']",
+            'additional info': "*self.menu_structure['custom obs properties']['ok']['value']['teleport description']['xy']",
             # 'target': "menu_structure['custom obs properties']['ok']['value']['teleport description']",
             # 'value': menu_structure['custom obs properties']['ok']['value']['trigger description'],
             # 'LMB action': ['submenu', 'trigger description'],
@@ -371,6 +333,11 @@ menu_structure = {
         },
         'ok': {
             'rectangle': pygame.Rect(0, 0, 0, 0),
+            'colors': {
+                'frame color': BLUE,
+                'bg color': YELLOW,
+                'txt color': DARKGRAY
+            },
             'self dict name': 'custom obs properties',
             'label': '[CONFIRM]',
             'on hover action': None,
@@ -440,9 +407,9 @@ menu_structure = {
             'on hover action': None,
             # 'LMB action': 'return value',
             'submenu exit action': '',
-            'value': None,
+            'value':  "self.save()",
             # 'value': 'save',
-            'LMB action': ('exec', "self.reset_menu_actions_pending()\nsave()"),
+            'LMB action': 'exec',
             'active': True,
             'after action': 'keep going'
         },

@@ -970,6 +970,8 @@ class World(object):
                 item['target'] = target
             if 'LMB action' not in item.keys() or not item['LMB action']:
                 item['LMB action'] = exit_action
+            if 'colors' in item.keys():
+                self.add_menu_item(item, item['colors']['frame color'], item['colors']['bg color'], item['colors']['txt color'])
             self.add_menu_item(item)
             dy += height
 

@@ -6,12 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/level_editor_menu_structure.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor_menu_structure.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obstacle.py" beforeDir="false" afterPath="$PROJECT_DIR$/obstacle.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,13 +119,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00175" summary="Improving level editor: fixing minor bugs.">
-      <created>1718874072703</created>
-      <option name="number" value="00175" />
-      <option name="presentableId" value="LOCAL-00175" />
-      <option name="project" value="LOCAL" />
-      <updated>1718874072703</updated>
     </task>
     <task id="LOCAL-00176" summary="Improving level editor: fixing minor bugs.">
       <created>1718874948333</created>
@@ -466,7 +456,14 @@
       <option name="project" value="LOCAL" />
       <updated>1720422055151</updated>
     </task>
-    <option name="localTasksCounter" value="224" />
+    <task id="LOCAL-00224" summary="Level editor: added 'teleport' state support for obstacles during collisions detection according to the new description style.">
+      <created>1720428287730</created>
+      <option name="number" value="00224" />
+      <option name="presentableId" value="LOCAL-00224" />
+      <option name="project" value="LOCAL" />
+      <updated>1720428287730</updated>
+    </task>
+    <option name="localTasksCounter" value="225" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -481,7 +478,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Level editor: try to develop editing menu system." />
     <MESSAGE value="Level editor: implemented standard bindings for menu elements on the screen." />
     <MESSAGE value="Level editor: improving menu elements placement and alignment." />
     <MESSAGE value="Level editor: menu bunches allow to select and deselect multiple objects." />
@@ -506,6 +502,7 @@
     <MESSAGE value="Level editor: once again try to create flexible menu system, which could be described using only menu_structure dict." />
     <MESSAGE value="Level editor: keep going." />
     <MESSAGE value="Level editor: obstacle edit submenu works well, but need TODO input text routine, 'action' change routine." />
-    <option name="LAST_COMMIT_MESSAGE" value="Level editor: obstacle edit submenu works well, but need TODO input text routine, 'action' change routine." />
+    <MESSAGE value="Level editor: added 'teleport' state support for obstacles during collisions detection according to the new description style." />
+    <option name="LAST_COMMIT_MESSAGE" value="Level editor: added 'teleport' state support for obstacles during collisions detection according to the new description style." />
   </component>
 </project>
