@@ -1435,7 +1435,7 @@ class World(object):
                             elif self.mouse_xy[0] - sz[0] //2 - 2 < 0:
                                 hover_box_x = 0
                             else:
-                                hover_box_x = self.mouse_xy[0] - sz[0] //2 - 2
+                                hover_box_x = self.mouse_xy[0] - sz[0] //2 - 8
 
                             hover_box_y = self.mouse_xy[1] - sz[1] - 1
                             pygame.draw.rect(self.screen, WHITE, (hover_box_x, hover_box_y,

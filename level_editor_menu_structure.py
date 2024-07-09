@@ -127,6 +127,45 @@ menu_structure = {
         },
     },
 
+    'actions multiple selection': {
+        'header': {
+            'rectangle': None,
+            'label': 'CHOOSE ACTIONS TO BE PERFORMED:',
+            'description': 'actions multiple selection',
+            'on hover action': None,
+            'target': None,
+            'LMB action': None,
+            'active': False,
+            'after action': None
+        },
+        'generate list from': '*self.obstacles[self.location].keys()',
+        'predefined keys': {
+            'LMB action': 'append value',
+            'value': '$description',
+            'target': "self.menu_structure['obs multiple selection']['ok']['value']",
+            'label': '$description',
+            'active': True,
+            'after action': 'keep going'
+        },
+        'ok': {
+            'rectangle': pygame.Rect(0, 0, 0, 0),
+            'colors': {
+                'frame color': BLUE,
+                'bg color': YELLOW,
+                'txt color': DARKGRAY
+            },
+            'label': '[CONFIRM]',
+            'on hover action': None,
+            'LMB action': 'store value',
+            'value': list(),
+            # 'target': '',
+            'description': 'multiple obstacles list',
+            'active': True,
+            'after action': 'return to parent',
+            # 'after action': 'keep going',
+            # 'after action': None,
+        },
+    },
     'custom obs properties': {
         'header': {
             'rectangle': menu_elements_bindings['central header'],
@@ -323,11 +362,14 @@ menu_structure = {
             'rectangle': pygame.Rect(0, 0, 0, 0),
             'label': 'actions',
             'on hover action': None,
-            'LMB action': 'input string',
-            'value': "menu_structure['custom obs properties']['ok']['value']['actions']",
+            'LMB action': 'reveal submenu',
+            'submenu name': 'actions multiple selection',
+            'submenu exit action': 'store value',
+            'value': dict(),
+            'target': "menu_structure['custom obs properties']['ok']['value']['actions'][0]",
+            'additional info': "menu_structure['custom obs properties']['ok']['value']['actions'][0]",
             # 'LMB action': ['input string', {'actions': {}}],
             'active': True,
-            'also affects on': None,
             'after action': 'keep going'
             # obs_settings[]
         },

@@ -266,11 +266,11 @@ class World(object):
         if self.location not in self.actors.keys():
             self.actors[self.location] = dict()
             self.actors[self.location][0] = self.actors['player']
-        if new_location['xy'][0] == 'keep X':
+        if new_location['xy'][0] == 'keep x':
             x = self.actors['player'].rectangle.x
         else:
             x = new_location['xy'][0]
-        if new_location['xy'][1] == 'keep Y':
+        if new_location['xy'][1] == 'keep y':
             y = self.actors['player'].rectangle.y
         else:
             y = new_location['xy'][1]

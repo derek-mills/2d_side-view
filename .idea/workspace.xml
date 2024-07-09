@@ -7,8 +7,9 @@
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/level_editor_menu_structure.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor_menu_structure.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates.py" beforeDir="false" afterPath="$PROJECT_DIR$/templates.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +58,7 @@
       </console-settings>
     </option>
   </component>
-  <component name="RunManager" selected="Python.level_editor">
+  <component name="RunManager" selected="Python.main ">
     <configuration name="level_editor" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ver_0.000.1" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -106,8 +107,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.level_editor" />
         <item itemvalue="Python.main " />
+        <item itemvalue="Python.level_editor" />
       </list>
     </recent_temporary>
   </component>
@@ -119,13 +120,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00178" summary="Fixed bugs while zooming in level editor.">
-      <created>1719206378680</created>
-      <option name="number" value="00178" />
-      <option name="presentableId" value="LOCAL-00178" />
-      <option name="project" value="LOCAL" />
-      <updated>1719206378680</updated>
     </task>
     <task id="LOCAL-00179" summary="Level editor is now possessed by graphic UI.">
       <created>1719214193574</created>
@@ -463,7 +457,14 @@
       <option name="project" value="LOCAL" />
       <updated>1720497033843</updated>
     </task>
-    <option name="localTasksCounter" value="227" />
+    <task id="LOCAL-00227" summary="Level editor: fixed some bugs; edit obstacles menu appears corresponding the screen edges and does not hide out.">
+      <created>1720503774339</created>
+      <option name="number" value="00227" />
+      <option name="presentableId" value="LOCAL-00227" />
+      <option name="project" value="LOCAL" />
+      <updated>1720503774339</updated>
+    </task>
+    <option name="localTasksCounter" value="228" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -478,7 +479,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Level editor: menu bunches allow to select and deselect multiple objects." />
     <MESSAGE value="Level editor: added clipboard to store particular dot coordinates to use in the future." />
     <MESSAGE value="Removed inactivation of actors if they do not collide with camera rectangle." />
     <MESSAGE value="Several tiny, but important improvement" />
@@ -503,6 +503,7 @@
     <MESSAGE value="Level editor: added 'teleport' state support for obstacles during collisions detection according to the new description style." />
     <MESSAGE value="Level editor: editor now allow to choose a map to teleport and a XY coordinate for this action." />
     <MESSAGE value="Level editor: menu appearing is now dim the screen for the better visual percept." />
-    <option name="LAST_COMMIT_MESSAGE" value="Level editor: menu appearing is now dim the screen for the better visual percept." />
+    <MESSAGE value="Level editor: fixed some bugs; edit obstacles menu appears corresponding the screen edges and does not hide out." />
+    <option name="LAST_COMMIT_MESSAGE" value="Level editor: fixed some bugs; edit obstacles menu appears corresponding the screen edges and does not hide out." />
   </component>
 </project>
