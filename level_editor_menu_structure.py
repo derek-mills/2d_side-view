@@ -436,12 +436,17 @@ menu_structure = {
             'rectangle': pygame.Rect(menu_elements_bindings['bottom right button']),
             'label': '[RESIZE MAP]',
             'on hover action': None,
-            'LMB action': 'return value',
-            'submenu exit action': '',
-            'value': "resize",
-            # 'LMB action': ('exec', "x = create_text_input((MAXX_DIV_2, MAXY_DIV_2), 'ENTER MAX X:', 'digit')\ny = create_text_input((MAXX_DIV_2, MAXY_DIV_2 + 50), 'ENTER MAX Y:', 'digit')\ncamera.setup(int(x), int(y))\ncreate_snap_mesh()"),
+            # 'LMB action': 'return value',
+            # 'value': "resize",
+            # 'submenu exit action': '',
+            'LMB action': 'exec',
+            'value': "\
+x = self.create_text_input((MAXX_DIV_2, MAXY_DIV_2), 'ENTER MAX X:', 'digit')\n\
+y = self.create_text_input((MAXX_DIV_2, MAXY_DIV_2 + 50), 'ENTER MAX Y:', 'digit')\n\
+self.camera.setup(int(x), int(y))\n\
+self.create_snap_mesh()",
             'active': True,
-            'after action': None
+            'after action': 'keep going'
         },
         'quit': {
             'rectangle': pygame.Rect(menu_elements_bindings['bottom left button']),

@@ -5,7 +5,10 @@ from pygame.constants import SRCALPHA
 pygame.init()
 clock = pygame.time.Clock()
 screen = pygame.display.set_mode(SCREENSIZE)
-
+screen.convert_alpha()
+dim_screen_cover = screen.convert_alpha()
+dim_screen_cover.fill(BLACK)
+dim_screen_cover.set_alpha(180)
 # class ImmutableDict(dict):
 #     def set(self):
 #         raise NotImplemented()

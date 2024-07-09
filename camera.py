@@ -35,6 +35,7 @@ class Camera(object):
         self.offset_scroll_velocity_y = velocity_y
         self.instant_follow = instant_follow
 
+        # if x <= 0:
         if x <= MAXX_DIV_2:
             self.target_offset_x = 0
         else:

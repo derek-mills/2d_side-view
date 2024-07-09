@@ -101,6 +101,14 @@ def check_lines_intersection(line1, line2):
 # def set_in_dict(data_dict, map_list, value):
 #     get_from_dict(data_dict, map_list[:-1])[map_list[-1]] = value
 
+def copy_screen_as_surface(self):
+    x = pygame.image.tostring(self.screen, "RGBA")
+    return pygame.image.fromstring(x, self.screen.get_size(), "RGBA")
+
+def copy_surface_as_surface(surface):
+    x = pygame.image.tostring(surface, "RGBA")
+    return pygame.image.fromstring(x, surface.get_size(), "RGBA")
+
 def create_uuid():
     return uuid.uuid1()
 

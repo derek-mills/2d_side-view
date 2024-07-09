@@ -22,6 +22,7 @@ from level_editor_menu_structure import *
 # import menu
 from uuid import *
 import importlib
+from misc_tools import copy_surface_as_surface
 
 
 class World(object):
@@ -128,6 +129,9 @@ class World(object):
         else:
             # Got native iteration sequence. Have to simply convert it to a list:
             menu_items_list = list(self.menu_structure[menu_name]['generate list from'])
+
+        if len(menu_items_list) == 0:
+            return
 
         for item in menu_items_list:
             self.menu_structure[menu_name][item] = dict()
@@ -310,7 +314,11 @@ class World(object):
                             # ----------STORE VALUE------------------------------------------
                             elif menu_item['LMB action'] == 'store value':
                                 exec(menu_item['target'] + ' = menu_item[\'value\']')
-
+                            # ----------RETURN VALUE------------------------------------------
+                            elif menu_item['LMB action'] == 'return value':
+                                self.menu_return_value = menu_item['value']
+                                self.menu_actions_done = True
+                                return
 
                             # ----------AFTERMATH ACTIONS--------------------------------
                             # if menu_item['after action']:
@@ -494,12 +502,14 @@ class World(object):
         # #    self.add_menu_item(item['rectangle'], item['label'], item['LMB action'], item['active'], item['on hover action'])
         self.add_menu({'submenu name': 'main menu', 'value': ''}, (MAXX_DIV_2 - 200, 300), 400, 20)
         # self.add_menu('main menu', (MAXX_DIV_2 - 200, 300), 400, 20)
-
+        background = self.screen.convert_alpha()
+        # self.dim()
         while not self.menu_actions_done:
         # while self.menu_action_pending == '':
             self.processing_human_input()
             self.processing_menu_items()
-            self.render_background()
+            self.render_background(background)
+            self.dim()
             self.render_menu_items()
             self.render_debug_info()
             pygame.display.flip()
@@ -512,6 +522,8 @@ class World(object):
                 pygame.quit()
                 raise SystemExit
             self.reset_menu_walk_tree()
+            self.reset_menu()
+            self.reset_human_input()
             return
         else:
             if 'map single selection' in self.menu_walk_tree:
@@ -524,15 +536,16 @@ class World(object):
             # if self.menu_walk_tree[-1] == 'save':
             #     self.reset_menu_walk_tree()
             #     self.save()
-            if self.menu_walk_tree[-1] == 'new':
+            if self.menu_return_value == 'new':
                 self.reset_menu_walk_tree()
+                self.reset_menu()
                 # self.menu_action_pending = ''
                 print('make new map')
                 # # Setting up the new map:
-                width = self.camera.max_x
-                # width = MAXX
-                height = self.camera_max_y
-                # height = MAXY
+                # width = self.camera.max_x
+                width = MAXX
+                # height = self.camera.max_y
+                height = MAXY
                 new_location_description = list()
                 with open('locations.py', 'r') as f:
                     existing_locations_description = f.readlines()
@@ -564,16 +577,16 @@ class World(object):
                     f_dest.writelines(existing_locations_description)
                 self.location = map_name
                 self.need_to_load = True
-            elif self.menu_walk_tree[-1] == 'load':
-                print(f'[main menu] {self.menu_walk_tree=}')
-                self.location = self.menu_walk_tree[-1]
-                self.need_to_load = True
-                self.reset_menu_walk_tree()
-                return
-            elif self.menu_walk_tree[-1] == 'quit':
-                pygame.quit()
-                raise SystemExit()
-            elif self.menu_walk_tree[-1] == 'resize':
+            # elif self.menu_walk_tree[-1] == 'load':
+            #     print(f'[main menu] {self.menu_walk_tree=}')
+            #     self.location = self.menu_walk_tree[-1]
+            #     self.need_to_load = True
+            #     self.reset_menu_walk_tree()
+            #     return
+            # elif self.menu_walk_tree[-1] == 'quit':
+            #     pygame.quit()
+            #     raise SystemExit()
+            elif self.menu_return_value == 'resize':
                 self.reset_menu_walk_tree()
                 # self.menu_action_pending = ''
                 x = self.create_text_input((MAXX_DIV_2, MAXY_DIV_2), 'ENTER MAX X:', 'digit')
@@ -896,7 +909,7 @@ class World(object):
             self.menu_pile_id += 1
         self.active_menu_pile = self.menu_pile_id
 
-        restricted = ('generate list from', 'predefined keys','target object')
+        restricted = ('generate list from', 'predefined keys','target object', 'rect')
 
         menu_name = parent_menu_item['submenu name']
         print(f'[add_menu] Start adding new menu: {menu_name=}, pile: {self.menu_pile_id}')
@@ -974,6 +987,8 @@ class World(object):
                 self.add_menu_item(item, item['colors']['frame color'], item['colors']['bg color'], item['colors']['txt color'])
             self.add_menu_item(item)
             dy += height
+
+        self.menu_items[self.active_menu_pile][0]['menu rect'] = pygame.Rect(top_left_corner[0], start_y, width, total_menu_height)
 
         print(f'[add_menu] Added new menu: {menu_name}')
         for k in self.menu_structure[menu_name].keys():
@@ -1299,9 +1314,12 @@ class World(object):
     #
     #     self.allow_import_locations = True
 
-    def render_background(self):
-        pygame.draw.rect(self.screen, BLACK, (0,0,MAXX, MAXY))
-        # self.render_debug_info()
+    def render_background(self, surf=None):
+        if surf:
+            self.screen.blit(surf, (0, 0))
+        else:
+            pygame.draw.rect(self.screen, BLACK, (0,0,MAXX, MAXY))
+
 
     def render_obstacles(self):
         for key in self.obstacles[self.location].keys():
@@ -1418,6 +1436,17 @@ class World(object):
                     # s = fonts.font15.render(str(menu_item['text']), True, txt_color)
 
                     self.screen.blit(s, (menu_item['rectangle'].centerx - s.get_size()[0] // 2, menu_item['rectangle'].centery - s.get_size()[1] // 2))
+            # if self.active_menu_pile != pile_id:
+            #     # print(self.menu_items[pile_id].keys())
+            #     self.dim()
+
+    def dim(self):
+        # back = surf.convert_alpha()
+        # back.fill(BLACK)
+        # back.set_alpha(180)
+
+        self.screen.blit(dim_screen_cover, (0, 0))
+
 
     def render_menu_items_old(self):
         # pygame.draw.rect(self.screen, BLACK, (self.menu_items[0]['rectangle'].x + 10, self.menu_items[0]['rectangle'].y)
@@ -1689,12 +1718,13 @@ class World(object):
         # self.add_menu('custom obs properties', self.mouse_xy, 400, 20)
         # self.add_menu('obstacle edit', self.mouse_xy, 400, 20)
         # self.add_menu(self.mouse_xy, 400, 20, [self.menu_structure['obstacle edit'][i] for i in self.menu_structure['obstacle edit'].keys()])
-
+        background = self.screen.convert_alpha()
         while not self.menu_actions_done:
         # while self.menu_action_pending == '':
             self.processing_human_input()
             self.processing_menu_items()
-            self.render_background()
+            self.render_background(background)
+            self.dim()
             self.render_menu_items()
             self.render_debug_info()
             pygame.display.flip()
@@ -1975,6 +2005,8 @@ class World(object):
             # Update camera viewport:
             if self.is_input_left_arrow:
                 self.global_offset_xy[0] -= self.camera_scroll_speed * 10
+                # if self.global_offset_xy[0] < 0:
+                #     self.global_offset_xy[0] = 0
                 if self.global_offset_xy[0] < MAXX_DIV_2:
                     self.global_offset_xy[0] = MAXX_DIV_2
             if self.is_input_right_arrow:
@@ -2001,130 +2033,6 @@ class World(object):
             self.render_snap_mesh()
             self.render_menu_items()
 
-    def process_old(self):
-        # self.create_text_input((100, 100), 'INPUT TEXT XXXXXXXXXXXXXXXXXXXXXXXXXXX:', 'str')
-        self.processing_human_input()
-
-        if self.menu_items:
-            # self.processing_menu_items(True)
-            command = self.processing_menu_items(True)
-            # exec(command)
-        else:
-            if self.is_mouse_wheel_up:
-                self.is_mouse_wheel_up = False
-                self.zoom_factor += .1
-            elif self.is_mouse_wheel_down:
-                self.is_mouse_wheel_down = False
-                self.zoom_factor -= .1
-
-            obs_id = self.check_mouse_xy_collides_obs()
-
-            if self.is_spacebar:
-                # obs_id = self.check_mouse_xy_collides_obs()
-                if obs_id > -1:
-                    # Try to delete existing obs:
-                    del self.obstacles[self.location][obs_id]
-                    if obs_id in self.obs_settings.keys():
-                        del self.obs_settings[obs_id]
-
-            # RMB
-            if self.is_right_mouse_button_down:
-                self.is_right_mouse_button_down = False
-                if obs_id > -1:
-                    self.edit_obs(self.obstacles[self.location][obs_id])
-                else:
-
-                    if self.mouse_xy_snapped_to_mesh in self.clipboard.keys():
-                        # Delete existing dot from the clipboard.
-                        del self.clipboard[self.mouse_xy_snapped_to_mesh]
-                    else:
-                        # Place current mouse coordinate to clipboard.
-                        self.clipboard[self.mouse_xy_snapped_to_mesh] = {
-                            'location': self.location,
-                            'coordinate': self.mouse_xy_snapped_to_mesh
-                        }
-
-            if self.is_right_bracket:
-                self.is_right_bracket = False
-                self.current_object_type += 1
-                if self.current_object_type == len(self.object_types):
-                    self.current_object_type = 0
-            if self.is_left_bracket:
-                self.is_left_bracket = False
-                self.current_object_type -= 1
-                if self.current_object_type < 0:
-                    self.current_object_type = len(self.object_types) - 1
-
-            if self.is_left_mouse_button_down:
-                if self.new_obs_rect_started:
-                    # Update new obs.
-                    # last_point = (self.mouse_xy_global[0] // self.snap_mesh_size * self.snap_mesh_size,
-                    #               self.mouse_xy_global[1] // self.snap_mesh_size * self.snap_mesh_size)
-                    last_point = self.mouse_xy_snapped_to_mesh
-                    if self.new_obs_rect_start_xy[0] < last_point[0]:
-                        x = self.new_obs_rect_start_xy[0]
-                        w = last_point[0] - self.new_obs_rect_start_xy[0]
-                    else:
-                        x = last_point[0]
-                        w = self.new_obs_rect_start_xy[0] - last_point[0]
-
-                    if self.new_obs_rect_start_xy[1] < last_point[1]:
-                        y = self.new_obs_rect_start_xy[1]
-                        h = last_point[1] - self.new_obs_rect_start_xy[1]
-                    else:
-                        y = last_point[1]
-                        h = self.new_obs_rect_start_xy[1] - last_point[1]
-                    self.new_obs_rect.update(x, y, w, h)
-                else:
-                    # Start new obs.
-                    self.new_obs_rect_started = True
-                    self.new_obs_rect_start_xy = self.mouse_xy_snapped_to_mesh
-                    # self.new_obs_rect_start_xy = self.mouse_xy_global  # Without snap to mesh.
-            else:
-                if self.new_obs_rect_started:
-                    # Add new obs.
-
-                    if self.new_obs_rect.width != 0 and self.new_obs_rect.height != 0:
-                        if self.object_types[self.current_object_type] == 'obstacle':
-                            description = (self.new_obs_rect.topleft, self.new_obs_rect.size, self.obstacle_id)
-                            self.obstacle_id += 1
-                            self.add_obstacle(description)
-                        elif self.object_types[self.current_object_type] == 'demolisher':
-                            description = (self.new_obs_rect.topleft, self.new_obs_rect.size, self.demolishers_id)
-                            self.demolishers_id += 1
-                            self.add_demolisher(description)
-                    self.new_obs_rect_started = False
-                    self.new_obs_rect_start_xy = [0, 0]
-                    self.new_obs_rect.update(0,0,0,0)
-
-            # Update camera viewport:
-            if self.is_input_left_arrow:
-                self.global_offset_xy[0] -= self.camera_scroll_speed * 10
-                if self.global_offset_xy[0] < MAXX_DIV_2:
-                    self.global_offset_xy[0] = MAXX_DIV_2
-            if self.is_input_right_arrow:
-                self.global_offset_xy[0] += self.camera_scroll_speed * 10
-                if self.global_offset_xy[0] > MAXX_DIV_2 + self.camera.max_offset_x:
-                    self.global_offset_xy[0] = MAXX_DIV_2 + self.camera.max_offset_x
-            if self.is_input_down_arrow:
-                self.global_offset_xy[1] += self.camera_scroll_speed * 10
-                if self.global_offset_xy[1] > MAXY_DIV_2 + self.camera.max_offset_y:
-                    self.global_offset_xy[1] = MAXY_DIV_2 + self.camera.max_offset_y
-            if self.is_input_up_arrow:
-                self.global_offset_xy[1] -= self.camera_scroll_speed * 10
-                if self.global_offset_xy[1] < MAXY_DIV_2:
-                    self.global_offset_xy[1] = MAXY_DIV_2
-            self.camera.apply_offset(self.global_offset_xy,
-                                     self.camera_scroll_speed * 10, self.camera_scroll_speed * 10, False)
-
-            # Rendering:
-            self.render_background()
-            self.render_obstacles()
-            self.render_demolishers()
-            self.render_new_obs()
-            self.render_debug_info()
-            # self.render_menu()
-            self.render_snap_mesh()
 
 world = World()
 world.set_screen(screen)
