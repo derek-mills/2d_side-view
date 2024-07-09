@@ -1,4 +1,5 @@
-obstacle_settings_list = ('ghost', 'speed', 'active', 'collideable', 'gravity affected', 'actors pass through', 'invisible', 'trigger', 'trigger description', 'actions')
+obstacle_settings_list = ('ghost', 'actors pass through', 'speed', 'active', 'actions', 'collideable', 'gravity affected', 'invisible', 'trigger', 'trigger description', \
+                          'teleport', 'teleport description')
 
 #trigger_description = (
 #	'make active': tuple(int,),

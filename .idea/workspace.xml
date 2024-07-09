@@ -6,12 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/camera.py" beforeDir="false" afterPath="$PROJECT_DIR$/camera.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphics.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphics.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/level_editor_menu_structure.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor_menu_structure.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/misc_tools.py" beforeDir="false" afterPath="$PROJECT_DIR$/misc_tools.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates.py" beforeDir="false" afterPath="$PROJECT_DIR$/templates.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,13 +119,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00177" summary="Added zooming ability for level editor.">
-      <created>1719201346708</created>
-      <option name="number" value="00177" />
-      <option name="presentableId" value="LOCAL-00177" />
-      <option name="project" value="LOCAL" />
-      <updated>1719201346708</updated>
     </task>
     <task id="LOCAL-00178" summary="Fixed bugs while zooming in level editor.">
       <created>1719206378680</created>
@@ -466,7 +456,14 @@
       <option name="project" value="LOCAL" />
       <updated>1720489857562</updated>
     </task>
-    <option name="localTasksCounter" value="226" />
+    <task id="LOCAL-00226" summary="Level editor: menu appearing is now dim the screen for the better visual percept.">
+      <created>1720497033843</created>
+      <option name="number" value="00226" />
+      <option name="presentableId" value="LOCAL-00226" />
+      <option name="project" value="LOCAL" />
+      <updated>1720497033843</updated>
+    </task>
+    <option name="localTasksCounter" value="227" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -481,7 +478,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Level editor: improving menu elements placement and alignment." />
     <MESSAGE value="Level editor: menu bunches allow to select and deselect multiple objects." />
     <MESSAGE value="Level editor: added clipboard to store particular dot coordinates to use in the future." />
     <MESSAGE value="Removed inactivation of actors if they do not collide with camera rectangle." />
@@ -506,6 +502,7 @@
     <MESSAGE value="Level editor: obstacle edit submenu works well, but need TODO input text routine, 'action' change routine." />
     <MESSAGE value="Level editor: added 'teleport' state support for obstacles during collisions detection according to the new description style." />
     <MESSAGE value="Level editor: editor now allow to choose a map to teleport and a XY coordinate for this action." />
-    <option name="LAST_COMMIT_MESSAGE" value="Level editor: editor now allow to choose a map to teleport and a XY coordinate for this action." />
+    <MESSAGE value="Level editor: menu appearing is now dim the screen for the better visual percept." />
+    <option name="LAST_COMMIT_MESSAGE" value="Level editor: menu appearing is now dim the screen for the better visual percept." />
   </component>
 </project>

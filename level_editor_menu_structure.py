@@ -282,7 +282,7 @@ menu_structure = {
             'LMB action': 'reveal submenu',
             'submenu name': 'obs multiple selection',
             'submenu exit action': 'store value',
-            'submenu after action': 'return to parent',
+            # 'submenu after action': 'return to parent',
             # 'submenu exit action': 'append value',
             # 'submenu exit action': 'return self value',
             # 'value': list(),

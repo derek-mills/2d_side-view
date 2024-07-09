@@ -283,6 +283,7 @@ class World(object):
                                 return
                             # ----------APPEND------------------------------------------
                             elif menu_item['LMB action'] == 'append value':
+                                print('[processing menu] append value')
                                 target = eval(menu_item['target'])
                                 if type(menu_item['value']) == str:
                                     if menu_item['value'][0] == '*':
@@ -323,6 +324,7 @@ class World(object):
                             # ----------AFTERMATH ACTIONS--------------------------------
                             # if menu_item['after action']:
                             if menu_item['after action'] == 'keep going':
+                                print('[processing menu] keep going')
                                 continue
                             elif menu_item['after action'] == 'return to parent':
                                 print('[processing menu] returning to parent.')
@@ -957,6 +959,11 @@ class World(object):
         items = self.menu_structure[menu_name].keys()
 
         # Calculate geometry routines:
+        if top_left_corner[0] + width > MAXX:
+            start_x = MAXX - width
+        else:
+            start_x = top_left_corner[0]
+
         dy = 0
         height = font_size + 16
         total_menu_height = height * len([i for i in items if i not in restricted])
@@ -964,6 +971,7 @@ class World(object):
             start_y = MAXY - height
         else:
             start_y = top_left_corner[1] + total_menu_height - height
+
 
         # Main cycle of menu items add:
         for i in reversed(items):
@@ -977,7 +985,8 @@ class World(object):
             if after_action:
                 item['after action'] = after_action
             # item['submenu actions done'] = False
-            item['rectangle'] = pygame.Rect(top_left_corner[0], start_y - dy, width, height)
+            item['rectangle'] = pygame.Rect(start_x, start_y - dy, width, height)
+            # item['rectangle'] = pygame.Rect(top_left_corner[0], start_y - dy, width, height)
             if 'target' not in item.keys() or not item['target']:
                 # print(f'[add_menu] try to set {target=} for {menu_name=}')
                 item['target'] = target
@@ -988,7 +997,8 @@ class World(object):
             self.add_menu_item(item)
             dy += height
 
-        self.menu_items[self.active_menu_pile][0]['menu rect'] = pygame.Rect(top_left_corner[0], start_y, width, total_menu_height)
+        self.menu_items[self.active_menu_pile][0]['menu rect'] = pygame.Rect(start_x, start_y, width, total_menu_height)
+        # self.menu_items[self.active_menu_pile][0]['menu rect'] = pygame.Rect(top_left_corner[0], start_y, width, total_menu_height)
 
         print(f'[add_menu] Added new menu: {menu_name}')
         for k in self.menu_structure[menu_name].keys():
@@ -1399,16 +1409,38 @@ class World(object):
                     s = fonts.font15.render(str(menu_item['label']), True, txt_color)
                     self.screen.blit(s, (menu_item['rectangle'].centerx - s.get_size()[0] // 2, menu_item['rectangle'].centery - s.get_size()[1] // 2))
 
+                    # Render additional info about the menu item:
                     if 'additional info' in menu_item.keys():
                         if menu_item['additional info'][0] == '*':
                             info = eval(menu_item['additional info'][1:])
                         else:
                             info = menu_item['additional info']
-                        s = fonts.font15.render(str(info), True, BLACK)
-                        pygame.draw.rect(self.screen, GRAY, (menu_item['rectangle'].right, menu_item['rectangle'].y,
-                                                                   50, menu_item['rectangle'].h), 0)
-                        self.screen.blit(s, (menu_item['rectangle'].right + 25 - s.get_size()[0] // 2,
-                                             menu_item['rectangle'].centery - s.get_size()[1] // 2))
+
+                        s = fonts.font12.render(str(info), True, BLACK)
+                        sz = s.get_size()
+                        add_box_width = 100
+                        if menu_item['rectangle'].right + add_box_width > MAXX:
+                            add_box_x = menu_item['rectangle'].left - add_box_width - 1
+                        else:
+                            add_box_x = menu_item['rectangle'].right + 1
+
+                        pygame.draw.rect(self.screen, GRAY, (add_box_x, menu_item['rectangle'].y,
+                                                             add_box_width, menu_item['rectangle'].h), 0)
+                        self.screen.blit(s, (add_box_x + add_box_width // 2 - sz[0] // 2,
+                                             menu_item['rectangle'].centery - sz[1] // 2))
+
+                        if menu_item['hovered']:
+                            if self.mouse_xy[0] + sz[0]//2 + 2 > MAXX:
+                                hover_box_x = MAXX - sz[0]
+                            elif self.mouse_xy[0] - sz[0] //2 - 2 < 0:
+                                hover_box_x = 0
+                            else:
+                                hover_box_x = self.mouse_xy[0] - sz[0] //2 - 2
+
+                            hover_box_y = self.mouse_xy[1] - sz[1] - 1
+                            pygame.draw.rect(self.screen, WHITE, (hover_box_x, hover_box_y,
+                                                                 sz[0] + 4, sz[1] + 2), 0)
+                            self.screen.blit(s, (hover_box_x + 2, hover_box_y + 1))
 
                 else:
                     # Inactive menu items (mostly, the headers)
