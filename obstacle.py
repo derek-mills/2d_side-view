@@ -187,7 +187,7 @@ class Obstacle(Entity):
         self.repeat_counter = -1
 
     def next_action(self):
-        print('ENTERING NEXT ACTION')
+        # print('ENTERING NEXT ACTION')
 
         if not self.actions:
             return
@@ -235,7 +235,7 @@ class Obstacle(Entity):
                     # Destination is just a single point:
                     self.destination_point = self.actions[self.actions_set_number][self.current_action][1]
                     self.destination_area.update(0, 0, 0, 0)
-        print('current_action:', self.actions[self.actions_set_number][self.current_action])
+        # print('current_action:', self.actions[self.actions_set_number][self.current_action])
         # elif self.actions[self.actions_set_number][self.current_action][0] == 'die':
         #     self.die()
         # elif self.actions[self.actions_set_number][self.current_action][0] == 'stop':

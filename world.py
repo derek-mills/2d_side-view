@@ -297,6 +297,7 @@ class World(object):
                     return
             if obs.trigger:
                 if obs.trigger_activated:
+                    obs.trigger = False
                     if obs.trigger_description['make active'] is not None:
                     # if 'make active' in obs.trigger_description.keys():
                         for make_active_id in obs.trigger_description['make active']:
@@ -664,17 +665,11 @@ class World(object):
                 params = (
                     ('ID: ' + str(obs.id), BLACK),
                     ('TRGGR: ' + str(obs.trigger_activated), YELLOW),
-                    ('GRAVITY         : ' + str(obs.is_gravity_affected), RED),
-                    ('IN GROUND       : ' + str(obs.is_stand_on_ground), RED),
-                    ('EDGE GRABBED    : ' + str(obs.is_edge_grabbed), RED),
-                    ('WAIT COUNTER    : ' + str(obs.wait_counter), BLACK),
-                    ('IDLE            : ' + str(obs.idle), BLACK),
-                    #(' IS ON OBS: ' + str(self.actors['player'].is_on_obstacle), WHITE),
-                    # ('RECTANGLE       : ' + str(obs.rectangle), BLACK),
-                    # ('VEC TO DESTINTON: ' + str(obs.vec_to_destination), BLACK),
-                    # ('VEC TO DESTINTON: ' + str(obs.vec_to_destination), BLACK),
-
-
+                    # ('GRAVITY         : ' + str(obs.is_gravity_affected), RED),
+                    # ('IN GROUND       : ' + str(obs.is_stand_on_ground), RED),
+                    # ('EDGE GRABBED    : ' + str(obs.is_edge_grabbed), RED),
+                    # ('WAIT COUNTER    : ' + str(obs.wait_counter), BLACK),
+                    # ('IDLE            : ' + str(obs.idle), BLACK),
                 )
                 for p in params:
                     if p == 'CR':
