@@ -382,7 +382,8 @@ menu_structure = {
             'self dict name': 'custom obs properties',
             'label': '[CONFIRM]',
             'on hover action': None,
-            'LMB action': 'store value',
+            'LMB action': 'return value',
+            # 'LMB action': 'store value',
             'description': 'return custom obs properties',
             'target': "self.menu_structure['custom obs properties']['ok']['value']",
             # Here will be stored full obstacle description.

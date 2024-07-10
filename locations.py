@@ -1,6 +1,74 @@
 from constants import *
 locations = {
     
+    '2d5b1b76-3e66-11ef-a7e0-f5ed2070cb71':
+        {
+            'music': 'music/ambient_1.mp3',
+            'description': 'apartment #1',
+            'size': (1920, 1000),
+            'hostiles': {
+              },
+            'demolishers': {
+                'dem rectangles': (
+                  ), # DEMOLISHERS RECTANGLE SECTION END
+            },
+            'obstacles': {
+                'obs rectangles': (
+                ((0, 950), (1950, 50), 1),  #1
+                ((0, 0), (50, 950), 2),  #2
+                ((1900, 0), (50, 950), 3),  #3
+                ((50, 450), (750, 50), 4),  #4
+                ((300, 300), (150, 150), 12),  #12
+                ((550, 300), (150, 150), 13),  #13
+                ((750, 300), (150, 150), 14),  #14
+                  ), # OBSTACLE RECTANGLES SECTION END
+                'settings': {
+                    12: {
+                        'ghost': True,
+                        'actors pass through': True,
+                        'speed': 0.2,
+                        'collideable': False,
+                        'gravity affected': False,
+                        'invisible': False,
+                        'teleport': False,
+                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'trigger': False,
+                        'trigger description': {'make active': [], 'disappear': False},
+                        'active': False,
+                        'actions': {0: (('move', (0, 0, 100, 1000)), ('move', 'start area'), ('repeat', 0))},
+                  },
+                    13: {
+                        'ghost': False,
+                        'actors pass through': False,
+                        'speed': 0.2,
+                        'collideable': False,
+                        'gravity affected': False,
+                        'invisible': False,
+                        'teleport': False,
+                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'trigger': False,
+                        'trigger description': {'make active': [], 'disappear': False},
+                        'active': False,
+                        'actions': {0: (('move', (0, 0, 100, 1000)), ('move', 'start area'), ('repeat', 0))},
+                  },
+                    14: {
+                        'ghost': False,
+                        'actors pass through': True,
+                        'speed': 0.2,
+                        'collideable': True,
+                        'gravity affected': True,
+                        'invisible': True,
+                        'teleport': True,
+                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'trigger': False,
+                        'trigger description': {'make active': [], 'disappear': False},
+                        'active': False,
+                        'actions': {0: (('move', (0, 0, 100, 1000)), ('move', 'start area'), ('repeat', 0))},
+                  },
+                  } # OBSTACLE SETTINGS SECTION END
+              },
+            'items': {},
+    },
     '64e4a58e-3dbd-11ef-a7e0-f5ed2070cb71':
         {
             'music': 'music/ambient_1.mp3',
@@ -154,38 +222,37 @@ locations = {
             },
             'obstacles': {
                 'obs rectangles': (
-                ((0, 1950), (3000, 50), 1),  #1
-                ((2950, 1750), (50, 200), 7),  #7
-                ((2950, 0), (50, 1750), 8),  #8
-                ((0, 0), (50, 1950), 9),  #9
-                ((1650, 0), (1300, 50), 15),  #15
-                ((50, 750), (350, 50), 19),  #19
-                ((2300, 50), (400, 1250), 22),  #22
-                ((2700, 1150), (100, 150), 24),  #24
-                ((2850, 600), (100, 150), 25),  #25
-                ((2700, 250), (100, 50), 26),  #26
-                ((450, 1750), (2100, 200), 31),  #31
-                ((800, 400), (50, 550), 32),  #32
-                ((50, 800), (400, 200), 36),  #36
-                ((700, 0), (950, 400), 38),  #38
-                ((450, 950), (1200, 50), 39),  #39
-                ((1900, 1250), (400, 50), 40),  #40
-                ((900, 400), (750, 550), 42),  #42
+                ((0, 1950), (3000, 50), 1),
+                ((2950, 1750), (50, 200), 7),
+                ((2950, 0), (50, 1750), 8),
+                ((0, 0), (50, 1950), 9),
+                ((1650, 0), (1300, 50), 15),
+                ((2300, 50), (400, 1250), 22),
+                ((2700, 1150), (100, 150), 24),
+                ((2850, 600), (100, 150), 25),
+                ((2700, 250), (100, 50), 26),
+                ((450, 1750), (2100, 200), 31),
+                ((800, 400), (50, 550), 32),
+                ((700, 0), (950, 400), 38),
+                ((450, 950), (1200, 50), 39),
+                ((1900, 1250), (400, 50), 40),
+                ((900, 400), (750, 550), 42),
+                ((50, 950), (400, 50), 48),
                   ), # OBSTACLE RECTANGLES SECTION END
                 'settings': {
                     32: {
                         'ghost': False,
-                        'actors pass through': True,
+                        'actors pass through': False,
                         'speed': 0.2,
-                        'collideable': False,
-                        'gravity affected': False,
-                        'invisible': True,
-                        'teleport': False,
-                        'teleport description': {'new location': '', 'xy': [0, 0]},
-                        'trigger': True,
-                        'trigger description': {'make active': [42], 'disappear': True},
                         'active': False,
                         'actions': {0: (('move', (0, 0, 100, 1000)), ('move', 'start area'), ('repeat', 0))},
+                        'collideable': True,
+                        'gravity affected': True,
+                        'invisible': False,
+                        'trigger': True,
+                        'trigger description': {'make active': [42], 'disappear': False},
+                        'teleport': False,
+                        'teleport description': {'new location': '', 'xy': [0, 0]},
                   },
                     7: {
                         'ghost': False,
@@ -205,15 +272,15 @@ locations = {
                         'ghost': False,
                         'actors pass through': False,
                         'speed': 0.2,
+                        'active': False,
+                        'actions': {0: (('move', (900, 950)), ('stop', 0))},
                         'collideable': False,
                         'gravity affected': False,
                         'invisible': False,
-                        'teleport': False,
-                        'teleport description': {'new location': '', 'xy': [0, 0]},
                         'trigger': False,
                         'trigger description': {'make active': [42], 'disappear': True},
-                        'active': False,
-                        'actions': {0: (('move', (900,950)), ('stop', 0))},
+                        'teleport': False,
+                        'teleport description': {'new location': '', 'xy': [0, 0]},
                   },
                   } # OBSTACLE SETTINGS SECTION END
               },

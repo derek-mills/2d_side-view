@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="Fixed bug with active obstacle: default speed was 0.0 after level edit was over.">
+    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/level_editor_menu_structure.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor_menu_structure.py" afterDir="false" />
@@ -119,13 +119,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00181" summary="Fixed demolishers fly ability.">
-      <created>1719218755011</created>
-      <option name="number" value="00181" />
-      <option name="presentableId" value="LOCAL-00181" />
-      <option name="project" value="LOCAL" />
-      <updated>1719218755011</updated>
     </task>
     <task id="LOCAL-00182" summary="Level editor saving system upgraded.">
       <created>1719292932235</created>
@@ -463,7 +456,14 @@
       <option name="project" value="LOCAL" />
       <updated>1720512502057</updated>
     </task>
-    <option name="localTasksCounter" value="230" />
+    <task id="LOCAL-00230" summary="Level editor: added 'reset to default' ability while obstacle settings being editing.">
+      <created>1720574758521</created>
+      <option name="number" value="00230" />
+      <option name="presentableId" value="LOCAL-00230" />
+      <option name="project" value="LOCAL" />
+      <updated>1720574758521</updated>
+    </task>
+    <option name="localTasksCounter" value="231" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -478,7 +478,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Several tiny, but important improvement" />
     <MESSAGE value="Level editor: text input routine modified." />
     <MESSAGE value="Level editor: if obstacle has been deleted, all info in 'settings' section about it is also deleted too." />
     <MESSAGE value="Level editor: dots placed into clipboard are now render as individual points." />
@@ -503,6 +502,7 @@
     <MESSAGE value="Level editor: fixed some bugs; edit obstacles menu appears corresponding the screen edges and does not hide out." />
     <MESSAGE value="Level editor: fixed some bugs; 'action' section remains undone." />
     <MESSAGE value="Fixed bug with active obstacle: default speed was 0.0 after level edit was over." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug with active obstacle: default speed was 0.0 after level edit was over." />
+    <MESSAGE value="Level editor: added 'reset to default' ability while obstacle settings being editing." />
+    <option name="LAST_COMMIT_MESSAGE" value="Level editor: added 'reset to default' ability while obstacle settings being editing." />
   </component>
 </project>
