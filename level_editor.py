@@ -299,7 +299,7 @@ class World(object):
                                     value = menu_item['value']
                                     # target.append(menu_item['value'])
                                     # eval(menu_item['target']).append(menu_item['value'])
-
+                                print(f'[processing menu] append {value} to {target}')
                                 if value in target:
                                     target.remove(value)
                                     menu_item['checked'] = False

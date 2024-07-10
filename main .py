@@ -41,7 +41,8 @@ fades_speed = 100
 # ---------------------------------------------------
 # world.location = 'Cellar'
 # world.location = 'Hall'
-world.location = 'room 1'
+# world.location = 'room 1'
+world.location = '2'
 world.add_actor(player_jake, (200, 200))
 world.load()
 

@@ -127,39 +127,78 @@ menu_structure = {
         },
     },
 
-    'actions multiple selection': {
+    'action single selection': {
         'header': {
             'rectangle': None,
-            'label': 'CHOOSE ACTIONS TO BE PERFORMED:',
-            'description': 'actions multiple selection',
+            'label': 'ADD AN ACTION TO BE PERFORMED NEXT:',
+            'description': 'action single selection',
             'on hover action': None,
             'target': None,
             'LMB action': None,
             'active': False,
             'after action': None
         },
-        'generate list from': '*self.obstacles[self.location].keys()',
-        'predefined keys': {
-            'LMB action': 'append value',
-            'value': '$description',
-            'target': "self.menu_structure['obs multiple selection']['ok']['value']",
-            'label': '$description',
-            'active': True,
-            'after action': 'keep going'
-        },
-        'ok': {
+        # 'generate list from': '*self.obstacles[self.location].keys()',
+        # 'predefined keys': {
+        #     'LMB action': 'append value',
+        #     'value': '$description',
+        #     'target': "self.menu_structure['obs multiple selection']['ok']['value']",
+        #     'label': '$description',
+        #     'active': True,
+        #     'after action': 'keep going'
+        # },
+        'move': {
             'rectangle': pygame.Rect(0, 0, 0, 0),
-            'colors': {
-                'frame color': BLUE,
-                'bg color': YELLOW,
-                'txt color': DARKGRAY
-            },
-            'label': '[CONFIRM]',
+            # 'colors': {
+            #     'frame color': BLUE,
+            #     'bg color': YELLOW,
+            #     'txt color': DARKGRAY
+            # },
+            'label': '[MOVE]',
             'on hover action': None,
-            'LMB action': 'store value',
-            'value': list(),
+            # 'LMB action': 'store value',
+            'value': ('move', (0, 0)),
+            # 'value': "('move', (0, 0))",
             # 'target': '',
-            'description': 'multiple obstacles list',
+            'description': 'add MOVE action',
+            'active': True,
+            'after action': 'return to parent',
+            # 'after action': 'keep going',
+            # 'after action': None,
+        },
+        'stop': {
+            'rectangle': pygame.Rect(0, 0, 0, 0),
+            # 'colors': {
+            #     'frame color': BLUE,
+            #     'bg color': YELLOW,
+            #     'txt color': DARKGRAY
+            # },
+            'label': '[STOP]',
+            'on hover action': None,
+            # 'LMB action': 'store value',
+            'value': ('stop', (0, 0)),
+            # 'value': "('stop', (0, 0))",
+            # 'target': '',
+            'description': 'add STOP action',
+            'active': True,
+            'after action': 'return to parent',
+            # 'after action': 'keep going',
+            # 'after action': None,
+        },
+        'repeat': {
+            'rectangle': pygame.Rect(0, 0, 0, 0),
+            # 'colors': {
+            #     'frame color': BLUE,
+            #     'bg color': YELLOW,
+            #     'txt color': DARKGRAY
+            # },
+            'label': '[REPEAT]',
+            'on hover action': None,
+            # 'LMB action': 'store value',
+            'value': ('repeat', 0),
+            # 'value': "('repeat', 0)",
+            # 'target': '',
+            'description': 'add REPEAT action',
             'active': True,
             'after action': 'return to parent',
             # 'after action': 'keep going',
@@ -357,14 +396,15 @@ menu_structure = {
             'also affects on': None,
             'after action': 'keep going'
         },
-        'actions': {
+        'action type': {
             'rectangle': pygame.Rect(0, 0, 0, 0),
-            'label': 'actions',
+            'label': 'add an action >',
             'on hover action': None,
             'LMB action': 'reveal submenu',
-            'submenu name': 'actions multiple selection',
-            'submenu exit action': 'store value',
-            'value': dict(),
+            'submenu name': 'action single selection',
+            'submenu exit action': 'append value',
+            'submenu after action': 'return to parent',
+            'value': "menu_structure['custom obs properties']['ok']['value']['actions'][0]",
             'target': "menu_structure['custom obs properties']['ok']['value']['actions'][0]",
             'additional info': "menu_structure['custom obs properties']['ok']['value']['actions'][0]",
             # 'LMB action': ['input string', {'actions': {}}],
@@ -411,8 +451,8 @@ menu_structure = {
                     #         # ('die', 0), ('switch visibility', 0), ('switch passability', 0),
                     #         # ('turn on actions set', 0), ('switch gravity', 0),
                     #
-                    0: (('move', (0, 0, 100, MAXY)), ('move', 'start area'), ('repeat', 0)),
-                    #              1: (('move', (0, 0)),),
+                    0: list(),
+                    # 0: (('move', (0, 0, 100, MAXY)), ('move', 'start area'), ('repeat', 0)),
                 },
             },
             'active': True,
@@ -456,8 +496,8 @@ menu_structure = {
                     #         # ('die', 0), ('switch visibility', 0), ('switch passability', 0),
                     #         # ('turn on actions set', 0), ('switch gravity', 0),
                     #
-                    0: (('move', (0, 0, 100, MAXY)), ('move', 'start area'), ('repeat', 0)),
-                    #              1: (('move', (0, 0)),),
+                    0: list(),
+                    # 0: (('move', (0, 0, 100, MAXY)), ('move', 'start area'), ('repeat', 0)),
                 },
             },
             'active': True,

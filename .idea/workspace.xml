@@ -6,9 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/level_editor_menu_structure.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor_menu_structure.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main .py" beforeDir="false" afterPath="$PROJECT_DIR$/main .py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +57,7 @@
       </console-settings>
     </option>
   </component>
-  <component name="RunManager" selected="Python.level_editor">
+  <component name="RunManager" selected="Python.main ">
     <configuration name="level_editor" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ver_0.000.1" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -106,8 +106,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.level_editor" />
         <item itemvalue="Python.main " />
+        <item itemvalue="Python.level_editor" />
       </list>
     </recent_temporary>
   </component>
@@ -119,13 +119,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00182" summary="Level editor saving system upgraded.">
-      <created>1719292932235</created>
-      <option name="number" value="00182" />
-      <option name="presentableId" value="LOCAL-00182" />
-      <option name="project" value="LOCAL" />
-      <updated>1719292932235</updated>
     </task>
     <task id="LOCAL-00183" summary="Keep upgrading level editor saving system.">
       <created>1719299742781</created>
@@ -463,7 +456,14 @@
       <option name="project" value="LOCAL" />
       <updated>1720574758521</updated>
     </task>
-    <option name="localTasksCounter" value="231" />
+    <task id="LOCAL-00231" summary="Level editor: fixed bug when properties of just edited obstacle become the same as the others had.">
+      <created>1720583879229</created>
+      <option name="number" value="00231" />
+      <option name="presentableId" value="LOCAL-00231" />
+      <option name="project" value="LOCAL" />
+      <updated>1720583879230</updated>
+    </task>
+    <option name="localTasksCounter" value="232" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -478,7 +478,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Level editor: text input routine modified." />
     <MESSAGE value="Level editor: if obstacle has been deleted, all info in 'settings' section about it is also deleted too." />
     <MESSAGE value="Level editor: dots placed into clipboard are now render as individual points." />
     <MESSAGE value="Level editor: dots placed into clipboard could now be removed by pressing RMB again." />
@@ -503,6 +502,7 @@
     <MESSAGE value="Level editor: fixed some bugs; 'action' section remains undone." />
     <MESSAGE value="Fixed bug with active obstacle: default speed was 0.0 after level edit was over." />
     <MESSAGE value="Level editor: added 'reset to default' ability while obstacle settings being editing." />
-    <option name="LAST_COMMIT_MESSAGE" value="Level editor: added 'reset to default' ability while obstacle settings being editing." />
+    <MESSAGE value="Level editor: fixed bug when properties of just edited obstacle become the same as the others had." />
+    <option name="LAST_COMMIT_MESSAGE" value="Level editor: fixed bug when properties of just edited obstacle become the same as the others had." />
   </component>
 </project>
