@@ -6,9 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/level_editor_menu_structure.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor_menu_structure.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main .py" beforeDir="false" afterPath="$PROJECT_DIR$/main .py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obstacle.py" beforeDir="false" afterPath="$PROJECT_DIR$/obstacle.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,13 +121,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00183" summary="Keep upgrading level editor saving system.">
-      <created>1719299742781</created>
-      <option name="number" value="00183" />
-      <option name="presentableId" value="LOCAL-00183" />
-      <option name="project" value="LOCAL" />
-      <updated>1719299742781</updated>
     </task>
     <task id="LOCAL-00184" summary="Keep upgrading level editor saving system.">
       <created>1719300645965</created>
@@ -463,7 +458,14 @@
       <option name="project" value="LOCAL" />
       <updated>1720583879230</updated>
     </task>
-    <option name="localTasksCounter" value="232" />
+    <task id="LOCAL-00232" summary="Level editor: ability to append some types of actions to obstacle added.">
+      <created>1720592065347</created>
+      <option name="number" value="00232" />
+      <option name="presentableId" value="LOCAL-00232" />
+      <option name="project" value="LOCAL" />
+      <updated>1720592065347</updated>
+    </task>
+    <option name="localTasksCounter" value="233" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -478,7 +480,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Level editor: if obstacle has been deleted, all info in 'settings' section about it is also deleted too." />
     <MESSAGE value="Level editor: dots placed into clipboard are now render as individual points." />
     <MESSAGE value="Level editor: dots placed into clipboard could now be removed by pressing RMB again." />
     <MESSAGE value="Level editor: dots placed into clipboard rendered now with text description." />
@@ -503,6 +504,7 @@
     <MESSAGE value="Fixed bug with active obstacle: default speed was 0.0 after level edit was over." />
     <MESSAGE value="Level editor: added 'reset to default' ability while obstacle settings being editing." />
     <MESSAGE value="Level editor: fixed bug when properties of just edited obstacle become the same as the others had." />
-    <option name="LAST_COMMIT_MESSAGE" value="Level editor: fixed bug when properties of just edited obstacle become the same as the others had." />
+    <MESSAGE value="Level editor: ability to append some types of actions to obstacle added." />
+    <option name="LAST_COMMIT_MESSAGE" value="Level editor: ability to append some types of actions to obstacle added." />
   </component>
 </project>

@@ -53,7 +53,7 @@ class Obstacle(Entity):
             elif self.actions[self.actions_set_number][self.current_action][0] == 'stop':
                 self.active = False
                 self.need_next_action = False
-                return
+                # return
             elif self.actions[self.actions_set_number][self.current_action][0] == 'wait':
                 self.wait_counter = self.actions[self.actions_set_number][self.current_action][1]
                 self.need_next_action = True
@@ -73,8 +73,11 @@ class Obstacle(Entity):
                 self.need_next_action = True
             elif self.actions[self.actions_set_number][self.current_action][0] == 'switch gravity':
                 self.is_gravity_affected = False if self.is_gravity_affected else True
+                print(f'[obs process] {self.name} changed collision status: {self.is_gravity_affected=}')
                 # print(f'[obs process] {self.name} changed collision status: {self.is_collideable=}')
                 self.need_next_action = True
+        # if self.id == 25:
+        #     print('self process of #25')
         super().process()
         # super().process(time_passed)
 

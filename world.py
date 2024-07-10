@@ -152,6 +152,7 @@ class World(object):
             entity.let_actors_pass_through = self.locations[self.location]['obstacles']['settings'][entity.id]['actors pass through']
             entity.is_ghost_platform = self.locations[self.location]['obstacles']['settings'][entity.id]['ghost']
             entity.is_collideable = self.locations[self.location]['obstacles']['settings'][entity.id]['collideable']
+            entity.is_gravity_affected = self.locations[self.location]['obstacles']['settings'][entity.id]['gravity affected']
             entity.invisible = self.locations[self.location]['obstacles']['settings'][entity.id]['invisible']
             entity.max_speed = self.locations[self.location]['obstacles']['settings'][entity.id]['speed']
             # print(f'[add_obstacle] Added active obstacle: {entity.actions=} {entity.is_gravity_affected=}')
@@ -309,6 +310,8 @@ class World(object):
                         continue
             obs.percept({k: self.obstacles[self.location][k] for k in self.active_obstacles}, self.demolishers[self.location])
             obs.get_time(self.time_passed, self.game_cycles_counter)
+            # if obs.id == 25:
+            #     print('obs #25 world process')
             obs.process_()
 
         if dead:
@@ -639,6 +642,7 @@ class World(object):
                     ('DESTINATION AREA: ' + str(obs.destination_area), RED),
                     ('DESTINATION PNT : ' + str(obs.destination_point), RED),
                     ('DESTINATION     : ' + str(obs.destination), RED),
+                    ('GRAVITY         : ' + str(obs.is_gravity_affected), RED),
                     # 'CR',
                 )
                 for p in params:
@@ -660,6 +664,11 @@ class World(object):
                 params = (
                     ('ID: ' + str(obs.id), BLACK),
                     ('TRGGR: ' + str(obs.trigger_activated), YELLOW),
+                    ('GRAVITY         : ' + str(obs.is_gravity_affected), RED),
+                    ('IN GROUND       : ' + str(obs.is_stand_on_ground), RED),
+                    ('EDGE GRABBED    : ' + str(obs.is_edge_grabbed), RED),
+                    ('WAIT COUNTER    : ' + str(obs.wait_counter), BLACK),
+                    ('IDLE            : ' + str(obs.idle), BLACK),
                     #(' IS ON OBS: ' + str(self.actors['player'].is_on_obstacle), WHITE),
                     # ('RECTANGLE       : ' + str(obs.rectangle), BLACK),
                     # ('VEC TO DESTINTON: ' + str(obs.vec_to_destination), BLACK),

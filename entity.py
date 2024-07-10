@@ -244,6 +244,8 @@ class Entity(object):
 
     def process(self):
     # def process(self, time_passed):
+    #     if self.id == 25:
+    #         print('super process of #25')
         if self.ttl > 0:
             self.ttl -= 1
             if self.ttl == 0:
@@ -275,9 +277,10 @@ class Entity(object):
         if self.is_gravity_affected:
             # self.calculate_fall_speed()  # Discover speed and potential fall distance
             # self.fall()
+            # print(f'FALL: ')
             if not self.is_stand_on_ground and not self.is_edge_grabbed:
                 self.calculate_fall_speed()  # Discover speed and potential fall distance
-                # print('fall!')
+                # print(f'fall! {self.fall_speed=} {self.potential_falling_distance=}')
                 self.fall()
             else:
                 self.potential_falling_distance = 1

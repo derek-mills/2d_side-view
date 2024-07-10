@@ -29,6 +29,7 @@ locations = {
                 ((50, 850), (750, 50), 23),  #23
                 ((50, 900), (750, 50), 24),  #24
                 ((950, 400), (400, 300), 25),  #25
+                ((450, 100), (350, 50), 26),  #26
                   ), # OBSTACLE RECTANGLES SECTION END
                 'settings': {
                     15: {
@@ -41,7 +42,7 @@ locations = {
                         'teleport': False,
                         'teleport description': {'new location': '', 'xy': [0, 0]},
                         'trigger': True,
-                        'trigger description': {'make active': [25,24, 23, 22, 21, 20, 19, 18, 17, 16], 'disappear': False},
+                        'trigger description': {'make active': [25, 24, 23, 22, 21, 20, 19, 18, 17, 16], 'disappear': False},
                         'active': False,
                         'actions': {0: (('move', (0, 0, 100, 1000)), ('move', 'start area'), ('repeat', 0))},
                   },
@@ -183,7 +184,21 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [], 'disappear': False},
                         'active': False,
-                        'actions': {0: [('move', (0, 0)), ('stop', (0, 0))]},
+                        'actions': {0: [('move', (950, 50)), ('wait', 30), ('switch gravity', 0), ('stop', 0)]},
+                  },
+                    26: {
+                        'ghost': False,
+                        'actors pass through': False,
+                        'speed': 0.2,
+                        'collideable': True,
+                        'gravity affected': True,
+                        'invisible': False,
+                        'teleport': False,
+                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'trigger': False,
+                        'trigger description': {'make active': [], 'disappear': False},
+                        'active': False,
+                        'actions': {0: []},
                   },
                   } # OBSTACLE SETTINGS SECTION END
               },
