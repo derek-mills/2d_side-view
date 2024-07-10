@@ -15,6 +15,7 @@ from demolisher import *
 import camera
 import fonts
 from level_editor_menu_structure import *
+from copy import copy
 # from sound import *
 # import json
 # import pickle
@@ -314,7 +315,14 @@ class World(object):
                                     # menu_item['label'] += ': ' + str(eval(k_tmp_string))
                             # ----------STORE VALUE------------------------------------------
                             elif menu_item['LMB action'] == 'store value':
-                                exec(menu_item['target'] + ' = menu_item[\'value\']')
+                                print('[processing menu] store value: ', menu_item['value'])
+                                command = menu_item['target'] + ' = copy(menu_item[\'value\'])'
+                                exec(command)
+
+                                # print('[processing menu] store value: ', eval(menu_item['target']))
+                                print('[processing menu] target becomes: ', self.menu_structure['custom obs properties']['ok']['value'])
+
+                                # exec(menu_item['target'] + ' = menu_item[\'value\']')
                             # ----------RETURN VALUE------------------------------------------
                             elif menu_item['LMB action'] == 'return value':
                                 self.menu_return_value = menu_item['value']
@@ -1773,6 +1781,7 @@ class World(object):
         for k in self.obs_settings[obs.id].keys():
             o = self.obs_settings[obs.id][k]
             print(f'[edit_obs] {k}: {o}')
+
         self.reset_menu_walk_tree()
         self.reset_menu()
 

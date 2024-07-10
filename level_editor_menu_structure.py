@@ -399,7 +399,7 @@ menu_structure = {
                     'new location': '',
                     'xy': [0, 0]
                 },
-                'trigger': True,
+                'trigger': False,
                 'trigger description': {
                     'make active': list(),
                     'disappear': False
@@ -417,6 +417,52 @@ menu_structure = {
             'active': True,
             'after action': None
         },
+        'reset': {
+            'rectangle': pygame.Rect(0, 0, 0, 0),
+            'colors': {
+                'frame color': BLUE,
+                'bg color': YELLOW,
+                'txt color': DARKGRAY
+            },
+            'self dict name': 'custom obs properties',
+            'label': '[RESET TO DEFAULT]',
+            'on hover action': None,
+            'LMB action': 'store value',
+            'description': 'return obs properties to default state',
+            'target': "self.menu_structure['custom obs properties']['ok']['value']",
+            # Here will be stored full obstacle description.
+            #  Like that: exec(menu_item['target'] + ' = menu_item[\'value\']')
+            'value': {
+                'ghost': False,
+                'actors pass through': False,
+                'speed': 0.2,
+                'collideable': False,
+                'gravity affected': False,
+                'invisible': False,
+                'teleport': False,
+                'teleport description': {
+                    'new location': '',
+                    'xy': [0, 0]
+                },
+                'trigger': False,
+                'trigger description': {
+                    'make active': list(),
+                    'disappear': False
+                },
+                'active': False,
+                'actions': {
+                    #         # (('move', (1100,450)), ('move', 'start'), ('wait', 2), ('repeat', 0))
+                    #         # ('die', 0), ('switch visibility', 0), ('switch passability', 0),
+                    #         # ('turn on actions set', 0), ('switch gravity', 0),
+                    #
+                    0: (('move', (0, 0, 100, MAXY)), ('move', 'start area'), ('repeat', 0)),
+                    #              1: (('move', (0, 0)),),
+                },
+            },
+            'active': True,
+            'after action': 'keep going'
+        },
+
     },
 
     'main menu': {
