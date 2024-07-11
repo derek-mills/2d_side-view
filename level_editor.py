@@ -1019,7 +1019,7 @@ class World(object):
         #     #     print(f'[add_menu] submenu: {k}, item: {i} ')
         # print(f'[add_menu] ----------')
 
-    def create_text_input(self, xy, prompt, input_type='str'):
+    def create_text_input(self, xy, prompt, default_value, input_type='str'):
         txt_surf = fonts.all_fonts[self.default_font_size].render(prompt, True, WHITE, DARKGRAY)
         back_color = GRAY
 
@@ -1044,7 +1044,7 @@ class World(object):
                     k = pygame.key.name(event.key)
                     print(k)
                     if event.key == K_ESCAPE:
-                        return 'CANCEL MENU'
+                        return default_value
                     if event.key == K_RETURN or event.key == K_KP_ENTER:
                         return text_to_return_str
                     if event.key == K_BACKSPACE:

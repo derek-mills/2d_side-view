@@ -648,8 +648,8 @@ menu_structure = {
             # 'submenu exit action': '',
             'LMB action': 'exec',
             'value': "\
-x = self.create_text_input((MAXX_DIV_2, MAXY_DIV_2), 'ENTER MAX X:', 'digit')\n\
-y = self.create_text_input((MAXX_DIV_2, MAXY_DIV_2 + 50), 'ENTER MAX Y:', 'digit')\n\
+x = self.create_text_input((MAXX_DIV_2, MAXY_DIV_2), 'ENTER MAX X:', MAXX, 'digit')\n\
+y = self.create_text_input((MAXX_DIV_2, MAXY_DIV_2 + 50), 'ENTER MAX Y:', MAXY, 'digit')\n\
 self.camera.setup(int(x), int(y))\n\
 self.create_snap_mesh()",
             'active': True,
