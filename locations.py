@@ -394,6 +394,7 @@ locations = {
                 ((8325, 625), (25, 25), 65),  #65
                 ((8275, 675), (25, 25), 66),  #66
                 ((950, 800), (50, 250), 67),  #67
+                ((1450, 800), (50, 250), 69),  #69
                   ), # OBSTACLE RECTANGLES SECTION END
                 'settings': {
                     4: {
@@ -422,7 +423,10 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [], 'disappear': False},
                         'active': False,
-                        'actions': {0: [('move', (1050, 450)), ('stop', (0, 0))]},
+                        'actions': {
+                         	0: [('move', (1050, 450)), ('stop', (0, 0))],
+                         	1: [('move', (1050, 800)), ('stop', (0, 0))],                         	
+                         },
                   },
                     67: {
                         'ghost': False,
@@ -434,9 +438,23 @@ locations = {
                         'teleport': False,
                         'teleport description': {'new location': '', 'xy': [0, 0]},
                         'trigger': True,
-                        'trigger description': {'make active': [58], 'disappear': True},
+                        'trigger description': {'make active': [58], 'activate actions set': 0, 'disappear': True},
                         'active': False,
                         'actions': {},
+                  },
+                    69: {
+                        'ghost': False,
+                        'actors pass through': True,
+                        'speed': 0.2,
+                        'collideable': False,
+                        'gravity affected': False,
+                        'invisible': True,
+                        'teleport': False,
+                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'trigger': True,
+                        'trigger description': {'make active': [58,], 'activate actions set': 1, 'disappear': False},
+                        'active': False,
+                        'actions': {0: []},
                   },
                   } # OBSTACLE SETTINGS SECTION END
               },

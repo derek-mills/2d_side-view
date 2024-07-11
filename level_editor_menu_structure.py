@@ -518,6 +518,7 @@ menu_structure = {
                 'trigger': False,
                 'trigger description': {
                     'make active': list(),
+                    'activate actions set': 0,
                     'disappear': False
                 },
                 'active': False,
@@ -526,7 +527,7 @@ menu_structure = {
                     #         # ('die', 0), ('switch visibility', 0), ('switch passability', 0),
                     #         # ('turn on actions set', 0), ('switch gravity', 0),
                     #
-                    0: list(),
+                    # 0: list(),
                     # 0: (('move', (0, 0, 100, MAXY)), ('move', 'start area'), ('repeat', 0)),
                 },
             },

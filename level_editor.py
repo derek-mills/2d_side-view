@@ -1375,7 +1375,7 @@ class World(object):
         gap = 1
         font_size = 12
         params = (
-            ('ACTIONS: ' + str(settings['actions'][0]), BLACK) if settings['actions'][0] else None,
+            ('ACTIONS: ' + str(settings['actions']), BLACK) if settings['actions'] else None,
             # ('ACTIONS: ' + str([settings['actions'][0][k] for k in settings['actions'][0]]), BLACK),
             ('ACTORS PASS THROUGH: ' + str(settings['actors pass through']), BLACK) if settings['actors pass through'] else None,
             ('SPEED: ' + str(settings['speed']), BLACK),

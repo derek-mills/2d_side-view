@@ -15,7 +15,8 @@ class Obstacle(Entity):
         self.active = False
         self.actions = dict()
         self.actions_set_number = 0
-        self.current_action = -1
+        self.current_action = None
+        # self.current_action = -1
         self.need_next_action = True
         self.wait_counter = 0
         self.repeat_counter = -1
@@ -27,6 +28,8 @@ class Obstacle(Entity):
 
     def process_(self):
         if self.active:
+            # if self.id == 58:
+            #     print(f'[obs process] ENTER: {self.active=} {self.need_next_action=} {self.actions_set_number=} {self.current_action=}')
             if self.idle:
                 return
             if self.wait_counter > 0:
@@ -34,10 +37,16 @@ class Obstacle(Entity):
                 # if self.wait_counter == 0:
                 #     self.need_next_action = True
                 return
+            if self.current_action is None:
+                self.need_next_action = True
+
             if self.need_next_action:
                 self.need_next_action = False
                 self.next_action()
-                return
+                print(f'[process_]{self.actions[self.actions_set_number][self.current_action]=}')
+                print(f'[process_]{self.actions_set_number=} {self.current_action=}')
+                # print(self.actions[self.actions_set_number])
+                # return
             # print(self.actions[self.actions_set_number])
             # print(self.actions[self.actions_set_number][self.current_action])
             # print(self.actions_set_number, self.current_action)
@@ -53,7 +62,8 @@ class Obstacle(Entity):
             elif self.actions[self.actions_set_number][self.current_action][0] == 'stop':
                 self.active = False
                 self.need_next_action = False
-                # return
+                print(f'[obs process] {self.id=} STOPS')
+                return
             elif self.actions[self.actions_set_number][self.current_action][0] == 'wait':
                 self.wait_counter = self.actions[self.actions_set_number][self.current_action][1]
                 self.need_next_action = True
@@ -179,35 +189,37 @@ class Obstacle(Entity):
         # self.is_stand_on_ground = False
         # self.influenced_by_obstacle = None
 
-    def reset_actions(self):
-        self.actions = None
-        self.current_action = -1
-        self.need_next_action = False
-        self.wait_counter = 0
-        self.repeat_counter = -1
+    # def reset_actions(self):
+    #     self.actions = None
+    #     self.current_action = -1
+    #     self.need_next_action = False
+    #     self.wait_counter = 0
+    #     self.repeat_counter = -1
 
     def next_action(self):
-        # print('ENTERING NEXT ACTION')
-
+        print('ENTERING NEXT ACTION')
         if not self.actions:
             return
-        if self.actions[self.actions_set_number][self.current_action][0] == 'repeat':
-            if self.actions[self.actions_set_number][self.current_action][1] == 0:
-                # print('return to first action')
-                self.current_action = 0
-                # return
-            else:
-                if self.repeat_counter > 0:
-                    self.repeat_counter -= 1
-                    if self.repeat_counter == 0:
-                        self.current_action += 1
-                    else:
-                        self.current_action = 0
-                else:
-                    self.repeat_counter = self.actions[self.actions_set_number][self.current_action][1]
-            # self.need_next_action = True
+        if self.current_action is None:
+            self.current_action = 0
         else:
-            self.current_action += 1
+            if self.actions[self.actions_set_number][self.current_action][0] == 'repeat':
+                if self.actions[self.actions_set_number][self.current_action][1] == 0:
+                    # print('return to first action')
+                    self.current_action = 0
+                    # return
+                else:
+                    if self.repeat_counter > 0:
+                        self.repeat_counter -= 1
+                        if self.repeat_counter == 0:
+                            self.current_action += 1
+                        else:
+                            self.current_action = 0
+                    else:
+                        self.repeat_counter = self.actions[self.actions_set_number][self.current_action][1]
+                # self.need_next_action = True
+            else:
+                self.current_action += 1
 
         if self.current_action == len(self.actions[self.actions_set_number]):
             # End of action sequence reached.
@@ -216,7 +228,7 @@ class Obstacle(Entity):
             self.current_action = -1
             return
 
-        # print(f'{self.actions[self.current_action]=}')
+        print(f'[next action]{self.actions[self.actions_set_number][self.current_action]=}')
 
         if self.actions[self.actions_set_number][self.current_action][0] == 'move':
             self.is_destination_reached = False

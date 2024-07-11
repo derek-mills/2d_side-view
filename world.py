@@ -299,13 +299,17 @@ class World(object):
                 if obs.trigger_activated:
                     obs.trigger = False
                     if obs.trigger_description['make active'] is not None:
-                    # if 'make active' in obs.trigger_description.keys():
                         for make_active_id in obs.trigger_description['make active']:
+                            # self.obstacles[self.location][make_active_id].reset_actions()
+                            # print(obs.trigger_description)
                             self.obstacles[self.location][make_active_id].active = True
-                    # if obs.trigger_description['change location']:
-                    #     obs.trigger_activated = False
-                    #     self.change_location(obs.trigger_description['change location'])
-                    #     return
+                            self.obstacles[self.location][make_active_id].need_next_acton = True
+                            self.obstacles[self.location][make_active_id].actions_set_number = obs.trigger_description['activate actions set']
+                            self.obstacles[self.location][make_active_id].current_action = None
+                            # self.obstacles[self.location][make_active_id].current_action = -1
+                            # self.obstacles[self.location][make_active_id].process_()
+                            # self.obstacles[self.location][make_active_id].next_action()
+
                     if obs.trigger_description['disappear']:
                         dead.append(obs.id)
                         continue
@@ -637,7 +641,7 @@ class World(object):
                     ('WAIT COUNTER    : ' + str(obs.wait_counter), RED),
                     ('DEST REACHED    : ' + str(obs.is_destination_reached), RED),
                     ('RECTANGLE       : ' + str(obs.rectangle), RED),
-                    ('ACTION          : ' + str(obs.actions[obs.actions_set_number][obs.current_action]), RED),
+                    ('ACTION          : ' + str(obs.actions[obs.actions_set_number][obs.current_action]), RED) if obs.current_action else ('', RED),
                     ('NEED NEXT ACTION: ' + str(obs.need_next_action), RED),
                     ('VEC TO DESTINTON: ' + str(obs.vec_to_destination), RED),
                     ('DESTINATION AREA: ' + str(obs.destination_area), RED),
