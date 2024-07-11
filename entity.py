@@ -830,8 +830,8 @@ class Entity(object):
                 self.is_enough_space_right = False
                 continue
             # Check if there is enough space to raise:
-            if obs.rectangle.colliderect(self.rectangle.left - 2, self.rectangle.bottom - self.target_height,
-                                         self.rectangle.width + 4, self.target_height):
+            if obs.rectangle.colliderect(self.rectangle.left + 2, self.rectangle.bottom - self.target_height,
+                                         self.rectangle.width - 4, self.target_height):
             # if obs.rectangle.colliderect(self.rectangle.left + 2, self.rectangle.top - abs(self.fall_speed) - 1,
             #                              self.rectangle.width - 4, abs(self.fall_speed) + 1):
                 self.is_enough_height = False

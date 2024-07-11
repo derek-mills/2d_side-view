@@ -211,7 +211,7 @@ class Actor(Entity):
         return self.__state
 
     def set_state(self, new_state):
-        # print(f'[actor.set_state] new state: {new_state} {self.cycles_passed}')
+        print(f'[actor.set_state] new state: {new_state} {self.cycles_passed}')
         self.__state = new_state
         self.set_current_animation()
 
@@ -761,37 +761,15 @@ class Actor(Entity):
                 self.check_space_around()
                 if self.is_enough_height:
                     self.rectangle.bottom = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
-                    self.rectangle.centerx += self.rectangle.width // 2 * self.look  # Slightly pushing an actor far from the edge of an obstacle to let his bottom collider do the job.
+                    self.rectangle.centerx += 1 * self.look  # Slightly pushing an actor far from the edge of an obstacle to let his bottom collider do the job.
                     self.ignore_user_input = False
-                    # self.jump_attempts_counter = 0
                     self.is_edge_grabbed = False
-                    # self.influenced_by_obstacle = -1
-                    # self.set_new_desired_height(self.rectangle_height_default)
-                    self.set_state('crouch down')
+                    self.set_state('stand still')
+                    # self.set_state('crouch down')
                 else:
                     self.set_state('hanging on edge')
             else:
                 self.rectangle.top = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
-        # elif self.__state == 'climb on raise':                        # START CLIMBING ON AN OBSTACLE
-        #     if self.rectangle.height <= self.rectangle_height_sit // 2:
-        #         self.ignore_user_input = False
-        #         self.jump_attempts_counter = 0
-        #         if self.is_edge_grabbed:
-        #             self.is_edge_grabbed = False
-        #             self.set_new_desired_height(self.rectangle_height_default)
-        #             self.check_space_around()
-        #             if self.is_enough_height:
-        #                 self.rectangle.bottom = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
-        #                 self.rectangle.centerx += 20 * self.look  # Slightly pushing an actor far from the edge of an obstacle to let his bottom collider do the job.
-        #                 # self.influenced_by_obstacle = -1
-        #                 self.set_state('crouch down')
-        #             else:
-        #                 self.set_state('stand still')
-        #             self.influenced_by_obstacle = -1
-        #         # else:
-        #         #     self.set_state('stand still')
-        #     else:
-        #         self.rectangle.top = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
 
     def reset_self_flags(self):
         self.is_move_left = False
