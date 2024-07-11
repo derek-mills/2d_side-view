@@ -1373,7 +1373,49 @@ class World(object):
         obs = self.obstacles[self.location][obs_id]
         settings = self.obs_settings[obs_id]
         gap = 1
-        font_size = 12
+        font_size = 15
+        params = (
+            ('ACTIONS: ' + str(settings['actions']), BLACK) if settings['actions'] else None,
+            # ('ACTIONS: ' + str([settings['actions'][0][k] for k in settings['actions'][0]]), BLACK),
+            ('ACTORS PASS THROUGH: ' + str(settings['actors pass through']), BLACK) if settings['actors pass through'] else None,
+            ('SPEED: ' + str(settings['speed']), BLACK),
+            ('COLLIDES: ' + str(settings['collideable']), BLACK) if settings['collideable'] else None,
+            ('GRAVITY: ' + str(settings['gravity affected']), BLACK) if settings['gravity affected'] else None,
+            ('INVISIBLE: ' + str(settings['invisible']), BLACK) if settings['invisible'] else None,
+            ('TELEPORT: ' + str(settings['teleport']), BLACK) if settings['teleport'] else None,
+            ('TELEPORT TO: ' + str(settings['teleport description']['new location']), BLACK) if settings['teleport'] else None,
+            ('TELEPORT POINT: ' + str(settings['teleport description']['xy']), BLACK) if settings['teleport'] else None,
+            ('TRIGGER: ' + str(settings['trigger']), BLACK) if settings['trigger'] else None,
+            ('IT MAKES ACTIVE: ' + str(settings['trigger description']['make active']), BLACK) if settings['trigger'] else None,
+            ('DISAPPEARS: ' + str(settings['trigger description']['disappear']), BLACK) if settings['trigger'] else None,
+        )
+        rendered_params = list()
+        max_width = 0
+        for p in params:
+            if not p:
+                continue
+            s = fonts.all_fonts[font_size].render(p[0], True, p[1], GRAY)
+            if s.get_width() > max_width:
+                max_width = s.get_width()
+            rendered_params.append(s)
+
+        max_height = rendered_params[0].get_height() * len(rendered_params) + len(rendered_params)
+        stats_x = self.mouse_xy[0] if self.mouse_xy[0] < MAXX - max_width else MAXX - max_width
+        stats_y = self.mouse_xy[1] if self.mouse_xy[1] < MAXY - max_height else MAXY - max_height
+
+        pygame.draw.rect(self.screen, BLUE, (stats_x, stats_y, max_width,max_height))
+
+        for p in rendered_params:
+            self.screen.blit(p,(stats_x, stats_y + gap))
+            gap += font_size
+
+    def render_obstacle_properties_old(self, obs_id):
+        if obs_id not in self.obs_settings.keys():
+            return
+        obs = self.obstacles[self.location][obs_id]
+        settings = self.obs_settings[obs_id]
+        gap = 1
+        font_size = 15
         params = (
             ('ACTIONS: ' + str(settings['actions']), BLACK) if settings['actions'] else None,
             # ('ACTIONS: ' + str([settings['actions'][0][k] for k in settings['actions'][0]]), BLACK),
@@ -1401,7 +1443,31 @@ class World(object):
 
         max_height = (rendered_params[0].get_height() * len(rendered_params) + len(rendered_params)) * self.zoom_factor
         stats_x = obs.rectangle.centerx - max_width // 2
+        if stats_x < self.camera.rectangle.left:
+            stats_x = self.camera.rectangle.left
+        else:
+            if stats_x + max_width > self.camera.rectangle.right:
+                stats_x = self.camera.rectangle.right - max_width
+
         stats_y = obs.rectangle.centery - max_height // 2
+        if stats_y < self.camera.rectangle.top:
+            stats_y = self.camera.rectangle.top
+        else:
+            if stats_y + max_height > self.camera.rectangle.bottom:
+                stats_y = self.camera.rectangle.bottom - max_height
+        # stats_x = obs.rectangle.centerx - max_width // 2
+        # if stats_x < self.camera.rectangle.left:
+        #     stats_x = self.camera.rectangle.left
+        # else:
+        #     if stats_x + max_width > self.camera.rectangle.right:
+        #         stats_x = self.camera.rectangle.right - max_width
+        #
+        # stats_y = obs.rectangle.centery * self.zoom_factor - max_height // 2
+        # if stats_y < self.camera.rectangle.top * self.zoom_factor:
+        #     stats_y = self.camera.rectangle.top * self.zoom_factor
+        # else:
+        #     if stats_y + max_height > self.camera.rectangle.bottom * self.zoom_factor:
+        #         stats_y = self.camera.rectangle.bottom * self.zoom_factor - max_height
 
         pygame.draw.rect(self.screen, BLUE, (self.zoom_factor * (stats_x - self.camera.offset_x),
                                              self.zoom_factor * (stats_y - self.camera.offset_y),
