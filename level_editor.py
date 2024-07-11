@@ -1357,11 +1357,14 @@ class World(object):
                                                   self.zoom_factor * (obs.rectangle.y - self.camera.offset_y),
                                                   self.zoom_factor * obs.rectangle.width,
                                                   self.zoom_factor * obs.rectangle.height), 1)
-            if obs.id in self.obs_settings.keys():
-                s = fonts.font15.render(str(obs.id)+' Ghst:'+str(self.obs_settings[obs.id]['ghost']), True, GREEN)
-            else:
-                s = fonts.font20.render(str(obs.id), True, GREEN)
-            self.screen.blit(s, (self.zoom_factor * (obs.rectangle.centerx - s.get_width() // 2 - self.camera.offset_x + 2),
+            # if obs.id in self.obs_settings.keys():
+            #     s = fonts.font15.render(str(obs.id)+' Ghst:'+str(self.obs_settings[obs.id]['ghost']), True, GREEN)
+            # else:
+            #     s = fonts.font20.render(str(obs.id), True, GREEN)
+            # font_sz = int(20 * self.zoom_factor)
+            # s = fonts.all_fonts[].render(str(obs.id) + ' ' + str(self.zoom_factor), True, RED)
+            s = fonts.font25.render(str(obs.id), True, RED)
+            self.screen.blit(pygame.transform.scale(s, (s.get_width() * self.zoom_factor, s.get_height() * self.zoom_factor)), (self.zoom_factor * (obs.rectangle.centerx - s.get_width() // 2 - self.camera.offset_x + 2),
                                  self.zoom_factor * (obs.rectangle.centery - s.get_height() // 2 - self.camera.offset_y + 2)))
 
     def render_obstacle_properties(self, obs_id):
@@ -1393,20 +1396,22 @@ class World(object):
                 continue
             s = fonts.all_fonts[font_size].render(p[0], True, p[1], GRAY)
             if s.get_width() > max_width:
-                max_width = s.get_width()
+                max_width = s.get_width() * self.zoom_factor
             rendered_params.append(s)
 
+        max_height = (rendered_params[0].get_height() * len(rendered_params) + len(rendered_params)) * self.zoom_factor
         stats_x = obs.rectangle.centerx - max_width // 2
-        stats_y = obs.rectangle.top + gap
-        max_height = rendered_params[0].get_height() * len(rendered_params) + len(rendered_params)
+        stats_y = obs.rectangle.centery - max_height // 2
 
         pygame.draw.rect(self.screen, BLUE, (self.zoom_factor * (stats_x - self.camera.offset_x),
                                              self.zoom_factor * (stats_y - self.camera.offset_y),
-                                             self.zoom_factor * max_width,
-                                             self.zoom_factor * max_height))
+                                             max_width,
+                                             max_height))
 
         for p in rendered_params:
-            self.screen.blit(p, (stats_x, stats_y + gap))
+            self.screen.blit(pygame.transform.scale(p, (p.get_width() * self.zoom_factor, p.get_height() * self.zoom_factor)),
+                             (self.zoom_factor * (stats_x - self.camera.offset_x),
+                              self.zoom_factor * (stats_y - self.camera.offset_y + gap)))
             gap += font_size
 
     def render_obstacles_back(self):

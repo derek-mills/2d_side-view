@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -116,13 +117,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00187" summary="Level editor: added main menu.">
-      <created>1719392282712</created>
-      <option name="number" value="00187" />
-      <option name="presentableId" value="LOCAL-00187" />
-      <option name="project" value="LOCAL" />
-      <updated>1719392282712</updated>
     </task>
     <task id="LOCAL-00188" summary="Level editor: try to develop editing menu system.">
       <created>1719393627898</created>
@@ -460,7 +454,14 @@
       <option name="project" value="LOCAL" />
       <updated>1720662856132</updated>
     </task>
-    <option name="localTasksCounter" value="236" />
+    <task id="LOCAL-00236" summary="Level editor: floating description box for active obstacles improved by removing empty or False definitions.">
+      <created>1720665097179</created>
+      <option name="number" value="00236" />
+      <option name="presentableId" value="LOCAL-00236" />
+      <option name="project" value="LOCAL" />
+      <updated>1720665097179</updated>
+    </task>
+    <option name="localTasksCounter" value="237" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -475,7 +476,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Level editor: Try to make classic menus." />
     <MESSAGE value="Level editor: ruined everything. Try to get menus as separate piles of objects, which could be discarded or revoked again, like classic pop-up menu." />
     <MESSAGE value="Level editor: go on ruining level editor." />
     <MESSAGE value="Level editor: menu behavior became more or less elegant." />
@@ -500,6 +500,7 @@
     <MESSAGE value="Fixed bug, when active obstacle processing switched off after 'stop' routine has triggered." />
     <MESSAGE value="Trigger is able be activated just once." />
     <MESSAGE value="Level editor: floating description box for active obstacles added." />
-    <option name="LAST_COMMIT_MESSAGE" value="Level editor: floating description box for active obstacles added." />
+    <MESSAGE value="Level editor: floating description box for active obstacles improved by removing empty or False definitions." />
+    <option name="LAST_COMMIT_MESSAGE" value="Level editor: floating description box for active obstacles improved by removing empty or False definitions." />
   </component>
 </project>
