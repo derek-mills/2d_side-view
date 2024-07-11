@@ -43,8 +43,8 @@ class Obstacle(Entity):
             if self.need_next_action:
                 self.need_next_action = False
                 self.next_action()
-                print(f'[process_]{self.actions[self.actions_set_number][self.current_action]=}')
-                print(f'[process_]{self.actions_set_number=} {self.current_action=}')
+                # print(f'[process_]{self.actions[self.actions_set_number][self.current_action]=}')
+                # print(f'[process_]{self.actions_set_number=} {self.current_action=}')
                 # print(self.actions[self.actions_set_number])
                 # return
             # print(self.actions[self.actions_set_number])
@@ -62,7 +62,7 @@ class Obstacle(Entity):
             elif self.actions[self.actions_set_number][self.current_action][0] == 'stop':
                 self.active = False
                 self.need_next_action = False
-                print(f'[obs process] {self.id=} STOPS')
+                # print(f'[obs process] {self.id=} STOPS')
                 return
             elif self.actions[self.actions_set_number][self.current_action][0] == 'wait':
                 self.wait_counter = self.actions[self.actions_set_number][self.current_action][1]
@@ -197,7 +197,7 @@ class Obstacle(Entity):
     #     self.repeat_counter = -1
 
     def next_action(self):
-        print('ENTERING NEXT ACTION')
+        # print('ENTERING NEXT ACTION')
         if not self.actions:
             return
         if self.current_action is None:
@@ -228,7 +228,7 @@ class Obstacle(Entity):
             self.current_action = -1
             return
 
-        print(f'[next action]{self.actions[self.actions_set_number][self.current_action]=}')
+        # print(f'[next action]{self.actions[self.actions_set_number][self.current_action]=}')
 
         if self.actions[self.actions_set_number][self.current_action][0] == 'move':
             self.is_destination_reached = False

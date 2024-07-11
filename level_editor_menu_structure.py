@@ -517,8 +517,9 @@ menu_structure = {
                 },
                 'trigger': False,
                 'trigger description': {
+                    #                 [(ID, room, action set), ]
+                    # 'make active':  [(58, 'self', 0), (159, 'room_2', 1),]
                     'make active': list(),
-                    'activate actions set': 0,
                     'disappear': False
                 },
                 'active': False,
@@ -563,6 +564,8 @@ menu_structure = {
                 },
                 'trigger': False,
                 'trigger description': {
+                    #                 [(ID, room, action set), ]
+                    # 'make active':  [(58, 'self', 0), (159, 'room_2', 1),]
                     'make active': list(),
                     'disappear': False
                 },

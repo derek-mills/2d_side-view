@@ -299,13 +299,15 @@ class World(object):
                 if obs.trigger_activated:
                     obs.trigger = False
                     if obs.trigger_description['make active'] is not None:
-                        for make_active_id in obs.trigger_description['make active']:
-                            # self.obstacles[self.location][make_active_id].reset_actions()
-                            # print(obs.trigger_description)
-                            self.obstacles[self.location][make_active_id].active = True
-                            self.obstacles[self.location][make_active_id].need_next_acton = True
-                            self.obstacles[self.location][make_active_id].actions_set_number = obs.trigger_description['activate actions set']
-                            self.obstacles[self.location][make_active_id].current_action = None
+                        for obstacle_to_be_activated in obs.trigger_description['make active']:
+                            make_active_id = obstacle_to_be_activated[0]
+                            obs_loc = self.location if obstacle_to_be_activated[1] == 'self' else obstacle_to_be_activated[1]
+                            activate_actions_set = obstacle_to_be_activated[2]
+
+                            self.obstacles[obs_loc][make_active_id].active = True
+                            self.obstacles[obs_loc][make_active_id].need_next_acton = True
+                            self.obstacles[obs_loc][make_active_id].actions_set_number = activate_actions_set
+                            self.obstacles[obs_loc][make_active_id].current_action = None
                             # self.obstacles[self.location][make_active_id].current_action = -1
                             # self.obstacles[self.location][make_active_id].process_()
                             # self.obstacles[self.location][make_active_id].next_action()
@@ -716,9 +718,9 @@ class World(object):
             self.obstacles[self.location] = dict()
             self.demolishers[self.location] = dict()
             # self.actors[self.location] = dict()
-            print(f'{self.location=}')
-            print(self.locations)
-            print(locations)
+            # print(f'{self.location=}')
+            # print(self.locations)
+            # print(locations)
             self.locations[self.location] = locations[self.location]
             for obs in self.locations[self.location]['obstacles']['obs rectangles']:
                 self.add_obstacle(obs)
