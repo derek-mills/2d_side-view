@@ -214,9 +214,10 @@ demon_1 = {
 player_jake = {
     'name': 'Jake',
     'health': 1000.,
-    # 'start_xy': (200, 200),
-    'height': 190,
-    'width': 49,
+    'height': 350,
+    'width': 149,
+    # 'height': 190,
+    # 'width': 49,
     'body state': {
         'viewing range': 600,
         'regeneration ability': 0.001,
@@ -241,12 +242,8 @@ player_jake = {
             'hardness': 100
         },
     },
-    # 'action points': 100,
     'max speed': 10,
-    # 'reflexes': randint(100, 150),
-    # 'uses light source': False,
     'items': (whip,fireball_staff,sword,kitchen_knife,),
-    # 'avatar': 'Jake',
     'animations': {
         'stand still right': {
                 'repeat': True, 'interruptable': True,

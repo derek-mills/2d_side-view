@@ -63,6 +63,7 @@ class World(object):
         self.is_mouse_wheel_rolls = False
         self.is_mouse_wheel_up = False
         self.is_mouse_wheel_down = False
+        self.show_debug_info = False
         self.mouse_xy = list()  #
         self.mouse_xy_global = list()  #
         self.mouse_xy_snapped_to_mesh = list()  #
@@ -726,6 +727,8 @@ class World(object):
                     self.is_left_bracket = True
                 if event.key == K_SPACE:
                     self.is_spacebar = True
+                if event.key == K_F1:
+                    self.show_debug_info = False if self.show_debug_info else True
                 if event.key == K_F3:
                     self.need_to_load = True
                 if event.key == K_F2:
@@ -1657,6 +1660,8 @@ class World(object):
                                               self.new_obs_rect.width, self.new_obs_rect.height))
 
     def render_debug_info(self):
+        if not self.show_debug_info:
+            return
         stats_x = 1
         stats_y = 1
         # stripes_width = 500

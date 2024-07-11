@@ -440,7 +440,7 @@ class Actor(Entity):
         elif self.__state == 'crouch rise':  # CROUCH UP PROCESS
             self.is_crouch = False
             self.speed = 0
-            self.set_new_desired_height(self.rectangle_height_default, 5)
+            self.set_new_desired_height(self.rectangle_height_default, 9)
             self.check_space_around()
             if self.is_enough_height:
                 self.is_jump_performed = False
@@ -584,14 +584,14 @@ class Actor(Entity):
             # self.is_grabbers_active = True
             self.is_grabbers_active = False
             if self.rectangle.height != self.rectangle_height_default:
-                self.set_new_desired_height(self.rectangle_height_default,7)
+                self.set_new_desired_height(self.rectangle_height_default,10)
                 self.check_space_around()
                 if not self.is_enough_height:
                     self.set_state('crouch down')
                     self.state_machine()
                     return
             if self.rectangle.width != self.rectangle_width_default:
-                self.set_new_desired_width(self.rectangle_width_default,7)
+                self.set_new_desired_width(self.rectangle_width_default,10)
         elif self.__state == 'turn left':                       # TURN LEFT
             if self.look == 1 and self.speed > 0:  # Actor looks to the other side and runs.
                 # Switch off heading to force actor start reducing his speed and slow it down to zero.
