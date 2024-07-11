@@ -1723,7 +1723,12 @@ class World(object):
         self.reset_menu()
         self.reset_menu_walk_tree()
         # Create menu of 'obstacle edit' type, which was predefined in self.menu_structure:
-        self.menu_structure['custom obs properties']['ok']['value'] = copy(self.menu_structure['custom obs properties']['reset']['value'])
+        if obs.id not in self.obs_settings.keys():
+            # Fill menu items with default values:
+            self.menu_structure['custom obs properties']['ok']['value'] = copy(self.menu_structure['custom obs properties']['reset']['value'])
+        else:
+            for k in self.obs_settings[obs.id].keys():
+                self.menu_structure['custom obs properties']['ok']['value'][k] = self.obs_settings[obs.id][k]
         self.add_menu({'submenu name': 'custom obs properties', 'value': ''}, self.mouse_xy, 400, 20)
         # self.add_menu('custom obs properties', self.mouse_xy, 400, 20)
         # self.add_menu('obstacle edit', self.mouse_xy, 400, 20)
