@@ -1372,23 +1372,25 @@ class World(object):
         gap = 1
         font_size = 12
         params = (
-            ('ACTIONS: ' + str(settings['actions'][0]), BLACK),
+            ('ACTIONS: ' + str(settings['actions'][0]), BLACK) if settings['actions'][0] else None,
             # ('ACTIONS: ' + str([settings['actions'][0][k] for k in settings['actions'][0]]), BLACK),
-            ('ACTORS PASS THROUGH: ' + str(settings['actors pass through']), BLACK),
+            ('ACTORS PASS THROUGH: ' + str(settings['actors pass through']), BLACK) if settings['actors pass through'] else None,
             ('SPEED: ' + str(settings['speed']), BLACK),
-            ('COLLIDES: ' + str(settings['collideable']), BLACK),
-            ('GRAVITY: ' + str(settings['gravity affected']), BLACK),
-            ('INVISIBLE: ' + str(settings['invisible']), BLACK),
-            ('TELEPORT: ' + str(settings['teleport']), BLACK),
-            ('TELEPORT TO: ' + str(settings['teleport description']['new location']), BLACK),
-            ('TELEPORT POINT: ' + str(settings['teleport description']['xy']), BLACK),
-            ('TRIGGER: ' + str(settings['trigger']), BLACK),
-            ('IT MAKES ACTIVE: ' + str(settings['trigger description']['make active']), BLACK),
-            ('DISAPPEARS: ' + str(settings['trigger description']['disappear']), BLACK),
+            ('COLLIDES: ' + str(settings['collideable']), BLACK) if settings['collideable'] else None,
+            ('GRAVITY: ' + str(settings['gravity affected']), BLACK) if settings['gravity affected'] else None,
+            ('INVISIBLE: ' + str(settings['invisible']), BLACK) if settings['invisible'] else None,
+            ('TELEPORT: ' + str(settings['teleport']), BLACK) if settings['teleport'] else None,
+            ('TELEPORT TO: ' + str(settings['teleport description']['new location']), BLACK) if settings['teleport'] else None,
+            ('TELEPORT POINT: ' + str(settings['teleport description']['xy']), BLACK) if settings['teleport'] else None,
+            ('TRIGGER: ' + str(settings['trigger']), BLACK) if settings['trigger'] else None,
+            ('IT MAKES ACTIVE: ' + str(settings['trigger description']['make active']), BLACK) if settings['trigger'] else None,
+            ('DISAPPEARS: ' + str(settings['trigger description']['disappear']), BLACK) if settings['trigger'] else None,
         )
         rendered_params = list()
         max_width = 0
         for p in params:
+            if not p:
+                continue
             s = fonts.all_fonts[font_size].render(p[0], True, p[1], GRAY)
             if s.get_width() > max_width:
                 max_width = s.get_width()

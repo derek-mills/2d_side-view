@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/level_editor_menu_structure.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor_menu_structure.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main .py" beforeDir="false" afterPath="$PROJECT_DIR$/main .py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,13 +116,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00186" summary="Fixed: settings of currently editing map did not load and be wasted after the very first save by F2.">
-      <created>1719361740149</created>
-      <option name="number" value="00186" />
-      <option name="presentableId" value="LOCAL-00186" />
-      <option name="project" value="LOCAL" />
-      <updated>1719361740149</updated>
     </task>
     <task id="LOCAL-00187" summary="Level editor: added main menu.">
       <created>1719392282712</created>
@@ -464,7 +453,14 @@
       <option name="project" value="LOCAL" />
       <updated>1720601396129</updated>
     </task>
-    <option name="localTasksCounter" value="235" />
+    <task id="LOCAL-00235" summary="Level editor: floating description box for active obstacles added.">
+      <created>1720662856132</created>
+      <option name="number" value="00235" />
+      <option name="presentableId" value="LOCAL-00235" />
+      <option name="project" value="LOCAL" />
+      <updated>1720662856132</updated>
+    </task>
+    <option name="localTasksCounter" value="236" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -479,7 +475,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Level editor: dots placed into clipboard rendered now with text description." />
     <MESSAGE value="Level editor: Try to make classic menus." />
     <MESSAGE value="Level editor: ruined everything. Try to get menus as separate piles of objects, which could be discarded or revoked again, like classic pop-up menu." />
     <MESSAGE value="Level editor: go on ruining level editor." />
@@ -504,6 +499,7 @@
     <MESSAGE value="Level editor: ability to append some types of actions to obstacle added." />
     <MESSAGE value="Fixed bug, when active obstacle processing switched off after 'stop' routine has triggered." />
     <MESSAGE value="Trigger is able be activated just once." />
-    <option name="LAST_COMMIT_MESSAGE" value="Trigger is able be activated just once." />
+    <MESSAGE value="Level editor: floating description box for active obstacles added." />
+    <option name="LAST_COMMIT_MESSAGE" value="Level editor: floating description box for active obstacles added." />
   </component>
 </project>
