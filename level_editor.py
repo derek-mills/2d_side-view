@@ -1348,7 +1348,7 @@ class World(object):
     def render_obstacles(self):
         for key in self.obstacles[self.location].keys():
             obs = self.obstacles[self.location][key]
-            color = CYAN if obs.active_flag else WHITE
+            color = GREEN if obs.active_flag else WHITE
             pygame.draw.rect(self.screen, color, (self.zoom_factor * (obs.rectangle.x - self.camera.offset_x),
                                                   self.zoom_factor * (obs.rectangle.y - self.camera.offset_y),
                                                   self.zoom_factor * obs.rectangle.width,
@@ -1363,6 +1363,49 @@ class World(object):
                 s = fonts.font20.render(str(obs.id), True, GREEN)
             self.screen.blit(s, (self.zoom_factor * (obs.rectangle.centerx - s.get_width() // 2 - self.camera.offset_x + 2),
                                  self.zoom_factor * (obs.rectangle.centery - s.get_height() // 2 - self.camera.offset_y + 2)))
+
+    def render_obstacle_properties(self, obs_id):
+        if obs_id not in self.obs_settings.keys():
+            return
+        obs = self.obstacles[self.location][obs_id]
+        settings = self.obs_settings[obs_id]
+        gap = 1
+        font_size = 12
+        params = (
+            ('ACTIONS: ' + str(settings['actions'][0]), BLACK),
+            # ('ACTIONS: ' + str([settings['actions'][0][k] for k in settings['actions'][0]]), BLACK),
+            ('ACTORS PASS THROUGH: ' + str(settings['actors pass through']), BLACK),
+            ('SPEED: ' + str(settings['speed']), BLACK),
+            ('COLLIDES: ' + str(settings['collideable']), BLACK),
+            ('GRAVITY: ' + str(settings['gravity affected']), BLACK),
+            ('INVISIBLE: ' + str(settings['invisible']), BLACK),
+            ('TELEPORT: ' + str(settings['teleport']), BLACK),
+            ('TELEPORT TO: ' + str(settings['teleport description']['new location']), BLACK),
+            ('TELEPORT POINT: ' + str(settings['teleport description']['xy']), BLACK),
+            ('TRIGGER: ' + str(settings['trigger']), BLACK),
+            ('IT MAKES ACTIVE: ' + str(settings['trigger description']['make active']), BLACK),
+            ('DISAPPEARS: ' + str(settings['trigger description']['disappear']), BLACK),
+        )
+        rendered_params = list()
+        max_width = 0
+        for p in params:
+            s = fonts.all_fonts[font_size].render(p[0], True, p[1], GRAY)
+            if s.get_width() > max_width:
+                max_width = s.get_width()
+            rendered_params.append(s)
+
+        stats_x = obs.rectangle.centerx - max_width // 2
+        stats_y = obs.rectangle.top + gap
+        max_height = rendered_params[0].get_height() * len(rendered_params) + len(rendered_params)
+
+        pygame.draw.rect(self.screen, BLUE, (self.zoom_factor * (stats_x - self.camera.offset_x),
+                                             self.zoom_factor * (stats_y - self.camera.offset_y),
+                                             self.zoom_factor * max_width,
+                                             self.zoom_factor * max_height))
+
+        for p in rendered_params:
+            self.screen.blit(p, (stats_x, stats_y + gap))
+            gap += font_size
 
     def render_obstacles_back(self):
         for key in self.obstacles[self.location].keys():
@@ -1804,6 +1847,7 @@ class World(object):
     def process(self):
         # self.create_text_input((100, 100), 'INPUT TEXT XXXXXXXXXXXXXXXXXXXXXXXXXXX:', 'str')
         self.processing_human_input()
+        # hovered_obs_id = None
         if self.need_to_load:
             return
         # print('ok')
@@ -1928,6 +1972,8 @@ class World(object):
             self.render_new_obs()
             self.render_debug_info()
             self.render_snap_mesh()
+            if obs_id > -1:
+                self.render_obstacle_properties(obs_id)
             self.render_menu_items()
 
 

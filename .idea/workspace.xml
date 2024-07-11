@@ -6,8 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/level_editor_menu_structure.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor_menu_structure.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main .py" beforeDir="false" afterPath="$PROJECT_DIR$/main .py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +58,7 @@
       </console-settings>
     </option>
   </component>
-  <component name="RunManager" selected="Python.main ">
+  <component name="RunManager" selected="Python.level_editor">
     <configuration name="level_editor" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ver_0.000.1" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -105,8 +107,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.main " />
         <item itemvalue="Python.level_editor" />
+        <item itemvalue="Python.main " />
       </list>
     </recent_temporary>
   </component>
@@ -118,13 +120,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00185" summary="Added an opportunity to multiple load other maps by pressing F3 button during one session of level editor.">
-      <created>1719304525349</created>
-      <option name="number" value="00185" />
-      <option name="presentableId" value="LOCAL-00185" />
-      <option name="project" value="LOCAL" />
-      <updated>1719304525349</updated>
     </task>
     <task id="LOCAL-00186" summary="Fixed: settings of currently editing map did not load and be wasted after the very first save by F2.">
       <created>1719361740149</created>
@@ -462,7 +457,14 @@
       <option name="project" value="LOCAL" />
       <updated>1720594279484</updated>
     </task>
-    <option name="localTasksCounter" value="234" />
+    <task id="LOCAL-00234" summary="Trigger is able be activated just once.">
+      <created>1720601396129</created>
+      <option name="number" value="00234" />
+      <option name="presentableId" value="LOCAL-00234" />
+      <option name="project" value="LOCAL" />
+      <updated>1720601396129</updated>
+    </task>
+    <option name="localTasksCounter" value="235" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -477,7 +479,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Level editor: dots placed into clipboard could now be removed by pressing RMB again." />
     <MESSAGE value="Level editor: dots placed into clipboard rendered now with text description." />
     <MESSAGE value="Level editor: Try to make classic menus." />
     <MESSAGE value="Level editor: ruined everything. Try to get menus as separate piles of objects, which could be discarded or revoked again, like classic pop-up menu." />
@@ -502,6 +503,7 @@
     <MESSAGE value="Level editor: fixed bug when properties of just edited obstacle become the same as the others had." />
     <MESSAGE value="Level editor: ability to append some types of actions to obstacle added." />
     <MESSAGE value="Fixed bug, when active obstacle processing switched off after 'stop' routine has triggered." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug, when active obstacle processing switched off after 'stop' routine has triggered." />
+    <MESSAGE value="Trigger is able be activated just once." />
+    <option name="LAST_COMMIT_MESSAGE" value="Trigger is able be activated just once." />
   </component>
 </project>

@@ -138,15 +138,6 @@ menu_structure = {
             'active': False,
             'after action': None
         },
-        # 'generate list from': '*self.obstacles[self.location].keys()',
-        # 'predefined keys': {
-        #     'LMB action': 'append value',
-        #     'value': '$description',
-        #     'target': "self.menu_structure['obs multiple selection']['ok']['value']",
-        #     'label': '$description',
-        #     'active': True,
-        #     'after action': 'keep going'
-        # },
         'move': {
             'rectangle': pygame.Rect(0, 0, 0, 0),
             # 'colors': {
