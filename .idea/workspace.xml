@@ -6,9 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/level_editor_menu_structure.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor_menu_structure.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obstacle.py" beforeDir="false" afterPath="$PROJECT_DIR$/obstacle.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -120,13 +117,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00190" summary="Level editor: improving menu elements placement and alignment.">
-      <created>1719457565211</created>
-      <option name="number" value="00190" />
-      <option name="presentableId" value="LOCAL-00190" />
-      <option name="project" value="LOCAL" />
-      <updated>1719457565211</updated>
     </task>
     <task id="LOCAL-00191" summary="Level editor: improving menu elements placement and alignment.">
       <created>1719460529603</created>
@@ -464,7 +454,14 @@
       <option name="project" value="LOCAL" />
       <updated>1720673131638</updated>
     </task>
-    <option name="localTasksCounter" value="239" />
+    <task id="LOCAL-00239" summary="Triggers is able to switch actions of active obstacles in different locations, but if location is now loaded yet, it causes error.">
+      <created>1720675940126</created>
+      <option name="number" value="00239" />
+      <option name="presentableId" value="LOCAL-00239" />
+      <option name="project" value="LOCAL" />
+      <updated>1720675940126</updated>
+    </task>
+    <option name="localTasksCounter" value="240" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -479,7 +476,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Level editor: go on ruining level editor." />
     <MESSAGE value="Level editor: menu behavior became more or less elegant." />
     <MESSAGE value="Level editor: menu behavior became even much more elegant." />
     <MESSAGE value="Level editor: it is able to edit custom obstacle properties through context menu." />
@@ -504,6 +500,7 @@
     <MESSAGE value="Level editor: floating description box for active obstacles added." />
     <MESSAGE value="Level editor: floating description box for active obstacles improved by removing empty or False definitions." />
     <MESSAGE value="Triggers is able to change different action sets for active obstacles now." />
-    <option name="LAST_COMMIT_MESSAGE" value="Triggers is able to change different action sets for active obstacles now." />
+    <MESSAGE value="Triggers is able to switch actions of active obstacles in different locations, but if location is now loaded yet, it causes error." />
+    <option name="LAST_COMMIT_MESSAGE" value="Triggers is able to switch actions of active obstacles in different locations, but if location is now loaded yet, it causes error." />
   </component>
 </project>

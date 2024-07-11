@@ -32,6 +32,7 @@ class World(object):
         self.location_has_been_changed = False
         self.is_new_location_loading: bool = True
         self.new_location_description = dict()
+        self.obstacles_changes_pending = dict()
 
         # CONTROLS
         self.is_key_pressed = False
@@ -302,6 +303,12 @@ class World(object):
                         for obstacle_to_be_activated in obs.trigger_description['make active']:
                             make_active_id = obstacle_to_be_activated[0]
                             obs_loc = self.location if obstacle_to_be_activated[1] == 'self' else obstacle_to_be_activated[1]
+                            if obs_loc not in self.obstacles.keys():
+                                self.obstacles_changes_pending[obs_loc] = dict()
+                                self.obstacles_changes_pending[obs_loc][make_active_id] = dict()
+                                self.obstacles_changes_pending[obs_loc][make_active_id]['activate actions set'] = obstacle_to_be_activated[2]
+                            #     self.locations[obs_loc]['obstacles']['settings'][make_active_id]['active'] = True
+                                continue
                             activate_actions_set = obstacle_to_be_activated[2]
 
                             self.obstacles[obs_loc][make_active_id].active = True
@@ -724,6 +731,15 @@ class World(object):
             self.locations[self.location] = locations[self.location]
             for obs in self.locations[self.location]['obstacles']['obs rectangles']:
                 self.add_obstacle(obs)
+            # Apply changes to active obstacles if such action has been pended:
+            if self.location in self.obstacles_changes_pending.keys():
+                for k in self.obstacles_changes_pending[self.location].keys():
+                    obs_to_be_changed = self.obstacles[self.location][k]
+                    obs_to_be_changed.active = True
+                    obs_to_be_changed.need_next_acton = True
+                    obs_to_be_changed.actions_set_number = self.obstacles_changes_pending[self.location][k]['activate actions set']
+                    obs_to_be_changed.current_action = None
+                del self.obstacles_changes_pending[self.location]
             for dem in self.locations[self.location]['demolishers']['dem rectangles']:
                 self.add_demolisher(dem)
             for enemy in self.locations[self.location]['hostiles'].keys():
