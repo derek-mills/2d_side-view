@@ -11,7 +11,7 @@ from load_content import load_animations
 from misc_tools import *  #black_out, black_in
 # import pickle
 from random import choice
-
+from copy import copy
 class World(object):
     def __init__(self):
         # Entities
@@ -742,9 +742,16 @@ class World(object):
                 del self.obstacles_changes_pending[self.location]
             for dem in self.locations[self.location]['demolishers']['dem rectangles']:
                 self.add_demolisher(dem)
-            for enemy in self.locations[self.location]['hostiles'].keys():
-                for xy in self.locations[self.location]['hostiles'][enemy]['start xy']:
-                    self.add_actor(all_hostiles[enemy], xy)
+            for enemy_xy in self.locations[self.location]['hostiles'].keys():
+                enemy_description = self.locations[self.location]['hostiles'][enemy_xy]
+                enemy_name = self.locations[self.location]['hostiles'][enemy_xy]['name']
+                enemy_to_add = copy(all_hostiles[enemy_name])  # Create a copy of enemy
+                for k in enemy_description.keys():
+                    if k == 'name':
+                        continue
+                    if k in enemy_to_add.keys():
+                        enemy_to_add[k] = enemy_description[k]
+                self.add_actor(enemy_to_add, enemy_xy)
 
         self.camera.setup(self.locations[self.location]['size'][0], self.locations[self.location]['size'][1])
         self.camera.apply_offset((self.actors['player'].rectangle.centerx, self.actors['player'].rectangle.top),

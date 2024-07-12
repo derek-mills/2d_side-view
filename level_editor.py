@@ -2,7 +2,7 @@
 import uuid
 
 import pygame
-
+from actors_description import all_hostiles
 from constants import *
 # from locations import *
 # from world import *
@@ -74,9 +74,12 @@ class World(object):
         self.camera_follows_mouse = True
         self.camera_scroll_speed = 4
 
-        self.object_types = ('obstacle', 'demolisher')
+        self.object_types = ('obstacle', 'enemy')
+        # self.object_types = ('obstacle', 'demolisher')
         self.current_object_type = 0
 
+        self.enemies = dict()
+        # self.enemy_id: int = 1
         self.obstacles = dict()
         self.obstacle_id: int = 0
         self.obs_settings = dict()
@@ -1111,6 +1114,20 @@ class World(object):
         for active_obs_id in self.obs_settings.keys():
             if active_obs_id in self.obstacles[self.location].keys():
                 self.obstacles[self.location][active_obs_id].active_flag = True
+
+        for enemy_xy in locations.locations[self.location]['hostiles']:
+            self.enemies[enemy_xy] = dict()
+
+            enemy_description = locations.locations[self.location]['hostiles'][enemy_xy]
+            enemy_to_add = copy(all_hostiles[enemy_description['name']])  # Create a copy of enemy
+            for k in enemy_description.keys():
+                if k == 'name':
+                    continue
+                if k in enemy_to_add.keys():
+                    enemy_to_add[k] = enemy_description[k]
+
+            self.enemies[enemy_xy] = enemy_to_add
+
         # for dem in locations[self.location]['demolishers']['dem rectangles']:
         #     self.add_demolisher(dem)
         self.camera.setup(locations.locations[self.location]['size'][0], locations.locations[self.location]['size'][1])
@@ -1352,6 +1369,15 @@ class World(object):
         else:
             pygame.draw.rect(self.screen, BLACK, (0,0,MAXX, MAXY))
 
+    def render_enemies(self):
+        for enemy_xy in self.enemies.keys():
+            e = self.enemies[enemy_xy]
+            # e_reference = copy(all_hostiles[e['name']])
+            pygame.draw.rect(self.screen, DARK_ORANGE,
+                             (self.zoom_factor * (enemy_xy[0] - self.camera.offset_x),
+                              self.zoom_factor * (enemy_xy[1] - self.camera.offset_y),
+                              self.zoom_factor * e['width'],
+                              self.zoom_factor * e['height']))
 
     def render_obstacles(self):
         for key in self.obstacles[self.location].keys():
@@ -2002,6 +2028,8 @@ class World(object):
             #         self.selected_obs_id = self.to_be_selected_obs_id
             #         self.to_be_selected_obs_id = -1
             if self.is_left_mouse_button_down:
+                # if self.object_types[self.current_object_type] == 'enemy':
+                #     world.add_actor(player_jake, (200, 200))
                 if self.selected_obs_id > 0:
                     # We've got an already selected obstacle, which following mouse cursor.
                     # Release it.
@@ -2103,6 +2131,7 @@ class World(object):
             self.render_background()
             self.render_obstacles()
             self.render_demolishers()
+            self.render_enemies()
             self.render_new_obs()
             self.render_debug_info()
             self.render_snap_mesh()
