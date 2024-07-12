@@ -1995,12 +1995,12 @@ class World(object):
                     self.current_object_type = len(self.object_types) - 1
 
             # LMB
-            if not self.is_left_mouse_button_down:
-                if obs_id == self.to_be_selected_obs_id > 0:
-                    # LMB was pressed and released while mouse is over an obstacle.
-                    # This obstacle follow the mouse to change self location.
-                    self.selected_obs_id = self.to_be_selected_obs_id
-                    self.to_be_selected_obs_id = -1
+            # if not self.is_left_mouse_button_down:
+            #     if obs_id == self.to_be_selected_obs_id > 0:
+            #         # LMB was pressed and released while mouse is over an obstacle.
+            #         # This obstacle follow the mouse to change self location.
+            #         self.selected_obs_id = self.to_be_selected_obs_id
+            #         self.to_be_selected_obs_id = -1
             if self.is_left_mouse_button_down:
                 if self.selected_obs_id > 0:
                     # We've got an already selected obstacle, which following mouse cursor.
@@ -2038,8 +2038,8 @@ class World(object):
             else:
                 if self.new_obs_rect_started:
                     # Add new obs.
-
                     if self.new_obs_rect.width != 0 and self.new_obs_rect.height != 0:
+                        self.to_be_selected_obs_id = -1
                         if self.object_types[self.current_object_type] == 'obstacle':
                             description = (self.new_obs_rect.topleft, self.new_obs_rect.size, self.obstacle_id)
                             self.obstacle_id += 1
@@ -2051,6 +2051,13 @@ class World(object):
                     self.new_obs_rect_started = False
                     self.new_obs_rect_start_xy = [0, 0]
                     self.new_obs_rect.update(0,0,0,0)
+                    return
+                else:
+                    if obs_id == self.to_be_selected_obs_id > 0:
+                        # LMB was pressed and released while mouse is over an obstacle.
+                        # This obstacle follow the mouse to change self location.
+                        self.selected_obs_id = self.to_be_selected_obs_id
+                        self.to_be_selected_obs_id = -1
 
             if self.selected_obs_id > 0:
                 self.obstacles[self.location][self.selected_obs_id].rectangle.topleft = self.mouse_xy_snapped_to_mesh

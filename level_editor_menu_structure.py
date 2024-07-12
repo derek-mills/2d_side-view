@@ -530,6 +530,7 @@ menu_structure = {
                     #
                     # 0: list(),
                     # 0: (('move', (0, 0, 100, MAXY)), ('move', 'start area'), ('repeat', 0)),
+                    0: list(),
                 },
             },
             'active': True,
@@ -576,7 +577,8 @@ menu_structure = {
                     #         # ('turn on actions set', 0), ('switch gravity', 0),
                     #
                     # 0: list(),
-                    0: (('move', (0, 0, 100, MAXY)), ('move', 'start area'), ('repeat', 0)),
+                    # 0: (('move', (0, 0, 100, MAXY)), ('move', 'start area'), ('repeat', 0)),
+                    0: list(),
                 },
             },
             'active': True,
