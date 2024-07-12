@@ -1361,10 +1361,12 @@ class World(object):
                                                   self.zoom_factor * (obs.rectangle.y - self.camera.offset_y),
                                                   self.zoom_factor * obs.rectangle.width,
                                                   self.zoom_factor * obs.rectangle.height))
-            pygame.draw.rect(self.screen, BLUE, (self.zoom_factor * (obs.rectangle.x - self.camera.offset_x),
+            border_color = RED if self.selected_obs_id == obs.id else GREEN
+            border_thickness = 5 if self.selected_obs_id == obs.id else 1
+            pygame.draw.rect(self.screen, border_color, (self.zoom_factor * (obs.rectangle.x - self.camera.offset_x),
                                                   self.zoom_factor * (obs.rectangle.y - self.camera.offset_y),
                                                   self.zoom_factor * obs.rectangle.width,
-                                                  self.zoom_factor * obs.rectangle.height), 1)
+                                                  self.zoom_factor * obs.rectangle.height), border_thickness)
             # if obs.id in self.obs_settings.keys():
             #     s = fonts.font15.render(str(obs.id)+' Ghst:'+str(self.obs_settings[obs.id]['ghost']), True, GREEN)
             # else:
