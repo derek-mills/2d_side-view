@@ -92,12 +92,17 @@ class World(object):
         self.new_obs_rect = pygame.Rect(0,0,0,0)
         self.new_obs_rect_started = False
         self.new_obs_rect_start_xy = [0, 0]
+        # Obstacle which could be selected by LMB, because LMB was pressed while cursor is over it.
+        self.to_be_selected_obs_id = -1
+        # Obstacle which was selected by LMB, because LMB was pressed and then released while cursor is over it.
+        self.selected_obs_id = -1
 
         self.snap_mesh = dict()
         self.snap_mesh_size = 50
         self.snap_mesh_size_change_step = 25
         self.zoom_factor = 1.
 
+        # MENU MANAGEMENT
         self.menu_items = dict()
         self.menu_item_id = 0
         self.menu_pile_id = 0  # ID of a bunch of tied together menu items
@@ -1946,8 +1951,8 @@ class World(object):
                 self.is_mouse_wheel_down = False
                 self.zoom_factor -= .1
 
-            offset_x = self.camera.max_offset_x * self.zoom_factor
-            offset_y = self.camera.max_offset_y * self.zoom_factor
+            # offset_x = self.camera.max_offset_x * self.zoom_factor
+            # offset_y = self.camera.max_offset_y * self.zoom_factor
 
             obs_id = self.check_mouse_xy_collides_obs()
 
@@ -1987,7 +1992,23 @@ class World(object):
                 if self.current_object_type < 0:
                     self.current_object_type = len(self.object_types) - 1
 
+            # LMB
+            if not self.is_left_mouse_button_down:
+                if obs_id == self.to_be_selected_obs_id > 0:
+                    # LMB was pressed and released while mouse is over an obstacle.
+                    # This obstacle follow the mouse to change self location.
+                    self.selected_obs_id = self.to_be_selected_obs_id
+                    self.to_be_selected_obs_id = -1
             if self.is_left_mouse_button_down:
+                if self.selected_obs_id > 0:
+                    # We've got an already selected obstacle, which following mouse cursor.
+                    # Release it.
+                    self.is_left_mouse_button_down = False
+                    self.selected_obs_id = -1
+                    return
+                if obs_id > -1:
+                    # Mouse cursor is over an obstacle. We have to mark it as a potential candidate to follow mouse.
+                    self.to_be_selected_obs_id = obs_id
                 if self.new_obs_rect_started:
                     # Update new obs.
                     # last_point = (self.mouse_xy_global[0] // self.snap_mesh_size * self.snap_mesh_size,
@@ -2028,6 +2049,9 @@ class World(object):
                     self.new_obs_rect_started = False
                     self.new_obs_rect_start_xy = [0, 0]
                     self.new_obs_rect.update(0,0,0,0)
+
+            if self.selected_obs_id > 0:
+                self.obstacles[self.location][self.selected_obs_id].rectangle.topleft = self.mouse_xy_snapped_to_mesh
 
             # Update camera viewport:
             if self.is_input_left_arrow:
