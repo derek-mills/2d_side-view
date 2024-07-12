@@ -1,18 +1,26 @@
-# from constants import *
-# from actors_description import *
+from constants import *
 locations = {
-
+    
     '64e4a58e-3dbd-11ef-a7e0-f5ed2070cb71':
         {
             'music': 'music/ambient_1.mp3',
             'description': 'apartment #1',
             'size': (10000, 1080),
             'hostiles': {
-            	(700, 850): {'name': 'demon 1',
-                             'health': 1000,
-                             'max speed': 10,
-                             'height': 400
-                             }
+            	(700, 850): {
+                    'name': 'demon 1',
+                    'health': 1000,
+                    'max speed': 10,
+                    'height': 400,
+            	},
+
+            	(750, 850): {
+                    'name': 'demon 1',
+                    'health': 1,
+                    'max speed': 1,
+                    'height': 200,
+            	},
+
               },
             'demolishers': {
                 'dem rectangles': (
@@ -230,6 +238,20 @@ locations = {
             'description': 'apartment #1',
             'size': (1920, 1080),
             'hostiles': {
+            	(600, 850): {
+                    'name': 'demon 1',
+                    'health': 110,
+                    'max speed': 5,
+                    'height': 300,
+
+              },
+            	(650, 850): {
+                    'name': 'demon 1',
+                    'health': 2,
+                    'max speed': 2,
+                    'height': 100,
+
+              },
               },
             'demolishers': {
                 'dem rectangles': (

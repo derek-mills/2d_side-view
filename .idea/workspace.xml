@@ -8,8 +8,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locations_back.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations_back.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,13 +118,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00200" summary="Level editor: dots placed into clipboard are now render as individual points.">
-      <created>1719816600763</created>
-      <option name="number" value="00200" />
-      <option name="presentableId" value="LOCAL-00200" />
-      <option name="project" value="LOCAL" />
-      <updated>1719816600763</updated>
     </task>
     <task id="LOCAL-00201" summary="Level editor: dots placed into clipboard could now be removed by pressing RMB again.">
       <created>1719816794055</created>
@@ -464,7 +455,14 @@
       <option name="project" value="LOCAL" />
       <updated>1720763466255</updated>
     </task>
-    <option name="localTasksCounter" value="249" />
+    <task id="LOCAL-00249" summary="Level editor: enemies appearing added in locations.py">
+      <created>1720767451668</created>
+      <option name="number" value="00249" />
+      <option name="presentableId" value="LOCAL-00249" />
+      <option name="project" value="LOCAL" />
+      <updated>1720767451668</updated>
+    </task>
+    <option name="localTasksCounter" value="250" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -479,7 +477,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Level editor: obstacle edit submenu works well, but need TODO input text routine, 'action' change routine." />
     <MESSAGE value="Level editor: added 'teleport' state support for obstacles during collisions detection according to the new description style." />
     <MESSAGE value="Level editor: editor now allow to choose a map to teleport and a XY coordinate for this action." />
     <MESSAGE value="Level editor: menu appearing is now dim the screen for the better visual percept." />
@@ -504,6 +501,7 @@
     <MESSAGE value="Level editor: opportunity added to change obstacles location by LMB" />
     <MESSAGE value="Level editor: change obstacle location by LMB causes obstacle border color and thickness change" />
     <MESSAGE value="Level editor: obstacle location change by LMB optimized." />
-    <option name="LAST_COMMIT_MESSAGE" value="Level editor: obstacle location change by LMB optimized." />
+    <MESSAGE value="Level editor: enemies appearing added in locations.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="Level editor: enemies appearing added in locations.py" />
   </component>
 </project>

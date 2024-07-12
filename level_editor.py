@@ -1115,6 +1115,7 @@ class World(object):
             if active_obs_id in self.obstacles[self.location].keys():
                 self.obstacles[self.location][active_obs_id].active_flag = True
 
+        self.enemies = dict()
         for enemy_xy in locations.locations[self.location]['hostiles']:
             self.enemies[enemy_xy] = dict()
 
@@ -1133,37 +1134,13 @@ class World(object):
         self.camera.setup(locations.locations[self.location]['size'][0], locations.locations[self.location]['size'][1])
         self.create_snap_mesh()
 
-        # self.obstacles[self.location] = dict()
-        # try:
-        #     max_obs_id = 0
-        #     for obs in locations.locations[self.location]['obstacles']['obs rectangles']:
-        #         self.add_obstacle(obs)
-        #         if max_obs_id < obs[-1]:
-        #             max_obs_id = obs[-1]
-        #     self.obstacle_id = max_obs_id + 1
-        #
-        #     self.obs_settings = locations.locations[self.location]['obstacles']['settings']
-        #     for active_obs_id in self.obs_settings.keys():
-        #         if active_obs_id in self.obstacles[self.location].keys():
-        #             self.obstacles[self.location][active_obs_id].active_flag = True
-        #     # for dem in locations[self.location]['demolishers']['dem rectangles']:
-        #     #     self.add_demolisher(dem)
-        #     self.camera.setup(locations.locations[self.location]['size'][0], locations.locations[self.location]['size'][1])
-        #     self.create_snap_mesh()
-        # except NameError:
-        #     self.obstacles[self.location] = dict()
-        #     self.demolishers[self.location] = dict()
-        #     self.camera.setup(MAXX, MAXY)
-        #     self.create_snap_mesh()
-        # self.obstacle_id = len(self.obstacles[self.location].keys()) + 1
-
     def save(self):
         # Saving with pickle:
         # with open('locations_'+self.location+'.dat', 'wb') as f:
         #     pickle.dump(self.obstacles[self.location], f)
-        for obs_id in self.obs_settings.keys():
-            g = self.obs_settings[obs_id]['ghost']
-            print(f'[save()] {obs_id=} \'ghost\': {g}')
+        # for obs_id in self.obs_settings.keys():
+        #     g = self.obs_settings[obs_id]['ghost']
+        #     print(f'[save()] {obs_id=} \'ghost\': {g}')
 
         obs_rects = list()
         for k in self.obstacles[self.location].keys():
@@ -1188,6 +1165,21 @@ class World(object):
 
         from locations import locations as loc
         from templates import obstacle_settings_list
+
+        enemies = list()
+        for xy in self.enemies.keys():
+            e = self.enemies[xy]
+            total_strg = '\n            	' + str(xy) + ': {\n'
+            # total_strg = '\n            	' + str(xy) + ': {\n' + \
+                         # '                    ' + 'name: ' + e['name'] + ',\n'
+            for k in loc[self.location]['hostiles'][xy].keys():
+                var = str(e[k]) if type(e[k]) != str else '\'' + e[k] + '\''
+                total_strg += '                    \'' + str(k) + '\': ' + var + ',\n'
+            total_strg += '            	' + '},\n'
+
+            enemies.append(total_strg)
+        # print(enemies)
+        # exit()
         # settings_list = list()
         # print(obs_rects)
         # print(dem_rects)
@@ -1218,10 +1210,25 @@ class World(object):
                 else:
                     f.write('\n            \'size\': (' + str(loc[k]['size'][0]) + ', ' + str(loc[k]['size'][1]) + '),')
                 f.write('\n            \'hostiles\': {')
+                # HOSTILES:
+                if k == self.location:
+                    # Save hostiles which were edited right now.
+                    for h in enemies:
+                        f.write(h)
+                else:
+                    # Keep hostile unchanged.
+                    for e_xy in loc[k]['hostiles'].keys():
+                        enemy = loc[k]['hostiles'][e_xy]
+                        f.write('\n            	' + str(e_xy) + ': {\n')
+                        for enemy_k in enemy.keys():
+                            # Add a single quote if type is string.
+                            var = str(enemy[enemy_k]) if type(enemy[enemy_k]) != str else '\'' + enemy[enemy_k] + '\''
+                            f.write('                    \'' + str(enemy_k) + '\': ' + var + ',\n')
+                        f.write('\n              },')
                 f.write('\n              },')
                 f.write('\n            \'demolishers\': {')
 
-                # Demolishers settings:
+                # DEMOLISHERS:
                 f.write('\n                \'dem rectangles\': (')
                 if k == self.location:
                     # Save demolishers rectangles which were edited right now.
