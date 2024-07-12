@@ -9,16 +9,26 @@ locations = {
             'hostiles': {
             	(700, 850): {
                     'name': 'demon 1',
-                    'health': 1000,
-                    'max speed': 10,
                     'height': 400,
+                    'width': 49,
+                    'health': 1000,
+                    'max speed': 1,
             	},
 
-            	(750, 850): {
+            	(400.0, 700.0): {
                     'name': 'demon 1',
-                    'health': 1,
-                    'max speed': 1,
-                    'height': 200,
+                    'height': 190,
+                    'width': 49,
+                    'health': 100.0,
+                    'max speed': 2,
+            	},
+
+            	(500.0, 750.0): {
+                    'name': 'demon 1',
+                    'height': 190,
+                    'width': 49,
+                    'health': 100.0,
+                    'max speed': 2,
             	},
 
               },

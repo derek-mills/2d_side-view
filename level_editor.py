@@ -1118,7 +1118,6 @@ class World(object):
         self.enemies = dict()
         for enemy_xy in locations.locations[self.location]['hostiles']:
             self.enemies[enemy_xy] = dict()
-
             enemy_description = locations.locations[self.location]['hostiles'][enemy_xy]
             enemy_to_add = copy(all_hostiles[enemy_description['name']])  # Create a copy of enemy
             for k in enemy_description.keys():
@@ -1127,7 +1126,11 @@ class World(object):
                 if k in enemy_to_add.keys():
                     enemy_to_add[k] = enemy_description[k]
 
-            self.enemies[enemy_xy] = enemy_to_add
+            self.enemies[enemy_xy]['name'] = enemy_to_add['name']
+            self.enemies[enemy_xy]['height'] = enemy_to_add['height']
+            self.enemies[enemy_xy]['width'] = enemy_to_add['width']
+            self.enemies[enemy_xy]['health'] = enemy_to_add['health']
+            self.enemies[enemy_xy]['max speed'] = enemy_to_add['max speed']
 
         # for dem in locations[self.location]['demolishers']['dem rectangles']:
         #     self.add_demolisher(dem)
@@ -1172,7 +1175,9 @@ class World(object):
             total_strg = '\n            	' + str(xy) + ': {\n'
             # total_strg = '\n            	' + str(xy) + ': {\n' + \
                          # '                    ' + 'name: ' + e['name'] + ',\n'
-            for k in loc[self.location]['hostiles'][xy].keys():
+            for k in e.keys():
+            # for k in loc[self.location]['hostiles'][xy].keys():
+            #     if loc[self.location]['hostiles'][xy][k] != e[k]:
                 var = str(e[k]) if type(e[k]) != str else '\'' + e[k] + '\''
                 total_strg += '                    \'' + str(k) + '\': ' + var + ',\n'
             total_strg += '            	' + '},\n'
@@ -2049,6 +2054,17 @@ class World(object):
             if self.is_left_mouse_button_down:
                 # if self.object_types[self.current_object_type] == 'enemy':
                 #     world.add_actor(player_jake, (200, 200))
+                if self.object_types[self.current_object_type] == 'enemy':
+                    self.enemies[self.mouse_xy_snapped_to_mesh] = dict()
+                    enemy_to_add = copy(all_hostiles['demon 1'])  # Create a copy of enemy
+                    self.enemies[self.mouse_xy_snapped_to_mesh]['name'] = enemy_to_add['name']
+                    self.enemies[self.mouse_xy_snapped_to_mesh]['height'] = enemy_to_add['height']
+                    self.enemies[self.mouse_xy_snapped_to_mesh]['width'] = enemy_to_add['width']
+                    self.enemies[self.mouse_xy_snapped_to_mesh]['health'] = enemy_to_add['health']
+                    self.enemies[self.mouse_xy_snapped_to_mesh]['max speed'] = enemy_to_add['max speed']
+                    self.is_left_mouse_button_down = False
+                    return
+
                 if self.selected_obs_id > 0:
                     # We've got an already selected obstacle, which following mouse cursor.
                     # Release it.
@@ -2105,6 +2121,7 @@ class World(object):
                         # This obstacle follow the mouse to change self location.
                         self.selected_obs_id = self.to_be_selected_obs_id
                         self.to_be_selected_obs_id = -1
+
 
             if self.selected_obs_id > 0:
                 self.obstacles[self.location][self.selected_obs_id].rectangle.topleft = self.mouse_xy_snapped_to_mesh
