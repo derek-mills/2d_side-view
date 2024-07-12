@@ -1946,6 +1946,9 @@ class World(object):
                 self.is_mouse_wheel_down = False
                 self.zoom_factor -= .1
 
+            offset_x = self.camera.max_offset_x * self.zoom_factor
+            offset_y = self.camera.max_offset_y * self.zoom_factor
+
             obs_id = self.check_mouse_xy_collides_obs()
 
             if self.is_spacebar:
@@ -2029,23 +2032,38 @@ class World(object):
             # Update camera viewport:
             if self.is_input_left_arrow:
                 self.global_offset_xy[0] -= self.camera_scroll_speed * 10
-                # if self.global_offset_xy[0] < 0:
-                #     self.global_offset_xy[0] = 0
-                if self.global_offset_xy[0] < MAXX_DIV_2:
-                    self.global_offset_xy[0] = MAXX_DIV_2
+                # if self.global_offset_xy[0] < MAXX_DIV_2:
+                #     self.global_offset_xy[0] = MAXX_DIV_2
             if self.is_input_right_arrow:
                 self.global_offset_xy[0] += self.camera_scroll_speed * 10
-                if self.global_offset_xy[0] > MAXX_DIV_2 + self.camera.max_offset_x:
-                    self.global_offset_xy[0] = MAXX_DIV_2 + self.camera.max_offset_x
+                # if self.global_offset_xy[0] > MAXX_DIV_2 + offset_x:
+                #     self.global_offset_xy[0] = MAXX_DIV_2 + offset_x
             if self.is_input_down_arrow:
                 self.global_offset_xy[1] += self.camera_scroll_speed * 10
-                if self.global_offset_xy[1] > MAXY_DIV_2 + self.camera.max_offset_y:
-                    self.global_offset_xy[1] = MAXY_DIV_2 + self.camera.max_offset_y
+                # if self.global_offset_xy[1] > MAXY_DIV_2 + offset_y:
+                #     self.global_offset_xy[1] = MAXY_DIV_2 + offset_y
             if self.is_input_up_arrow:
                 self.global_offset_xy[1] -= self.camera_scroll_speed * 10
-                if self.global_offset_xy[1] < MAXY_DIV_2:
-                    self.global_offset_xy[1] = MAXY_DIV_2
-            self.camera.apply_offset(self.global_offset_xy,
+                # if self.global_offset_xy[1] < MAXY_DIV_2:
+                #     self.global_offset_xy[1] = MAXY_DIV_2
+            # if self.is_input_left_arrow:
+            #     self.global_offset_xy[0] -= self.camera_scroll_speed * 10
+            #     if self.global_offset_xy[0] < MAXX_DIV_2:
+            #         self.global_offset_xy[0] = MAXX_DIV_2
+            # if self.is_input_right_arrow:
+            #     self.global_offset_xy[0] += self.camera_scroll_speed * 10
+            #     if self.global_offset_xy[0] > MAXX_DIV_2 + self.camera.max_offset_x:
+            #         self.global_offset_xy[0] = MAXX_DIV_2 + self.camera.max_offset_x
+            # if self.is_input_down_arrow:
+            #     self.global_offset_xy[1] += self.camera_scroll_speed * 10
+            #     if self.global_offset_xy[1] > MAXY_DIV_2 + self.camera.max_offset_y:
+            #         self.global_offset_xy[1] = MAXY_DIV_2 + self.camera.max_offset_y
+            # if self.is_input_up_arrow:
+            #     self.global_offset_xy[1] -= self.camera_scroll_speed * 10
+            #     if self.global_offset_xy[1] < MAXY_DIV_2:
+            #         self.global_offset_xy[1] = MAXY_DIV_2
+
+            self.camera.apply_offset_level_editor(self.global_offset_xy,
                                      self.camera_scroll_speed * 10, self.camera_scroll_speed * 10, False)
 
             # Rendering:

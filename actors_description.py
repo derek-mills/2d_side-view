@@ -214,8 +214,8 @@ demon_1 = {
 player_jake = {
     'name': 'Jake',
     'health': 1000.,
-    'height': 350,
-    'width': 149,
+    'height': 250,
+    'width': 49,
     # 'height': 190,
     # 'width': 49,
     'body state': {
