@@ -7,7 +7,6 @@
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,13 +117,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00201" summary="Level editor: dots placed into clipboard could now be removed by pressing RMB again.">
-      <created>1719816794055</created>
-      <option name="number" value="00201" />
-      <option name="presentableId" value="LOCAL-00201" />
-      <option name="project" value="LOCAL" />
-      <updated>1719816794055</updated>
     </task>
     <task id="LOCAL-00202" summary="Level editor: dots placed into clipboard rendered now with text description.">
       <created>1719817113435</created>
@@ -462,7 +454,14 @@
       <option name="project" value="LOCAL" />
       <updated>1720767451668</updated>
     </task>
-    <option name="localTasksCounter" value="250" />
+    <task id="LOCAL-00250" summary="Level editor: load() and save() for hostiles description work just fine.">
+      <created>1720770704766</created>
+      <option name="number" value="00250" />
+      <option name="presentableId" value="LOCAL-00250" />
+      <option name="project" value="LOCAL" />
+      <updated>1720770704766</updated>
+    </task>
+    <option name="localTasksCounter" value="251" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -477,7 +476,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Level editor: added 'teleport' state support for obstacles during collisions detection according to the new description style." />
     <MESSAGE value="Level editor: editor now allow to choose a map to teleport and a XY coordinate for this action." />
     <MESSAGE value="Level editor: menu appearing is now dim the screen for the better visual percept." />
     <MESSAGE value="Level editor: fixed some bugs; edit obstacles menu appears corresponding the screen edges and does not hide out." />
@@ -502,6 +500,7 @@
     <MESSAGE value="Level editor: change obstacle location by LMB causes obstacle border color and thickness change" />
     <MESSAGE value="Level editor: obstacle location change by LMB optimized." />
     <MESSAGE value="Level editor: enemies appearing added in locations.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="Level editor: enemies appearing added in locations.py" />
+    <MESSAGE value="Level editor: load() and save() for hostiles description work just fine." />
+    <option name="LAST_COMMIT_MESSAGE" value="Level editor: load() and save() for hostiles description work just fine." />
   </component>
 </project>

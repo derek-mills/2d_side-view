@@ -1756,6 +1756,14 @@ class World(object):
         #     for y in range(0, self.camera.max_offset_y + MAXY, self.snap_mesh_size):
                 self.snap_mesh[(x, y)] = (x, y)
 
+    def check_mouse_xy_collides_hostile(self):
+        for enemy_xy in self.enemies.keys():
+            e = self.enemies[enemy_xy]
+            rect = pygame.Rect(enemy_xy[0], enemy_xy[1], e['width'], e['height'])
+            if rect.collidepoint(self.mouse_xy_global):
+                return enemy_xy
+        return -1
+
     def check_mouse_xy_collides_obs(self):
         for key in self.obstacles[self.location].keys():
             obs = self.obstacles[self.location][key]
@@ -1990,6 +1998,7 @@ class World(object):
             # offset_y = self.camera.max_offset_y * self.zoom_factor
 
             obs_id = self.check_mouse_xy_collides_obs()
+            hostile_xy = self.check_mouse_xy_collides_hostile()
 
             if self.is_spacebar:
                 # obs_id = self.check_mouse_xy_collides_obs()
@@ -1998,6 +2007,9 @@ class World(object):
                     del self.obstacles[self.location][obs_id]
                     if obs_id in self.obs_settings.keys():
                         del self.obs_settings[obs_id]
+
+                if hostile_xy != -1:
+                    del self.enemies[hostile_xy]
 
             # RMB
             if self.is_right_mouse_button_down:
