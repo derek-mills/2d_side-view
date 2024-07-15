@@ -402,6 +402,9 @@ class Actor(Entity):
 
         elif new_action == 'attack':
             # if self.is_stand_on_ground:
+            if self.__state not in ('free', 'stand still', 'run right', 'run left', 'stand still', 'jump', 'crawl right', 'crawl left', \
+                                    'crouch', 'fly right', 'fly left'):
+                return
             self.set_state('attack')
 
     def state_machine(self):
@@ -504,7 +507,7 @@ class Actor(Entity):
                         self.speed = self.max_speed
                         self.movement_direction_inverter = -1
                         self.heading[0] = 0
-                        self.idle_counter = 30
+                        self.idle_counter = 20
                     self.is_abort_jump = False
                     self.set_state('hopping back process')
             else:
@@ -715,12 +718,12 @@ class Actor(Entity):
             self.just_got_jumped = False
             self.is_abort_jump = True
             # self.rectangle.top = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
-        elif self.__state == 'hanging on ghost':                # HANGING ON THE GHOST PLATFORM
-            self.rectangle.top = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
-            if self.idle_counter > 0:
-                self.idle_counter -= 1
-            else:
-                self.ignore_user_input = False
+        # elif self.__state == 'hanging on ghost':                # HANGING ON THE GHOST PLATFORM
+        #     self.rectangle.top = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
+        #     if self.idle_counter > 0:
+        #         self.idle_counter -= 1
+        #     else:
+        #         self.ignore_user_input = False
         elif self.__state == 'hop down from ghost':             # PREPARE TO HOP DOWN FROM THE GHOST PLATFORM
             self.potential_moving_distance = 0
             # self.is_edge_grabbed = True

@@ -16,8 +16,10 @@ from pygame.constants import *
 # attribs =  pygame.display.gl_get_attribute(pygame.OPENGL)
 # pygame.display.init()
 # modes = pygame.display.list_modes()
-MAXX = 1920
+MAXX = 1000
 MAXY = 1000
+# MAXX = 1920
+# MAXY = 1000
 # screen = pygame.display.set_mode((MAXX, MAXY))
 # screen = pygame.display.set_mode(modes[0])
 # print(pygame.display.get_desktop_sizes())
