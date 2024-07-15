@@ -561,16 +561,17 @@ class Entity(object):
                 continue
 
             # GRAB over the top of an obstacle.
-            if not self.is_stand_on_ground:
-                if self.get_state() in ('jump', 'jump cancel', 'fly right', 'fly left','stand still'):
-                # if self.get_state() in ('jump', 'jump cancel', 'run right', 'run left', 'stand still'):
+            if obs.let_actors_grab:
+                if not self.is_stand_on_ground:
+                    if self.get_state() in ('jump', 'jump cancel', 'fly right', 'fly left','stand still'):
+                    # if self.get_state() in ('jump', 'jump cancel', 'run right', 'run left', 'stand still'):
 
-                    if self.collision_grabber_right.collidepoint(obs.rectangle.topleft):
-                        self.influenced_by_obstacle = obs.id
-                        # obs.trigger_activated = True
-                        self.set_state('has just grabbed edge')
-                        self.state_machine()
-                        continue
+                        if self.collision_grabber_right.collidepoint(obs.rectangle.topleft):
+                            self.influenced_by_obstacle = obs.id
+                            # obs.trigger_activated = True
+                            self.set_state('has just grabbed edge')
+                            self.state_machine()
+                            continue
 
             if obs.rectangle.colliderect(self.collision_detector_right):
                 # if self.id == 0:
@@ -655,14 +656,15 @@ class Entity(object):
                 continue
 
             # GRAB over the top of an obstacle.
-            if not self.is_stand_on_ground:
-                if self.get_state() in ('jump', 'jump cancel', 'fly right', 'fly left','stand still'):
-                # if self.get_state() in ('jump', 'jump cancel','run right', 'run left', 'stand still'):
-                    if self.collision_grabber_left.collidepoint(obs.rectangle.topright):
-                        self.influenced_by_obstacle = obs.id
-                        self.set_state('has just grabbed edge')
-                        self.state_machine()
-                        continue
+            if obs.let_actors_grab:
+                if not self.is_stand_on_ground:
+                    if self.get_state() in ('jump', 'jump cancel', 'fly right', 'fly left','stand still'):
+                    # if self.get_state() in ('jump', 'jump cancel','run right', 'run left', 'stand still'):
+                        if self.collision_grabber_left.collidepoint(obs.rectangle.topright):
+                            self.influenced_by_obstacle = obs.id
+                            self.set_state('has just grabbed edge')
+                            self.state_machine()
+                            continue
 
             if obs.rectangle.colliderect(self.collision_detector_left):
                 self.collided_left = True

@@ -76,6 +76,9 @@ class World(object):
         self.game_cycles_counter: int = 0
         self.is_quit:bool = False
 
+        # GRAPHIC
+        self.backgrounds = dict()
+
     def set_screen(self, surface):
         self.screen = surface
 
@@ -156,6 +159,7 @@ class World(object):
             entity.is_gravity_affected = self.locations[self.location]['obstacles']['settings'][entity.id]['gravity affected']
             entity.invisible = self.locations[self.location]['obstacles']['settings'][entity.id]['invisible']
             entity.max_speed = self.locations[self.location]['obstacles']['settings'][entity.id]['speed']
+            entity.let_actors_grab = self.locations[self.location]['obstacles']['settings'][entity.id]['actors may grab']
             # print(f'[add_obstacle] Added active obstacle: {entity.actions=} {entity.is_gravity_affected=}')
         # Add an obstacle to the world storage:
         # if self.location not in self.obstacles.keys():
@@ -518,6 +522,9 @@ class World(object):
 
     def render_background(self):
         pygame.draw.rect(self.screen, BLACK, (0,0,MAXX, MAXY))
+        # sub_surf = self.backgrounds[self.location]['ground'].subsurface((self.camera.offset_x, self.camera.offset_y, MAXX, MAXY))
+        # self.screen.blit(sub_surf, (0, 0))
+        self.screen.blit(self.backgrounds[self.location]['ground'], (-self.camera.offset_x, -self.camera.offset_y))
 
     def render_player_actor(self):
         actor = self.actors['player']
@@ -696,7 +703,7 @@ class World(object):
 
     def render_all(self):
         self.render_background()
-        self.render_obstacles()
+        # self.render_obstacles()
         self.render_demolishers()
         self.render_actors()
         # self.render_player_actor()
@@ -756,6 +763,12 @@ class World(object):
         self.camera.setup(self.locations[self.location]['size'][0], self.locations[self.location]['size'][1])
         self.camera.apply_offset((self.actors['player'].rectangle.centerx, self.actors['player'].rectangle.top),
                                  0, 0, True)
+
+        if self.location not in self.backgrounds.keys():
+            self.backgrounds[self.location] = dict()
+        self.backgrounds[self.location] = {
+            'ground': pygame.image.load('img/backgrounds/4cb6277c-424e-11ef-b7ff-bfb4330f33e3_ground.png')
+        }
 
     def processing_human_input(self):
         # self.mouse_xy = pygame.mouse.get_pos()

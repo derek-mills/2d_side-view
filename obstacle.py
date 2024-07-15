@@ -9,6 +9,7 @@ class Obstacle(Entity):
         self.max_speed = .2
         self.is_being_collided_now: bool = False
         self.let_actors_pass_through: bool = False
+        self.let_actors_grab: bool = False
         self.idle = False
 
         self.active_flag = False

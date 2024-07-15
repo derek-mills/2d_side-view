@@ -318,6 +318,16 @@ menu_structure = {
             'after action': 'keep going'
             # obs_settings[]
         },
+        'actors may grab': {
+            'rectangle': pygame.Rect(0, 0, 0, 0),
+            'label': 'actors may grab',
+            'on hover action': None,
+            'LMB action': 'switch state',
+            'target': ("menu_structure['custom obs properties']['ok']['value']['actors may grab']",),
+            'additional info': "*menu_structure['custom obs properties']['ok']['value']['actors may grab']",
+            'active': True,
+            'after action': 'keep going'
+        },
         'speed': {
             'rectangle': pygame.Rect(0, 0, 0, 0),
             'label': 'speed',
@@ -506,6 +516,7 @@ menu_structure = {
             'value': {
                 'ghost': False,
                 'actors pass through': False,
+                'actors may grab': False,
                 'speed': 0.2,
                 'collideable': False,
                 'gravity affected': False,
@@ -554,6 +565,7 @@ menu_structure = {
             'value': {
                 'ghost': False,
                 'actors pass through': False,
+                'actors may grab': False,
                 'speed': 0.2,
                 'collideable': False,
                 'gravity affected': False,
