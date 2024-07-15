@@ -804,8 +804,8 @@ class Entity(object):
                     self.fall_speed = 0
                     # continue
 
-    def check_space_above(self, desired_height):
-        pass
+    # def check_space_above(self, desired_height):
+    #     pass
 
     def check_space_around(self):
         self.is_enough_space_left = True
@@ -817,6 +817,8 @@ class Entity(object):
         # for obs in self.obstacles_around:
         for key in self.obstacles_around.keys():
             obs = self.obstacles_around[key]
+            if obs.is_ghost_platform:
+                continue
 
             # # Check enough spaces right and left:
             if obs.rectangle.colliderect(self.rectangle.left - self.speed - 2, self.rectangle.top + 5,

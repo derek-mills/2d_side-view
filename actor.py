@@ -211,7 +211,7 @@ class Actor(Entity):
         return self.__state
 
     def set_state(self, new_state):
-        print(f'[actor.set_state] new state: {new_state} {self.cycles_passed}')
+        # print(f'[actor.set_state] new state: {new_state} {self.cycles_passed}')
         self.__state = new_state
         self.set_current_animation()
 
@@ -507,6 +507,8 @@ class Actor(Entity):
                         self.idle_counter = 30
                     self.is_abort_jump = False
                     self.set_state('hopping back process')
+            else:
+                self.set_state('release edge')
             # else:
             #     self.set_state('stand still')
         elif self.__state == 'hopping back process':            # HOPPING BACK PROCESS
