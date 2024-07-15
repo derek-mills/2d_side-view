@@ -669,6 +669,18 @@ self.create_snap_mesh()",
             'active': True,
             'after action': 'keep going'
         },
+        'export image': {
+            'rectangle': pygame.Rect(menu_elements_bindings['bottom right button']),
+            'label': '[EXPORT IMAGE TO PNG]',
+            'on hover action': None,
+            # 'LMB action': 'return value',
+            # 'value': "resize",
+            # 'submenu exit action': '',
+            'LMB action': 'exec',
+            'value': "self.export_screen()",
+            'active': True,
+            'after action': 'keep going'
+        },
         'quit': {
             'rectangle': pygame.Rect(menu_elements_bindings['bottom left button']),
             'label': '[QUIT TO DOS...]',

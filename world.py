@@ -708,7 +708,7 @@ class World(object):
 
     def render_all(self):
         self.render_background()
-        self.render_obstacles()
+        # self.render_obstacles()
         self.render_demolishers()
         self.render_actors()
         # self.render_player_actor()

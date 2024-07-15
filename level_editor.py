@@ -1415,6 +1415,16 @@ class World(object):
             self.screen.blit(pygame.transform.scale(s, (s.get_width() * self.zoom_factor, s.get_height() * self.zoom_factor)), (self.zoom_factor * (obs.rectangle.centerx - s.get_width() // 2 - self.camera.offset_x + 2),
                                  self.zoom_factor * (obs.rectangle.centery - s.get_height() // 2 - self.camera.offset_y + 2)))
 
+    def export_screen(self):
+        filename = 'img/' + self.location + '_raw_obstacles.png'
+        surf = pygame.Surface((self.camera.max_x, self.camera.max_y))
+        # pygame.draw.rect(surf, BLACK, (0,0,self.camera.max_x, self.camera.max_y))
+        for key in self.obstacles[self.location].keys():
+            obs = self.obstacles[self.location][key]
+            # color = GREEN if obs.active_flag else WHITE
+            pygame.draw.rect(surf, WHITE, (obs.rectangle.x, obs.rectangle.y, obs.rectangle.width, obs.rectangle.height))
+        pygame.image.save(surf, filename)
+
     def render_obstacle_properties(self, obs_id):
         if obs_id not in self.obs_settings.keys():
             return
