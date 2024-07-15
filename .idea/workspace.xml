@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/backgrounds/4cb6277c-424e-11ef-b7ff-bfb4330f33e3_ground.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/backgrounds/4cb6277c-424e-11ef-b7ff-bfb4330f33e3_ground.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,13 +116,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00208" summary="Level editor: go on ruining level editor.">
-      <created>1719972310418</created>
-      <option name="number" value="00208" />
-      <option name="presentableId" value="LOCAL-00208" />
-      <option name="project" value="LOCAL" />
-      <updated>1719972310418</updated>
     </task>
     <task id="LOCAL-00209" summary="Level editor: menu behavior became more or less elegant.">
       <created>1719979052014</created>
@@ -464,7 +453,14 @@
       <option name="project" value="LOCAL" />
       <updated>1721015184863</updated>
     </task>
-    <option name="localTasksCounter" value="257" />
+    <task id="LOCAL-00257" summary="While hanging on the edge actor release it if he gets hurt, not stay in infinite 'hop back' state.">
+      <created>1721028844714</created>
+      <option name="number" value="00257" />
+      <option name="presentableId" value="LOCAL-00257" />
+      <option name="project" value="LOCAL" />
+      <updated>1721028844714</updated>
+    </task>
+    <option name="localTasksCounter" value="258" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -479,7 +475,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Level editor: fixed bug when properties of just edited obstacle become the same as the others had." />
     <MESSAGE value="Level editor: ability to append some types of actions to obstacle added." />
     <MESSAGE value="Fixed bug, when active obstacle processing switched off after 'stop' routine has triggered." />
     <MESSAGE value="Trigger is able be activated just once." />
@@ -504,6 +499,7 @@
     <MESSAGE value="Level editor: added ability to allow or disallow grabbing for every obstacle.&#10;Added background render." />
     <MESSAGE value="NES palette added" />
     <MESSAGE value="Level editor: added opportunity to export obstacle scheme into *.png file." />
-    <option name="LAST_COMMIT_MESSAGE" value="Level editor: added opportunity to export obstacle scheme into *.png file." />
+    <MESSAGE value="While hanging on the edge actor release it if he gets hurt, not stay in infinite 'hop back' state." />
+    <option name="LAST_COMMIT_MESSAGE" value="While hanging on the edge actor release it if he gets hurt, not stay in infinite 'hop back' state." />
   </component>
 </project>

@@ -722,28 +722,23 @@ class Actor(Entity):
             else:
                 self.ignore_user_input = False
         elif self.__state == 'hop down from ghost':             # PREPARE TO HOP DOWN FROM THE GHOST PLATFORM
-            # self.rectangle.centery = self.obstacles_around[self.influenced_by_obstacle].rectangle.bottom + 20
             self.potential_moving_distance = 0
-            self.is_edge_grabbed = True
-            self.ignore_user_input = True
-            self.idle_counter = 25
+            # self.is_edge_grabbed = True
+            # self.ignore_user_input = True
+            # self.idle_counter = 25
             self.fall_speed = 0
             self.heading[0] = 0
             self.speed = 0
-            self.set_new_desired_height(self.rectangle_height_default, 5)
-            self.set_new_desired_width(self.rectangle_width_default, 5)
-            # self.rectangle.height = self.rectangle_height_default
-            self.rectangle.top = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
+            # self.set_new_desired_height(self.rectangle_height_default, 5)
+            # self.set_new_desired_width(self.rectangle_width_default, 5)
+
+            self.rectangle.bottom = self.obstacles_around[self.influenced_by_obstacle].rectangle.bottom + 1
+            # self.rectangle.top = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
             self.reset_self_flags()
-            # if self.look == -1:
-            #     self.rectangle.left = self.obstacles_around[self.influenced_by_obstacle].rectangle.right
-            #     self.is_enough_space_left = False
-            # else:
-            #     self.rectangle.right = self.obstacles_around[self.influenced_by_obstacle].rectangle.left
-            #     self.is_enough_space_right = False
             self.jump_attempts_counter = 0
-            # self.jump_attempts_counter = self.max_jump_attempts
-            self.set_state('hanging on ghost')
+            self.influenced_by_obstacle = -1
+            self.set_state('jump cancel')
+            # self.set_state('hanging on ghost')
         elif self.__state == 'release edge':                    # RELEASE
             self.is_edge_grabbed = False
             self.is_grabbers_active = False
