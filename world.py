@@ -522,9 +522,14 @@ class World(object):
 
     def render_background(self):
         pygame.draw.rect(self.screen, BLACK, (0,0,MAXX, MAXY))
+
         # sub_surf = self.backgrounds[self.location]['ground'].subsurface((self.camera.offset_x, self.camera.offset_y, MAXX, MAXY))
         # self.screen.blit(sub_surf, (0, 0))
-        self.screen.blit(self.backgrounds[self.location]['ground'], (-self.camera.offset_x, -self.camera.offset_y))
+
+        # self.screen.blit(self.backgrounds[self.location]['ground'], (-self.camera.offset_x, -self.camera.offset_y))
+
+        rect = self.backgrounds[self.location]['ground level']['bounding rect']
+        self.screen.blit(self.backgrounds[self.location]['ground level']['cropped image'], (-self.camera.offset_x, MAXY-self.camera.offset_y-rect.height))
 
     def render_player_actor(self):
         actor = self.actors['player']
@@ -703,7 +708,7 @@ class World(object):
 
     def render_all(self):
         self.render_background()
-        # self.render_obstacles()
+        self.render_obstacles()
         self.render_demolishers()
         self.render_actors()
         # self.render_player_actor()
@@ -766,9 +771,10 @@ class World(object):
 
         if self.location not in self.backgrounds.keys():
             self.backgrounds[self.location] = dict()
-        self.backgrounds[self.location] = {
-            'ground': pygame.image.load('img/backgrounds/4cb6277c-424e-11ef-b7ff-bfb4330f33e3_ground.png')
-        }
+            self.backgrounds[self.location]['ground level'] = dict()
+            self.backgrounds[self.location]['ground level']['whole image'] = pygame.image.load('img/backgrounds/4cb6277c-424e-11ef-b7ff-bfb4330f33e3_ground.png')
+            self.backgrounds[self.location]['ground level']['bounding rect'] = self.backgrounds[self.location]['ground level']['whole image'].get_bounding_rect()
+            self.backgrounds[self.location]['ground level']['cropped image'] = self.backgrounds[self.location]['ground level']['whole image'].subsurface(self.backgrounds[self.location]['ground level']['bounding rect'])
 
     def processing_human_input(self):
         # self.mouse_xy = pygame.mouse.get_pos()

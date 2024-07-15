@@ -6,13 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/level_editor_menu_structure.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor_menu_structure.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locations_back.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations_back.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main .py" beforeDir="false" afterPath="$PROJECT_DIR$/main .py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obstacle.py" beforeDir="false" afterPath="$PROJECT_DIR$/obstacle.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -124,13 +117,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00205" summary="Level editor: ruined everything. Try to get menus as separate piles of objects, which could be discarded or revoked again, like classic pop-up menu.">
-      <created>1719909063391</created>
-      <option name="number" value="00205" />
-      <option name="presentableId" value="LOCAL-00205" />
-      <option name="project" value="LOCAL" />
-      <updated>1719909063391</updated>
     </task>
     <task id="LOCAL-00206" summary="Level editor: go on ruining level editor.">
       <created>1719910352981</created>
@@ -468,7 +454,14 @@
       <option name="project" value="LOCAL" />
       <updated>1720773474293</updated>
     </task>
-    <option name="localTasksCounter" value="254" />
+    <task id="LOCAL-00254" summary="Level editor: added ability to allow or disallow grabbing for every obstacle.&#10;Added background render.">
+      <created>1721012003220</created>
+      <option name="number" value="00254" />
+      <option name="presentableId" value="LOCAL-00254" />
+      <option name="project" value="LOCAL" />
+      <updated>1721012003221</updated>
+    </task>
+    <option name="localTasksCounter" value="255" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -483,7 +476,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Level editor: fixed some bugs; 'action' section remains undone." />
     <MESSAGE value="Fixed bug with active obstacle: default speed was 0.0 after level edit was over." />
     <MESSAGE value="Level editor: added 'reset to default' ability while obstacle settings being editing." />
     <MESSAGE value="Level editor: fixed bug when properties of just edited obstacle become the same as the others had." />
@@ -508,6 +500,7 @@
     <MESSAGE value="Level editor: spacebar is able to delete hostiles." />
     <MESSAGE value="Level editor: LMB is able to add en enemies." />
     <MESSAGE value="Level editor: ." />
-    <option name="LAST_COMMIT_MESSAGE" value="Level editor: ." />
+    <MESSAGE value="Level editor: added ability to allow or disallow grabbing for every obstacle.&#10;Added background render." />
+    <option name="LAST_COMMIT_MESSAGE" value="Level editor: added ability to allow or disallow grabbing for every obstacle.&#10;Added background render." />
   </component>
 </project>
