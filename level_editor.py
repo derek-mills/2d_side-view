@@ -1490,14 +1490,16 @@ class World(object):
                         # Get size of the new scaled sprite:
                         sz = sprite.get_size()
 
-                        for x in range(0, obs.rectangle.w, sz[0]):
-                            for y in range(0, obs.rectangle.h, sz[1]):
+                        for y in range(0, obs.rectangle.h, sz[1]):
+                            for x in range(0, obs.rectangle.w, sz[0]):
                                 obs_surf.blit(sprite, (x,y))
+
 
                         # Draw shadow under the elevated sprite:
                         if elevation != 0:
                             color_alpha = 255
-                            for dy in range(y + obs.rectangle.h, obs.rectangle.height + elevation, 1):
+                            for dy in range(obs_surf.get_height() - elevation, obs_surf.get_height(), 1):
+                            # for dy in range(y + obs.rectangle.h, obs.rectangle.height + elevation, 1):
                                 pygame.draw.rect(obs_surf, (0,0,0,color_alpha), (0,dy, obs.rectangle.w,1))
                                 color_alpha -= 10
                                 if color_alpha < 0:
