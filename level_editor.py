@@ -1480,7 +1480,7 @@ class World(object):
                             elevation = self.default_snap_mesh_size // 2
                         # Create a surface which corresponds the size of current obstacle representation:
                         # obs_surf = pygame.Surface((obs.rectangle.width, obs.rectangle.height))
-                        obs_surf = pygame.Surface((obs.rectangle.width, obs.rectangle.height + elevation))
+                        obs_surf = pygame.Surface((obs.rectangle.width, obs.rectangle.height + elevation)).convert_alpha()
 
                         # Extract a sprite and scale it to fit default mesh dimension:
                         sz = self.tiles[self.obs_settings[key]['sprite']].get_size()
@@ -1494,12 +1494,23 @@ class World(object):
                             for y in range(0, obs.rectangle.h, sz[1]):
                                 obs_surf.blit(sprite, (x,y))
 
+                        # Draw shadow under the elevated sprite:
+                        if elevation != 0:
+                            color_alpha = 255
+                            for dy in range(y + obs.rectangle.h, obs.rectangle.height + elevation, 1):
+                                pygame.draw.rect(obs_surf, (0,0,0,color_alpha), (0,dy, obs.rectangle.w,1))
+                                color_alpha -= 10
+                                if color_alpha < 0:
+                                    break
+
+                        # Final obstacle render over the main surface:
                         surf.blit(obs_surf, (obs.rectangle.x, obs.rectangle.y - elevation))
+
                     else:
                         pygame.draw.rect(surf, WHITE, (obs.rectangle.x, obs.rectangle.y, obs.rectangle.width, obs.rectangle.height))
                 else:
                     pygame.draw.rect(surf, WHITE, (obs.rectangle.x, obs.rectangle.y, obs.rectangle.width, obs.rectangle.height))
-                pygame.draw.rect(surf, WHITE, (obs.rectangle.x, obs.rectangle.y, obs.rectangle.width, obs.rectangle.height), 1)  # Debugging border
+                # pygame.draw.rect(surf, WHITE, (obs.rectangle.x, obs.rectangle.y, obs.rectangle.width, obs.rectangle.height), 1)  # Debugging border
         pygame.image.save(surf, filename)
 
     def render_obstacle_properties(self, obs_id):

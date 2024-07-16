@@ -122,13 +122,6 @@
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
     </task>
-    <task id="LOCAL-00215" summary="Level editor: try to get menu system work with self.menu_structure dict as the only one source of settings.">
-      <created>1720079945929</created>
-      <option name="number" value="00215" />
-      <option name="presentableId" value="LOCAL-00215" />
-      <option name="project" value="LOCAL" />
-      <updated>1720079945929</updated>
-    </task>
     <task id="LOCAL-00216" summary="Level editor: try to get menu system work with self.menu_structure dict as the only one source of settings.">
       <created>1720084130937</created>
       <option name="number" value="00216" />
@@ -465,7 +458,14 @@
       <option name="project" value="LOCAL" />
       <updated>1721110721054</updated>
     </task>
-    <option name="localTasksCounter" value="264" />
+    <task id="LOCAL-00264" summary="Level editor: improving PNG level export.">
+      <created>1721115870435</created>
+      <option name="number" value="00264" />
+      <option name="presentableId" value="LOCAL-00264" />
+      <option name="project" value="LOCAL" />
+      <updated>1721115870435</updated>
+    </task>
+    <option name="localTasksCounter" value="265" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -480,7 +480,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Triggers is able to switch actions of active obstacles in different locations, but if location is now loaded yet, it causes error." />
     <MESSAGE value="Triggers is able to switch actions of active obstacles in different locations." />
     <MESSAGE value="Level editor: Pop-up description box sticks to mouse cursor" />
     <MESSAGE value="Slightly improved actor's edge grabbing." />
@@ -505,6 +504,7 @@
     <MESSAGE value="Level editor: while choosing sprite from tile set additional info window displays this sprite as preview." />
     <MESSAGE value="Level editor: export to PNG including 'sprite' variable from obstacle settings, if it has been set." />
     <MESSAGE value="Level editor: if menu is higher than the MAXY, it could be scrolled by mouse wheel." />
-    <option name="LAST_COMMIT_MESSAGE" value="Level editor: if menu is higher than the MAXY, it could be scrolled by mouse wheel." />
+    <MESSAGE value="Level editor: improving PNG level export." />
+    <option name="LAST_COMMIT_MESSAGE" value="Level editor: improving PNG level export." />
   </component>
 </project>
