@@ -102,7 +102,8 @@ class World(object):
         self.selected_obs_id = -1
 
         self.snap_mesh = dict()
-        self.snap_mesh_size = 50
+        self.default_snap_mesh_size = 50
+        self.snap_mesh_size = self.default_snap_mesh_size
         self.snap_mesh_size_change_step = 25
         self.zoom_factor = 1.
 
@@ -117,6 +118,7 @@ class World(object):
         # self.menu_path = list()
         self.menu_elements_bindings = menu_elements_bindings
         self.menu_structure = menu_structure
+        self.menu_items_y_scroll_speed: int = 30  #
 
     def set_screen(self, surface):
         self.screen = surface
@@ -248,9 +250,27 @@ class World(object):
 
         menu_item_has_been_already_checked = False
 
+        # MOUSE WHEEL:
+        if self.is_mouse_wheel_down:
+            self.reset_human_input()
+            menu_items_keys = list(self.menu_items[self.active_menu_pile].keys())
+            if self.menu_items[self.active_menu_pile][menu_items_keys[-1]]['rectangle'].y < 0:
+                for k in menu_items_keys:
+                    self.menu_items[self.active_menu_pile][k]['rectangle'].y += self.menu_items_y_scroll_speed
+                # self.menu_items_y_correction -= 50
+        elif self.is_mouse_wheel_up:
+            self.reset_human_input()
+            menu_items_keys = list(self.menu_items[self.active_menu_pile].keys())
+            if self.menu_items[self.active_menu_pile][menu_items_keys[0]]['rectangle'].y > MAXY:
+                for k in menu_items_keys:
+                    self.menu_items[self.active_menu_pile][k]['rectangle'].y -= self.menu_items_y_scroll_speed
+                # self.menu_items_y_correction -= 50
+
+
         for pile_id in reversed(self.menu_items.keys()):
             for k in self.menu_items[pile_id].keys():
                 menu_item = self.menu_items[pile_id][k]
+                # menu_item['rectangle'].y += self.menu_items_y_correction
                 # if menu_item['menu actions done']:
 
                 if menu_item_has_been_already_checked:
@@ -383,7 +403,6 @@ class World(object):
                             #         self.menu_actions_done = True
                             #         return
 
-
                 else:
                     menu_item['hovered'] = False
                     if menu_item['on hover action'] and menu_item['has been already activated']:
@@ -515,6 +534,9 @@ class World(object):
         self.is_mouse_button_down = False
         self.is_left_mouse_button_down = False
         self.is_right_mouse_button_down = False
+        self.is_mouse_wheel_down = False
+        self.is_mouse_wheel_up = False
+        self.is_mouse_wheel_rolls = False
 
     def main_menu(self):
         # for i in self.menu_structure['main menu'].keys():
@@ -1104,11 +1126,17 @@ class World(object):
     def load(self):
         if not self.tiles:
             start_x = 0
-            start_y = 48
+            start_y = 0
             tile_width = 96
-            tile_height = 192
+            tile_height = 96
             tiles_x_gap = 0
-            tiles_y_gap = 48
+            tiles_y_gap = 0
+            # start_x = 0
+            # start_y = 48
+            # tile_width = 96
+            # tile_height = 192
+            # tiles_x_gap = 0
+            # tiles_y_gap = 48
             tile_set = pygame.image.load('img/backgrounds/tiles/tileset_1.png')
             sz = tile_set.get_size()
             tile_number = 0
@@ -1446,19 +1474,22 @@ class World(object):
             else:
                 if key in self.obs_settings.keys():
                     if 'sprite' in self.obs_settings[key].keys():
-                        # start_x = obs.rectangle.x
-                        # start_y = obs.rectangle.y
-                        obs_surf = pygame.Surface((obs.rectangle.width, obs.rectangle.height))
-                        sprite = self.tiles[self.obs_settings[key]['sprite']]
+                        if self.obs_settings[key]['sprite elevated']:
+                            elevation = self.default_snap_mesh_size // 2
+                        else:
+                            elevation = 0
+
+                        # Create a surface which corresponds the size of current obstacle representation:
+                        obs_surf = pygame.Surface((obs.rectangle.width, obs.rectangle.height + elevation))
+                        # Extract a sprite and scale it to fit default mesh dimension:
+                        sz = self.tiles[self.obs_settings[key]['sprite']].get_size()
+                        scale_ratio = self.default_snap_mesh_size / sz[0]
+                        sprite = pygame.transform.scale(self.tiles[self.obs_settings[key]['sprite']], (sz[0] * scale_ratio, sz[1] * scale_ratio))
                         sz = sprite.get_size()
-                        # max_tiles_width = obs.rectangle.w // sz[0]
-                        # max_tiles_height = obs.rectangle.h // sz[1]
-                        # for x in range(0, max_tiles_width, 1):
-                        #     for y in range(0, max_tiles_height, 1):
                         for x in range(0, obs.rectangle.w, sz[0]):
                             for y in range(0, obs.rectangle.h, sz[1]):
                                 obs_surf.blit(sprite, (x,y))
-                        surf.blit(obs_surf, (obs.rectangle.x, obs.rectangle.y))
+                        surf.blit(obs_surf, (obs.rectangle.x, obs.rectangle.y - elevation))
                     else:
                         pygame.draw.rect(surf, WHITE, (obs.rectangle.x, obs.rectangle.y, obs.rectangle.width, obs.rectangle.height))
                 else:

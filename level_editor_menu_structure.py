@@ -331,6 +331,17 @@ menu_structure = {
             'active': True,
             'after action': 'return to parent',
         },
+        'sprite elevated': {
+            'rectangle': pygame.Rect(0, 0, 0, 0),
+            'label': 'sprite elevated',
+            'on hover action': None,
+            'LMB action': 'switch state',
+            'description': 'sprite elevated',
+            'target': ("menu_structure['custom obs properties']['ok']['value']['sprite elevated']",),
+            'additional info': "*menu_structure['custom obs properties']['ok']['value']['sprite elevated']",
+            'active': True,
+            'after action': 'keep going'
+        },
         'ghost': {
             'rectangle': pygame.Rect(0, 0, 0, 0),
             'label': 'ghost',
@@ -550,6 +561,7 @@ menu_structure = {
             #  Like that: exec(menu_item['target'] + ' = menu_item[\'value\']')
             'value': {
                 'sprite': 0,
+                'sprite elevated': False,
                 'ghost': False,
                 'actors pass through': False,
                 'actors may grab': False,
@@ -600,6 +612,7 @@ menu_structure = {
             #  Like that: exec(menu_item['target'] + ' = menu_item[\'value\']')
             'value': {
                 'sprite': 0,
+                'sprite elevated': False,
                 'ghost': False,
                 'actors pass through': False,
                 'actors may grab': False,
