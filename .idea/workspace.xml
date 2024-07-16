@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
-    </list>
+    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -116,13 +114,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00217" summary="Level editor: once again doing remake of the menu system :^(.">
-      <created>1720156672855</created>
-      <option name="number" value="00217" />
-      <option name="presentableId" value="LOCAL-00217" />
-      <option name="project" value="LOCAL" />
-      <updated>1720156672855</updated>
     </task>
     <task id="LOCAL-00218" summary="Level editor: setup() is deprecated.">
       <created>1720159189897</created>
@@ -460,7 +451,14 @@
       <option name="project" value="LOCAL" />
       <updated>1721116892760</updated>
     </task>
-    <option name="localTasksCounter" value="266" />
+    <task id="LOCAL-00266" summary="Level editor: improved shadow drawing under the elevated obstacle sprites.">
+      <created>1721118521075</created>
+      <option name="number" value="00266" />
+      <option name="presentableId" value="LOCAL-00266" />
+      <option name="project" value="LOCAL" />
+      <updated>1721118521075</updated>
+    </task>
+    <option name="localTasksCounter" value="267" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -475,7 +473,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Triggers is able to switch actions of active obstacles in different locations." />
     <MESSAGE value="Level editor: Pop-up description box sticks to mouse cursor" />
     <MESSAGE value="Slightly improved actor's edge grabbing." />
     <MESSAGE value="Level editor: obstacle editing menu reveals with already existing properties, else with default." />
@@ -500,6 +497,7 @@
     <MESSAGE value="Level editor: export to PNG including 'sprite' variable from obstacle settings, if it has been set." />
     <MESSAGE value="Level editor: if menu is higher than the MAXY, it could be scrolled by mouse wheel." />
     <MESSAGE value="Level editor: improving PNG level export." />
-    <option name="LAST_COMMIT_MESSAGE" value="Level editor: improving PNG level export." />
+    <MESSAGE value="Level editor: improved shadow drawing under the elevated obstacle sprites." />
+    <option name="LAST_COMMIT_MESSAGE" value="Level editor: improved shadow drawing under the elevated obstacle sprites." />
   </component>
 </project>
