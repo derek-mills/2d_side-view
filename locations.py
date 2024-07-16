@@ -20,7 +20,7 @@ locations = {
                 ((0, 0), (50, 950), 20),  #20
                 ((600, 850), (450, 50), 59),  #59
                 ((1150, 850), (300, 100), 60),  #60
-                ((600, 900), (450, 75), 61),  #61
+                ((600, 900), (450, 50), 62),  #62
                   ), # OBSTACLE RECTANGLES SECTION END
                 'settings': {
                     17: {
@@ -91,7 +91,7 @@ locations = {
                         'active': False,
                         'actions': {0: []},
                   },
-                    61: {
+                    62: {
                         'sprite': 13,
                         'sprite elevated': True,
                         'ghost': False,
