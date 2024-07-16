@@ -1444,7 +1444,25 @@ class World(object):
             if just_obs_contour:
                 pygame.draw.rect(surf, WHITE, (obs.rectangle.x, obs.rectangle.y, obs.rectangle.width, obs.rectangle.height))
             else:
-                ...
+                if key in self.obs_settings.keys():
+                    if 'sprite' in self.obs_settings[key].keys():
+                        # start_x = obs.rectangle.x
+                        # start_y = obs.rectangle.y
+                        obs_surf = pygame.Surface((obs.rectangle.width, obs.rectangle.height))
+                        sprite = self.tiles[self.obs_settings[key]['sprite']]
+                        sz = sprite.get_size()
+                        # max_tiles_width = obs.rectangle.w // sz[0]
+                        # max_tiles_height = obs.rectangle.h // sz[1]
+                        # for x in range(0, max_tiles_width, 1):
+                        #     for y in range(0, max_tiles_height, 1):
+                        for x in range(0, obs.rectangle.w, sz[0]):
+                            for y in range(0, obs.rectangle.h, sz[1]):
+                                obs_surf.blit(sprite, (x,y))
+                        surf.blit(obs_surf, (obs.rectangle.x, obs.rectangle.y))
+                    else:
+                        pygame.draw.rect(surf, WHITE, (obs.rectangle.x, obs.rectangle.y, obs.rectangle.width, obs.rectangle.height))
+                else:
+                    pygame.draw.rect(surf, WHITE, (obs.rectangle.x, obs.rectangle.y, obs.rectangle.width, obs.rectangle.height))
         pygame.image.save(surf, filename)
 
     def render_obstacle_properties(self, obs_id):
@@ -1631,22 +1649,27 @@ class World(object):
                         elif menu_item['additional info'][0] == '*':
                             # Link to an object, which must be converted to text info:
                             info = eval(menu_item['additional info'][1:])
-                            s = fonts.font12.render(str(info), True, BLACK)
+                            s = fonts.font12.render(str(info), True, WHITE)
                         else:
                             # Just a pure text, no need to convert it:
                             info = menu_item['additional info']
-                            s = fonts.font12.render(str(info), True, BLACK)
+                            s = fonts.font12.render(str(info), True, WHITE)
                         sz = s.get_size()
                         add_box_width = 100
+
                         if menu_item['rectangle'].right + add_box_width > MAXX:
                             add_box_x = menu_item['rectangle'].left - add_box_width - 1
                         else:
                             add_box_x = menu_item['rectangle'].right + 1
 
-                        pygame.draw.rect(self.screen, GRAY, (add_box_x, menu_item['rectangle'].y,
-                                                             add_box_width, menu_item['rectangle'].h), 0)
-                        self.screen.blit(s, (add_box_x + add_box_width // 2 - sz[0] // 2,
-                                             menu_item['rectangle'].centery - sz[1] // 2))
+                        add_screen = pygame.Surface((add_box_width, menu_item['rectangle'].h))
+                        add_screen.blit(s, (add_box_width // 2 - sz[0] // 2, 0))
+                        self.screen.blit(add_screen, (add_box_x, menu_item['rectangle'].top))
+
+                        # pygame.draw.rect(self.screen, GRAY, (add_box_x, menu_item['rectangle'].y,
+                        #                                      add_box_width, menu_item['rectangle'].h), 0)
+                        # self.screen.blit(s, (add_box_x + add_box_width // 2 - sz[0] // 2,
+                        #                      menu_item['rectangle'].centery - sz[1] // 2))
 
                         if menu_item['hovered']:
                             if self.mouse_xy[0] + sz[0]//2 + 2 > MAXX:
@@ -1657,7 +1680,7 @@ class World(object):
                                 hover_box_x = self.mouse_xy[0] - sz[0] //2 - 8
 
                             hover_box_y = self.mouse_xy[1] - sz[1] - 1
-                            pygame.draw.rect(self.screen, WHITE, (hover_box_x, hover_box_y,
+                            pygame.draw.rect(self.screen, DARKGRAY, (hover_box_x, hover_box_y,
                                                                  sz[0] + 4, sz[1] + 2), 0)
                             self.screen.blit(s, (hover_box_x + 2, hover_box_y + 1))
 

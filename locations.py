@@ -21,10 +21,15 @@ locations = {
                 ((550, 875), (600, 50), 34),  #34
                 ((600, 800), (550, 50), 35),  #35
                 ((650, 725), (500, 50), 36),  #36
+                ((1350, 150), (700, 500), 37),  #37
+                ((2050, 0), (50, 700), 38),  #38
+                ((1350, 650), (700, 50), 39),  #39
+                ((1300, 0), (50, 700), 40),  #40
+                ((1350, 100), (700, 50), 41),  #41
                   ), # OBSTACLE RECTANGLES SECTION END
                 'settings': {
                     36: {
-                        'sprite': 9,
+                        'sprite': 0,
                         'ghost': True,
                         'actors pass through': False,
                         'actors may grab': False,
@@ -40,6 +45,7 @@ locations = {
                         'actions': {0: []},
                   },
                     35: {
+                        'sprite': 10,
                         'ghost': True,
                         'actors pass through': False,
                         'actors may grab': False,
@@ -55,7 +61,24 @@ locations = {
                         'actions': {0: []},
                   },
                     34: {
+                        'sprite': 4,
                         'ghost': True,
+                        'actors pass through': False,
+                        'actors may grab': False,
+                        'speed': 0.2,
+                        'collideable': False,
+                        'gravity affected': False,
+                        'invisible': False,
+                        'teleport': False,
+                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'trigger': False,
+                        'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
+                        'active': False,
+                        'actions': {0: []},
+                  },
+                    37: {
+                        'sprite': 1,
+                        'ghost': False,
                         'actors pass through': False,
                         'actors may grab': False,
                         'speed': 0.2,

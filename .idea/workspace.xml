@@ -6,8 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/4cb6277c-424e-11ef-b7ff-bfb4330f33e3_raw_obstacles.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/4cb6277c-424e-11ef-b7ff-bfb4330f33e3_raw_obstacles.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/backgrounds/4cb6277c-424e-11ef-b7ff-bfb4330f33e3_ground.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/backgrounds/4cb6277c-424e-11ef-b7ff-bfb4330f33e3_ground.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/gimp_originals/4cb6277c-424e-11ef-b7ff-bfb4330f33e3_ground.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/img/gimp_originals/4cb6277c-424e-11ef-b7ff-bfb4330f33e3_ground.xcf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/level_editor_menu_structure.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor_menu_structure.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -57,7 +59,7 @@
       </console-settings>
     </option>
   </component>
-  <component name="RunManager" selected="Python.level_editor">
+  <component name="RunManager" selected="Python.main ">
     <configuration name="level_editor" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ver_0.000.1" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -106,8 +108,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.level_editor" />
         <item itemvalue="Python.main " />
+        <item itemvalue="Python.level_editor" />
       </list>
     </recent_temporary>
   </component>
@@ -119,13 +121,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00212" summary="Level editor: it is able to edit custom obstacle properties through context menu.">
-      <created>1719994295532</created>
-      <option name="number" value="00212" />
-      <option name="presentableId" value="LOCAL-00212" />
-      <option name="project" value="LOCAL" />
-      <updated>1719994295532</updated>
     </task>
     <task id="LOCAL-00213" summary="Level editor: try to get menu system work with self.menu_structure dict as the only one source of settings.">
       <created>1720064177381</created>
@@ -463,7 +458,14 @@
       <option name="project" value="LOCAL" />
       <updated>1721094803785</updated>
     </task>
-    <option name="localTasksCounter" value="261" />
+    <task id="LOCAL-00261" summary="Level editor: while choosing sprite from tile set additional info window displays this sprite as preview.">
+      <created>1721102150450</created>
+      <option name="number" value="00261" />
+      <option name="presentableId" value="LOCAL-00261" />
+      <option name="project" value="LOCAL" />
+      <updated>1721102150450</updated>
+    </task>
+    <option name="localTasksCounter" value="262" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -478,7 +480,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Level editor: floating description box for active obstacles added." />
     <MESSAGE value="Level editor: floating description box for active obstacles improved by removing empty or False definitions." />
     <MESSAGE value="Triggers is able to change different action sets for active obstacles now." />
     <MESSAGE value="Triggers is able to switch actions of active obstacles in different locations, but if location is now loaded yet, it causes error." />
@@ -503,6 +504,7 @@
     <MESSAGE value="Hopping down from ghost platforms is simplified, 'hanging on ghost' state deprecated" />
     <MESSAGE value="Some improvements" />
     <MESSAGE value="Level editor: added sprite choose opportunity for every obstacle to automatic make correct level PNG map in the future." />
-    <option name="LAST_COMMIT_MESSAGE" value="Level editor: added sprite choose opportunity for every obstacle to automatic make correct level PNG map in the future." />
+    <MESSAGE value="Level editor: while choosing sprite from tile set additional info window displays this sprite as preview." />
+    <option name="LAST_COMMIT_MESSAGE" value="Level editor: while choosing sprite from tile set additional info window displays this sprite as preview." />
   </component>
 </project>
