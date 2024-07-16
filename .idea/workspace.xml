@@ -54,7 +54,7 @@
       </console-settings>
     </option>
   </component>
-  <component name="RunManager" selected="Python.main ">
+  <component name="RunManager" selected="Python.level_editor">
     <configuration name="level_editor" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ver_0.000.1" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -103,8 +103,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.main " />
         <item itemvalue="Python.level_editor" />
+        <item itemvalue="Python.main " />
       </list>
     </recent_temporary>
   </component>
@@ -116,13 +116,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00220" summary="Level editor: too many tiny changes to describe ((.">
-      <created>1720170275927</created>
-      <option name="number" value="00220" />
-      <option name="presentableId" value="LOCAL-00220" />
-      <option name="project" value="LOCAL" />
-      <updated>1720170275927</updated>
     </task>
     <task id="LOCAL-00221" summary="Level editor: once again try to create flexible menu system, which could be described using only menu_structure dict.">
       <created>1720415046291</created>
@@ -460,7 +453,14 @@
       <option name="project" value="LOCAL" />
       <updated>1721119187289</updated>
     </task>
-    <option name="localTasksCounter" value="269" />
+    <task id="LOCAL-00269" summary="Level editor: fixed some bugs with PNG export of elevated obstacles.">
+      <created>1721119627166</created>
+      <option name="number" value="00269" />
+      <option name="presentableId" value="LOCAL-00269" />
+      <option name="project" value="LOCAL" />
+      <updated>1721119627166</updated>
+    </task>
+    <option name="localTasksCounter" value="270" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -475,7 +475,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Slightly improved actor's edge grabbing." />
     <MESSAGE value="Level editor: obstacle editing menu reveals with already existing properties, else with default." />
     <MESSAGE value="Level editor: default value returns now while text input routine." />
     <MESSAGE value="Some slightly improvement.&#10;Experiment with player actor's rectangle size." />
@@ -500,6 +499,7 @@
     <MESSAGE value="Level editor: improving PNG level export." />
     <MESSAGE value="Level editor: improved shadow drawing under the elevated obstacle sprites." />
     <MESSAGE value="Level editor: improved shadow drawing under the elevated obstacle sprites, so as the elevated obstacles drawing themselves." />
-    <option name="LAST_COMMIT_MESSAGE" value="Level editor: improved shadow drawing under the elevated obstacle sprites, so as the elevated obstacles drawing themselves." />
+    <MESSAGE value="Level editor: fixed some bugs with PNG export of elevated obstacles." />
+    <option name="LAST_COMMIT_MESSAGE" value="Level editor: fixed some bugs with PNG export of elevated obstacles." />
   </component>
 </project>

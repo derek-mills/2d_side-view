@@ -21,6 +21,8 @@ locations = {
                 ((600, 850), (450, 50), 59),  #59
                 ((1150, 850), (300, 100), 60),  #60
                 ((600, 900), (450, 50), 62),  #62
+                ((1700, 850), (500, 50), 65),  #65
+                ((1700, 900), (500, 50), 66),  #66
                   ), # OBSTACLE RECTANGLES SECTION END
                 'settings': {
                     17: {
@@ -93,6 +95,40 @@ locations = {
                   },
                     62: {
                         'sprite': 13,
+                        'sprite elevated': True,
+                        'ghost': False,
+                        'actors pass through': False,
+                        'actors may grab': False,
+                        'speed': 0.2,
+                        'collideable': False,
+                        'gravity affected': False,
+                        'invisible': False,
+                        'teleport': False,
+                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'trigger': False,
+                        'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
+                        'active': False,
+                        'actions': {0: []},
+                  },
+                    65: {
+                        'sprite': 15,
+                        'sprite elevated': True,
+                        'ghost': False,
+                        'actors pass through': False,
+                        'actors may grab': False,
+                        'speed': 0.2,
+                        'collideable': False,
+                        'gravity affected': False,
+                        'invisible': False,
+                        'teleport': False,
+                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'trigger': False,
+                        'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
+                        'active': False,
+                        'actions': {0: []},
+                  },
+                    66: {
+                        'sprite': 16,
                         'sprite elevated': True,
                         'ghost': False,
                         'actors pass through': False,

@@ -251,14 +251,14 @@ class World(object):
         menu_item_has_been_already_checked = False
 
         # MOUSE WHEEL:
-        if self.is_mouse_wheel_down:
+        if self.is_mouse_wheel_up:
             self.reset_human_input()
             menu_items_keys = list(self.menu_items[self.active_menu_pile].keys())
             if self.menu_items[self.active_menu_pile][menu_items_keys[-1]]['rectangle'].y < 0:
                 for k in menu_items_keys:
                     self.menu_items[self.active_menu_pile][k]['rectangle'].y += self.menu_items_y_scroll_speed
                 # self.menu_items_y_correction -= 50
-        elif self.is_mouse_wheel_up:
+        elif self.is_mouse_wheel_down:
             self.reset_human_input()
             menu_items_keys = list(self.menu_items[self.active_menu_pile].keys())
             if self.menu_items[self.active_menu_pile][menu_items_keys[0]]['rectangle'].y > MAXY:
