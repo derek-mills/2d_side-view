@@ -6,9 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/constants.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/4cb6277c-424e-11ef-b7ff-bfb4330f33e3_raw_obstacles.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/4cb6277c-424e-11ef-b7ff-bfb4330f33e3_raw_obstacles.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/img/backgrounds/4cb6277c-424e-11ef-b7ff-bfb4330f33e3_ground.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/backgrounds/4cb6277c-424e-11ef-b7ff-bfb4330f33e3_ground.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/gimp_originals/4cb6277c-424e-11ef-b7ff-bfb4330f33e3_ground.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/img/gimp_originals/4cb6277c-424e-11ef-b7ff-bfb4330f33e3_ground.xcf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/level_editor_menu_structure.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor_menu_structure.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locations_back.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations_back.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +62,7 @@
       </console-settings>
     </option>
   </component>
-  <component name="RunManager" selected="Python.main ">
+  <component name="RunManager" selected="Python.level_editor">
     <configuration name="level_editor" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ver_0.000.1" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -106,8 +111,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.main " />
         <item itemvalue="Python.level_editor" />
+        <item itemvalue="Python.main " />
       </list>
     </recent_temporary>
   </component>
@@ -119,13 +124,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00210" summary="Level editor: menu behavior became even much more elegant.">
-      <created>1719985210097</created>
-      <option name="number" value="00210" />
-      <option name="presentableId" value="LOCAL-00210" />
-      <option name="project" value="LOCAL" />
-      <updated>1719985210097</updated>
     </task>
     <task id="LOCAL-00211" summary="Level editor: menu behavior became even much more elegant.">
       <created>1719992636366</created>
@@ -463,7 +461,14 @@
       <option name="project" value="LOCAL" />
       <updated>1721029340796</updated>
     </task>
-    <option name="localTasksCounter" value="259" />
+    <task id="LOCAL-00259" summary="Some improvements">
+      <created>1721032739957</created>
+      <option name="number" value="00259" />
+      <option name="presentableId" value="LOCAL-00259" />
+      <option name="project" value="LOCAL" />
+      <updated>1721032739957</updated>
+    </task>
+    <option name="localTasksCounter" value="260" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -478,7 +483,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed bug, when active obstacle processing switched off after 'stop' routine has triggered." />
     <MESSAGE value="Trigger is able be activated just once." />
     <MESSAGE value="Level editor: floating description box for active obstacles added." />
     <MESSAGE value="Level editor: floating description box for active obstacles improved by removing empty or False definitions." />
@@ -503,6 +507,7 @@
     <MESSAGE value="Level editor: added opportunity to export obstacle scheme into *.png file." />
     <MESSAGE value="While hanging on the edge actor release it if he gets hurt, not stay in infinite 'hop back' state." />
     <MESSAGE value="Hopping down from ghost platforms is simplified, 'hanging on ghost' state deprecated" />
-    <option name="LAST_COMMIT_MESSAGE" value="Hopping down from ghost platforms is simplified, 'hanging on ghost' state deprecated" />
+    <MESSAGE value="Some improvements" />
+    <option name="LAST_COMMIT_MESSAGE" value="Some improvements" />
   </component>
 </project>

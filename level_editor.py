@@ -33,6 +33,7 @@ class World(object):
         self.allow_import_locations = False
         self.clipboard = dict()
         self.default_font_size = 15
+        self.tiles = dict()
         # CONTROLS
         self.is_key_pressed = False
         self.is_input_up_arrow = False
@@ -1101,6 +1102,20 @@ class World(object):
         # self.add_menu_item(pygame.Rect(xy[0], xy[1], txt_surf.get_width() + 20, txt_surf.get_height() + 20), prompt + ': ', '', False)
 
     def load(self):
+        if not self.tiles:
+            start_x = 0
+            start_y = 48
+            tile_width = 96
+            tile_height = 192
+            tile_set = pygame.image.load('img/backgrounds/tiles/tileset_1.png')
+            sz = tile_set.get_size()
+            tile_number = 0
+            for x in range (start_x, sz[0] - tile_width, tile_width):
+                for y in range (start_y, sz[1] - tile_height, tile_height):
+                    self.tiles[tile_number] = tile_set.subsurface((x,y,tile_width,tile_height))
+                    tile_number += 1
+
+
         self.obstacles[self.location] = dict()
 
         max_obs_id = 0
@@ -1136,6 +1151,8 @@ class World(object):
         #     self.add_demolisher(dem)
         self.camera.setup(locations.locations[self.location]['size'][0], locations.locations[self.location]['size'][1])
         self.create_snap_mesh()
+
+
 
     def save(self):
         # Saving with pickle:
@@ -1415,14 +1432,17 @@ class World(object):
             self.screen.blit(pygame.transform.scale(s, (s.get_width() * self.zoom_factor, s.get_height() * self.zoom_factor)), (self.zoom_factor * (obs.rectangle.centerx - s.get_width() // 2 - self.camera.offset_x + 2),
                                  self.zoom_factor * (obs.rectangle.centery - s.get_height() // 2 - self.camera.offset_y + 2)))
 
-    def export_screen(self):
+    def export_screen(self, just_obs_contour=False):
         filename = 'img/' + self.location + '_raw_obstacles.png'
         surf = pygame.Surface((self.camera.max_x, self.camera.max_y))
         # pygame.draw.rect(surf, BLACK, (0,0,self.camera.max_x, self.camera.max_y))
         for key in self.obstacles[self.location].keys():
             obs = self.obstacles[self.location][key]
             # color = GREEN if obs.active_flag else WHITE
-            pygame.draw.rect(surf, WHITE, (obs.rectangle.x, obs.rectangle.y, obs.rectangle.width, obs.rectangle.height))
+            if just_obs_contour:
+                pygame.draw.rect(surf, WHITE, (obs.rectangle.x, obs.rectangle.y, obs.rectangle.width, obs.rectangle.height))
+            else:
+                ...
         pygame.image.save(surf, filename)
 
     def render_obstacle_properties(self, obs_id):
@@ -1602,12 +1622,14 @@ class World(object):
 
                     # Render additional info about the menu item:
                     if 'additional info' in menu_item.keys():
-                        if menu_item['additional info'][0] == '*':
+                        if menu_item['additional info'][0] == '$':
+                            s = eval(menu_item['additional info'][1:])
+                        elif menu_item['additional info'][0] == '*':
                             info = eval(menu_item['additional info'][1:])
+                            s = fonts.font12.render(str(info), True, BLACK)
                         else:
                             info = menu_item['additional info']
-
-                        s = fonts.font12.render(str(info), True, BLACK)
+                            s = fonts.font12.render(str(info), True, BLACK)
                         sz = s.get_size()
                         add_box_width = 100
                         if menu_item['rectangle'].right + add_box_width > MAXX:
