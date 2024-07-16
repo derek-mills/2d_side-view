@@ -1464,10 +1464,12 @@ class World(object):
 
     def export_screen(self, just_obs_contour=False):
         filename = 'img/' + self.location + '_raw_obstacles.png'
-        surf = pygame.Surface((self.camera.max_x, self.camera.max_y))
+        surf = pygame.Surface((self.camera.max_x, self.camera.max_y)).convert_alpha()
+        surf.fill(MAGENTA)
         # pygame.draw.rect(surf, BLACK, (0,0,self.camera.max_x, self.camera.max_y))
         for key in self.obstacles[self.location].keys():
             obs = self.obstacles[self.location][key]
+            elevation = 0
             # color = GREEN if obs.active_flag else WHITE
             if just_obs_contour:
                 pygame.draw.rect(surf, WHITE, (obs.rectangle.x, obs.rectangle.y, obs.rectangle.width, obs.rectangle.height))
@@ -1476,24 +1478,28 @@ class World(object):
                     if 'sprite' in self.obs_settings[key].keys():
                         if self.obs_settings[key]['sprite elevated']:
                             elevation = self.default_snap_mesh_size // 2
-                        else:
-                            elevation = 0
-
                         # Create a surface which corresponds the size of current obstacle representation:
+                        # obs_surf = pygame.Surface((obs.rectangle.width, obs.rectangle.height))
                         obs_surf = pygame.Surface((obs.rectangle.width, obs.rectangle.height + elevation))
+
                         # Extract a sprite and scale it to fit default mesh dimension:
                         sz = self.tiles[self.obs_settings[key]['sprite']].get_size()
                         scale_ratio = self.default_snap_mesh_size / sz[0]
                         sprite = pygame.transform.scale(self.tiles[self.obs_settings[key]['sprite']], (sz[0] * scale_ratio, sz[1] * scale_ratio))
+
+                        # Get size of the new scaled sprite:
                         sz = sprite.get_size()
+
                         for x in range(0, obs.rectangle.w, sz[0]):
                             for y in range(0, obs.rectangle.h, sz[1]):
                                 obs_surf.blit(sprite, (x,y))
+
                         surf.blit(obs_surf, (obs.rectangle.x, obs.rectangle.y - elevation))
                     else:
                         pygame.draw.rect(surf, WHITE, (obs.rectangle.x, obs.rectangle.y, obs.rectangle.width, obs.rectangle.height))
                 else:
                     pygame.draw.rect(surf, WHITE, (obs.rectangle.x, obs.rectangle.y, obs.rectangle.width, obs.rectangle.height))
+                pygame.draw.rect(surf, WHITE, (obs.rectangle.x, obs.rectangle.y, obs.rectangle.width, obs.rectangle.height), 1)  # Debugging border
         pygame.image.save(surf, filename)
 
     def render_obstacle_properties(self, obs_id):
@@ -1537,6 +1543,9 @@ class World(object):
         for p in rendered_params:
             self.screen.blit(p,(stats_x, stats_y + gap))
             gap += font_size
+
+        if 'sprite' in settings:
+            self.screen.blit(self.tiles[settings['sprite']], (stats_x + max_width, stats_y))
 
     def render_obstacle_properties_old(self, obs_id):
         if obs_id not in self.obs_settings.keys():

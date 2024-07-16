@@ -8,8 +8,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/img/4cb6277c-424e-11ef-b7ff-bfb4330f33e3_raw_obstacles.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/4cb6277c-424e-11ef-b7ff-bfb4330f33e3_raw_obstacles.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/img/backgrounds/4cb6277c-424e-11ef-b7ff-bfb4330f33e3_ground.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/backgrounds/4cb6277c-424e-11ef-b7ff-bfb4330f33e3_ground.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/gimp_originals/4cb6277c-424e-11ef-b7ff-bfb4330f33e3_ground.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/img/gimp_originals/4cb6277c-424e-11ef-b7ff-bfb4330f33e3_ground.xcf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/level_editor_menu_structure.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor_menu_structure.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -121,13 +121,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00214" summary="Level editor: try to get menu system work with self.menu_structure dict as the only one source of settings.">
-      <created>1720072841700</created>
-      <option name="number" value="00214" />
-      <option name="presentableId" value="LOCAL-00214" />
-      <option name="project" value="LOCAL" />
-      <updated>1720072841700</updated>
     </task>
     <task id="LOCAL-00215" summary="Level editor: try to get menu system work with self.menu_structure dict as the only one source of settings.">
       <created>1720079945929</created>
@@ -465,7 +458,14 @@
       <option name="project" value="LOCAL" />
       <updated>1721106783987</updated>
     </task>
-    <option name="localTasksCounter" value="263" />
+    <task id="LOCAL-00263" summary="Level editor: if menu is higher than the MAXY, it could be scrolled by mouse wheel.">
+      <created>1721110721054</created>
+      <option name="number" value="00263" />
+      <option name="presentableId" value="LOCAL-00263" />
+      <option name="project" value="LOCAL" />
+      <updated>1721110721054</updated>
+    </task>
+    <option name="localTasksCounter" value="264" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -480,7 +480,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Triggers is able to change different action sets for active obstacles now." />
     <MESSAGE value="Triggers is able to switch actions of active obstacles in different locations, but if location is now loaded yet, it causes error." />
     <MESSAGE value="Triggers is able to switch actions of active obstacles in different locations." />
     <MESSAGE value="Level editor: Pop-up description box sticks to mouse cursor" />
@@ -505,6 +504,7 @@
     <MESSAGE value="Level editor: added sprite choose opportunity for every obstacle to automatic make correct level PNG map in the future." />
     <MESSAGE value="Level editor: while choosing sprite from tile set additional info window displays this sprite as preview." />
     <MESSAGE value="Level editor: export to PNG including 'sprite' variable from obstacle settings, if it has been set." />
-    <option name="LAST_COMMIT_MESSAGE" value="Level editor: export to PNG including 'sprite' variable from obstacle settings, if it has been set." />
+    <MESSAGE value="Level editor: if menu is higher than the MAXY, it could be scrolled by mouse wheel." />
+    <option name="LAST_COMMIT_MESSAGE" value="Level editor: if menu is higher than the MAXY, it could be scrolled by mouse wheel." />
   </component>
 </project>
