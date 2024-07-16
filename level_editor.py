@@ -152,7 +152,6 @@ class World(object):
                     reference_menu_item = self.menu_structure[menu_name]['predefined keys'][reference_key]
                     if reference_menu_item and type(reference_menu_item) == str:
                         if reference_menu_item[0] == '*':
-                        # if '*' in reference_menu_item:
                             # Has got a pointers to particular global variable:
                             # bunch_of_pointers = reference_menu_item.split('*')
                             # for p in bunch_of_pointers:
@@ -165,7 +164,8 @@ class World(object):
                             # '@' this is the sign of executability of all code which remains after this sign.
                             # i = reference_menu_item.split('@')
                             # reference_menu_item = i[0] + eval(i[1])
-                            exec(reference_menu_item[1:])
+                            # print(reference_menu_item)
+                            reference_menu_item = exec(reference_menu_item[1:])
                     self.menu_structure[menu_name][item][reference_key] = reference_menu_item
                 else:
                     self.menu_structure[menu_name][item][reference_key] = self.menu_structure['_template_menu_item_'][reference_key]
@@ -1107,11 +1107,13 @@ class World(object):
             start_y = 48
             tile_width = 96
             tile_height = 192
+            tiles_x_gap = 0
+            tiles_y_gap = 48
             tile_set = pygame.image.load('img/backgrounds/tiles/tileset_1.png')
             sz = tile_set.get_size()
             tile_number = 0
-            for x in range (start_x, sz[0] - tile_width, tile_width):
-                for y in range (start_y, sz[1] - tile_height, tile_height):
+            for x in range (start_x, sz[0] - tile_width, tile_width + tiles_x_gap):
+                for y in range (start_y, sz[1] - tile_height, tile_height + tiles_y_gap):
                     self.tiles[tile_number] = tile_set.subsurface((x,y,tile_width,tile_height))
                     tile_number += 1
 
@@ -1622,12 +1624,16 @@ class World(object):
 
                     # Render additional info about the menu item:
                     if 'additional info' in menu_item.keys():
-                        if menu_item['additional info'][0] == '$':
+                        if menu_item['additional info'][0] == '^':
+                            # Link to a pure graphic object, not text.
+                            # print('[render menu]', menu_item['additional info'])
                             s = eval(menu_item['additional info'][1:])
                         elif menu_item['additional info'][0] == '*':
+                            # Link to an object, which must be converted to text info:
                             info = eval(menu_item['additional info'][1:])
                             s = fonts.font12.render(str(info), True, BLACK)
                         else:
+                            # Just a pure text, no need to convert it:
                             info = menu_item['additional info']
                             s = fonts.font12.render(str(info), True, BLACK)
                         sz = s.get_size()

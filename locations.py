@@ -24,7 +24,7 @@ locations = {
                   ), # OBSTACLE RECTANGLES SECTION END
                 'settings': {
                     36: {
-                        'sprite': 0,
+                        'sprite': 9,
                         'ghost': True,
                         'actors pass through': False,
                         'actors may grab': False,

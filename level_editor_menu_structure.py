@@ -34,6 +34,7 @@ menu_structure = {
         'description': '',
         'target': '',
         'on hover action': None,
+        'additional info': " ",
         'LMB action': None,
         'active': False,
         'after action': None
@@ -298,6 +299,7 @@ menu_structure = {
             'label': '$description',
             # 'target': '',
             # 'description': '*item',
+            'additional info': "*'^self.tiles[self.menu_structure[\"' + menu_name + '\"][' + str(item)+ '][\"value\"]]'",
             'active': True,
             # 'after action': 'keep going'
         },
@@ -324,7 +326,7 @@ menu_structure = {
             'submenu after action': 'return to parent',
             'value': "self.menu_structure['custom obs properties']['ok']['value']['sprite']",
             'target': "self.menu_structure['custom obs properties']['ok']['value']['sprite']",
-            'additional info': "$self.tiles[self.menu_structure['custom obs properties']['ok']['value']['sprite']]",
+            'additional info': "^self.tiles[self.menu_structure['custom obs properties']['ok']['value']['sprite']]",
             # 'additional info': "*self.menu_structure['custom obs properties']['ok']['value']['sprite']",
             'active': True,
             'after action': 'return to parent',
