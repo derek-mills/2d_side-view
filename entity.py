@@ -762,7 +762,7 @@ class Entity(object):
                 # if self.collided_top:
                 #     self.ignore_user_input = True
 
-                if self.get_state() == 'hanging on edge' and self.influenced_by_obstacle != obs.id:
+                if self.get_state() == 'hanging on edge' and self.influenced_by_obstacle != obs.id and obs.active:
                     self.set_state('release edge')
                 obs.is_being_collided_now = True
                 self.is_being_collided_now = True
@@ -799,7 +799,7 @@ class Entity(object):
                 # if self.collided_bottom:
                 #     self.ignore_user_input = True
 
-                if self.get_state() == 'hanging on edge' and self.influenced_by_obstacle != obs.id:
+                if self.get_state() == 'hanging on edge' and self.influenced_by_obstacle != obs.id and obs.active:
                     self.set_state('release edge')
 
                 if self.fall_speed < 0:

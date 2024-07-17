@@ -1729,15 +1729,35 @@ class World(object):
                             # Link to a pure graphic object, not text.
                             # print('[render menu]', menu_item['additional info'])
                             s = eval(menu_item['additional info'][1:])
+                            add_box_text_color = WHITE
+                            add_box_background_color = DARKGRAY
+                            sz = s.get_size()
+                            start_y = 0
                         elif menu_item['additional info'][0] == '*':
                             # Link to an object, which must be converted to text info:
                             info = eval(menu_item['additional info'][1:])
-                            s = fonts.font12.render(str(info), True, WHITE)
+                            if type(info) == bool and info:
+                                add_box_text_color = BLUE
+                                add_box_background_color = WHITE
+                            else:
+                                add_box_text_color = WHITE
+                                add_box_background_color = DARKGRAY
+                            s = fonts.font12.render(str(info), True, add_box_text_color)
+                            sz = s.get_size()
+                            start_y = menu_item['rectangle'].h // 2 - sz[1] //2
                         else:
                             # Just a pure text, no need to convert it:
                             info = menu_item['additional info']
+                            if 'True' in info:
+                                add_box_text_color = BLUE
+                                add_box_background_color = WHITE
+                            else:
+                                add_box_text_color = WHITE
+                                add_box_background_color = DARKGRAY
                             s = fonts.font12.render(str(info), True, WHITE)
-                        sz = s.get_size()
+                            sz = s.get_size()
+                            start_y = menu_item['rectangle'].h // 2 - sz[1] //2
+
                         add_box_width = 100
 
                         if menu_item['rectangle'].right + add_box_width > MAXX:
@@ -1746,7 +1766,8 @@ class World(object):
                             add_box_x = menu_item['rectangle'].right + 1
 
                         add_screen = pygame.Surface((add_box_width, menu_item['rectangle'].h))
-                        add_screen.blit(s, (add_box_width // 2 - sz[0] // 2, 0))
+                        add_screen.fill(add_box_background_color)
+                        add_screen.blit(s, (add_box_width // 2 - sz[0] // 2, start_y))
                         self.screen.blit(add_screen, (add_box_x, menu_item['rectangle'].top))
 
                         # pygame.draw.rect(self.screen, GRAY, (add_box_x, menu_item['rectangle'].y,
@@ -1763,7 +1784,7 @@ class World(object):
                                 hover_box_x = self.mouse_xy[0] - sz[0] //2 - 8
 
                             hover_box_y = self.mouse_xy[1] - sz[1] - 1
-                            pygame.draw.rect(self.screen, DARKGRAY, (hover_box_x, hover_box_y,
+                            pygame.draw.rect(self.screen, add_box_background_color, (hover_box_x, hover_box_y,
                                                                  sz[0] + 4, sz[1] + 2), 0)
                             self.screen.blit(s, (hover_box_x + 2, hover_box_y + 1))
 
