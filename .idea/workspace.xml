@@ -6,11 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/4cb6277c-424e-11ef-b7ff-bfb4330f33e3_raw_obstacles.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/4cb6277c-424e-11ef-b7ff-bfb4330f33e3_raw_obstacles.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/backgrounds/4cb6277c-424e-11ef-b7ff-bfb4330f33e3_ground.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/backgrounds/4cb6277c-424e-11ef-b7ff-bfb4330f33e3_ground.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/gimp_originals/4cb6277c-424e-11ef-b7ff-bfb4330f33e3_ground.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/img/gimp_originals/4cb6277c-424e-11ef-b7ff-bfb4330f33e3_ground.xcf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/4cb6277c-424e-11ef-b7ff-bfb4330f33e3_minimap.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/4cb6277c-424e-11ef-b7ff-bfb4330f33e3_minimap.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +58,7 @@
       </console-settings>
     </option>
   </component>
-  <component name="RunManager" selected="Python.level_editor">
+  <component name="RunManager" selected="Python.main ">
     <configuration name="level_editor" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ver_0.000.1" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -108,8 +107,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.level_editor" />
         <item itemvalue="Python.main " />
+        <item itemvalue="Python.level_editor" />
       </list>
     </recent_temporary>
   </component>
@@ -121,13 +120,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00222" summary="Level editor: keep going.">
-      <created>1720420449103</created>
-      <option name="number" value="00222" />
-      <option name="presentableId" value="LOCAL-00222" />
-      <option name="project" value="LOCAL" />
-      <updated>1720420449103</updated>
     </task>
     <task id="LOCAL-00223" summary="Level editor: obstacle edit submenu works well, but need TODO input text routine, 'action' change routine.">
       <created>1720422055151</created>
@@ -465,7 +457,14 @@
       <option name="project" value="LOCAL" />
       <updated>1721120538225</updated>
     </task>
-    <option name="localTasksCounter" value="271" />
+    <task id="LOCAL-00271" summary="Level editor: minimap appeared.">
+      <created>1721183657950</created>
+      <option name="number" value="00271" />
+      <option name="presentableId" value="LOCAL-00271" />
+      <option name="project" value="LOCAL" />
+      <updated>1721183657950</updated>
+    </task>
+    <option name="localTasksCounter" value="272" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -480,7 +479,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Level editor: default value returns now while text input routine." />
     <MESSAGE value="Some slightly improvement.&#10;Experiment with player actor's rectangle size." />
     <MESSAGE value="Level editor: opportunity added to change obstacles location by LMB" />
     <MESSAGE value="Level editor: change obstacle location by LMB causes obstacle border color and thickness change" />
@@ -505,6 +503,7 @@
     <MESSAGE value="Level editor: improved shadow drawing under the elevated obstacle sprites, so as the elevated obstacles drawing themselves." />
     <MESSAGE value="Level editor: fixed some bugs with PNG export of elevated obstacles." />
     <MESSAGE value="Level editor: swapped menu items scroll directions while mouse wheel rolls." />
-    <option name="LAST_COMMIT_MESSAGE" value="Level editor: swapped menu items scroll directions while mouse wheel rolls." />
+    <MESSAGE value="Level editor: minimap appeared." />
+    <option name="LAST_COMMIT_MESSAGE" value="Level editor: minimap appeared." />
   </component>
 </project>

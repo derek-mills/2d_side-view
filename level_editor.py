@@ -122,7 +122,7 @@ class World(object):
 
         self.minimap = None
         self.minimap_zoomed_out = None
-        self.show_minimap = True
+        self.show_minimap = False
 
     def set_screen(self, surface):
         self.screen = surface
