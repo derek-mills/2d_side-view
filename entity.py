@@ -594,13 +594,14 @@ class Entity(object):
                     self.heading[0] = 0
                     self.speed = 0
                     if self.get_state() in ('hanging on edge', 'hanging on ghost'):
+                        # print(f'[detect collisions] forced to release edge')
                         self.set_state('release edge')
                     if key in self.sorted_obs['above']:
                         self.sorted_obs['above'].remove(key)
                     continue
 
                 if self.look == 1: # Obstacle is on the right, and actor also looks to the right, and hangs on the edge.
-                    if self.get_state() == 'hanging on edge' and self.influenced_by_obstacle != obs.id:
+                    if self.get_state() == 'hanging on edge' and self.influenced_by_obstacle != obs.id and obs.active:
                         self.rectangle.right = obs.rectangle.left - 2  # Drop down the actor
                         self.set_state('release edge')
                     else:
@@ -627,8 +628,9 @@ class Entity(object):
                         self.set_state('release edge')
                     continue
                 if self.look == 1:  # Obstacle is on the right, and actor also looks to the right, and hangs on the edge.
-                    if self.get_state() == 'hanging on edge' and self.influenced_by_obstacle != obs.id:
+                    if self.get_state() == 'hanging on edge' and self.influenced_by_obstacle != obs.id and obs.active:
                         self.rectangle.right = obs.rectangle.left - 2  # Drop down the actor
+                        # print(f'[detect collisions] forced to release edge')
                         self.set_state('release edge')
                     else:
                         # print('ksdjhdakjdhsakjdh')
@@ -684,6 +686,7 @@ class Entity(object):
                     self.speed = 0
                     # self.speed = 0
                     if self.get_state() in ('hanging on edge', 'hanging on ghost'):
+                        # print(f'[detect collisions] forced to release edge')
                         self.set_state('release edge')
                     if key in self.sorted_obs['above']:
                         self.sorted_obs['above'].remove(key)
@@ -692,8 +695,9 @@ class Entity(object):
 
 
                 if self.look == -1: # Obstacle is on the left, and actor also looks to the left, and hangs on the edge.
-                    if self.get_state() == 'hanging on edge' and self.influenced_by_obstacle != obs.id:
+                    if self.get_state() == 'hanging on edge' and self.influenced_by_obstacle != obs.id and obs.active:
                         self.rectangle.left = obs.rectangle.right + 2  # Drop down the actor
+                        # print(f'[detect collisions] forced to release edge')
                         self.set_state('release edge')
                     else:
 
@@ -718,7 +722,7 @@ class Entity(object):
                         self.set_state('release edge')
                     continue
                 if self.look == -1:  # Obstacle is on the right, and actor also looks to the right, and hangs on the edge.
-                    if self.get_state() == 'hanging on edge' and self.influenced_by_obstacle != obs.id:
+                    if self.get_state() == 'hanging on edge' and self.influenced_by_obstacle != obs.id and obs.active:
                         self.rectangle.left = obs.rectangle.right + 2  # Drop down the actor
                         self.set_state('release edge')
                     else:

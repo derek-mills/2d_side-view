@@ -1,4 +1,7 @@
-obstacle_settings_list = ('ghost', 'actors pass through', 'speed', 'active', 'actions', 'collideable', 'gravity affected', 'invisible', 'trigger', 'trigger description', \
+obstacle_settings_list = ('sprite', 'sprite elevated', 'actors pass through',
+                          'ghost', 'speed', 'active', 'actors may grab',
+                          'actions', 'collideable', 'gravity affected',
+                          'invisible', 'trigger', 'trigger description',
                           'teleport', 'teleport description')
 
 #trigger_description = (

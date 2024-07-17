@@ -211,7 +211,7 @@ class Actor(Entity):
         return self.__state
 
     def set_state(self, new_state):
-        # print(f'[actor.set_state] new state: {new_state} {self.cycles_passed}')
+        print(f'[actor.set_state] new state: {new_state} {self.cycles_passed}')
         self.__state = new_state
         self.set_current_animation()
 
@@ -236,7 +236,6 @@ class Actor(Entity):
         if new_action == 'right action':
             # Apply filter of unwanted actions:
             if self.__state not in ('jump', 'free', 'crouch', 'stand still', 'prone', 'run left', 'fly left', 'run right'):
-            # if self.__state == 'hanging on edge':
                 return
             if not self.is_stand_on_ground:
                 if self.__state == 'jump':

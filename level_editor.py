@@ -1190,7 +1190,7 @@ class World(object):
         self.camera.setup(locations.locations[self.location]['size'][0], locations.locations[self.location]['size'][1])
         self.create_snap_mesh()
 
-        self.refresh_minimap()
+        # self.refresh_minimap()
         # self.export_screen('_minimap')
         # self.minimap = pygame.image.load('img/' + self.location + '_minimap.png')
         # self.minimap_zoomed_out = pygame.transform.scale(self.minimap, (self.minimap.get_width() // 4,
@@ -1452,9 +1452,9 @@ class World(object):
 
     def refresh_minimap(self):
         self.export_screen('_minimap')
-        self.minimap = pygame.image.load('img/' + self.location + '_minimap.png')
-        self.minimap_zoomed_out = pygame.transform.scale(self.minimap, (self.minimap.get_width() // 4,
-                                                                        self.minimap.get_height() // 4))
+        self.minimap = pygame.image.load('img/backgrounds/' + self.location + '_minimap.png')
+        self.minimap_zoomed_out = pygame.transform.scale(self.minimap, (self.minimap.get_width() // 5,
+                                                                        self.minimap.get_height() // 5))
 
     def render_minimap(self):
         sz = self.minimap_zoomed_out.get_size()
@@ -1484,13 +1484,16 @@ class World(object):
             self.screen.blit(pygame.transform.scale(s, (s.get_width() * self.zoom_factor, s.get_height() * self.zoom_factor)), (self.zoom_factor * (obs.rectangle.centerx - s.get_width() // 2 - self.camera.offset_x + 2),
                                  self.zoom_factor * (obs.rectangle.centery - s.get_height() // 2 - self.camera.offset_y + 2)))
 
-    def export_screen(self, filename='_raw_obstacles', just_obs_contour=False):
-        filename = 'img/' + self.location + filename + '.png'
+    def export_screen(self, filename='_ground', just_obs_contour=False):
+        filename = 'img/backgrounds/' + self.location + filename + '.png'
         surf = pygame.Surface((self.camera.max_x, self.camera.max_y)).convert_alpha()
+        # surf.set_colorkey(MAGENTA)
         surf.fill(MAGENTA)
         # pygame.draw.rect(surf, BLACK, (0,0,self.camera.max_x, self.camera.max_y))
         for key in self.obstacles[self.location].keys():
             obs = self.obstacles[self.location][key]
+            if self.obs_settings[key]['invisible']:
+                continue
             elevation = 0
             # color = GREEN if obs.active_flag else WHITE
             if just_obs_contour:
@@ -1536,6 +1539,10 @@ class World(object):
                 else:
                     pygame.draw.rect(surf, WHITE, (obs.rectangle.x, obs.rectangle.y, obs.rectangle.width, obs.rectangle.height))
                 # pygame.draw.rect(surf, WHITE, (obs.rectangle.x, obs.rectangle.y, obs.rectangle.width, obs.rectangle.height), 1)  # Debugging border
+        # copy_surf = pygame.Surface((self.camera.max_x, self.camera.max_y)).convert_alpha()
+        # copy_surf.set_colorkey(MAGENTA)
+        # copy_surf.blit(surf, (0, 0))
+        # pygame.image.save(copy_surf, filename)
         pygame.image.save(surf, filename)
 
     def render_obstacle_properties(self, obs_id):
