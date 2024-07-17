@@ -102,7 +102,8 @@ menu_structure = {
         'generate list from': '*self.obstacles[self.location].keys()',
         'predefined keys': {
             'LMB action': 'append value',
-            'value': '$description',
+            'value': '*(item, "self", 0)',
+            # 'value': '$description',
             'target': "self.menu_structure['obs multiple selection']['ok']['value']",
             'label': '$description',
             'active': True,
