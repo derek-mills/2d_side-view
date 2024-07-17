@@ -148,6 +148,8 @@ class World(object):
                 if 'exotic movement' in self.locations[self.location]['obstacles']['settings'][entity.id] else None
 
             entity.active = self.locations[self.location]['obstacles']['settings'][entity.id]['active']
+            entity.is_force_render = self.locations[self.location]['obstacles']['settings'][entity.id]['force render'] if 'force render' in \
+                                    self.locations[self.location]['obstacles']['settings'][entity.id].keys() else False
             entity.actions = self.locations[self.location]['obstacles']['settings'][entity.id]['actions']
             entity.trigger = self.locations[self.location]['obstacles']['settings'][entity.id]['trigger']
             entity.trigger_description = self.locations[self.location]['obstacles']['settings'][entity.id]['trigger description']
@@ -643,13 +645,11 @@ class World(object):
             if key not in self.active_obstacles:
                 continue
             obs = self.obstacles[self.location][key]
-            if obs.invisible:
+            if not obs.is_force_render:
                 continue
-            # if obs.is_being_collided_now:
-            #     color = RED
-            # else:
-            #     color = WHITE if obs.is_ghost_platform else CYAN
-            color = WHITE if obs.is_ghost_platform else CYAN
+            # if obs.invisible:
+            #     continue
+            color = YELLOW if obs.is_ghost_platform else CYAN
             pygame.draw.rect(self.screen, color, (obs.rectangle.x - self.camera.offset_x, obs.rectangle.y - self.camera.offset_y,
                                                   obs.rectangle.width, obs.rectangle.height))
             if obs.active:
@@ -710,7 +710,7 @@ class World(object):
 
     def render_all(self):
         self.render_background()
-        # self.render_obstacles()
+        self.render_obstacles()
         self.render_demolishers()
         self.render_actors()
         # self.render_player_actor()

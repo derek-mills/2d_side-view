@@ -6,6 +6,7 @@ class Obstacle(Entity):
         self.id: int = 0
         self.type = 'obstacle'
         self.is_ghost_platform: bool = False
+        self.is_force_render: bool = False  # Always render this obstacle in realtime.
         self.max_speed = .2
         self.is_being_collided_now: bool = False
         self.let_actors_pass_through: bool = False

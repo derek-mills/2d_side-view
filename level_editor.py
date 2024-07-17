@@ -1226,7 +1226,8 @@ class World(object):
                 dem_rects.append(total_strg)
 
         from locations import locations as loc
-        from templates import obstacle_settings_list
+        obstacle_settings_list = self.menu_structure['_template_obs_settings_']
+        # from templates import obstacle_settings_list
 
         enemies = list()
         for xy in self.enemies.keys():
@@ -1334,7 +1335,8 @@ class World(object):
                         f.write('\n                    ' + str(active_obs_key) + ': {')
                         for i in obstacle_settings_list:
                             # Save 'settings' section line by line:
-                            f.write('\n                        \'' + i + '\': ' + str(l[i]) + ',')
+                            if i in l.keys():
+                                f.write('\n                        \'' + i + '\': ' + str(l[i]) + ',')
                         f.write('\n                  },')
 
                 # Closing tails:

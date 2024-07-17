@@ -6,10 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/level_editor_menu_structure.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor_menu_structure.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locations_back.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations_back.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main .py" beforeDir="false" afterPath="$PROJECT_DIR$/main .py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obstacle.py" beforeDir="false" afterPath="$PROJECT_DIR$/obstacle.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +59,7 @@
       </console-settings>
     </option>
   </component>
-  <component name="RunManager" selected="Python.level_editor">
+  <component name="RunManager" selected="Python.main ">
     <configuration name="level_editor" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ver_0.000.1" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -107,8 +108,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.level_editor" />
         <item itemvalue="Python.main " />
+        <item itemvalue="Python.level_editor" />
       </list>
     </recent_temporary>
   </component>
@@ -120,13 +121,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00227" summary="Level editor: fixed some bugs; edit obstacles menu appears corresponding the screen edges and does not hide out.">
-      <created>1720503774339</created>
-      <option name="number" value="00227" />
-      <option name="presentableId" value="LOCAL-00227" />
-      <option name="project" value="LOCAL" />
-      <updated>1720503774339</updated>
     </task>
     <task id="LOCAL-00228" summary="Level editor: fixed some bugs; 'action' section remains undone.">
       <created>1720507636449</created>
@@ -464,7 +458,14 @@
       <option name="project" value="LOCAL" />
       <updated>1721201057074</updated>
     </task>
-    <option name="localTasksCounter" value="276" />
+    <task id="LOCAL-00276" summary="Level editor: fixed 'value' in 'obs multiple selection' menu to return tuple (obs_id, obs_location, action_set_number).">
+      <created>1721204276188</created>
+      <option name="number" value="00276" />
+      <option name="presentableId" value="LOCAL-00276" />
+      <option name="project" value="LOCAL" />
+      <updated>1721204276188</updated>
+    </task>
+    <option name="localTasksCounter" value="277" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -479,7 +480,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Level editor: enemies appearing added in locations.py" />
     <MESSAGE value="Level editor: load() and save() for hostiles description work just fine." />
     <MESSAGE value="Level editor: spacebar is able to delete hostiles." />
     <MESSAGE value="Level editor: LMB is able to add en enemies." />
@@ -504,6 +504,7 @@
     <MESSAGE value="Fixin' countless annoying errors." />
     <MESSAGE value="Level editor: menu items with True/False choices there have color differentiation now." />
     <MESSAGE value="Some messing." />
-    <option name="LAST_COMMIT_MESSAGE" value="Some messing." />
+    <MESSAGE value="Level editor: fixed 'value' in 'obs multiple selection' menu to return tuple (obs_id, obs_location, action_set_number)." />
+    <option name="LAST_COMMIT_MESSAGE" value="Level editor: fixed 'value' in 'obs multiple selection' menu to return tuple (obs_id, obs_location, action_set_number)." />
   </component>
 </project>

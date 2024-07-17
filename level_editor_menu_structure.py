@@ -40,6 +40,13 @@ menu_structure = {
         'after action': None
     },
 
+    '_template_obs_settings_': ('sprite', 'sprite elevated', 'actors pass through',
+                                'force render',
+                                'ghost', 'speed', 'active', 'actors may grab',
+                                'actions', 'collideable', 'gravity affected',
+                                'invisible', 'trigger', 'trigger description',
+                                'teleport', 'teleport description'),
+
     'map single selection': {
         'header': {
             'rectangle': None,
@@ -343,6 +350,17 @@ menu_structure = {
             'active': True,
             'after action': 'keep going'
         },
+        'force render': {
+            'rectangle': pygame.Rect(0, 0, 0, 0),
+            'label': 'force render',
+            'on hover action': None,
+            'LMB action': 'switch state',
+            'description': 'force render',
+            'target': ("menu_structure['custom obs properties']['ok']['value']['force render']",),
+            'additional info': "*menu_structure['custom obs properties']['ok']['value']['force render']",
+            'active': True,
+            'after action': 'keep going'
+        },
         'ghost': {
             'rectangle': pygame.Rect(0, 0, 0, 0),
             'label': 'ghost',
@@ -563,6 +581,7 @@ menu_structure = {
             'value': {
                 'sprite': 0,
                 'sprite elevated': False,
+                'force render': False,
                 'ghost': False,
                 'actors pass through': False,
                 'actors may grab': False,
@@ -614,6 +633,7 @@ menu_structure = {
             'value': {
                 'sprite': 0,
                 'sprite elevated': False,
+                'force render': False,
                 'ghost': False,
                 'actors pass through': False,
                 'actors may grab': False,
