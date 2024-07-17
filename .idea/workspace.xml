@@ -5,7 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/4cb6277c-424e-11ef-b7ff-bfb4330f33e3_raw_obstacles.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/4cb6277c-424e-11ef-b7ff-bfb4330f33e3_raw_obstacles.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/backgrounds/4cb6277c-424e-11ef-b7ff-bfb4330f33e3_ground.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/backgrounds/4cb6277c-424e-11ef-b7ff-bfb4330f33e3_ground.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/gimp_originals/4cb6277c-424e-11ef-b7ff-bfb4330f33e3_ground.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/img/gimp_originals/4cb6277c-424e-11ef-b7ff-bfb4330f33e3_ground.xcf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,13 +121,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00221" summary="Level editor: once again try to create flexible menu system, which could be described using only menu_structure dict.">
-      <created>1720415046291</created>
-      <option name="number" value="00221" />
-      <option name="presentableId" value="LOCAL-00221" />
-      <option name="project" value="LOCAL" />
-      <updated>1720415046292</updated>
     </task>
     <task id="LOCAL-00222" summary="Level editor: keep going.">
       <created>1720420449103</created>
@@ -460,7 +458,14 @@
       <option name="project" value="LOCAL" />
       <updated>1721119627166</updated>
     </task>
-    <option name="localTasksCounter" value="270" />
+    <task id="LOCAL-00270" summary="Level editor: swapped menu items scroll directions while mouse wheel rolls.">
+      <created>1721120538225</created>
+      <option name="number" value="00270" />
+      <option name="presentableId" value="LOCAL-00270" />
+      <option name="project" value="LOCAL" />
+      <updated>1721120538225</updated>
+    </task>
+    <option name="localTasksCounter" value="271" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -475,7 +480,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Level editor: obstacle editing menu reveals with already existing properties, else with default." />
     <MESSAGE value="Level editor: default value returns now while text input routine." />
     <MESSAGE value="Some slightly improvement.&#10;Experiment with player actor's rectangle size." />
     <MESSAGE value="Level editor: opportunity added to change obstacles location by LMB" />
@@ -500,6 +504,7 @@
     <MESSAGE value="Level editor: improved shadow drawing under the elevated obstacle sprites." />
     <MESSAGE value="Level editor: improved shadow drawing under the elevated obstacle sprites, so as the elevated obstacles drawing themselves." />
     <MESSAGE value="Level editor: fixed some bugs with PNG export of elevated obstacles." />
-    <option name="LAST_COMMIT_MESSAGE" value="Level editor: fixed some bugs with PNG export of elevated obstacles." />
+    <MESSAGE value="Level editor: swapped menu items scroll directions while mouse wheel rolls." />
+    <option name="LAST_COMMIT_MESSAGE" value="Level editor: swapped menu items scroll directions while mouse wheel rolls." />
   </component>
 </project>

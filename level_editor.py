@@ -120,6 +120,10 @@ class World(object):
         self.menu_structure = menu_structure
         self.menu_items_y_scroll_speed: int = 30  #
 
+        self.minimap = None
+        self.minimap_zoomed_out = None
+        self.show_minimap = True
+
     def set_screen(self, surface):
         self.screen = surface
 
@@ -764,6 +768,10 @@ class World(object):
                     self.need_to_load = True
                 if event.key == K_F2:
                     self.save()
+                if event.key == K_m:
+                    self.show_minimap = False if self.show_minimap else True
+                    if self.show_minimap:
+                        self.refresh_minimap()
                 if event.key == K_d:
                     self.is_input_right_arrow = True
                 if event.key == K_a:
@@ -1182,7 +1190,11 @@ class World(object):
         self.camera.setup(locations.locations[self.location]['size'][0], locations.locations[self.location]['size'][1])
         self.create_snap_mesh()
 
-
+        self.refresh_minimap()
+        # self.export_screen('_minimap')
+        # self.minimap = pygame.image.load('img/' + self.location + '_minimap.png')
+        # self.minimap_zoomed_out = pygame.transform.scale(self.minimap, (self.minimap.get_width() // 4,
+        #                                                                 self.minimap.get_height() // 4))
 
     def save(self):
         # Saving with pickle:
@@ -1438,6 +1450,16 @@ class World(object):
                               self.zoom_factor * e['width'],
                               self.zoom_factor * e['height']))
 
+    def refresh_minimap(self):
+        self.export_screen('_minimap')
+        self.minimap = pygame.image.load('img/' + self.location + '_minimap.png')
+        self.minimap_zoomed_out = pygame.transform.scale(self.minimap, (self.minimap.get_width() // 4,
+                                                                        self.minimap.get_height() // 4))
+
+    def render_minimap(self):
+        sz = self.minimap_zoomed_out.get_size()
+        self.screen.blit(self.minimap_zoomed_out, (0, MAXY - sz[1]))
+
     def render_obstacles(self):
         for key in self.obstacles[self.location].keys():
             obs = self.obstacles[self.location][key]
@@ -1462,8 +1484,8 @@ class World(object):
             self.screen.blit(pygame.transform.scale(s, (s.get_width() * self.zoom_factor, s.get_height() * self.zoom_factor)), (self.zoom_factor * (obs.rectangle.centerx - s.get_width() // 2 - self.camera.offset_x + 2),
                                  self.zoom_factor * (obs.rectangle.centery - s.get_height() // 2 - self.camera.offset_y + 2)))
 
-    def export_screen(self, just_obs_contour=False):
-        filename = 'img/' + self.location + '_raw_obstacles.png'
+    def export_screen(self, filename='_raw_obstacles', just_obs_contour=False):
+        filename = 'img/' + self.location + filename + '.png'
         surf = pygame.Surface((self.camera.max_x, self.camera.max_y)).convert_alpha()
         surf.fill(MAGENTA)
         # pygame.draw.rect(surf, BLACK, (0,0,self.camera.max_x, self.camera.max_y))
@@ -1831,7 +1853,7 @@ class World(object):
         # m_hover_actor = 'None' if not self.mouse_hovers_actor else self.wandering_actors[self.mouse_hovers_actor].name + ' ' + str(self.wandering_actors[self.mouse_hovers_actor].id)
         # m_hover_cell = 'None' if self.point_mouse_cursor_shows is None else str(self.locations[self.location]['points'][self.point_mouse_cursor_shows]['rect'].center)
         params = (
-            ('SAVE: F2 | LOAD: F3 | W/A/S/D: MOVE CAMERA | [SHIFT] +/- : CHANGE SNAP MESH SCALE | [ ] : change inserting object type | MOUSE WHEEL : ZOOM | ESC: QUIT', BLUE),
+            ('SAVE: F2 | LOAD: F3 | W/A/S/D: MOVE CAMERA | [SHIFT] +/- : CHANGE SNAP MESH SCALE | [ ] : change inserting object type | MOUSE WHEEL : ZOOM | M: show minimap | ESC: QUIT', BLUE),
 
             ('OBJECT TYPE        : ' + str(self.object_types[self.current_object_type]), BLACK),
             ('WORLD SIZE         : ' + str(self.camera.max_x) + ':' + str(self.camera.max_y), BLACK),
@@ -2131,11 +2153,16 @@ class World(object):
                 if hostile_xy != -1:
                     del self.enemies[hostile_xy]
 
+                if self.show_minimap:
+                    self.refresh_minimap()
+
             # RMB
             if self.is_right_mouse_button_down:
                 self.is_right_mouse_button_down = False
                 if obs_id > -1:
                     self.edit_obs(self.obstacles[self.location][obs_id])
+                    if self.show_minimap:
+                        self.refresh_minimap()
                     # return
                 else:
                     if self.mouse_xy_snapped_to_mesh in self.clipboard.keys():
@@ -2178,6 +2205,8 @@ class World(object):
                     self.enemies[self.mouse_xy_snapped_to_mesh]['health'] = enemy_to_add['health']
                     self.enemies[self.mouse_xy_snapped_to_mesh]['max speed'] = enemy_to_add['max speed']
                     self.is_left_mouse_button_down = False
+                    if self.show_minimap:
+                        self.refresh_minimap()
                     return
 
                 if self.selected_obs_id > 0:
@@ -2185,6 +2214,8 @@ class World(object):
                     # Release it.
                     self.is_left_mouse_button_down = False
                     self.selected_obs_id = -1
+                    if self.show_minimap:
+                        self.refresh_minimap()
                     return
                 if obs_id > -1:
                     # Mouse cursor is over an obstacle. We have to mark it as a potential candidate to follow mouse.
@@ -2222,10 +2253,14 @@ class World(object):
                             description = (self.new_obs_rect.topleft, self.new_obs_rect.size, self.obstacle_id)
                             self.obstacle_id += 1
                             self.add_obstacle(description)
+                            if self.show_minimap:
+                                self.refresh_minimap()
                         elif self.object_types[self.current_object_type] == 'demolisher':
                             description = (self.new_obs_rect.topleft, self.new_obs_rect.size, self.demolishers_id)
                             self.demolishers_id += 1
                             self.add_demolisher(description)
+                            if self.show_minimap:
+                                self.refresh_minimap()
                     self.new_obs_rect_started = False
                     self.new_obs_rect_start_xy = [0, 0]
                     self.new_obs_rect.update(0,0,0,0)
@@ -2286,6 +2321,8 @@ class World(object):
             self.render_new_obs()
             self.render_debug_info()
             self.render_snap_mesh()
+            if self.show_minimap:
+                self.render_minimap()
             if obs_id > -1:
                 self.render_obstacle_properties(obs_id)
             self.render_menu_items()
