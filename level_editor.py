@@ -1492,14 +1492,14 @@ class World(object):
         # pygame.draw.rect(surf, BLACK, (0,0,self.camera.max_x, self.camera.max_y))
         for key in self.obstacles[self.location].keys():
             obs = self.obstacles[self.location][key]
-            if self.obs_settings[key]['invisible']:
-                continue
             elevation = 0
             # color = GREEN if obs.active_flag else WHITE
             if just_obs_contour:
                 pygame.draw.rect(surf, WHITE, (obs.rectangle.x, obs.rectangle.y, obs.rectangle.width, obs.rectangle.height))
             else:
                 if key in self.obs_settings.keys():
+                    if self.obs_settings[key]['invisible']:
+                        continue
                     if 'sprite' in self.obs_settings[key].keys():
                         if self.obs_settings[key]['sprite elevated']:
                             # Elevated obstacle sprite should be at 0.5 higher than the obstacle's rectangle top,

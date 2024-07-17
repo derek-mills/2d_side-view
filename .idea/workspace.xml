@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/backgrounds/e064a228-43e8-11ef-b7ff-bfb4330f33e3_ground.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/backgrounds/e064a228-43e8-11ef-b7ff-bfb4330f33e3_ground.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
     </list>
@@ -57,7 +57,7 @@
       </console-settings>
     </option>
   </component>
-  <component name="RunManager" selected="Python.level_editor">
+  <component name="RunManager" selected="Python.main ">
     <configuration name="level_editor" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ver_0.000.1" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -106,8 +106,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.level_editor" />
         <item itemvalue="Python.main " />
+        <item itemvalue="Python.level_editor" />
       </list>
     </recent_temporary>
   </component>
@@ -119,13 +119,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00225" summary="Level editor: editor now allow to choose a map to teleport and a XY coordinate for this action.">
-      <created>1720489857562</created>
-      <option name="number" value="00225" />
-      <option name="presentableId" value="LOCAL-00225" />
-      <option name="project" value="LOCAL" />
-      <updated>1720489857562</updated>
     </task>
     <task id="LOCAL-00226" summary="Level editor: menu appearing is now dim the screen for the better visual percept.">
       <created>1720497033843</created>
@@ -463,7 +456,14 @@
       <option name="project" value="LOCAL" />
       <updated>1721197555820</updated>
     </task>
-    <option name="localTasksCounter" value="274" />
+    <task id="LOCAL-00274" summary="Level editor: menu items with True/False choices there have color differentiation now.">
+      <created>1721198564579</created>
+      <option name="number" value="00274" />
+      <option name="presentableId" value="LOCAL-00274" />
+      <option name="project" value="LOCAL" />
+      <updated>1721198564579</updated>
+    </task>
+    <option name="localTasksCounter" value="275" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -478,7 +478,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Level editor: change obstacle location by LMB causes obstacle border color and thickness change" />
     <MESSAGE value="Level editor: obstacle location change by LMB optimized." />
     <MESSAGE value="Level editor: enemies appearing added in locations.py" />
     <MESSAGE value="Level editor: load() and save() for hostiles description work just fine." />
@@ -503,6 +502,7 @@
     <MESSAGE value="Level editor: minimap appeared." />
     <MESSAGE value="Background leaved to be blit as whole PNG image without unnecessary cropping." />
     <MESSAGE value="Fixin' countless annoying errors." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixin' countless annoying errors." />
+    <MESSAGE value="Level editor: menu items with True/False choices there have color differentiation now." />
+    <option name="LAST_COMMIT_MESSAGE" value="Level editor: menu items with True/False choices there have color differentiation now." />
   </component>
 </project>
