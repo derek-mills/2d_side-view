@@ -1200,6 +1200,7 @@ class World(object):
         # self.add_menu_item(pygame.Rect(xy[0], xy[1], txt_surf.get_width() + 20, txt_surf.get_height() + 20), prompt + ': ', '', False)
 
     def load(self):
+        # LOADING GRAPHICAL TILES:
         if not self.tiles:
             start_x = 0
             start_y = 0
@@ -1222,6 +1223,7 @@ class World(object):
                     tile_number += 1
 
 
+        # LOADING MAP OBJECTS:
         self.obstacles[self.location] = dict()
 
         max_obs_id = 0

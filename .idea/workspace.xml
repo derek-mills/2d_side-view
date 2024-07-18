@@ -6,7 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/backgrounds/cave_minimap.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/backgrounds/cave_minimap.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/backgrounds/qwe_ground.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/backgrounds/zxcv_ground.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,13 +121,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00233" summary="Fixed bug, when active obstacle processing switched off after 'stop' routine has triggered.">
-      <created>1720594279484</created>
-      <option name="number" value="00233" />
-      <option name="presentableId" value="LOCAL-00233" />
-      <option name="project" value="LOCAL" />
-      <updated>1720594279484</updated>
     </task>
     <task id="LOCAL-00234" summary="Trigger is able be activated just once.">
       <created>1720601396129</created>
@@ -461,7 +458,14 @@
       <option name="project" value="LOCAL" />
       <updated>1721284191183</updated>
     </task>
-    <option name="localTasksCounter" value="282" />
+    <task id="LOCAL-00282" summary="Level editor: corrected tile set slicing while map is loading.">
+      <created>1721284476585</created>
+      <option name="number" value="00282" />
+      <option name="presentableId" value="LOCAL-00282" />
+      <option name="project" value="LOCAL" />
+      <updated>1721284476586</updated>
+    </task>
+    <option name="localTasksCounter" value="283" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -476,7 +480,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Level editor: added ability to allow or disallow grabbing for every obstacle.&#10;Added background render." />
     <MESSAGE value="NES palette added" />
     <MESSAGE value="Level editor: added opportunity to export obstacle scheme into *.png file." />
     <MESSAGE value="While hanging on the edge actor release it if he gets hurt, not stay in infinite 'hop back' state." />
@@ -501,6 +504,7 @@
     <MESSAGE value="Level editor: added keyboard input processing routines." />
     <MESSAGE value="Level editor: added an opportunity to rename the currently editing map." />
     <MESSAGE value="Level editor: after rename of the currently editing map all connected files are renamed too." />
-    <option name="LAST_COMMIT_MESSAGE" value="Level editor: after rename of the currently editing map all connected files are renamed too." />
+    <MESSAGE value="Level editor: corrected tile set slicing while map is loading." />
+    <option name="LAST_COMMIT_MESSAGE" value="Level editor: corrected tile set slicing while map is loading." />
   </component>
 </project>

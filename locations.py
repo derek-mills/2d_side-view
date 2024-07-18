@@ -1,7 +1,7 @@
 from constants import *
 locations = {
     
-    'zxcv':
+    'the pit':
         {
             'music': 'music/ambient_1.mp3',
             'description': 'apartment #1',
@@ -14,12 +14,12 @@ locations = {
             },
             'obstacles': {
                 'obs rectangles': (
-                ((0, 0), (350, 1000), 1),  #1
-                ((350, 850), (1600, 150), 2),  #2
-                ((1800, 0), (150, 850), 3),  #3
-                ((350, 800), (1000, 50), 4),  #4
-                ((1350, 750), (450, 50), 5),  #5
-                ((1350, 800), (450, 50), 6),  #6
+                ((0, 0), (350, 1000), 1),
+                ((350, 850), (1600, 150), 2),
+                ((1800, 0), (150, 850), 3),
+                ((350, 800), (1000, 50), 4),
+                ((1350, 750), (450, 50), 5),
+                ((1350, 800), (450, 50), 6),
                   ), # OBSTACLE RECTANGLES SECTION END
                 'settings': {
                     1: {
@@ -41,7 +41,7 @@ locations = {
                         'teleport description': {'new location': '', 'xy': [0, 0]},
                   },
                     2: {
-                        'sprite': 23,
+                        'sprite': 34,
                         'sprite elevated': True,
                         'actors pass through': False,
                         'force render': False,
@@ -77,7 +77,7 @@ locations = {
                         'teleport description': {'new location': '', 'xy': [0, 0]},
                   },
                     4: {
-                        'sprite': 22,
+                        'sprite': 44,
                         'sprite elevated': True,
                         'actors pass through': False,
                         'force render': False,
@@ -95,7 +95,7 @@ locations = {
                         'teleport description': {'new location': '', 'xy': [0, 0]},
                   },
                     5: {
-                        'sprite': 2,
+                        'sprite': 44,
                         'sprite elevated': True,
                         'actors pass through': False,
                         'force render': False,
@@ -113,7 +113,7 @@ locations = {
                         'teleport description': {'new location': '', 'xy': [0, 0]},
                   },
                     6: {
-                        'sprite': 3,
+                        'sprite': 45,
                         'sprite elevated': True,
                         'actors pass through': False,
                         'force render': False,
@@ -134,7 +134,7 @@ locations = {
               },
             'items': {},
     },
-    'qwe':
+    'thrash control room':
         {
             'music': 'music/ambient_1.mp3',
             'description': 'apartment #1',
@@ -147,32 +147,32 @@ locations = {
             },
             'obstacles': {
                 'obs rectangles': (
-                ((0, 950), (1050, 50), 1),
-                ((1250, 950), (700, 50), 2),
-                ((1050, 850), (200, 100), 3),
-                ((1000, 600), (50, 350), 4),
-                ((1250, 600), (50, 350), 5),
-                ((900, 650), (100, 300), 6),
-                ((800, 700), (100, 250), 7),
-                ((700, 750), (100, 200), 8),
-                ((600, 800), (100, 150), 9),
-                ((500, 850), (100, 100), 10),
-                ((400, 900), (100, 50), 11),
-                ((0, 0), (50, 750), 12),
-                ((1900, 0), (50, 950), 13),
-                ((50, 0), (1850, 50), 14),
-                ((0, 750), (50, 200), 15),
-                ((350, 925), (50, 25), 16),
-                ((450, 875), (50, 25), 17),
-                ((550, 825), (50, 25), 18),
-                ((650, 775), (50, 25), 19),
-                ((750, 725), (50, 25), 20),
-                ((850, 675), (50, 25), 21),
-                ((950, 625), (50, 25), 22),
-                ((1825, 850), (75, 100), 23),
-                ((1875, 725), (25, 125), 24),
-                ((1775, 850), (50, 100), 25),
-                ((1050, 950), (200, 50), 26),
+                ((0, 950), (1050, 50), 1),  #1
+                ((1250, 950), (700, 50), 2),  #2
+                ((1050, 850), (200, 100), 3),  #3
+                ((1000, 600), (50, 350), 4),  #4
+                ((1250, 600), (50, 350), 5),  #5
+                ((900, 650), (100, 300), 6),  #6
+                ((800, 700), (100, 250), 7),  #7
+                ((700, 750), (100, 200), 8),  #8
+                ((600, 800), (100, 150), 9),  #9
+                ((500, 850), (100, 100), 10),  #10
+                ((400, 900), (100, 50), 11),  #11
+                ((0, 0), (50, 750), 12),  #12
+                ((1900, 0), (50, 950), 13),  #13
+                ((50, 0), (1850, 50), 14),  #14
+                ((0, 750), (50, 200), 15),  #15
+                ((350, 925), (50, 25), 16),  #16
+                ((450, 875), (50, 25), 17),  #17
+                ((550, 825), (50, 25), 18),  #18
+                ((650, 775), (50, 25), 19),  #19
+                ((750, 725), (50, 25), 20),  #20
+                ((850, 675), (50, 25), 21),  #21
+                ((950, 625), (50, 25), 22),  #22
+                ((1825, 850), (75, 100), 23),  #23
+                ((1875, 725), (25, 125), 24),  #24
+                ((1775, 850), (50, 100), 25),  #25
+                ((1050, 950), (200, 50), 26),  #26
                   ), # OBSTACLE RECTANGLES SECTION END
                 'settings': {
                     15: {
@@ -195,19 +195,20 @@ locations = {
                     25: {
                         'sprite': 0,
                         'sprite elevated': False,
-                        'actors pass through': True,
+                        'force render': False,
                         'ghost': False,
-                        'speed': 0.2,
-                        'active': False,
+                        'actors pass through': True,
                         'actors may grab': False,
-                        'actions': {0: [('move', (0, 0)), ('wait', 0), ('stop', (0, 0))]},
+                        'speed': 0.2,
                         'collideable': False,
                         'gravity affected': False,
-                        'invisible': False,
-                        'trigger': True,
-                        'trigger description': {'make active': [(3, 'self', 0)], 'disappear': False},
+                        'invisible': True,
                         'teleport': False,
                         'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'trigger': True,
+                        'trigger description': {'make active': [(3, 'self', 0)], 'disappear': False},
+                        'active': False,
+                        'actions': {0: [('move', (0, 0)), ('wait', 0), ('stop', (0, 0))]},
                   },
                     3: {
                         'sprite': 0,
@@ -243,7 +244,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': True,
-                        'teleport description': {'new location': 'zxcv', 'xy': (1000.0, 0.0)},
+                        'teleport description': {'new location': 'the pit', 'xy': (1000.0, 0.0)},
                   },
                     23: {
                         'sprite': 27,
@@ -861,7 +862,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': 'qwe', 'xy': (100.0, 800.0)},
+                        'teleport description': {'new location': 'thrash control room', 'xy': (100.0, 800.0)},
                   },
                     48: {
                         'sprite': 0,
@@ -878,7 +879,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': 'qwe', 'xy': (100.0, 800.0)},
+                        'teleport description': {'new location': 'thrash control room', 'xy': (100.0, 800.0)},
                   },
                     49: {
                         'sprite': 0,
@@ -895,7 +896,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': 'qwe', 'xy': (100.0, 800.0)},
+                        'teleport description': {'new location': 'thrash control room', 'xy': (100.0, 800.0)},
                   },
                     50: {
                         'sprite': 0,
@@ -912,7 +913,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': 'qwe', 'xy': (100.0, 800.0)},
+                        'teleport description': {'new location': 'thrash control room', 'xy': (100.0, 800.0)},
                   },
                     51: {
                         'sprite': 0,
@@ -929,7 +930,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': True,
-                        'teleport description': {'new location': 'qwe', 'xy': (100.0, 800.0)},
+                        'teleport description': {'new location': 'thrash control room', 'xy': (100.0, 800.0)},
                   },
                   } # OBSTACLE SETTINGS SECTION END
               },
