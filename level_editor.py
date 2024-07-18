@@ -559,7 +559,30 @@ class World(object):
         self.is_mouse_wheel_up = False
         self.is_mouse_wheel_rolls = False
 
+    def rename_map(self, new_name):
+        source = list()
+        with open('locations.py', 'r') as f:
+            for line in f:
+                source.append(line)
+
+        for line in source:
+            if '    \'' + self.location + '\':' in line:
+                print(f'[rename map] {line=}')
+                source[source.index(line)] = '    \'' + new_name + '\':\n'
+
+        with open('locations.py', 'w') as f:
+            for line in source:
+                f.write(line)
+
+        # locations.locations[new_name] = locations.locations[self.location]
+        # del locations.locations[self.location]
+        self.location = new_name
+        self.need_to_load = True
+        # importlib.reload(locations)
+        # self.load()
+    #
     def main_menu(self):
+
         # for i in self.menu_structure['main menu'].keys():
         #     item = self.menu_structure['main menu'][i]
         #     self.add_menu_item(item)
@@ -650,13 +673,13 @@ class World(object):
             # elif self.menu_walk_tree[-1] == 'quit':
             #     pygame.quit()
             #     raise SystemExit()
-            elif self.menu_return_value == 'resize':
-                self.reset_menu_walk_tree()
-                # self.menu_action_pending = ''
-                x = self.create_text_input((MAXX_DIV_2, MAXY_DIV_2), 'ENTER MAX X:', 'digit')
-                y = self.create_text_input((MAXX_DIV_2, MAXY_DIV_2 + 50), 'ENTER MAX Y:', 'digit')
-                self.camera.setup(int(x), int(y))
-                self.create_snap_mesh()
+            # elif self.menu_return_value == 'resize':
+            #     self.reset_menu_walk_tree()
+            #     # self.menu_action_pending = ''
+            #     x = self.create_text_input((MAXX_DIV_2, MAXY_DIV_2), 'ENTER MAX X:', 'digit')
+            #     y = self.create_text_input((MAXX_DIV_2, MAXY_DIV_2 + 50), 'ENTER MAX Y:', 'digit')
+            #     self.camera.setup(int(x), int(y))
+            #     self.create_snap_mesh()
             else:
                 self.reset_menu_walk_tree()
                 return
@@ -1126,7 +1149,7 @@ class World(object):
                                 text_to_return_str += k
                                 # text_to_return_str += pygame.key.name(event.key)
                     elif input_type == 'float':
-                        if k in DIGITS or k == '.':
+                        if k in DIGITS or k in ('.', '[.]'):
                             if k[0] == '[':
                                 text_to_return_str += k[1]
                             else:

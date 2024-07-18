@@ -666,7 +666,6 @@ menu_structure = {
             'active': True,
             'after action': 'keep going'
         },
-
     },
 
     'main menu': {
@@ -738,6 +737,19 @@ self.camera.setup(int(x), int(y))\n\
 self.create_snap_mesh()",
             'active': True,
             'after action': 'keep going'
+        },
+        'rename': {
+            'rectangle': pygame.Rect(menu_elements_bindings['bottom right button']),
+            'label': '[RENAME MAP]',
+            'on hover action': None,
+            'LMB action': 'exec',
+            'value': '''
+new_name = self.create_text_input((MAXX_DIV_2, MAXY_DIV_2), 'ENTER NEW MAP NAME:', self.location, 'str')\n
+self.rename_map(new_name)
+''',
+            'target': 'self.menu_walk_tree.append(\'CANCEL MENU\')',
+            'active': True,
+            'after action': None
         },
         'export image': {
             'rectangle': pygame.Rect(menu_elements_bindings['bottom right button']),

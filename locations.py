@@ -134,7 +134,7 @@ locations = {
               },
             'items': {},
     },
-    '2fa8c4fe-440c-11ef-b7ff-bfb4330f33e3':
+    'awdawd':
         {
             'music': 'music/ambient_1.mp3',
             'description': 'apartment #1',
@@ -216,7 +216,7 @@ locations = {
                         'ghost': False,
                         'actors pass through': False,
                         'actors may grab': False,
-                        'speed': 1.9,
+                        'speed': 1.2,
                         'collideable': False,
                         'gravity affected': False,
                         'invisible': True,
