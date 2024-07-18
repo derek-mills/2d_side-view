@@ -1,7 +1,7 @@
 from constants import *
 locations = {
     
-    'e264f450-441b-11ef-b7ff-bfb4330f33e3':
+    'zxcv':
         {
             'music': 'music/ambient_1.mp3',
             'description': 'apartment #1',
@@ -14,12 +14,12 @@ locations = {
             },
             'obstacles': {
                 'obs rectangles': (
-                ((0, 0), (350, 1000), 1),
-                ((350, 850), (1600, 150), 2),
-                ((1800, 0), (150, 850), 3),
-                ((350, 800), (1000, 50), 4),
-                ((1350, 750), (450, 50), 5),
-                ((1350, 800), (450, 50), 6),
+                ((0, 0), (350, 1000), 1),  #1
+                ((350, 850), (1600, 150), 2),  #2
+                ((1800, 0), (150, 850), 3),  #3
+                ((350, 800), (1000, 50), 4),  #4
+                ((1350, 750), (450, 50), 5),  #5
+                ((1350, 800), (450, 50), 6),  #6
                   ), # OBSTACLE RECTANGLES SECTION END
                 'settings': {
                     1: {
@@ -134,7 +134,7 @@ locations = {
               },
             'items': {},
     },
-    'awdawd':
+    'qwe':
         {
             'music': 'music/ambient_1.mp3',
             'description': 'apartment #1',
@@ -147,32 +147,32 @@ locations = {
             },
             'obstacles': {
                 'obs rectangles': (
-                ((0, 950), (1050, 50), 1),  #1
-                ((1250, 950), (700, 50), 2),  #2
-                ((1050, 850), (200, 100), 3),  #3
-                ((1000, 600), (50, 350), 4),  #4
-                ((1250, 600), (50, 350), 5),  #5
-                ((900, 650), (100, 300), 6),  #6
-                ((800, 700), (100, 250), 7),  #7
-                ((700, 750), (100, 200), 8),  #8
-                ((600, 800), (100, 150), 9),  #9
-                ((500, 850), (100, 100), 10),  #10
-                ((400, 900), (100, 50), 11),  #11
-                ((0, 0), (50, 750), 12),  #12
-                ((1900, 0), (50, 950), 13),  #13
-                ((50, 0), (1850, 50), 14),  #14
-                ((0, 750), (50, 200), 15),  #15
-                ((350, 925), (50, 25), 16),  #16
-                ((450, 875), (50, 25), 17),  #17
-                ((550, 825), (50, 25), 18),  #18
-                ((650, 775), (50, 25), 19),  #19
-                ((750, 725), (50, 25), 20),  #20
-                ((850, 675), (50, 25), 21),  #21
-                ((950, 625), (50, 25), 22),  #22
-                ((1825, 850), (75, 100), 23),  #23
-                ((1875, 725), (25, 125), 24),  #24
-                ((1775, 850), (50, 100), 25),  #25
-                ((1050, 950), (200, 50), 26),  #26
+                ((0, 950), (1050, 50), 1),
+                ((1250, 950), (700, 50), 2),
+                ((1050, 850), (200, 100), 3),
+                ((1000, 600), (50, 350), 4),
+                ((1250, 600), (50, 350), 5),
+                ((900, 650), (100, 300), 6),
+                ((800, 700), (100, 250), 7),
+                ((700, 750), (100, 200), 8),
+                ((600, 800), (100, 150), 9),
+                ((500, 850), (100, 100), 10),
+                ((400, 900), (100, 50), 11),
+                ((0, 0), (50, 750), 12),
+                ((1900, 0), (50, 950), 13),
+                ((50, 0), (1850, 50), 14),
+                ((0, 750), (50, 200), 15),
+                ((350, 925), (50, 25), 16),
+                ((450, 875), (50, 25), 17),
+                ((550, 825), (50, 25), 18),
+                ((650, 775), (50, 25), 19),
+                ((750, 725), (50, 25), 20),
+                ((850, 675), (50, 25), 21),
+                ((950, 625), (50, 25), 22),
+                ((1825, 850), (75, 100), 23),
+                ((1875, 725), (25, 125), 24),
+                ((1775, 850), (50, 100), 25),
+                ((1050, 950), (200, 50), 26),
                   ), # OBSTACLE RECTANGLES SECTION END
                 'settings': {
                     15: {
@@ -190,7 +190,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': True,
-                        'teleport description': {'new location': 'e064a228-43e8-11ef-b7ff-bfb4330f33e3', 'xy': (4850.0, 650.0)},
+                        'teleport description': {'new location': 'cave', 'xy': (4850.0, 650.0)},
                   },
                     25: {
                         'sprite': 0,
@@ -212,20 +212,20 @@ locations = {
                     3: {
                         'sprite': 0,
                         'sprite elevated': False,
+                        'actors pass through': False,
                         'force render': True,
                         'ghost': False,
-                        'actors pass through': False,
-                        'actors may grab': False,
                         'speed': 1.2,
+                        'active': False,
+                        'actors may grab': False,
+                        'actions': {0: [('move', (1050, 50)), ('wait', 100), ('stop', (0, 0))]},
                         'collideable': False,
                         'gravity affected': False,
                         'invisible': True,
-                        'teleport': False,
-                        'teleport description': {'new location': '', 'xy': [0, 0]},
                         'trigger': False,
                         'trigger description': {'make active': [3], 'disappear': False},
-                        'active': False,
-                        'actions': {0: [('move', (1050, 50)), ('wait', 100), ('stop', (0, 0))]},
+                        'teleport': False,
+                        'teleport description': {'new location': '', 'xy': [0, 0]},
                   },
                     26: {
                         'sprite': 0,
@@ -243,7 +243,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': True,
-                        'teleport description': {'new location': 'e264f450-441b-11ef-b7ff-bfb4330f33e3', 'xy': (1000.0, 0.0)},
+                        'teleport description': {'new location': 'zxcv', 'xy': (1000.0, 0.0)},
                   },
                     23: {
                         'sprite': 27,
@@ -285,7 +285,7 @@ locations = {
               },
             'items': {},
     },
-    'e064a228-43e8-11ef-b7ff-bfb4330f33e3':
+    'cave':
         {
             'music': 'music/ambient_1.mp3',
             'description': 'apartment #1',
@@ -351,7 +351,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': True,
-                        'teleport description': {'new location': '4cb6277c-424e-11ef-b7ff-bfb4330f33e3', 'xy': (4850.0, 800.0)},
+                        'teleport description': {'new location': 'entrance', 'xy': (4850.0, 800.0)},
                   },
                     10: {
                         'sprite': 22,
@@ -368,7 +368,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '4cb6277c-424e-11ef-b7ff-bfb4330f33e3', 'xy': (4850.0, 750.0)},
+                        'teleport description': {'new location': 'entrance', 'xy': (4850.0, 750.0)},
                   },
                     11: {
                         'sprite': 18,
@@ -385,7 +385,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '4cb6277c-424e-11ef-b7ff-bfb4330f33e3', 'xy': (4850.0, 750.0)},
+                        'teleport description': {'new location': 'entrance', 'xy': (4850.0, 750.0)},
                   },
                     13: {
                         'sprite': 18,
@@ -402,7 +402,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '4cb6277c-424e-11ef-b7ff-bfb4330f33e3', 'xy': (4850.0, 750.0)},
+                        'teleport description': {'new location': 'entrance', 'xy': (4850.0, 750.0)},
                   },
                     14: {
                         'sprite': 18,
@@ -419,7 +419,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '4cb6277c-424e-11ef-b7ff-bfb4330f33e3', 'xy': (4850.0, 750.0)},
+                        'teleport description': {'new location': 'entrance', 'xy': (4850.0, 750.0)},
                   },
                     15: {
                         'sprite': 0,
@@ -436,7 +436,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '4cb6277c-424e-11ef-b7ff-bfb4330f33e3', 'xy': (4850.0, 750.0)},
+                        'teleport description': {'new location': 'entrance', 'xy': (4850.0, 750.0)},
                   },
                     16: {
                         'sprite': 17,
@@ -453,7 +453,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '4cb6277c-424e-11ef-b7ff-bfb4330f33e3', 'xy': (4850.0, 750.0)},
+                        'teleport description': {'new location': 'entrance', 'xy': (4850.0, 750.0)},
                   },
                     17: {
                         'sprite': 18,
@@ -470,7 +470,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '4cb6277c-424e-11ef-b7ff-bfb4330f33e3', 'xy': (4850.0, 750.0)},
+                        'teleport description': {'new location': 'entrance', 'xy': (4850.0, 750.0)},
                   },
                     20: {
                         'sprite': 17,
@@ -742,7 +742,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': 'e064a228-43e8-11ef-b7ff-bfb4330f33e3', 'xy': (100.0, 1800.0)},
+                        'teleport description': {'new location': 'cave', 'xy': (100.0, 1800.0)},
                   },
                     40: {
                         'sprite': 11,
@@ -759,7 +759,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': 'e064a228-43e8-11ef-b7ff-bfb4330f33e3', 'xy': (100.0, 1800.0)},
+                        'teleport description': {'new location': 'cave', 'xy': (100.0, 1800.0)},
                   },
                     41: {
                         'sprite': 11,
@@ -776,7 +776,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': 'e064a228-43e8-11ef-b7ff-bfb4330f33e3', 'xy': (100.0, 1800.0)},
+                        'teleport description': {'new location': 'cave', 'xy': (100.0, 1800.0)},
                   },
                     42: {
                         'sprite': 11,
@@ -793,7 +793,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': 'e064a228-43e8-11ef-b7ff-bfb4330f33e3', 'xy': (100.0, 1800.0)},
+                        'teleport description': {'new location': 'cave', 'xy': (100.0, 1800.0)},
                   },
                     43: {
                         'sprite': 11,
@@ -810,7 +810,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': 'e064a228-43e8-11ef-b7ff-bfb4330f33e3', 'xy': (100.0, 1800.0)},
+                        'teleport description': {'new location': 'cave', 'xy': (100.0, 1800.0)},
                   },
                     44: {
                         'sprite': 11,
@@ -827,7 +827,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': 'e064a228-43e8-11ef-b7ff-bfb4330f33e3', 'xy': (100.0, 1800.0)},
+                        'teleport description': {'new location': 'cave', 'xy': (100.0, 1800.0)},
                   },
                     45: {
                         'sprite': 11,
@@ -844,7 +844,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': 'e064a228-43e8-11ef-b7ff-bfb4330f33e3', 'xy': (100.0, 1800.0)},
+                        'teleport description': {'new location': 'cave', 'xy': (100.0, 1800.0)},
                   },
                     47: {
                         'sprite': 0,
@@ -861,7 +861,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '2fa8c4fe-440c-11ef-b7ff-bfb4330f33e3', 'xy': (100.0, 800.0)},
+                        'teleport description': {'new location': 'qwe', 'xy': (100.0, 800.0)},
                   },
                     48: {
                         'sprite': 0,
@@ -878,7 +878,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '2fa8c4fe-440c-11ef-b7ff-bfb4330f33e3', 'xy': (100.0, 800.0)},
+                        'teleport description': {'new location': 'qwe', 'xy': (100.0, 800.0)},
                   },
                     49: {
                         'sprite': 0,
@@ -895,7 +895,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '2fa8c4fe-440c-11ef-b7ff-bfb4330f33e3', 'xy': (100.0, 800.0)},
+                        'teleport description': {'new location': 'qwe', 'xy': (100.0, 800.0)},
                   },
                     50: {
                         'sprite': 0,
@@ -912,7 +912,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '2fa8c4fe-440c-11ef-b7ff-bfb4330f33e3', 'xy': (100.0, 800.0)},
+                        'teleport description': {'new location': 'qwe', 'xy': (100.0, 800.0)},
                   },
                     51: {
                         'sprite': 0,
@@ -929,13 +929,13 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': True,
-                        'teleport description': {'new location': '2fa8c4fe-440c-11ef-b7ff-bfb4330f33e3', 'xy': (100.0, 800.0)},
+                        'teleport description': {'new location': 'qwe', 'xy': (100.0, 800.0)},
                   },
                   } # OBSTACLE SETTINGS SECTION END
               },
             'items': {},
     },
-    '4cb6277c-424e-11ef-b7ff-bfb4330f33e3':
+    'entrance':
         {
             'music': 'music/ambient_1.mp3',
             'description': 'apartment #1',
@@ -1065,7 +1065,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': True,
-                        'teleport description': {'new location': 'e064a228-43e8-11ef-b7ff-bfb4330f33e3', 'xy': (100.0, 1800.0)},
+                        'teleport description': {'new location': 'cave', 'xy': (100.0, 1800.0)},
                   },
                   } # OBSTACLE SETTINGS SECTION END
               },

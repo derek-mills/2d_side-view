@@ -6,10 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/backgrounds/2fa8c4fe-440c-11ef-b7ff-bfb4330f33e3_ground.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/backgrounds/2fa8c4fe-440c-11ef-b7ff-bfb4330f33e3_minimap.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/backgrounds/4cb6277c-424e-11ef-b7ff-bfb4330f33e3_ground.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/backgrounds/4cb6277c-424e-11ef-b7ff-bfb4330f33e3_minimap.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/backgrounds/e064a228-43e8-11ef-b7ff-bfb4330f33e3_ground.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/backgrounds/e064a228-43e8-11ef-b7ff-bfb4330f33e3_minimap.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/backgrounds/e264f450-441b-11ef-b7ff-bfb4330f33e3_ground.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/backgrounds/e264f450-441b-11ef-b7ff-bfb4330f33e3_minimap.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/level_editor_menu_structure.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor_menu_structure.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locations_back.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations_back.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main .py" beforeDir="false" afterPath="$PROJECT_DIR$/main .py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +65,7 @@
       </console-settings>
     </option>
   </component>
-  <component name="RunManager" selected="Python.level_editor">
+  <component name="RunManager" selected="Python.main ">
     <configuration name="level_editor" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ver_0.000.1" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -107,8 +114,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.level_editor" />
         <item itemvalue="Python.main " />
+        <item itemvalue="Python.level_editor" />
       </list>
     </recent_temporary>
   </component>
@@ -120,20 +127,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00230" summary="Level editor: added 'reset to default' ability while obstacle settings being editing.">
-      <created>1720574758521</created>
-      <option name="number" value="00230" />
-      <option name="presentableId" value="LOCAL-00230" />
-      <option name="project" value="LOCAL" />
-      <updated>1720574758521</updated>
-    </task>
-    <task id="LOCAL-00231" summary="Level editor: fixed bug when properties of just edited obstacle become the same as the others had.">
-      <created>1720583879229</created>
-      <option name="number" value="00231" />
-      <option name="presentableId" value="LOCAL-00231" />
-      <option name="project" value="LOCAL" />
-      <updated>1720583879230</updated>
     </task>
     <task id="LOCAL-00232" summary="Level editor: ability to append some types of actions to obstacle added.">
       <created>1720592065347</created>
@@ -464,7 +457,21 @@
       <option name="project" value="LOCAL" />
       <updated>1721272703982</updated>
     </task>
-    <option name="localTasksCounter" value="279" />
+    <task id="LOCAL-00279" summary="Level editor: added an opportunity to rename the currently editing map.">
+      <created>1721282191821</created>
+      <option name="number" value="00279" />
+      <option name="presentableId" value="LOCAL-00279" />
+      <option name="project" value="LOCAL" />
+      <updated>1721282191821</updated>
+    </task>
+    <task id="LOCAL-00280" summary="Level editor: added an opportunity to rename the currently editing map.">
+      <created>1721282200401</created>
+      <option name="number" value="00280" />
+      <option name="presentableId" value="LOCAL-00280" />
+      <option name="project" value="LOCAL" />
+      <updated>1721282200401</updated>
+    </task>
+    <option name="localTasksCounter" value="281" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -479,7 +486,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Level editor: LMB is able to add en enemies." />
     <MESSAGE value="Level editor: ." />
     <MESSAGE value="Level editor: added ability to allow or disallow grabbing for every obstacle.&#10;Added background render." />
     <MESSAGE value="NES palette added" />
@@ -504,6 +510,7 @@
     <MESSAGE value="Level editor: fixed 'value' in 'obs multiple selection' menu to return tuple (obs_id, obs_location, action_set_number)." />
     <MESSAGE value="Level editor: obstacle_settings_list moved to common menu_structure dict.&#10;Added 'force render' obstacle attribute, which cause forced rendering of an obstacle in real time" />
     <MESSAGE value="Level editor: added keyboard input processing routines." />
-    <option name="LAST_COMMIT_MESSAGE" value="Level editor: added keyboard input processing routines." />
+    <MESSAGE value="Level editor: added an opportunity to rename the currently editing map." />
+    <option name="LAST_COMMIT_MESSAGE" value="Level editor: added an opportunity to rename the currently editing map." />
   </component>
 </project>

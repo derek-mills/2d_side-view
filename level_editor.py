@@ -1,5 +1,7 @@
 # import pygame
 import uuid
+from os import listdir
+from shutil import move
 
 import pygame
 from actors_description import all_hostiles
@@ -560,27 +562,40 @@ class World(object):
         self.is_mouse_wheel_rolls = False
 
     def rename_map(self, new_name):
+        # Read source:
         source = list()
         with open('locations.py', 'r') as f:
             for line in f:
                 source.append(line)
 
+        # Rename all signs of previous map name:
         for line in source:
-            if '    \'' + self.location + '\':' in line:
-                print(f'[rename map] {line=}')
-                source[source.index(line)] = '    \'' + new_name + '\':\n'
+            if self.location in line:
+                split_line = line.split(self.location)
+                new_line  = split_line[0] + new_name + split_line[1]
+                source[source.index(line)] = new_line
 
+                # for line in source:
+        #     if '    \'' + self.location + '\':' in line:
+        #         print(f'[rename map] {line=}')
+                # source[source.index(line)] = '    \'' + new_name + '\':\n'
+
+        # Rewrite corrected map description:
         with open('locations.py', 'w') as f:
             for line in source:
                 f.write(line)
 
-        # locations.locations[new_name] = locations.locations[self.location]
-        # del locations.locations[self.location]
+        # Rename files linked with this map name:
+        file_list = listdir('img/backgrounds')
+        for l in file_list:
+            if self.location in l:
+                file_suffix = l.split('_')[-1]
+                move('img/backgrounds/' + l, 'img/backgrounds/' + new_name + '_' + file_suffix)
+
         self.location = new_name
         self.need_to_load = True
-        # importlib.reload(locations)
-        # self.load()
-    #
+
+
     def main_menu(self):
 
         # for i in self.menu_structure['main menu'].keys():
