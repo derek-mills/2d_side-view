@@ -310,6 +310,22 @@ class World(object):
                             # ----------EXEC--------------------------------------------
                             if menu_item['LMB action'] == 'exec':
                                 exec(menu_item['value'])
+                            # ----------INPUT INTEGER---------------------
+                            elif menu_item['LMB action'] == 'input int':
+                                command = menu_item['target'] + " = self.create_text_input((self.mouse_xy[0], self.mouse_xy[1]), menu_item['label'], int(0), 'int')"
+                                exec(command)
+                            # ----------INPUT FLOAT---------------------
+                            elif menu_item['LMB action'] == 'input float':
+                                command = menu_item['target'] + " = self.create_text_input((self.mouse_xy[0], self.mouse_xy[1]), menu_item['label'], 0., 'float')"
+                                exec(command)
+                            # ----------INPUT STRING---------------------
+                            elif menu_item['LMB action'] == 'input str':
+                                command = menu_item['target'] + " = self.create_text_input((self.mouse_xy[0], self.mouse_xy[1]), menu_item['label'], '', 'str')"
+                                exec(command)
+                            # ----------INPUT ANY CHAR---------------------
+                            elif menu_item['LMB action'] == 'input any':
+                                command = menu_item['target'] + " = self.create_text_input((self.mouse_xy[0], self.mouse_xy[1]), menu_item['label'], '', 'any')"
+                                exec(command)
                             # ----------REVEAL SUBMENU---------------------------------
                             elif menu_item['LMB action'] == 'reveal submenu':
                                 self.delete_all_child_menu_piles(pile_id)
@@ -364,6 +380,7 @@ class World(object):
                                 self.menu_actions_done = True
                                 return
 
+                            # ------------------------------------------
                             # ----------AFTERMATH ACTIONS--------------------------------
                             # if menu_item['after action']:
                             if menu_item['after action'] == 'keep going':
@@ -1071,7 +1088,7 @@ class World(object):
         # text_to_return_list = list()
         text_to_return_str = str()
         text_to_return_surf = fonts.all_fonts[self.default_font_size].render(text_to_return_str, True, WHITE, DARKGRAY)
-        window_width_inflate = text_to_return_surf.get_width()
+        window_width_inflate = text_to_return_surf.get_width() + 20
 
         while True:
             cursor_x_start = xy[0] + window_width
@@ -1084,23 +1101,36 @@ class World(object):
             for event in pygame.event.get():
                 if event.type == KEYDOWN:
                     k = pygame.key.name(event.key)
-                    print(k)
+                    print(f'[create text input] key pressed: {k}')
                     if event.key == K_ESCAPE:
                         return default_value
                     if event.key == K_RETURN or event.key == K_KP_ENTER:
-                        return text_to_return_str
+                        if input_type == 'int':
+                            print(f'[create text input] returning value: {text_to_return_str}')
+                            return int(text_to_return_str)
+                        elif input_type == 'float':
+                            print(f'[create text input] returning value: {text_to_return_str}')
+                            return float(text_to_return_str)
+                        elif input_type == 'str' or input_type == 'any':
+                            print(f'[create text input] returning value: {text_to_return_str}')
+                            return text_to_return_str
                     if event.key == K_BACKSPACE:
                         if len(text_to_return_str) > 0:
                             text_to_return_str = text_to_return_str[0:-1]
                             break
-                    if input_type == 'digit':
-
+                    if input_type == 'int':
                         if k in DIGITS:
                             if k[0] == '[':
                                 text_to_return_str += k[1]
                             else:
                                 text_to_return_str += k
                                 # text_to_return_str += pygame.key.name(event.key)
+                    elif input_type == 'float':
+                        if k in DIGITS or k == '.':
+                            if k[0] == '[':
+                                text_to_return_str += k[1]
+                            else:
+                                text_to_return_str += k
                     elif input_type == 'str':
                         if k in ALPHA or pygame.key.name(event.key) in DIGITS:
                         # if pygame.key.name(event.key) in ALPHA or pygame.key.name(event.key) in DIGITS:

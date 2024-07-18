@@ -399,14 +399,13 @@ menu_structure = {
         },
         'speed': {
             'rectangle': pygame.Rect(0, 0, 0, 0),
-            'label': 'speed',
+            'label': 'obs move speed',
             'on hover action': None,
-            'LMB action': 'input number',
+            'LMB action': 'input float',
+            # 'value': "menu_structure['custom obs properties']['ok']['value']['speed']",
             'target': "menu_structure['custom obs properties']['ok']['value']['speed']",
             'additional info': "*menu_structure['custom obs properties']['ok']['value']['speed']",
-            # 'LMB action': ('input number', {'speed': 0}),
             'active': True,
-            'also affects on': None,
             'after action': 'keep going'
         },
         'collideable': {
@@ -733,8 +732,8 @@ menu_structure = {
             # 'submenu exit action': '',
             'LMB action': 'exec',
             'value': "\
-x = self.create_text_input((MAXX_DIV_2, MAXY_DIV_2), 'ENTER MAX X:', MAXX, 'digit')\n\
-y = self.create_text_input((MAXX_DIV_2, MAXY_DIV_2 + 50), 'ENTER MAX Y:', MAXY, 'digit')\n\
+x = self.create_text_input((MAXX_DIV_2, MAXY_DIV_2), 'ENTER MAX X:', MAXX, 'int')\n\
+y = self.create_text_input((MAXX_DIV_2, MAXY_DIV_2 + 50), 'ENTER MAX Y:', MAXY, 'int')\n\
 self.camera.setup(int(x), int(y))\n\
 self.create_snap_mesh()",
             'active': True,

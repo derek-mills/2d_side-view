@@ -6,11 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/backgrounds/2fa8c4fe-440c-11ef-b7ff-bfb4330f33e3_ground.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/backgrounds/2fa8c4fe-440c-11ef-b7ff-bfb4330f33e3_ground.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/level_editor_menu_structure.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor_menu_structure.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obstacle.py" beforeDir="false" afterPath="$PROJECT_DIR$/obstacle.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +58,7 @@
       </console-settings>
     </option>
   </component>
-  <component name="RunManager" selected="Python.main ">
+  <component name="RunManager" selected="Python.level_editor">
     <configuration name="level_editor" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ver_0.000.1" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -108,8 +107,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.main " />
         <item itemvalue="Python.level_editor" />
+        <item itemvalue="Python.main " />
       </list>
     </recent_temporary>
   </component>
@@ -121,13 +120,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00228" summary="Level editor: fixed some bugs; 'action' section remains undone.">
-      <created>1720507636449</created>
-      <option name="number" value="00228" />
-      <option name="presentableId" value="LOCAL-00228" />
-      <option name="project" value="LOCAL" />
-      <updated>1720507636449</updated>
     </task>
     <task id="LOCAL-00229" summary="Fixed bug with active obstacle: default speed was 0.0 after level edit was over.">
       <created>1720512502057</created>
@@ -465,7 +457,14 @@
       <option name="project" value="LOCAL" />
       <updated>1721204276188</updated>
     </task>
-    <option name="localTasksCounter" value="277" />
+    <task id="LOCAL-00277" summary="Level editor: obstacle_settings_list moved to common menu_structure dict.&#10;Added 'force render' obstacle attribute, which cause forced rendering of an obstacle in real time">
+      <created>1721206003902</created>
+      <option name="number" value="00277" />
+      <option name="presentableId" value="LOCAL-00277" />
+      <option name="project" value="LOCAL" />
+      <updated>1721206003902</updated>
+    </task>
+    <option name="localTasksCounter" value="278" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -480,7 +479,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Level editor: load() and save() for hostiles description work just fine." />
     <MESSAGE value="Level editor: spacebar is able to delete hostiles." />
     <MESSAGE value="Level editor: LMB is able to add en enemies." />
     <MESSAGE value="Level editor: ." />
@@ -505,6 +503,7 @@
     <MESSAGE value="Level editor: menu items with True/False choices there have color differentiation now." />
     <MESSAGE value="Some messing." />
     <MESSAGE value="Level editor: fixed 'value' in 'obs multiple selection' menu to return tuple (obs_id, obs_location, action_set_number)." />
-    <option name="LAST_COMMIT_MESSAGE" value="Level editor: fixed 'value' in 'obs multiple selection' menu to return tuple (obs_id, obs_location, action_set_number)." />
+    <MESSAGE value="Level editor: obstacle_settings_list moved to common menu_structure dict.&#10;Added 'force render' obstacle attribute, which cause forced rendering of an obstacle in real time" />
+    <option name="LAST_COMMIT_MESSAGE" value="Level editor: obstacle_settings_list moved to common menu_structure dict.&#10;Added 'force render' obstacle attribute, which cause forced rendering of an obstacle in real time" />
   </component>
 </project>
