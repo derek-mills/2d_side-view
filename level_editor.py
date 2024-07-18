@@ -120,7 +120,7 @@ class World(object):
         # self.menu_path = list()
         self.menu_elements_bindings = menu_elements_bindings
         self.menu_structure = menu_structure
-        self.menu_items_y_scroll_speed: int = 30  #
+        self.menu_items_y_scroll_speed: int = 50  #
 
         self.minimap = None
         self.minimap_zoomed_out = None
@@ -1216,8 +1216,8 @@ class World(object):
             tile_set = pygame.image.load('img/backgrounds/tiles/tileset_1.png')
             sz = tile_set.get_size()
             tile_number = 0
-            for x in range (start_x, sz[0] - tile_width, tile_width + tiles_x_gap):
-                for y in range (start_y, sz[1] - tile_height, tile_height + tiles_y_gap):
+            for x in range (start_x, sz[0], tile_width + tiles_x_gap):
+                for y in range (start_y, sz[1], tile_height + tiles_y_gap):
                     self.tiles[tile_number] = tile_set.subsurface((x,y,tile_width,tile_height))
                     tile_number += 1
 
@@ -2022,7 +2022,7 @@ class World(object):
         else:
             for k in self.obs_settings[obs.id].keys():
                 self.menu_structure['custom obs properties']['ok']['value'][k] = self.obs_settings[obs.id][k]
-        self.add_menu({'submenu name': 'custom obs properties', 'value': ''}, self.mouse_xy, 400, 20)
+        self.add_menu({'submenu name': 'custom obs properties', 'value': ''}, self.mouse_xy, 400, 15)
         # self.add_menu('custom obs properties', self.mouse_xy, 400, 20)
         # self.add_menu('obstacle edit', self.mouse_xy, 400, 20)
         # self.add_menu(self.mouse_xy, 400, 20, [self.menu_structure['obstacle edit'][i] for i in self.menu_structure['obstacle edit'].keys()])
