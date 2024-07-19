@@ -259,7 +259,7 @@ player_jake = {
         },
         'run right': {
                 'repeat': True, 'interruptable': True,
-                'sequence': (28,29,30,31,32,33,34,35,36,37,38,39,40), 'speed': 1,
+                'sequence': (28,29,30,31,32,33,34,35,36,37,38,), 'speed': 1,
                 'activity at frames': {
                     1: {
                         'sound': 'step',
@@ -269,7 +269,7 @@ player_jake = {
             },
         'run left': {
                 'repeat': True, 'interruptable': True,
-                'sequence': (54,53,52,51,50,49,48,47,46,45,44,43,42), 'speed': 1,
+                'sequence': (52,51,50,49,48,47,46,45,44,43,42,), 'speed': 1,
                 'activity at frames': {},
                 'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
