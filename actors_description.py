@@ -247,13 +247,13 @@ player_jake = {
     'animations': {
         'stand still right': {
                 'repeat': True, 'interruptable': True,
-                'sequence': (1,1,1,1,1,1,2,2,2,2,2,2,2), 'speed': 20,
+                'sequence': (1,1,1,1,1,1,2,1,2,1,1,1,1), 'speed': 20,
                 'activity at frames': {},
                 'sound': None, 'sound at frames': (0,), 'repeat from frame': 0
             },
         'stand still left': {
             'repeat': True, 'interruptable': True,
-            'sequence': (15,16), 'speed': 50,
+            'sequence': (15,15,15,15,15,15,16,15,16,15,15,15,15), 'speed': 20,
             'activity at frames': {},
             'sound': None, 'sound at frames': (0,), 'repeat from frame': 0
         },
@@ -275,13 +275,25 @@ player_jake = {
             },
         'jump right': {
                 'repeat': True, 'interruptable': True,
-                'sequence': (32,), 'speed': 1,
+                'sequence': (75,), 'speed': 1,
                 'activity at frames': {},
                 'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
         'jump left': {
                 'repeat': True, 'interruptable': True,
-                'sequence': (51,), 'speed': 1,
+                'sequence': (90,90,90,90), 'speed': 1,
+                'activity at frames': {},
+                'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
+            },
+        'fly right': {
+                'repeat': True, 'interruptable': True,
+                'sequence': (75,), 'speed': 1,
+                'activity at frames': {},
+                'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
+            },
+        'fly left': {
+                'repeat': True, 'interruptable': True,
+                'sequence': (90,), 'speed': 1,
                 'activity at frames': {},
                 'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
@@ -317,7 +329,7 @@ player_jake = {
         },
         'crawl right': {
             'repeat': True, 'interruptable': True,
-            'sequence': (5,6,7), 'speed': 1,
+            'sequence': (5,6,7,6), 'speed': 5,
             'activity at frames': {},
             'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 0
         },
@@ -329,7 +341,7 @@ player_jake = {
         },
         'crawl left': {
             'repeat': True, 'interruptable': True,
-            'sequence': (21,20,19), 'speed': 1,
+            'sequence': (21,20,19,20), 'speed': 5,
             'activity at frames': {},
             'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 0
         },

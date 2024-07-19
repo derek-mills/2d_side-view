@@ -211,7 +211,7 @@ class Actor(Entity):
         return self.__state
 
     def set_state(self, new_state):
-        # print(f'[actor.set_state] new state: {new_state} {self.cycles_passed}')
+        print(f'[actor.set_state] new state: {new_state} {self.cycles_passed}')
         self.__state = new_state
         self.set_current_animation()
 
@@ -471,18 +471,14 @@ class Actor(Entity):
                 self.is_jump = True
                 self.influenced_by_obstacle = -1
                 self.jump_height = self.max_jump_height
-                # self.is_stand_on_ground = False
-                # self.set_new_desired_height(self.rectangle_height_default + 15, 1)
-                # self.set_new_desired_width(self.rectangle_width_default - 15, 1)
             else:
                 if self.is_stand_on_ground:
-                    # self.just_got_jumped = False
-                    # self.is_abort_jump = True
-                    # Have to switch off jump attempts after actor has landed to the ground, but
-                    # human player still holding down a jump button:
                     self.is_jump_performed = True
                     self.heading[0] = 0
-                    self.set_state('free')
+                    # self.just_got_jumped = True
+                    # self.is_abort_jump = True
+                    # self.is_jump_performed = False
+                    self.set_state('stand still')
                     # self.set_state('jump cancel')
             self.is_abort_jump = False
         elif self.__state == 'jump cancel':                     # CANCEL JUMP
@@ -491,7 +487,14 @@ class Actor(Entity):
             self.is_jump_performed = False
             # self.set_new_desired_height(self.rectangle_height_default, 5)
             # self.set_new_desired_width(self.rectangle_width_default, 5)
-            self.set_state('stand still')
+            if self.is_stand_on_ground:
+                self.set_state('stand still')
+            else:
+                if self.look == 1:
+                    self.set_state('fly right')
+                else:
+                    self.set_state('fly left')
+            # self.set_state('stand still')
         elif self.__state == 'hop back':                        # HOP BACK
             if self.is_stand_on_ground:
                 if self.is_enough_space_above:
