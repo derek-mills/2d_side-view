@@ -6,10 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/animations/jake_8bit.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/animations/jake_8bit.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/backgrounds/cave_ground.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/backgrounds/cave_ground.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,8 +128,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.main " />
-        <item itemvalue="Python.generate_sprite_sheet" />
         <item itemvalue="Python.level_editor" />
+        <item itemvalue="Python.generate_sprite_sheet" />
       </list>
     </recent_temporary>
   </component>
@@ -143,13 +141,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00239" summary="Triggers is able to switch actions of active obstacles in different locations, but if location is now loaded yet, it causes error.">
-      <created>1720675940126</created>
-      <option name="number" value="00239" />
-      <option name="presentableId" value="LOCAL-00239" />
-      <option name="project" value="LOCAL" />
-      <updated>1720675940126</updated>
     </task>
     <task id="LOCAL-00240" summary="Triggers is able to switch actions of active obstacles in different locations.">
       <created>1720677011609</created>
@@ -487,7 +478,14 @@
       <option name="project" value="LOCAL" />
       <updated>1721372867245</updated>
     </task>
-    <option name="localTasksCounter" value="288" />
+    <task id="LOCAL-00288" summary="Some unnecessary mess">
+      <created>1721374531839</created>
+      <option name="number" value="00288" />
+      <option name="presentableId" value="LOCAL-00288" />
+      <option name="project" value="LOCAL" />
+      <updated>1721374531839</updated>
+    </task>
+    <option name="localTasksCounter" value="289" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -502,7 +500,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Level editor: added sprite choose opportunity for every obstacle to automatic make correct level PNG map in the future." />
     <MESSAGE value="Level editor: while choosing sprite from tile set additional info window displays this sprite as preview." />
     <MESSAGE value="Level editor: export to PNG including 'sprite' variable from obstacle settings, if it has been set." />
     <MESSAGE value="Level editor: if menu is higher than the MAXY, it could be scrolled by mouse wheel." />
@@ -527,6 +524,7 @@
     <MESSAGE value="Some animations have been remade.&#10;Added sprite sheet generator." />
     <MESSAGE value="Fixed bug when actor was unable to jump if climbing up on an obstacle was unsuccessful, and he got dropped." />
     <MESSAGE value="Fixing bugs and so." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixing bugs and so." />
+    <MESSAGE value="Some unnecessary mess" />
+    <option name="LAST_COMMIT_MESSAGE" value="Some unnecessary mess" />
   </component>
 </project>
