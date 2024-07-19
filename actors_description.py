@@ -311,19 +311,31 @@ player_jake = {
         },
         'crouch right': {
             'repeat': True, 'interruptable': True,
-            'sequence': (70,71,72,), 'speed': 1,
+            'sequence': (4,4,4,4), 'speed': 1,
             'activity at frames': {},
-            'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 2
+            'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 0
+        },
+        'crawl right': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (5,6,7), 'speed': 1,
+            'activity at frames': {},
+            'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 0
         },
         'crouch left': {
             'repeat': True, 'interruptable': True,
-            'sequence': (70,71,72,), 'speed': 1,
+            'sequence': (18,), 'speed': 1,
             'activity at frames': {},
-            'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 2
+            'sound': None, 'sound at frames': (0,), 'repeat from frame': 0
+        },
+        'crawl left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (21,20,19), 'speed': 1,
+            'activity at frames': {},
+            'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 0
         },
         'whip right': {
             'repeat': False, 'interruptable': True,
-            'sequence': (74, 74, 74, 74, 74,74,74,75),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'sequence': (74,74,74,75,76,76,76,77),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
             # 74,74,74,74,74,  # 5 - 9
             # 74,74,74,75,75,  # 10 - 14
             # 74,74,74,74,74,  # 15 - 19
@@ -332,20 +344,20 @@ player_jake = {
             # 'demolisher offset': (46, 36),
             'speed': 2,
             'activity at frames': {
-                7: {
+                4: {
                     'sound': True,
                     'demolisher': True
                 },
                 },
             'demolisher offset': {
-                1: (46, 36),
-                -1: (-46, 36),
+                1: (90, 40),
+                -1: (-90, 40),
             },
             'repeat from frame': 0
         },
         'whip left': {
             'repeat': False, 'interruptable': True,
-            'sequence': (89,89,89,89,89,89,89,88),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'sequence': (91,91,91,90,89,89,89,88),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
             # 74,74,74,74,74,  # 5 - 9
             # 74,74,74,75,75,  # 10 - 14
             # 74,74,74,74,74,  # 15 - 19
@@ -354,14 +366,14 @@ player_jake = {
             # 'demolisher offset': (46, 36),
             'speed': 2,
             'activity at frames': {
-                7: {
+                4: {
                     'sound': True,
                     'demolisher': True
                 },
             },
             'demolisher offset': {
-                1: (46, 36),
-                -1: (-46, 36),
+                1: (90,40),
+                -1: (-80, 40),
             },
             'repeat from frame': 0
         },
