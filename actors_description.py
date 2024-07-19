@@ -362,8 +362,8 @@ player_jake = {
                 },
                 },
             'demolisher offset': {
-                1: (90, 40),
-                -1: (-90, 40),
+                1: (65, 60),
+                -1: (-65, 60),
             },
             'repeat from frame': 0
         },
@@ -384,8 +384,8 @@ player_jake = {
                 },
             },
             'demolisher offset': {
-                1: (90,40),
-                -1: (-80, 40),
+                1: (65,60),
+                -1: (-65,60),
             },
             'repeat from frame': 0
         },
