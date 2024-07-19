@@ -753,6 +753,7 @@ class Actor(Entity):
             self.set_state('stand still')
         elif self.__state == 'climb on':                        # START CLIMBING ON AN OBSTACLE
             self.ignore_user_input = True
+            self.is_jump_performed = False
             self.set_new_desired_height(self.rectangle_height_sit // 2, 6)
             self.set_state('climb on raise')
         elif self.__state == 'climb on raise':                        # START CLIMBING ON AN OBSTACLE
