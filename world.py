@@ -524,7 +524,7 @@ class World(object):
             del self.actors[self.location][dead_id]
 
     def render_background(self):
-        pygame.draw.rect(self.screen, GRAY, (0,0,MAXX, MAXY))
+        # pygame.draw.rect(self.screen, GRAY, (0,0,MAXX, MAXY))
 
         # sub_surf = self.backgrounds[self.location]['ground'].subsurface((self.camera.offset_x, self.camera.offset_y, MAXX, MAXY))
         # self.screen.blit(sub_surf, (0, 0))
@@ -533,7 +533,12 @@ class World(object):
 
         # rect = self.backgrounds[self.location]['ground level']['bounding rect']
         # self.screen.blit(self.backgrounds[self.location]['ground level']['cropped image'], (-self.camera.offset_x, MAXY-self.camera.offset_y-rect.height))
+        self.screen.blit(self.backgrounds[self.location]['back level']['whole image'], (0,0))
+        # if 'whole image' in self.backgrounds[self.location]['back level 1']:
+        #     self.screen.blit(self.backgrounds[self.location]['back level 1']['whole image'], (-self.camera.offset_x // 2, -self.camera.offset_y // 2))
         self.screen.blit(self.backgrounds[self.location]['ground level']['whole image'], (-self.camera.offset_x, -self.camera.offset_y))
+        if 'whole image' in self.backgrounds[self.location]['back level 1']:
+            self.screen.blit(self.backgrounds[self.location]['back level 1']['whole image'], (-self.camera.offset_x // 16, -self.camera.offset_y // 16))
 
     def render_player_actor(self):
         actor = self.actors['player']
@@ -774,6 +779,19 @@ class World(object):
 
         if self.location not in self.backgrounds.keys():
             self.backgrounds[self.location] = dict()
+            self.backgrounds[self.location]['back level'] = dict()
+            self.backgrounds[self.location]['back level']['whole image'] = pygame.image.load('img/backgrounds/' + self.location + '_back.png')
+            self.backgrounds[self.location]['back level 1'] = dict()
+            try:
+                self.backgrounds[self.location]['back level 1']['whole image'] = pygame.image.load('img/backgrounds/' + self.location + '_back_1.png')
+                self.backgrounds[self.location]['back level 1']['size'] = self.backgrounds[self.location]['back level 1']['whole image'].get_size()
+                self.backgrounds[self.location]['back level 1']['offset x'] = self.camera.max_offset_x // (self.backgrounds[self.location]['back level 1']['size'][0] - MAXX)
+                self.backgrounds[self.location]['back level 1']['offset y'] = self.camera.max_offset_y // (self.backgrounds[self.location]['back level 1']['size'][1] - MAXY)
+                print('BACK 1 OFFSETS')
+                print(self.backgrounds[self.location]['back level 1']['offset x'])
+                print(self.backgrounds[self.location]['back level 1']['offset y'])
+            except:
+                pass
             self.backgrounds[self.location]['ground level'] = dict()
             self.backgrounds[self.location]['ground level']['whole image'] = pygame.image.load('img/backgrounds/' + self.location + '_ground.png')
             self.backgrounds[self.location]['ground level']['bounding rect'] = self.backgrounds[self.location]['ground level']['whole image'].get_bounding_rect()
