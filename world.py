@@ -597,30 +597,31 @@ class World(object):
 
             self.screen.blit(actor.current_sprite['sprite'], (x, y))
 
-            pygame.draw.rect(self.screen, GREEN, (actor.rectangle.x - self.camera.offset_x, actor.rectangle.y - self.camera.offset_y,
-                                                  actor.rectangle.width, actor.rectangle.height), 5)
-            # Colliders rects:
-            # pygame.draw.rect(self.screen, DARK_ORANGE, (actor.collision_detector_right.x - self.camera.offset_x, actor.collision_detector_right.y - self.camera.offset_y,
-            #                                       actor.collision_detector_right.width, actor.collision_detector_right.height))
-            # pygame.draw.rect(self.screen, DARK_ORANGE, (actor.collision_detector_left.x - self.camera.offset_x, actor.collision_detector_left.y - self.camera.offset_y,
-            #                                       actor.collision_detector_left.width, actor.collision_detector_left.height))
-            # pygame.draw.rect(self.screen, DARK_ORANGE, (actor.collision_detector_top.x - self.camera.offset_x, actor.collision_detector_top.y - self.camera.offset_y,
-            #                                       actor.collision_detector_top.width, actor.collision_detector_top.height))
-            # pygame.draw.rect(self.screen, DARK_ORANGE, (actor.collision_detector_bottom.x - self.camera.offset_x, actor.collision_detector_bottom.y - self.camera.offset_y,
-            #                                       actor.collision_detector_bottom.width, actor.collision_detector_bottom.height))
-            # pygame.draw.rect(self.screen, MAGENTA, (actor.collision_detector_bottom_right.x - self.camera.offset_x, actor.collision_detector_bottom_right.y - self.camera.offset_y,
-            #                                       actor.collision_detector_bottom_right.width, actor.collision_detector_bottom_right.height))
-            # pygame.draw.rect(self.screen, MAGENTA, (actor.collision_detector_bottom_left.x - self.camera.offset_x, actor.collision_detector_bottom_left.y - self.camera.offset_y,
-            #                                       actor.collision_detector_bottom_left.width, actor.collision_detector_bottom_left.height))
-            pygame.draw.rect(self.screen, CYAN, (actor.collision_grabber_right.x - self.camera.offset_x, actor.collision_grabber_right.y - self.camera.offset_y,
-                                                  actor.collision_grabber_right.width, actor.collision_grabber_right.height))
-            pygame.draw.rect(self.screen, CYAN, (actor.collision_grabber_left.x - self.camera.offset_x, actor.collision_grabber_left.y - self.camera.offset_y,
-                                                  actor.collision_grabber_left.width, actor.collision_grabber_left.height))
-
-            # The eye
-            gaze_direction_mod = 0 if actor.look == -1 else actor.rectangle.width - 10
-            pygame.draw.rect(self.screen, CYAN, (actor.rectangle.x + gaze_direction_mod - self.camera.offset_x, actor.rectangle.centery - 10 - self.camera.offset_y,
-                                                  10, 20))
+            # # Rectangle frame:
+            # pygame.draw.rect(self.screen, GREEN, (actor.rectangle.x - self.camera.offset_x, actor.rectangle.y - self.camera.offset_y,
+            #                                       actor.rectangle.width, actor.rectangle.height), 5)
+            # # Colliders rects:
+            # # pygame.draw.rect(self.screen, DARK_ORANGE, (actor.collision_detector_right.x - self.camera.offset_x, actor.collision_detector_right.y - self.camera.offset_y,
+            # #                                       actor.collision_detector_right.width, actor.collision_detector_right.height))
+            # # pygame.draw.rect(self.screen, DARK_ORANGE, (actor.collision_detector_left.x - self.camera.offset_x, actor.collision_detector_left.y - self.camera.offset_y,
+            # #                                       actor.collision_detector_left.width, actor.collision_detector_left.height))
+            # # pygame.draw.rect(self.screen, DARK_ORANGE, (actor.collision_detector_top.x - self.camera.offset_x, actor.collision_detector_top.y - self.camera.offset_y,
+            # #                                       actor.collision_detector_top.width, actor.collision_detector_top.height))
+            # # pygame.draw.rect(self.screen, DARK_ORANGE, (actor.collision_detector_bottom.x - self.camera.offset_x, actor.collision_detector_bottom.y - self.camera.offset_y,
+            # #                                       actor.collision_detector_bottom.width, actor.collision_detector_bottom.height))
+            # # pygame.draw.rect(self.screen, MAGENTA, (actor.collision_detector_bottom_right.x - self.camera.offset_x, actor.collision_detector_bottom_right.y - self.camera.offset_y,
+            # #                                       actor.collision_detector_bottom_right.width, actor.collision_detector_bottom_right.height))
+            # # pygame.draw.rect(self.screen, MAGENTA, (actor.collision_detector_bottom_left.x - self.camera.offset_x, actor.collision_detector_bottom_left.y - self.camera.offset_y,
+            # #                                       actor.collision_detector_bottom_left.width, actor.collision_detector_bottom_left.height))
+            # pygame.draw.rect(self.screen, CYAN, (actor.collision_grabber_right.x - self.camera.offset_x, actor.collision_grabber_right.y - self.camera.offset_y,
+            #                                       actor.collision_grabber_right.width, actor.collision_grabber_right.height))
+            # pygame.draw.rect(self.screen, CYAN, (actor.collision_grabber_left.x - self.camera.offset_x, actor.collision_grabber_left.y - self.camera.offset_y,
+            #                                       actor.collision_grabber_left.width, actor.collision_grabber_left.height))
+            #
+            # # The eye
+            # gaze_direction_mod = 0 if actor.look == -1 else actor.rectangle.width - 10
+            # pygame.draw.rect(self.screen, CYAN, (actor.rectangle.x + gaze_direction_mod - self.camera.offset_x, actor.rectangle.centery - 10 - self.camera.offset_y,
+            #                                       10, 20))
             # Enemies Health bar.
             if actor.id != 0:
                 pygame.draw.rect(self.screen, WHITE, (actor.rectangle.x - self.camera.offset_x - 2, actor.rectangle.y - 12 - self.camera.offset_y,

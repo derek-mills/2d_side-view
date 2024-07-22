@@ -1222,22 +1222,24 @@ class World(object):
                     self.tiles[tile_number] = tile_set.subsurface((x,y,tile_width,tile_height))
                     tile_number += 1
 
-
         # LOADING MAP OBJECTS:
         self.obstacles[self.location] = dict()
 
+        # LOADING OBSTACLE RECTANGLES
         max_obs_id = 0
         for obs in locations.locations[self.location]['obstacles']['obs rectangles']:
             self.add_obstacle(obs)
-            if max_obs_id < obs[-1]:
+            if max_obs_id < obs[-1]:  #((350, 850), (1600, 150), 2),
                 max_obs_id = obs[-1]
         self.obstacle_id = max_obs_id + 1
 
+        # LOADING ACTIVE OBSTACLE SETTINGS
         self.obs_settings = locations.locations[self.location]['obstacles']['settings']
         for active_obs_id in self.obs_settings.keys():
             if active_obs_id in self.obstacles[self.location].keys():
                 self.obstacles[self.location][active_obs_id].active_flag = True
 
+        # LOADING ENEMIES
         self.enemies = dict()
         for enemy_xy in locations.locations[self.location]['hostiles']:
             self.enemies[enemy_xy] = dict()
@@ -1257,6 +1259,7 @@ class World(object):
 
         # for dem in locations[self.location]['demolishers']['dem rectangles']:
         #     self.add_demolisher(dem)
+        self.global_offset_xy = [MAXX_DIV_2, MAXY_DIV_2]
         self.camera.setup(locations.locations[self.location]['size'][0], locations.locations[self.location]['size'][1])
         self.create_snap_mesh()
 
@@ -1540,7 +1543,7 @@ class World(object):
                                                   self.zoom_factor * (obs.rectangle.y - self.camera.offset_y),
                                                   self.zoom_factor * obs.rectangle.width,
                                                   self.zoom_factor * obs.rectangle.height))
-            border_color = RED if self.selected_obs_id == obs.id else GREEN
+            border_color = RED if self.selected_obs_id == obs.id else BLUE
             border_thickness = 5 if self.selected_obs_id == obs.id else 1
             pygame.draw.rect(self.screen, border_color, (self.zoom_factor * (obs.rectangle.x - self.camera.offset_x),
                                                   self.zoom_factor * (obs.rectangle.y - self.camera.offset_y),
@@ -2371,7 +2374,6 @@ class World(object):
                         # This obstacle follow the mouse to change self location.
                         self.selected_obs_id = self.to_be_selected_obs_id
                         self.to_be_selected_obs_id = -1
-
 
             if self.selected_obs_id > 0:
                 self.obstacles[self.location][self.selected_obs_id].rectangle.topleft = self.mouse_xy_snapped_to_mesh
