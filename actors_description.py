@@ -257,6 +257,46 @@ player_jake = {
             'activity at frames': {},
             'sound': None, 'sound at frames': (0,), 'repeat from frame': 0
         },
+        'sliding right': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (56,), 'speed': 1,
+            'activity at frames': {
+                1: {
+                    'sound': 'step',
+                },
+            },
+            'repeat from frame': 0
+        },
+        'sliding left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (70,), 'speed': 1,
+            'activity at frames': {
+                1: {
+                    'sound': 'step',
+                },
+            },
+            'repeat from frame': 0
+        },
+        'hopping back process right': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (5,), 'speed': 1,
+            'activity at frames': {
+                1: {
+                    'sound': 'step',
+                },
+            },
+            'repeat from frame': 0
+        },
+        'hopping back process left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (20,), 'speed': 1,
+            'activity at frames': {
+                1: {
+                    'sound': 'step',
+                },
+            },
+            'repeat from frame': 0
+        },
         'run right': {
                 'repeat': True, 'interruptable': True,
                 'sequence': (28,29,30,31,32,33,34,35,36,37,38,), 'speed': 1,
@@ -309,18 +349,6 @@ player_jake = {
                 'activity at frames': {},
                 'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
-        'sliding right': {
-            'repeat': True, 'interruptable': True,
-            'sequence': (73,), 'speed': 1,
-            'activity at frames': {},
-            'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 0
-        },
-        'sliding left': {
-            'repeat': True, 'interruptable': True,
-            'sequence': (73,), 'speed': 1,
-            'activity at frames': {},
-            'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 0
-        },
         'crouch right': {
             'repeat': True, 'interruptable': True,
             'sequence': (4,4,4,4), 'speed': 1,
