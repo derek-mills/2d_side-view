@@ -26,6 +26,7 @@ class Camera(object):
         self.max_offset_x = max_x - MAXX
         self.max_y = max_y
         self.max_offset_y = max_y - MAXY
+        print(f'[camera setup] {self.max_x=} {self.max_y=} {self.max_offset_x=} {self.max_offset_y=}')
 
     def apply_offset(self, xy, velocity_x, velocity_y, instant_follow=False):
 

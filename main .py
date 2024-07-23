@@ -58,7 +58,8 @@ def main():
     # world.load_new_location['new location'] = location[0]
 
     while not world.is_quit:
-        time_passed = clock.tick(FPS)
+        time_passed = clock.tick(50)
+        # time_passed = clock.tick(FPS)
         world.game_cycles_counter += 1
         if world.game_cycles_counter > 100000:
             world.game_cycles_counter = 0

@@ -786,8 +786,10 @@ class World(object):
                     break
                 # self.backgrounds[self.location]['back level 1']['whole image'] = pygame.image.load('img/backgrounds/' + self.location + '_back_1.png')
                 self.backgrounds[self.location]['background layers'][layer_number]['size'] = self.backgrounds[self.location]['background layers'][layer_number]['image'].get_size()
-                self.backgrounds[self.location]['background layers'][layer_number]['offset x corrector'] = 0.01 * (100 * (self.backgrounds[self.location]['background layers'][layer_number]['size'][0] - MAXX) / self.camera.max_offset_x)
-                self.backgrounds[self.location]['background layers'][layer_number]['offset y corrector'] = 0.01 * (100 * (self.backgrounds[self.location]['background layers'][layer_number]['size'][1] - MAXY) / self.camera.max_offset_y)
+                self.backgrounds[self.location]['background layers'][layer_number]['offset x corrector'] = \
+                    0.01 * (100 * (self.backgrounds[self.location]['background layers'][layer_number]['size'][0] - MAXX) / self.camera.max_offset_x) if self.camera.max_offset_x > 0 else 0
+                self.backgrounds[self.location]['background layers'][layer_number]['offset y corrector'] = \
+                    0.01 * (100 * (self.backgrounds[self.location]['background layers'][layer_number]['size'][1] - MAXY) / self.camera.max_offset_y) if self.camera.max_offset_y > 0 else 0
                 # self.backgrounds[self.location]['back level 1']['offset x corrector'] = (100 - MAXX * 100 / self.backgrounds[self.location]['back level 1']['size'][0]) * 0.01
                 # self.backgrounds[self.location]['back level 1']['offset y corrector'] = (100 - MAXY * 100 / self.backgrounds[self.location]['back level 1']['size'][1]) * 0.01
                 # self.backgrounds[self.location]['back level 1']['offset x corrector'] = self.backgrounds[self.location]['back level 1']['size'][0] / self.camera.max_x
