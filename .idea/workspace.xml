@@ -6,7 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/camera.py" beforeDir="false" afterPath="$PROJECT_DIR$/camera.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphics.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/backgrounds/cave_back_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/backgrounds/cave_back_2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/backgrounds/cave_ground.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/backgrounds/cave_ground.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/backgrounds/entrance_back_0.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/backgrounds/entrance_back_0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/backgrounds/thrash control room_ground.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/backgrounds/thrash control room_ground.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main .py" beforeDir="false" afterPath="$PROJECT_DIR$/main .py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
@@ -142,13 +147,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00246" summary="Level editor: opportunity added to change obstacles location by LMB">
-      <created>1720754936204</created>
-      <option name="number" value="00246" />
-      <option name="presentableId" value="LOCAL-00246" />
-      <option name="project" value="LOCAL" />
-      <updated>1720754936204</updated>
     </task>
     <task id="LOCAL-00247" summary="Level editor: change obstacle location by LMB causes obstacle border color and thickness change">
       <created>1720755320928</created>
@@ -486,7 +484,14 @@
       <option name="project" value="LOCAL" />
       <updated>1721715561126</updated>
     </task>
-    <option name="localTasksCounter" value="295" />
+    <task id="LOCAL-00295" summary="Corrected layers scroll system">
+      <created>1721717727217</created>
+      <option name="number" value="00295" />
+      <option name="presentableId" value="LOCAL-00295" />
+      <option name="project" value="LOCAL" />
+      <updated>1721717727217</updated>
+    </task>
+    <option name="localTasksCounter" value="296" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -501,7 +506,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Level editor: improved shadow drawing under the elevated obstacle sprites, so as the elevated obstacles drawing themselves." />
     <MESSAGE value="Level editor: fixed some bugs with PNG export of elevated obstacles." />
     <MESSAGE value="Level editor: swapped menu items scroll directions while mouse wheel rolls." />
     <MESSAGE value="Level editor: minimap appeared." />
@@ -526,6 +530,7 @@
     <MESSAGE value="Added background layers" />
     <MESSAGE value="Added middle background layer individual offset corrector to get it scroll not so fast as foreground layer." />
     <MESSAGE value="Layers will be automatically added if their filenames are similar to *_back_0.png, *_back_1.png, *_back_2.png etc.&#10;They shall scroll according to their sizes: the smaller moves slower." />
-    <option name="LAST_COMMIT_MESSAGE" value="Layers will be automatically added if their filenames are similar to *_back_0.png, *_back_1.png, *_back_2.png etc.&#10;They shall scroll according to their sizes: the smaller moves slower." />
+    <MESSAGE value="Corrected layers scroll system" />
+    <option name="LAST_COMMIT_MESSAGE" value="Corrected layers scroll system" />
   </component>
 </project>

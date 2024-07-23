@@ -242,7 +242,7 @@ player_jake = {
             'hardness': 100
         },
     },
-    'max speed': 10,
+    'max speed': 12,
     'items': (whip,fireball_staff,sword,kitchen_knife,),
     'animations': {
         'stand still right': {

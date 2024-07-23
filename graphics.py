@@ -4,7 +4,18 @@ from pygame.constants import SRCALPHA
 
 pygame.init()
 clock = pygame.time.Clock()
+# pygame.FULLSCREEN    create a fullscreen display
+# pygame.DOUBLEBUF     (obsolete in pygame 2) recommended for HWSURFACE or OPENGL
+# pygame.HWSURFACE     (obsolete in pygame 2) hardware accelerated, only in FULLSCREEN
+# pygame.OPENGL        create an OpenGL-renderable display
+# pygame.RESIZABLE     display window should be sizeable
+# pygame.NOFRAME       display window will have no border or controls
+# pygame.SCALED        resolution depends on desktop size and scale graphics
+# pygame.SHOWN         window is opened in visible mode (default)
+# pygame.HIDDEN        window is opened in hidden mode
+# screen = pygame.display.set_mode((1024,768))
 screen = pygame.display.set_mode(SCREENSIZE)
+# screen = pygame.display.set_mode(SCREENSIZE, vsync=1)
 screen.convert_alpha()
 dim_screen_cover = screen.convert_alpha()
 dim_screen_cover.fill(BLACK)

@@ -780,7 +780,7 @@ class World(object):
             while True:
                 self.backgrounds[self.location]['background layers'][layer_number] = dict()
                 try:
-                    self.backgrounds[self.location]['background layers'][layer_number]['image'] = pygame.image.load('img/backgrounds/' + self.location + '_back_' + str(layer_number)+'.png')
+                    self.backgrounds[self.location]['background layers'][layer_number]['image'] = pygame.image.load('img/backgrounds/' + self.location + '_back_' + str(layer_number)+'.png').convert()
                 except FileNotFoundError:
                     del self.backgrounds[self.location]['background layers'][layer_number]
                     break
@@ -801,7 +801,7 @@ class World(object):
             print(self.backgrounds[self.location])
 
             self.backgrounds[self.location]['ground level'] = dict()
-            self.backgrounds[self.location]['ground level']['image'] = pygame.image.load('img/backgrounds/' + self.location + '_ground.png')
+            self.backgrounds[self.location]['ground level']['image'] = pygame.image.load('img/backgrounds/' + self.location + '_ground.png').convert()
             self.backgrounds[self.location]['ground level']['bounding rect'] = self.backgrounds[self.location]['ground level']['image'].get_bounding_rect()
             # self.backgrounds[self.location]['ground level']['cropped image'] = self.backgrounds[self.location]['ground level']['whole image'].subsurface(self.backgrounds[self.location]['ground level']['bounding rect'])
 

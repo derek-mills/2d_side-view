@@ -45,7 +45,7 @@ fades_speed = 100
 # world.location = '7d'
 # world.location = '4cb6277c-424e-11ef-b7ff-bfb4330f33e3'
 # world.location = 'thrash control room'
-world.location = 'the pit'
+# world.location = 'the pit'
 world.location = 'cave'
 # world.location = '2fa8c4fe-440c-11ef-b7ff-bfb4330f33e3'
 # world.location = 'e064a228-43e8-11ef-b7ff-bfb4330f33e3'
@@ -58,8 +58,8 @@ def main():
     # world.load_new_location['new location'] = location[0]
 
     while not world.is_quit:
-        time_passed = clock.tick(50)
-        # time_passed = clock.tick(FPS)
+        # time_passed = clock.tick()
+        time_passed = clock.tick(FPS)
         world.game_cycles_counter += 1
         if world.game_cycles_counter > 100000:
             world.game_cycles_counter = 0
