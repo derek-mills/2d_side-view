@@ -18,6 +18,8 @@ from pygame.constants import *
 # modes = pygame.display.list_modes()
 # MAXX = 1000
 # MAXY = 1000
+# MAXX = 1000
+# MAXY = 600
 MAXX = 1920
 MAXY = 1000
 # screen = pygame.display.set_mode((MAXX, MAXY))

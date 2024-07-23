@@ -526,21 +526,14 @@ class World(object):
     def render_background(self):
         # pygame.draw.rect(self.screen, GRAY, (0,0,MAXX, MAXY))
 
-        # sub_surf = self.backgrounds[self.location]['ground'].subsurface((self.camera.offset_x, self.camera.offset_y, MAXX, MAXY))
-        # self.screen.blit(sub_surf, (0, 0))
+        # self.screen.blit(self.backgrounds[self.location]['back layer 0']['image'], (0, 0))
 
-        # self.screen.blit(self.backgrounds[self.location]['ground'], (-self.camera.offset_x, -self.camera.offset_y))
+        for layer_key in self.backgrounds[self.location]['background layers'].keys():
+            self.screen.blit(self.backgrounds[self.location]['background layers'][layer_key]['image'],
+                             (-self.camera.offset_x * self.backgrounds[self.location]['background layers'][layer_key]['offset x corrector'],
+                              -self.camera.offset_y * self.backgrounds[self.location]['background layers'][layer_key]['offset y corrector']))
 
-        # rect = self.backgrounds[self.location]['ground level']['bounding rect']
-        # self.screen.blit(self.backgrounds[self.location]['ground level']['cropped image'], (-self.camera.offset_x, MAXY-self.camera.offset_y-rect.height))
-        self.screen.blit(self.backgrounds[self.location]['back level']['whole image'], (0,0))
-        # if 'whole image' in self.backgrounds[self.location]['back level 1']:
-        #     self.screen.blit(self.backgrounds[self.location]['back level 1']['whole image'], (-self.camera.offset_x // 2, -self.camera.offset_y // 2))
-        self.screen.blit(self.backgrounds[self.location]['ground level']['whole image'], (-self.camera.offset_x, -self.camera.offset_y))
-        if 'whole image' in self.backgrounds[self.location]['back level 1']:
-            self.screen.blit(self.backgrounds[self.location]['back level 1']['whole image'],
-                             (-self.camera.offset_x * self.backgrounds[self.location]['back level 1']['offset x corrector'],
-                              -self.camera.offset_y * self.backgrounds[self.location]['back level 1']['offset y corrector']))
+        self.screen.blit(self.backgrounds[self.location]['ground level']['image'], (-self.camera.offset_x, -self.camera.offset_y))
 
     def render_player_actor(self):
         actor = self.actors['player']
@@ -722,7 +715,7 @@ class World(object):
         self.render_demolishers()
         self.render_actors()
         # self.render_player_actor()
-        self.render_debug_info()
+        # self.render_debug_info()
         self.render_info_panel_overlay()
 
     def render_info_panel_overlay(self):
@@ -781,26 +774,33 @@ class World(object):
 
         if self.location not in self.backgrounds.keys():
             self.backgrounds[self.location] = dict()
-            self.backgrounds[self.location]['back level'] = dict()
-            self.backgrounds[self.location]['back level']['whole image'] = pygame.image.load('img/backgrounds/' + self.location + '_back.png')
-            self.backgrounds[self.location]['back level 1'] = dict()
-            try:
-                self.backgrounds[self.location]['back level 1']['whole image'] = pygame.image.load('img/backgrounds/' + self.location + '_back_1.png')
-                self.backgrounds[self.location]['back level 1']['size'] = self.backgrounds[self.location]['back level 1']['whole image'].get_size()
-                self.backgrounds[self.location]['back level 1']['offset x corrector'] = 0.01 * (100 * (self.backgrounds[self.location]['back level 1']['size'][0] - MAXX) / self.camera.max_offset_x)
-                self.backgrounds[self.location]['back level 1']['offset y corrector'] = 0.01 * (100 * (self.backgrounds[self.location]['back level 1']['size'][1] - MAXY) / self.camera.max_offset_y)
+            # layers_out = False
+            layer_number = 0
+            self.backgrounds[self.location]['background layers'] = dict()
+            while True:
+                self.backgrounds[self.location]['background layers'][layer_number] = dict()
+                try:
+                    self.backgrounds[self.location]['background layers'][layer_number]['image'] = pygame.image.load('img/backgrounds/' + self.location + '_back_' + str(layer_number)+'.png')
+                except FileNotFoundError:
+                    del self.backgrounds[self.location]['background layers'][layer_number]
+                    break
+                # self.backgrounds[self.location]['back level 1']['whole image'] = pygame.image.load('img/backgrounds/' + self.location + '_back_1.png')
+                self.backgrounds[self.location]['background layers'][layer_number]['size'] = self.backgrounds[self.location]['background layers'][layer_number]['image'].get_size()
+                self.backgrounds[self.location]['background layers'][layer_number]['offset x corrector'] = 0.01 * (100 * (self.backgrounds[self.location]['background layers'][layer_number]['size'][0] - MAXX) / self.camera.max_offset_x)
+                self.backgrounds[self.location]['background layers'][layer_number]['offset y corrector'] = 0.01 * (100 * (self.backgrounds[self.location]['background layers'][layer_number]['size'][1] - MAXY) / self.camera.max_offset_y)
                 # self.backgrounds[self.location]['back level 1']['offset x corrector'] = (100 - MAXX * 100 / self.backgrounds[self.location]['back level 1']['size'][0]) * 0.01
                 # self.backgrounds[self.location]['back level 1']['offset y corrector'] = (100 - MAXY * 100 / self.backgrounds[self.location]['back level 1']['size'][1]) * 0.01
                 # self.backgrounds[self.location]['back level 1']['offset x corrector'] = self.backgrounds[self.location]['back level 1']['size'][0] / self.camera.max_x
                 # self.backgrounds[self.location]['back level 1']['offset y corrector'] = self.backgrounds[self.location]['back level 1']['size'][1] / self.camera.max_y
-                print('BACK 1 OFFSETS')
-                print(self.backgrounds[self.location]['back level 1']['offset x corrector'])
-                print(self.backgrounds[self.location]['back level 1']['offset y corrector'])
-            except:
-                pass
+                print('BACK OFFSETS of layer #', layer_number)
+                print(self.backgrounds[self.location]['background layers'][layer_number]['offset x corrector'])
+                print(self.backgrounds[self.location]['background layers'][layer_number]['offset y corrector'])
+                layer_number += 1
+            print(self.backgrounds[self.location])
+
             self.backgrounds[self.location]['ground level'] = dict()
-            self.backgrounds[self.location]['ground level']['whole image'] = pygame.image.load('img/backgrounds/' + self.location + '_ground.png')
-            self.backgrounds[self.location]['ground level']['bounding rect'] = self.backgrounds[self.location]['ground level']['whole image'].get_bounding_rect()
+            self.backgrounds[self.location]['ground level']['image'] = pygame.image.load('img/backgrounds/' + self.location + '_ground.png')
+            self.backgrounds[self.location]['ground level']['bounding rect'] = self.backgrounds[self.location]['ground level']['image'].get_bounding_rect()
             # self.backgrounds[self.location]['ground level']['cropped image'] = self.backgrounds[self.location]['ground level']['whole image'].subsurface(self.backgrounds[self.location]['ground level']['bounding rect'])
 
     def processing_human_input(self):

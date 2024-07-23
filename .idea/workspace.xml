@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/constants.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -140,13 +141,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00244" summary="Level editor: default value returns now while text input routine.">
-      <created>1720685709627</created>
-      <option name="number" value="00244" />
-      <option name="presentableId" value="LOCAL-00244" />
-      <option name="project" value="LOCAL" />
-      <updated>1720685709627</updated>
     </task>
     <task id="LOCAL-00245" summary="Some slightly improvement.&#10;Experiment with player actor's rectangle size.">
       <created>1720686550963</created>
@@ -484,7 +478,14 @@
       <option name="project" value="LOCAL" />
       <updated>1721638764752</updated>
     </task>
-    <option name="localTasksCounter" value="293" />
+    <task id="LOCAL-00293" summary="Added middle background layer individual offset corrector to get it scroll not so fast as foreground layer.">
+      <created>1721704452051</created>
+      <option name="number" value="00293" />
+      <option name="presentableId" value="LOCAL-00293" />
+      <option name="project" value="LOCAL" />
+      <updated>1721704452051</updated>
+    </task>
+    <option name="localTasksCounter" value="294" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -499,7 +500,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Level editor: improving PNG level export." />
     <MESSAGE value="Level editor: improved shadow drawing under the elevated obstacle sprites." />
     <MESSAGE value="Level editor: improved shadow drawing under the elevated obstacle sprites, so as the elevated obstacles drawing themselves." />
     <MESSAGE value="Level editor: fixed some bugs with PNG export of elevated obstacles." />
@@ -524,6 +524,7 @@
     <MESSAGE value="Some unnecessary changes" />
     <MESSAGE value="Added some animations" />
     <MESSAGE value="Added background layers" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added background layers" />
+    <MESSAGE value="Added middle background layer individual offset corrector to get it scroll not so fast as foreground layer." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added middle background layer individual offset corrector to get it scroll not so fast as foreground layer." />
   </component>
 </project>
