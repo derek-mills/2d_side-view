@@ -538,7 +538,9 @@ class World(object):
         #     self.screen.blit(self.backgrounds[self.location]['back level 1']['whole image'], (-self.camera.offset_x // 2, -self.camera.offset_y // 2))
         self.screen.blit(self.backgrounds[self.location]['ground level']['whole image'], (-self.camera.offset_x, -self.camera.offset_y))
         if 'whole image' in self.backgrounds[self.location]['back level 1']:
-            self.screen.blit(self.backgrounds[self.location]['back level 1']['whole image'], (-self.camera.offset_x // 16, -self.camera.offset_y // 16))
+            self.screen.blit(self.backgrounds[self.location]['back level 1']['whole image'],
+                             (-self.camera.offset_x * self.backgrounds[self.location]['back level 1']['offset x corrector'],
+                              -self.camera.offset_y * self.backgrounds[self.location]['back level 1']['offset y corrector']))
 
     def render_player_actor(self):
         actor = self.actors['player']
@@ -785,11 +787,15 @@ class World(object):
             try:
                 self.backgrounds[self.location]['back level 1']['whole image'] = pygame.image.load('img/backgrounds/' + self.location + '_back_1.png')
                 self.backgrounds[self.location]['back level 1']['size'] = self.backgrounds[self.location]['back level 1']['whole image'].get_size()
-                self.backgrounds[self.location]['back level 1']['offset x'] = self.camera.max_offset_x // (self.backgrounds[self.location]['back level 1']['size'][0] - MAXX)
-                self.backgrounds[self.location]['back level 1']['offset y'] = self.camera.max_offset_y // (self.backgrounds[self.location]['back level 1']['size'][1] - MAXY)
+                self.backgrounds[self.location]['back level 1']['offset x corrector'] = 0.01 * (100 * (self.backgrounds[self.location]['back level 1']['size'][0] - MAXX) / self.camera.max_offset_x)
+                self.backgrounds[self.location]['back level 1']['offset y corrector'] = 0.01 * (100 * (self.backgrounds[self.location]['back level 1']['size'][1] - MAXY) / self.camera.max_offset_y)
+                # self.backgrounds[self.location]['back level 1']['offset x corrector'] = (100 - MAXX * 100 / self.backgrounds[self.location]['back level 1']['size'][0]) * 0.01
+                # self.backgrounds[self.location]['back level 1']['offset y corrector'] = (100 - MAXY * 100 / self.backgrounds[self.location]['back level 1']['size'][1]) * 0.01
+                # self.backgrounds[self.location]['back level 1']['offset x corrector'] = self.backgrounds[self.location]['back level 1']['size'][0] / self.camera.max_x
+                # self.backgrounds[self.location]['back level 1']['offset y corrector'] = self.backgrounds[self.location]['back level 1']['size'][1] / self.camera.max_y
                 print('BACK 1 OFFSETS')
-                print(self.backgrounds[self.location]['back level 1']['offset x'])
-                print(self.backgrounds[self.location]['back level 1']['offset y'])
+                print(self.backgrounds[self.location]['back level 1']['offset x corrector'])
+                print(self.backgrounds[self.location]['back level 1']['offset y corrector'])
             except:
                 pass
             self.backgrounds[self.location]['ground level'] = dict()
