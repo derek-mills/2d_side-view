@@ -153,6 +153,7 @@ class World(object):
             return
 
         for item in menu_items_list:
+            print(f'[generate menu] Adding item: {item}')
             self.menu_structure[menu_name][item] = dict()
             self.menu_structure[menu_name][item]['description'] = item
             for reference_key in self.menu_structure['_template_menu_item_'].keys():
@@ -371,6 +372,12 @@ class World(object):
                                 print('[processing menu] store value: ', menu_item['value'])
                                 command = menu_item['target'] + ' = copy(menu_item[\'value\'])'
                                 exec(command)
+                                if type(menu_item['value']) == list:
+                                    menu_item['value'] = list()
+                                elif type(menu_item['value']) == dict:
+                                    menu_item['value'] = dict()
+                                elif type(menu_item['value']) == str:
+                                    menu_item['value'] = ''
 
                                 # print('[processing menu] store value: ', eval(menu_item['target']))
                                 print('[processing menu] target becomes: ', self.menu_structure['custom obs properties']['ok']['value'])
