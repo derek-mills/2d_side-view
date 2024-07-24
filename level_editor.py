@@ -245,6 +245,7 @@ class World(object):
 
     def processing_menu_items(self):
         # self.processing_human_input()
+        # print(self.menu_structure['custom obs properties']['ok']['value'])
         if self.input_cancel:
             self.input_cancel = False
             # Delete LIFO menu pile:
@@ -365,30 +366,32 @@ class World(object):
                             # ----------SWITCH STATE-----------------------------------
                             elif menu_item['LMB action'] == 'switch state':
                                 # menu_item['label'] = menu_item['label'].split(':')[0]
-                                for_exec = ''
+                                print('[processing menu] --------------SWITCH TRUE\FALSE------------------')
                                 for k_tmp_string in menu_item['target']:
-                                    for_exec = k_tmp_string + ' = True if not eval(k_tmp_string) else False'
-                                    exec(for_exec)
+                                    print('[processing menu]', k_tmp_string, ' was: ', eval(k_tmp_string))
+                                    command = k_tmp_string + ' = True if not eval(k_tmp_string) else False'
+                                    exec(command)
+                                    print('[processing menu]', k_tmp_string, ' becomes: ', eval(k_tmp_string))
                                     # menu_item['label'] += ': ' + str(eval(k_tmp_string))
                             # ----------STORE VALUE------------------------------------------
                             elif menu_item['LMB action'] == 'store value':
+                                print('[processing menu] --------------STORE VALUE------------------')
+                                print('[processing menu] target: ', menu_item['target'])
+                                print('[processing menu] target was: ', eval(menu_item['target']))
                                 print('[processing menu] store value: ', menu_item['value'])
-                                command = menu_item['target'] + ' = copy(menu_item[\'value\'])'
+                                command = menu_item['target'] + ' = menu_item[\'value\']'
+                                # print('[processing menu] command: ', command)
                                 exec(command)
-                                if type(menu_item['value']) == list:
-                                    menu_item['value'] = list()
-                                elif type(menu_item['value']) == dict:
-                                    menu_item['value'] = dict()
-                                elif type(menu_item['value']) == str:
-                                    menu_item['value'] = ''
-
-                                # print('[processing menu] store value: ', eval(menu_item['target']))
-                                print('[processing menu] target becomes: ', self.menu_structure['custom obs properties']['ok']['value'])
-
-                                # exec(menu_item['target'] + ' = menu_item[\'value\']')
+                                print('[processing menu] target becomes: ', eval(menu_item['target']))
+                                # return
                             # ----------RETURN VALUE------------------------------------------
                             elif menu_item['LMB action'] == 'return value':
-                                self.menu_return_value = menu_item['value']
+                                print('[processing menu] --------------RETURN VALUE------------------')
+                                # self.menu_return_value = menu_item['value']
+                                self.menu_return_value = copy(eval(menu_item['target']))
+                                print('[processing menu] RETURN FROM:', menu_item['label'])
+                                print(f'[processing menu] RETURN VALUE: {self.menu_return_value}')
+                                # print('owiqjdoiwjdoiqwjdiowqjdiowqjdiowqjdoiwqjdoiwqjdoiwqjdoi')
                                 self.menu_actions_done = True
                                 return
 
@@ -411,31 +414,6 @@ class World(object):
                                 # self.delete_all_child_menu_piles(menu_item['menu pile'])
                                 self.menu_actions_done = True
                                 return
-                            # else:
-                            #     # Submenu ends action.
-                            #     if menu_item['parent menu pile'] == 0:
-                            #         self.menu_return_value = eval(menu_item['target'])
-                            #         # self.delete_all_child_menu_piles(menu_item['menu pile'])
-                            #         self.menu_actions_done = True
-                            #         return
-                            #     if self.menu_items[menu_item['parent menu pile']][menu_item['parent dict key']]['after action']:
-                            #         if self.menu_items[menu_item['parent menu pile']][menu_item['parent dict key']]['after action'] == 'keep going':
-                            #             self.delete_all_child_menu_piles(menu_item['parent menu pile'])
-                            #             # self.delete_all_child_menu_piles(menu_item['menu pile'] - 1)
-                            #             print('[processing menu]', self.menu_structure['main menu']['load']['target'])
-                            #             print('[processing menu]', self.menu_items.keys())
-                            #             return
-                            #         else:
-                            #             self.menu_return_value = eval(menu_item['target'])
-                            #             self.menu_actions_done = True
-                            #             return
-                            #     else:
-                            #         # self.delete_all_child_menu_piles(menu_item['menu pile'])
-                            #         # self.reset_menu()
-                            #         self.menu_return_value = eval(menu_item['target'])
-                            #         self.menu_actions_done = True
-                            #         return
-
                 else:
                     menu_item['hovered'] = False
                     if menu_item['on hover action'] and menu_item['has been already activated']:
@@ -1100,9 +1078,14 @@ class World(object):
             item['parent dict key'] = parent_dict_key
             if after_action:
                 item['after action'] = after_action
-            # item['submenu actions done'] = False
-            item['rectangle'] = pygame.Rect(start_x, start_y - dy, width, height)
-            # item['rectangle'] = pygame.Rect(top_left_corner[0], start_y - dy, width, height)
+
+            if i == 'ok':
+                # item['rectangle'] = pygame.Rect(top_left_corner[0] - 80, top_left_corner[1], 80, total_menu_height - height)
+                item['rectangle'] = pygame.Rect(start_x - 80, start_y - total_menu_height + height, 80, total_menu_height - height)
+            else:
+                item['rectangle'] = pygame.Rect(start_x, start_y - dy, width, height)
+                dy += height
+
             if 'target' not in item.keys() or not item['target']:
                 # print(f'[add_menu] try to set {target=} for {menu_name=}')
                 item['target'] = target
@@ -1110,8 +1093,10 @@ class World(object):
                 item['LMB action'] = exit_action
             if 'colors' in item.keys():
                 self.add_menu_item(item, item['colors']['frame color'], item['colors']['bg color'], item['colors']['txt color'])
+
             self.add_menu_item(item)
-            dy += height
+            # dy += height
+
 
         self.menu_items[self.active_menu_pile][0]['menu rect'] = pygame.Rect(start_x, start_y, width, total_menu_height)
         # self.menu_items[self.active_menu_pile][0]['menu rect'] = pygame.Rect(top_left_corner[0], start_y, width, total_menu_height)
@@ -2032,6 +2017,8 @@ class World(object):
         # self.menu_action_pending = ''
         self.reset_menu()
         self.reset_menu_walk_tree()
+        self.menu_structure = deepcopy(menu_structure)
+        # self.menu_return_value = None
         # Create menu of 'obstacle edit' type, which was predefined in self.menu_structure:
         if obs.id not in self.obs_settings.keys():
             # Fill menu items with default values:
@@ -2062,7 +2049,7 @@ class World(object):
         print(f'[edit obs] {self.menu_walk_tree=} {self.menu_return_value=}')
         # exit()
         self.obs_settings[obs.id] = dict()
-        self.obs_settings[obs.id] = copy(self.menu_return_value)
+        self.obs_settings[obs.id] = deepcopy(self.menu_return_value)
 
 
         for k in self.obs_settings[obs.id].keys():
