@@ -17,7 +17,7 @@ from demolisher import *
 import camera
 import fonts
 from level_editor_menu_structure import *
-from copy import copy
+from copy import copy, deepcopy
 # from sound import *
 # import json
 # import pickle
@@ -119,7 +119,8 @@ class World(object):
         self.menu_walk_tree = list()
         # self.menu_path = list()
         self.menu_elements_bindings = menu_elements_bindings
-        self.menu_structure = menu_structure
+        # self.menu_structure = dict()
+        self.menu_structure = deepcopy(menu_structure)
         self.menu_items_y_scroll_speed: int = 50  #
 
         self.minimap = None
@@ -152,6 +153,7 @@ class World(object):
         if len(menu_items_list) == 0:
             return
 
+        # self.menu_structure[menu_name] = dict()
         for item in menu_items_list:
             print(f'[generate menu] Adding item: {item}')
             self.menu_structure[menu_name][item] = dict()
@@ -196,6 +198,7 @@ class World(object):
         self.menu_actions_done = False
         self.active_menu_pile = 0
         self.menu_return_value = None
+        # self.menu_structure = dict()
         # self.menu_walk_tree = list()
         # self.menu_walk_tree = list()
 
@@ -1207,6 +1210,8 @@ class World(object):
         # self.add_menu_item(pygame.Rect(xy[0], xy[1], txt_surf.get_width() + 20, txt_surf.get_height() + 20), prompt + ': ', '', False)
 
     def load(self):
+        self.menu_structure = dict()
+        self.menu_structure = deepcopy(menu_structure)
         # LOADING GRAPHICAL TILES:
         if not self.tiles:
             start_x = 0
