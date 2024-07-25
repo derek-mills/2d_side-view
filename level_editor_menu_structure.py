@@ -683,7 +683,7 @@ menu_structure = {
             'LMB action': 'return value',
             'submenu exit action': '',
             'value': 'new',
-            'target': None,
+            'target': "self.menu_structure['main menu']['new']['value']",
             'description': 'new',
             'active': True,
             'after action': None
