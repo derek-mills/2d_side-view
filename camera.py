@@ -23,9 +23,17 @@ class Camera(object):
 
     def setup(self, max_x, max_y):
         self.max_x = max_x
-        self.max_offset_x = max_x - MAXX
         self.max_y = max_y
-        self.max_offset_y = max_y - MAXY
+        if self.max_x < MAXX:
+            self.max_offset_x = - (MAXX_DIV_2 - self.max_x // 2)
+        else:
+            self.max_offset_x = max_x - MAXX
+        if self.max_y < MAXY:
+            self.max_offset_y = - (MAXY_DIV_2 - self.max_y // 2)
+        else:
+            self.max_offset_y = max_y - MAXY
+
+        # self.max_offset_y = max_y - MAXY
         print(f'[camera setup] {self.max_x=} {self.max_y=} {self.max_offset_x=} {self.max_offset_y=}')
 
     def apply_offset(self, xy, velocity_x, velocity_y, instant_follow=False):
@@ -36,15 +44,21 @@ class Camera(object):
         self.offset_scroll_velocity_y = velocity_y
         self.instant_follow = instant_follow
 
-        # if x <= 0:
-        if x <= MAXX_DIV_2:
+        if self.max_x < MAXX:
+            # self.target_offset_x = -100
+            self.target_offset_x = self.max_offset_x
+            self.instant_follow = True
+        elif x <= MAXX_DIV_2:
             self.target_offset_x = 0
         else:
             self.target_offset_x = x - MAXX_DIV_2
             if self.target_offset_x > self.max_offset_x:
                 self.target_offset_x = self.max_offset_x
-    
-        if y <= MAXY_DIV_2:
+
+        if self.max_y < MAXY:
+            self.target_offset_y = self.max_offset_y
+            self.instant_follow = True
+        elif y <= MAXY_DIV_2:
             self.target_offset_y = 0
         else:
             self.target_offset_y = y - MAXY_DIV_2

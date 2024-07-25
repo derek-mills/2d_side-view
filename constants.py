@@ -20,7 +20,7 @@ from pygame.constants import *
 # MAXY = 1000
 # MAXX = 1000
 # MAXY = 600
-MAXX = 1920
+MAXX = 1500
 MAXY = 1000
 # screen = pygame.display.set_mode((MAXX, MAXY))
 # screen = pygame.display.set_mode(modes[0])
@@ -71,10 +71,10 @@ MUSIC_VOLUME = 0.3
 music_ambient_1 = 'music/ambient_1.mp3'
 music_fight_1 = 'music/fight_1.mp3'
 
-DEFAULT_MOUSE_CURSOR_SIZE = 50
-DEFAULT_MOUSE_CURSOR_SIZE_DIV_2 = 25
+# DEFAULT_MOUSE_CURSOR_SIZE = 50
+# DEFAULT_MOUSE_CURSOR_SIZE_DIV_2 = 25
 
-DEFAULT_DARKNESS_DEEPNESS = 240
+# DEFAULT_DARKNESS_DEEPNESS = 240
 
 # print(GOLDEN_RATIO_X_SMALL, GOLDEN_RATIO_X_BIG)
 # print(GOLDEN_RATIO_Y_SMALL, GOLDEN_RATIO_Y_BIG)

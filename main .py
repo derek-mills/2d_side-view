@@ -46,7 +46,8 @@ fades_speed = 100
 # world.location = '4cb6277c-424e-11ef-b7ff-bfb4330f33e3'
 # world.location = 'thrash control room'
 # world.location = 'the pit'
-world.location = 'cave'
+world.location = 'test1'
+# world.location = 'cave'
 # world.location = '2fa8c4fe-440c-11ef-b7ff-bfb4330f33e3'
 # world.location = 'e064a228-43e8-11ef-b7ff-bfb4330f33e3'
 world.add_actor(player_jake, (200, 200))
