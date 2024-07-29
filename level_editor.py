@@ -2265,7 +2265,11 @@ class World(object):
                     self.edit_obs(self.obstacles[self.location][obs_id])
                     if self.show_minimap:
                         self.refresh_minimap()
-                    # return
+                    self.save()
+                    # self.load()
+                    self.obs_settings[obs_id] = locations.locations[self.location]['obstacles']['settings'][obs_id]
+                    self.obstacles[self.location][obs_id].active_flag = True
+                    return
                 else:
                     if self.mouse_xy_snapped_to_mesh in self.clipboard.keys():
                         # Delete existing dot from the clipboard.
@@ -2357,6 +2361,13 @@ class World(object):
                             self.add_obstacle(description)
                             if self.show_minimap:
                                 self.refresh_minimap()
+                            # self.save()
+                            # self.load()
+                            # # LOADING ACTIVE OBSTACLE SETTINGS
+                            # self.obs_settings = locations.locations[self.location]['obstacles']['settings']
+                            # for active_obs_id in self.obs_settings.keys():
+                            #     if active_obs_id in self.obstacles[self.location].keys():
+                            #         self.obstacles[self.location][active_obs_id].active_flag = True
                         elif self.object_types[self.current_object_type] == 'demolisher':
                             description = (self.new_obs_rect.topleft, self.new_obs_rect.size, self.demolishers_id)
                             self.demolishers_id += 1

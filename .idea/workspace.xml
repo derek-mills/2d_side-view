@@ -6,25 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/backgrounds/2fa8c4fe-440c-11ef-b7ff-bfb4330f33e3_ground.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/backgrounds/cave_back_0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/backgrounds/cave_back_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/backgrounds/cave_back_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/backgrounds/cave_ground.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/backgrounds/cave_minimap.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/backgrounds/entrance_back_0.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/backgrounds/entrance_back_0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/backgrounds/entrance_back_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/backgrounds/entrance_back_1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/backgrounds/entrance_back_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/backgrounds/entrance_back_2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/backgrounds/entrance_ground.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/backgrounds/entrance_ground.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/backgrounds/the pit_back_0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/backgrounds/the pit_ground.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/backgrounds/the pit_minimap.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/backgrounds/thrash control room_back_0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/backgrounds/thrash control room_ground.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/level_editor_menu_structure.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor_menu_structure.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locations_back.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations_back.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main .py" beforeDir="false" afterPath="$PROJECT_DIR$/main .py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +56,7 @@
       </console-settings>
     </option>
   </component>
-  <component name="RunManager" selected="Python.main ">
+  <component name="RunManager" selected="Python.level_editor">
     <configuration name="generate_sprite_sheet" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ver_0.000.1" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -144,8 +127,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.main " />
         <item itemvalue="Python.level_editor" />
+        <item itemvalue="Python.main " />
         <item itemvalue="Python.generate_sprite_sheet" />
       </list>
     </recent_temporary>
@@ -158,20 +141,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00251" summary="Level editor: spacebar is able to delete hostiles.">
-      <created>1720771587293</created>
-      <option name="number" value="00251" />
-      <option name="presentableId" value="LOCAL-00251" />
-      <option name="project" value="LOCAL" />
-      <updated>1720771587293</updated>
-    </task>
-    <task id="LOCAL-00252" summary="Level editor: LMB is able to add en enemies.">
-      <created>1720772665772</created>
-      <option name="number" value="00252" />
-      <option name="presentableId" value="LOCAL-00252" />
-      <option name="project" value="LOCAL" />
-      <updated>1720772665772</updated>
     </task>
     <task id="LOCAL-00253" summary="Level editor: .">
       <created>1720773474293</created>
@@ -502,7 +471,21 @@
       <option name="project" value="LOCAL" />
       <updated>1721888069391</updated>
     </task>
-    <option name="localTasksCounter" value="300" />
+    <task id="LOCAL-00300" summary="Compiled a map of a playground. Begin to build a scenes according this map.">
+      <created>1721895575747</created>
+      <option name="number" value="00300" />
+      <option name="presentableId" value="LOCAL-00300" />
+      <option name="project" value="LOCAL" />
+      <updated>1721895575747</updated>
+    </task>
+    <task id="LOCAL-00301" summary="Compiled a map of a playground. Continue to build a scenes according this map.">
+      <created>1721896759436</created>
+      <option name="number" value="00301" />
+      <option name="presentableId" value="LOCAL-00301" />
+      <option name="project" value="LOCAL" />
+      <updated>1721896759436</updated>
+    </task>
+    <option name="localTasksCounter" value="302" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -517,8 +500,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Background leaved to be blit as whole PNG image without unnecessary cropping." />
-    <MESSAGE value="Fixin' countless annoying errors." />
     <MESSAGE value="Level editor: menu items with True/False choices there have color differentiation now." />
     <MESSAGE value="Some messing." />
     <MESSAGE value="Level editor: fixed 'value' in 'obs multiple selection' menu to return tuple (obs_id, obs_location, action_set_number)." />
@@ -542,6 +523,8 @@
     <MESSAGE value="Level editor: issue with copies of menu structure data used after other map has loaded: all changes remain even if copy() routine used. Only deepcopy() has made a trick." />
     <MESSAGE value="Level editor: issue with reset function within obstacle edit menu." />
     <MESSAGE value="Handling issue when size of the map is lesser than the camera view." />
-    <option name="LAST_COMMIT_MESSAGE" value="Handling issue when size of the map is lesser than the camera view." />
+    <MESSAGE value="Compiled a map of a playground. Begin to build a scenes according this map." />
+    <MESSAGE value="Compiled a map of a playground. Continue to build a scenes according this map." />
+    <option name="LAST_COMMIT_MESSAGE" value="Compiled a map of a playground. Continue to build a scenes according this map." />
   </component>
 </project>
