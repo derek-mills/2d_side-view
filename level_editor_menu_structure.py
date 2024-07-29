@@ -43,6 +43,7 @@ menu_structure = {
     '_template_obs_settings_': ('sprite', 'sprite elevated',
                                 'force render', 'invisible',
                                 'ghost', 'speed',
+                                'item', 'item name',
                                 'actors may grab', 'actors pass through',
                                 'active', 'actions',
                                 'collideable', 'gravity affected',
@@ -68,6 +69,29 @@ menu_structure = {
             # 'description': '*item',
             'active': True,
             # 'after action': 'keep going'
+        },
+    },
+
+    'item single selection': {
+        'header': {
+            'rectangle': None,
+            'label': 'CHOOSE ITEM:',
+            'description': 'item single selection',
+            'on hover action': None,
+            'LMB action': None,
+            'active': False,
+            'after action': None
+        },
+        'generate list from': '*all_items.keys()',
+        'predefined keys': {
+            'LMB action': 'return value',
+            'value': '$description',
+            'label': '$description',
+            # 'target': '$description',
+            # 'target': '',
+            'description': '*item',
+            'active': True,
+            # 'after action': None
         },
     },
 

@@ -5,6 +5,7 @@ from shutil import move
 
 import pygame
 from actors_description import all_hostiles
+from items import all_items
 from constants import *
 # from locations import *
 # from world import *
@@ -77,11 +78,12 @@ class World(object):
         self.camera_follows_mouse = True
         self.camera_scroll_speed = 4
 
-        self.object_types = ('obstacle', 'enemy')
+        self.object_types = ('obstacle', 'enemy', 'item')
         # self.object_types = ('obstacle', 'demolisher')
         self.current_object_type = 0
 
         self.enemies = dict()
+        self.items = dict()
         # self.enemy_id: int = 1
         self.obstacles = dict()
         self.obstacle_id: int = 0
@@ -93,7 +95,8 @@ class World(object):
         self.screen = None
         self.camera = camera.Camera()
         # self.camera.setup(MAXX*2, MAXY)
-        self.global_offset_xy = [MAXX_DIV_2, MAXY_DIV_2]
+        self.global_offset_xy = [0, 0]
+        # self.global_offset_xy = [MAXX_DIV_2, MAXY_DIV_2]
 
         self.new_obs_rect = pygame.Rect(0,0,0,0)
         self.new_obs_rect_started = False
@@ -388,7 +391,18 @@ class World(object):
                             elif menu_item['LMB action'] == 'return value':
                                 print('[processing menu] --------------RETURN VALUE------------------')
                                 # self.menu_return_value = menu_item['value']
-                                self.menu_return_value = copy(eval(menu_item['target']))
+                                print(menu_item['target'], menu_item['value'])
+                                if menu_item['target']:
+                                    try:
+                                        self.menu_return_value = copy(eval(menu_item['target']))
+                                    except NameError:
+                                        self.menu_return_value = menu_item['target']
+                                else:
+                                    try:
+                                        self.menu_return_value = copy(eval(menu_item['value']))
+                                    except NameError:
+                                        self.menu_return_value = menu_item['value']
+
                                 print('[processing menu] RETURN FROM:', menu_item['label'])
                                 print(f'[processing menu] RETURN VALUE: {self.menu_return_value}')
                                 # print('owiqjdoiwjdoiqwjdiowqjdiowqjdiowqjdoiwqjdoiwqjdoiwqjdoi')
@@ -1256,7 +1270,8 @@ class World(object):
 
         # for dem in locations[self.location]['demolishers']['dem rectangles']:
         #     self.add_demolisher(dem)
-        self.global_offset_xy = [MAXX_DIV_2, MAXY_DIV_2]
+        self.global_offset_xy = [0,0]
+        # self.global_offset_xy = [MAXX_DIV_2, MAXY_DIV_2]
         self.camera.setup(locations.locations[self.location]['size'][0], locations.locations[self.location]['size'][1])
         self.create_snap_mesh()
 
@@ -1531,6 +1546,15 @@ class World(object):
     def render_minimap(self):
         sz = self.minimap_zoomed_out.get_size()
         self.screen.blit(self.minimap_zoomed_out, (0, MAXY - sz[1]))
+
+    def render_items(self):
+        for item_xy in self.items.keys():
+            i = self.items[item_xy]
+            pygame.draw.rect(self.screen, YELLOW,
+                             (self.zoom_factor * (item_xy[0] - self.camera.offset_x),
+                              self.zoom_factor * (item_xy[1] - self.camera.offset_y),
+                              self.zoom_factor * 50,
+                              self.zoom_factor * 50))
 
     def render_obstacles(self):
         for key in self.obstacles[self.location].keys():
@@ -2046,15 +2070,15 @@ class World(object):
             self.reset_menu()
             return
 
-        print(f'[edit obs] {self.menu_walk_tree=} {self.menu_return_value=}')
+        # print(f'[edit obs] {self.menu_walk_tree=} {self.menu_return_value=}')
         # exit()
         self.obs_settings[obs.id] = dict()
         self.obs_settings[obs.id] = deepcopy(self.menu_return_value)
 
 
-        for k in self.obs_settings[obs.id].keys():
-            o = self.obs_settings[obs.id][k]
-            print(f'[edit_obs] {k}: {o}')
+        # for k in self.obs_settings[obs.id].keys():
+        #     o = self.obs_settings[obs.id][k]
+        #     print(f'[edit_obs] {k}: {o}')
 
         self.reset_menu_walk_tree()
         self.reset_menu()
@@ -2314,6 +2338,40 @@ class World(object):
                     if self.show_minimap:
                         self.refresh_minimap()
                     return
+                elif self.object_types[self.current_object_type] == 'item':
+                    saved_mouse_pos = self.mouse_xy_snapped_to_mesh
+                    self.reset_menu()
+                    self.reset_menu_walk_tree()
+                    self.menu_structure = deepcopy(menu_structure)
+                    self.add_menu({'submenu name': 'item single selection', 'value': ''}, self.mouse_xy, 400, 15)
+                    background = self.screen.convert_alpha()
+                    while not self.menu_actions_done:
+                        self.processing_human_input()
+                        self.processing_menu_items()
+                        self.render_background(background)
+                        self.dim()
+                        self.render_menu_items()
+                        self.render_debug_info()
+                        pygame.display.flip()
+                    self.reset_human_input()
+
+                    if 'CANCEL MENU' in self.menu_walk_tree:
+                        self.reset_menu_walk_tree()
+                        self.reset_menu()
+                        return
+                    else:
+                        # item_to_add = copy(all_hostiles['demon 1'])  # Create a copy of item
+                        item_to_add = copy(all_items[self.menu_return_value])  # Create a copy of item
+                        self.reset_menu_walk_tree()
+                        self.reset_menu()
+
+                    self.items[saved_mouse_pos] = dict()
+                    self.items[saved_mouse_pos]['name'] = item_to_add['name']
+                    self.is_left_mouse_button_down = False
+                    if self.show_minimap:
+                        self.refresh_minimap()
+
+                    return
 
                 if self.selected_obs_id > 0:
                     # We've got an already selected obstacle, which following mouse cursor.
@@ -2430,6 +2488,7 @@ class World(object):
             self.render_obstacles()
             self.render_demolishers()
             self.render_enemies()
+            self.render_items()
             self.render_new_obs()
             self.render_debug_info()
             self.render_snap_mesh()

@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/items.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/backgrounds/luxuryelevatorroom_ground.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/backgrounds/luxuryelevatorroom_ground.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/level_editor_menu_structure.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor_menu_structure.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +58,7 @@
       </console-settings>
     </option>
   </component>
-  <component name="RunManager" selected="Python.main ">
+  <component name="RunManager" selected="Python.level_editor">
     <configuration name="generate_sprite_sheet" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ver_0.000.1" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -126,8 +129,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.main " />
         <item itemvalue="Python.level_editor" />
+        <item itemvalue="Python.main " />
         <item itemvalue="Python.generate_sprite_sheet" />
       </list>
     </recent_temporary>
@@ -140,13 +143,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00256" summary="Level editor: added opportunity to export obstacle scheme into *.png file.">
-      <created>1721015184863</created>
-      <option name="number" value="00256" />
-      <option name="presentableId" value="LOCAL-00256" />
-      <option name="project" value="LOCAL" />
-      <updated>1721015184863</updated>
     </task>
     <task id="LOCAL-00257" summary="While hanging on the edge actor release it if he gets hurt, not stay in infinite 'hop back' state.">
       <created>1721028844714</created>
@@ -484,7 +480,14 @@
       <option name="project" value="LOCAL" />
       <updated>1722238468585</updated>
     </task>
-    <option name="localTasksCounter" value="305" />
+    <task id="LOCAL-00305" summary="Some minor improvements; added elevator luxury room">
+      <created>1722239612227</created>
+      <option name="number" value="00305" />
+      <option name="presentableId" value="LOCAL-00305" />
+      <option name="project" value="LOCAL" />
+      <updated>1722239612227</updated>
+    </task>
+    <option name="localTasksCounter" value="306" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -499,7 +502,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Level editor: obstacle_settings_list moved to common menu_structure dict.&#10;Added 'force render' obstacle attribute, which cause forced rendering of an obstacle in real time" />
     <MESSAGE value="Level editor: added keyboard input processing routines." />
     <MESSAGE value="Level editor: added an opportunity to rename the currently editing map." />
     <MESSAGE value="Level editor: after rename of the currently editing map all connected files are renamed too." />
@@ -524,6 +526,7 @@
     <MESSAGE value="Level editor: just have been edited obstacles become visually different immediately." />
     <MESSAGE value="Some minor improvements" />
     <MESSAGE value="Prevented actor's disappearing from the camera surveillance while quick descent." />
-    <option name="LAST_COMMIT_MESSAGE" value="Prevented actor's disappearing from the camera surveillance while quick descent." />
+    <MESSAGE value="Some minor improvements; added elevator luxury room" />
+    <option name="LAST_COMMIT_MESSAGE" value="Some minor improvements; added elevator luxury room" />
   </component>
 </project>
