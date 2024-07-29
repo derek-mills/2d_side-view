@@ -245,6 +245,12 @@ class World(object):
                                else abs(self.actors['player'].fall_speed)
             # y_offset_speed = abs(self.actors['player'].fall_speed)        # if self.actors['player'].speed > 0:
 
+        if self.actors['player'].rectangle.bottom > self.camera.rectangle.bottom:
+            y_offset_speed *= 2
+        else:
+            if self.actors['player'].rectangle.top < self.camera.rectangle.top:
+                y_offset_speed *= 2
+
         self.camera.apply_offset((self.actors['player'].rectangle.centerx, self.actors['player'].rectangle.top),
                                  x_offset_speed, y_offset_speed)
                                  # self.actors['player'].speed * 0.9, self.actors['player'].fall_speed)
