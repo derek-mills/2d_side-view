@@ -1570,7 +1570,7 @@ class World(object):
                 pygame.draw.rect(surf, WHITE, (obs.rectangle.x, obs.rectangle.y, obs.rectangle.width, obs.rectangle.height))
             else:
                 if key in self.obs_settings.keys():
-                    if self.obs_settings[key]['invisible']:
+                    if self.obs_settings[key]['invisible'] or obs.active_flag:
                         continue
                     if 'sprite' in self.obs_settings[key].keys():
                         if self.obs_settings[key]['sprite elevated']:
@@ -2473,6 +2473,7 @@ def main():
     #     world.load()
 
     world.process()
+    pygame.display.set_caption(world.location + ' ' + str(world.camera.max_x) + 'x' + str(world.camera.max_y))  # + str(world.exec_time_))
     pygame.display.flip()
 
 

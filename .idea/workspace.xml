@@ -6,8 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/backgrounds/stairway_ground.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/backgrounds/stairway_ground.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locations_back.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations_back.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main .py" beforeDir="false" afterPath="$PROJECT_DIR$/main .py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,13 +145,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00253" summary="Level editor: .">
-      <created>1720773474293</created>
-      <option name="number" value="00253" />
-      <option name="presentableId" value="LOCAL-00253" />
-      <option name="project" value="LOCAL" />
-      <updated>1720773474293</updated>
     </task>
     <task id="LOCAL-00254" summary="Level editor: added ability to allow or disallow grabbing for every obstacle.&#10;Added background render.">
       <created>1721012003220</created>
@@ -485,7 +482,14 @@
       <option name="project" value="LOCAL" />
       <updated>1721896759436</updated>
     </task>
-    <option name="localTasksCounter" value="302" />
+    <task id="LOCAL-00302" summary="Level editor: just have been edited obstacles become visually different immediately.">
+      <created>1722222422469</created>
+      <option name="number" value="00302" />
+      <option name="presentableId" value="LOCAL-00302" />
+      <option name="project" value="LOCAL" />
+      <updated>1722222422470</updated>
+    </task>
+    <option name="localTasksCounter" value="303" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -500,7 +504,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Level editor: menu items with True/False choices there have color differentiation now." />
     <MESSAGE value="Some messing." />
     <MESSAGE value="Level editor: fixed 'value' in 'obs multiple selection' menu to return tuple (obs_id, obs_location, action_set_number)." />
     <MESSAGE value="Level editor: obstacle_settings_list moved to common menu_structure dict.&#10;Added 'force render' obstacle attribute, which cause forced rendering of an obstacle in real time" />
@@ -525,6 +528,7 @@
     <MESSAGE value="Handling issue when size of the map is lesser than the camera view." />
     <MESSAGE value="Compiled a map of a playground. Begin to build a scenes according this map." />
     <MESSAGE value="Compiled a map of a playground. Continue to build a scenes according this map." />
-    <option name="LAST_COMMIT_MESSAGE" value="Compiled a map of a playground. Continue to build a scenes according this map." />
+    <MESSAGE value="Level editor: just have been edited obstacles become visually different immediately." />
+    <option name="LAST_COMMIT_MESSAGE" value="Level editor: just have been edited obstacles become visually different immediately." />
   </component>
 </project>

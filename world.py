@@ -523,11 +523,30 @@ class World(object):
         for dead_id in dead:
             del self.actors[self.location][dead_id]
 
-    def render_background(self):
+    def render_background_(self):
         # pygame.draw.rect(self.screen, GRAY, (0,0,MAXX, MAXY))
 
         # self.screen.blit(self.backgrounds[self.location]['back layer 0']['image'], (0, 0))
         # print(self.camera.offset_x, self.camera.offset_y)
+
+        for layer_key in self.backgrounds[self.location]['background layers'].keys():
+            sub_surf = self.backgrounds[self.location]['background layers'][layer_key]['image'].subsurface(
+                             (-self.camera.offset_x * self.backgrounds[self.location]['background layers'][layer_key]['offset x corrector'],
+                              -self.camera.offset_y * self.backgrounds[self.location]['background layers'][layer_key]['offset y corrector'], MAXX, MAXY))
+            self.screen.blit(sub_surf, (0, 0))
+
+        # sub_surf = self.backgrounds[self.location]['ground level']['image'].subsurface(self.camera.offset_x, self.camera.offset_y, MAXX, MAXY)
+        # self.screen.blit(sub_surf, (0,0))
+
+        self.screen.blit(self.backgrounds[self.location]['ground level']['image'], (-self.camera.offset_x, -self.camera.offset_y))
+
+    def render_background(self):
+        if self.camera.max_x < MAXX or self.camera.max_y < MAXY:
+            pygame.draw.rect(self.screen, BLACK, (0,0,MAXX, MAXY))
+
+        # self.screen.blit(self.backgrounds[self.location]['back layer 0']['image'], (0, 0))
+        # print(self.camera.offset_x, self.camera.offset_y)
+
         for layer_key in self.backgrounds[self.location]['background layers'].keys():
             self.screen.blit(self.backgrounds[self.location]['background layers'][layer_key]['image'],
                              (-self.camera.offset_x * self.backgrounds[self.location]['background layers'][layer_key]['offset x corrector'],

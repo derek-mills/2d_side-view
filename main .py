@@ -39,18 +39,9 @@ fades_speed = 100
 # world.press_any_key()
 # black_out(world.screen, world.screen, 5)
 # ---------------------------------------------------
-# world.location = 'Cellar'
-# world.location = 'Hall'
-# world.location = 'room 2'
-# world.location = '7d'
-world.location = 'entrance'
-# world.location = 'thrash control room'
-# world.location = 'the pit'
-# world.location = 'test1'
-# world.location = 'test2'
-# world.location = 'cave'
-# world.location = '2fa8c4fe-440c-11ef-b7ff-bfb4330f33e3'
-# world.location = 'e064a228-43e8-11ef-b7ff-bfb4330f33e3'
+world.location = 'stairway'
+# world.location = 'luxuryhall'
+# world.location = 'entrance'
 world.add_actor(player_jake, (200, 200))
 world.load()
 
