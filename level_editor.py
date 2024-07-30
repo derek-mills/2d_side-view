@@ -1657,21 +1657,26 @@ class World(object):
         settings = self.obs_settings[obs_id]
         gap = 1
         font_size = 15
-        params = (
-            ('ACTIONS: ' + str(settings['actions']), BLACK) if settings['actions'] else None,
-            # ('ACTIONS: ' + str([settings['actions'][0][k] for k in settings['actions'][0]]), BLACK),
-            ('ACTORS PASS THROUGH: ' + str(settings['actors pass through']), BLACK) if settings['actors pass through'] else None,
-            ('SPEED: ' + str(settings['speed']), BLACK),
-            ('COLLIDES: ' + str(settings['collideable']), BLACK) if settings['collideable'] else None,
-            ('GRAVITY: ' + str(settings['gravity affected']), BLACK) if settings['gravity affected'] else None,
-            ('INVISIBLE: ' + str(settings['invisible']), BLACK) if settings['invisible'] else None,
-            ('TELEPORT: ' + str(settings['teleport']), BLACK) if settings['teleport'] else None,
-            ('TELEPORT TO: ' + str(settings['teleport description']['new location']), BLACK) if settings['teleport'] else None,
-            ('TELEPORT POINT: ' + str(settings['teleport description']['xy']), BLACK) if settings['teleport'] else None,
-            ('TRIGGER: ' + str(settings['trigger']), BLACK) if settings['trigger'] else None,
-            ('IT MAKES ACTIVE: ' + str(settings['trigger description']['make active']), BLACK) if settings['trigger'] else None,
-            ('DISAPPEARS: ' + str(settings['trigger description']['disappear']), BLACK) if settings['trigger'] else None,
-        )
+        if settings['item']:
+            params = (
+                ('ITEM NAME: ' + settings['item name']['name'], BLACK),
+            )
+        else:
+            params = (
+                ('ACTIONS: ' + str(settings['actions']), BLACK) if settings['actions'] else None,
+                # ('ACTIONS: ' + str([settings['actions'][0][k] for k in settings['actions'][0]]), BLACK),
+                ('ACTORS PASS THROUGH: ' + str(settings['actors pass through']), BLACK) if settings['actors pass through'] else None,
+                ('SPEED: ' + str(settings['speed']), BLACK),
+                ('COLLIDES: ' + str(settings['collideable']), BLACK) if settings['collideable'] else None,
+                ('GRAVITY: ' + str(settings['gravity affected']), BLACK) if settings['gravity affected'] else None,
+                ('INVISIBLE: ' + str(settings['invisible']), BLACK) if settings['invisible'] else None,
+                ('TELEPORT: ' + str(settings['teleport']), BLACK) if settings['teleport'] else None,
+                ('TELEPORT TO: ' + str(settings['teleport description']['new location']), BLACK) if settings['teleport'] else None,
+                ('TELEPORT POINT: ' + str(settings['teleport description']['xy']), BLACK) if settings['teleport'] else None,
+                ('TRIGGER: ' + str(settings['trigger']), BLACK) if settings['trigger'] else None,
+                ('IT MAKES ACTIVE: ' + str(settings['trigger description']['make active']), BLACK) if settings['trigger'] else None,
+                ('DISAPPEARS: ' + str(settings['trigger description']['disappear']), BLACK) if settings['trigger'] else None,
+            )
         rendered_params = list()
         max_width = 0
         for p in params:
@@ -2379,7 +2384,6 @@ class World(object):
                     self.is_left_mouse_button_down = False
                     if self.show_minimap:
                         self.refresh_minimap()
-
                     return
 
                 if self.selected_obs_id > 0:
