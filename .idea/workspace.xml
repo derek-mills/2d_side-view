@@ -5,9 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -142,13 +139,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00267" summary="Level editor: improved shadow drawing under the elevated obstacle sprites.">
-      <created>1721118531607</created>
-      <option name="number" value="00267" />
-      <option name="presentableId" value="LOCAL-00267" />
-      <option name="project" value="LOCAL" />
-      <updated>1721118531607</updated>
     </task>
     <task id="LOCAL-00268" summary="Level editor: improved shadow drawing under the elevated obstacle sprites, so as the elevated obstacles drawing themselves.">
       <created>1721119187289</created>
@@ -486,7 +476,14 @@
       <option name="project" value="LOCAL" />
       <updated>1722323756042</updated>
     </task>
-    <option name="localTasksCounter" value="316" />
+    <task id="LOCAL-00316" summary="Dead enemies drop XP">
+      <created>1722327661614</created>
+      <option name="number" value="00316" />
+      <option name="presentableId" value="LOCAL-00316" />
+      <option name="project" value="LOCAL" />
+      <updated>1722327661614</updated>
+    </task>
+    <option name="localTasksCounter" value="317" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -501,7 +498,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Some unnecessary changes" />
     <MESSAGE value="Added some animations" />
     <MESSAGE value="Added background layers" />
     <MESSAGE value="Added middle background layer individual offset corrector to get it scroll not so fast as foreground layer." />
@@ -526,6 +522,7 @@
     <MESSAGE value="Added items amount decreasing if needed." />
     <MESSAGE value="President lux added" />
     <MESSAGE value="Penthouse added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Penthouse added" />
+    <MESSAGE value="Dead enemies drop XP" />
+    <option name="LAST_COMMIT_MESSAGE" value="Dead enemies drop XP" />
   </component>
 </project>

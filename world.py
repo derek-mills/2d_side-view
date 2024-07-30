@@ -143,6 +143,7 @@ class World(object):
         entity.id = self.obstacle_id
         entity.rectangle.topleft = xy
         entity.origin_xy = xy
+        entity.max_speed = 5
         entity.rectangle.width = 50
         entity.rectangle.height = 50
         entity.invisible = False
@@ -516,9 +517,9 @@ class World(object):
             if actor.dead:
                 dead.append(actor.id)
                 if all_hostiles[actor.name]['drop']:
-                    print(all_hostiles[actor.name]['drop'])
+                    # print(all_hostiles[actor.name]['drop'])
                     for drop in all_hostiles[actor.name]['drop']:
-                        self.add_item(all_items[drop], actor.rectangle.center)
+                        self.add_item(all_items[drop], (randint(actor.rectangle.x, actor.rectangle.right), actor.rectangle.top))
                 continue
 
             actor.percept({k: self.obstacles[self.location][k] for k in self.active_obstacles}, self.demolishers[self.location])
