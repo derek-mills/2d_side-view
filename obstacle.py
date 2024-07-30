@@ -12,6 +12,8 @@ class Obstacle(Entity):
         self.let_actors_pass_through: bool = False
         self.let_actors_grab: bool = False
         self.idle = False
+        self.is_item = False
+        self.item_name = ''
 
         self.active_flag = False
         self.active = False

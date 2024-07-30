@@ -163,6 +163,10 @@ class World(object):
             entity.max_speed = self.locations[self.location]['obstacles']['settings'][entity.id]['speed']
             entity.let_actors_grab = self.locations[self.location]['obstacles']['settings'][entity.id]['actors may grab'] if 'actors may grab' in \
                                       self.locations[self.location]['obstacles']['settings'][entity.id].keys() else False
+            entity.is_item = self.locations[self.location]['obstacles']['settings'][entity.id]['item'] if 'item' in \
+                                      self.locations[self.location]['obstacles']['settings'][entity.id].keys() else False
+            entity.item_name = self.locations[self.location]['obstacles']['settings'][entity.id]['item name']['name'] if 'item name' in \
+                                      self.locations[self.location]['obstacles']['settings'][entity.id].keys() else ''
             # print(f'[add_obstacle] Added active obstacle: {entity.actions=} {entity.is_gravity_affected=}')
         # Add an obstacle to the world storage:
         # if self.location not in self.obstacles.keys():
@@ -305,32 +309,37 @@ class World(object):
                 continue
             if obs.teleport:
                 if obs.trigger_activated:
-                    print('obs')
+                    # print('obs')
                     self.change_location(obs.teleport_description)
                     obs.trigger_activated = False
                     return
             if obs.trigger:
                 if obs.trigger_activated:
                     obs.trigger = False
-                    if obs.trigger_description['make active'] is not None:
-                        for obstacle_to_be_activated in obs.trigger_description['make active']:
-                            make_active_id = obstacle_to_be_activated[0]
-                            obs_loc = self.location if obstacle_to_be_activated[1] == 'self' else obstacle_to_be_activated[1]
-                            if obs_loc not in self.obstacles.keys():
-                                self.obstacles_changes_pending[obs_loc] = dict()
-                                self.obstacles_changes_pending[obs_loc][make_active_id] = dict()
-                                self.obstacles_changes_pending[obs_loc][make_active_id]['activate actions set'] = obstacle_to_be_activated[2]
-                            #     self.locations[obs_loc]['obstacles']['settings'][make_active_id]['active'] = True
-                                continue
-                            activate_actions_set = obstacle_to_be_activated[2]
+                    if obs.is_item:
+                        print("ITEM GRAB")
+                        dead.append(obs.id)
+                        continue
+                    else:
+                        if obs.trigger_description['make active'] is not None:
+                            for obstacle_to_be_activated in obs.trigger_description['make active']:
+                                make_active_id = obstacle_to_be_activated[0]
+                                obs_loc = self.location if obstacle_to_be_activated[1] == 'self' else obstacle_to_be_activated[1]
+                                if obs_loc not in self.obstacles.keys():
+                                    self.obstacles_changes_pending[obs_loc] = dict()
+                                    self.obstacles_changes_pending[obs_loc][make_active_id] = dict()
+                                    self.obstacles_changes_pending[obs_loc][make_active_id]['activate actions set'] = obstacle_to_be_activated[2]
+                                #     self.locations[obs_loc]['obstacles']['settings'][make_active_id]['active'] = True
+                                    continue
+                                activate_actions_set = obstacle_to_be_activated[2]
 
-                            self.obstacles[obs_loc][make_active_id].active = True
-                            self.obstacles[obs_loc][make_active_id].need_next_acton = True
-                            self.obstacles[obs_loc][make_active_id].actions_set_number = activate_actions_set
-                            self.obstacles[obs_loc][make_active_id].current_action = None
-                            # self.obstacles[self.location][make_active_id].current_action = -1
-                            # self.obstacles[self.location][make_active_id].process_()
-                            # self.obstacles[self.location][make_active_id].next_action()
+                                self.obstacles[obs_loc][make_active_id].active = True
+                                self.obstacles[obs_loc][make_active_id].need_next_acton = True
+                                self.obstacles[obs_loc][make_active_id].actions_set_number = activate_actions_set
+                                self.obstacles[obs_loc][make_active_id].current_action = None
+                                # self.obstacles[self.location][make_active_id].current_action = -1
+                                # self.obstacles[self.location][make_active_id].process_()
+                                # self.obstacles[self.location][make_active_id].next_action()
 
                     if obs.trigger_description['disappear']:
                         dead.append(obs.id)

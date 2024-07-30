@@ -568,6 +568,7 @@ menu_structure = {
                        "self.menu_structure['custom obs properties']['ok']['value']['force render']",
                        "self.menu_structure['custom obs properties']['ok']['value']['collideable']",
                        "self.menu_structure['custom obs properties']['ok']['value']['gravity affected']",
+                       "self.menu_structure['custom obs properties']['ok']['value']['trigger']",
                        ),
             # 'target': ("self.menu_structure['custom obs properties']['ok']['value']['trigger']",
             #           "self.menu_structure['custom obs properties']['ok']['value']['teleport']"),
