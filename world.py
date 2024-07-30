@@ -167,10 +167,11 @@ class World(object):
             if 'item' in self.locations[self.location]['obstacles']['settings'][entity.id].keys():
                 entity.is_item = self.locations[self.location]['obstacles']['settings'][entity.id]['item']
                 entity.item_name = self.locations[self.location]['obstacles']['settings'][entity.id]['item name']['name']
-                # print(entity.item_name)
-                entity.item_amount = all_items[entity.item_name]['amount']
-                entity.item_amount_threshold = all_items[entity.item_name]['amount threshold']
-                entity.item_amount_decrease_speed = all_items[entity.item_name]['amount decrease speed']
+                if entity.item_name:
+                    # print(entity.item_name)
+                    entity.item_amount = all_items[entity.item_name]['amount']
+                    entity.item_amount_threshold = all_items[entity.item_name]['amount threshold']
+                    entity.item_amount_decrease_speed = all_items[entity.item_name]['amount decrease speed']
                 # entity.item_name = self.locations[self.location]['obstacles']['settings'][entity.id]['item name']['name'] if 'item name' in \
                 #                       self.locations[self.location]['obstacles']['settings'][entity.id].keys() else ''
             # print(f'[add_obstacle] Added active obstacle: {entity.actions=} {entity.is_gravity_affected=}')

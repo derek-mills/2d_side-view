@@ -1,6 +1,9 @@
 import pygame
 sword = {
-    # 'aimed fire': True,
+    'amount': 1,
+    'amount threshold': 1,
+    'amount decrease speed': 0,
+    'affects on': '',
     'attack animation': 'stab',
     'ignore user input': True,  # Steal the ability to control a character for a while.
     # 'actor forward moving speed': 0.3,  # During attack an actor may uncontrollably move forward (min 0.5).
@@ -38,6 +41,11 @@ sword = {
 }
 
 kitchen_knife = {
+    'amount': 1,
+    'amount threshold': 1,
+    'amount decrease speed': 0,
+    'affects on': '',
+
     'aimed fire': True,
     'attack animation': 'stab',
     'ignore user input': True,  # Steal the ability to control a character for a while.
@@ -129,7 +137,6 @@ whip = {
 
     'attack animation': 'whip',
     'ignore user input': True,  # Steal the ability to control a character for a while.
-    # 'actor forward moving speed': 0.3,  # During attack an actor may uncontrollably move forward (min 0.5).
     'animation speed modifier': 1.,  # 0 < x < 1: speed animation up, x > 1: slow down.
     'leave particles': False,
     'attack type': 'pierce',
