@@ -6,13 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/backgrounds/hall_back_0.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/backgrounds/hall_back_0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/items.py" beforeDir="false" afterPath="$PROJECT_DIR$/items.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main .py" beforeDir="false" afterPath="$PROJECT_DIR$/main .py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -62,7 +57,7 @@
       </console-settings>
     </option>
   </component>
-  <component name="RunManager" selected="Python.level_editor">
+  <component name="RunManager" selected="Python.main ">
     <configuration name="generate_sprite_sheet" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ver_0.000.1" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -133,8 +128,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.level_editor" />
         <item itemvalue="Python.main " />
+        <item itemvalue="Python.level_editor" />
         <item itemvalue="Python.generate_sprite_sheet" />
       </list>
     </recent_temporary>
@@ -147,20 +142,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00260" summary="Level editor: added sprite choose opportunity for every obstacle to automatic make correct level PNG map in the future.">
-      <created>1721094803785</created>
-      <option name="number" value="00260" />
-      <option name="presentableId" value="LOCAL-00260" />
-      <option name="project" value="LOCAL" />
-      <updated>1721094803785</updated>
-    </task>
-    <task id="LOCAL-00261" summary="Level editor: while choosing sprite from tile set additional info window displays this sprite as preview.">
-      <created>1721102150450</created>
-      <option name="number" value="00261" />
-      <option name="presentableId" value="LOCAL-00261" />
-      <option name="project" value="LOCAL" />
-      <updated>1721102150450</updated>
     </task>
     <task id="LOCAL-00262" summary="Level editor: export to PNG including 'sprite' variable from obstacle settings, if it has been set.">
       <created>1721106783987</created>
@@ -491,7 +472,21 @@
       <option name="project" value="LOCAL" />
       <updated>1722308798812</updated>
     </task>
-    <option name="localTasksCounter" value="309" />
+    <task id="LOCAL-00309" summary="Preparing base for normal items picking up and use.">
+      <created>1722317298725</created>
+      <option name="number" value="00309" />
+      <option name="presentableId" value="LOCAL-00309" />
+      <option name="project" value="LOCAL" />
+      <updated>1722317298725</updated>
+    </task>
+    <task id="LOCAL-00310" summary="level editor: individual pop-up description for items">
+      <created>1722317544488</created>
+      <option name="number" value="00310" />
+      <option name="presentableId" value="LOCAL-00310" />
+      <option name="project" value="LOCAL" />
+      <updated>1722317544488</updated>
+    </task>
+    <option name="localTasksCounter" value="311" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -506,8 +501,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Level editor: corrected tile set slicing while map is loading." />
-    <MESSAGE value="Level editor:" />
     <MESSAGE value="Player actor's sprites redesigned to be more simple." />
     <MESSAGE value="Some animations have been remade.&#10;Added sprite sheet generator." />
     <MESSAGE value="Fixed bug when actor was unable to jump if climbing up on an obstacle was unsuccessful, and he got dropped." />
@@ -531,6 +524,8 @@
     <MESSAGE value="level editor: items selection added" />
     <MESSAGE value="level editor: items selection integrated into obs edit menu, but it doesn't work.&#10;Need to rebuild menu system once again to make it more flexible and simple." />
     <MESSAGE value="level editor: some improvements in menu generation and submenu values return.&#10;'Item' type of obstacle save its settings properly." />
-    <option name="LAST_COMMIT_MESSAGE" value="level editor: some improvements in menu generation and submenu values return.&#10;'Item' type of obstacle save its settings properly." />
+    <MESSAGE value="Preparing base for normal items picking up and use." />
+    <MESSAGE value="level editor: individual pop-up description for items" />
+    <option name="LAST_COMMIT_MESSAGE" value="level editor: individual pop-up description for items" />
   </component>
 </project>

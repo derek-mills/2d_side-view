@@ -8,7 +8,7 @@ from weapons import *
 all_items = {
     'exp':  {
         'description': 'exp orb',
-        'class': 'consumables',
+        'class': 'instant consume',
         'type': 'stats gainer',
         'label': 'exp',
         'sprite': 'exp',
@@ -17,7 +17,7 @@ all_items = {
         'amount': 200,
         'minimum amount': 100,
         'amount decrease speed': 0.1,
-        # 'affects on': 'exp',
+        'affects on': 'exp',
     },
     'health vial': {
         'description': 'health vial',

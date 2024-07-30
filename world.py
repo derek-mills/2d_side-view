@@ -319,6 +319,11 @@ class World(object):
                     obs.trigger = False
                     if obs.is_item:
                         print("ITEM GRABBED:", obs.item_name, all_items[obs.item_name])
+                        if all_items[obs.item_name]['class'] == 'instant consume':
+                            if all_items[obs.item_name]['type'] == 'stats gainer':
+                                self.actors[self.location][0].stats[all_items[obs.item_name]['affects on']] += all_items[obs.item_name]['amount']
+                        else:
+                            self.actors[self.location][0].add_items_to_inventory((all_items[obs.item_name],))
                         dead.append(obs.id)
                         continue
                     else:

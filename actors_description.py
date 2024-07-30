@@ -243,7 +243,8 @@ player_jake = {
         },
     },
     'max speed': 12,
-    'items': (whip,fireball_staff,sword,kitchen_knife,),
+    'items': (whip,),
+    # 'items': (whip,fireball_staff,sword,kitchen_knife,),
     'animations': {
         'stand still right': {
                 'repeat': True, 'interruptable': True,
