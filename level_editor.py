@@ -2375,7 +2375,7 @@ class World(object):
                         self.reset_menu()
 
                     self.items[saved_mouse_pos] = dict()
-                    self.items[saved_mouse_pos]['name'] = item_to_add['name']
+                    self.items[saved_mouse_pos]['description'] = item_to_add['description']
                     self.is_left_mouse_button_down = False
                     if self.show_minimap:
                         self.refresh_minimap()

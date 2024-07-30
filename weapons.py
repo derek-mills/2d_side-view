@@ -110,20 +110,22 @@ fireball_staff = {
 }
 
 whip = {
+    'description': 'Casual kitchen fireball staff.',
+    'class': 'weapons',
+    'type': 'melee',
+    'label': 'WHIP',
+    'sprite': 'whip',
+    'sound': 'sound_swing_2',
+
     'attack animation': 'whip',
     'ignore user input': True,  # Steal the ability to control a character for a while.
     # 'actor forward moving speed': 0.3,  # During attack an actor may uncontrollably move forward (min 0.5).
     'animation speed modifier': 1.,  # 0 < x < 1: speed animation up, x > 1: slow down.
     'leave particles': False,
-    'class': 'weapons',
-    'type': 'melee',
     'attack type': 'pierce',
-    'sound': 'sound_swing_2',
     'droppable': True,
     'need ammo': False,
     'ammo': 0,
-    'label': 'WHIP',
-    'sprite': 'whip',
     'reach': 170,
     'demolishers': (
         {
@@ -135,5 +137,5 @@ whip = {
             'aftermath': 'disappear'
         },
     ),
-    'description': 'Casual kitchen fireball staff.',
+
 }

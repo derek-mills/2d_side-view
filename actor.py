@@ -13,6 +13,15 @@ class Actor(Entity):
         self.is_collideable = True
         self.is_destructible = True
 
+        # STATS
+        self.stats = {
+            'level': 0,
+            'exp': 0,
+            'health': self.health,
+        }
+        # self.exp = 0
+        # self.level = 0
+
         # self.weapon_snap_points ={
         #     'left hand': {},
         #     'right hand': {},
@@ -111,7 +120,6 @@ class Actor(Entity):
                 'pain': 0,
                 'bleeding': 0
             },
-
         }
         self.target = None
 

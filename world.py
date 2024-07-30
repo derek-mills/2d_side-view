@@ -3,6 +3,7 @@ from actors_description import *
 from actor import *
 from obstacle import *
 from demolisher import *
+from items import all_items
 # from constants import *
 import fonts
 import camera
@@ -317,7 +318,7 @@ class World(object):
                 if obs.trigger_activated:
                     obs.trigger = False
                     if obs.is_item:
-                        print("ITEM GRAB")
+                        print("ITEM GRABBED:", obs.item_name, all_items[obs.item_name])
                         dead.append(obs.id)
                         continue
                     else:

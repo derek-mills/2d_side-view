@@ -80,9 +80,9 @@ locations = {
                 ((300, 450), (400, 50), 25),  #25
                 ((700, 450), (1400, 50), 26),  #26
                 ((250, 100), (50, 350), 27),  #27
-                ((850, 250), (50, 50), 28),  #28
-                ((1000, 150), (50, 50), 29),  #29
-                ((1000, 250), (50, 50), 30),  #30
+                ((800, 350), (50, 50), 33),  #33
+                ((900, 350), (50, 50), 34),  #34
+                ((700, 350), (50, 50), 35),  #35
                   ), # OBSTACLE RECTANGLES SECTION END
                 'settings': {
                     10: {
@@ -337,9 +337,9 @@ locations = {
                         'active': False,
                         'actions': {0: []},
                   },
-                    28: {
-                        'sprite': 44,
+                    33: {
                         'sprite elevated': False,
+                        'sprite': 0,
                         'force render': True,
                         'ghost': False,
                         'actors pass through': True,
@@ -353,13 +353,13 @@ locations = {
                         'trigger': True,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'item': True,
-                        'item name': {'name': 'exp'},
+                        'item name': {'name': 'fireball staff'},
                         'active': False,
                         'actions': {0: []},
                   },
-                    29: {
-                        'sprite': 32,
+                    34: {
                         'sprite elevated': False,
+                        'sprite': 0,
                         'force render': True,
                         'ghost': False,
                         'actors pass through': True,
@@ -373,13 +373,13 @@ locations = {
                         'trigger': True,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'item': True,
-                        'item name': {'name': 'exp'},
+                        'item name': {'name': 'health vial'},
                         'active': False,
                         'actions': {0: []},
                   },
-                    30: {
-                        'sprite': 32,
+                    35: {
                         'sprite elevated': False,
+                        'sprite': 0,
                         'force render': True,
                         'ghost': False,
                         'actors pass through': True,
