@@ -6,12 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/camera.py" beforeDir="false" afterPath="$PROJECT_DIR$/camera.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/backgrounds/lux_ground.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/backgrounds/lux_ground.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locations_back.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations_back.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main .py" beforeDir="false" afterPath="$PROJECT_DIR$/main .py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,13 +142,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00266" summary="Level editor: improved shadow drawing under the elevated obstacle sprites.">
-      <created>1721118521075</created>
-      <option name="number" value="00266" />
-      <option name="presentableId" value="LOCAL-00266" />
-      <option name="project" value="LOCAL" />
-      <updated>1721118521075</updated>
     </task>
     <task id="LOCAL-00267" summary="Level editor: improved shadow drawing under the elevated obstacle sprites.">
       <created>1721118531607</created>
@@ -489,7 +479,14 @@
       <option name="project" value="LOCAL" />
       <updated>1722322181889</updated>
     </task>
-    <option name="localTasksCounter" value="315" />
+    <task id="LOCAL-00315" summary="Penthouse added">
+      <created>1722323756042</created>
+      <option name="number" value="00315" />
+      <option name="presentableId" value="LOCAL-00315" />
+      <option name="project" value="LOCAL" />
+      <updated>1722323756042</updated>
+    </task>
+    <option name="localTasksCounter" value="316" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -504,7 +501,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Some unnecessary mess" />
     <MESSAGE value="Some unnecessary changes" />
     <MESSAGE value="Added some animations" />
     <MESSAGE value="Added background layers" />
@@ -529,6 +525,7 @@
     <MESSAGE value="self.stats is the property of Entity class now.&#10;Exp reveals under the health bar." />
     <MESSAGE value="Added items amount decreasing if needed." />
     <MESSAGE value="President lux added" />
-    <option name="LAST_COMMIT_MESSAGE" value="President lux added" />
+    <MESSAGE value="Penthouse added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Penthouse added" />
   </component>
 </project>

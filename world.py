@@ -137,9 +137,31 @@ class World(object):
         self.actors[self.location][entity.id] = entity
         self.actor_id += 1
 
+    def add_item(self, item, xy):
+        entity = Obstacle()
+        self.obstacle_id += 1
+        entity.id = self.obstacle_id
+        entity.rectangle.topleft = xy
+        entity.origin_xy = xy
+        entity.rectangle.width = 50
+        entity.rectangle.height = 50
+        entity.invisible = False
+        entity.trigger = True
+        entity.is_collideable = True
+        entity.is_gravity_affected = True
+        entity.is_force_render = True
+        entity.let_actors_pass_through = True
+        entity.is_item = True
+        entity.item_name = item['label']
+        entity.item_amount = item['amount']
+        entity.item_amount_threshold = item['amount threshold']
+        entity.item_amount_decrease_speed = item['amount decrease speed']
+        self.obstacles[self.location][entity.id] = entity
+
     def add_obstacle(self, description):
         entity = Obstacle()
         entity.id = description[-1]
+        self.obstacle_id = description[-1]
         entity.rectangle.topleft = description[0]
         entity.origin_xy = description[0]
         entity.rectangle.width = description[1][0]
@@ -493,6 +515,10 @@ class World(object):
 
             if actor.dead:
                 dead.append(actor.id)
+                if all_hostiles[actor.name]['drop']:
+                    print(all_hostiles[actor.name]['drop'])
+                    for drop in all_hostiles[actor.name]['drop']:
+                        self.add_item(all_items[drop], actor.rectangle.center)
                 continue
 
             actor.percept({k: self.obstacles[self.location][k] for k in self.active_obstacles}, self.demolishers[self.location])
