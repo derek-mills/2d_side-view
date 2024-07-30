@@ -9,8 +9,8 @@ class Entity(object):
         self.id:int = 0
         self.type: str = ''  #
         self.name: str = ''
-        self.health: float = 0.
-        self.max_health: float = 0.
+        # self.health: float = 0.
+        # self.max_health: float = 0.
         self.got_immunity_to_demolishers = list()
         self.location: str = ''
         self.__state: str = ''
@@ -31,6 +31,13 @@ class Entity(object):
         self.time_passed: int = 0
         self.cycles_passed: int = 0
 
+        # STATS
+        self.stats = {
+            'level': 0,
+            'exp': 0,
+            'health': 100.,
+            'max health': 100.,
+        }
         # ANIMATION
         self.animations = dict()
         self.animation_descriptor: str = ''

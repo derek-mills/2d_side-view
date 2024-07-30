@@ -13,12 +13,6 @@ class Actor(Entity):
         self.is_collideable = True
         self.is_destructible = True
 
-        # STATS
-        self.stats = {
-            'level': 0,
-            'exp': 0,
-            'health': self.health,
-        }
         # self.exp = 0
         # self.level = 0
 

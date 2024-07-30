@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/items.py" beforeDir="false" afterPath="$PROJECT_DIR$/items.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -142,13 +141,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00262" summary="Level editor: export to PNG including 'sprite' variable from obstacle settings, if it has been set.">
-      <created>1721106783987</created>
-      <option name="number" value="00262" />
-      <option name="presentableId" value="LOCAL-00262" />
-      <option name="project" value="LOCAL" />
-      <updated>1721106783987</updated>
     </task>
     <task id="LOCAL-00263" summary="Level editor: if menu is higher than the MAXY, it could be scrolled by mouse wheel.">
       <created>1721110721054</created>
@@ -486,7 +478,14 @@
       <option name="project" value="LOCAL" />
       <updated>1722317544488</updated>
     </task>
-    <option name="localTasksCounter" value="311" />
+    <task id="LOCAL-00311" summary="Items may be picked up">
+      <created>1722318482646</created>
+      <option name="number" value="00311" />
+      <option name="presentableId" value="LOCAL-00311" />
+      <option name="project" value="LOCAL" />
+      <updated>1722318482647</updated>
+    </task>
+    <option name="localTasksCounter" value="312" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -501,7 +500,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Player actor's sprites redesigned to be more simple." />
     <MESSAGE value="Some animations have been remade.&#10;Added sprite sheet generator." />
     <MESSAGE value="Fixed bug when actor was unable to jump if climbing up on an obstacle was unsuccessful, and he got dropped." />
     <MESSAGE value="Fixing bugs and so." />
@@ -526,6 +524,7 @@
     <MESSAGE value="level editor: some improvements in menu generation and submenu values return.&#10;'Item' type of obstacle save its settings properly." />
     <MESSAGE value="Preparing base for normal items picking up and use." />
     <MESSAGE value="level editor: individual pop-up description for items" />
-    <option name="LAST_COMMIT_MESSAGE" value="level editor: individual pop-up description for items" />
+    <MESSAGE value="Items may be picked up" />
+    <option name="LAST_COMMIT_MESSAGE" value="Items may be picked up" />
   </component>
 </project>

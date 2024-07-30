@@ -766,12 +766,15 @@ class World(object):
         gap_between_stripes = 10
         font_size = 12
         params = (
-            ('HEALTH:' + str(int(self.actors['player'].max_health)) + '/' + str(int(self.actors['player'].health)),int(self.actors['player'].health * max_stripes_width // self.actors['player'].max_health), RED),
-            # ('BLOOD VOLUME(' + str(int(actor.body_state['blood volume'])) + '):', int(actor.body_state['blood volume']*stripes_width//actor.body_state['max blood volume']), RED),
+            ('HEALTH:' + str(int(self.actors['player'].stats['max health'])) + '/' + str(int(self.actors['player'].stats['health'])),int(self.actors['player'].stats['health'] * max_stripes_width // self.actors['player'].stats['max health']), RED),
+            ('EXP:' + str(int(self.actors['player'].stats['exp'])), 0, YELLOW),
+            # ('HEALTH:' + str(int(self.actors['player'].max_health)) + '/' + str(int(self.actors['player'].health)),int(self.actors['player'].health * max_stripes_width // self.actors['player'].max_health), RED),
+
         )
         for p in params:
             self.screen.blit(fonts.all_fonts[font_size].render(p[0], True, p[2]), (start_x, start_y + gap_between_stripes))
-            pygame.draw.rect(self.screen, p[2], (start_x + 200 ,start_y+gap_between_stripes, p[1],10))
+            if p[1] > 0:
+                pygame.draw.rect(self.screen, p[2], (start_x + 200 ,start_y+gap_between_stripes, p[1],10))
             gap_between_stripes += font_size
 
     def load(self):
