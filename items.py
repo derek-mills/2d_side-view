@@ -15,8 +15,8 @@ all_items = {
         'sound': None,
 
         'amount': 200,
-        'minimum amount': 100,
-        'amount decrease speed': 0.1,
+        'amount threshold': 100,
+        'amount decrease speed': -.01,
         'affects on': 'exp',
     },
     'health vial': {
@@ -26,11 +26,11 @@ all_items = {
         'label': 'health vial',
         'sprite': 'health vial',
         'sound': None,
+        'amount': 100,
+        'amount threshold': 100,
+        'amount decrease speed': 0,
+        'affects on': '',
 
-        'amount': 200,
-        'minimum amount': 100,
-        'amount decrease speed': 0.1,
-        'affects on': 'health',
     },
     'fireball staff': fireball_staff,
     'whip': whip,

@@ -164,10 +164,15 @@ class World(object):
             entity.max_speed = self.locations[self.location]['obstacles']['settings'][entity.id]['speed']
             entity.let_actors_grab = self.locations[self.location]['obstacles']['settings'][entity.id]['actors may grab'] if 'actors may grab' in \
                                       self.locations[self.location]['obstacles']['settings'][entity.id].keys() else False
-            entity.is_item = self.locations[self.location]['obstacles']['settings'][entity.id]['item'] if 'item' in \
-                                      self.locations[self.location]['obstacles']['settings'][entity.id].keys() else False
-            entity.item_name = self.locations[self.location]['obstacles']['settings'][entity.id]['item name']['name'] if 'item name' in \
-                                      self.locations[self.location]['obstacles']['settings'][entity.id].keys() else ''
+            if 'item' in self.locations[self.location]['obstacles']['settings'][entity.id].keys():
+                entity.is_item = self.locations[self.location]['obstacles']['settings'][entity.id]['item']
+                entity.item_name = self.locations[self.location]['obstacles']['settings'][entity.id]['item name']['name']
+                # print(entity.item_name)
+                entity.item_amount = all_items[entity.item_name]['amount']
+                entity.item_amount_threshold = all_items[entity.item_name]['amount threshold']
+                entity.item_amount_decrease_speed = all_items[entity.item_name]['amount decrease speed']
+                # entity.item_name = self.locations[self.location]['obstacles']['settings'][entity.id]['item name']['name'] if 'item name' in \
+                #                       self.locations[self.location]['obstacles']['settings'][entity.id].keys() else ''
             # print(f'[add_obstacle] Added active obstacle: {entity.actions=} {entity.is_gravity_affected=}')
         # Add an obstacle to the world storage:
         # if self.location not in self.obstacles.keys():
@@ -308,6 +313,12 @@ class World(object):
             if obs.dead:
                 dead.append(obs.id)
                 continue
+            if obs.is_item:
+                # Routines for item-like obstacles:
+                if obs.item_amount_decrease_speed != 0:
+                    if obs.item_amount != obs.item_amount_threshold:
+                        # print('decrease amount', obs.item_amount)
+                        obs.item_amount += obs.item_amount_decrease_speed
             if obs.teleport:
                 if obs.trigger_activated:
                     # print('obs')
@@ -321,9 +332,11 @@ class World(object):
                         print("ITEM GRABBED:", obs.item_name, all_items[obs.item_name])
                         if all_items[obs.item_name]['class'] == 'instant consume':
                             if all_items[obs.item_name]['type'] == 'stats gainer':
-                                self.actors[self.location][0].stats[all_items[obs.item_name]['affects on']] += all_items[obs.item_name]['amount']
+                                self.actors[self.location][0].stats[all_items[obs.item_name]['affects on']] += obs.item_amount
+                                # self.actors[self.location][0].stats[all_items[obs.item_name]['affects on']] += all_items[obs.item_name]['amount']
                         else:
                             self.actors[self.location][0].add_items_to_inventory((all_items[obs.item_name],))
+                            # self.actors[self.location][0].add_items_to_inventory((all_items[obs.item_name],))
                         dead.append(obs.id)
                         continue
                     else:
