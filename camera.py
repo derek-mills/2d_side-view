@@ -85,7 +85,7 @@ class Camera(object):
                 self.offset_y = int(self.target_offset_y)
 
         self.rectangle.update(self.offset_x, self.offset_y, MAXX, MAXY)
-        self.active_objects_rectangle.update(self.offset_x - 400, 0, MAXX + 800, self.max_y)
+        self.active_objects_rectangle.update(self.offset_x - 400, self.offset_y - 400, MAXX + 800, MAXY + 800)
         # self.active_objects_rectangle.update(self.offset_x - 400, self.offset_y - 400, MAXX + 800, MAXY + 800)
 
     def apply_offset_level_editor(self, xy, velocity_x, velocity_y, instant_follow=False):

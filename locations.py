@@ -1,6 +1,71 @@
 from constants import *
 locations = {
     
+    'penthouse':
+        {
+            'music': 'music/ambient_1.mp3',
+            'description': 'apartment #1',
+            'size': (2500, 1000),
+            'hostiles': {
+              },
+            'demolishers': {
+                'dem rectangles': (
+                  ), # DEMOLISHERS RECTANGLE SECTION END
+            },
+            'obstacles': {
+                'obs rectangles': (
+                ((2450, 0), (50, 1000), 2),  #2
+                ((0, 0), (2450, 50), 3),  #3
+                ((0, 50), (50, 900), 4),  #4
+                ((2100, 950), (350, 50), 5),  #5
+                ((0, 950), (2100, 50), 6),  #6
+                ((2100, 1050), (350, 50), 7),  #7
+                  ), # OBSTACLE RECTANGLES SECTION END
+                'settings': {
+                    5: {
+                        'sprite': 0,
+                        'sprite elevated': False,
+                        'force render': False,
+                        'invisible': False,
+                        'ghost': True,
+                        'speed': 0.2,
+                        'item': False,
+                        'item name': {'name': ''},
+                        'actors may grab': False,
+                        'actors pass through': False,
+                        'active': False,
+                        'actions': {0: []},
+                        'collideable': False,
+                        'gravity affected': False,
+                        'trigger': False,
+                        'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
+                        'teleport': False,
+                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                  },
+                    7: {
+                        'sprite elevated': False,
+                        'sprite': 0,
+                        'force render': False,
+                        'ghost': False,
+                        'actors pass through': True,
+                        'actors may grab': False,
+                        'speed': 0.2,
+                        'collideable': False,
+                        'gravity affected': False,
+                        'invisible': True,
+                        'teleport': True,
+                        'teleport description': {'new location': 'lux', 'xy': ('keep x', 0.0)},
+                        'trigger': False,
+                        'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
+                        'item': False,
+                        'item name': {'name': ''},
+                        'active': False,
+                        'actions': {0: []},
+                  },
+                  } # OBSTACLE SETTINGS SECTION END
+              },
+            'items': {},
+    },
     'lux':
         {
             'music': 'music/ambient_1.mp3',
@@ -14,34 +79,107 @@ locations = {
             },
             'obstacles': {
                 'obs rectangles': (
-                ((-100, 950), (2600, 50), 1),  #1
-                ((2450, 0), (50, 950), 2),  #2
-                ((0, 0), (50, 750), 3),  #3
-                ((50, 0), (2050, 50), 4),  #4
-                ((2100, 0), (350, 50), 5),  #5
-                ((-100, 750), (50, 200), 6),  #6
-                ((-100, 700), (100, 50), 7),  #7
+                ((-100, 950), (2600, 50), 1),
+                ((2450, 0), (50, 950), 2),
+                ((0, 0), (50, 750), 3),
+                ((50, 0), (2050, 50), 4),
+                ((2100, -50), (350, 50), 5),
+                ((-100, 750), (50, 200), 6),
+                ((-100, 700), (100, 50), 7),
+                ((2100, 450), (350, 50), 22),
+                ((2100, 700), (350, 50), 23),
+                ((1400, 925), (100, 25), 28),
+                ((50, 200), (550, 50), 30),
+                ((600, 200), (1850, 50), 31),
+                ((1950, 750), (150, 50), 33),
+                ((1800, 800), (150, 50), 34),
+                ((1650, 850), (150, 50), 35),
+                ((1500, 900), (150, 50), 36),
+                ((1575, 875), (75, 25), 37),
+                ((1725, 825), (75, 25), 38),
+                ((1875, 775), (75, 25), 39),
+                ((2025, 725), (75, 25), 40),
                   ), # OBSTACLE RECTANGLES SECTION END
                 'settings': {
                     6: {
-                        'sprite elevated': False,
                         'sprite': 0,
+                        'sprite elevated': False,
                         'force render': False,
-                        'ghost': False,
-                        'actors pass through': True,
-                        'actors may grab': False,
-                        'speed': 0.2,
-                        'collideable': False,
-                        'gravity affected': False,
                         'invisible': True,
-                        'teleport': True,
-                        'teleport description': {'new location': 'luxuryelevatorroom', 'xy': (400.0, 300.0)},
-                        'trigger': False,
-                        'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
+                        'ghost': False,
+                        'speed': 0.2,
                         'item': False,
                         'item name': {'name': ''},
+                        'actors may grab': False,
+                        'actors pass through': True,
                         'active': False,
                         'actions': {0: []},
+                        'collideable': False,
+                        'gravity affected': False,
+                        'trigger': False,
+                        'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
+                        'teleport': True,
+                        'teleport description': {'new location': 'luxuryelevatorroom', 'xy': (400.0, 300.0)},
+                  },
+                    22: {
+                        'sprite': 0,
+                        'sprite elevated': False,
+                        'force render': False,
+                        'invisible': False,
+                        'ghost': True,
+                        'speed': 0.2,
+                        'item': False,
+                        'item name': {'name': ''},
+                        'actors may grab': False,
+                        'actors pass through': False,
+                        'active': False,
+                        'actions': {0: []},
+                        'collideable': False,
+                        'gravity affected': False,
+                        'trigger': False,
+                        'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
+                        'teleport': False,
+                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                  },
+                    31: {
+                        'sprite': 0,
+                        'sprite elevated': False,
+                        'force render': False,
+                        'invisible': False,
+                        'ghost': True,
+                        'speed': 0.2,
+                        'item': False,
+                        'item name': {'name': ''},
+                        'actors may grab': False,
+                        'actors pass through': False,
+                        'active': False,
+                        'actions': {0: []},
+                        'collideable': False,
+                        'gravity affected': False,
+                        'trigger': False,
+                        'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
+                        'teleport': False,
+                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                  },
+                    5: {
+                        'sprite': 0,
+                        'sprite elevated': False,
+                        'force render': False,
+                        'invisible': True,
+                        'ghost': False,
+                        'speed': 0.2,
+                        'item': False,
+                        'item name': {'name': ''},
+                        'actors may grab': False,
+                        'actors pass through': True,
+                        'active': False,
+                        'actions': {0: []},
+                        'collideable': False,
+                        'gravity affected': False,
+                        'trigger': False,
+                        'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
+                        'teleport': True,
+                        'teleport description': {'new location': 'penthouse', 'xy': ('keep x', 850.0)},
                   },
                   } # OBSTACLE SETTINGS SECTION END
               },

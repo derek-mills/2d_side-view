@@ -1657,7 +1657,7 @@ class World(object):
         settings = self.obs_settings[obs_id]
         gap = 1
         font_size = 15
-        if settings['item']:
+        if 'item' in settings and settings['item name']:
             params = (
                 ('ITEM NAME: ' + settings['item name']['name'], BLACK),
             )
