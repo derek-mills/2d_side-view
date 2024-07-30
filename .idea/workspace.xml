@@ -25,7 +25,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master_menu_redesign" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -57,7 +57,7 @@
       </console-settings>
     </option>
   </component>
-  <component name="RunManager" selected="Python.level_editor">
+  <component name="RunManager" selected="Python.main ">
     <configuration name="generate_sprite_sheet" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ver_0.000.1" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -128,8 +128,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.level_editor" />
         <item itemvalue="Python.main " />
+        <item itemvalue="Python.level_editor" />
         <item itemvalue="Python.generate_sprite_sheet" />
       </list>
     </recent_temporary>
@@ -142,13 +142,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00258" summary="Hopping down from ghost platforms is simplified, 'hanging on ghost' state deprecated">
-      <created>1721029340796</created>
-      <option name="number" value="00258" />
-      <option name="presentableId" value="LOCAL-00258" />
-      <option name="project" value="LOCAL" />
-      <updated>1721029340796</updated>
     </task>
     <task id="LOCAL-00259" summary="Some improvements">
       <created>1721032739957</created>
@@ -486,7 +479,14 @@
       <option name="project" value="LOCAL" />
       <updated>1722245587885</updated>
     </task>
-    <option name="localTasksCounter" value="307" />
+    <task id="LOCAL-00307" summary="level editor: items selection integrated into obs edit menu, but it doesn't work.&#10;Need to rebuild menu system once again to make it more flexible and simple.">
+      <created>1722305264875</created>
+      <option name="number" value="00307" />
+      <option name="presentableId" value="LOCAL-00307" />
+      <option name="project" value="LOCAL" />
+      <updated>1722305264875</updated>
+    </task>
+    <option name="localTasksCounter" value="308" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -501,7 +501,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Level editor: added an opportunity to rename the currently editing map." />
     <MESSAGE value="Level editor: after rename of the currently editing map all connected files are renamed too." />
     <MESSAGE value="Level editor: corrected tile set slicing while map is loading." />
     <MESSAGE value="Level editor:" />
@@ -526,6 +525,7 @@
     <MESSAGE value="Prevented actor's disappearing from the camera surveillance while quick descent." />
     <MESSAGE value="Some minor improvements; added elevator luxury room" />
     <MESSAGE value="level editor: items selection added" />
-    <option name="LAST_COMMIT_MESSAGE" value="level editor: items selection added" />
+    <MESSAGE value="level editor: items selection integrated into obs edit menu, but it doesn't work.&#10;Need to rebuild menu system once again to make it more flexible and simple." />
+    <option name="LAST_COMMIT_MESSAGE" value="level editor: items selection integrated into obs edit menu, but it doesn't work.&#10;Need to rebuild menu system once again to make it more flexible and simple." />
   </component>
 </project>

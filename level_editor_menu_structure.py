@@ -27,11 +27,26 @@ menu_elements_bindings = {
 }
 
 menu_structure = {
-     '_template_menu_item_': {
+    # Memo for menu generator.
+    # If 'generate list from' is 'str' type and has '@' or '*' as a first symbol:
+    # *  : a pointer to already existing iteration sequence (like '*a_dictionary.keys()')
+    # @  : an execution flag (for example, '@[i for i in an_iteration_sequence]')
+    # If menu generation source is a simple string and has no such symbols,
+    # generate menu items from this whole string, using vertical stick '|' as a delimiter
+    # (for example, 'generate list from': 'menu item 1|menu item 2|menu item 3|').
+    # If 'generate list from' is not 'str' type, use it as a native iteration sequence,
+    # which will be converted to a list.
+    #
+    # Memo for the inner menu items.
+    # * : pointer to particular global variable.
+    # $ : pointer to the inner dict key of this particular menu item ('value', 'label', 'description' etc.).
+    # @ : this is the sign of executability of all code which remains after this sign.
+
+    '_template_menu_item_': {
+        'description': '',
         'rectangle': None,
         'label': '',
         'value': None,
-        'description': '',
         'target': '',
         'on hover action': None,
         'additional info': " ",
@@ -66,7 +81,7 @@ menu_structure = {
             'value': '$description',
             'label': '$description',
             # 'target': '',
-            # 'description': '*item',
+            'description': '*item',
             'active': True,
             # 'after action': 'keep going'
         },
@@ -89,9 +104,9 @@ menu_structure = {
             'label': '$description',
             # 'target': '$description',
             # 'target': '',
-            # 'description': '*item',
+            'description': '*item',
             'active': True,
-            # 'after action': None
+            'after action': 'return to parent'
         },
     },
 
@@ -102,7 +117,7 @@ menu_structure = {
             'value': '$description',
             'label': '$description',
             # 'target': '',
-            # 'description': '*item',
+            'description': '*item',
             'active': True,
             # 'after action': 'keep going'
         },
@@ -115,7 +130,7 @@ menu_structure = {
             'value': '$description',
             'label': '$description',
             # 'target': '',
-            # 'description': '*item',
+            'description': '*item',
             'active': True,
             # 'after action': 'keep going'
         },
@@ -136,7 +151,7 @@ menu_structure = {
         'predefined keys': {
             'LMB action': 'append value',
             'value': '*(item, "self", 0)',
-            # 'value': '$description',
+            'description': '*item',
             'target': "self.menu_structure['obs multiple selection']['ok']['value']",
             'label': '$description',
             'active': True,
@@ -328,7 +343,7 @@ menu_structure = {
             'value': '$description',
             'label': '$description',
             # 'target': '',
-            # 'description': '*item',
+            'description': '*item',
             'additional info': "*'^self.tiles[self.menu_structure[\"' + menu_name + '\"][' + str(item)+ '][\"value\"]]'",
             'active': True,
             # 'after action': 'keep going'

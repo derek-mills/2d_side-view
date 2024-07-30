@@ -147,8 +147,8 @@ class World(object):
                 # We have to execute it using exec():
                 menu_items_list = list(exec(self.menu_structure[menu_name]['generate list from'][1:]))
             else:
-                # Got a simple string. Have to split it using ';' as a delimiter:
-                menu_items_list = self.menu_structure[menu_name]['generate list from'].split(';')
+                # Got a simple string. Have to split it using '|' (vertical stick) as a delimiter:
+                menu_items_list = self.menu_structure[menu_name]['generate list from'].split('|')
         else:
             # Got native iteration sequence. Have to simply convert it to a list:
             menu_items_list = list(self.menu_structure[menu_name]['generate list from'])
@@ -160,7 +160,7 @@ class World(object):
         for item in menu_items_list:
             print(f'[generate menu] Adding item: {item}')
             self.menu_structure[menu_name][item] = dict()
-            self.menu_structure[menu_name][item]['description'] = item
+            # self.menu_structure[menu_name][item]['description'] = item
             for reference_key in self.menu_structure['_template_menu_item_'].keys():
                 if reference_key in self.menu_structure[menu_name]['predefined keys'].keys():
                     reference_menu_item = self.menu_structure[menu_name]['predefined keys'][reference_key]
@@ -184,11 +184,11 @@ class World(object):
                 else:
                     self.menu_structure[menu_name][item][reference_key] = self.menu_structure['_template_menu_item_'][reference_key]
 
-            # print(f'[generate_menu] Generating menu: {item}')
-            # for k in self.menu_structure[menu_name][item].keys():
-            #     i = self.menu_structure[menu_name][item][k]
-            #     print(f'[generate_menu] {k}')
-            # print(f'[generate_menu] ----------')
+            print(f'[generate_menu] Generating menu: {item}')
+            for k in self.menu_structure[menu_name][item].keys():
+                i = self.menu_structure[menu_name][item][k]
+                print(f'[generate_menu] {k} {i}')
+            print(f'[generate_menu] ----------')
 
 
     def reset_menu_walk_tree(self):
@@ -411,7 +411,6 @@ class World(object):
 
                             # ------------------------------------------
                             # ----------AFTERMATH ACTIONS--------------------------------
-                            # if menu_item['after action']:
                             if menu_item['after action'] == 'keep going':
                                 print('[processing menu] keep going')
                                 continue
@@ -1047,12 +1046,12 @@ class World(object):
         else:
             after_action = None
 
-        # Set the deed which will be performed after the newborn menu has done:
-        if 'submenu exit action' in parent_menu_item.keys():
-            exit_action = parent_menu_item['submenu exit action']
-        else:
-            # If particular action doesn't described, set it to default value:
-            exit_action = 'return value'
+        # # Set the deed which will be performed after the newborn menu has done:
+        # if 'submenu exit action' in parent_menu_item.keys():
+        #     exit_action = parent_menu_item['submenu exit action']
+        # else:
+        #     # If particular action doesn't described, set it to default value:
+        #     exit_action = 'return value'
         # print(f'[add_menu] {exit_action=}')
 
         # Add current new menu name to common global store:
@@ -1086,7 +1085,7 @@ class World(object):
             if i in restricted:
                 continue
             # print(i)
-            item =  self.menu_structure[menu_name][i]
+            item = self.menu_structure[menu_name][i]
             item['menu pile'] = self.menu_pile_id
             item['parent menu pile'] = parent_menu_pile
             item['parent dict key'] = parent_dict_key
@@ -1103,8 +1102,15 @@ class World(object):
             if 'target' not in item.keys() or not item['target']:
                 # print(f'[add_menu] try to set {target=} for {menu_name=}')
                 item['target'] = target
-            if 'LMB action' not in item.keys() or not item['LMB action']:
-                item['LMB action'] = exit_action
+
+            if 'submenu exit action' in parent_menu_item.keys():
+                # print('[add_menu] try to set ', parent_menu_item['submenu exit action'])
+                item['LMB action'] = parent_menu_item['submenu exit action']
+                print('[add_menu] LMB action becomes: ', item['LMB action'])
+
+            # if 'LMB action' not in item.keys() or not item['LMB action']:
+            #     item['LMB action'] = exit_action
+
             if 'colors' in item.keys():
                 self.add_menu_item(item, item['colors']['frame color'], item['colors']['bg color'], item['colors']['txt color'])
 
@@ -1233,10 +1239,8 @@ class World(object):
                     self.tiles[tile_number] = tile_set.subsurface((x,y,tile_width,tile_height))
                     tile_number += 1
 
-        # LOADING MAP OBJECTS:
-        self.obstacles[self.location] = dict()
-
         # LOADING OBSTACLE RECTANGLES
+        self.obstacles[self.location] = dict()
         max_obs_id = 0
         for obs in locations.locations[self.location]['obstacles']['obs rectangles']:
             self.add_obstacle(obs)
@@ -1249,6 +1253,10 @@ class World(object):
         for active_obs_id in self.obs_settings.keys():
             if active_obs_id in self.obstacles[self.location].keys():
                 self.obstacles[self.location][active_obs_id].active_flag = True
+                if 'item' in self.obs_settings[active_obs_id]:
+                    if self.obs_settings[active_obs_id]['item']:
+                        self.obstacles[self.location][active_obs_id].rectangle.w = self.default_snap_mesh_size
+                        self.obstacles[self.location][active_obs_id].rectangle.h = self.default_snap_mesh_size
 
         # LOADING ENEMIES
         self.enemies = dict()
