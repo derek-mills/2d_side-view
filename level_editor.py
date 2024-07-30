@@ -1410,6 +1410,7 @@ class World(object):
                     # Save all settings we've just edited:
                     for s_key in self.obs_settings.keys():
                         f.write('\n                    ' + str(s_key) + ': {')  # Dict key which is pointer to active obstacle ID.
+                        print('[save] ', s_key, self.obs_settings[s_key])
                         for ss_key in self.obs_settings[s_key].keys():
                             f.write('\n                        \'' + ss_key + '\': ' + str(self.obs_settings[s_key][ss_key]) + ',')
                         f.write('\n                  },')
@@ -2070,7 +2071,7 @@ class World(object):
             self.reset_menu()
             return
 
-        # print(f'[edit obs] {self.menu_walk_tree=} {self.menu_return_value=}')
+        print(f'[edit obs] {self.menu_walk_tree=} {self.menu_return_value=}')
         # exit()
         self.obs_settings[obs.id] = dict()
         self.obs_settings[obs.id] = deepcopy(self.menu_return_value)

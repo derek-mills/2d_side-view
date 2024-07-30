@@ -80,6 +80,7 @@ locations = {
                 ((300, 450), (400, 50), 25),  #25
                 ((700, 450), (1400, 50), 26),  #26
                 ((250, 100), (50, 350), 27),  #27
+                ((750, 150), (100, 300), 28),  #28
                   ), # OBSTACLE RECTANGLES SECTION END
                 'settings': {
                     10: {
@@ -331,6 +332,26 @@ locations = {
                         'teleport description': {'new location': 'luxuryelevatorroom', 'xy': (50.0, 300.0)},
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
+                        'active': False,
+                        'actions': {0: []},
+                  },
+                    28: {
+                        'sprite elevated': False,
+                        'sprite': 0,
+                        'force render': False,
+                        'ghost': False,
+                        'actors pass through': False,
+                        'actors may grab': False,
+                        'speed': 0.2,
+                        'collideable': True,
+                        'gravity affected': True,
+                        'invisible': True,
+                        'teleport': False,
+                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'trigger': False,
+                        'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
+                        'item': False,
+                        'item name': {'name': ''},
                         'active': False,
                         'actions': {0: []},
                   },

@@ -89,7 +89,7 @@ menu_structure = {
             'label': '$description',
             # 'target': '$description',
             # 'target': '',
-            'description': '*item',
+            # 'description': '*item',
             'active': True,
             # 'after action': None
         },
@@ -543,6 +543,43 @@ menu_structure = {
             # 'after action': 'keep going',
             'after action': 'return to parent',
         },
+        'item': {
+            'rectangle': pygame.Rect(0, 0, 0, 0),
+            'label': 'item',
+            'on hover action': None,
+            'LMB action': 'switch state',
+            'target': ("self.menu_structure['custom obs properties']['ok']['value']['item']",
+                       "self.menu_structure['custom obs properties']['ok']['value']['actors pass through']",
+                       "self.menu_structure['custom obs properties']['ok']['value']['force render']",
+                       "self.menu_structure['custom obs properties']['ok']['value']['collideable']",
+                       "self.menu_structure['custom obs properties']['ok']['value']['gravity affected']",
+                       ),
+            # 'target': ("self.menu_structure['custom obs properties']['ok']['value']['trigger']",
+            #           "self.menu_structure['custom obs properties']['ok']['value']['teleport']"),
+            'additional info': "*self.menu_structure['custom obs properties']['ok']['value']['item']",
+            'active': True,
+            'after action': 'keep going'
+        },
+        'item name': {
+            'rectangle': pygame.Rect(0, 0, 0, 0),
+            'label': 'select item type >',
+            'on hover action': None,
+            'LMB action': 'reveal submenu',
+            'submenu name': 'item single selection',
+            'submenu exit action': 'store value',
+            # 'submenu after action': 'return to parent',
+            # 'submenu exit action': 'append value',
+            # 'submenu exit action': 'return self value',
+            # 'value': list(),
+            'value': "self.menu_structure['custom obs properties']['ok']['value']['item name']['name']",
+            'target': "self.menu_structure['custom obs properties']['ok']['value']['item name']['name']",
+            'additional info': "*self.menu_structure['custom obs properties']['ok']['value']['item name']['name']",
+            'active': True,
+            # 'also affects on': None,
+            # 'after action': None,
+            # 'after action': 'keep going',
+            'after action': 'return to parent',
+        },
         'trigger disappear': {
             'rectangle': pygame.Rect(0, 0, 0, 0),
             'label': 'trigger disappears after use?',
@@ -621,6 +658,8 @@ menu_structure = {
                     'make active': list(),
                     'disappear': False
                 },
+                'item': False,
+                'item name': {'name': '',},
                 'active': False,
                 'actions': {
                     #         # (('move', (1100,450)), ('move', 'start'), ('wait', 2), ('repeat', 0))
@@ -673,6 +712,8 @@ menu_structure = {
                     'make active': [(0, 'self', 0), ],
                     'disappear': False
                 },
+                'item': False,
+                'item name': {'name': '',},
                 'active': False,
                 'actions': {
                     #         # (('move', (1100,450)), ('move', 'start'), ('wait', 2), ('repeat', 0))
