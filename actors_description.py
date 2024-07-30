@@ -4,7 +4,7 @@ from random import randint
 
 demon_1 = {
     'name': 'demon 1',
-    'drop': ['exp' for i in range(randint(1,5))],
+    'drop': ['exp' for i in range(randint(3,5))],
     # 'start_xy': (1500, 200),
     'health': 100.,
     'height': 190,

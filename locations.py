@@ -80,6 +80,62 @@ locations = {
                     'max speed': 2,
             	},
 
+            	(1150.0, 550.0): {
+                    'name': 'demon 1',
+                    'height': 190,
+                    'width': 49,
+                    'health': 100.0,
+                    'max speed': 2,
+            	},
+
+            	(1250.0, 500.0): {
+                    'name': 'demon 1',
+                    'height': 190,
+                    'width': 49,
+                    'health': 100.0,
+                    'max speed': 2,
+            	},
+
+            	(1350.0, 450.0): {
+                    'name': 'demon 1',
+                    'height': 190,
+                    'width': 49,
+                    'health': 100.0,
+                    'max speed': 2,
+            	},
+
+            	(1400.0, 650.0): {
+                    'name': 'demon 1',
+                    'height': 190,
+                    'width': 49,
+                    'health': 100.0,
+                    'max speed': 2,
+            	},
+
+            	(1200.0, 800.0): {
+                    'name': 'demon 1',
+                    'height': 190,
+                    'width': 49,
+                    'health': 100.0,
+                    'max speed': 2,
+            	},
+
+            	(1000.0, 500.0): {
+                    'name': 'demon 1',
+                    'height': 190,
+                    'width': 49,
+                    'health': 100.0,
+                    'max speed': 2,
+            	},
+
+            	(1200.0, 400.0): {
+                    'name': 'demon 1',
+                    'height': 190,
+                    'width': 49,
+                    'health': 100.0,
+                    'max speed': 2,
+            	},
+
               },
             'demolishers': {
                 'dem rectangles': (

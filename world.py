@@ -144,13 +144,14 @@ class World(object):
         entity.rectangle.topleft = xy
         entity.origin_xy = xy
         entity.max_speed = 5
-        entity.rectangle.width = 50
-        entity.rectangle.height = 50
+        entity.is_force_render = True
+        entity.sprite = item['sprite']
+        entity.rectangle.width = sprites[entity.sprite]['sprite'].get_size()[0]
+        entity.rectangle.height = sprites[entity.sprite]['sprite'].get_size()[1]
         entity.invisible = False
         entity.trigger = True
         entity.is_collideable = True
         entity.is_gravity_affected = True
-        entity.is_force_render = True
         entity.let_actors_pass_through = True
         entity.is_item = True
         entity.item_name = item['label']
@@ -728,6 +729,10 @@ class World(object):
                 continue
             obs = self.obstacles[self.location][key]
             if not obs.is_force_render:
+                continue
+            if obs.sprite:
+                self.screen.blit(sprites[obs.sprite]['sprite'], (obs.rectangle.x - self.camera.offset_x, obs.rectangle.y - self.camera.offset_y,
+                                                  obs.rectangle.width, obs.rectangle.height))
                 continue
             # if obs.invisible:
             #     continue

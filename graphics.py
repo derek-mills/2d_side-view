@@ -229,8 +229,8 @@ def scale_sprite(sprite, final_scale_factor, flip=False):
 
 sprites = dict()
 sprites_reference = dict()
-avatars = pygame.image.load('img/avatars.png').convert_alpha()
-# env = pygame.image.load('img/environment.png').convert_alpha()
+# avatars = pygame.image.load('img/avatars.png').convert_alpha()
+items = pygame.image.load('img/items.png').convert_alpha()
 
 # sprites['light halo casual'] = pygame.image.load('img/light_halo.png').convert_alpha()
 # sprites['light halo strong'] = pygame.image.load('img/light_halo_strong.png').convert_alpha()
@@ -243,12 +243,14 @@ avatars = pygame.image.load('img/avatars.png').convert_alpha()
 # sprites['light cone 135'] = pygame.transform.rotate(sprites['light cone 45'], 90)
 # sprites['light cone 225'] = pygame.transform.rotate(sprites['light cone 45'], 180)
 # sprites['light cone 315'] = pygame.transform.rotate(sprites['light cone 45'], 270)
-sprites['question sign'] = avatars.subsurface((573, 1053, 145, 240))
-# sprites['void'] = avatars.subsurface((0,1843,20,20))
+# sprites['question sign'] = avatars.subsurface((573, 1053, 145, 240))
+sprites['void'] = items.subsurface((0,0,10,10))
+load_single_frame(items, ((0,0,20,30),), 'exp')
 
 # ___...---=== JAKE ===---...___
 name = 'Jake'
 tmp_sprites = pygame.image.load('img/animations/jake_8bit.png').convert_alpha()
+screen.convert_alpha(tmp_sprites)
 load_single_frame(tmp_sprites, ((260,150,20,18),), name + ' avatar')
 load_single_frame(tmp_sprites, ((260,150,20,18),), name + ' avatar front')
 # load_single_frame(tmp_sprites, ((2660,1720,90,50),), name + 'floor shadow mask')
@@ -309,5 +311,5 @@ load_all_frames(tmp_sprites, 89, name, 20, 30, 10)
 
 all_obstacles = ('pile 1x #1', 'box 1.5x #23','box single',)
 
-screen.convert_alpha(avatars)
+# screen.convert_alpha(avatars)
 # screen.convert_alpha(env)
