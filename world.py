@@ -17,8 +17,9 @@ class World(object):
     def __init__(self):
         # Entities
         self.obstacles = dict()
-        self.obstacle_id: int = 1000
+        self.obstacle_id: int = 0
         self.active_obstacles = list()
+        self.max_obs_id_in_current_location: int = 0
         self.demolishers = dict()
         self.demolisher_id: int = 0
         self.actors = dict()
@@ -139,8 +140,13 @@ class World(object):
 
     def add_item(self, item, xy):
         entity = Obstacle()
+        # self.item_id += 1
+        # self.max_obs_id_in_current_location += 1
         self.obstacle_id += 1
-        entity.id = self.obstacle_id
+        # entity.id = self.max_obs_id_in_current_location
+        entity.id = self.obstacle_id + self.max_obs_id_in_current_location
+        # entity.id = self.item_id
+        # entity.id = str(self.item_id) + ' item'
         entity.rectangle.topleft = xy
         entity.origin_xy = xy
         entity.max_speed = 5
@@ -158,6 +164,7 @@ class World(object):
         entity.item_amount = item['amount']
         entity.item_amount_threshold = item['amount threshold']
         entity.item_amount_decrease_speed = item['amount decrease speed']
+        # self.items[self.location][entity.id] = entity
         self.obstacles[self.location][entity.id] = entity
 
     def add_obstacle(self, description):
@@ -330,6 +337,21 @@ class World(object):
 
 
         # print('After location change:', self.actors.keys())
+
+    # def processing_items(self):
+    #     dead = list()
+    #     for key in self.items[self.location]:
+    #         i = self.items[self.location][key]
+    #         if i.dead:
+    #             dead.append(i.id)
+    #             continue
+    #         # if i.is_item:
+    #         # Routines for item-like obstacles:
+    #         if i.item_amount_decrease_speed != 0:
+    #             if i.item_amount != i.item_amount_threshold:
+    #                 # print('decrease amount', obs.item_amount)
+    #                 i.item_amount += i.item_amount_decrease_speed
+
 
     def processing_obstacles(self):
         dead = list()
@@ -731,6 +753,9 @@ class World(object):
             if key not in self.active_obstacles:
                 continue
             obs = self.obstacles[self.location][key]
+            pygame.draw.rect(self.screen, CYAN, (obs.rectangle.x - self.camera.offset_x, obs.rectangle.y - self.camera.offset_y,
+                                                  obs.rectangle.width, obs.rectangle.height))
+
             if not obs.is_force_render:
                 continue
             if obs.sprite:
@@ -903,6 +928,8 @@ class World(object):
             self.backgrounds[self.location]['ground level']['image'] = pygame.image.load('img/backgrounds/' + self.location + '_ground.png').convert()
             self.backgrounds[self.location]['ground level']['bounding rect'] = self.backgrounds[self.location]['ground level']['image'].get_bounding_rect()
             # self.backgrounds[self.location]['ground level']['cropped image'] = self.backgrounds[self.location]['ground level']['whole image'].subsurface(self.backgrounds[self.location]['ground level']['bounding rect'])
+
+        self.max_obs_id_in_current_location = max(self.obstacles[self.location].keys()) + 1
 
     def processing_human_input(self):
         # self.mouse_xy = pygame.mouse.get_pos()

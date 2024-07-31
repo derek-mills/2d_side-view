@@ -6,7 +6,7 @@ demon_1 = {
     'name': 'demon 1',
     'drop': ['exp' for i in range(randint(3,5))],
     # 'start_xy': (1500, 200),
-    'health': 100.,
+    'health': 1000.,
     'height': 190,
     'width': 49,
     'body state': {
