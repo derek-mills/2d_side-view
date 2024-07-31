@@ -438,6 +438,9 @@ class World(object):
             if dem.is_collideable:
                 dem.percept({k: self.obstacles[self.location][k] for k in self.active_obstacles}, None)
             if dem.static:
+                if dem.snap_to_actor not in self.actors[self.location].keys():
+                    dead.append(dem.id)
+                    continue
                 actor = self.actors[self.location][dem.snap_to_actor]
                 dem.update(actor.look, actor.rectangle)
 

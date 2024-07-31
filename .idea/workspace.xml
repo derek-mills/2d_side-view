@@ -6,11 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphics.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphics.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obstacle.py" beforeDir="false" afterPath="$PROJECT_DIR$/obstacle.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,13 +139,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00269" summary="Level editor: fixed some bugs with PNG export of elevated obstacles.">
-      <created>1721119627166</created>
-      <option name="number" value="00269" />
-      <option name="presentableId" value="LOCAL-00269" />
-      <option name="project" value="LOCAL" />
-      <updated>1721119627166</updated>
     </task>
     <task id="LOCAL-00270" summary="Level editor: swapped menu items scroll directions while mouse wheel rolls.">
       <created>1721120538225</created>
@@ -488,7 +476,14 @@
       <option name="project" value="LOCAL" />
       <updated>1722328102177</updated>
     </task>
-    <option name="localTasksCounter" value="318" />
+    <task id="LOCAL-00318" summary="Added sprite for exp-item.">
+      <created>1722330642941</created>
+      <option name="number" value="00318" />
+      <option name="presentableId" value="LOCAL-00318" />
+      <option name="project" value="LOCAL" />
+      <updated>1722330642941</updated>
+    </task>
+    <option name="localTasksCounter" value="319" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -503,7 +498,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added some animations" />
     <MESSAGE value="Added background layers" />
     <MESSAGE value="Added middle background layer individual offset corrector to get it scroll not so fast as foreground layer." />
     <MESSAGE value="Layers will be automatically added if their filenames are similar to *_back_0.png, *_back_1.png, *_back_2.png etc.&#10;They shall scroll according to their sizes: the smaller moves slower." />
@@ -528,6 +522,7 @@
     <MESSAGE value="President lux added" />
     <MESSAGE value="Penthouse added" />
     <MESSAGE value="Dead enemies drop XP" />
-    <option name="LAST_COMMIT_MESSAGE" value="Dead enemies drop XP" />
+    <MESSAGE value="Added sprite for exp-item." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added sprite for exp-item." />
   </component>
 </project>
