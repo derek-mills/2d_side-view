@@ -354,7 +354,7 @@ class World(object):
                 if obs.trigger_activated:
                     obs.trigger = False
                     if obs.is_item:
-                        print("ITEM GRABBED:", obs.item_name, all_items[obs.item_name])
+                        # print("ITEM GRABBED:", obs.item_name, all_items[obs.item_name])
                         if all_items[obs.item_name]['class'] == 'instant consume':
                             if all_items[obs.item_name]['type'] == 'stats gainer':
                                 self.actors[self.location][0].stats[all_items[obs.item_name]['affects on']] += obs.item_amount
@@ -837,14 +837,14 @@ class World(object):
             # print(locations)
             self.locations[self.location] = locations[self.location]
             for obs_rect in self.locations[self.location]['obstacles']['obs rectangles']:
-                if obs_rect[-1] in self.locations[self.location]['obstacles']['settings'].keys():
+                if obs_rect[-1] in self.locations[self.location]['obstacles']['settings'].keys() and 'item' in self.locations[self.location]['obstacles']['settings'][obs_rect[-1]].keys():
                     if self.locations[self.location]['obstacles']['settings'][obs_rect[-1]]['item']:
                         # Add item, not obstacle
                         self.add_item(all_items[self.locations[self.location]['obstacles']['settings'][obs_rect[-1]]['item name']['name']],
                                       obs_rect[0])
-                else:
-                    # Add obstacle.
-                    self.add_obstacle(obs_rect)
+                        continue
+                # Add obstacle.
+                self.add_obstacle(obs_rect)
             # Apply changes to active obstacles if such action has been pended:
             if self.location in self.obstacles_changes_pending.keys():
                 for k in self.obstacles_changes_pending[self.location].keys():

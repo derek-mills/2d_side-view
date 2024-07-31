@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphics.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/items.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/items.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -141,13 +143,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00272" summary="Background leaved to be blit as whole PNG image without unnecessary cropping.">
-      <created>1721187154491</created>
-      <option name="number" value="00272" />
-      <option name="presentableId" value="LOCAL-00272" />
-      <option name="project" value="LOCAL" />
-      <updated>1721187154491</updated>
     </task>
     <task id="LOCAL-00273" summary="Fixin' countless annoying errors.">
       <created>1721197555820</created>
@@ -485,7 +480,14 @@
       <option name="project" value="LOCAL" />
       <updated>1722402993502</updated>
     </task>
-    <option name="localTasksCounter" value="321" />
+    <task id="LOCAL-00321" summary="Corrected enemies animation.">
+      <created>1722403399680</created>
+      <option name="number" value="00321" />
+      <option name="presentableId" value="LOCAL-00321" />
+      <option name="project" value="LOCAL" />
+      <updated>1722403399680</updated>
+    </task>
+    <option name="localTasksCounter" value="322" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -500,7 +502,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Layers will be automatically added if their filenames are similar to *_back_0.png, *_back_1.png, *_back_2.png etc.&#10;They shall scroll according to their sizes: the smaller moves slower." />
     <MESSAGE value="Corrected layers scroll system" />
     <MESSAGE value="Level editor: issue with copies of menu structure data used after other map has loaded: all changes remain even if copy() routine used. Only deepcopy() has made a trick." />
     <MESSAGE value="Level editor: issue with reset function within obstacle edit menu." />
@@ -525,6 +526,7 @@
     <MESSAGE value="Added sprite for exp-item." />
     <MESSAGE value="Corrected demolishers behavior which could be snapped to already dead actor." />
     <MESSAGE value="Items, described in location settings, add properly now as items, not as obstacles." />
-    <option name="LAST_COMMIT_MESSAGE" value="Items, described in location settings, add properly now as items, not as obstacles." />
+    <MESSAGE value="Corrected enemies animation." />
+    <option name="LAST_COMMIT_MESSAGE" value="Corrected enemies animation." />
   </component>
 </project>
