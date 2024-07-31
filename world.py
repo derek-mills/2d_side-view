@@ -88,8 +88,14 @@ class World(object):
         entity = Actor()
         entity.id = self.actor_id
         entity.name = description['name']
-        entity.max_health = description['health']
-        entity.health = description['health']
+        entity.stats['max health'] = description['health']
+        # entity.max_health = description['health']
+        entity.stats['health'] = description['health']
+        # entity.health = description['health']
+        # print(f'[add_actor] --------------------------------------------------------------')
+        # print(f'[add_actor] Adding {entity.name}, id={entity.id}, {entity.stats["health"]=}')
+        # for k in description:
+        #     print(f'[add_actor] {k} :{description[k]}')
         entity.is_gravity_affected = description['gravity affected']
         entity.rectangle.height = description['height']
         entity.rectangle.width = description['width']
@@ -423,7 +429,7 @@ class World(object):
 
     def make_explosion(self, xy):
         # print(f'[process demolishers] KA-BOOM!')
-        for i in range(randint(20, 50)):
+        for i in range(randint(40, 50)):
             demolisher_description = {
 
                 'snap to actor': -1,
@@ -436,7 +442,7 @@ class World(object):
                 'aftermath': '',
                 'damage': 10,
                 'static': False,
-                'damage reduce': .1,
+                'damage reduce': .01,
                 'speed': 0.5 + randint(1, 5) / 10,
                 'collides': True,
                 'gravity affected': False
@@ -734,7 +740,7 @@ class World(object):
                 pygame.draw.rect(self.screen, WHITE, (actor.rectangle.x - self.camera.offset_x - 2, actor.rectangle.y - 12 - self.camera.offset_y,
                                                      actor.rectangle.width + 4, 7), 1)
                 pygame.draw.rect(self.screen, RED, (actor.rectangle.x - self.camera.offset_x, actor.rectangle.y - 10 - self.camera.offset_y,
-                                                     actor.health * actor.rectangle.width // actor.max_health, 3))
+                                                     actor.stats['health'] * actor.rectangle.width // actor.stats['max health'], 3))
 
 
     def render_demolishers(self):
@@ -881,6 +887,7 @@ class World(object):
                 del self.obstacles_changes_pending[self.location]
             for dem in self.locations[self.location]['demolishers']['dem rectangles']:
                 self.add_demolisher(dem)
+
             for enemy_xy in self.locations[self.location]['hostiles'].keys():
                 enemy_description = self.locations[self.location]['hostiles'][enemy_xy]
                 enemy_name = self.locations[self.location]['hostiles'][enemy_xy]['name']

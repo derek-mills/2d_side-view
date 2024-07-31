@@ -528,9 +528,11 @@ class Entity(object):
                 self.set_state('hop back')
 
     def get_damage(self, amount):
-        print(f'[entity.get_damage] {self.name} gets damage: {amount}')
-        self.health -= amount
-        if self.health <= 0:
+        print(f'[entity.get_damage] {self.name} {self.id} gets damage: {amount} | {self.stats["health"]=}')
+        self.stats['health'] -= amount
+        # self.health -= amount
+        if self.stats['health'] <= 0:
+        # if self.health <= 0:
             self.dead = True
 
     def detect_collisions(self):
