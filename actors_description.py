@@ -36,84 +36,95 @@ demon_1 = {
     'max speed': 2,
     'items': (whip,),
     'animations': {
-        'whip right': {
-            'repeat': False, 'interruptable': True,
-            'sequence': (74, 74, 74, 74, 74, 74, 74, 75),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
-            # 74,74,74,74,74,  # 5 - 9
-            # 74,74,74,75,75,  # 10 - 14
-            # 74,74,74,74,74,  # 15 - 19
-            # 74,74,74,74,74,  # 20 - 24
-            # 74,74,74,75,75), # 25 - 29
-            # 'demolisher offset': (46, 36),
-            'speed': 2,
-            'activity at frames': {
-                7: {
-                    'sound': True,
-                    'demolisher': True
-                },
-            },
-            'demolisher offset': {
-                1: (46, 36),
-                -1: (-46, 36),
-            },
-            'repeat from frame': 0
-        },
-        'whip left': {
-            'repeat': False, 'interruptable': True,
-            'sequence': (89, 89, 89, 89, 89, 89, 89, 88),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
-            # 74,74,74,74,74,  # 5 - 9
-            # 74,74,74,75,75,  # 10 - 14
-            # 74,74,74,74,74,  # 15 - 19
-            # 74,74,74,74,74,  # 20 - 24
-            # 74,74,74,75,75), # 25 - 29
-            # 'demolisher offset': (46, 36),
-            'speed': 2,
-            'activity at frames': {
-                7: {
-                    'sound': True,
-                    'demolisher': True
-                },
-            },
-            'demolisher offset': {
-                1: (46, 36),
-                -1: (-46, 36),
-            },
-            'repeat from frame': 0
-        },
         'stand still right': {
                 'repeat': True, 'interruptable': True,
-                'sequence': (1,1,1,1,1,1,2,2,2,2,2,2,2), 'speed': 20,
+                'sequence': (1,1,1,1,1,1,2,1,2,1,1,1,1), 'speed': 20,
                 'activity at frames': {},
                 'sound': None, 'sound at frames': (0,), 'repeat from frame': 0
             },
         'stand still left': {
             'repeat': True, 'interruptable': True,
-            'sequence': (15,16), 'speed': 50,
+            'sequence': (15,15,15,15,15,15,16,15,16,15,15,15,15), 'speed': 20,
             'activity at frames': {},
             'sound': None, 'sound at frames': (0,), 'repeat from frame': 0
         },
-
+        'sliding right': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (56,), 'speed': 1,
+            'activity at frames': {
+                1: {
+                    'sound': 'step',
+                },
+            },
+            'repeat from frame': 0
+        },
+        'sliding left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (70,), 'speed': 1,
+            'activity at frames': {
+                1: {
+                    'sound': 'step',
+                },
+            },
+            'repeat from frame': 0
+        },
+        'hopping back process right': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (5,), 'speed': 1,
+            'activity at frames': {
+                1: {
+                    'sound': 'step',
+                },
+            },
+            'repeat from frame': 0
+        },
+        'hopping back process left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (20,), 'speed': 1,
+            'activity at frames': {
+                1: {
+                    'sound': 'step',
+                },
+            },
+            'repeat from frame': 0
+        },
         'run right': {
                 'repeat': True, 'interruptable': True,
-                'sequence': (28,29,30,31,32,33,34,35,36,37,38,39,40), 'speed': 1,
-                'activity at frames': {},
-                'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
+                'sequence': (28,29,30,31,32,33,34,35,36,37,38,), 'speed': 1,
+                'activity at frames': {
+                    1: {
+                        'sound': 'step',
+                    },
+                },
+                'repeat from frame': 0
             },
         'run left': {
                 'repeat': True, 'interruptable': True,
-                'sequence': (54,53,52,51,50,49,48,47,46,45,44,43,42), 'speed': 1,
+                'sequence': (52,51,50,49,48,47,46,45,44,43,42,), 'speed': 1,
                 'activity at frames': {},
                 'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
         'jump right': {
                 'repeat': True, 'interruptable': True,
-                'sequence': (32,), 'speed': 1,
+                'sequence': (75,), 'speed': 1,
                 'activity at frames': {},
                 'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
         'jump left': {
                 'repeat': True, 'interruptable': True,
-                'sequence': (51,), 'speed': 1,
+                'sequence': (90,90,90,90), 'speed': 1,
+                'activity at frames': {},
+                'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
+            },
+        'fly right': {
+                'repeat': True, 'interruptable': True,
+                'sequence': (75,), 'speed': 1,
+                'activity at frames': {},
+                'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
+            },
+        'fly left': {
+                'repeat': True, 'interruptable': True,
+                'sequence': (90,), 'speed': 1,
                 'activity at frames': {},
                 'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
@@ -129,47 +140,93 @@ demon_1 = {
                 'activity at frames': {},
                 'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
-        'sliding right': {
-            'repeat': True, 'interruptable': True,
-            'sequence': (73,), 'speed': 1,
-            'activity at frames': {},
-            'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 0
-        },
-        'sliding left': {
-            'repeat': True, 'interruptable': True,
-            'sequence': (73,), 'speed': 1,
-            'activity at frames': {},
-            'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 0
-        },
         'crouch right': {
             'repeat': True, 'interruptable': True,
-            'sequence': (70,71,72,), 'speed': 1,
+            'sequence': (4,4,4,4), 'speed': 1,
             'activity at frames': {},
-            'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 2
+            'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 0
+        },
+        'crawl right': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (5,6,7,6), 'speed': 5,
+            'activity at frames': {},
+            'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 0
         },
         'crouch left': {
             'repeat': True, 'interruptable': True,
-            'sequence': (70,71,72,), 'speed': 1,
+            'sequence': (18,), 'speed': 1,
             'activity at frames': {},
-            'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 2
+            'sound': None, 'sound at frames': (0,), 'repeat from frame': 0
+        },
+        'crawl left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (21,20,19,20), 'speed': 5,
+            'activity at frames': {},
+            'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 0
+        },
+        'whip right': {
+            'repeat': False, 'interruptable': True,
+            'sequence': (74,74,74,75,76,76,76,77),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            # 74,74,74,74,74,  # 5 - 9
+            # 74,74,74,75,75,  # 10 - 14
+            # 74,74,74,74,74,  # 15 - 19
+            # 74,74,74,74,74,  # 20 - 24
+            # 74,74,74,75,75), # 25 - 29
+            # 'demolisher offset': (46, 36),
+            'speed': 2,
+            'activity at frames': {
+                4: {
+                    'sound': True,
+                    'demolisher': True
+                },
+                },
+            'demolisher offset': {
+                1: (65, 60),
+                -1: (-65, 60),
+            },
+            'repeat from frame': 0
+        },
+        'whip left': {
+            'repeat': False, 'interruptable': True,
+            'sequence': (91,91,91,90,89,89,89,88),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            # 74,74,74,74,74,  # 5 - 9
+            # 74,74,74,75,75,  # 10 - 14
+            # 74,74,74,74,74,  # 15 - 19
+            # 74,74,74,74,74,  # 20 - 24
+            # 74,74,74,75,75), # 25 - 29
+            # 'demolisher offset': (46, 36),
+            'speed': 2,
+            'activity at frames': {
+                4: {
+                    'sound': True,
+                    'demolisher': True
+                },
+            },
+            'demolisher offset': {
+                1: (65,60),
+                -1: (-65,60),
+            },
+            'repeat from frame': 0
         },
         'stab right': {
             'repeat': False, 'interruptable': True,
-            'sequence': (74,74,74,74,75),  # 0 - 4
+            'sequence': (74,74,74,74,75,  # 0 - 4
+                         74,74,74,74,75, 75), # 5 - 9
                          # 74,74,74,74,74,  # 5 - 9
                          # 74,74,74,75,75,  # 10 - 14
                          # 74,74,74,74,74,  # 15 - 19
                          # 74,74,74,74,74,  # 20 - 24
                          # 74,74,74,75,75), # 25 - 29
             # 'demolisher offset': (46, 36),
+            'speed': 2,
             'activity at frames': {
                 4: {
                     'sound': True,
-                    'move': 10,
+                    # 'move': 10,  # Slightly move actor forward,
                     'demolisher': True
                 },
                 9: {
-                    'move': 10,
+                    # 'move': 10,  # Slightly move actor forward,
                     'demolisher': True
                 },
             },
@@ -177,12 +234,12 @@ demon_1 = {
                 1: (46, 36),
                 -1: (-46, 36),
             },
-            'speed': 2,
-            'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 0
+            'repeat from frame': 0
         },
         'stab left': {
             'repeat': False, 'interruptable': True,
-            'sequence': (89, 89, 89, 89, 88),  # 0 - 4
+            'sequence': (89, 89, 89, 89, 88,
+                         89, 89, 89, 89, 88, 88),  # 0 - 4
                          # 89, 89, 89, 89, 89,  # 5 - 9
                          # 89, 89, 89, 88, 88,  # 10 - 14
                          # 89, 89, 89, 89, 89,  # 15 - 19
@@ -192,11 +249,35 @@ demon_1 = {
             'activity at frames': {
                 4: {
                     'sound': True,
-                    'move': 10,
+                    # 'move': 10, # Slightly move actor forward,
                     'demolisher': True
                 },
                 9: {
-                    'move': 10,
+                    # 'move': 10, # Slightly move actor forward,
+                    'demolisher': True
+                },
+            },
+            'speed': 1,
+            'demolisher offset': {
+                1: (46, 36),
+                -1: (-46, 36),
+            },
+            'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 2
+        },
+        'cast right': {
+            'repeat': False, 'interruptable': True,
+            'sequence': (74, 74, 74, 74, 74,  # 0 - 4
+                         74, 74, 74, 74, 75, 75),  # 5 - 9
+            # 74,74,74,74,74,  # 5 - 9
+            # 74,74,74,75,75,  # 10 - 14
+            # 74,74,74,74,74,  # 15 - 19
+            # 74,74,74,74,74,  # 20 - 24
+            # 74,74,74,75,75), # 25 - 29
+            # 'demolisher offset': (46, 36),
+            'speed': 2,
+            'activity at frames': {
+                9: {
+                    'sound': True,
                     'demolisher': True
                 },
             },
@@ -204,8 +285,30 @@ demon_1 = {
                 1: (46, 36),
                 -1: (-46, 36),
             },
-            'speed': 2,
-            'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 2
+            'repeat from frame': 0
+        },
+        'cast left': {
+            'repeat': False, 'interruptable': True,
+            'sequence': (89,89,89,89,89,89,  # 0 - 4
+                         89,89,89,89,88,88),  # 5 - 9
+            # 74,74,74,74,74,  # 5 - 9
+            # 74,74,74,75,75,  # 10 - 14
+            # 74,74,74,74,74,  # 15 - 19
+            # 74,74,74,74,74,  # 20 - 24
+            # 74,74,74,75,75), # 25 - 29
+            # 'demolisher offset': (46, 36),
+            'speed': 3,
+            'activity at frames': {
+                9: {
+                    'sound': True,
+                    'demolisher': True
+                },
+            },
+            'demolisher offset': {
+                1: (46, 36),
+                -1: (-46, 36),
+            },
+            'repeat from frame': 0
         },
     },
     'think type': 'chaser',

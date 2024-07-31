@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -141,13 +141,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00271" summary="Level editor: minimap appeared.">
-      <created>1721183657950</created>
-      <option name="number" value="00271" />
-      <option name="presentableId" value="LOCAL-00271" />
-      <option name="project" value="LOCAL" />
-      <updated>1721183657950</updated>
     </task>
     <task id="LOCAL-00272" summary="Background leaved to be blit as whole PNG image without unnecessary cropping.">
       <created>1721187154491</created>
@@ -485,7 +478,14 @@
       <option name="project" value="LOCAL" />
       <updated>1722402046469</updated>
     </task>
-    <option name="localTasksCounter" value="320" />
+    <task id="LOCAL-00320" summary="Items, described in location settings, add properly now as items, not as obstacles.">
+      <created>1722402993502</created>
+      <option name="number" value="00320" />
+      <option name="presentableId" value="LOCAL-00320" />
+      <option name="project" value="LOCAL" />
+      <updated>1722402993502</updated>
+    </task>
+    <option name="localTasksCounter" value="321" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -500,7 +500,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added middle background layer individual offset corrector to get it scroll not so fast as foreground layer." />
     <MESSAGE value="Layers will be automatically added if their filenames are similar to *_back_0.png, *_back_1.png, *_back_2.png etc.&#10;They shall scroll according to their sizes: the smaller moves slower." />
     <MESSAGE value="Corrected layers scroll system" />
     <MESSAGE value="Level editor: issue with copies of menu structure data used after other map has loaded: all changes remain even if copy() routine used. Only deepcopy() has made a trick." />
@@ -525,6 +524,7 @@
     <MESSAGE value="Dead enemies drop XP" />
     <MESSAGE value="Added sprite for exp-item." />
     <MESSAGE value="Corrected demolishers behavior which could be snapped to already dead actor." />
-    <option name="LAST_COMMIT_MESSAGE" value="Corrected demolishers behavior which could be snapped to already dead actor." />
+    <MESSAGE value="Items, described in location settings, add properly now as items, not as obstacles." />
+    <option name="LAST_COMMIT_MESSAGE" value="Items, described in location settings, add properly now as items, not as obstacles." />
   </component>
 </project>

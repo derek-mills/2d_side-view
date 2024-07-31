@@ -839,9 +839,11 @@ class World(object):
             for obs_rect in self.locations[self.location]['obstacles']['obs rectangles']:
                 if obs_rect[-1] in self.locations[self.location]['obstacles']['settings'].keys():
                     if self.locations[self.location]['obstacles']['settings'][obs_rect[-1]]['item']:
+                        # Add item, not obstacle
                         self.add_item(all_items[self.locations[self.location]['obstacles']['settings'][obs_rect[-1]]['item name']['name']],
                                       obs_rect[0])
                 else:
+                    # Add obstacle.
                     self.add_obstacle(obs_rect)
             # Apply changes to active obstacles if such action has been pended:
             if self.location in self.obstacles_changes_pending.keys():
