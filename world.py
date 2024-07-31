@@ -17,7 +17,7 @@ class World(object):
     def __init__(self):
         # Entities
         self.obstacles = dict()
-        self.obstacle_id: int = 0
+        self.obstacle_id: int = 1000
         self.active_obstacles = list()
         self.demolishers = dict()
         self.demolisher_id: int = 0
@@ -836,8 +836,13 @@ class World(object):
             # print(self.locations)
             # print(locations)
             self.locations[self.location] = locations[self.location]
-            for obs in self.locations[self.location]['obstacles']['obs rectangles']:
-                self.add_obstacle(obs)
+            for obs_rect in self.locations[self.location]['obstacles']['obs rectangles']:
+                if obs_rect[-1] in self.locations[self.location]['obstacles']['settings'].keys():
+                    if self.locations[self.location]['obstacles']['settings'][obs_rect[-1]]['item']:
+                        self.add_item(all_items[self.locations[self.location]['obstacles']['settings'][obs_rect[-1]]['item name']['name']],
+                                      obs_rect[0])
+                else:
+                    self.add_obstacle(obs_rect)
             # Apply changes to active obstacles if such action has been pended:
             if self.location in self.obstacles_changes_pending.keys():
                 for k in self.obstacles_changes_pending[self.location].keys():

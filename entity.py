@@ -828,7 +828,7 @@ class Entity(object):
         # for obs in self.obstacles_around:
         for key in self.obstacles_around.keys():
             obs = self.obstacles_around[key]
-            if obs.is_ghost_platform:
+            if obs.is_ghost_platform or obs.let_actors_pass_through:
                 continue
 
             # # Check enough spaces right and left:
