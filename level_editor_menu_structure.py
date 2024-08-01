@@ -106,7 +106,7 @@ menu_structure = {
         },
         'generate list from': '*all_items.keys()',
         'predefined keys': {
-            'LMB action': 'store value',
+            'LMB action': 'storeaaaaaa value',
             'value': '*item',
             'label': '*item',
             # 'target': '$description',

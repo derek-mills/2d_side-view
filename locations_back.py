@@ -14,12 +14,12 @@ locations = {
             },
             'obstacles': {
                 'obs rectangles': (
-                ((2450, 0), (50, 1000), 2),  #2
-                ((0, 0), (2450, 50), 3),  #3
-                ((0, 50), (50, 900), 4),  #4
-                ((2100, 950), (350, 50), 5),  #5
-                ((0, 950), (2100, 50), 6),  #6
-                ((2100, 1050), (350, 50), 7),  #7
+                ((2450, 0), (50, 1000), 2),
+                ((0, 0), (2450, 50), 3),
+                ((0, 50), (50, 900), 4),
+                ((2100, 950), (350, 50), 5),
+                ((0, 950), (2100, 50), 6),
+                ((2100, 1050), (350, 50), 7),
                   ), # OBSTACLE RECTANGLES SECTION END
                 'settings': {
                     5: {
@@ -43,24 +43,24 @@ locations = {
                         'teleport description': {'new location': '', 'xy': [0, 0]},
                   },
                     7: {
-                        'sprite elevated': False,
                         'sprite': 0,
+                        'sprite elevated': False,
                         'force render': False,
-                        'ghost': False,
-                        'actors pass through': True,
-                        'actors may grab': False,
-                        'speed': 0.2,
-                        'collideable': False,
-                        'gravity affected': False,
                         'invisible': True,
-                        'teleport': True,
-                        'teleport description': {'new location': 'lux', 'xy': (2200.0, 0.0)},
-                        'trigger': False,
-                        'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
+                        'ghost': False,
+                        'speed': 0.2,
                         'item': False,
                         'item name': {'name': ''},
+                        'actors may grab': False,
+                        'actors pass through': True,
                         'active': False,
                         'actions': {0: []},
+                        'collideable': False,
+                        'gravity affected': False,
+                        'trigger': False,
+                        'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
+                        'teleport': True,
+                        'teleport description': {'new location': 'lux', 'xy': ('keep x', 0.0)},
                   },
                   } # OBSTACLE SETTINGS SECTION END
               },
@@ -72,6 +72,70 @@ locations = {
             'description': 'apartment #1',
             'size': (2500, 1000),
             'hostiles': {
+            	(850.0, 300.0): {
+                    'name': 'demon 1',
+                    'height': 190,
+                    'width': 49,
+                    'health': 10.0,
+                    'max speed': 5,
+
+              },
+            	(950.0, 300.0): {
+                    'name': 'demon 1',
+                    'height': 190,
+                    'width': 49,
+                    'health': 10.0,
+                    'max speed': 5,
+
+              },
+            	(1050.0, 300.0): {
+                    'name': 'demon 1',
+                    'height': 190,
+                    'width': 49,
+                    'health': 10.0,
+                    'max speed': 5,
+
+              },
+            	(1150.0, 300.0): {
+                    'name': 'demon 1',
+                    'height': 190,
+                    'width': 49,
+                    'health': 10.0,
+                    'max speed': 5,
+
+              },
+            	(1250.0, 300.0): {
+                    'name': 'demon 1',
+                    'height': 190,
+                    'width': 49,
+                    'health': 10.0,
+                    'max speed': 5,
+
+              },
+            	(1350.0, 300.0): {
+                    'name': 'demon 1',
+                    'height': 190,
+                    'width': 49,
+                    'health': 10.0,
+                    'max speed': 5,
+
+              },
+            	(1450.0, 300.0): {
+                    'name': 'demon 1',
+                    'height': 190,
+                    'width': 49,
+                    'health': 10.0,
+                    'max speed': 5,
+
+              },
+            	(750.0, 300.0): {
+                    'name': 'demon 1',
+                    'height': 190,
+                    'width': 49,
+                    'health': 10.0,
+                    'max speed': 5,
+
+              },
               },
             'demolishers': {
                 'dem rectangles': (
@@ -99,6 +163,11 @@ locations = {
                 ((1725, 825), (75, 25), 38),
                 ((1875, 775), (75, 25), 39),
                 ((2025, 725), (75, 25), 40),
+                ((450, 900), (50, 50), 41),
+                ((550, 900), (50, 50), 42),
+                ((650, 900), (50, 50), 43),
+                ((750, 900), (50, 50), 44),
+                ((350, 350), (50, 50), 45),
                   ), # OBSTACLE RECTANGLES SECTION END
                 'settings': {
                     6: {
@@ -179,7 +248,107 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': True,
-                        'teleport description': {'new location': 'penthouse', 'xy': (2200.0, 850.0)},
+                        'teleport description': {'new location': 'penthouse', 'xy': ('keep x', 850.0)},
+                  },
+                    42: {
+                        'sprite': 0,
+                        'sprite elevated': False,
+                        'force render': True,
+                        'invisible': False,
+                        'ghost': False,
+                        'speed': 0.2,
+                        'item': True,
+                        'item name': {'name': 'exp'},
+                        'actors may grab': False,
+                        'actors pass through': True,
+                        'active': False,
+                        'actions': {0: []},
+                        'collideable': True,
+                        'gravity affected': True,
+                        'trigger': True,
+                        'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
+                        'teleport': False,
+                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                  },
+                    43: {
+                        'sprite': 0,
+                        'sprite elevated': False,
+                        'force render': True,
+                        'invisible': False,
+                        'ghost': False,
+                        'speed': 0.2,
+                        'item': True,
+                        'item name': {'name': 'exp'},
+                        'actors may grab': False,
+                        'actors pass through': True,
+                        'active': False,
+                        'actions': {0: []},
+                        'collideable': True,
+                        'gravity affected': True,
+                        'trigger': True,
+                        'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
+                        'teleport': False,
+                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                  },
+                    41: {
+                        'sprite': 0,
+                        'sprite elevated': False,
+                        'force render': True,
+                        'invisible': False,
+                        'ghost': False,
+                        'speed': 0.2,
+                        'item': True,
+                        'item name': {'name': 'exp'},
+                        'actors may grab': False,
+                        'actors pass through': True,
+                        'active': False,
+                        'actions': {0: []},
+                        'collideable': True,
+                        'gravity affected': True,
+                        'trigger': True,
+                        'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
+                        'teleport': False,
+                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                  },
+                    44: {
+                        'sprite': 0,
+                        'sprite elevated': False,
+                        'force render': True,
+                        'invisible': False,
+                        'ghost': False,
+                        'speed': 0.2,
+                        'item': True,
+                        'item name': {'name': 'exp'},
+                        'actors may grab': False,
+                        'actors pass through': True,
+                        'active': False,
+                        'actions': {0: []},
+                        'collideable': True,
+                        'gravity affected': True,
+                        'trigger': True,
+                        'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
+                        'teleport': False,
+                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                  },
+                    45: {
+                        'sprite': 0,
+                        'sprite elevated': False,
+                        'force render': True,
+                        'invisible': False,
+                        'ghost': False,
+                        'speed': 0.2,
+                        'item': True,
+                        'item name': {'name': 'fireball staff'},
+                        'actors may grab': False,
+                        'actors pass through': True,
+                        'active': False,
+                        'actions': {0: []},
+                        'collideable': True,
+                        'gravity affected': True,
+                        'trigger': True,
+                        'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
+                        'teleport': False,
+                        'teleport description': {'new location': '', 'xy': [0, 0]},
                   },
                   } # OBSTACLE SETTINGS SECTION END
               },
@@ -263,32 +432,33 @@ locations = {
             },
             'obstacles': {
                 'obs rectangles': (
-                ((1950, 0), (50, 250), 2),
-                ((0, 0), (50, 250), 3),
-                ((50, 0), (1900, 50), 4),
-                ((2050, 250), (50, 200), 7),
-                ((2000, 200), (100, 50), 8),
-                ((-100, 200), (100, 50), 9),
-                ((-100, 250), (50, 200), 10),
-                ((300, 400), (50, 50), 11),
-                ((350, 350), (100, 100), 12),
-                ((400, 250), (100, 100), 13),
-                ((450, 350), (100, 100), 14),
-                ((500, 250), (100, 100), 15),
-                ((550, 350), (100, 100), 16),
-                ((500, 200), (50, 50), 17),
-                ((450, 100), (50, 150), 18),
-                ((350, 50), (200, 50), 19),
-                ((550, 150), (100, 100), 20),
-                ((-100, 450), (400, 50), 21),
-                ((300, 450), (400, 50), 25),
-                ((700, 450), (1400, 50), 26),
-                ((250, 100), (50, 350), 27),
-                ((800, 350), (50, 50), 33),
-                ((900, 350), (50, 50), 34),
-                ((700, 350), (50, 50), 35),
-                ((1000, 350), (50, 50), 36),
-                ((750, 350), (50, 50), 37),
+                ((1950, 0), (50, 250), 2),  #2
+                ((0, 0), (50, 250), 3),  #3
+                ((50, 0), (1900, 50), 4),  #4
+                ((2050, 250), (50, 200), 7),  #7
+                ((2000, 200), (100, 50), 8),  #8
+                ((-100, 200), (100, 50), 9),  #9
+                ((-100, 250), (50, 200), 10),  #10
+                ((300, 400), (50, 50), 11),  #11
+                ((350, 350), (100, 100), 12),  #12
+                ((400, 250), (100, 100), 13),  #13
+                ((450, 350), (100, 100), 14),  #14
+                ((500, 250), (100, 100), 15),  #15
+                ((550, 350), (100, 100), 16),  #16
+                ((500, 200), (50, 50), 17),  #17
+                ((450, 100), (50, 150), 18),  #18
+                ((350, 50), (200, 50), 19),  #19
+                ((550, 150), (100, 100), 20),  #20
+                ((-100, 450), (400, 50), 21),  #21
+                ((300, 450), (400, 50), 25),  #25
+                ((700, 450), (1400, 50), 26),  #26
+                ((250, 100), (50, 350), 27),  #27
+                ((1400, 100), (50, 50), 33),  #33
+                ((950, 100), (50, 50), 34),  #34
+                ((1250, 100), (50, 50), 35),  #35
+                ((1600, 100), (50, 50), 36),  #36
+                ((1100, 100), (50, 50), 37),  #37
+                ((700, 100), (50, 350), 38),  #38
                   ), # OBSTACLE RECTANGLES SECTION END
                 'settings': {
                     10: {
@@ -642,6 +812,26 @@ locations = {
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
                         'teleport description': {'new location': '', 'xy': [0, 0]},
+                  },
+                    38: {
+                        'sprite': 0,
+                        'sprite elevated': False,
+                        'force render': False,
+                        'ghost': False,
+                        'actors pass through': True,
+                        'actors may grab': False,
+                        'speed': 0.2,
+                        'collideable': False,
+                        'gravity affected': False,
+                        'invisible': True,
+                        'teleport': False,
+                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'trigger': True,
+                        'trigger description': {'make active': [(25, 'self', 0)], 'disappear': False},
+                        'item': False,
+                        'item name': {'name': ''},
+                        'active': False,
+                        'actions': {0: []},
                   },
                   } # OBSTACLE SETTINGS SECTION END
               },

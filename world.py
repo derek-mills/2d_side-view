@@ -426,6 +426,8 @@ class World(object):
                         if obs.trigger_description['make active'] is not None:
                             for obstacle_to_be_activated in obs.trigger_description['make active']:
                                 make_active_id = obstacle_to_be_activated[0]
+                                if make_active_id not in self.obstacles[self.location].keys():
+                                    continue
                                 obs_loc = self.location if obstacle_to_be_activated[1] == 'self' else obstacle_to_be_activated[1]
                                 if obs_loc not in self.obstacles.keys():
                                     self.obstacles_changes_pending[obs_loc] = dict()
