@@ -30,6 +30,7 @@ class Entity(object):
         self.current_weapon = dict()
         self.time_passed: int = 0
         self.cycles_passed: int = 0
+        self.invincibility_timer: int = 0
 
         # STATS
         self.stats = {
@@ -519,6 +520,8 @@ class Entity(object):
 
     def detect_demolishers_collisions(self):
         # print(self.demolishers_around)
+        if self.invincibility_timer > 0:
+            return
         for key in self.demolishers_around.keys():
             dem = self.demolishers_around[key]
             if dem.id in self.got_immunity_to_demolishers or dem.parent_id == self.id or dem.parent == self.name:
@@ -530,6 +533,7 @@ class Entity(object):
 
     def get_damage(self, amount):
         print(f'[entity.get_damage] {self.name} {self.id} gets damage: {amount} | {self.stats["health"]=}')
+        self.invincibility_timer = 100
         self.stats['health'] -= amount
         # self.health -= amount
         if self.stats['health'] <= 0:

@@ -218,7 +218,8 @@ class Actor(Entity):
         self.set_current_animation()
 
     def process(self):
-    # def process(self, time_passed):
+        if self.invincibility_timer > 0:
+            self.invincibility_timer -= 1
         self.state_machine()
         self.processing_rectangle_size()
         self.check_space_around()
