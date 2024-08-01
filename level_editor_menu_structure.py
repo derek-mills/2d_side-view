@@ -42,18 +42,23 @@ menu_structure = {
     # $ : pointer to the inner dict key of this particular menu item ('value', 'label', 'description' etc.).
     # @ : this is the sign of executability of all code which remains after this sign.
 
-    '_template_menu_item_': {
-        'description': '',
-        'rectangle': None,
-        'label': '',
-        'value': None,
-        'target': '',
-        'on hover action': None,
-        'additional info': " ",
-        'LMB action': None,
-        'active': False,
-        'after action': None
-    },
+    '_template_menu_item_': (
+        'description', 'rectangle', 'label', 'value', 'target',
+        'on hover action', 'additional info', 'LMB action',
+        'active', 'after action'
+    ),
+    # '_template_menu_item_': {
+    #     'description': None,
+    #     'rectangle': None,
+    #     'label': None,
+    #     'value': None,
+    #     'target': None,
+    #     'on hover action': None,
+    #     'additional info': " ",
+    #     'LMB action': None,
+    #     'active': False,
+    #     'after action': None
+    # },
 
     '_template_obs_settings_': ('sprite', 'sprite elevated',
                                 'force render', 'invisible',
@@ -77,13 +82,15 @@ menu_structure = {
         },
         'generate list from': '*locations.locations.keys()',
         'predefined keys': {
-            # 'LMB action': None,
-            'value': '$description',
-            'label': '$description',
+            'LMB action': 'store value',
+            'value': '*item',
+            # 'value': '$description',
+            'label': '*item',
+            # 'label': '$description',
             # 'target': '',
             'description': '*item',
             'active': True,
-            # 'after action': 'keep going'
+            'after action': None
         },
     },
 
@@ -99,9 +106,9 @@ menu_structure = {
         },
         'generate list from': '*all_items.keys()',
         'predefined keys': {
-            'LMB action': 'return value',
-            'value': '$description',
-            'label': '$description',
+            'LMB action': 'store value',
+            'value': '*item',
+            'label': '*item',
             # 'target': '$description',
             # 'target': '',
             'description': '*item',
@@ -499,9 +506,14 @@ menu_structure = {
             'label': 'teleport to map >',
             'on hover action': None,
             'LMB action': 'reveal submenu',
-            'submenu name': 'map single selection',
-            'submenu exit action': 'store value',
-            'submenu after action': 'return to parent',
+            'submenu': {
+                'name': 'map single selection',
+                'exit button': 'all',
+                # 'exit action': 'store value',
+            },
+            # 'submenu name': 'map single selection',
+            # 'submenu exit action': 'store value',
+            # 'submenu after action': 'return to parent',
             'value': "self.menu_structure['custom obs properties']['ok']['value']['teleport description']['new location']",
             'target': "self.menu_structure['custom obs properties']['ok']['value']['teleport description']['new location']",
             'additional info': "*self.menu_structure['custom obs properties']['ok']['value']['teleport description']['new location']",
@@ -543,8 +555,15 @@ menu_structure = {
             'label': 'triggered obstacles >',
             'on hover action': None,
             'LMB action': 'reveal submenu',
+            # 'submenu': {
+            #     'name': 'obs multiple selection',
+            #     'exit button': 'ok',  # If it needed to exit a submenu by pressing any button: 'all'
+            #     'exit action': 'store value'
+            # },
             'submenu name': 'obs multiple selection',
-            'submenu exit action': 'store value',
+            # 'submenu exit button': 'ok',
+            # 'submenu exit button': 'all',  # Menu triggers value return on any button pressed.
+            # 'submenu exit action': 'store value',
             # 'submenu after action': 'return to parent',
             # 'submenu exit action': 'append value',
             # 'submenu exit action': 'return self value',
@@ -555,8 +574,8 @@ menu_structure = {
             'active': True,
             # 'also affects on': None,
             # 'after action': None,
-            # 'after action': 'keep going',
-            'after action': 'return to parent',
+            'after action': 'keep going',
+            # 'after action': 'return to parent',
         },
         'item': {
             'rectangle': pygame.Rect(0, 0, 0, 0),
@@ -787,8 +806,13 @@ menu_structure = {
             'label': '[LOAD]',
             'on hover action': None,
             'LMB action': 'reveal submenu',
+            # 'submenu': {
+            #     'name': "map single selection",
+            #     'exit button': 'all',  # If it needed to exit a submenu by pressing any button: 'all'
+            #     'exit action': 'store value'
+            # },
             'submenu name': "map single selection",
-            'submenu exit action': 'store value',
+            # 'submenu exit action': 'store value',
             # 'submenu exit action': 'append value',
             # 'submenu exit action': 'return self value',
             'value': "self.menu_structure['main menu']['load']['target']",

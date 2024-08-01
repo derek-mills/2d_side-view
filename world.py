@@ -146,6 +146,36 @@ class World(object):
 
     def add_item(self, item, xy):
         entity = Obstacle()
+        self.item_id += 1
+        # self.max_obs_id_in_current_location += 1
+        # self.obstacle_id += 1
+        # entity.id = self.max_obs_id_in_current_location
+        # entity.id = self.obstacle_id + self.max_obs_id_in_current_location
+        # entity.id = xy[-1]
+        entity.id = self.item_id * 100
+        # entity.id = str(self.item_id) + ' item'
+        entity.rectangle.topleft = xy
+        entity.origin_xy = xy
+        entity.max_speed = 5
+        entity.is_force_render = True
+        entity.sprite = item['sprite']
+        entity.rectangle.width = sprites[entity.sprite]['sprite'].get_size()[0]
+        entity.rectangle.height = sprites[entity.sprite]['sprite'].get_size()[1]
+        entity.invisible = False
+        entity.trigger = True
+        entity.is_collideable = True
+        entity.is_gravity_affected = True
+        entity.let_actors_pass_through = True
+        entity.is_item = True
+        entity.item_name = item['label']
+        entity.item_amount = item['amount']
+        entity.item_amount_threshold = item['amount threshold']
+        entity.item_amount_decrease_speed = item['amount decrease speed']
+        # self.items[self.location][entity.id] = entity
+        self.obstacles[self.location][entity.id] = entity
+
+    def add_item_safe(self, item, xy):
+        entity = Obstacle()
         # self.item_id += 1
         # self.max_obs_id_in_current_location += 1
         self.obstacle_id += 1

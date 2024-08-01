@@ -158,31 +158,55 @@ class World(object):
 
         # self.menu_structure[menu_name] = dict()
         for item in menu_items_list:
-            print(f'[generate menu] Adding item: {item}')
+            # print(f'[generate menu] Adding item: {item}')
             self.menu_structure[menu_name][item] = dict()
-            # self.menu_structure[menu_name][item]['description'] = item
-            for reference_key in self.menu_structure['_template_menu_item_'].keys():
-                if reference_key in self.menu_structure[menu_name]['predefined keys'].keys():
-                    reference_menu_item = self.menu_structure[menu_name]['predefined keys'][reference_key]
-                    if reference_menu_item and type(reference_menu_item) == str:
-                        if reference_menu_item[0] == '*':
-                            # Has got a pointers to particular global variable:
-                            # bunch_of_pointers = reference_menu_item.split('*')
-                            # for p in bunch_of_pointers:
-                            #     reference_menu_item = eval(reference_menu_item[1:])
-                            reference_menu_item = eval(reference_menu_item[1:])
-                        elif reference_menu_item[0] == '$':
-                            # Pointer to the inner dict key:
-                            reference_menu_item = self.menu_structure[menu_name][item][reference_menu_item[1:]]
-                        elif reference_menu_item[0] == '@':
-                            # '@' this is the sign of executability of all code which remains after this sign.
-                            # i = reference_menu_item.split('@')
-                            # reference_menu_item = i[0] + eval(i[1])
-                            # print(reference_menu_item)
-                            reference_menu_item = exec(reference_menu_item[1:])
-                    self.menu_structure[menu_name][item][reference_key] = reference_menu_item
-                else:
-                    self.menu_structure[menu_name][item][reference_key] = self.menu_structure['_template_menu_item_'][reference_key]
+
+            for reference_key in self.menu_structure['_template_menu_item_']:
+                self.menu_structure[menu_name][item][reference_key] = None
+
+            for key in self.menu_structure[menu_name]['predefined keys'].keys():
+                menu_item = self.menu_structure[menu_name]['predefined keys'][key]
+                if menu_item and type(menu_item) == str:
+                    if menu_item[0] == '*':
+                        # Has got a pointers to particular global variable:
+                        # bunch_of_pointers = menu_item.split('*')
+                        # for p in bunch_of_pointers:
+                        #     menu_item = eval(menu_item[1:])
+                        menu_item = eval(menu_item[1:])
+                    elif menu_item[0] == '$':
+                        # Pointer to the inner dict key:
+                        menu_item = self.menu_structure[menu_name][item][menu_item[1:]]
+                    elif menu_item[0] == '@':
+                        # '@' this is the sign of executability of all code which remains after this sign.
+                        # i = menu_item.split('@')
+                        # menu_item = i[0] + eval(i[1])
+                        # print(menu_item)
+                        menu_item = exec(menu_item[1:])
+                self.menu_structure[menu_name][item][key] = menu_item
+
+            # # for reference_key in self.menu_structure['_template_menu_item_']:
+            # for reference_key in self.menu_structure['_template_menu_item_'].keys():
+            #     if reference_key in self.menu_structure[menu_name]['predefined keys'].keys():
+            #         reference_menu_item = self.menu_structure[menu_name]['predefined keys'][reference_key]
+            #         if reference_menu_item and type(reference_menu_item) == str:
+            #             if reference_menu_item[0] == '*':
+            #                 # Has got a pointers to particular global variable:
+            #                 # bunch_of_pointers = reference_menu_item.split('*')
+            #                 # for p in bunch_of_pointers:
+            #                 #     reference_menu_item = eval(reference_menu_item[1:])
+            #                 reference_menu_item = eval(reference_menu_item[1:])
+            #             elif reference_menu_item[0] == '$':
+            #                 # Pointer to the inner dict key:
+            #                 reference_menu_item = self.menu_structure[menu_name][item][reference_menu_item[1:]]
+            #             elif reference_menu_item[0] == '@':
+            #                 # '@' this is the sign of executability of all code which remains after this sign.
+            #                 # i = reference_menu_item.split('@')
+            #                 # reference_menu_item = i[0] + eval(i[1])
+            #                 # print(reference_menu_item)
+            #                 reference_menu_item = exec(reference_menu_item[1:])
+            #         self.menu_structure[menu_name][item][reference_key] = reference_menu_item
+            #     else:
+            #         self.menu_structure[menu_name][item][reference_key] = self.menu_structure['_template_menu_item_'][reference_key]
 
             print(f'[generate_menu] Generating menu: {item}')
             for k in self.menu_structure[menu_name][item].keys():
@@ -598,13 +622,10 @@ class World(object):
 
 
     def main_menu(self):
-
-        # for i in self.menu_structure['main menu'].keys():
-        #     item = self.menu_structure['main menu'][i]
-        #     self.add_menu_item(item)
-        # #    self.add_menu_item(item['rectangle'], item['label'], item['LMB action'], item['active'], item['on hover action'])
-        self.add_menu({'submenu name': 'main menu', 'value': ''}, (MAXX_DIV_2 - 200, 300), 400, 20)
-        # self.add_menu('main menu', (MAXX_DIV_2 - 200, 300), 400, 20)
+        # self.add_menu({'submenu' : {'name': 'main menu', 'exit button': None},
+        #                'LMB action': 'reveal submenu',
+        #                'value': ''}, (MAXX_DIV_2 - 200, 300), 400, 20)
+        self.add_menu({'submenu name' : 'main menu', 'value': ''}, (MAXX_DIV_2 - 200, 300), 400, 20)
         background = self.screen.convert_alpha()
         # self.dim()
         while not self.menu_actions_done:
@@ -1020,6 +1041,141 @@ class World(object):
 
         restricted = ('generate list from', 'predefined keys','target object', 'rect')
 
+        # Need to set 'target' value for all elements of the newborn menu from 'value' of the parent.
+        # All the actions will aim this object after submenu has done:
+        target = parent_menu_item['value']
+        # print(f'[add_menu] target: {target}')
+
+
+        menu_name = parent_menu_item['submenu name']
+        # menu_name = parent_menu_item['submenu']['name']
+
+        # Add current new menu name to common global store:
+        if menu_name not in self.menu_walk_tree:
+            self.menu_walk_tree.append(menu_name)
+
+        # if parent_menu_item['LMB action'] == 'reveal submenu':
+        # Let's generate a list of new menu items from the given text-type description of sequence, if needed:
+        if 'generate list from' in self.menu_structure[menu_name].keys():
+            self.generate_menu(menu_name)
+
+            # if 'submenu exit action' in parent_menu_item.keys():
+            # after_action = parent_menu_item['submenu']['exit action']
+            # else:
+            #     after_action = None
+
+        #     if not parent_menu_item['submenu']['exit button']:
+        #         menu_exit_buttons = []
+        #     elif parent_menu_item['submenu']['exit button'] == 'ok':
+        #         menu_exit_buttons = ('ok',)
+        #     else:
+        #         menu_exit_buttons = list(self.menu_structure[menu_name].keys())
+        # else:
+        #     menu_exit_buttons = []
+
+
+        # print(f'[add_menu] Start adding new menu: {menu_name=}, pile: {self.menu_pile_id}')
+        # print(f'[add_menu] parent items: {parent_menu_item.keys()}')
+
+
+        #
+        if 'self dict key' in parent_menu_item.keys():
+            parent_dict_key = parent_menu_item['self dict key']
+        else:
+            parent_dict_key = ''
+
+        #
+        if 'menu pile' in parent_menu_item.keys():
+            parent_menu_pile = parent_menu_item['menu pile']
+        else:
+            parent_menu_pile = 0
+
+        # All the items of the newborn menu:
+        items = self.menu_structure[menu_name].keys()
+
+        # Calculate geometry routines:
+        if top_left_corner[0] + width > MAXX:
+            start_x = MAXX - width
+        else:
+            start_x = top_left_corner[0]
+
+        dy = 0
+        height = font_size + 16
+        total_menu_height = height * len([i for i in items if i not in restricted])
+        if top_left_corner[1] + total_menu_height > MAXY:
+            start_y = MAXY - height
+        else:
+            start_y = top_left_corner[1] + total_menu_height - height
+
+        # Main cycle of menu items add:
+        for i in reversed(items):
+            if i in restricted:
+                continue
+            # print(i)
+            item = self.menu_structure[menu_name][i]
+            item['menu pile'] = self.menu_pile_id
+            item['parent menu pile'] = parent_menu_pile
+            item['parent dict key'] = parent_dict_key
+            # if parent_menu_item['LMB action'] == 'reveal submenu':
+            # if menu_exit_buttons and i in menu_exit_buttons:
+            #     item['after action'] = parent_menu_item['submenu']['exit action']
+
+            if i == 'ok':
+                # item['rectangle'] = pygame.Rect(top_left_corner[0] - 80, top_left_corner[1], 80, total_menu_height - height)
+                item['rectangle'] = pygame.Rect(start_x - 80, start_y - total_menu_height + height, 80, total_menu_height - height)
+            else:
+                item['rectangle'] = pygame.Rect(start_x, start_y - dy, width, height)
+                dy += height
+
+            if 'target' not in item.keys() or not item['target']:
+                # print(f'[add_menu] try to set {target=} for {menu_name=}')
+                item['target'] = target
+
+            # if item['LMB action'] == 'reveal submenu':
+            #     if 'submenu exit action' in parent_menu_item.keys():
+            #         # print('[add_menu] try to set ', parent_menu_item['submenu exit action'])
+            #         item['LMB action'] = parent_menu_item['submenu exit action']
+            #         print('[add_menu] LMB action becomes: ', item['LMB action'])
+
+            # if 'submenu exit action' in parent_menu_item.keys():
+            #     print('[add_menu] try to set ', parent_menu_item['submenu exit action'])
+                # item['LMB action'] = parent_menu_item['submenu exit action']
+                # print('[add_menu] LMB action becomes: ', item['LMB action'])
+
+            # if 'LMB action' not in item.keys() or not item['LMB action']:
+            #     item['LMB action'] = exit_action
+
+            if 'colors' in item.keys():
+                self.add_menu_item(item, item['colors']['frame color'], item['colors']['bg color'], item['colors']['txt color'])
+                continue
+
+            self.add_menu_item(item)
+            # dy += height
+
+
+        self.menu_items[self.active_menu_pile][0]['menu rect'] = pygame.Rect(start_x, start_y, width, total_menu_height)
+        # self.menu_items[self.active_menu_pile][0]['menu rect'] = pygame.Rect(top_left_corner[0], start_y, width, total_menu_height)
+
+        # print(f'[add_menu] Added new menu: {menu_name}')
+        # for k in self.menu_structure[menu_name].keys():
+        #     # subm_keys = self.menu_structure[menu_name][k].keys()
+        #     # v = self.menu_structure[menu_name][k]['value']
+        #     # t = self.menu_structure[menu_name][k]['target']
+        #     print(f'[add_menu] submenu: {k} ')
+        #     # for i in subm_keys:
+        #     #     print(f'[add_menu] submenu: {k}, item: {i} ')
+        # print(f'[add_menu] ----------')
+
+    def add_menu_old(self, parent_menu_item, top_left_corner, width, font_size):
+        self.menu_item_id = 0
+        if 'menu pile' in parent_menu_item.keys():
+            self.menu_pile_id = parent_menu_item['menu pile'] + 1
+        else:
+            self.menu_pile_id += 1
+        self.active_menu_pile = self.menu_pile_id
+
+        restricted = ('generate list from', 'predefined keys','target object', 'rect')
+
         menu_name = parent_menu_item['submenu name']
         # print(f'[add_menu] Start adding new menu: {menu_name=}, pile: {self.menu_pile_id}')
         # print(f'[add_menu] parent items: {parent_menu_item.keys()}')
@@ -1102,6 +1258,12 @@ class World(object):
             if 'target' not in item.keys() or not item['target']:
                 # print(f'[add_menu] try to set {target=} for {menu_name=}')
                 item['target'] = target
+
+            # if item['LMB action'] == 'reveal submenu':
+            #     if 'submenu exit action' in parent_menu_item.keys():
+            #         # print('[add_menu] try to set ', parent_menu_item['submenu exit action'])
+            #         item['LMB action'] = parent_menu_item['submenu exit action']
+            #         print('[add_menu] LMB action becomes: ', item['LMB action'])
 
             if 'submenu exit action' in parent_menu_item.keys():
                 # print('[add_menu] try to set ', parent_menu_item['submenu exit action'])
@@ -1834,7 +1996,7 @@ class World(object):
                     self.screen.blit(s, (menu_item['rectangle'].centerx - s.get_size()[0] // 2, menu_item['rectangle'].centery - s.get_size()[1] // 2))
 
                     # Render additional info about the menu item:
-                    if 'additional info' in menu_item.keys():
+                    if 'additional info' in menu_item.keys() and menu_item['additional info']:
                         if menu_item['additional info'][0] == '^':
                             # Link to a pure graphic object, not text.
                             # print('[render menu]', menu_item['additional info'])
@@ -2064,10 +2226,10 @@ class World(object):
         else:
             for k in self.obs_settings[obs.id].keys():
                 self.menu_structure['custom obs properties']['ok']['value'][k] = self.obs_settings[obs.id][k]
+        # self.add_menu({'submenu' : {'name': 'custom obs properties', 'exit button': None},
+        #                'LMB action': 'reveal submenu',
+        #                'value': ''}, self.mouse_xy, 400, 15)
         self.add_menu({'submenu name': 'custom obs properties', 'value': ''}, self.mouse_xy, 400, 15)
-        # self.add_menu('custom obs properties', self.mouse_xy, 400, 20)
-        # self.add_menu('obstacle edit', self.mouse_xy, 400, 20)
-        # self.add_menu(self.mouse_xy, 400, 20, [self.menu_structure['obstacle edit'][i] for i in self.menu_structure['obstacle edit'].keys()])
         background = self.screen.convert_alpha()
         while not self.menu_actions_done:
             self.processing_human_input()
