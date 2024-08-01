@@ -1,6 +1,51 @@
 from constants import *
 locations = {
     
+    'room81':
+        {
+            'music': 'music/ambient_1.mp3',
+            'description': 'apartment #1',
+            'size': (2000, 500),
+            'hostiles': {
+              },
+            'demolishers': {
+                'dem rectangles': (
+                  ), # DEMOLISHERS RECTANGLE SECTION END
+            },
+            'obstacles': {
+                'obs rectangles': (
+                ((1950, 0), (50, 450), 2),
+                ((-100, -50), (50, 500), 5),
+                ((-100, 450), (2100, 50), 7),
+                ((0, 0), (400, 50), 8),
+                ((0, 50), (50, 200), 9),
+                ((800, 0), (1150, 50), 11),
+                  ), # OBSTACLE RECTANGLES SECTION END
+                'settings': {
+                    5: {
+                        'sprite': 0,
+                        'sprite elevated': False,
+                        'force render': False,
+                        'invisible': True,
+                        'ghost': False,
+                        'speed': 0.2,
+                        'item': False,
+                        'item name': {'name': ''},
+                        'actors may grab': False,
+                        'actors pass through': True,
+                        'active': False,
+                        'actions': {0: []},
+                        'collideable': False,
+                        'gravity affected': False,
+                        'trigger': False,
+                        'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
+                        'teleport': True,
+                        'teleport description': {'new location': 'stairway', 'xy': (1400.0, 800.0)},
+                  },
+                  } # OBSTACLE SETTINGS SECTION END
+              },
+            'items': {},
+    },
     'penthouse':
         {
             'music': 'music/ambient_1.mp3',
@@ -72,76 +117,68 @@ locations = {
             'description': 'apartment #1',
             'size': (2500, 1000),
             'hostiles': {
-            	(900.0, 300.0): {
+            	(850.0, 300.0): {
                     'name': 'demon 1',
                     'height': 190,
                     'width': 49,
-                    'health': 1500.0,
-                    'max speed': 2.8,
+                    'health': 10.0,
+                    'max speed': 5,
 
               },
-            	(1100.0, 350.0): {
+            	(950.0, 300.0): {
                     'name': 'demon 1',
                     'height': 190,
                     'width': 49,
-                    'health': 1500.0,
-                    'max speed': 2.8,
+                    'health': 10.0,
+                    'max speed': 5,
 
               },
-            	(1300.0, 400.0): {
+            	(1050.0, 300.0): {
                     'name': 'demon 1',
                     'height': 190,
                     'width': 49,
-                    'health': 1500.0,
-                    'max speed': 2.8,
+                    'health': 10.0,
+                    'max speed': 5,
 
               },
-            	(1600.0, 350.0): {
+            	(1150.0, 300.0): {
                     'name': 'demon 1',
                     'height': 190,
                     'width': 49,
-                    'health': 1500.0,
-                    'max speed': 2.8,
+                    'health': 10.0,
+                    'max speed': 5,
 
               },
-            	(1850.0, 350.0): {
+            	(1250.0, 300.0): {
                     'name': 'demon 1',
                     'height': 190,
                     'width': 49,
-                    'health': 1500.0,
-                    'max speed': 2.8,
+                    'health': 10.0,
+                    'max speed': 5,
 
               },
-            	(1500.0, 400.0): {
+            	(1350.0, 300.0): {
                     'name': 'demon 1',
                     'height': 190,
                     'width': 49,
-                    'health': 1500.0,
-                    'max speed': 2.8,
+                    'health': 10.0,
+                    'max speed': 5,
 
               },
-            	(1400.0, 400.0): {
+            	(1450.0, 300.0): {
                     'name': 'demon 1',
                     'height': 190,
                     'width': 49,
-                    'health': 1500.0,
-                    'max speed': 2.8,
+                    'health': 10.0,
+                    'max speed': 5,
 
               },
-            	(1950.0, 500.0): {
+            	(750.0, 300.0): {
                     'name': 'demon 1',
                     'height': 190,
                     'width': 49,
-                    'health': 1500.0,
-                    'max speed': 2.8,
-
-              },
-            	(2050.0, 350.0): {
-                    'name': 'demon 1',
-                    'height': 190,
-                    'width': 49,
-                    'health': 1500.0,
-                    'max speed': 2.8,
+                    'health': 10.0,
+                    'max speed': 5,
 
               },
               },
@@ -175,7 +212,7 @@ locations = {
                 ((550, 900), (50, 50), 42),
                 ((650, 900), (50, 50), 43),
                 ((750, 900), (50, 50), 44),
-                ((100, 350), (50, 50), 45),
+                ((350, 350), (50, 50), 45),
                   ), # OBSTACLE RECTANGLES SECTION END
                 'settings': {
                     6: {
@@ -461,11 +498,13 @@ locations = {
                 ((300, 450), (400, 50), 25),  #25
                 ((700, 450), (1400, 50), 26),  #26
                 ((250, 100), (50, 350), 27),  #27
-                ((1050, 100), (50, 50), 34),  #34
-                ((1350, 100), (50, 50), 35),  #35
+                ((1400, 100), (50, 50), 33),  #33
+                ((950, 100), (50, 50), 34),  #34
+                ((1250, 100), (50, 50), 35),  #35
                 ((1600, 100), (50, 50), 36),  #36
-                ((1200, 100), (50, 50), 37),  #37
+                ((1100, 100), (50, 50), 37),  #37
                 ((700, 100), (50, 350), 38),  #38
+                ((300, 500), (400, 50), 39),  #39
                   ), # OBSTACLE RECTANGLES SECTION END
                 'settings': {
                     10: {
@@ -720,6 +759,26 @@ locations = {
                         'teleport': True,
                         'teleport description': {'new location': 'luxuryelevatorroom', 'xy': (50.0, 300.0)},
                   },
+                    33: {
+                        'sprite': 0,
+                        'sprite elevated': False,
+                        'force render': True,
+                        'invisible': False,
+                        'ghost': False,
+                        'speed': 0.2,
+                        'item': True,
+                        'item name': {'name': 'fireball staff'},
+                        'actors may grab': False,
+                        'actors pass through': True,
+                        'active': False,
+                        'actions': {0: []},
+                        'collideable': True,
+                        'gravity affected': True,
+                        'trigger': True,
+                        'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
+                        'teleport': False,
+                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                  },
                     34: {
                         'sprite': 0,
                         'sprite elevated': False,
@@ -820,6 +879,26 @@ locations = {
                         'teleport': False,
                         'teleport description': {'new location': '', 'xy': [0, 0]},
                   },
+                    39: {
+                        'sprite elevated': False,
+                        'sprite': 0,
+                        'force render': False,
+                        'ghost': False,
+                        'actors pass through': True,
+                        'actors may grab': False,
+                        'speed': 0.2,
+                        'collideable': False,
+                        'gravity affected': False,
+                        'invisible': True,
+                        'teleport': True,
+                        'teleport description': {'new location': 'room81', 'xy': ('keep x', 0.0)},
+                        'trigger': False,
+                        'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
+                        'item': False,
+                        'item name': {'name': ''},
+                        'active': False,
+                        'actions': {0: []},
+                  },
                   } # OBSTACLE SETTINGS SECTION END
               },
             'items': {},
@@ -893,7 +972,6 @@ locations = {
                 ((1450, 1450), (50, 300), 62),
                 ((1450, 1750), (50, 200), 63),
                 ((1000, 950), (450, 50), 64),
-                ((1450, 750), (50, 200), 65),
                 ((1450, 950), (50, 300), 66),
                 ((1450, 1250), (50, 200), 68),
                 ((-100, 4950), (100, 50), 69),
@@ -921,6 +999,8 @@ locations = {
                 ((50, 0), (650, 50), 91),
                 ((1500, 450), (100, 50), 92),
                 ((1500, 200), (100, 50), 93),
+                ((1500, 950), (100, 50), 94),
+                ((1550, 550), (50, 400), 95),
                   ), # OBSTACLE RECTANGLES SECTION END
                 'settings': {
                     2: {
@@ -1282,6 +1362,26 @@ locations = {
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': True,
                         'teleport description': {'new location': 'luxuryhall', 'xy': (50.0, 300.0)},
+                  },
+                    95: {
+                        'sprite': 0,
+                        'sprite elevated': False,
+                        'force render': False,
+                        'invisible': True,
+                        'ghost': False,
+                        'speed': 0.2,
+                        'item': False,
+                        'item name': {'name': ''},
+                        'actors may grab': False,
+                        'actors pass through': True,
+                        'active': False,
+                        'actions': {0: []},
+                        'collideable': False,
+                        'gravity affected': False,
+                        'trigger': False,
+                        'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
+                        'teleport': True,
+                        'teleport description': {'new location': 'room81', 'xy': (50.0, 300.0)},
                   },
                   } # OBSTACLE SETTINGS SECTION END
               },

@@ -106,6 +106,8 @@ class Obstacle(Entity):
             if key == self.id:
                 continue
             obs = self.obstacles_around[key]
+            if obs.let_actors_pass_through:
+                continue
             #-----------------------------------
             # Check RIGHT
             if obs.rectangle.colliderect(self.collision_detector_right) and not obs.is_ghost_platform:

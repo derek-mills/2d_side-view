@@ -513,6 +513,7 @@ class Actor(Entity):
                         self.movement_direction_inverter = -1
                         self.heading[0] = 0
                         self.idle_counter = 20
+                        self.invincibility_timer = 10
                     self.is_abort_jump = False
                     self.set_state('hopping back process')
             else:
@@ -522,6 +523,7 @@ class Actor(Entity):
         elif self.__state == 'hopping back process':            # HOPPING BACK PROCESS
             if self.idle_counter > 0:
                 self.idle_counter -= 1
+                # self.invincibility_timer -= 1
             else:
                 if self.speed <= 0:
                     self.ignore_user_input = False

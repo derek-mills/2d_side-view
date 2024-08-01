@@ -1132,9 +1132,10 @@ class World(object):
                 item['target'] = target
 
             # if item['LMB action'] == 'reveal submenu':
-            #     if 'submenu exit action' in parent_menu_item.keys():
-            #         # print('[add_menu] try to set ', parent_menu_item['submenu exit action'])
-            #         item['LMB action'] = parent_menu_item['submenu exit action']
+            if 'submenu after action' in parent_menu_item.keys():
+                # print('[add_menu] try to set ', parent_menu_item['submenu exit action'])
+                item['after action'] = parent_menu_item['submenu after action']
+                # item['LMB action'] = parent_menu_item['submenu exit action']
             #         print('[add_menu] LMB action becomes: ', item['LMB action'])
 
             # if 'submenu exit action' in parent_menu_item.keys():

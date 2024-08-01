@@ -106,7 +106,7 @@ menu_structure = {
         },
         'generate list from': '*all_items.keys()',
         'predefined keys': {
-            'LMB action': 'storeaaaaaa value',
+            'LMB action': 'store value',
             'value': '*item',
             'label': '*item',
             # 'target': '$description',
@@ -133,13 +133,13 @@ menu_structure = {
     'clipboard single selection': {
         'generate list from': '*self.clipboard',
         'predefined keys': {
-            # 'LMB action': None,
-            'value': '$description',
-            'label': '$description',
+            'LMB action': 'store value',
+            'value': '*item',
+            'label': '*item',
             # 'target': '',
             'description': '*item',
             'active': True,
-            # 'after action': 'keep going'
+            'after action': 'return to parent'
         },
     },
 
@@ -506,14 +506,14 @@ menu_structure = {
             'label': 'teleport to map >',
             'on hover action': None,
             'LMB action': 'reveal submenu',
-            'submenu': {
-                'name': 'map single selection',
-                'exit button': 'all',
-                # 'exit action': 'store value',
-            },
-            # 'submenu name': 'map single selection',
+            # 'submenu': {
+            #     'name': 'map single selection',
+            #     'exit button': 'all',
+            #     # 'exit action': 'store value',
+            # },
+            'submenu name': 'map single selection',
             # 'submenu exit action': 'store value',
-            # 'submenu after action': 'return to parent',
+            'submenu after action': 'return to parent',
             'value': "self.menu_structure['custom obs properties']['ok']['value']['teleport description']['new location']",
             'target': "self.menu_structure['custom obs properties']['ok']['value']['teleport description']['new location']",
             'additional info': "*self.menu_structure['custom obs properties']['ok']['value']['teleport description']['new location']",
@@ -526,7 +526,7 @@ menu_structure = {
             'on hover action': None,
             'LMB action': 'reveal submenu',
             'submenu name': 'clipboard single selection',
-            'submenu exit action': 'store value',
+            # 'submenu exit action': 'store value',
             'submenu after action': 'return to parent',
             'value': "self.menu_structure['custom obs properties']['ok']['value']['teleport description']['xy']",
             'target': "self.menu_structure['custom obs properties']['ok']['value']['teleport description']['xy']",
