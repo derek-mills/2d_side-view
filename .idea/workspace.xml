@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="" />
+    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demolisher.py" beforeDir="false" afterPath="$PROJECT_DIR$/demolisher.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -137,13 +144,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00278" summary="Level editor: added keyboard input processing routines.">
-      <created>1721272703982</created>
-      <option name="number" value="00278" />
-      <option name="presentableId" value="LOCAL-00278" />
-      <option name="project" value="LOCAL" />
-      <updated>1721272703982</updated>
     </task>
     <task id="LOCAL-00279" summary="Level editor: added an opportunity to rename the currently editing map.">
       <created>1721282191821</created>
@@ -481,7 +481,14 @@
       <option name="project" value="LOCAL" />
       <updated>1722491134515</updated>
     </task>
-    <option name="localTasksCounter" value="327" />
+    <task id="LOCAL-00327" summary="If location to be activated by the trigger does not exist it won't cause error anymore.">
+      <created>1722491434152</created>
+      <option name="number" value="00327" />
+      <option name="presentableId" value="LOCAL-00327" />
+      <option name="project" value="LOCAL" />
+      <updated>1722491434152</updated>
+    </task>
+    <option name="localTasksCounter" value="328" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -496,7 +503,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Compiled a map of a playground. Continue to build a scenes according this map." />
     <MESSAGE value="Level editor: just have been edited obstacles become visually different immediately." />
     <MESSAGE value="Some minor improvements" />
     <MESSAGE value="Prevented actor's disappearing from the camera surveillance while quick descent." />
@@ -521,6 +527,7 @@
     <MESSAGE value="Variable self.max_obs_id_in_current_location implemented to prevent obstacles IDs collisions when new items appear and disappear during gameplay (items and obstacles are the same objects with slightly different properties)." />
     <MESSAGE value="Some tiny improvements.&#10;TODO: in level editor submenu does not append multiple obstacles into obs editing mode." />
     <MESSAGE value="Level editor: submenu behavior changed to be more simple in describe terms." />
-    <option name="LAST_COMMIT_MESSAGE" value="Level editor: submenu behavior changed to be more simple in describe terms." />
+    <MESSAGE value="If location to be activated by the trigger does not exist it won't cause error anymore." />
+    <option name="LAST_COMMIT_MESSAGE" value="If location to be activated by the trigger does not exist it won't cause error anymore." />
   </component>
 </project>

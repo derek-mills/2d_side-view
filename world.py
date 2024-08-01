@@ -262,6 +262,7 @@ class World(object):
         demol.bounce = description['bounce']
         demol.bounce_factor = description['bounce factor']
         demol.flyer = description['flyer']
+        demol.parent = description['parent']
 
         if description['snap to actor'] >= 0:
             demol.snap_to_actor = description['snap to actor']
@@ -474,6 +475,7 @@ class World(object):
                 'aftermath': '',
                 'damage': 10,
                 'static': False,
+                'parent': '',
                 'damage reduce': .01,
                 'speed': 0.5 + randint(1, 5) / 10,
                 'collides': True,
@@ -791,8 +793,8 @@ class World(object):
             if key not in self.active_obstacles:
                 continue
             obs = self.obstacles[self.location][key]
-            pygame.draw.rect(self.screen, CYAN, (obs.rectangle.x - self.camera.offset_x, obs.rectangle.y - self.camera.offset_y,
-                                                  obs.rectangle.width, obs.rectangle.height))
+            # pygame.draw.rect(self.screen, CYAN, (obs.rectangle.x - self.camera.offset_x, obs.rectangle.y - self.camera.offset_y,
+            #                                       obs.rectangle.width, obs.rectangle.height))
 
             if not obs.is_force_render:
                 continue

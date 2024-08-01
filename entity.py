@@ -358,6 +358,7 @@ class Entity(object):
                         self.summon_demolisher_counter += 1
                         self.summoned_demolisher_description = self.current_weapon['demolishers'][self.summon_demolisher_counter]
                         self.summoned_demolisher_description['snap to actor'] = self.id
+                        self.summoned_demolisher_description['parent'] = self.name
                         self.summoned_demolisher_description['snapping offset'] = self.animations[self.current_animation]['demolisher offset'][self.look]
                 elif action == 'sound':
                     snd = self.animations[self.current_animation]['activity at frames'][self.frame_number]
@@ -520,7 +521,7 @@ class Entity(object):
         # print(self.demolishers_around)
         for key in self.demolishers_around.keys():
             dem = self.demolishers_around[key]
-            if dem.id in self.got_immunity_to_demolishers or dem.parent_id == self.id:
+            if dem.id in self.got_immunity_to_demolishers or dem.parent_id == self.id or dem.parent == self.name:
                 continue
             if self.rectangle.colliderect(dem.rectangle):
                 self.get_damage(dem.damage)

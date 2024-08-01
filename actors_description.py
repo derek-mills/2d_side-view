@@ -6,7 +6,7 @@ demon_1 = {
     'name': 'demon 1',
     'drop': ['exp' for i in range(randint(3,5))],
     # 'start_xy': (1500, 200),
-    'health': 10.,
+    'health': 1500.,
     'height': 190,
     'width': 49,
     'body state': {
@@ -33,7 +33,7 @@ demon_1 = {
             'hardness': 100
         },
     },
-    'max speed': 5,
+    'max speed': 2 + randint(1, 10) / 10,
     'items': (whip,),
     'animations': {
         'stand still right': {

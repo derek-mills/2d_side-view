@@ -17,6 +17,7 @@ class Demolisher(Entity):
         self.damage: float = 0.
         self.damage_reduce: float = 0.
         self.parent_id: int = -1
+        self.parent: str = ''
         self.static = True
         self.bounce = False
         self.bounce_factor: float = 0.  # Vertical and horizontal speed reducing after every bounce.
