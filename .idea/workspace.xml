@@ -6,8 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphics.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locations_back.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations_back.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -142,13 +145,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00284" summary="Player actor's sprites redesigned to be more simple.">
-      <created>1721361698021</created>
-      <option name="number" value="00284" />
-      <option name="presentableId" value="LOCAL-00284" />
-      <option name="project" value="LOCAL" />
-      <updated>1721361698021</updated>
     </task>
     <task id="LOCAL-00285" summary="Some animations have been remade.&#10;Added sprite sheet generator.">
       <created>1721368695950</created>
@@ -486,7 +482,14 @@
       <option name="project" value="LOCAL" />
       <updated>1722567477041</updated>
     </task>
-    <option name="localTasksCounter" value="333" />
+    <task id="LOCAL-00333" summary="Teleports, which are not 'on touch' and have to be activated manually, highlighted now if actor touches them.">
+      <created>1722569275242</created>
+      <option name="number" value="00333" />
+      <option name="presentableId" value="LOCAL-00333" />
+      <option name="project" value="LOCAL" />
+      <updated>1722569275242</updated>
+    </task>
+    <option name="localTasksCounter" value="334" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -501,7 +504,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="level editor: items selection integrated into obs edit menu, but it doesn't work.&#10;Need to rebuild menu system once again to make it more flexible and simple." />
     <MESSAGE value="level editor: some improvements in menu generation and submenu values return.&#10;'Item' type of obstacle save its settings properly." />
     <MESSAGE value="Preparing base for normal items picking up and use." />
     <MESSAGE value="level editor: individual pop-up description for items" />
@@ -526,6 +528,7 @@
     <MESSAGE value="some tiny, but important improvements  :^)" />
     <MESSAGE value="added room #81" />
     <MESSAGE value="New Teleport property 'on touch' appeared. If it set to False, player need to push UP button to proceed to another location." />
-    <option name="LAST_COMMIT_MESSAGE" value="New Teleport property 'on touch' appeared. If it set to False, player need to push UP button to proceed to another location." />
+    <MESSAGE value="Teleports, which are not 'on touch' and have to be activated manually, highlighted now if actor touches them." />
+    <option name="LAST_COMMIT_MESSAGE" value="Teleports, which are not 'on touch' and have to be activated manually, highlighted now if actor touches them." />
   </component>
 </project>

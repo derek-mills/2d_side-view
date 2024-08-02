@@ -273,6 +273,15 @@ load_all_frames(tmp_sprites, 97, name, 20, 30, 8)
 # {'sprite': <Surface(90x210x32 SW)>, 'sprite center': 45, 'sprite asymmetric': False}
 # exit()
 
+# ___...---=== DEMON 2 ===---...___
+name = 'demon 2'
+# tmp_sprites = pygame.image.load('img/animations/jake_8bit.png').convert_alpha()
+tmp_sprites = pygame.image.load('img/animations/demon_2.png').convert_alpha()
+load_single_frame(tmp_sprites, ((260,150,20,18),), name + ' avatar')
+load_single_frame(tmp_sprites, ((260,150,20,18),), name + ' avatar front')
+# load_single_frame(tmp_sprites, ((2660,1720,90,50),), name + 'floor shadow mask')
+load_all_frames(tmp_sprites, 97, name, 20, 30, 14)
+
 # ___...---=== DEMON MALE 1 ===---...___
 name = 'demon 1'
 # tmp_sprites = pygame.image.load('img/animations/jake_8bit.png').convert_alpha()

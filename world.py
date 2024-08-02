@@ -809,7 +809,7 @@ class World(object):
                 if not obs.teleport_description['on touch']:
                     if obs.trigger_activated:
                         pygame.draw.rect(self.screen, CYAN, (obs.rectangle.x - self.camera.offset_x, obs.rectangle.y - self.camera.offset_y,
-                                                              obs.rectangle.width, obs.rectangle.height))
+                                                              obs.rectangle.width, obs.rectangle.height), 1)
 
             if not obs.is_force_render:
                 continue
@@ -1085,8 +1085,10 @@ class World(object):
                 # elif event.key == K_m:
                 #     self.need_to_show_minimap = False if self.need_to_show_minimap else True
                 elif event.key == K_n:
+                    enemy_to_add = copy(all_hostiles['demon 2'])  # Create a copy of enemy
+                    self.add_actor(enemy_to_add, (MAXX_DIV_2 + self.camera.offset_x, MAXY_DIV_2 + self.camera.offset_y))
                     # self.change_mode()
-                    self.is_n = False if self.is_n else True
+                    # self.is_n = False if self.is_n else True
                     # msg = 'NEW EMPTY MESSAGE FOR TEST PURPOSES.'
                     # self.info_windows[0].get_bunch_of_new_messages((msg, msg))
                     # self.add_info_window(self.calculate_info_string_xy(), [msg, ], 300, False)

@@ -507,8 +507,10 @@ locations = {
                 ((1500, 100), (50, 50), 36),  #36
                 ((1100, 100), (50, 50), 37),  #37
                 ((700, 100), (50, 350), 38),  #38
-                ((300, 600), (400, 50), 39),  #39
+                ((300, 650), (400, 50), 39),  #39
                 ((1700, 100), (250, 350), 40),  #40
+                ((250, 500), (50, 200), 41),  #41
+                ((700, 500), (50, 200), 42),  #42
                   ), # OBSTACLE RECTANGLES SECTION END
                 'settings': {
                     10: {
@@ -915,7 +917,7 @@ locations = {
                         'gravity affected': False,
                         'invisible': False,
                         'teleport': True,
-                        'teleport description': {'new location': 'room81', 'on touch': False, 'xy': (1750.0, 200.0)},
+                        'teleport description': {'new location': 'room81', 'on touch': False, 'xy': ('keep x', 300.0)},
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'item': False,
