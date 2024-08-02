@@ -6,13 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/level_editor_menu_structure.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor_menu_structure.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locations_back.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations_back.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obstacle.py" beforeDir="false" afterPath="$PROJECT_DIR$/obstacle.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,20 +143,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00281" summary="Level editor: after rename of the currently editing map all connected files are renamed too.">
-      <created>1721284191183</created>
-      <option name="number" value="00281" />
-      <option name="presentableId" value="LOCAL-00281" />
-      <option name="project" value="LOCAL" />
-      <updated>1721284191183</updated>
-    </task>
-    <task id="LOCAL-00282" summary="Level editor: corrected tile set slicing while map is loading.">
-      <created>1721284476585</created>
-      <option name="number" value="00282" />
-      <option name="presentableId" value="LOCAL-00282" />
-      <option name="project" value="LOCAL" />
-      <updated>1721284476586</updated>
     </task>
     <task id="LOCAL-00283" summary="Level editor:">
       <created>1721293701640</created>
@@ -490,7 +473,21 @@
       <option name="project" value="LOCAL" />
       <updated>1722496458765</updated>
     </task>
-    <option name="localTasksCounter" value="330" />
+    <task id="LOCAL-00330" summary="some tiny, but important improvements  :^)">
+      <created>1722501820226</created>
+      <option name="number" value="00330" />
+      <option name="presentableId" value="LOCAL-00330" />
+      <option name="project" value="LOCAL" />
+      <updated>1722501820226</updated>
+    </task>
+    <task id="LOCAL-00331" summary="added room #81">
+      <created>1722502049050</created>
+      <option name="number" value="00331" />
+      <option name="presentableId" value="LOCAL-00331" />
+      <option name="project" value="LOCAL" />
+      <updated>1722502049050</updated>
+    </task>
+    <option name="localTasksCounter" value="332" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -505,8 +502,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Prevented actor's disappearing from the camera surveillance while quick descent." />
-    <MESSAGE value="Some minor improvements; added elevator luxury room" />
     <MESSAGE value="level editor: items selection added" />
     <MESSAGE value="level editor: items selection integrated into obs edit menu, but it doesn't work.&#10;Need to rebuild menu system once again to make it more flexible and simple." />
     <MESSAGE value="level editor: some improvements in menu generation and submenu values return.&#10;'Item' type of obstacle save its settings properly." />
@@ -530,6 +525,8 @@
     <MESSAGE value="If location to be activated by the trigger does not exist it won't cause error anymore." />
     <MESSAGE value="Actors of the same type (name) doesn't hurt their comrades." />
     <MESSAGE value="Added actors invulnerability for a short period of time after they get damaged (sprite become blinking every odd frame)." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added actors invulnerability for a short period of time after they get damaged (sprite become blinking every odd frame)." />
+    <MESSAGE value="some tiny, but important improvements  :^)" />
+    <MESSAGE value="added room #81" />
+    <option name="LAST_COMMIT_MESSAGE" value="added room #81" />
   </component>
 </project>

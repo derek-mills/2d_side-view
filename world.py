@@ -406,7 +406,11 @@ class World(object):
             if obs.teleport:
                 if obs.trigger_activated:
                     # print('obs')
-                    self.change_location(obs.teleport_description)
+                    if obs.teleport_description['on touch']:
+                        self.change_location(obs.teleport_description)
+                    else:
+                        if self.is_input_up_arrow:
+                            self.change_location(obs.teleport_description)
                     obs.trigger_activated = False
                     return
             if obs.trigger:

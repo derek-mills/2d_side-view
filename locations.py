@@ -14,15 +14,15 @@ locations = {
             },
             'obstacles': {
                 'obs rectangles': (
-                ((1950, 0), (50, 450), 2),  #2
-                ((-100, -50), (50, 500), 5),  #5
-                ((-100, 450), (2100, 50), 7),  #7
-                ((0, 50), (50, 200), 9),  #9
-                ((250, -200), (50, 200), 12),  #12
-                ((300, -200), (400, 50), 13),  #13
-                ((700, -200), (50, 200), 14),  #14
-                ((700, 0), (1250, 50), 15),  #15
-                ((0, 0), (300, 50), 16),  #16
+                ((1950, 0), (50, 450), 2),
+                ((-100, -50), (50, 500), 5),
+                ((-100, 450), (2100, 50), 7),
+                ((0, 50), (50, 200), 9),
+                ((250, -200), (50, 200), 12),
+                ((300, -200), (400, 50), 13),
+                ((700, -200), (50, 200), 14),
+                ((700, 0), (1250, 50), 15),
+                ((0, 0), (300, 50), 16),
                   ), # OBSTACLE RECTANGLES SECTION END
                 'settings': {
                     5: {
@@ -43,7 +43,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': True,
-                        'teleport description': {'new location': 'stairway', 'xy': (1400.0, 800.0)},
+                        'teleport description': {'on touch': True, 'new location': 'stairway', 'xy': (1400.0, 800.0)},
                   },
                   } # OBSTACLE SETTINGS SECTION END
               },
@@ -88,7 +88,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'teleport description': {'on touch': True, 'new location': '', 'xy': [0, 0]},
                   },
                     7: {
                         'sprite': 0,
@@ -108,7 +108,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': True,
-                        'teleport description': {'new location': 'lux', 'xy': ('keep x', 0.0)},
+                        'teleport description': {'on touch': True, 'new location': 'lux', 'xy': ('keep x', 0.0)},
                   },
                   } # OBSTACLE SETTINGS SECTION END
               },
@@ -236,7 +236,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': True,
-                        'teleport description': {'new location': 'luxuryelevatorroom', 'xy': (400.0, 300.0)},
+                        'teleport description': {'on touch': True, 'new location': 'luxuryelevatorroom', 'xy': (400.0, 300.0)},
                   },
                     22: {
                         'sprite': 0,
@@ -256,7 +256,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'teleport description': {'on touch': True, 'new location': '', 'xy': [0, 0]},
                   },
                     31: {
                         'sprite': 0,
@@ -276,7 +276,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'teleport description': {'on touch': True, 'new location': '', 'xy': [0, 0]},
                   },
                     5: {
                         'sprite': 0,
@@ -296,7 +296,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': True,
-                        'teleport description': {'new location': 'penthouse', 'xy': ('keep x', 850.0)},
+                        'teleport description': {'on touch': True, 'new location': 'penthouse', 'xy': ('keep x', 850.0)},
                   },
                     42: {
                         'sprite': 0,
@@ -316,7 +316,7 @@ locations = {
                         'trigger': True,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'teleport description': {'on touch': True, 'new location': '', 'xy': [0, 0]},
                   },
                     43: {
                         'sprite': 0,
@@ -336,7 +336,7 @@ locations = {
                         'trigger': True,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'teleport description': {'on touch': True, 'new location': '', 'xy': [0, 0]},
                   },
                     41: {
                         'sprite': 0,
@@ -356,7 +356,7 @@ locations = {
                         'trigger': True,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'teleport description': {'on touch': True, 'new location': '', 'xy': [0, 0]},
                   },
                     44: {
                         'sprite': 0,
@@ -376,7 +376,7 @@ locations = {
                         'trigger': True,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'teleport description': {'on touch': True, 'new location': '', 'xy': [0, 0]},
                   },
                     45: {
                         'sprite': 0,
@@ -396,7 +396,7 @@ locations = {
                         'trigger': True,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'teleport description': {'on touch': True, 'new location': '', 'xy': [0, 0]},
                   },
                   } # OBSTACLE SETTINGS SECTION END
               },
@@ -441,7 +441,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': True,
-                        'teleport description': {'new location': 'luxuryhall', 'xy': (1900.0, 300.0)},
+                        'teleport description': {'on touch': True, 'new location': 'luxuryhall', 'xy': (1900.0, 300.0)},
                   },
                     9: {
                         'sprite': 0,
@@ -461,7 +461,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': True,
-                        'teleport description': {'new location': 'lux', 'xy': (50.0, 800.0)},
+                        'teleport description': {'on touch': True, 'new location': 'lux', 'xy': (50.0, 800.0)},
                   },
                   } # OBSTACLE SETTINGS SECTION END
               },
@@ -480,34 +480,35 @@ locations = {
             },
             'obstacles': {
                 'obs rectangles': (
-                ((1950, 0), (50, 250), 2),
-                ((0, 0), (50, 250), 3),
-                ((50, 0), (1900, 50), 4),
-                ((2050, 250), (50, 200), 7),
-                ((2000, 200), (100, 50), 8),
-                ((-100, 200), (100, 50), 9),
-                ((-100, 250), (50, 200), 10),
-                ((300, 400), (50, 50), 11),
-                ((350, 350), (100, 100), 12),
-                ((400, 250), (100, 100), 13),
-                ((450, 350), (100, 100), 14),
-                ((500, 250), (100, 100), 15),
-                ((550, 350), (100, 100), 16),
-                ((500, 200), (50, 50), 17),
-                ((450, 100), (50, 150), 18),
-                ((350, 50), (200, 50), 19),
-                ((550, 150), (100, 100), 20),
-                ((-100, 450), (400, 50), 21),
-                ((300, 450), (400, 50), 25),
-                ((700, 450), (1400, 50), 26),
-                ((250, 100), (50, 350), 27),
-                ((1400, 100), (50, 50), 33),
-                ((950, 100), (50, 50), 34),
-                ((1250, 100), (50, 50), 35),
-                ((1600, 100), (50, 50), 36),
-                ((1100, 100), (50, 50), 37),
-                ((700, 100), (50, 350), 38),
-                ((300, 500), (400, 50), 39),
+                ((1950, 0), (50, 250), 2),  #2
+                ((0, 0), (50, 250), 3),  #3
+                ((50, 0), (1900, 50), 4),  #4
+                ((2050, 250), (50, 200), 7),  #7
+                ((2000, 200), (100, 50), 8),  #8
+                ((-100, 200), (100, 50), 9),  #9
+                ((-100, 250), (50, 200), 10),  #10
+                ((300, 400), (50, 50), 11),  #11
+                ((350, 350), (100, 100), 12),  #12
+                ((400, 250), (100, 100), 13),  #13
+                ((450, 350), (100, 100), 14),  #14
+                ((500, 250), (100, 100), 15),  #15
+                ((550, 350), (100, 100), 16),  #16
+                ((500, 200), (50, 50), 17),  #17
+                ((450, 100), (50, 150), 18),  #18
+                ((350, 50), (200, 50), 19),  #19
+                ((550, 150), (100, 100), 20),  #20
+                ((-100, 450), (400, 50), 21),  #21
+                ((300, 450), (400, 50), 25),  #25
+                ((700, 450), (1400, 50), 26),  #26
+                ((250, 100), (50, 350), 27),  #27
+                ((1400, 100), (50, 50), 33),  #33
+                ((950, 100), (50, 50), 34),  #34
+                ((1250, 100), (50, 50), 35),  #35
+                ((1500, 100), (50, 50), 36),  #36
+                ((1100, 100), (50, 50), 37),  #37
+                ((700, 100), (50, 350), 38),  #38
+                ((300, 500), (400, 50), 39),  #39
+                ((1700, 100), (250, 350), 40),  #40
                   ), # OBSTACLE RECTANGLES SECTION END
                 'settings': {
                     10: {
@@ -526,7 +527,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': True,
-                        'teleport description': {'new location': 'stairway', 'xy': (1400.0, 300.0)},
+                        'teleport description': {'on touch': True, 'new location': 'stairway', 'xy': (1400.0, 300.0)},
                   },
                     16: {
                         'sprite': 0,
@@ -544,7 +545,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'teleport description': {'on touch': True, 'new location': '', 'xy': [0, 0]},
                   },
                     15: {
                         'sprite': 0,
@@ -562,7 +563,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'teleport description': {'on touch': True, 'new location': '', 'xy': [0, 0]},
                   },
                     14: {
                         'sprite': 0,
@@ -580,7 +581,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'teleport description': {'on touch': True, 'new location': '', 'xy': [0, 0]},
                   },
                     12: {
                         'sprite': 0,
@@ -598,7 +599,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'teleport description': {'on touch': True, 'new location': '', 'xy': [0, 0]},
                   },
                     11: {
                         'sprite': 0,
@@ -616,7 +617,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'teleport description': {'on touch': True, 'new location': '', 'xy': [0, 0]},
                   },
                     13: {
                         'sprite': 0,
@@ -634,7 +635,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'teleport description': {'on touch': True, 'new location': '', 'xy': [0, 0]},
                   },
                     18: {
                         'sprite': 0,
@@ -652,7 +653,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'teleport description': {'on touch': True, 'new location': '', 'xy': [0, 0]},
                   },
                     17: {
                         'sprite': 0,
@@ -670,7 +671,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'teleport description': {'on touch': True, 'new location': '', 'xy': [0, 0]},
                   },
                     19: {
                         'sprite': 0,
@@ -688,7 +689,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'teleport description': {'on touch': True, 'new location': '', 'xy': [0, 0]},
                   },
                     20: {
                         'sprite': 0,
@@ -706,7 +707,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'teleport description': {'on touch': True, 'new location': '', 'xy': [0, 0]},
                   },
                     27: {
                         'sprite': 0,
@@ -724,7 +725,7 @@ locations = {
                         'trigger': True,
                         'trigger description': {'make active': [(25, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'teleport description': {'on touch': True, 'new location': '', 'xy': [0, 0]},
                   },
                     25: {
                         'sprite': 0,
@@ -742,7 +743,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'teleport description': {'on touch': True, 'new location': '', 'xy': [0, 0]},
                   },
                     7: {
                         'sprite': 0,
@@ -760,7 +761,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': True,
-                        'teleport description': {'new location': 'luxuryelevatorroom', 'xy': (50.0, 300.0)},
+                        'teleport description': {'on touch': True, 'new location': 'luxuryelevatorroom', 'xy': (50.0, 300.0)},
                   },
                     33: {
                         'sprite': 0,
@@ -780,7 +781,7 @@ locations = {
                         'trigger': True,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'teleport description': {'on touch': True, 'new location': '', 'xy': [0, 0]},
                   },
                     34: {
                         'sprite': 0,
@@ -800,7 +801,7 @@ locations = {
                         'trigger': True,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'teleport description': {'on touch': True, 'new location': '', 'xy': [0, 0]},
                   },
                     35: {
                         'sprite': 0,
@@ -820,7 +821,7 @@ locations = {
                         'trigger': True,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'teleport description': {'on touch': True, 'new location': '', 'xy': [0, 0]},
                   },
                     36: {
                         'sprite': 0,
@@ -840,7 +841,7 @@ locations = {
                         'trigger': True,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'teleport description': {'on touch': True, 'new location': '', 'xy': [0, 0]},
                   },
                     37: {
                         'sprite': 0,
@@ -860,7 +861,7 @@ locations = {
                         'trigger': True,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'teleport description': {'on touch': True, 'new location': '', 'xy': [0, 0]},
                   },
                     38: {
                         'sprite': 0,
@@ -880,7 +881,7 @@ locations = {
                         'trigger': True,
                         'trigger description': {'make active': [(25, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'teleport description': {'on touch': True, 'new location': '', 'xy': [0, 0]},
                   },
                     39: {
                         'sprite': 0,
@@ -900,7 +901,27 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': True,
-                        'teleport description': {'new location': 'room81', 'xy': ('keep x', 0.0)},
+                        'teleport description': {'on touch': True, 'new location': 'room81', 'xy': ('keep x', 0.0)},
+                  },
+                    40: {
+                        'sprite': 0,
+                        'sprite elevated': False,
+                        'force render': False,
+                        'ghost': False,
+                        'actors pass through': True,
+                        'actors may grab': False,
+                        'speed': 0.2,
+                        'collideable': False,
+                        'gravity affected': False,
+                        'invisible': False,
+                        'teleport': True,
+                        'teleport description': {'new location': 'room81', 'on touch': False, 'xy': (1750.0, 200.0)},
+                        'trigger': False,
+                        'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
+                        'item': False,
+                        'item name': {'name': ''},
+                        'active': False,
+                        'actions': {0: []},
                   },
                   } # OBSTACLE SETTINGS SECTION END
               },
@@ -1022,7 +1043,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': True,
-                        'teleport description': {'new location': 'hall', 'xy': (1900.0, 800.0)},
+                        'teleport description': {'on touch': True, 'new location': 'hall', 'xy': (1900.0, 800.0)},
                   },
                     71: {
                         'sprite': 0,
@@ -1040,7 +1061,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'teleport description': {'on touch': True, 'new location': '', 'xy': [0, 0]},
                   },
                     72: {
                         'sprite': 0,
@@ -1058,7 +1079,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'teleport description': {'on touch': True, 'new location': '', 'xy': [0, 0]},
                   },
                     73: {
                         'sprite': 0,
@@ -1076,7 +1097,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'teleport description': {'on touch': True, 'new location': '', 'xy': [0, 0]},
                   },
                     74: {
                         'sprite': 0,
@@ -1094,7 +1115,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'teleport description': {'on touch': True, 'new location': '', 'xy': [0, 0]},
                   },
                     75: {
                         'sprite': 0,
@@ -1112,7 +1133,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'teleport description': {'on touch': True, 'new location': '', 'xy': [0, 0]},
                   },
                     76: {
                         'sprite': 0,
@@ -1130,7 +1151,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'teleport description': {'on touch': True, 'new location': '', 'xy': [0, 0]},
                   },
                     77: {
                         'sprite': 0,
@@ -1148,7 +1169,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'teleport description': {'on touch': True, 'new location': '', 'xy': [0, 0]},
                   },
                     78: {
                         'sprite': 0,
@@ -1166,7 +1187,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'teleport description': {'on touch': True, 'new location': '', 'xy': [0, 0]},
                   },
                     79: {
                         'sprite': 0,
@@ -1184,7 +1205,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'teleport description': {'on touch': True, 'new location': '', 'xy': [0, 0]},
                   },
                     80: {
                         'sprite': 0,
@@ -1202,7 +1223,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'teleport description': {'on touch': True, 'new location': '', 'xy': [0, 0]},
                   },
                     81: {
                         'sprite': 0,
@@ -1220,7 +1241,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'teleport description': {'on touch': True, 'new location': '', 'xy': [0, 0]},
                   },
                     82: {
                         'sprite': 0,
@@ -1238,7 +1259,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'teleport description': {'on touch': True, 'new location': '', 'xy': [0, 0]},
                   },
                     83: {
                         'sprite': 0,
@@ -1256,7 +1277,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'teleport description': {'on touch': True, 'new location': '', 'xy': [0, 0]},
                   },
                     84: {
                         'sprite': 0,
@@ -1274,7 +1295,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'teleport description': {'on touch': True, 'new location': '', 'xy': [0, 0]},
                   },
                     85: {
                         'sprite': 0,
@@ -1292,7 +1313,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'teleport description': {'on touch': True, 'new location': '', 'xy': [0, 0]},
                   },
                     86: {
                         'sprite': 0,
@@ -1310,7 +1331,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'teleport description': {'on touch': True, 'new location': '', 'xy': [0, 0]},
                   },
                     87: {
                         'sprite': 0,
@@ -1328,7 +1349,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'teleport description': {'on touch': True, 'new location': '', 'xy': [0, 0]},
                   },
                     88: {
                         'sprite': 0,
@@ -1346,7 +1367,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
-                        'teleport description': {'new location': '', 'xy': [0, 0]},
+                        'teleport description': {'on touch': True, 'new location': '', 'xy': [0, 0]},
                   },
                     49: {
                         'sprite': 0,
@@ -1364,7 +1385,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': True,
-                        'teleport description': {'new location': 'luxuryhall', 'xy': (50.0, 300.0)},
+                        'teleport description': {'on touch': True, 'new location': 'luxuryhall', 'xy': (50.0, 300.0)},
                   },
                     95: {
                         'sprite': 0,
@@ -1384,7 +1405,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': True,
-                        'teleport description': {'new location': 'room81', 'xy': (50.0, 300.0)},
+                        'teleport description': {'on touch': True, 'new location': 'room81', 'xy': (50.0, 300.0)},
                   },
                   } # OBSTACLE SETTINGS SECTION END
               },
@@ -1431,7 +1452,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': True,
-                        'teleport description': {'new location': 'entrance', 'xy': (1900.0, 2300.0)},
+                        'teleport description': {'on touch': True, 'new location': 'entrance', 'xy': (1900.0, 2300.0)},
                   },
                     2: {
                         'sprite': 0,
@@ -1449,7 +1470,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': True,
-                        'teleport description': {'new location': 'stairway', 'xy': (50.0, 4800.0)},
+                        'teleport description': {'on touch': True, 'new location': 'stairway', 'xy': (50.0, 4800.0)},
                   },
                   } # OBSTACLE SETTINGS SECTION END
               },
@@ -1507,7 +1528,7 @@ locations = {
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': True,
-                        'teleport description': {'new location': 'hall', 'xy': (50.0, 800.0)},
+                        'teleport description': {'on touch': True, 'new location': 'hall', 'xy': (50.0, 800.0)},
                   },
                   } # OBSTACLE SETTINGS SECTION END
               },

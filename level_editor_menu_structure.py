@@ -501,6 +501,19 @@ menu_structure = {
             'also affects on': None,
             'after action': 'keep going'
         },
+        'teleport on touch': {
+            'rectangle': pygame.Rect(0, 0, 0, 0),
+            'label': 'teleport on touch',
+            'on hover action': None,
+            'LMB action': 'switch state',
+            'target': ("self.menu_structure['custom obs properties']['ok']['value']['teleport description']['on touch']",),
+            # 'target': ("self.menu_structure['custom obs properties']['ok']['value']['trigger']",
+            #           "self.menu_structure['custom obs properties']['ok']['value']['teleport']"),
+            'additional info': "*self.menu_structure['custom obs properties']['ok']['value']['teleport description']['on touch']",
+            'active': True,
+            'also affects on': None,
+            'after action': 'keep going'
+        },
         'teleport to map': {
             'rectangle': pygame.Rect(0, 0, 0, 0),
             'label': 'teleport to map >',
@@ -684,6 +697,7 @@ menu_structure = {
                 'teleport': False,
                 'teleport description': {
                     'new location': '',
+                    'on touch': True,
                     'xy': [0, 0]
                 },
                 'trigger': False,
@@ -738,6 +752,7 @@ menu_structure = {
                 'teleport': False,
                 'teleport description': {
                     'new location': '',
+                    'on touch': True,
                     'xy': [0, 0]
                 },
                 'trigger': False,
