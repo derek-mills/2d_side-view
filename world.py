@@ -97,8 +97,11 @@ class World(object):
         # for k in description:
         #     print(f'[add_actor] {k} :{description[k]}')
         entity.is_gravity_affected = description['gravity affected']
-        entity.rectangle.height = description['height']
-        entity.rectangle.width = description['width']
+
+        entity.rectangle.height = sprites[entity.name + ' ' + str(0)]['sprite'].get_height()
+        entity.rectangle.width = int(sprites[entity.name + ' ' + str(0)]['sprite'].get_width() * 0.7)
+        # entity.rectangle.height = description['height']
+        # entity.rectangle.width = description['width']
         entity.rectangle.center = start_xy
         # entity.rectangle.center = description['start_xy']
         # entity.rectangle.x += randint(-200, 300)
@@ -757,8 +760,8 @@ class World(object):
             self.screen.blit(actor.current_sprite['sprite'], (x, y))
 
             # # Rectangle frame:
-            # pygame.draw.rect(self.screen, GREEN, (actor.rectangle.x - self.camera.offset_x, actor.rectangle.y - self.camera.offset_y,
-            #                                       actor.rectangle.width, actor.rectangle.height), 5)
+            pygame.draw.rect(self.screen, GREEN, (actor.rectangle.x - self.camera.offset_x, actor.rectangle.y - self.camera.offset_y,
+                                                  actor.rectangle.width, actor.rectangle.height), 5)
             # # Colliders rects:
             # # pygame.draw.rect(self.screen, DARK_ORANGE, (actor.collision_detector_right.x - self.camera.offset_x, actor.collision_detector_right.y - self.camera.offset_y,
             # #                                       actor.collision_detector_right.width, actor.collision_detector_right.height))
