@@ -1,6 +1,7 @@
 from weapons import *
 # from game_objects import *
 from random import randint
+from graphics import sprites
 
 demon_1 = {
     'name': 'demon 1',
@@ -181,8 +182,10 @@ demon_1 = {
                 },
                 },
             'demolisher offset': {
-                1: (65, 60),
-                -1: (-65, 60),
+                1: (sprites['demon 1 76']['demolisher snap point'][0],
+                    sprites['demon 1 76']['demolisher snap point'][1]),
+                # 1: (65, 60),
+                # -1: (-65, 60),
             },
             'repeat from frame': 0
         },
@@ -808,8 +811,11 @@ player_jake = {
                 },
                 },
             'demolisher offset': {
-                1: (65, 60),
+                1: (sprites['Jake 76']['demolisher snap point'][0],
+                    sprites['Jake 76']['demolisher snap point'][1]),
                 -1: (-65, 60),
+                # 1: (65, 60),
+                # -1: (-65, 60),
             },
             'repeat from frame': 0
         },
@@ -831,7 +837,8 @@ player_jake = {
             },
             'demolisher offset': {
                 1: (65,60),
-                -1: (-65,60),
+                -1: (sprites['Jake 89']['demolisher snap point'][0],
+                     sprites['Jake 89']['demolisher snap point'][1]),
             },
             'repeat from frame': 0
         },

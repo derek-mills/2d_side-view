@@ -27,10 +27,13 @@ class Demolisher(Entity):
 
     def update(self, snap_side, snap_rect):
         if snap_side == 1:  # Snapping to the actor's right side
-            self.rectangle.left = snap_rect.right + self.snapping_offset[0]
+            self.rectangle.left = snap_rect.centerx + self.snapping_offset[0]
+            # self.rectangle.left = snap_rect.left + self.snapping_offset[0]
+            # self.rectangle.left = snap_rect.right + self.snapping_offset[0]
             self.rectangle.top = snap_rect.top + self.snapping_offset[1]
         else:
-            self.rectangle.right = snap_rect.left + self.snapping_offset[0]
+            self.rectangle.right = snap_rect.centerx + self.snapping_offset[0]
+            # self.rectangle.right = snap_rect.left - self.snapping_offset[0]
             self.rectangle.top = snap_rect.top + self.snapping_offset[1]
 
     def detect_collisions_with_obstacles(self):

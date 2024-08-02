@@ -99,7 +99,7 @@ class World(object):
         entity.is_gravity_affected = description['gravity affected']
 
         entity.rectangle.height = sprites[entity.name + ' ' + str(0)]['sprite'].get_height()
-        entity.rectangle.width = int(sprites[entity.name + ' ' + str(0)]['sprite'].get_width() * 0.7)
+        entity.rectangle.width = int(sprites[entity.name + ' ' + str(0)]['sprite'].get_width() * 0.7)  # Width of rectangle is 70% of sprite width.
         # entity.rectangle.height = description['height']
         # entity.rectangle.width = description['width']
         entity.rectangle.center = start_xy

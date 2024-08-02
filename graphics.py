@@ -160,6 +160,8 @@ def load_all_frames(source, max_frames, name, width, height, scale_factor=1):
         sz = cropped_surf.get_size()
         sprite_asymmetric = False
 
+        demol_snap_point = [0, 0]  # Demolisher reveals at this point during current animation frame.
+
         # If we can find a magenta dot in the very first row, then consider it as new snap point for x coordinate.
         for dx in range(cropped_surf.get_size()[0]):
             # print(cropped_surf.get_at((dx, 0)))
@@ -177,12 +179,45 @@ def load_all_frames(source, max_frames, name, width, height, scale_factor=1):
                 # print(name, frame_count, ' size is ', cropped_surf.get_size())
                 break
 
+        sz = cropped_surf.get_size()
+        # If we can find a magenta dot in the remain picture, then consider it as snap point for revealing demolisher.
+        for dy in range(cropped_surf.get_height()):
+            for dx in range(cropped_surf.get_width()):
+                # print(cropped_surf.get_at((dx, 0)))
+                dot_color = cropped_surf.get_at((dx, dy))
+                # print(name, dot_color)
+                if dot_color == (255,0,255,255):
+                    # demol_snap_point = [dx * scale_factor, dy * scale_factor]
+                    # demol_snap_point = [snap_x - dx * scale_factor, dy * scale_factor]
+                    if dx > snap_x // scale_factor:
+                        # right oriented sprite
+                        demol_snap_point = [ scale_factor * (dx - (snap_x // scale_factor)), (dy - 1) * scale_factor]
+                        # demol_snap_point = [ scale_factor * (dx - (sz[0] + snap_x // scale_factor)), (dy + 2) * scale_factor]
+                        # demol_snap_point = [dx * scale_factor - (sz[0] + snap_x), (dy + 2) * scale_factor]
+                    else:
+                        # left oriented sprite
+                        demol_snap_point = [scale_factor * ((dx + 1) - snap_x // scale_factor), (dy - 1) * scale_factor]
+                        # demol_snap_point = [(dx + 1) * scale_factor - snap_x, (dy - 2) * scale_factor]
+                    # Now we must erase the anchor magenta pixel:
+                    cropped_surf.set_at([dx, dy], (0,0,0,0))
+                    # cropped_surf = cropped_surf.subsurface((0,1,sz[0], sz[1] - 1))
+                    # cropped_surf = cropped_surf.subsurface(cropped_surf.get_bounding_rect())
+                    # # ...and renew the sz variable.
+                    # sz = cropped_surf.get_size()
+                    # sprite_asymmetric = True
+                    # print(name, frame_count, ': found snap point!', snap_x)
+                    # print(name, frame_count, ' size is ', cropped_surf.get_size())
+                    print(name + ' ' + str(frame_count), demol_snap_point)
+                    break
+
+
         scaled_cropped_surf = pygame.transform.scale(cropped_surf, (sz[0] * scale_factor, sz[1] * scale_factor))
         snap_x = scaled_cropped_surf.get_size()[0] // 2 if snap_x == 0 else snap_x
 
         sprites[name + ' ' + str(frame_count)] = {
             'sprite': scaled_cropped_surf,
             'sprite center': snap_x,  # Distance from the very left side of a sprite in pixels.
+            'demolisher snap point': demol_snap_point,
             'sprite asymmetric': sprite_asymmetric
         }
         # sprites_reference[name + ' ' + str(frame_count)] = {
