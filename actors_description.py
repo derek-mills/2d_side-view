@@ -184,6 +184,7 @@ demon_1 = {
             'demolisher offset': {
                 1: (sprites['demon 1 76']['demolisher snap point'][0],
                     sprites['demon 1 76']['demolisher snap point'][1]),
+                # -1: (-65, 60),
                 # 1: (65, 60),
                 # -1: (-65, 60),
             },
@@ -206,8 +207,9 @@ demon_1 = {
                 },
             },
             'demolisher offset': {
-                1: (65,60),
-                -1: (-65,60),
+                # 1: (65,60),
+                -1: (sprites['demon 1 89']['demolisher snap point'][0],
+                     sprites['demon 1 89']['demolisher snap point'][1]),
             },
             'repeat from frame': 0
         },
@@ -234,8 +236,11 @@ demon_1 = {
                 },
             },
             'demolisher offset': {
-                1: (46, 36),
-                -1: (-46, 36),
+                1: (sprites['demon 1 75']['demolisher snap point'][0],
+                    sprites['demon 1 75']['demolisher snap point'][1]),
+
+                # 1: (46, 36),
+                # -1: (-46, 36),
             },
             'repeat from frame': 0
         },
@@ -262,8 +267,11 @@ demon_1 = {
             },
             'speed': 1,
             'demolisher offset': {
-                1: (46, 36),
-                -1: (-46, 36),
+                -1: (sprites['demon 1 88']['demolisher snap point'][0],
+                    sprites['demon 1 88']['demolisher snap point'][1]),
+
+                # 1: (46, 36),
+                # -1: (-46, 36),
             },
             'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 2
         },
@@ -497,8 +505,11 @@ demon_2 = {
                 },
                 },
             'demolisher offset': {
-                1: (65, 60),
-                -1: (-65, 60),
+                1: (sprites['demon 2 76']['demolisher snap point'][0],
+                    sprites['demon 2 76']['demolisher snap point'][1]),
+                # -1: (-65, 60),
+                # 1: (65, 60),
+                # -1: (-65, 60),
             },
             'repeat from frame': 0
         },
@@ -519,8 +530,9 @@ demon_2 = {
                 },
             },
             'demolisher offset': {
-                1: (65,60),
-                -1: (-65,60),
+                # 1: (65,60),
+                -1: (sprites['demon 2 89']['demolisher snap point'][0],
+                     sprites['demon 2 89']['demolisher snap point'][1]),
             },
             'repeat from frame': 0
         },
@@ -547,8 +559,11 @@ demon_2 = {
                 },
             },
             'demolisher offset': {
-                1: (46, 36),
-                -1: (-46, 36),
+                1: (sprites['demon 2 75']['demolisher snap point'][0],
+                    sprites['demon 2 75']['demolisher snap point'][1]),
+
+                # 1: (46, 36),
+                # -1: (-46, 36),
             },
             'repeat from frame': 0
         },
@@ -575,8 +590,11 @@ demon_2 = {
             },
             'speed': 1,
             'demolisher offset': {
-                1: (46, 36),
-                -1: (-46, 36),
+                -1: (sprites['demon 2 88']['demolisher snap point'][0],
+                    sprites['demon 2 88']['demolisher snap point'][1]),
+
+                # 1: (46, 36),
+                # -1: (-46, 36),
             },
             'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 2
         },
@@ -813,7 +831,7 @@ player_jake = {
             'demolisher offset': {
                 1: (sprites['Jake 76']['demolisher snap point'][0],
                     sprites['Jake 76']['demolisher snap point'][1]),
-                -1: (-65, 60),
+                # -1: (-65, 60),
                 # 1: (65, 60),
                 # -1: (-65, 60),
             },
@@ -836,7 +854,7 @@ player_jake = {
                 },
             },
             'demolisher offset': {
-                1: (65,60),
+                # 1: (65,60),
                 -1: (sprites['Jake 89']['demolisher snap point'][0],
                      sprites['Jake 89']['demolisher snap point'][1]),
             },
@@ -865,8 +883,11 @@ player_jake = {
                 },
             },
             'demolisher offset': {
-                1: (46, 36),
-                -1: (-46, 36),
+                1: (sprites['Jake 75']['demolisher snap point'][0],
+                    sprites['Jake 75']['demolisher snap point'][1]),
+
+                # 1: (46, 36),
+                # -1: (-46, 36),
             },
             'repeat from frame': 0
         },
@@ -893,8 +914,11 @@ player_jake = {
             },
             'speed': 1,
             'demolisher offset': {
-                1: (46, 36),
-                -1: (-46, 36),
+                -1: (sprites['Jake 88']['demolisher snap point'][0],
+                    sprites['Jake 88']['demolisher snap point'][1]),
+
+                # 1: (46, 36),
+                # -1: (-46, 36),
             },
             'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 2
         },
