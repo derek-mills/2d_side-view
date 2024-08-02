@@ -408,11 +408,16 @@ class World(object):
                     # print('obs')
                     if obs.teleport_description['on touch']:
                         self.change_location(obs.teleport_description)
+                        obs.trigger_activated = False
+                        return
                     else:
                         if self.is_input_up_arrow:
                             self.change_location(obs.teleport_description)
-                    obs.trigger_activated = False
-                    return
+                            obs.trigger_activated = False
+                            return
+                        else:
+                            obs.trigger_activated = False
+                            continue
             if obs.trigger:
                 if obs.trigger_activated:
                     obs.trigger = False
@@ -800,8 +805,11 @@ class World(object):
             if key not in self.active_obstacles:
                 continue
             obs = self.obstacles[self.location][key]
-            # pygame.draw.rect(self.screen, CYAN, (obs.rectangle.x - self.camera.offset_x, obs.rectangle.y - self.camera.offset_y,
-            #                                       obs.rectangle.width, obs.rectangle.height))
+            if obs.teleport:
+                if not obs.teleport_description['on touch']:
+                    if obs.trigger_activated:
+                        pygame.draw.rect(self.screen, CYAN, (obs.rectangle.x - self.camera.offset_x, obs.rectangle.y - self.camera.offset_y,
+                                                              obs.rectangle.width, obs.rectangle.height))
 
             if not obs.is_force_render:
                 continue

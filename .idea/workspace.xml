@@ -6,9 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/level_editor_menu_structure.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor_menu_structure.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locations_back.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations_back.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -143,13 +142,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00283" summary="Level editor:">
-      <created>1721293701640</created>
-      <option name="number" value="00283" />
-      <option name="presentableId" value="LOCAL-00283" />
-      <option name="project" value="LOCAL" />
-      <updated>1721293701640</updated>
     </task>
     <task id="LOCAL-00284" summary="Player actor's sprites redesigned to be more simple.">
       <created>1721361698021</created>
@@ -487,7 +479,14 @@
       <option name="project" value="LOCAL" />
       <updated>1722502049050</updated>
     </task>
-    <option name="localTasksCounter" value="332" />
+    <task id="LOCAL-00332" summary="New Teleport property 'on touch' appeared. If it set to False, player need to push UP button to proceed to another location.">
+      <created>1722567477041</created>
+      <option name="number" value="00332" />
+      <option name="presentableId" value="LOCAL-00332" />
+      <option name="project" value="LOCAL" />
+      <updated>1722567477041</updated>
+    </task>
+    <option name="localTasksCounter" value="333" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -502,7 +501,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="level editor: items selection added" />
     <MESSAGE value="level editor: items selection integrated into obs edit menu, but it doesn't work.&#10;Need to rebuild menu system once again to make it more flexible and simple." />
     <MESSAGE value="level editor: some improvements in menu generation and submenu values return.&#10;'Item' type of obstacle save its settings properly." />
     <MESSAGE value="Preparing base for normal items picking up and use." />
@@ -527,6 +525,7 @@
     <MESSAGE value="Added actors invulnerability for a short period of time after they get damaged (sprite become blinking every odd frame)." />
     <MESSAGE value="some tiny, but important improvements  :^)" />
     <MESSAGE value="added room #81" />
-    <option name="LAST_COMMIT_MESSAGE" value="added room #81" />
+    <MESSAGE value="New Teleport property 'on touch' appeared. If it set to False, player need to push UP button to proceed to another location." />
+    <option name="LAST_COMMIT_MESSAGE" value="New Teleport property 'on touch' appeared. If it set to False, player need to push UP button to proceed to another location." />
   </component>
 </project>

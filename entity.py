@@ -561,6 +561,7 @@ class Entity(object):
         for key in self.sorted_obs['right']:
             obs = self.obstacles_around[key]
             obs.is_being_collided_now = False
+            # obs.trigger_activated = False
             if obs.is_ghost_platform:
                 continue
 
@@ -659,6 +660,8 @@ class Entity(object):
         # Check LEFT
         for key in self.sorted_obs['left']:
             obs = self.obstacles_around[key]
+            obs.is_being_collided_now = False
+            # obs.trigger_activated = False
             if obs.is_ghost_platform:
                 continue
 
@@ -752,6 +755,7 @@ class Entity(object):
         # Check bottom
         for key in self.sorted_obs['below']:
             obs = self.obstacles_around[key]
+            # obs.trigger_activated = False
             obs.is_being_collided_now = False
 
             # Check if obstacle is just a passable trigger for some event:
@@ -794,6 +798,7 @@ class Entity(object):
         for key in self.sorted_obs['above']:
             obs = self.obstacles_around[key]
             obs.is_being_collided_now = False
+            # obs.trigger_activated = False
             if obs.is_ghost_platform:
                 continue
 
