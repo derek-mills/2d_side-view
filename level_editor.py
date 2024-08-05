@@ -2503,14 +2503,16 @@ class World(object):
                     self.obstacles[self.location][obs_id].active_flag = True
                     return
                 else:
-                    if self.mouse_xy_snapped_to_mesh in self.clipboard.keys():
+                    if self.location not in self.clipboard:
+                        self.clipboard[self.location] = list()
+
+                    if self.mouse_xy_snapped_to_mesh in self.clipboard[self.location]:
                         # Delete existing dot from the clipboard.
-                        del self.clipboard[self.location][self.mouse_xy_snapped_to_mesh]
+                        self.clipboard[self.location].remove(self.mouse_xy_snapped_to_mesh)
+                        # del self.clipboard[self.location][self.mouse_xy_snapped_to_mesh]
                         # del self.clipboard[self.mouse_xy_snapped_to_mesh]
                     else:
                         # Place current mouse coordinate to clipboard.
-                        if self.location not in self.clipboard:
-                            self.clipboard[self.location] = list()
                         self.clipboard[self.location].append(self.mouse_xy_snapped_to_mesh)
                         # self.clipboard[self.mouse_xy_snapped_to_mesh] = {
                         #     'location': self.location,
