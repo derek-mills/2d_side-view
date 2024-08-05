@@ -663,7 +663,14 @@ class World(object):
             # if self.menu_walk_tree[-1] == 'save':
             #     self.reset_menu_walk_tree()
             #     self.save()
-            if self.menu_return_value == 'new':
+            if 'delete clipboard elements' in self.menu_walk_tree:
+                for el in self.menu_return_value:
+                    del self.clipboard[el]
+                self.reset_menu_walk_tree()
+                self.reset_menu()
+                return
+
+            elif self.menu_return_value == 'new':
                 self.reset_menu_walk_tree()
                 self.reset_menu()
                 # self.menu_action_pending = ''
@@ -2194,9 +2201,10 @@ class World(object):
             pygame.draw.circle(self.screen, YELLOW, (self.zoom_factor *(k[0] - self.camera.offset_x),
                                                      self.zoom_factor *(k[1] - self.camera.offset_y)), 1)
 
-        for dot in self.clipboard.keys():
-            if self.clipboard[dot]['location'] == self.location:
-                xy = self.clipboard[dot]['coordinate']
+        if self.location in self.clipboard:
+            for xy in self.clipboard[self.location]:
+                # if self.clipboard[dot]['location'] == self.location:
+                # xy = self.clipboard[self.location]
                 self.screen.blit(fonts.all_fonts[10].render(str(xy[0]) + ', ' + str(xy[1]), True, WHITE),
                                                             (self.zoom_factor * (xy[0] - self.camera.offset_x) - 30,
                                                              self.zoom_factor * (xy[1] - self.camera.offset_y) - 30))
@@ -2490,13 +2498,17 @@ class World(object):
                 else:
                     if self.mouse_xy_snapped_to_mesh in self.clipboard.keys():
                         # Delete existing dot from the clipboard.
-                        del self.clipboard[self.mouse_xy_snapped_to_mesh]
+                        del self.clipboard[self.location][self.mouse_xy_snapped_to_mesh]
+                        # del self.clipboard[self.mouse_xy_snapped_to_mesh]
                     else:
                         # Place current mouse coordinate to clipboard.
-                        self.clipboard[self.mouse_xy_snapped_to_mesh] = {
-                            'location': self.location,
-                            'coordinate': self.mouse_xy_snapped_to_mesh
-                        }
+                        if self.location not in self.clipboard:
+                            self.clipboard[self.location] = list()
+                        self.clipboard[self.location].append(self.mouse_xy_snapped_to_mesh)
+                        # self.clipboard[self.mouse_xy_snapped_to_mesh] = {
+                        #     'location': self.location,
+                        #     'coordinate': self.mouse_xy_snapped_to_mesh
+                        # }
 
             if self.is_right_bracket:
                 self.is_right_bracket = False

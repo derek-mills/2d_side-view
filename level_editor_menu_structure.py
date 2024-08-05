@@ -147,6 +147,49 @@ menu_structure = {
         },
     },
 
+    'clipboard multiple selection': {
+        'header': {
+            'rectangle': None,
+            'label': 'CHOOSE SEVERAL ELEMENTS TO DELETE:',
+            'description': 'clipboard multiple selection',
+            'on hover action': None,
+            'target': None,
+            'LMB action': None,
+            'active': False,
+            'after action': None
+        },
+        'generate list from': '*self.clipboard',
+        'predefined keys': {
+            'LMB action': 'append value',
+            'value': '*item',
+            'description': '*item',
+            'target': "self.menu_structure['clipboard multiple selection']['ok']['value']",
+            'additional info': '@self.menu_structure[menu_name][item][key] = self.clipboard[(int(self.menu_structure[menu_name][item]["label"][0]),int(self.menu_structure[menu_name][item]["label"][1]))]["location"]',
+            'label': '$description',
+            'active': True,
+            'after action': 'keep going'
+        },
+        'ok': {
+            'rectangle': pygame.Rect(0, 0, 0, 0),
+            'colors': {
+                'frame color': BLUE,
+                'bg color': YELLOW,
+                'txt color': DARKGRAY
+            },
+            'label': '[CONFIRM]',
+            'on hover action': None,
+            'LMB action': 'store value',
+            'value': list(),
+            # 'value default': list(),
+            # 'target': '',
+            'description': 'multiple clipboard list',
+            'active': True,
+            'after action': 'return to parent',
+            # 'after action': 'keep going',
+            # 'after action': None,
+        },
+    },
+
     'obs multiple selection': {
         'header': {
             'rectangle': None,
@@ -871,6 +914,30 @@ self.rename_map(new_name)
             'target': 'self.menu_walk_tree.append(\'CANCEL MENU\')',
             'active': True,
             'after action': None
+        },
+        'delete clipboard elements': {
+            'rectangle': pygame.Rect(menu_elements_bindings['central right button']),
+            'self dict name': 'delete clipboard elements',  # It is necessary if such menu item reveals other menu.
+            'label': '[delete clipboard elements]',
+            'on hover action': None,
+            'LMB action': 'reveal submenu',
+            # 'submenu': {
+            #     'name': "map single selection",
+            #     'exit button': 'all',  # If it needed to exit a submenu by pressing any button: 'all'
+            #     'exit action': 'store value'
+            # },
+            'submenu name': "clipboard multiple selection",
+            # 'submenu exit action': 'store value',
+            # 'submenu exit action': 'append value',
+            # 'submenu exit action': 'return self value',
+            'value': "self.menu_structure['main menu']['load']['target']",
+            'target': list(),  # Here will be stored a map name to be load.
+            # 'target': "self.location",
+            # 'LMB action': 'return value',
+            # 'value': "load",
+            'active': True,
+            'after action': None  # If None, after submenu has done, this level menu returns self 'value'.
+            # 'after action': 'return value'
         },
         'export image': {
             'rectangle': pygame.Rect(menu_elements_bindings['bottom right button']),

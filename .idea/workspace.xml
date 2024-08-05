@@ -6,10 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/level_editor_menu_structure.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor_menu_structure.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,13 +141,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00291" summary="Added some animations">
-      <created>1721632814847</created>
-      <option name="number" value="00291" />
-      <option name="presentableId" value="LOCAL-00291" />
-      <option name="project" value="LOCAL" />
-      <updated>1721632814847</updated>
     </task>
     <task id="LOCAL-00292" summary="Added background layers">
       <created>1721638764752</created>
@@ -487,7 +478,14 @@
       <option name="project" value="LOCAL" />
       <updated>1722825924580</updated>
     </task>
-    <option name="localTasksCounter" value="340" />
+    <task id="LOCAL-00340" summary="Level editor: added descriptor for clipboard points which reveals a map of every clipping point.">
+      <created>1722840825832</created>
+      <option name="number" value="00340" />
+      <option name="presentableId" value="LOCAL-00340" />
+      <option name="project" value="LOCAL" />
+      <updated>1722840825832</updated>
+    </task>
+    <option name="localTasksCounter" value="341" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -502,7 +500,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="President lux added" />
     <MESSAGE value="Penthouse added" />
     <MESSAGE value="Dead enemies drop XP" />
     <MESSAGE value="Added sprite for exp-item." />
@@ -527,6 +524,7 @@
     <MESSAGE value="Demolisher sticks to the magenta pixel of the actor's sprite: added for all the actors." />
     <MESSAGE value="If location changes, demolishers die." />
     <MESSAGE value="Immunity to demolisher damage if actor has already been damaged by it is deprecated to be replaced by temporary invulnerability state after the damage has taken." />
-    <option name="LAST_COMMIT_MESSAGE" value="Immunity to demolisher damage if actor has already been damaged by it is deprecated to be replaced by temporary invulnerability state after the damage has taken." />
+    <MESSAGE value="Level editor: added descriptor for clipboard points which reveals a map of every clipping point." />
+    <option name="LAST_COMMIT_MESSAGE" value="Level editor: added descriptor for clipboard points which reveals a map of every clipping point." />
   </component>
 </project>
