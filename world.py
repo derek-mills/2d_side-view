@@ -360,6 +360,9 @@ class World(object):
         # print('Before location change:', self.actors.keys())
         self.location_has_been_changed = True
         self.location = new_location['new location']
+        self.demolishers = dict()
+        self.demolishers[self.location] = dict()
+
         if self.location not in self.actors.keys():
             self.actors[self.location] = dict()
             self.actors[self.location][0] = self.actors['player']
