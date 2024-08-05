@@ -158,7 +158,7 @@ class World(object):
 
         # self.menu_structure[menu_name] = dict()
         for item in menu_items_list:
-            # print(f'[generate menu] Adding item: {item}')
+            print(f'[generate menu] Adding item: {item}')
             self.menu_structure[menu_name][item] = dict()
 
             for reference_key in self.menu_structure['_template_menu_item_']:
@@ -172,6 +172,7 @@ class World(object):
                         # bunch_of_pointers = menu_item.split('*')
                         # for p in bunch_of_pointers:
                         #     menu_item = eval(menu_item[1:])
+                        print(menu_item)
                         menu_item = eval(menu_item[1:])
                     elif menu_item[0] == '$':
                         # Pointer to the inner dict key:
@@ -181,7 +182,9 @@ class World(object):
                         # i = menu_item.split('@')
                         # menu_item = i[0] + eval(i[1])
                         # print(menu_item)
-                        menu_item = exec(menu_item[1:])
+                        exec(menu_item[1:])
+                        continue
+                        # menu_item = exec(menu_item[1:])
                 self.menu_structure[menu_name][item][key] = menu_item
 
             # # for reference_key in self.menu_structure['_template_menu_item_']:
@@ -1998,29 +2001,42 @@ class World(object):
 
                     # Render additional info about the menu item:
                     if 'additional info' in menu_item.keys() and menu_item['additional info']:
-                        if menu_item['additional info'][0] == '^':
-                            # Link to a pure graphic object, not text.
-                            # print('[render menu]', menu_item['additional info'])
-                            s = eval(menu_item['additional info'][1:])
-                            add_box_text_color = WHITE
-                            add_box_background_color = DARKGRAY
-                            sz = s.get_size()
-                            start_y = 0
-                        elif menu_item['additional info'][0] == '*':
-                            # Link to an object, which must be converted to text info:
-                            info = eval(menu_item['additional info'][1:])
-                            if type(info) == bool and info:
-                                add_box_text_color = BLUE
-                                add_box_background_color = WHITE
-                            else:
+                        if type(menu_item['additional info']) == str:
+                            if menu_item['additional info'][0] == '^':
+                                # Link to a pure graphic object, not text.
+                                # print('[render menu]', menu_item['additional info'])
+                                s = eval(menu_item['additional info'][1:])
                                 add_box_text_color = WHITE
                                 add_box_background_color = DARKGRAY
-                            s = fonts.font12.render(str(info), True, add_box_text_color)
-                            sz = s.get_size()
-                            start_y = menu_item['rectangle'].h // 2 - sz[1] //2
+                                sz = s.get_size()
+                                start_y = 0
+                            elif menu_item['additional info'][0] == '*':
+                                # Link to an object, which must be converted to text info:
+                                info = eval(menu_item['additional info'][1:])
+                                if type(info) == bool and info:
+                                    add_box_text_color = BLUE
+                                    add_box_background_color = WHITE
+                                else:
+                                    add_box_text_color = WHITE
+                                    add_box_background_color = DARKGRAY
+                                    # self.clipboard[menu_item['label']][self.location]
+                                s = fonts.font12.render(str(info), True, add_box_text_color)
+                                sz = s.get_size()
+                                start_y = menu_item['rectangle'].h // 2 - sz[1] //2
+                            else:
+                                # Just a pure text, no need to convert it:
+                                info = menu_item['additional info']
+                                if 'True' in info:
+                                    add_box_text_color = BLUE
+                                    add_box_background_color = WHITE
+                                else:
+                                    add_box_text_color = WHITE
+                                    add_box_background_color = DARKGRAY
+                                s = fonts.font12.render(str(info), True, WHITE)
+                                sz = s.get_size()
+                                start_y = menu_item['rectangle'].h // 2 - sz[1] //2
                         else:
-                            # Just a pure text, no need to convert it:
-                            info = menu_item['additional info']
+                            info = str(menu_item['additional info'])
                             if 'True' in info:
                                 add_box_text_color = BLUE
                                 add_box_background_color = WHITE
@@ -2029,7 +2045,7 @@ class World(object):
                                 add_box_background_color = DARKGRAY
                             s = fonts.font12.render(str(info), True, WHITE)
                             sz = s.get_size()
-                            start_y = menu_item['rectangle'].h // 2 - sz[1] //2
+                            start_y = menu_item['rectangle'].h // 2 - sz[1] // 2
 
                         add_box_width = 100
 

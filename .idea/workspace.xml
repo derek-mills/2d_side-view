@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="Demolisher sticks to the magenta pixel of the actor's sprite: added for all the actors.">
+    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/gimp_originals/map.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/img/gimp_originals/map.xcf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/level_editor_menu_structure.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor_menu_structure.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +58,7 @@
       </console-settings>
     </option>
   </component>
-  <component name="RunManager" selected="Python.main ">
+  <component name="RunManager" selected="Python.level_editor">
     <configuration name="generate_sprite_sheet" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ver_0.000.1" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -127,8 +129,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.main " />
         <item itemvalue="Python.level_editor" />
+        <item itemvalue="Python.main " />
         <item itemvalue="Python.generate_sprite_sheet" />
       </list>
     </recent_temporary>
@@ -141,20 +143,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00289" summary="Some unnecessary mess">
-      <created>1721376635120</created>
-      <option name="number" value="00289" />
-      <option name="presentableId" value="LOCAL-00289" />
-      <option name="project" value="LOCAL" />
-      <updated>1721376635120</updated>
-    </task>
-    <task id="LOCAL-00290" summary="Some unnecessary changes">
-      <created>1721628810912</created>
-      <option name="number" value="00290" />
-      <option name="presentableId" value="LOCAL-00290" />
-      <option name="project" value="LOCAL" />
-      <updated>1721628810913</updated>
     </task>
     <task id="LOCAL-00291" summary="Added some animations">
       <created>1721632814847</created>
@@ -485,7 +473,21 @@
       <option name="project" value="LOCAL" />
       <updated>1722588904844</updated>
     </task>
-    <option name="localTasksCounter" value="338" />
+    <task id="LOCAL-00338" summary="If location changes, demolishers die.">
+      <created>1722825563256</created>
+      <option name="number" value="00338" />
+      <option name="presentableId" value="LOCAL-00338" />
+      <option name="project" value="LOCAL" />
+      <updated>1722825563257</updated>
+    </task>
+    <task id="LOCAL-00339" summary="Immunity to demolisher damage if actor has already been damaged by it is deprecated to be replaced by temporary invulnerability state after the damage has taken.">
+      <created>1722825924580</created>
+      <option name="number" value="00339" />
+      <option name="presentableId" value="LOCAL-00339" />
+      <option name="project" value="LOCAL" />
+      <updated>1722825924580</updated>
+    </task>
+    <option name="localTasksCounter" value="340" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -500,8 +502,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="self.stats is the property of Entity class now.&#10;Exp reveals under the health bar." />
-    <MESSAGE value="Added items amount decreasing if needed." />
     <MESSAGE value="President lux added" />
     <MESSAGE value="Penthouse added" />
     <MESSAGE value="Dead enemies drop XP" />
@@ -525,6 +525,8 @@
     <MESSAGE value="Actor's rectangle size based on the #0 sprite size." />
     <MESSAGE value="Demolisher sticks to the magenta pixel of the actor's sprite." />
     <MESSAGE value="Demolisher sticks to the magenta pixel of the actor's sprite: added for all the actors." />
-    <option name="LAST_COMMIT_MESSAGE" value="Demolisher sticks to the magenta pixel of the actor's sprite: added for all the actors." />
+    <MESSAGE value="If location changes, demolishers die." />
+    <MESSAGE value="Immunity to demolisher damage if actor has already been damaged by it is deprecated to be replaced by temporary invulnerability state after the damage has taken." />
+    <option name="LAST_COMMIT_MESSAGE" value="Immunity to demolisher damage if actor has already been damaged by it is deprecated to be replaced by temporary invulnerability state after the damage has taken." />
   </component>
 </project>

@@ -138,6 +138,10 @@ menu_structure = {
             'label': '*item',
             # 'target': '',
             'description': '*item',
+            # 'additional info': '*key',
+            # 'additional info': '*',
+            # 'additional info': '@var',
+            'additional info': '@self.menu_structure[menu_name][item][key] = self.clipboard[(int(self.menu_structure[menu_name][item]["label"][0]),int(self.menu_structure[menu_name][item]["label"][1]))]["location"]',
             'active': True,
             'after action': 'return to parent'
         },

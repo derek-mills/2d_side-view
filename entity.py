@@ -533,7 +533,7 @@ class Entity(object):
                 self.set_state('hop back')
 
     def get_damage(self, amount):
-        print(f'[entity.get_damage] {self.name} {self.id} gets damage: {amount} | {self.stats["health"]=}')
+        # print(f'[entity.get_damage] {self.name} {self.id} gets damage: {amount} | {self.stats["health"]=}')
         # self.invincibility_timer = 100 if self.id == 0 else 30
         self.stats['health'] -= amount
         # self.health -= amount
