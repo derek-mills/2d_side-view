@@ -1112,8 +1112,9 @@ class World(object):
             start_x = top_left_corner[0]
 
         dy = 0
-        height = font_size + 16
-        total_menu_height = height * len([i for i in items if i not in restricted])
+        height = font_size + 8
+        # height = font_size + 16
+        total_menu_height = height * (len([i for i in items if i not in restricted]) -1)
         if top_left_corner[1] + total_menu_height > MAXY:
             start_y = MAXY - height
         else:
@@ -1166,7 +1167,10 @@ class World(object):
             # dy += height
 
 
-        self.menu_items[self.active_menu_pile][0]['menu rect'] = pygame.Rect(start_x, start_y, width, total_menu_height)
+        self.menu_items[self.active_menu_pile][0]['menu rect'] = pygame.Rect(start_x, start_y - total_menu_height, width, total_menu_height)
+        self.menu_items[self.active_menu_pile][0]['menu shadow image'] = self.screen.subsurface((0, 0, width + 20, total_menu_height + 20)).convert()
+        self.menu_items[self.active_menu_pile][0]['menu shadow image'].fill(BLUE)
+        self.menu_items[self.active_menu_pile][0]['menu shadow rect'] = pygame.Rect(start_x - 10, start_y - total_menu_height, width + 10, total_menu_height + 10)
         # self.menu_items[self.active_menu_pile][0]['menu rect'] = pygame.Rect(top_left_corner[0], start_y, width, total_menu_height)
 
         # print(f'[add_menu] Added new menu: {menu_name}')
@@ -1967,14 +1971,15 @@ class World(object):
     def render_menu_items(self):
         # pygame.draw.rect(self.screen, BLACK, (self.menu_items[0]['rectangle'].x + 10, self.menu_items[0]['rectangle'].y)
         for pile_id in self.menu_items.keys():
+            self.screen.blit(self.menu_items[pile_id][0]['menu shadow image'], self.menu_items[pile_id][0]['menu shadow rect'].topleft)
             for k in reversed(self.menu_items[pile_id].keys()):
                 menu_item = self.menu_items[pile_id][k]
                 # print(menu_item['rectangle'].x,menu_item['rectangle'].y,menu_item['rectangle'].w,menu_item['rectangle'].h)
                 if menu_item['active']:
                     # Active menu items.
                     # SHADOW:
-                    pygame.draw.rect(self.screen, BLACK, (menu_item['rectangle'].x + 10, menu_item['rectangle'].y + 10,
-                                                                             menu_item['rectangle'].w,menu_item['rectangle'].h), 0)
+                    # pygame.draw.rect(self.screen, BLACK, (menu_item['rectangle'].x + 10, menu_item['rectangle'].y + 10,
+                    #                                                          menu_item['rectangle'].w,menu_item['rectangle'].h), 0)
                     if menu_item['hovered']:
                         back_color = TINY_TMP
                         txt_color = WHITE
@@ -2089,8 +2094,8 @@ class World(object):
                 else:
                     # Inactive menu items (mostly, the headers)
                     # SHADOW:
-                    pygame.draw.rect(self.screen, BLACK, (menu_item['rectangle'].x + 10, menu_item['rectangle'].y + 10,
-                                                                             menu_item['rectangle'].w,menu_item['rectangle'].h), 0)
+                    # pygame.draw.rect(self.screen, BLACK, (menu_item['rectangle'].x + 10, menu_item['rectangle'].y + 10,
+                    #                                                          menu_item['rectangle'].w,menu_item['rectangle'].h), 0)
 
                     back_color = GRAY
                     txt_color = YELLOW
