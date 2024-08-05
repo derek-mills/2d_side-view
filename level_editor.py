@@ -663,9 +663,11 @@ class World(object):
             # if self.menu_walk_tree[-1] == 'save':
             #     self.reset_menu_walk_tree()
             #     self.save()
-            if 'delete clipboard elements' in self.menu_walk_tree:
+            if 'clipboard multiple selection' in self.menu_walk_tree:
                 for el in self.menu_return_value:
-                    del self.clipboard[el]
+                    self.clipboard[self.location].remove(el)
+                self.menu_structure['main menu'] = deepcopy(menu_structure['main menu'])
+                self.menu_structure['clipboard multiple selection'] = deepcopy(menu_structure['clipboard multiple selection'])
                 self.reset_menu_walk_tree()
                 self.reset_menu()
                 return
@@ -674,7 +676,7 @@ class World(object):
                 self.reset_menu_walk_tree()
                 self.reset_menu()
                 # self.menu_action_pending = ''
-                print('make new map')
+                # print('make new map')
                 # # Setting up the new map:
                 # width = self.camera.max_x
                 width = MAXX

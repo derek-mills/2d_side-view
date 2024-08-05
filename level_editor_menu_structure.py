@@ -131,7 +131,8 @@ menu_structure = {
     },
 
     'clipboard single selection': {
-        'generate list from': '*self.clipboard',
+        'generate list from': '*self.clipboard[self.menu_structure["custom obs properties"]["ok"]["value"]["teleport description"]["new location"]]',
+        # 'generate list from': '*self.clipboard',
         'predefined keys': {
             'LMB action': 'store value',
             'value': '*item',
@@ -141,8 +142,9 @@ menu_structure = {
             # 'additional info': '*key',
             # 'additional info': '*',
             # 'additional info': '@var',
-            'additional info': '@self.menu_structure[menu_name][item][key] = self.clipboard[(int(self.menu_structure[menu_name][item]["label"][0]),int(self.menu_structure[menu_name][item]["label"][1]))]["location"]',
+            'additional info': '@self.menu_structure[menu_name][item][key] = self.menu_structure["custom obs properties"]["ok"]["value"]["teleport description"]["new location"]',
             'active': True,
+            # 'after action': None
             'after action': 'return to parent'
         },
     },
@@ -158,13 +160,15 @@ menu_structure = {
             'active': False,
             'after action': None
         },
-        'generate list from': '*self.clipboard',
+        'generate list from': '*self.clipboard[self.location]',
+        # 'generate list from': '*self.clipboard',
         'predefined keys': {
             'LMB action': 'append value',
             'value': '*item',
             'description': '*item',
             'target': "self.menu_structure['clipboard multiple selection']['ok']['value']",
-            'additional info': '@self.menu_structure[menu_name][item][key] = self.clipboard[(int(self.menu_structure[menu_name][item]["label"][0]),int(self.menu_structure[menu_name][item]["label"][1]))]["location"]',
+            'additional info': '@self.menu_structure[menu_name][item][key] = self.menu_structure["custom obs properties"]["ok"]["value"]["teleport description"]["new location"]',
+            # 'additional info': '@self.menu_structure[menu_name][item][key] = self.clipboard[(int(self.menu_structure[menu_name][item]["label"][0]),int(self.menu_structure[menu_name][item]["label"][1]))]["location"]',
             'label': '$description',
             'active': True,
             'after action': 'keep going'
@@ -184,7 +188,8 @@ menu_structure = {
             # 'target': '',
             'description': 'multiple clipboard list',
             'active': True,
-            'after action': 'return to parent',
+            # 'after action': 'return to parent',
+            'after action': None
             # 'after action': 'keep going',
             # 'after action': None,
         },
@@ -930,7 +935,7 @@ self.rename_map(new_name)
             # 'submenu exit action': 'store value',
             # 'submenu exit action': 'append value',
             # 'submenu exit action': 'return self value',
-            'value': "self.menu_structure['main menu']['load']['target']",
+            'value': "self.menu_structure['main menu']['delete clipboard elements']['target']",
             'target': list(),  # Here will be stored a map name to be load.
             # 'target': "self.location",
             # 'LMB action': 'return value',

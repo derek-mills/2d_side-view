@@ -8,6 +8,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/level_editor_menu_structure.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor_menu_structure.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,13 +142,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00292" summary="Added background layers">
-      <created>1721638764752</created>
-      <option name="number" value="00292" />
-      <option name="presentableId" value="LOCAL-00292" />
-      <option name="project" value="LOCAL" />
-      <updated>1721638764752</updated>
     </task>
     <task id="LOCAL-00293" summary="Added middle background layer individual offset corrector to get it scroll not so fast as foreground layer.">
       <created>1721704452051</created>
@@ -485,7 +479,14 @@
       <option name="project" value="LOCAL" />
       <updated>1722840825832</updated>
     </task>
-    <option name="localTasksCounter" value="341" />
+    <task id="LOCAL-00341" summary="Level editor: clipboard structure is simplified: self.clipboard[location] = [(x, y), ..., (xn, yn)]">
+      <created>1722842033596</created>
+      <option name="number" value="00341" />
+      <option name="presentableId" value="LOCAL-00341" />
+      <option name="project" value="LOCAL" />
+      <updated>1722842033596</updated>
+    </task>
+    <option name="localTasksCounter" value="342" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -500,7 +501,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Penthouse added" />
     <MESSAGE value="Dead enemies drop XP" />
     <MESSAGE value="Added sprite for exp-item." />
     <MESSAGE value="Corrected demolishers behavior which could be snapped to already dead actor." />
@@ -525,6 +525,7 @@
     <MESSAGE value="If location changes, demolishers die." />
     <MESSAGE value="Immunity to demolisher damage if actor has already been damaged by it is deprecated to be replaced by temporary invulnerability state after the damage has taken." />
     <MESSAGE value="Level editor: added descriptor for clipboard points which reveals a map of every clipping point." />
-    <option name="LAST_COMMIT_MESSAGE" value="Level editor: added descriptor for clipboard points which reveals a map of every clipping point." />
+    <MESSAGE value="Level editor: clipboard structure is simplified: self.clipboard[location] = [(x, y), ..., (xn, yn)]" />
+    <option name="LAST_COMMIT_MESSAGE" value="Level editor: clipboard structure is simplified: self.clipboard[location] = [(x, y), ..., (xn, yn)]" />
   </component>
 </project>
