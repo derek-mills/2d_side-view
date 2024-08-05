@@ -528,12 +528,13 @@ class Entity(object):
                 continue
             if self.rectangle.colliderect(dem.rectangle):
                 self.get_damage(dem.damage)
-                self.got_immunity_to_demolishers.append(dem.id)
+                self.invincibility_timer = 100 if self.id == 0 else 30
+                # self.got_immunity_to_demolishers.append(dem.id)
                 self.set_state('hop back')
 
     def get_damage(self, amount):
         print(f'[entity.get_damage] {self.name} {self.id} gets damage: {amount} | {self.stats["health"]=}')
-        self.invincibility_timer = 100 if self.id == 0 else 30
+        # self.invincibility_timer = 100 if self.id == 0 else 30
         self.stats['health'] -= amount
         # self.health -= amount
         if self.stats['health'] <= 0:
