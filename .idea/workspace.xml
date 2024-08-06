@@ -142,13 +142,6 @@
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
     </task>
-    <task id="LOCAL-00296" summary="Corrected layers scroll system">
-      <created>1721724978778</created>
-      <option name="number" value="00296" />
-      <option name="presentableId" value="LOCAL-00296" />
-      <option name="project" value="LOCAL" />
-      <updated>1721724978778</updated>
-    </task>
     <task id="LOCAL-00297" summary="Level editor: issue with copies of menu structure data used after other map has loaded: all changes remain even if copy() routine used. Only deepcopy() has made a trick.">
       <created>1721803408258</created>
       <option name="number" value="00297" />
@@ -485,7 +478,14 @@
       <option name="project" value="LOCAL" />
       <updated>1722845260293</updated>
     </task>
-    <option name="localTasksCounter" value="345" />
+    <task id="LOCAL-00345" summary="Level editor: menu revealing system slightly changed to let small menus with just several items being collided with mouse cursor and do not disappear immediately.">
+      <created>1722907276207</created>
+      <option name="number" value="00345" />
+      <option name="presentableId" value="LOCAL-00345" />
+      <option name="project" value="LOCAL" />
+      <updated>1722907276207</updated>
+    </task>
+    <option name="localTasksCounter" value="346" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -500,7 +500,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Items, described in location settings, add properly now as items, not as obstacles." />
     <MESSAGE value="Corrected enemies animation." />
     <MESSAGE value="Added sprites for some particular items." />
     <MESSAGE value="Corrected weapons description.&#10;Corrected item sprites." />
@@ -525,6 +524,7 @@
     <MESSAGE value="Level editor: clipboard elements deletion implemented." />
     <MESSAGE value="Level editor: clipboard elements deletion from the main menu works just fine." />
     <MESSAGE value="Level editor: clipboard elements deletion by pressing RMB over the already highlighted point has been corrected." />
-    <option name="LAST_COMMIT_MESSAGE" value="Level editor: clipboard elements deletion by pressing RMB over the already highlighted point has been corrected." />
+    <MESSAGE value="Level editor: menu revealing system slightly changed to let small menus with just several items being collided with mouse cursor and do not disappear immediately." />
+    <option name="LAST_COMMIT_MESSAGE" value="Level editor: menu revealing system slightly changed to let small menus with just several items being collided with mouse cursor and do not disappear immediately." />
   </component>
 </project>

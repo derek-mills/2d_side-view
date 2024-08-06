@@ -141,11 +141,17 @@ class World(object):
             if self.menu_structure[menu_name]['generate list from'][0] == '*':
                 # Got string, which is a pointer to an iteration sequence.
                 # We have to unfurl it using eval():
-                menu_items_list = list(eval(self.menu_structure[menu_name]['generate list from'][1:]))
+                try:
+                    menu_items_list = list(eval(self.menu_structure[menu_name]['generate list from'][1:]))
+                except KeyError:
+                    menu_items_list = [(0,0),]
             elif self.menu_structure[menu_name]['generate list from'][0] == '@':
                 # Got string, which has a flag of execution.
                 # We have to execute it using exec():
-                menu_items_list = list(exec(self.menu_structure[menu_name]['generate list from'][1:]))
+                try:
+                    list(exec(self.menu_structure[menu_name]['generate list from'][1:]))
+                except:
+                    menu_items_list = [(0,0), ]
             else:
                 # Got a simple string. Have to split it using '|' (vertical stick) as a delimiter:
                 menu_items_list = self.menu_structure[menu_name]['generate list from'].split('|')
@@ -2295,7 +2301,7 @@ class World(object):
         if 'CANCEL MENU' in self.menu_walk_tree:
             self.reset_menu_walk_tree()
             self.reset_menu()
-            return
+            return 'CANCEL'
 
         print(f'[edit obs] {self.menu_walk_tree=} {self.menu_return_value=}')
         # exit()
@@ -2513,13 +2519,14 @@ class World(object):
             if self.is_right_mouse_button_down:
                 self.is_right_mouse_button_down = False
                 if obs_id > -1:
-                    self.edit_obs(self.obstacles[self.location][obs_id])
-                    if self.show_minimap:
-                        self.refresh_minimap()
-                    self.save()
-                    # self.load()
-                    self.obs_settings[obs_id] = locations.locations[self.location]['obstacles']['settings'][obs_id]
-                    self.obstacles[self.location][obs_id].active_flag = True
+                    edit_result = self.edit_obs(self.obstacles[self.location][obs_id])
+                    if edit_result != 'CANCEL':
+                        if self.show_minimap:
+                            self.refresh_minimap()
+                        self.save()
+                        # self.load()
+                        self.obs_settings[obs_id] = locations.locations[self.location]['obstacles']['settings'][obs_id]
+                        self.obstacles[self.location][obs_id].active_flag = True
                     return
                 else:
                     if self.location not in self.clipboard:
