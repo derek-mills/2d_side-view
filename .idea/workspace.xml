@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,13 +139,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00297" summary="Level editor: issue with copies of menu structure data used after other map has loaded: all changes remain even if copy() routine used. Only deepcopy() has made a trick.">
-      <created>1721803408258</created>
-      <option name="number" value="00297" />
-      <option name="presentableId" value="LOCAL-00297" />
-      <option name="project" value="LOCAL" />
-      <updated>1721803408258</updated>
     </task>
     <task id="LOCAL-00298" summary="Level editor: issue with reset function within obstacle edit menu.">
       <created>1721811687591</created>
@@ -485,7 +476,14 @@
       <option name="project" value="LOCAL" />
       <updated>1722907276207</updated>
     </task>
-    <option name="localTasksCounter" value="346" />
+    <task id="LOCAL-00346" summary="Level editor: cancelling of obstacle edit causes no error anymore.">
+      <created>1722907830607</created>
+      <option name="number" value="00346" />
+      <option name="presentableId" value="LOCAL-00346" />
+      <option name="project" value="LOCAL" />
+      <updated>1722907830608</updated>
+    </task>
+    <option name="localTasksCounter" value="347" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -500,7 +498,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Corrected enemies animation." />
     <MESSAGE value="Added sprites for some particular items." />
     <MESSAGE value="Corrected weapons description.&#10;Corrected item sprites." />
     <MESSAGE value="Variable self.max_obs_id_in_current_location implemented to prevent obstacles IDs collisions when new items appear and disappear during gameplay (items and obstacles are the same objects with slightly different properties)." />
@@ -525,6 +522,7 @@
     <MESSAGE value="Level editor: clipboard elements deletion from the main menu works just fine." />
     <MESSAGE value="Level editor: clipboard elements deletion by pressing RMB over the already highlighted point has been corrected." />
     <MESSAGE value="Level editor: menu revealing system slightly changed to let small menus with just several items being collided with mouse cursor and do not disappear immediately." />
-    <option name="LAST_COMMIT_MESSAGE" value="Level editor: menu revealing system slightly changed to let small menus with just several items being collided with mouse cursor and do not disappear immediately." />
+    <MESSAGE value="Level editor: cancelling of obstacle edit causes no error anymore." />
+    <option name="LAST_COMMIT_MESSAGE" value="Level editor: cancelling of obstacle edit causes no error anymore." />
   </component>
 </project>

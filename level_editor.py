@@ -1143,7 +1143,7 @@ class World(object):
             #     item['after action'] = parent_menu_item['submenu']['exit action']
 
             if i == 'ok':
-                item['rectangle'] = pygame.Rect(start_x - 80, start_y + height, 80, total_menu_height - height)
+                item['rectangle'] = pygame.Rect(start_x - 80, start_y, 80, total_menu_height - height)
                 # item['rectangle'] = pygame.Rect(start_x - 80, start_y - total_menu_height + height, 80, total_menu_height - height)
             else:
                 item['rectangle'] = pygame.Rect(start_x, start_y + dy, width, height)
@@ -1178,7 +1178,8 @@ class World(object):
 
 
         self.menu_items[self.active_menu_pile][0]['menu rect'] = pygame.Rect(start_x, start_y - total_menu_height, width, total_menu_height)
-        self.menu_items[self.active_menu_pile][0]['menu shadow image'] = self.screen.subsurface((0, 0, width + 20, total_menu_height + 20)).convert()
+        self.menu_items[self.active_menu_pile][0]['menu shadow image'] = pygame.Surface((width + 20, total_menu_height + 20)).convert_alpha()
+        # self.menu_items[self.active_menu_pile][0]['menu shadow image'] = self.screen.subsurface((0, 0, width + 20, total_menu_height + 20)).convert()
         self.menu_items[self.active_menu_pile][0]['menu shadow image'].fill(BLUE)
         self.menu_items[self.active_menu_pile][0]['menu shadow rect'] = pygame.Rect(start_x - 10, start_y - 10, width + 10, total_menu_height + 10)
         # self.menu_items[self.active_menu_pile][0]['menu shadow rect'] = pygame.Rect(start_x - 10, start_y - total_menu_height + height // 2, width + 10, total_menu_height + 10)
