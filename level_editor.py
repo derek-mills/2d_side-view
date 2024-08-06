@@ -297,21 +297,36 @@ class World(object):
 
         menu_item_has_been_already_checked = False
 
-        # MOUSE WHEEL:
-        if self.is_mouse_wheel_up:
-            self.reset_human_input()
-            menu_items_keys = list(self.menu_items[self.active_menu_pile].keys())
-            if self.menu_items[self.active_menu_pile][menu_items_keys[-1]]['rectangle'].y < 0:
+        # Scroll too tall menus by mouse wheel or touching up and down screen edges by mouse cursor:
+        menu_items_keys = list(self.menu_items[self.active_menu_pile].keys())
+        if self.menu_items[self.active_menu_pile][menu_items_keys[0]]['rectangle'].y < 0:
+            if self.is_mouse_wheel_up or self.mouse_xy[1] < 50:
+                self.reset_human_input()
                 for k in menu_items_keys:
                     self.menu_items[self.active_menu_pile][k]['rectangle'].y += self.menu_items_y_scroll_speed
-                # self.menu_items_y_correction -= 50
-        elif self.is_mouse_wheel_down:
-            self.reset_human_input()
-            menu_items_keys = list(self.menu_items[self.active_menu_pile].keys())
-            if self.menu_items[self.active_menu_pile][menu_items_keys[0]]['rectangle'].y > MAXY:
+        if self.menu_items[self.active_menu_pile][menu_items_keys[-1]]['rectangle'].y > MAXY:
+            if self.is_mouse_wheel_down or self.mouse_xy[1] > MAXY - 50:
+                self.reset_human_input()
                 for k in menu_items_keys:
                     self.menu_items[self.active_menu_pile][k]['rectangle'].y -= self.menu_items_y_scroll_speed
-                # self.menu_items_y_correction -= 50
+
+        # # MOUSE WHEEL:
+        # if self.is_mouse_wheel_up:
+        #     self.reset_human_input()
+        #     menu_items_keys = list(self.menu_items[self.active_menu_pile].keys())
+        #     if self.menu_items[self.active_menu_pile][menu_items_keys[0]]['rectangle'].y < 0:
+        #     # if self.menu_items[self.active_menu_pile][menu_items_keys[-1]]['rectangle'].y < 0:
+        #         for k in menu_items_keys:
+        #             self.menu_items[self.active_menu_pile][k]['rectangle'].y += self.menu_items_y_scroll_speed
+        #         # self.menu_items_y_correction -= 50
+        # elif self.is_mouse_wheel_down:
+        #     self.reset_human_input()
+        #     menu_items_keys = list(self.menu_items[self.active_menu_pile].keys())
+        #     if self.menu_items[self.active_menu_pile][menu_items_keys[-1]]['rectangle'].y > MAXY:
+        #     # if self.menu_items[self.active_menu_pile][menu_items_keys[0]]['rectangle'].y > MAXY:
+        #         for k in menu_items_keys:
+        #             self.menu_items[self.active_menu_pile][k]['rectangle'].y -= self.menu_items_y_scroll_speed
+        #         # self.menu_items_y_correction -= 50
 
 
         for pile_id in reversed(self.menu_items.keys()):
