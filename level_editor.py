@@ -1112,9 +1112,154 @@ class World(object):
             start_x = top_left_corner[0]
 
         dy = 0
+        height = font_size + 10
+        # height = font_size + 16
+        total_menu_height = height * len([i for i in items if i not in restricted])
+        if top_left_corner[1] + total_menu_height > MAXY:
+            start_y = MAXY - total_menu_height - 10
+            # start_y = MAXY - height
+        else:
+            start_y = top_left_corner[1] - 10
+            # start_y = top_left_corner[1] + total_menu_height - height
+
+        # Main cycle of menu items add:
+        for i in items:
+        # for i in reversed(items):
+            if i in restricted:
+                continue
+            # print(i)
+            item = self.menu_structure[menu_name][i]
+            item['menu pile'] = self.menu_pile_id
+            item['parent menu pile'] = parent_menu_pile
+            item['parent dict key'] = parent_dict_key
+            # if parent_menu_item['LMB action'] == 'reveal submenu':
+            # if menu_exit_buttons and i in menu_exit_buttons:
+            #     item['after action'] = parent_menu_item['submenu']['exit action']
+
+            if i == 'ok':
+                item['rectangle'] = pygame.Rect(start_x - 80, start_y + height, 80, total_menu_height - height)
+                # item['rectangle'] = pygame.Rect(start_x - 80, start_y - total_menu_height + height, 80, total_menu_height - height)
+            else:
+                item['rectangle'] = pygame.Rect(start_x, start_y + dy, width, height)
+                # item['rectangle'] = pygame.Rect(start_x, start_y - dy, width, height)
+                dy += height
+
+            if 'target' not in item.keys() or not item['target']:
+                # print(f'[add_menu] try to set {target=} for {menu_name=}')
+                item['target'] = target
+
+            # if item['LMB action'] == 'reveal submenu':
+            if 'submenu after action' in parent_menu_item.keys():
+                # print('[add_menu] try to set ', parent_menu_item['submenu exit action'])
+                item['after action'] = parent_menu_item['submenu after action']
+                # item['LMB action'] = parent_menu_item['submenu exit action']
+            #         print('[add_menu] LMB action becomes: ', item['LMB action'])
+
+            # if 'submenu exit action' in parent_menu_item.keys():
+            #     print('[add_menu] try to set ', parent_menu_item['submenu exit action'])
+                # item['LMB action'] = parent_menu_item['submenu exit action']
+                # print('[add_menu] LMB action becomes: ', item['LMB action'])
+
+            # if 'LMB action' not in item.keys() or not item['LMB action']:
+            #     item['LMB action'] = exit_action
+
+            if 'colors' in item.keys():
+                self.add_menu_item(item, item['colors']['frame color'], item['colors']['bg color'], item['colors']['txt color'])
+                continue
+
+            self.add_menu_item(item)
+            # dy += height
+
+
+        self.menu_items[self.active_menu_pile][0]['menu rect'] = pygame.Rect(start_x, start_y - total_menu_height, width, total_menu_height)
+        self.menu_items[self.active_menu_pile][0]['menu shadow image'] = self.screen.subsurface((0, 0, width + 20, total_menu_height + 20)).convert()
+        self.menu_items[self.active_menu_pile][0]['menu shadow image'].fill(BLUE)
+        self.menu_items[self.active_menu_pile][0]['menu shadow rect'] = pygame.Rect(start_x - 10, start_y - 10, width + 10, total_menu_height + 10)
+        # self.menu_items[self.active_menu_pile][0]['menu shadow rect'] = pygame.Rect(start_x - 10, start_y - total_menu_height + height // 2, width + 10, total_menu_height + 10)
+
+
+        # print(f'[add_menu] Added new menu: {menu_name}')
+        # for k in self.menu_structure[menu_name].keys():
+        #     # subm_keys = self.menu_structure[menu_name][k].keys()
+        #     # v = self.menu_structure[menu_name][k]['value']
+        #     # t = self.menu_structure[menu_name][k]['target']
+        #     print(f'[add_menu] submenu: {k} ')
+        #     # for i in subm_keys:
+        #     #     print(f'[add_menu] submenu: {k}, item: {i} ')
+        # print(f'[add_menu] ----------')
+
+    def add_menu_old(self, parent_menu_item, top_left_corner, width, font_size):
+        self.menu_item_id = 0
+        if 'menu pile' in parent_menu_item.keys():
+            self.menu_pile_id = parent_menu_item['menu pile'] + 1
+        else:
+            self.menu_pile_id += 1
+        self.active_menu_pile = self.menu_pile_id
+
+        restricted = ('generate list from', 'predefined keys','target object', 'rect')
+
+        # Need to set 'target' value for all elements of the newborn menu from 'value' of the parent.
+        # All the actions will aim this object after submenu has done:
+        target = parent_menu_item['value']
+        # print(f'[add_menu] target: {target}')
+
+
+        menu_name = parent_menu_item['submenu name']
+        # menu_name = parent_menu_item['submenu']['name']
+
+        # Add current new menu name to common global store:
+        if menu_name not in self.menu_walk_tree:
+            self.menu_walk_tree.append(menu_name)
+
+        # if parent_menu_item['LMB action'] == 'reveal submenu':
+        # Let's generate a list of new menu items from the given text-type description of sequence, if needed:
+        if 'generate list from' in self.menu_structure[menu_name].keys():
+            self.generate_menu(menu_name)
+
+            # if 'submenu exit action' in parent_menu_item.keys():
+            # after_action = parent_menu_item['submenu']['exit action']
+            # else:
+            #     after_action = None
+
+        #     if not parent_menu_item['submenu']['exit button']:
+        #         menu_exit_buttons = []
+        #     elif parent_menu_item['submenu']['exit button'] == 'ok':
+        #         menu_exit_buttons = ('ok',)
+        #     else:
+        #         menu_exit_buttons = list(self.menu_structure[menu_name].keys())
+        # else:
+        #     menu_exit_buttons = []
+
+
+        # print(f'[add_menu] Start adding new menu: {menu_name=}, pile: {self.menu_pile_id}')
+        # print(f'[add_menu] parent items: {parent_menu_item.keys()}')
+
+
+        #
+        if 'self dict key' in parent_menu_item.keys():
+            parent_dict_key = parent_menu_item['self dict key']
+        else:
+            parent_dict_key = ''
+
+        #
+        if 'menu pile' in parent_menu_item.keys():
+            parent_menu_pile = parent_menu_item['menu pile']
+        else:
+            parent_menu_pile = 0
+
+        # All the items of the newborn menu:
+        items = self.menu_structure[menu_name].keys()
+
+        # Calculate geometry routines:
+        if top_left_corner[0] + width > MAXX:
+            start_x = MAXX - width
+        else:
+            start_x = top_left_corner[0]
+
+        dy = 0
         height = font_size + 8
         # height = font_size + 16
-        total_menu_height = height * (len([i for i in items if i not in restricted]) -1)
+        total_menu_height = height * len([i for i in items if i not in restricted])
         if top_left_corner[1] + total_menu_height > MAXY:
             start_y = MAXY - height
         else:
@@ -1170,7 +1315,7 @@ class World(object):
         self.menu_items[self.active_menu_pile][0]['menu rect'] = pygame.Rect(start_x, start_y - total_menu_height, width, total_menu_height)
         self.menu_items[self.active_menu_pile][0]['menu shadow image'] = self.screen.subsurface((0, 0, width + 20, total_menu_height + 20)).convert()
         self.menu_items[self.active_menu_pile][0]['menu shadow image'].fill(BLUE)
-        self.menu_items[self.active_menu_pile][0]['menu shadow rect'] = pygame.Rect(start_x - 10, start_y - total_menu_height, width + 10, total_menu_height + 10)
+        self.menu_items[self.active_menu_pile][0]['menu shadow rect'] = pygame.Rect(start_x - 10, start_y - total_menu_height + height // 2, width + 10, total_menu_height + 10)
         # self.menu_items[self.active_menu_pile][0]['menu rect'] = pygame.Rect(top_left_corner[0], start_y, width, total_menu_height)
 
         # print(f'[add_menu] Added new menu: {menu_name}')
@@ -1183,132 +1328,6 @@ class World(object):
         #     #     print(f'[add_menu] submenu: {k}, item: {i} ')
         # print(f'[add_menu] ----------')
 
-    def add_menu_old(self, parent_menu_item, top_left_corner, width, font_size):
-        self.menu_item_id = 0
-        if 'menu pile' in parent_menu_item.keys():
-            self.menu_pile_id = parent_menu_item['menu pile'] + 1
-        else:
-            self.menu_pile_id += 1
-        self.active_menu_pile = self.menu_pile_id
-
-        restricted = ('generate list from', 'predefined keys','target object', 'rect')
-
-        menu_name = parent_menu_item['submenu name']
-        # print(f'[add_menu] Start adding new menu: {menu_name=}, pile: {self.menu_pile_id}')
-        # print(f'[add_menu] parent items: {parent_menu_item.keys()}')
-
-        # Need to set 'target' value for all elements of the newborn menu from 'value' of the parent.
-        # All the actions will aim this object after new menu has done:
-        target = parent_menu_item['value']
-        # print(f'[add_menu] target: {target}')
-
-        #
-        if 'self dict key' in parent_menu_item.keys():
-            parent_dict_key = parent_menu_item['self dict key']
-        else:
-            parent_dict_key = ''
-
-        #
-        if 'menu pile' in parent_menu_item.keys():
-            parent_menu_pile = parent_menu_item['menu pile']
-        else:
-            parent_menu_pile = 0
-
-        if 'submenu after action' in parent_menu_item.keys():
-            after_action = parent_menu_item['submenu after action']
-        else:
-            after_action = None
-
-        # # Set the deed which will be performed after the newborn menu has done:
-        # if 'submenu exit action' in parent_menu_item.keys():
-        #     exit_action = parent_menu_item['submenu exit action']
-        # else:
-        #     # If particular action doesn't described, set it to default value:
-        #     exit_action = 'return value'
-        # print(f'[add_menu] {exit_action=}')
-
-        # Add current new menu name to common global store:
-        if menu_name not in self.menu_walk_tree:
-                self.menu_walk_tree.append(menu_name)
-
-        # Let's generate a list of new menu items from the given text-type description of sequence, if needed:
-        if 'generate list from' in self.menu_structure[menu_name].keys():
-            self.generate_menu(menu_name)
-
-        # All the items of the newborn menu:
-        items = self.menu_structure[menu_name].keys()
-
-        # Calculate geometry routines:
-        if top_left_corner[0] + width > MAXX:
-            start_x = MAXX - width
-        else:
-            start_x = top_left_corner[0]
-
-        dy = 0
-        height = font_size + 16
-        total_menu_height = height * len([i for i in items if i not in restricted])
-        if top_left_corner[1] + total_menu_height > MAXY:
-            start_y = MAXY - height
-        else:
-            start_y = top_left_corner[1] + total_menu_height - height
-
-
-        # Main cycle of menu items add:
-        for i in reversed(items):
-            if i in restricted:
-                continue
-            # print(i)
-            item = self.menu_structure[menu_name][i]
-            item['menu pile'] = self.menu_pile_id
-            item['parent menu pile'] = parent_menu_pile
-            item['parent dict key'] = parent_dict_key
-            if after_action:
-                item['after action'] = after_action
-
-            if i == 'ok':
-                # item['rectangle'] = pygame.Rect(top_left_corner[0] - 80, top_left_corner[1], 80, total_menu_height - height)
-                item['rectangle'] = pygame.Rect(start_x - 80, start_y - total_menu_height + height, 80, total_menu_height - height)
-            else:
-                item['rectangle'] = pygame.Rect(start_x, start_y - dy, width, height)
-                dy += height
-
-            if 'target' not in item.keys() or not item['target']:
-                # print(f'[add_menu] try to set {target=} for {menu_name=}')
-                item['target'] = target
-
-            # if item['LMB action'] == 'reveal submenu':
-            #     if 'submenu exit action' in parent_menu_item.keys():
-            #         # print('[add_menu] try to set ', parent_menu_item['submenu exit action'])
-            #         item['LMB action'] = parent_menu_item['submenu exit action']
-            #         print('[add_menu] LMB action becomes: ', item['LMB action'])
-
-            if 'submenu exit action' in parent_menu_item.keys():
-                # print('[add_menu] try to set ', parent_menu_item['submenu exit action'])
-                item['LMB action'] = parent_menu_item['submenu exit action']
-                print('[add_menu] LMB action becomes: ', item['LMB action'])
-
-            # if 'LMB action' not in item.keys() or not item['LMB action']:
-            #     item['LMB action'] = exit_action
-
-            if 'colors' in item.keys():
-                self.add_menu_item(item, item['colors']['frame color'], item['colors']['bg color'], item['colors']['txt color'])
-
-            self.add_menu_item(item)
-            # dy += height
-
-
-        self.menu_items[self.active_menu_pile][0]['menu rect'] = pygame.Rect(start_x, start_y, width, total_menu_height)
-        # self.menu_items[self.active_menu_pile][0]['menu rect'] = pygame.Rect(top_left_corner[0], start_y, width, total_menu_height)
-
-        # print(f'[add_menu] Added new menu: {menu_name}')
-        # for k in self.menu_structure[menu_name].keys():
-        #     # subm_keys = self.menu_structure[menu_name][k].keys()
-        #     # v = self.menu_structure[menu_name][k]['value']
-        #     # t = self.menu_structure[menu_name][k]['target']
-        #     print(f'[add_menu] submenu: {k} ')
-        #     # for i in subm_keys:
-        #     #     print(f'[add_menu] submenu: {k}, item: {i} ')
-        # print(f'[add_menu] ----------')
 
     def create_text_input(self, xy, prompt, default_value, input_type='str'):
         txt_surf = fonts.all_fonts[self.default_font_size].render(prompt, True, WHITE, DARKGRAY)
