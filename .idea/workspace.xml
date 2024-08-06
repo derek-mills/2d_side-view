@@ -7,6 +7,8 @@
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/level_editor_menu_structure.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor_menu_structure.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,13 +142,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00299" summary="Handling issue when size of the map is lesser than the camera view.">
-      <created>1721888069391</created>
-      <option name="number" value="00299" />
-      <option name="presentableId" value="LOCAL-00299" />
-      <option name="project" value="LOCAL" />
-      <updated>1721888069391</updated>
     </task>
     <task id="LOCAL-00300" summary="Compiled a map of a playground. Begin to build a scenes according this map.">
       <created>1721895575747</created>
@@ -484,7 +479,14 @@
       <option name="project" value="LOCAL" />
       <updated>1722914844878</updated>
     </task>
-    <option name="localTasksCounter" value="348" />
+    <task id="LOCAL-00348" summary="Level editor: changed long and tall menus scrolling routine.">
+      <created>1722915410399</created>
+      <option name="number" value="00348" />
+      <option name="presentableId" value="LOCAL-00348" />
+      <option name="project" value="LOCAL" />
+      <updated>1722915410399</updated>
+    </task>
+    <option name="localTasksCounter" value="349" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -499,7 +501,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Corrected weapons description.&#10;Corrected item sprites." />
     <MESSAGE value="Variable self.max_obs_id_in_current_location implemented to prevent obstacles IDs collisions when new items appear and disappear during gameplay (items and obstacles are the same objects with slightly different properties)." />
     <MESSAGE value="Some tiny improvements.&#10;TODO: in level editor submenu does not append multiple obstacles into obs editing mode." />
     <MESSAGE value="Level editor: submenu behavior changed to be more simple in describe terms." />
@@ -524,6 +525,7 @@
     <MESSAGE value="Level editor: menu revealing system slightly changed to let small menus with just several items being collided with mouse cursor and do not disappear immediately." />
     <MESSAGE value="Level editor: cancelling of obstacle edit causes no error anymore." />
     <MESSAGE value="Level editor: changed menu shadow and rectangle calculations." />
-    <option name="LAST_COMMIT_MESSAGE" value="Level editor: changed menu shadow and rectangle calculations." />
+    <MESSAGE value="Level editor: changed long and tall menus scrolling routine." />
+    <option name="LAST_COMMIT_MESSAGE" value="Level editor: changed long and tall menus scrolling routine." />
   </component>
 </project>

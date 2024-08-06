@@ -541,6 +541,11 @@ menu_structure = {
             'after action': 'keep going'
         },
         'teleport': {
+            'colors': {
+                'frame color': GRAY,
+                'bg color': DARKGRAY,
+                'txt color': YELLOW
+            },
             'rectangle': pygame.Rect(0, 0, 0, 0),
             'label': 'teleport',
             'on hover action': None,
@@ -554,6 +559,11 @@ menu_structure = {
             'after action': 'keep going'
         },
         'teleport on touch': {
+            'colors': {
+                'frame color': GRAY,
+                'bg color': DARKGRAY,
+                'txt color': YELLOW
+            },
             'rectangle': pygame.Rect(0, 0, 0, 0),
             'label': 'teleport on touch',
             'on hover action': None,
@@ -567,6 +577,11 @@ menu_structure = {
             'after action': 'keep going'
         },
         'teleport to map': {
+            'colors': {
+                'frame color': GRAY,
+                'bg color': DARKGRAY,
+                'txt color': YELLOW
+            },
             'rectangle': pygame.Rect(0, 0, 0, 0),
             'label': 'teleport to map >',
             'on hover action': None,
@@ -586,6 +601,11 @@ menu_structure = {
             'after action': 'return to parent',
         },
         'teleport to point (x,y) on map': {
+            'colors': {
+                'frame color': GRAY,
+                'bg color': DARKGRAY,
+                'txt color': YELLOW
+            },
             'rectangle': pygame.Rect(0, 0, 0, 0),
             'label': 'teleport to point (x,y) on map >',
             'on hover action': None,
@@ -603,7 +623,51 @@ menu_structure = {
             'active': True,
             'after action': 'return to parent',
         },
+        'teleport keep x': {
+            'colors': {
+                'frame color': GRAY,
+                'bg color': DARKGRAY,
+                'txt color': YELLOW
+            },
+            'on hover action': None,
+            'LMB action': 'exec',
+            # 'LMB action': 'store value',
+            # 'value': '"keep y"',
+            'description': 'keep X coordinate unchanged',
+            'value': "self.menu_structure['custom obs properties']['ok']['value']['teleport description']['xy'] = ('keep x', self.menu_structure['custom obs properties']['ok']['value']['teleport description']['xy'][1])",
+            # 'target': "self.menu_structure['custom obs properties']['ok']['value']['teleport description']['xy'][1]",
+            # 'additional info': '@self.menu_structure[menu_name][item][key] = self.menu_structure["custom obs properties"]["ok"]["value"]["teleport description"]["new location"]',
+            # 'additional info': '@self.menu_structure[menu_name][item][key] = self.clipboard[(int(self.menu_structure[menu_name][item]["label"][0]),int(self.menu_structure[menu_name][item]["label"][1]))]["location"]',
+            'label': 'keep X coordinate unchanged',
+            'active': True,
+            'after action': 'keep going'
+        },
+
+        'teleport keep y': {
+            'colors': {
+                'frame color': GRAY,
+                'bg color': DARKGRAY,
+                'txt color': YELLOW
+            },
+            'on hover action': None,
+            'LMB action': 'exec',
+            # 'LMB action': 'store value',
+            # 'value': '"keep y"',
+            'description': 'keep Y coordinate unchanged',
+            'value': "self.menu_structure['custom obs properties']['ok']['value']['teleport description']['xy'] = (self.menu_structure['custom obs properties']['ok']['value']['teleport description']['xy'][0], 'keep y')",
+            # 'target': "self.menu_structure['custom obs properties']['ok']['value']['teleport description']['xy'][1]",
+            # 'additional info': '@self.menu_structure[menu_name][item][key] = self.menu_structure["custom obs properties"]["ok"]["value"]["teleport description"]["new location"]',
+            # 'additional info': '@self.menu_structure[menu_name][item][key] = self.clipboard[(int(self.menu_structure[menu_name][item]["label"][0]),int(self.menu_structure[menu_name][item]["label"][1]))]["location"]',
+            'label': 'keep Y coordinate unchanged',
+            'active': True,
+            'after action': 'keep going'
+        },
         'trigger': {
+            'colors': {
+                'frame color': GRAY,
+                'bg color': DARKGRAY,
+                'txt color': GRAY
+            },
             'rectangle': pygame.Rect(0, 0, 0, 0),
             'label': 'trigger',
             'on hover action': None,
@@ -616,6 +680,11 @@ menu_structure = {
             'after action': 'keep going'
         },
         'triggered obstacles': {
+            'colors': {
+                'frame color': GRAY,
+                'bg color': DARKGRAY,
+                'txt color': GRAY
+            },
             'rectangle': pygame.Rect(0, 0, 0, 0),
             'label': 'triggered obstacles >',
             'on hover action': None,
@@ -641,6 +710,23 @@ menu_structure = {
             # 'after action': None,
             'after action': 'keep going',
             # 'after action': 'return to parent',
+        },
+        'trigger disappear': {
+            'colors': {
+                'frame color': GRAY,
+                'bg color': DARKGRAY,
+                'txt color': GRAY
+            },
+            'rectangle': pygame.Rect(0, 0, 0, 0),
+            'label': 'trigger disappears after use?',
+            'on hover action': None,
+            'LMB action': 'switch state',
+            'target': ("self.menu_structure['custom obs properties']['ok']['value']['trigger description']['disappear']",),
+            # 'LMB action': ['switch state', {'trigger': False}],
+            'additional info': "*self.menu_structure['custom obs properties']['ok']['value']['trigger description']['disappear']",
+            'active': True,
+            'after action': 'keep going'
+            # obs_settings[]
         },
         'item': {
             'rectangle': pygame.Rect(0, 0, 0, 0),
@@ -679,18 +765,6 @@ menu_structure = {
             # 'after action': None,
             # 'after action': 'keep going',
             'after action': 'return to parent',
-        },
-        'trigger disappear': {
-            'rectangle': pygame.Rect(0, 0, 0, 0),
-            'label': 'trigger disappears after use?',
-            'on hover action': None,
-            'LMB action': 'switch state',
-            'target': ("self.menu_structure['custom obs properties']['ok']['value']['trigger description']['disappear']",),
-            # 'LMB action': ['switch state', {'trigger': False}],
-            'additional info': "*self.menu_structure['custom obs properties']['ok']['value']['trigger description']['disappear']",
-            'active': True,
-            'after action': 'keep going'
-            # obs_settings[]
         },
         'active': {
             'rectangle': pygame.Rect(0, 0, 0, 0),

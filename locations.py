@@ -23,6 +23,7 @@ locations = {
                 ((700, -200), (50, 200), 14),  #14
                 ((700, 0), (1250, 50), 15),  #15
                 ((0, 0), (300, 50), 16),  #16
+                ((450, 250), (50, 200), 17),  #17
                   ), # OBSTACLE RECTANGLES SECTION END
                 'settings': {
                     5: {
@@ -44,6 +45,26 @@ locations = {
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': True,
                         'teleport description': {'on touch': True, 'new location': 'stairway', 'xy': (1400.0, 800.0)},
+                  },
+                    17: {
+                        'sprite': 0,
+                        'sprite elevated': False,
+                        'force render': False,
+                        'ghost': False,
+                        'actors pass through': False,
+                        'actors may grab': False,
+                        'speed': 0.2,
+                        'collideable': False,
+                        'gravity affected': False,
+                        'invisible': False,
+                        'teleport': True,
+                        'teleport description': {'new location': 'room81', 'on touch': True, 'xy': (800.0, 250.0)},
+                        'trigger': False,
+                        'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
+                        'item': False,
+                        'item name': {'name': ''},
+                        'active': False,
+                        'actions': {0: []},
                   },
                   } # OBSTACLE SETTINGS SECTION END
               },
@@ -68,7 +89,6 @@ locations = {
                 ((2100, 950), (350, 50), 5),
                 ((0, 950), (2100, 50), 6),
                 ((2100, 1050), (350, 50), 7),
-                ((400, 350), (300, 300), 8),
                   ), # OBSTACLE RECTANGLES SECTION END
                 'settings': {
                     5: {
@@ -217,7 +237,6 @@ locations = {
                 ((650, 900), (50, 50), 43),
                 ((750, 900), (50, 50), 44),
                 ((350, 350), (50, 50), 45),
-                ((1150, 50), (50, 150), 46),
                   ), # OBSTACLE RECTANGLES SECTION END
                 'settings': {
                     6: {
@@ -1438,7 +1457,6 @@ locations = {
                 ((-100, 700), (100, 50), 8),
                 ((2000, 950), (100, 50), 9),
                 ((2000, 700), (100, 50), 10),
-                ((750, 400), (50, 550), 11),
                   ), # OBSTACLE RECTANGLES SECTION END
                 'settings': {
                     3: {

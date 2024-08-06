@@ -144,14 +144,14 @@ class World(object):
                 try:
                     menu_items_list = list(eval(self.menu_structure[menu_name]['generate list from'][1:]))
                 except KeyError:
-                    menu_items_list = [(0,0),]
+                    menu_items_list = [None,]
             elif self.menu_structure[menu_name]['generate list from'][0] == '@':
                 # Got string, which has a flag of execution.
                 # We have to execute it using exec():
                 try:
                     list(exec(self.menu_structure[menu_name]['generate list from'][1:]))
                 except:
-                    menu_items_list = [(0,0), ]
+                    menu_items_list = [None, ]
             else:
                 # Got a simple string. Have to split it using '|' (vertical stick) as a delimiter:
                 menu_items_list = self.menu_structure[menu_name]['generate list from'].split('|')
@@ -297,7 +297,7 @@ class World(object):
 
         menu_item_has_been_already_checked = False
 
-        # Scroll too tall menus by mouse wheel or touching up and down screen edges by mouse cursor:
+        # Scroll too tall menus by mouse wheel or by mouse cursor touching up and down screen edges:
         menu_items_keys = list(self.menu_items[self.active_menu_pile].keys())
         if self.menu_items[self.active_menu_pile][menu_items_keys[0]]['rectangle'].y < 0:
             if self.is_mouse_wheel_up or self.mouse_xy[1] < 50:
@@ -2012,6 +2012,7 @@ class World(object):
     def render_menu_items(self):
         # pygame.draw.rect(self.screen, BLACK, (self.menu_items[0]['rectangle'].x + 10, self.menu_items[0]['rectangle'].y)
         for pile_id in self.menu_items.keys():
+            self.dim()
             self.screen.blit(self.menu_items[pile_id][0]['menu shadow image'], self.menu_items[pile_id][0]['menu shadow rect'].topleft)
             for k in reversed(self.menu_items[pile_id].keys()):
                 menu_item = self.menu_items[pile_id][k]
@@ -2539,8 +2540,7 @@ class World(object):
                     if edit_result != 'CANCEL':
                         if self.show_minimap:
                             self.refresh_minimap()
-                        self.save()
-                        # self.load()
+                        # self.save()
                         self.obs_settings[obs_id] = locations.locations[self.location]['obstacles']['settings'][obs_id]
                         self.obstacles[self.location][obs_id].active_flag = True
                     return
