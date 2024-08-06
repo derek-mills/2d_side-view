@@ -6,9 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/animations/jake_8bit.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/animations/jake_8bit.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/level_editor_menu_structure.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor_menu_structure.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locations_back.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations_back.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +60,7 @@
       </console-settings>
     </option>
   </component>
-  <component name="RunManager" selected="Python.level_editor">
+  <component name="RunManager" selected="Python.main ">
     <configuration name="generate_sprite_sheet" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ver_0.000.1" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -128,8 +131,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.level_editor" />
         <item itemvalue="Python.main " />
+        <item itemvalue="Python.level_editor" />
         <item itemvalue="Python.generate_sprite_sheet" />
       </list>
     </recent_temporary>
@@ -142,13 +145,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00300" summary="Compiled a map of a playground. Begin to build a scenes according this map.">
-      <created>1721895575747</created>
-      <option name="number" value="00300" />
-      <option name="presentableId" value="LOCAL-00300" />
-      <option name="project" value="LOCAL" />
-      <updated>1721895575747</updated>
     </task>
     <task id="LOCAL-00301" summary="Compiled a map of a playground. Continue to build a scenes according this map.">
       <created>1721896759436</created>
@@ -486,7 +482,14 @@
       <option name="project" value="LOCAL" />
       <updated>1722915410399</updated>
     </task>
-    <option name="localTasksCounter" value="349" />
+    <task id="LOCAL-00349" summary="Level editor: 'keep x' and 'keep y' implemented to the custom object edit menu.">
+      <created>1722927126275</created>
+      <option name="number" value="00349" />
+      <option name="presentableId" value="LOCAL-00349" />
+      <option name="project" value="LOCAL" />
+      <updated>1722927126275</updated>
+    </task>
+    <option name="localTasksCounter" value="350" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -501,7 +504,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Variable self.max_obs_id_in_current_location implemented to prevent obstacles IDs collisions when new items appear and disappear during gameplay (items and obstacles are the same objects with slightly different properties)." />
     <MESSAGE value="Some tiny improvements.&#10;TODO: in level editor submenu does not append multiple obstacles into obs editing mode." />
     <MESSAGE value="Level editor: submenu behavior changed to be more simple in describe terms." />
     <MESSAGE value="If location to be activated by the trigger does not exist it won't cause error anymore." />
@@ -526,6 +528,7 @@
     <MESSAGE value="Level editor: cancelling of obstacle edit causes no error anymore." />
     <MESSAGE value="Level editor: changed menu shadow and rectangle calculations." />
     <MESSAGE value="Level editor: changed long and tall menus scrolling routine." />
-    <option name="LAST_COMMIT_MESSAGE" value="Level editor: changed long and tall menus scrolling routine." />
+    <MESSAGE value="Level editor: 'keep x' and 'keep y' implemented to the custom object edit menu." />
+    <option name="LAST_COMMIT_MESSAGE" value="Level editor: 'keep x' and 'keep y' implemented to the custom object edit menu." />
   </component>
 </project>

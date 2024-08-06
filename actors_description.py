@@ -174,7 +174,7 @@ demon_1 = {
             # 74,74,74,74,74,  # 20 - 24
             # 74,74,74,75,75), # 25 - 29
             # 'demolisher offset': (46, 36),
-            'speed': 2,
+            'speed': 3,
             'activity at frames': {
                 4: {
                     'sound': True,
@@ -199,7 +199,7 @@ demon_1 = {
             # 74,74,74,74,74,  # 20 - 24
             # 74,74,74,75,75), # 25 - 29
             # 'demolisher offset': (46, 36),
-            'speed': 2,
+            'speed': 1,
             'activity at frames': {
                 4: {
                     'sound': True,
@@ -497,7 +497,7 @@ demon_2 = {
             # 74,74,74,74,74,  # 20 - 24
             # 74,74,74,75,75), # 25 - 29
             # 'demolisher offset': (46, 36),
-            'speed': 2,
+            'speed': 8,
             'activity at frames': {
                 4: {
                     'sound': True,
@@ -522,7 +522,7 @@ demon_2 = {
             # 74,74,74,74,74,  # 20 - 24
             # 74,74,74,75,75), # 25 - 29
             # 'demolisher offset': (46, 36),
-            'speed': 2,
+            'speed': 8,
             'activity at frames': {
                 4: {
                     'sound': True,

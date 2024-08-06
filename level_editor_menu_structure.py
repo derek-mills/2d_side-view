@@ -642,7 +642,6 @@ menu_structure = {
             'active': True,
             'after action': 'keep going'
         },
-
         'teleport keep y': {
             'colors': {
                 'frame color': GRAY,
