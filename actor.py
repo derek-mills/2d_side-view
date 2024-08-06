@@ -407,17 +407,37 @@ class Actor(Entity):
             if self.__state not in ('free', 'stand still', 'run right', 'run left', 'stand still', 'jump', 'crawl right', 'crawl left', \
                                     'crouch', 'fly right', 'fly left'):
                 return
-            self.set_state('attack')
+            if self.__state in ('crawl left', 'crouch', 'crawl right'):
+                if self.look == 1:
+                    self.set_state('prepare crouch attack right')
+                else:
+                    self.set_state('prepare crouch attack left')
+            else:
+                self.set_state('prepare attack')
 
     def state_machine(self):
-        if self.__state == 'attack':                          # PREPARING ATTACK
+        if self.__state == 'prepare attack':                          # PREPARING ATTACK
             self.set_state(self.current_weapon['attack animation'])
             self.frames_changing_threshold_modifier = self.current_weapon['animation speed modifier']
             self.set_current_animation()
             self.ignore_user_input = self.current_weapon['ignore user input']
             if self.is_stand_on_ground:
                 self.heading[0] = 0
-        elif self.__state in ('stab', 'cast', 'whip'):                          # ATTACKING IN PROCESS...
+        elif self.__state == 'prepare crouch attack left':                          # PREPARING ATTACK
+            self.set_state(self.current_weapon['attack animation'] + ' crouch left')
+            self.frames_changing_threshold_modifier = self.current_weapon['animation speed modifier']
+            self.set_current_animation()
+            self.ignore_user_input = self.current_weapon['ignore user input']
+            if self.is_stand_on_ground:
+                self.heading[0] = 0
+        elif self.__state == 'prepare crouch attack right':                          # PREPARING ATTACK
+            self.set_state(self.current_weapon['attack animation'] + ' crouch right')
+            self.frames_changing_threshold_modifier = self.current_weapon['animation speed modifier']
+            self.set_current_animation()
+            self.ignore_user_input = self.current_weapon['ignore user input']
+            if self.is_stand_on_ground:
+                self.heading[0] = 0
+        elif self.__state in ('stab', 'cast', 'whip', 'whip crouch right', 'whip crouch left'):                          # ATTACKING IN PROCESS...
             # self.speed = 0
             # print(self.frame_number, '-', self.current_frame)
             # if self.current_weapon_demolishers_reveal_frames:

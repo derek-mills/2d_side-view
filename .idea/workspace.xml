@@ -6,10 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/animations/jake_8bit.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/animations/jake_8bit.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/level_editor_menu_structure.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor_menu_structure.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locations_back.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations_back.py" afterDir="false" />
     </list>
@@ -145,13 +143,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00301" summary="Compiled a map of a playground. Continue to build a scenes according this map.">
-      <created>1721896759436</created>
-      <option name="number" value="00301" />
-      <option name="presentableId" value="LOCAL-00301" />
-      <option name="project" value="LOCAL" />
-      <updated>1721896759436</updated>
     </task>
     <task id="LOCAL-00302" summary="Level editor: just have been edited obstacles become visually different immediately.">
       <created>1722222422469</created>
@@ -489,7 +480,14 @@
       <option name="project" value="LOCAL" />
       <updated>1722927126275</updated>
     </task>
-    <option name="localTasksCounter" value="350" />
+    <task id="LOCAL-00350" summary="Added Jake's crawl attack animation">
+      <created>1722929085380</created>
+      <option name="number" value="00350" />
+      <option name="presentableId" value="LOCAL-00350" />
+      <option name="project" value="LOCAL" />
+      <updated>1722929085380</updated>
+    </task>
+    <option name="localTasksCounter" value="351" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -504,7 +502,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Some tiny improvements.&#10;TODO: in level editor submenu does not append multiple obstacles into obs editing mode." />
     <MESSAGE value="Level editor: submenu behavior changed to be more simple in describe terms." />
     <MESSAGE value="If location to be activated by the trigger does not exist it won't cause error anymore." />
     <MESSAGE value="Actors of the same type (name) doesn't hurt their comrades." />
@@ -529,6 +526,7 @@
     <MESSAGE value="Level editor: changed menu shadow and rectangle calculations." />
     <MESSAGE value="Level editor: changed long and tall menus scrolling routine." />
     <MESSAGE value="Level editor: 'keep x' and 'keep y' implemented to the custom object edit menu." />
-    <option name="LAST_COMMIT_MESSAGE" value="Level editor: 'keep x' and 'keep y' implemented to the custom object edit menu." />
+    <MESSAGE value="Added Jake's crawl attack animation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Jake's crawl attack animation" />
   </component>
 </project>

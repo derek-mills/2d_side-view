@@ -23,27 +23,28 @@ locations = {
                 ((700, -200), (50, 200), 14),  #14
                 ((700, 0), (1250, 50), 15),  #15
                 ((0, 0), (300, 50), 16),  #16
+                ((550, 150), (50, 300), 17),  #17
                   ), # OBSTACLE RECTANGLES SECTION END
                 'settings': {
-                    5: {
+                    17: {
                         'sprite': 0,
                         'sprite elevated': False,
                         'force render': False,
-                        'invisible': True,
                         'ghost': False,
-                        'speed': 0.2,
-                        'item': False,
-                        'item name': {'name': ''},
+                        'actors pass through': False,
                         'actors may grab': False,
-                        'actors pass through': True,
-                        'active': False,
-                        'actions': {0: []},
+                        'speed': 0.2,
                         'collideable': False,
                         'gravity affected': False,
+                        'invisible': False,
+                        'teleport': True,
+                        'teleport description': {'new location': 'room81', 'on touch': True, 'xy': ('keep x', 150.0)},
                         'trigger': False,
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
-                        'teleport': True,
-                        'teleport description': {'on touch': True, 'new location': 'stairway', 'xy': (1400.0, 800.0)},
+                        'item': False,
+                        'item name': {'name': ''},
+                        'active': False,
+                        'actions': {0: []},
                   },
                   } # OBSTACLE SETTINGS SECTION END
               },
