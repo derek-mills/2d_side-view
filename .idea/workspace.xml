@@ -7,9 +7,11 @@
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/camera.py" beforeDir="false" afterPath="$PROJECT_DIR$/camera.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/level_editor_menu_structure.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor_menu_structure.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locations_back.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations_back.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,13 +145,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00302" summary="Level editor: just have been edited obstacles become visually different immediately.">
-      <created>1722222422469</created>
-      <option name="number" value="00302" />
-      <option name="presentableId" value="LOCAL-00302" />
-      <option name="project" value="LOCAL" />
-      <updated>1722222422470</updated>
     </task>
     <task id="LOCAL-00303" summary="Some minor improvements">
       <created>1722237839132</created>
@@ -487,7 +482,14 @@
       <option name="project" value="LOCAL" />
       <updated>1722929085380</updated>
     </task>
-    <option name="localTasksCounter" value="351" />
+    <task id="LOCAL-00351" summary="Added actor crouch attack description.">
+      <created>1722930255912</created>
+      <option name="number" value="00351" />
+      <option name="presentableId" value="LOCAL-00351" />
+      <option name="project" value="LOCAL" />
+      <updated>1722930255912</updated>
+    </task>
+    <option name="localTasksCounter" value="352" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -502,7 +504,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Level editor: submenu behavior changed to be more simple in describe terms." />
     <MESSAGE value="If location to be activated by the trigger does not exist it won't cause error anymore." />
     <MESSAGE value="Actors of the same type (name) doesn't hurt their comrades." />
     <MESSAGE value="Added actors invulnerability for a short period of time after they get damaged (sprite become blinking every odd frame)." />
@@ -527,6 +528,7 @@
     <MESSAGE value="Level editor: changed long and tall menus scrolling routine." />
     <MESSAGE value="Level editor: 'keep x' and 'keep y' implemented to the custom object edit menu." />
     <MESSAGE value="Added Jake's crawl attack animation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Jake's crawl attack animation" />
+    <MESSAGE value="Added actor crouch attack description." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added actor crouch attack description." />
   </component>
 </project>

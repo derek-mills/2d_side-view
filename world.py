@@ -98,8 +98,11 @@ class World(object):
         #     print(f'[add_actor] {k} :{description[k]}')
         entity.is_gravity_affected = description['gravity affected']
 
-        entity.rectangle.height = sprites[entity.name + ' ' + str(0)]['sprite'].get_height()
-        entity.rectangle.width = int(sprites[entity.name + ' ' + str(0)]['sprite'].get_width() * 0.7)  # Width of rectangle is 70% of sprite width.
+        entity.rectangle.height = sprites[entity.name + ' 0']['sprite'].get_height()
+        entity.rectangle.width = int(sprites[entity.name + ' 0']['sprite'].get_width() * 0.7)  # Width of rectangle is 70% of sprite width.
+        entity.rectangle_width_sit = entity.rectangle.width * 1.34
+        entity.rectangle_height_sit = sprites[entity.name + ' 18']['sprite'].get_height()
+
         # entity.rectangle.height = description['height']
         # entity.rectangle.width = description['width']
         entity.rectangle.center = start_xy
@@ -934,6 +937,7 @@ class World(object):
             # Apply changes to active obstacles if such action has been pended:
             if self.location in self.obstacles_changes_pending.keys():
                 for k in self.obstacles_changes_pending[self.location].keys():
+                    print(f'[load] pending actions for obs # {k}')
                     obs_to_be_changed = self.obstacles[self.location][k]
                     obs_to_be_changed.active = True
                     obs_to_be_changed.need_next_acton = True

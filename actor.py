@@ -122,8 +122,8 @@ class Actor(Entity):
         self.target_width = self.rectangle.w
         self.rectangle_height_default = self.rectangle.height
         self.rectangle_width_default = self.rectangle.width
-        self.rectangle_height_sit = self.rectangle.height * 0.66
-        self.rectangle_width_sit = self.rectangle.width * 1.34
+        # self.rectangle_height_sit = self.rectangle.height * 0.66
+        # self.rectangle_width_sit = self.rectangle.width * 1.34
         self.rectangle_height_slide = self.rectangle.width
         self.rectangle_width_slide = self.rectangle.height
 
@@ -438,15 +438,12 @@ class Actor(Entity):
             if self.is_stand_on_ground:
                 self.heading[0] = 0
         elif self.__state in ('stab', 'cast', 'whip', 'whip crouch right', 'whip crouch left'):                          # ATTACKING IN PROCESS...
-            # self.speed = 0
-            # print(self.frame_number, '-', self.current_frame)
-            # if self.current_weapon_demolishers_reveal_frames:
-            #     if self.frame_number == self.current_weapon_demolishers_reveal_frames[0]:
-            #         self.summon_demolisher = True
             if self.animation_sequence_done:
                 self.ignore_user_input = False
-                # self.heading[0] = 0
-                self.set_state('stand still')
+                if self.__state in ('whip crouch right', 'whip crouch left'):
+                    self.set_state('crouch')
+                else:
+                    self.set_state('stand still')
         elif self.__state == 'crouch down':                       # CROUCH DOWN PROCESS
             self.is_crouch = True
             self.is_grabbers_active = False
