@@ -6,6 +6,7 @@ sword = {
     'affects on': '',
     'attack animation': 'stab',
     'stamina consumption': 1.2,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
+    'mana consumption': 0.,
     'ignore user input': True,  # Steal the ability to control a character for a while.
     # 'actor forward moving speed': 0.3,  # During attack an actor may uncontrollably move forward (min 0.5).
     'animation speed modifier': 1.,  # 0 < x < 1: speed animation up, x > 1: slow down.
@@ -47,6 +48,7 @@ kitchen_knife = {
     'amount decrease speed': 0,
     'affects on': '',
     'stamina consumption': 1.0,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
+    'mana consumption': 10.,
     'aimed fire': True,
     'attack animation': 'stab',
     'ignore user input': True,  # Steal the ability to control a character for a while.
@@ -100,6 +102,7 @@ fireball_staff = {
     'amount decrease speed': 0,
     'affects on': '',
     'stamina consumption': 2.5,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
+    'mana consumption': 10.,
     'attack animation': 'cast',
     'ignore user input': True,  # Steal the ability to control a character for a while.
     # 'actor forward moving speed': 0.3,  # During attack an actor may uncontrollably move forward (min 0.5).
@@ -136,6 +139,7 @@ whip = {
     'amount decrease speed': 0,
     'affects on': '',
     'stamina consumption': 1.0,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
+    'mana consumption': 0.,
     'attack animation': 'whip',
     'ignore user input': True,  # Steal the ability to control a character for a while.
     'animation speed modifier': 1.,  # 0 < x < 1: speed animation up, x > 1: slow down.

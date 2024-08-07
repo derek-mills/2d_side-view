@@ -207,6 +207,7 @@ class Actor(Entity):
             self.body['right hand']['weapon'] = self.inventory['weapons'][uuid]
         self.current_weapon = self.body['right hand']['weapon']['item']
         self.current_stamina_lost_per_attack = self.normal_stamina_lost_per_attack * self.current_weapon['stamina consumption']
+        self.current_mana_lost_per_attack = self.normal_mana_lost_per_attack * self.current_weapon['mana consumption']
         # print(self.current_weapon)
         # {'aimed fire': True, 'attack animation': 'stab', 'steal user input': True, 'leave particles': False, 'class': 'weapons', 'type': 'melee', 'sub-type': 'bladed', 'sound': 'sound_swing_2', 'droppable': True, 'need ammo': False, 'ammo': 0, 'label': 'KITCHEN KNIFE', 'sprite': 'kitchen knife', 'pierce': False, 'damager TTL': 200, 'damagers spread': False, 'damager static': True, 'damager radius': 1, 'damagers quantity': 1, 'damager reveal delay': 0, 'damager reveals with flash': False, 'damager brings light': False, 'damager fly speed reduce': 0, 'damager fly speed': 1.5, 'damager invisible': False, 'damager weight': 5, 'description': 'Casual kitchen knife.', 'reach': 1, 'weight': 5, 'hardness': 10, 'special': ('bleeding',)}
         # exit()
@@ -224,6 +225,7 @@ class Actor(Entity):
             self.invincibility_timer -= 1
         self.state_machine()
         self.stamina_replenish()
+        self.mana_replenish()
         self.processing_rectangle_size()
         self.check_space_around()
         super().process()
@@ -407,7 +409,8 @@ class Actor(Entity):
             # self.movement_direction_inverter = 1
 
         elif new_action == 'attack':
-            if self.stats['stamina'] <= self.current_stamina_lost_per_attack:
+            if self.stats['stamina'] <= self.current_stamina_lost_per_attack \
+                    or self.stats['mana'] <= self.current_mana_lost_per_attack:
                 return
             if self.__state not in ('free', 'stand still', 'run right', 'run left', 'stand still', 'jump', 'crawl right', 'crawl left', \
                                     'crouch', 'fly right', 'fly left'):
@@ -424,6 +427,7 @@ class Actor(Entity):
         if self.__state == 'prepare attack':                          # PREPARING ATTACK
             self.set_state(self.current_weapon['attack animation'])
             self.stamina_reduce(self.current_stamina_lost_per_attack)
+            self.mana_reduce(self.current_mana_lost_per_attack)
             self.frames_changing_threshold_modifier = self.current_weapon['animation speed modifier']
             self.set_current_animation()
             self.ignore_user_input = self.current_weapon['ignore user input']
@@ -432,6 +436,7 @@ class Actor(Entity):
         elif self.__state == 'prepare crouch attack left':                          # PREPARING ATTACK
             self.set_state(self.current_weapon['attack animation'] + ' crouch left')
             self.stamina_reduce(self.current_stamina_lost_per_attack)
+            self.mana_reduce(self.current_mana_lost_per_attack)
             self.frames_changing_threshold_modifier = self.current_weapon['animation speed modifier']
             self.set_current_animation()
             self.ignore_user_input = self.current_weapon['ignore user input']
@@ -440,6 +445,7 @@ class Actor(Entity):
         elif self.__state == 'prepare crouch attack right':                          # PREPARING ATTACK
             self.set_state(self.current_weapon['attack animation'] + ' crouch right')
             self.stamina_reduce(self.current_stamina_lost_per_attack)
+            self.mana_reduce(self.current_mana_lost_per_attack)
             self.frames_changing_threshold_modifier = self.current_weapon['animation speed modifier']
             self.set_current_animation()
             self.ignore_user_input = self.current_weapon['ignore user input']

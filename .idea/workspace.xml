@@ -6,9 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/animations/demon_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/animations/demon_2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locations_back.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations_back.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,13 +142,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00308" summary="level editor: some improvements in menu generation and submenu values return.&#10;'Item' type of obstacle save its settings properly.">
-      <created>1722308798812</created>
-      <option name="number" value="00308" />
-      <option name="presentableId" value="LOCAL-00308" />
-      <option name="project" value="LOCAL" />
-      <updated>1722308798812</updated>
     </task>
     <task id="LOCAL-00309" summary="Preparing base for normal items picking up and use.">
       <created>1722317298725</created>
@@ -486,7 +479,14 @@
       <option name="project" value="LOCAL" />
       <updated>1723000682878</updated>
     </task>
-    <option name="localTasksCounter" value="357" />
+    <task id="LOCAL-00357" summary="Demon 2 appearance changed, horns of the Abyss added :)">
+      <created>1723009242511</created>
+      <option name="number" value="00357" />
+      <option name="presentableId" value="LOCAL-00357" />
+      <option name="project" value="LOCAL" />
+      <updated>1723009242511</updated>
+    </task>
+    <option name="localTasksCounter" value="358" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -501,7 +501,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="New Teleport property 'on touch' appeared. If it set to False, player need to push UP button to proceed to another location." />
     <MESSAGE value="Teleports, which are not 'on touch' and have to be activated manually, highlighted now if actor touches them." />
     <MESSAGE value="Added 'demon 2' hostile. May be summoned by pressing 'N' button." />
     <MESSAGE value="Actor's rectangle size based on the #0 sprite size." />
@@ -526,6 +525,7 @@
     <MESSAGE value="Stamina use mechanism implemented." />
     <MESSAGE value="Stamina use mechanism improved." />
     <MESSAGE value="Stamina use mechanism tiny improved." />
-    <option name="LAST_COMMIT_MESSAGE" value="Stamina use mechanism tiny improved." />
+    <MESSAGE value="Demon 2 appearance changed, horns of the Abyss added :)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Demon 2 appearance changed, horns of the Abyss added :)" />
   </component>
 </project>

@@ -39,6 +39,10 @@ class Entity(object):
         self.current_stamina_lost_per_attack = 0.  # Depends on current weapon penalty.
         self.normal_stamina_replenish = .1
         self.stamina_replenish_modifier = 1
+        self.normal_mana_replenish = .001
+        self.mana_replenish_modifier = 1
+        self.normal_mana_lost_per_attack = 5.
+        self.current_mana_lost_per_attack = 0.
 
         self.stats = {
             'level': 0,
@@ -551,6 +555,22 @@ class Entity(object):
         if self.stats['health'] <= 0:
         # if self.health <= 0:
             self.dead = True
+
+    def mana_reduce(self, amount):
+        if self.stats['mana'] == 0:
+            return
+        self.stats['mana'] -= amount
+        if self.stats['mana'] < 0:
+             self.stats['mana'] = 0
+
+    def mana_replenish(self):
+        if self.stats['mana'] > self.stats['max mana']:
+            self.stats['mana'] = self.stats['max mana']
+            return
+        elif self.stats['mana'] == self.stats['max mana']:
+            return
+        else:
+            self.stats['mana'] += (self.normal_mana_replenish * self.mana_replenish_modifier)
 
     def stamina_reduce(self, amount):
         if self.stats['stamina'] == 0:
