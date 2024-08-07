@@ -407,7 +407,7 @@ class Actor(Entity):
             # self.movement_direction_inverter = 1
 
         elif new_action == 'attack':
-            if self.stats['stamina'] <= self.normal_stamina_lost_per_attack:
+            if self.stats['stamina'] <= self.current_stamina_lost_per_attack:
                 return
             if self.__state not in ('free', 'stand still', 'run right', 'run left', 'stand still', 'jump', 'crawl right', 'crawl left', \
                                     'crouch', 'fly right', 'fly left'):
@@ -495,6 +495,8 @@ class Actor(Entity):
                 self.just_got_jumped = True
                 self.jump_attempts_counter -= 1
                 if self.jump_attempts_counter == 0:
+                    # Stamina reduces while jumping only if there are no jump attempts left.
+                    # If actor jumps a single hops, stamina remains unchanged.
                     self.stamina_reduce(self.normal_stamina_lost_per_second_jump)
                 if self.fall_speed > -2:
                     self.is_grabbers_active = True

@@ -36,7 +36,7 @@ class Entity(object):
         self.normal_stamina_lost_per_second_jump = 10.
         self.normal_stamina_lost_per_hop_back = 5.
         self.normal_stamina_lost_per_attack = 10.
-        self.current_stamina_lost_per_attack = 0.
+        self.current_stamina_lost_per_attack = 0.  # Depends on current weapon penalty.
         self.normal_stamina_replenish = .1
         self.stamina_replenish_modifier = 1
 

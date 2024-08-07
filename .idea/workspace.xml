@@ -8,7 +8,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,13 +142,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00306" summary="level editor: items selection added">
-      <created>1722245587885</created>
-      <option name="number" value="00306" />
-      <option name="presentableId" value="LOCAL-00306" />
-      <option name="project" value="LOCAL" />
-      <updated>1722245587885</updated>
     </task>
     <task id="LOCAL-00307" summary="level editor: items selection integrated into obs edit menu, but it doesn't work.&#10;Need to rebuild menu system once again to make it more flexible and simple.">
       <created>1722305264875</created>
@@ -486,7 +479,14 @@
       <option name="project" value="LOCAL" />
       <updated>1722998145022</updated>
     </task>
-    <option name="localTasksCounter" value="355" />
+    <task id="LOCAL-00355" summary="Stamina use mechanism improved.">
+      <created>1723000212311</created>
+      <option name="number" value="00355" />
+      <option name="presentableId" value="LOCAL-00355" />
+      <option name="project" value="LOCAL" />
+      <updated>1723000212311</updated>
+    </task>
+    <option name="localTasksCounter" value="356" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -501,7 +501,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="some tiny, but important improvements  :^)" />
     <MESSAGE value="added room #81" />
     <MESSAGE value="New Teleport property 'on touch' appeared. If it set to False, player need to push UP button to proceed to another location." />
     <MESSAGE value="Teleports, which are not 'on touch' and have to be activated manually, highlighted now if actor touches them." />
@@ -526,6 +525,7 @@
     <MESSAGE value="Tiny imps." />
     <MESSAGE value="Info panel upgraded." />
     <MESSAGE value="Stamina use mechanism implemented." />
-    <option name="LAST_COMMIT_MESSAGE" value="Stamina use mechanism implemented." />
+    <MESSAGE value="Stamina use mechanism improved." />
+    <option name="LAST_COMMIT_MESSAGE" value="Stamina use mechanism improved." />
   </component>
 </project>
