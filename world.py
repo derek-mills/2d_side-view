@@ -923,6 +923,7 @@ class World(object):
             # ('HEALTH:' + str(int(self.actors['player'].max_health)) + '/' + str(int(self.actors['player'].health)),int(self.actors['player'].health * max_stripes_width // self.actors['player'].max_health), RED),
 
         )
+
         # txt = fonts.all_fonts[self.info_panel_font_size].render(params[0][0], True, params[0][2])
         # txt_shadow = fonts.all_fonts[self.info_panel_font_size].render(params[0][0], True, BLACK)
         # txt_width = txt.get_width() + 50
@@ -932,6 +933,7 @@ class World(object):
         background_height = len(params) * self.info_panel_font_size + 5 + (self.info_panel_gap_between_stripes * len(params))
 
         pygame.draw.rect(self.screen, WHITE, (self.info_panel_start_x - 5, self.info_panel_start_y - 5, background_width, background_height))
+        self.screen.blit(sprites[self.actors['player'].current_weapon['sprite']]['sprite'], (self.info_panel_start_x, self.info_panel_start_y))
         for p in params:
             txt = fonts.all_fonts[self.info_panel_font_size].render(p[0], True, p[2])
             txt_shadow = fonts.all_fonts[self.info_panel_font_size].render(p[0], True, BLACK)

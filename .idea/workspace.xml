@@ -6,9 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphics.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/items.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/items.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,13 +143,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00309" summary="Preparing base for normal items picking up and use.">
-      <created>1722317298725</created>
-      <option name="number" value="00309" />
-      <option name="presentableId" value="LOCAL-00309" />
-      <option name="project" value="LOCAL" />
-      <updated>1722317298725</updated>
     </task>
     <task id="LOCAL-00310" summary="level editor: individual pop-up description for items">
       <created>1722317544488</created>
@@ -486,7 +480,14 @@
       <option name="project" value="LOCAL" />
       <updated>1723009242511</updated>
     </task>
-    <option name="localTasksCounter" value="358" />
+    <task id="LOCAL-00358" summary="Mana consumption mechanism implemented.">
+      <created>1723009762779</created>
+      <option name="number" value="00358" />
+      <option name="presentableId" value="LOCAL-00358" />
+      <option name="project" value="LOCAL" />
+      <updated>1723009762779</updated>
+    </task>
+    <option name="localTasksCounter" value="359" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -501,7 +502,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Teleports, which are not 'on touch' and have to be activated manually, highlighted now if actor touches them." />
     <MESSAGE value="Added 'demon 2' hostile. May be summoned by pressing 'N' button." />
     <MESSAGE value="Actor's rectangle size based on the #0 sprite size." />
     <MESSAGE value="Demolisher sticks to the magenta pixel of the actor's sprite." />
@@ -526,6 +526,7 @@
     <MESSAGE value="Stamina use mechanism improved." />
     <MESSAGE value="Stamina use mechanism tiny improved." />
     <MESSAGE value="Demon 2 appearance changed, horns of the Abyss added :)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Demon 2 appearance changed, horns of the Abyss added :)" />
+    <MESSAGE value="Mana consumption mechanism implemented." />
+    <option name="LAST_COMMIT_MESSAGE" value="Mana consumption mechanism implemented." />
   </component>
 </project>

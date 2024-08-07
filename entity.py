@@ -39,6 +39,7 @@ class Entity(object):
         self.current_stamina_lost_per_attack = 0.  # Depends on current weapon penalty.
         self.normal_stamina_replenish = .1
         self.stamina_replenish_modifier = 1
+
         self.normal_mana_replenish = .001
         self.mana_replenish_modifier = 1
         self.normal_mana_lost_per_attack = 5.
