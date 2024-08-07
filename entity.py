@@ -38,6 +38,10 @@ class Entity(object):
             'exp': 0,
             'health': 100.,
             'max health': 100.,
+            'stamina': 100.,
+            'max stamina': 100.,
+            'mana': 100.,
+            'max mana': 100.,
         }
         # ANIMATION
         self.animations = dict()

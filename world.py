@@ -80,6 +80,13 @@ class World(object):
 
         # GRAPHIC
         self.backgrounds = dict()
+        # Info panel:
+        self.info_panel_start_x = 10
+        self.info_panel_start_y = 10
+        self.info_panel_max_stripes_width = 500
+        self.info_panel_gap_between_stripes = 1
+        self.info_panel_font_size = 25
+
 
     def set_screen(self, surface):
         self.screen = surface
@@ -898,22 +905,40 @@ class World(object):
 
     def render_info_panel_overlay(self):
         # Player stats:
-        start_x = 50
-        start_y = MAXY - 100
-        max_stripes_width = 500
-        gap_between_stripes = 10
-        font_size = 12
+        # start_x = 50
+        # start_y = 50
+        # # start_y = MAXY - 100
+        # max_stripes_width = 500
+        # gap_between_stripes = 10
+        # font_size = 12
+        # info_panel_gap_between_stripes = self.info_panel_gap_between_stripes
+        dy = 0
         params = (
-            ('HEALTH:' + str(int(self.actors['player'].stats['max health'])) + '/' + str(int(self.actors['player'].stats['health'])),int(self.actors['player'].stats['health'] * max_stripes_width // self.actors['player'].stats['max health']), RED),
-            ('EXP:' + str(int(self.actors['player'].stats['exp'])), 0, YELLOW),
+            ('HEALTH :' + str(int(self.actors['player'].stats['max health'])) + '/' + str(int(self.actors['player'].stats['health'])),int(self.actors['player'].stats['health'] * self.info_panel_max_stripes_width // self.actors['player'].stats['max health']), RED),
+            ('STAMINA:' + str(int(self.actors['player'].stats['max stamina'])) + '/' + str(int(self.actors['player'].stats['stamina'])),int(self.actors['player'].stats['stamina'] * self.info_panel_max_stripes_width // self.actors['player'].stats['max stamina']), YELLOW),
+            ('MANA   :' + str(int(self.actors['player'].stats['max mana'])) + '/' + str(int(self.actors['player'].stats['mana'])),int(self.actors['player'].stats['mana'] * self.info_panel_max_stripes_width // self.actors['player'].stats['max mana']), BLUE),
+            ('EXP:' + str(int(self.actors['player'].stats['exp'])), 0, MAGENTA),
             # ('HEALTH:' + str(int(self.actors['player'].max_health)) + '/' + str(int(self.actors['player'].health)),int(self.actors['player'].health * max_stripes_width // self.actors['player'].max_health), RED),
 
         )
+        # txt = fonts.all_fonts[self.info_panel_font_size].render(params[0][0], True, params[0][2])
+        # txt_shadow = fonts.all_fonts[self.info_panel_font_size].render(params[0][0], True, BLACK)
+        # txt_width = txt.get_width() + 50
+        txt_width = 250
+
+        background_width = self.info_panel_max_stripes_width + 10 + txt_width
+        background_height = len(params) * self.info_panel_font_size + 5 + (self.info_panel_gap_between_stripes * len(params))
+
+        pygame.draw.rect(self.screen, WHITE, (self.info_panel_start_x - 5, self.info_panel_start_y - 5, background_width, background_height))
         for p in params:
-            self.screen.blit(fonts.all_fonts[font_size].render(p[0], True, p[2]), (start_x, start_y + gap_between_stripes))
+            txt = fonts.all_fonts[self.info_panel_font_size].render(p[0], True, p[2])
+            txt_shadow = fonts.all_fonts[self.info_panel_font_size].render(p[0], True, BLACK)
+            self.screen.blit(txt_shadow, (self.info_panel_start_x + 2, self.info_panel_start_y + dy + 2))  # TEXT SHADOW
+            # self.screen.blit(txt, (self.info_panel_start_x + 1, self.info_panel_start_y + dy + 1), None, BLEND_RGB_MIN)  # TEXT SHADOW
+            self.screen.blit(txt, (self.info_panel_start_x, self.info_panel_start_y + dy))
             if p[1] > 0:
-                pygame.draw.rect(self.screen, p[2], (start_x + 200 ,start_y+gap_between_stripes, p[1],10))
-            gap_between_stripes += font_size
+                pygame.draw.rect(self.screen, p[2], (self.info_panel_start_x + txt_width ,self.info_panel_start_y + dy, p[1],10))
+            dy += (self.info_panel_font_size + self.info_panel_gap_between_stripes)
 
     def load(self):
         if self.location not in self.locations.keys():
