@@ -6,10 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphics.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphics.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/items.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/items.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,13 +140,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00310" summary="level editor: individual pop-up description for items">
-      <created>1722317544488</created>
-      <option name="number" value="00310" />
-      <option name="presentableId" value="LOCAL-00310" />
-      <option name="project" value="LOCAL" />
-      <updated>1722317544488</updated>
     </task>
     <task id="LOCAL-00311" summary="Items may be picked up">
       <created>1722318482646</created>
@@ -487,7 +477,14 @@
       <option name="project" value="LOCAL" />
       <updated>1723009762779</updated>
     </task>
-    <option name="localTasksCounter" value="359" />
+    <task id="LOCAL-00359" summary="Weapon icon appears on the info panel.">
+      <created>1723010713129</created>
+      <option name="number" value="00359" />
+      <option name="presentableId" value="LOCAL-00359" />
+      <option name="project" value="LOCAL" />
+      <updated>1723010713129</updated>
+    </task>
+    <option name="localTasksCounter" value="360" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -502,7 +499,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added 'demon 2' hostile. May be summoned by pressing 'N' button." />
     <MESSAGE value="Actor's rectangle size based on the #0 sprite size." />
     <MESSAGE value="Demolisher sticks to the magenta pixel of the actor's sprite." />
     <MESSAGE value="Demolisher sticks to the magenta pixel of the actor's sprite: added for all the actors." />
@@ -527,6 +523,7 @@
     <MESSAGE value="Stamina use mechanism tiny improved." />
     <MESSAGE value="Demon 2 appearance changed, horns of the Abyss added :)" />
     <MESSAGE value="Mana consumption mechanism implemented." />
-    <option name="LAST_COMMIT_MESSAGE" value="Mana consumption mechanism implemented." />
+    <MESSAGE value="Weapon icon appears on the info panel." />
+    <option name="LAST_COMMIT_MESSAGE" value="Weapon icon appears on the info panel." />
   </component>
 </project>

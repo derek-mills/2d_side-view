@@ -48,7 +48,7 @@ kitchen_knife = {
     'amount decrease speed': 0,
     'affects on': '',
     'stamina consumption': 1.0,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
-    'mana consumption': 10.,
+    'mana consumption': 1.1,
     'aimed fire': True,
     'attack animation': 'stab',
     'ignore user input': True,  # Steal the ability to control a character for a while.
@@ -102,7 +102,7 @@ fireball_staff = {
     'amount decrease speed': 0,
     'affects on': '',
     'stamina consumption': 2.5,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
-    'mana consumption': 10.,
+    'mana consumption': 2.,
     'attack animation': 'cast',
     'ignore user input': True,  # Steal the ability to control a character for a while.
     # 'actor forward moving speed': 0.3,  # During attack an actor may uncontrollably move forward (min 0.5).
