@@ -134,7 +134,7 @@ whip = {
     'amount threshold': 1,
     'amount decrease speed': 0,
     'affects on': '',
-
+    'stamina consumption': 1.0,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
     'attack animation': 'whip',
     'ignore user input': True,  # Steal the ability to control a character for a while.
     'animation speed modifier': 1.,  # 0 < x < 1: speed animation up, x > 1: slow down.

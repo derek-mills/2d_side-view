@@ -33,6 +33,11 @@ class Entity(object):
         self.invincibility_timer: int = 0
 
         # STATS
+        self.normal_stamina_lost_per_attack = 10.
+        self.current_stamina_lost_per_attack = 0.
+        self.normal_stamina_replenish = .1
+        self.stamina_replenish_modifier = 1
+
         self.stats = {
             'level': 0,
             'exp': 0,
@@ -544,6 +549,22 @@ class Entity(object):
         if self.stats['health'] <= 0:
         # if self.health <= 0:
             self.dead = True
+
+    def stamina_reduce(self, amount):
+        if self.stats['stamina'] == 0:
+            return
+        self.stats['stamina'] -= amount
+        if self.stats['stamina'] < 0:
+             self.stats['stamina'] = 0
+
+    def stamina_replenish(self):
+        if self.stats['stamina'] > self.stats['max stamina']:
+            self.stats['stamina'] = self.stats['max stamina']
+            return
+        elif self.stats['stamina'] == self.stats['max stamina']:
+            return
+        else:
+            self.stats['stamina'] += (self.normal_stamina_replenish * self.stamina_replenish_modifier)
 
     def detect_collisions(self):
         # self.influenced_by_obstacle = None

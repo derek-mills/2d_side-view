@@ -6,8 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,13 +142,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00304" summary="Prevented actor's disappearing from the camera surveillance while quick descent.">
-      <created>1722238468585</created>
-      <option name="number" value="00304" />
-      <option name="presentableId" value="LOCAL-00304" />
-      <option name="project" value="LOCAL" />
-      <updated>1722238468585</updated>
     </task>
     <task id="LOCAL-00305" summary="Some minor improvements; added elevator luxury room">
       <created>1722239612227</created>
@@ -485,7 +479,14 @@
       <option name="project" value="LOCAL" />
       <updated>1722934046026</updated>
     </task>
-    <option name="localTasksCounter" value="353" />
+    <task id="LOCAL-00353" summary="Info panel upgraded.">
+      <created>1722996577661</created>
+      <option name="number" value="00353" />
+      <option name="presentableId" value="LOCAL-00353" />
+      <option name="project" value="LOCAL" />
+      <updated>1722996577662</updated>
+    </task>
+    <option name="localTasksCounter" value="354" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -500,7 +501,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Actors of the same type (name) doesn't hurt their comrades." />
     <MESSAGE value="Added actors invulnerability for a short period of time after they get damaged (sprite become blinking every odd frame)." />
     <MESSAGE value="some tiny, but important improvements  :^)" />
     <MESSAGE value="added room #81" />
@@ -525,6 +525,7 @@
     <MESSAGE value="Added Jake's crawl attack animation" />
     <MESSAGE value="Added actor crouch attack description." />
     <MESSAGE value="Tiny imps." />
-    <option name="LAST_COMMIT_MESSAGE" value="Tiny imps." />
+    <MESSAGE value="Info panel upgraded." />
+    <option name="LAST_COMMIT_MESSAGE" value="Info panel upgraded." />
   </component>
 </project>
