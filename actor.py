@@ -374,6 +374,7 @@ class Actor(Entity):
             else:
                 if self.jump_attempts_counter == 0:
                     # self.set_state('free')
+                    # self.stamina_reduce(self.normal_stamina_lost_per_second_jump)
                     return
                 if self.is_enough_space_above and self.__state != 'jump':
                     # self.is_grabbers_active = True
@@ -493,6 +494,8 @@ class Actor(Entity):
             if not self.just_got_jumped:
                 self.just_got_jumped = True
                 self.jump_attempts_counter -= 1
+                if self.jump_attempts_counter == 0:
+                    self.stamina_reduce(self.normal_stamina_lost_per_second_jump)
                 if self.fall_speed > -2:
                     self.is_grabbers_active = True
                 self.is_jump = True
@@ -528,16 +531,18 @@ class Actor(Entity):
                     self.ignore_user_input = True
                     self.is_grabbers_active = False
                     if not self.just_got_jumped:
+                        self.stamina_reduce(self.normal_stamina_lost_per_hop_back)
                         self.just_got_jumped = True
                         self.jump_attempts_counter -= 1
                         self.is_jump = True
                         self.influenced_by_obstacle = -1
-                        self.jump_height = self.max_jump_height // 2
+                        self.jump_height = self.max_jump_height * 0.6
+                        # self.jump_height = self.max_jump_height // 2
                         self.speed = self.max_speed
                         self.movement_direction_inverter = -1
                         self.heading[0] = 0
                         self.idle_counter = 20
-                        self.invincibility_timer = 10
+                        self.invincibility_timer = 20
                     self.is_abort_jump = False
                     self.set_state('hopping back process')
             else:

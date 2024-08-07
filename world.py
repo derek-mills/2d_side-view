@@ -85,7 +85,7 @@ class World(object):
         self.info_panel_start_y = 10
         self.info_panel_max_stripes_width = 500
         self.info_panel_gap_between_stripes = 1
-        self.info_panel_font_size = 25
+        self.info_panel_font_size = 20
 
 
     def set_screen(self, surface):
@@ -914,10 +914,12 @@ class World(object):
         # info_panel_gap_between_stripes = self.info_panel_gap_between_stripes
         dy = 0
         params = (
-            ('HEALTH :' + str(int(self.actors['player'].stats['max health'])) + '/' + str(int(self.actors['player'].stats['health'])),int(self.actors['player'].stats['health'] * self.info_panel_max_stripes_width // self.actors['player'].stats['max health']), RED),
-            ('STAMINA:' + str(int(self.actors['player'].stats['max stamina'])) + '/' + str(int(self.actors['player'].stats['stamina'])),int(self.actors['player'].stats['stamina'] * self.info_panel_max_stripes_width // self.actors['player'].stats['max stamina']), YELLOW),
+            ('HEALTH :' + str(int(self.actors['player'].stats['max health'])) + '/' + str(int(self.actors['player'].stats['health'])),int(self.actors['player'].stats['health'] * self.info_panel_max_stripes_width // self.actors['player'].stats['max health']),
+             MAGENTA),
+            ('STAMINA:' + str(int(self.actors['player'].stats['max stamina'])) + '/' + str(int(self.actors['player'].stats['stamina'])),int(self.actors['player'].stats['stamina'] * self.info_panel_max_stripes_width // self.actors['player'].stats['max stamina']),
+             YELLOW if self.actors['player'].stats['stamina'] >= self.actors['player'].current_stamina_lost_per_attack else RED),
             ('MANA   :' + str(int(self.actors['player'].stats['max mana'])) + '/' + str(int(self.actors['player'].stats['mana'])),int(self.actors['player'].stats['mana'] * self.info_panel_max_stripes_width // self.actors['player'].stats['max mana']), BLUE),
-            ('EXP:' + str(int(self.actors['player'].stats['exp'])), 0, MAGENTA),
+            ('EXP:' + str(int(self.actors['player'].stats['exp'])), 0, VIOLET),
             # ('HEALTH:' + str(int(self.actors['player'].max_health)) + '/' + str(int(self.actors['player'].health)),int(self.actors['player'].health * max_stripes_width // self.actors['player'].max_health), RED),
 
         )

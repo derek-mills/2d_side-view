@@ -33,6 +33,8 @@ class Entity(object):
         self.invincibility_timer: int = 0
 
         # STATS
+        self.normal_stamina_lost_per_second_jump = 10.
+        self.normal_stamina_lost_per_hop_back = 5.
         self.normal_stamina_lost_per_attack = 10.
         self.current_stamina_lost_per_attack = 0.
         self.normal_stamina_replenish = .1
