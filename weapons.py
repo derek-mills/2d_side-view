@@ -133,6 +133,7 @@ whip = {
     'type': 'melee',
     'label': 'whip',
     'sprite': 'whip',
+
     'sound': 'sound_swing_2',
     'amount': 1,
     'amount threshold': 1,
@@ -152,6 +153,7 @@ whip = {
     'demolishers': (
         {
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
+            'demolisher sprite': 'whip demolisher',
             'pierce': False, 'demolisher TTL': 5, 'speed': 0,
             'damage': 150, 'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,

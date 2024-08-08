@@ -6,7 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphics.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/items.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/items.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,13 +145,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00311" summary="Items may be picked up">
-      <created>1722318482646</created>
-      <option name="number" value="00311" />
-      <option name="presentableId" value="LOCAL-00311" />
-      <option name="project" value="LOCAL" />
-      <updated>1722318482647</updated>
     </task>
     <task id="LOCAL-00312" summary="self.stats is the property of Entity class now.&#10;Exp reveals under the health bar.">
       <created>1722318990598</created>
@@ -484,7 +482,14 @@
       <option name="project" value="LOCAL" />
       <updated>1723010713129</updated>
     </task>
-    <option name="localTasksCounter" value="360" />
+    <task id="LOCAL-00360" summary="Weapon description modified.">
+      <created>1723020065519</created>
+      <option name="number" value="00360" />
+      <option name="presentableId" value="LOCAL-00360" />
+      <option name="project" value="LOCAL" />
+      <updated>1723020065519</updated>
+    </task>
+    <option name="localTasksCounter" value="361" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -499,7 +504,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Actor's rectangle size based on the #0 sprite size." />
     <MESSAGE value="Demolisher sticks to the magenta pixel of the actor's sprite." />
     <MESSAGE value="Demolisher sticks to the magenta pixel of the actor's sprite: added for all the actors." />
     <MESSAGE value="If location changes, demolishers die." />
@@ -524,6 +528,7 @@
     <MESSAGE value="Demon 2 appearance changed, horns of the Abyss added :)" />
     <MESSAGE value="Mana consumption mechanism implemented." />
     <MESSAGE value="Weapon icon appears on the info panel." />
-    <option name="LAST_COMMIT_MESSAGE" value="Weapon icon appears on the info panel." />
+    <MESSAGE value="Weapon description modified." />
+    <option name="LAST_COMMIT_MESSAGE" value="Weapon description modified." />
   </component>
 </project>

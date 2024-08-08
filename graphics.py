@@ -1,3 +1,5 @@
+import pygame.mask
+
 from constants import *
 from random import randint, choice, choices
 from pygame.constants import SRCALPHA
@@ -87,7 +89,9 @@ def load_single_frame(source, frame, name, scale_factor=1):
     sprites[name] = {
         'sprite': scaled_cropped_surf,
         'sprite center': snap_x * scale_factor,
-        'sprite asymmetric': sprite_asymmetric
+        'sprite asymmetric': sprite_asymmetric,
+        'mask': pygame.mask.from_surface(scaled_cropped_surf.convert_alpha()),
+        'mask rect': pygame.mask.from_surface(scaled_cropped_surf.convert_alpha()).get_rect()
     }
     sprites_reference[name] = {
         'sprite': scaled_cropped_surf,
@@ -218,7 +222,9 @@ def load_all_frames(source, max_frames, name, width, height, scale_factor=1):
             'sprite': scaled_cropped_surf,
             'sprite center': snap_x,  # Distance from the very left side of a sprite in pixels.
             'demolisher snap point': demol_snap_point,
-            'sprite asymmetric': sprite_asymmetric
+            'sprite asymmetric': sprite_asymmetric,
+            'mask': pygame.mask.from_surface(scaled_cropped_surf.convert_alpha()),
+            'mask rect': pygame.mask.from_surface(scaled_cropped_surf.convert_alpha()).get_rect()
         }
         # sprites_reference[name + ' ' + str(frame_count)] = {
         #     'sprite': scaled_cropped_surf,
@@ -286,6 +292,7 @@ load_single_frame(items, ((20,0,20,30),), 'staff', 5)
 load_single_frame(items, ((20,30,20,30),), 'kitchen knife', 5)
 load_single_frame(items, ((20,60,20,30),), 'short sword', 5)
 load_single_frame(items, ((20,90,20,30),), 'whip', 5)
+load_single_frame(items, ((40,0,80,30),), 'whip demolisher', 5)
 
 
 # ___...---=== JAKE ===---...___

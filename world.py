@@ -270,12 +270,15 @@ class World(object):
         self.demolisher_id += 1
         demol.name = 'demolisher ' + str(demol.id)
         demol.ttl = description['demolisher TTL']
-        demol.rectangle.width = description['rect'].width
-        demol.rectangle.height = description['rect'].height
+        demol.rectangle.width = sprites[description['demolisher sprite']]['mask rect'].width
+        # demol.rectangle.width = description['rect'].width
+        demol.rectangle.height = sprites[description['demolisher sprite']]['mask rect'].height
+        # demol.rectangle.height = description['rect'].height
         demol.bounce = description['bounce']
         demol.bounce_factor = description['bounce factor']
         demol.flyer = description['flyer']
         demol.parent = description['parent']
+        demol.current_sprite = sprites[description['demolisher sprite']]
 
         if description['snap to actor'] >= 0:
             demol.snap_to_actor = description['snap to actor']
@@ -810,11 +813,20 @@ class World(object):
             # if key not in self.active_obstacles:
             #     continue
             dem = self.demolishers[self.location][key]
-            color = (max(0, 255 - dem.ttl*4), 10,0) if dem.ttl < 50 else PINK
-            pygame.draw.rect(self.screen, color, (dem.rectangle.x - self.camera.offset_x, dem.rectangle.y - self.camera.offset_y,
-                                                  dem.rectangle.width, dem.rectangle.height))
+            # color = (max(0, 255 - dem.ttl*4), 10,0) if dem.ttl < 50 else PINK
+            # pygame.draw.rect(self.screen, color, (dem.rectangle.x - self.camera.offset_x, dem.rectangle.y - self.camera.offset_y,
+            #                                       dem.rectangle.width, dem.rectangle.height))
+
             # self.screen.blit(fonts.all_fonts[20].render(str(dem.id) + ' ' + str(dem.speed) + ' ' + str(dem.rectangle.y), True, CYAN),
             #                  (dem.rectangle.x - self.camera.offset_x, dem.rectangle.bottom - self.camera.offset_y + dem.id * 20))
+
+            # if dem.snap_to_actor:
+            #     actor = self.actors[self.location][dem.snap_to_actor]
+            #     if actor.look == 1:
+            if dem.look == 1:
+                self.screen.blit(dem.current_sprite['sprite'], (dem.rectangle.x - self.camera.offset_x, dem.rectangle.y - self.camera.offset_y))
+            else:
+                self.screen.blit(pygame.transform.flip(dem.current_sprite['sprite'], True, False), (dem.rectangle.x - self.camera.offset_x, dem.rectangle.y - self.camera.offset_y))
 
     def render_obstacles(self):
         for key in self.obstacles[self.location].keys():
@@ -932,11 +944,11 @@ class World(object):
         background_width = self.info_panel_max_stripes_width + 10 + txt_width
         background_height = len(params) * self.info_panel_font_size + 5 + (self.info_panel_gap_between_stripes * len(params))
 
-        pygame.draw.rect(self.screen, WHITE, (self.info_panel_start_x - 5, self.info_panel_start_y - 5, background_width, background_height))
+        pygame.draw.rect(self.screen, BLACK, (self.info_panel_start_x - 5, self.info_panel_start_y - 5, background_width, background_height))
         self.screen.blit(sprites[self.actors['player'].current_weapon['sprite']]['sprite'], (self.info_panel_start_x, self.info_panel_start_y))
         for p in params:
             txt = fonts.all_fonts[self.info_panel_font_size].render(p[0], True, p[2])
-            txt_shadow = fonts.all_fonts[self.info_panel_font_size].render(p[0], True, BLACK)
+            txt_shadow = fonts.all_fonts[self.info_panel_font_size].render(p[0], True, GRAY)
             self.screen.blit(txt_shadow, (self.info_panel_start_x + 2, self.info_panel_start_y + dy + 2))  # TEXT SHADOW
             # self.screen.blit(txt, (self.info_panel_start_x + 1, self.info_panel_start_y + dy + 1), None, BLEND_RGB_MIN)  # TEXT SHADOW
             self.screen.blit(txt, (self.info_panel_start_x, self.info_panel_start_y + dy))
