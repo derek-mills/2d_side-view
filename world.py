@@ -406,7 +406,11 @@ class World(object):
             y = self.actors['player'].rectangle.y
         else:
             y = new_location['xy'][1]
-        self.actors['player'].rectangle.topleft = (x, y)
+        self.actors['player'].rectangle.centerx = x
+        self.actors['player'].rectangle.y = y
+        # self.actors['player'].rectangle.topleft = (x, y)
+        # if self.actors['player'].get_state() in ('slide', 'sliding'):
+        #     self.actors['player'].set_state('slide rise')
         self.load()
         self.detect_active_obstacles()
 
