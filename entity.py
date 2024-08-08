@@ -566,8 +566,8 @@ class Entity(object):
             # current_demolisher_mask_rect = dem.current_sprite['mask rect'].move(dem.rectangle.topleft)
             # current_demolisher_mask_rect = current_demolisher_mask.get_rect(center=dem.rectangle.center)
             if current_mask_rect.colliderect(current_demolisher_mask_rect):
-                x = dem.rectangle.centerx - current_mask_rect.centerx  # x coordinate relative to inner mask space
-                y = dem.rectangle.centery - current_mask_rect.centery  # y coordinate relative to inner mask space
+                x = dem.rectangle.x - current_mask_rect.x  # x coordinate relative to inner mask space
+                y = dem.rectangle.y - current_mask_rect.y  # y coordinate relative to inner mask space
             else:
                 continue
 
