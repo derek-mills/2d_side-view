@@ -282,8 +282,9 @@ class World(object):
             demol.rectangle.width = description['rect'].width
             demol.rectangle.height = description['rect'].height
             sprite = pygame.Surface((demol.rectangle.width, demol.rectangle.height)).convert_alpha()
-            sprite.fill((0,0,0,0))
-            pygame.draw.circle(sprite, RED, demol.rectangle.center, demol.rectangle.width //2)
+            # sprite = pygame.Surface((demol.rectangle.width, demol.rectangle.height)).convert_alpha()
+            sprite.fill(RED)
+            # pygame.draw.circle(sprite, RED, demol.rectangle.center, demol.rectangle.width //2)
             mask = pygame.mask.from_surface(sprite.convert_alpha())
             demol.current_sprite = {
                 'sprite': sprite,
