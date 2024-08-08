@@ -163,6 +163,7 @@ whip = {
             'damage': 150, 'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
+            # 'aftermath': 'explode'
             'aftermath': 'disappear'
         },
     ),

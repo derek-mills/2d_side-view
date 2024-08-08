@@ -6,9 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphics.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/animations/demon_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/animations/demon_2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/items.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/items.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,13 +146,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00316" summary="Dead enemies drop XP">
-      <created>1722327661614</created>
-      <option name="number" value="00316" />
-      <option name="presentableId" value="LOCAL-00316" />
-      <option name="project" value="LOCAL" />
-      <updated>1722327661614</updated>
     </task>
     <task id="LOCAL-00317" summary="Dead enemies drop XP">
       <created>1722328102177</created>
@@ -486,7 +483,14 @@
       <option name="project" value="LOCAL" />
       <updated>1723094026783</updated>
     </task>
-    <option name="localTasksCounter" value="365" />
+    <task id="LOCAL-00365" summary="Fixed sliding bug during location change.">
+      <created>1723097262380</created>
+      <option name="number" value="00365" />
+      <option name="presentableId" value="LOCAL-00365" />
+      <option name="project" value="LOCAL" />
+      <updated>1723097262380</updated>
+    </task>
+    <option name="localTasksCounter" value="366" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -501,7 +505,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Level editor: added descriptor for clipboard points which reveals a map of every clipping point." />
     <MESSAGE value="Level editor: clipboard structure is simplified: self.clipboard[location] = [(x, y), ..., (xn, yn)]" />
     <MESSAGE value="Level editor: clipboard elements deletion implemented." />
     <MESSAGE value="Level editor: clipboard elements deletion from the main menu works just fine." />
@@ -526,6 +529,7 @@
     <MESSAGE value="Collision detection with demolishers bug fixed." />
     <MESSAGE value="Demolishers got the own sprite described by surface, filled with a red circle, even if they don't get a sprite during creation." />
     <MESSAGE value="Demolishers got the own sprite described by surface, but changed to rectangle, 'cause not all the demolishers will be the round shaped." />
-    <option name="LAST_COMMIT_MESSAGE" value="Demolishers got the own sprite described by surface, but changed to rectangle, 'cause not all the demolishers will be the round shaped." />
+    <MESSAGE value="Fixed sliding bug during location change." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed sliding bug during location change." />
   </component>
 </project>

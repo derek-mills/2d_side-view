@@ -572,7 +572,7 @@ class Entity(object):
             else:
                 continue
 
-            print( current_mask_rect, current_demolisher_mask_rect)
+            # print( current_mask_rect, current_demolisher_mask_rect)
             # if current_mask_rect.colliderect(dem.rectangle):
             #     x = int(dem.rectangle.centerx - current_mask_rect.centerx)  # x coordinate relative to inner mask space
             #     y = int(dem.rectangle.centery - current_mask_rect.centery)  # y coordinate relative to inner mask space
