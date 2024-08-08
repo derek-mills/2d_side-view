@@ -414,7 +414,7 @@ demon_2 = {
         },
         'run right': {
                 'repeat': True, 'interruptable': True,
-                'sequence': (28,29,30,31,32,33,34,35,36,37,38,), 'speed': 1,
+                'sequence': (28,29,30,31,32,33,34,35,36,37,38,), 'speed': 3,
                 'activity at frames': {
                     1: {
                         'sound': 'step',
