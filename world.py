@@ -1,4 +1,6 @@
 # import pygame
+import pygame.draw
+
 from actors_description import *
 from actor import *
 from obstacle import *
@@ -270,15 +272,31 @@ class World(object):
         self.demolisher_id += 1
         demol.name = 'demolisher ' + str(demol.id)
         demol.ttl = description['demolisher TTL']
-        demol.rectangle.width = sprites[description['demolisher sprite']]['mask rect'].width
-        # demol.rectangle.width = description['rect'].width
-        demol.rectangle.height = sprites[description['demolisher sprite']]['mask rect'].height
-        # demol.rectangle.height = description['rect'].height
+
+        if description['demolisher sprite']:
+            demol.current_sprite = sprites[description['demolisher sprite']]
+            demol.rectangle.width = sprites[description['demolisher sprite']]['mask rect'].width
+            demol.rectangle.height = sprites[description['demolisher sprite']]['mask rect'].height
+        else:
+            # demol.current_sprite = None
+            demol.rectangle.width = description['rect'].width
+            demol.rectangle.height = description['rect'].height
+            sprite = pygame.Surface((demol.rectangle.width, demol.rectangle.height)).convert_alpha()
+            sprite.fill((0,0,0,0))
+            pygame.draw.circle(sprite, RED, demol.rectangle.center, demol.rectangle.width //2)
+            mask = pygame.mask.from_surface(sprite.convert_alpha())
+            demol.current_sprite = {
+                'sprite': sprite,
+                'sprite center': demol.rectangle.center,
+                'sprite asymmetric': None,
+                'mask': mask,
+                'mask rect': mask.get_rect()
+            }
         demol.bounce = description['bounce']
         demol.bounce_factor = description['bounce factor']
         demol.flyer = description['flyer']
         demol.parent = description['parent']
-        demol.current_sprite = sprites[description['demolisher sprite']]
+
 
         if description['snap to actor'] >= 0:
             demol.snap_to_actor = description['snap to actor']
@@ -494,6 +512,7 @@ class World(object):
             demolisher_description = {
 
                 'snap to actor': -1,
+                'demolisher sprite': None,
                 'demolisher TTL': randint(150, 170),
                 'rect': pygame.Rect(xy[0], xy[1], 5, 5),
                 'destination': find_destination_behind_target_point(xy, (randint(xy[0] - 100, xy[0] + 100), randint(xy[1] - 100, xy[1] + 100)), MAXX),
@@ -820,9 +839,15 @@ class World(object):
             # self.screen.blit(fonts.all_fonts[20].render(str(dem.id) + ' ' + str(dem.speed) + ' ' + str(dem.rectangle.y), True, CYAN),
             #                  (dem.rectangle.x - self.camera.offset_x, dem.rectangle.bottom - self.camera.offset_y + dem.id * 20))
 
-            # if dem.snap_to_actor:
-            #     actor = self.actors[self.location][dem.snap_to_actor]
-            #     if actor.look == 1:
+            # if dem.current_sprite:
+            #     if dem.look == 1:
+            #         self.screen.blit(dem.current_sprite['sprite'], (dem.rectangle.x - self.camera.offset_x, dem.rectangle.y - self.camera.offset_y))
+            #     else:
+            #         self.screen.blit(pygame.transform.flip(dem.current_sprite['sprite'], True, False), (dem.rectangle.x - self.camera.offset_x, dem.rectangle.y - self.camera.offset_y))
+            # else:
+            #     color = (max(0, 255 - dem.ttl*4), 10,0) if dem.ttl < 50 else PINK
+            #     pygame.draw.rect(self.screen, color, (dem.rectangle.x - self.camera.offset_x, dem.rectangle.y - self.camera.offset_y,
+            #                                           dem.rectangle.width, dem.rectangle.height))
             if dem.look == 1:
                 self.screen.blit(dem.current_sprite['sprite'], (dem.rectangle.x - self.camera.offset_x, dem.rectangle.y - self.camera.offset_y))
             else:

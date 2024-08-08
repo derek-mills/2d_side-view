@@ -24,6 +24,7 @@ sword = {
     'demolishers': (
         {
             'rect': pygame.Rect(0, 0, 70, 10), 'flyer': False,
+            'demolisher sprite': None,
             'pierce': False, 'demolisher TTL': 2, 'speed': 0,
             'damage': 50, 'static': True, 'damage reduce': 0,
             'collides': True, 'gravity affected': False,
@@ -32,6 +33,7 @@ sword = {
         },
         {
             'rect': pygame.Rect(0, 0, 75, 10), 'flyer': False,
+            'demolisher sprite': None,
             'pierce': False, 'demolisher TTL': 2, 'speed': 0,
             'damage': 60, 'static': True, 'damage reduce': 0,
             'collides': True, 'gravity affected': False,
@@ -72,6 +74,7 @@ kitchen_knife = {
     'demolishers': (
         {
             'rect': pygame.Rect(0, 0, 10, 10), 'flyer': False,
+            'demolisher sprite': None,
             'pierce': False, 'demolisher TTL': 50, 'speed': 22,
             'damage': 10, 'static': False, 'damage reduce': .1,
             'collides': True, 'gravity affected': True,
@@ -80,6 +83,7 @@ kitchen_knife = {
         },
         {
             'rect': pygame.Rect(0, 0, 30, 30), 'flyer': False,
+            'demolisher sprite': None,
             'pierce': False, 'demolisher TTL': 100, 'speed': 12,
             'damage': 10, 'static': False, 'damage reduce': .1,
             'collides': True, 'gravity affected': True,
@@ -117,6 +121,7 @@ fireball_staff = {
     'demolishers': (
         {
             'rect': pygame.Rect(0, 0, 70, 70), 'flyer': False,
+            'demolisher sprite': None,
             'pierce': False, 'demolisher TTL': 150, 'speed': 30,
             'damage': 150, 'static': False, 'damage reduce': 0,
             'collides': True, 'gravity affected': True,

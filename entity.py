@@ -556,6 +556,7 @@ class Entity(object):
             # print(self.current_sprite)
             current_mask_rect = self.current_sprite['mask rect']
             current_mask_rect.center = self.rectangle.center
+
             # print(self.rectangle, current_mask_rect)
             # exit()
             # current_mask_rect = current_mask.get_rect(center=self.rectangle.center)
@@ -587,6 +588,7 @@ class Entity(object):
                 self.invincibility_timer = 100 if self.id == 0 else 30
                 # self.got_immunity_to_demolishers.append(dem.id)
                 self.set_state('hop back')
+
 
     def get_damage(self, amount):
         # print(f'[entity.get_damage] {self.name} {self.id} gets damage: {amount} | {self.stats["health"]=}')
