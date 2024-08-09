@@ -5,6 +5,7 @@ from actors_description import *
 from actor import *
 from obstacle import *
 from demolisher import *
+from particle import *
 from items import all_items
 # from constants import *
 import fonts
@@ -92,6 +93,7 @@ class World(object):
 
     def set_screen(self, surface):
         self.screen = surface
+
 
     def add_actor(self, description, start_xy):
         entity = Actor()
@@ -267,6 +269,28 @@ class World(object):
         # print(f'[add_obstacle] Added obstacle: {entity.id=} {entity.is_collideable=} {entity.is_gravity_affected=}')
         # self.obstacle_id += 1
 
+
+    def add_particle(self, description):
+        p = Particle()
+        p.id = self.particle_id
+        self.particle_id += 1
+        p.ttl = description['particle TTL']
+        p.rectangle.width = description['width']
+        p.rectangle.height = description['height']
+        p.rectangle.center = description['xy']
+        p.bounce = description['bounce']
+        p.bounce_factor = description['bounce factor']
+        p.subtype = description['subtype']
+        p.color = description['color']
+        p.look = description['look']
+        # p.max_jump_height = description['jump height']
+        p.fall_speed = -description['jump height'] if description['jump height'] > 0 else 0
+        p.max_speed = description['speed']
+        p.speed = description['speed']
+        p.is_collideable = description['collides']
+        p.is_gravity_affected = description['gravity affected']
+        self.particles[self.location][p.id] = p
+
     def add_demolisher(self, description):
         demol = Demolisher()
         # demol.id = description[-1]
@@ -346,6 +370,7 @@ class World(object):
         if self.actors['player'].dead:
             self.game_over()
         self.processing_demolishers()
+        self.processing_particles()
 
         # Applying camera offset:
         if self.actors['player'].influenced_by_obstacle >= 0 and  self.obstacles[self.location][self.actors['player'].influenced_by_obstacle].active:
@@ -539,6 +564,35 @@ class World(object):
             # print(f'[process demolishers] Adding frag #{i}: {dest=}')
             self.add_demolisher(demolisher_description)
 
+    def processing_particles(self):
+        dead = list()
+        # explosions = list()
+        for key in self.particles[self.location].keys():
+            p = self.particles[self.location][key]
+            if p.dead:
+                # if p.aftermath == 'explode':
+                #     # print(f'[process polishers] KA-BOOM!')
+                #     explosions.append(p.rectangle.center)
+                #     # self.make_explosion(p.rectangle.center)
+                dead.append(p.id)
+                continue
+            if p.is_collideable:
+                p.percept({k: self.obstacles[self.location][k] for k in self.active_obstacles}, None)
+            # if p.static:
+            #     if p.snap_to_actor not in self.actors[self.location].keys():
+            #         dead.append(p.id)
+            #         continue
+            #     actor = self.actors[self.location][p.snap_to_actor]
+            #     p.update(actor.look, actor.rectangle)
+
+            p.get_time(self.time_passed, self.game_cycles_counter)
+            p.process_particle()
+
+        for dead_id in dead:
+            del self.particles[self.location][dead_id]
+        # for expl in explosions:
+        #     self.make_explosion(expl)
+
     def processing_demolishers(self):
         dead = list()
         explosions = list()
@@ -702,6 +756,12 @@ class World(object):
                 actor.summon_demolisher = False
                 self.add_demolisher(actor.summoned_demolisher_description)
 
+            if actor.summon_particle:
+                actor.summon_particle = False
+                for description in actor.summoned_particle_descriptions:
+                    self.add_particle(description)
+                actor.summoned_particle_descriptions = list()
+
         for dead_id in dead:
             del self.actors[self.location][dead_id]
 
@@ -859,6 +919,32 @@ class World(object):
                 self.screen.blit(dem.current_sprite['sprite'], (dem.rectangle.x - self.camera.offset_x, dem.rectangle.y - self.camera.offset_y))
             else:
                 self.screen.blit(pygame.transform.flip(dem.current_sprite['sprite'], True, False), (dem.rectangle.x - self.camera.offset_x, dem.rectangle.y - self.camera.offset_y))
+    
+    def render_particles(self):
+        for key in self.particles[self.location].keys():
+            # if key not in self.active_obstacles:
+            #     continue
+            p = self.particles[self.location][key]
+            # color = (max(0, 255 - p.ttl*4), 10,0) if p.ttl < 50 else PINK
+            if p.subtype == 'splatter':
+                pygame.draw.circle(self.screen, p.color, (p.rectangle.centerx - self.camera.offset_x, p.rectangle.centery - self.camera.offset_y), p.rectangle.width)
+            else:
+                pygame.draw.rect(self.screen, p.color, (p.rectangle.x - self.camera.offset_x, p.rectangle.y - self.camera.offset_y,
+                                                        p.rectangle.width, p.rectangle.height))
+
+            # self.screen.blit(fonts.all_fonts[20].render(str(p.id) + ' ' + str(p.speed) + ' ' + str(p.rectangle.y), True, CYAN),
+            #                  (p.rectangle.x - self.camera.offset_x, p.rectangle.bottom - self.camera.offset_y + p.id * 20))
+
+            # if p.current_sprite:
+            #     if p.look == 1:
+            #         self.screen.blit(p.current_sprite['sprite'], (p.rectangle.x - self.camera.offset_x, p.rectangle.y - self.camera.offset_y))
+            #     else:
+            #         self.screen.blit(pygame.transform.flip(p.current_sprite['sprite'], True, False), (p.rectangle.x - self.camera.offset_x, p.rectangle.y - self.camera.offset_y))
+            # else:
+            #     color = (max(0, 255 - p.ttl*4), 10,0) if p.ttl < 50 else PINK
+            #     pygame.draw.rect(self.screen, color, (p.rectangle.x - self.camera.offset_x, p.rectangle.y - self.camera.offset_y,
+            #                                           p.rectangle.width, p.rectangle.height))
+            # self.screen.blit(p.current_sprite['sprite'], (p.rectangle.x - self.camera.offset_x, p.rectangle.y - self.camera.offset_y))
 
     def render_obstacles(self):
         for key in self.obstacles[self.location].keys():
@@ -943,6 +1029,7 @@ class World(object):
         self.render_obstacles()
         self.render_demolishers()
         self.render_actors()
+        self.render_particles()
         # self.render_player_actor()
         # self.render_debug_info()
         self.render_info_panel_overlay()
@@ -993,6 +1080,7 @@ class World(object):
             self.locations[self.location] = dict()
             self.obstacles[self.location] = dict()
             self.demolishers[self.location] = dict()
+            self.particles[self.location] = dict()
             # self.actors[self.location] = dict()
             # print(f'{self.location=}')
             # print(self.locations)

@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/particle.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -142,13 +142,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00319" summary="Corrected demolishers behavior which could be snapped to already dead actor.">
-      <created>1722402046469</created>
-      <option name="number" value="00319" />
-      <option name="presentableId" value="LOCAL-00319" />
-      <option name="project" value="LOCAL" />
-      <updated>1722402046469</updated>
     </task>
     <task id="LOCAL-00320" summary="Items, described in location settings, add properly now as items, not as obstacles.">
       <created>1722402993502</created>
@@ -486,7 +479,14 @@
       <option name="project" value="LOCAL" />
       <updated>1723108628845</updated>
     </task>
-    <option name="localTasksCounter" value="368" />
+    <task id="LOCAL-00368" summary="Stamina reducing during slide.">
+      <created>1723168055874</created>
+      <option name="number" value="00368" />
+      <option name="presentableId" value="LOCAL-00368" />
+      <option name="project" value="LOCAL" />
+      <updated>1723168055874</updated>
+    </task>
+    <option name="localTasksCounter" value="369" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -501,7 +501,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Level editor: clipboard elements deletion implemented." />
     <MESSAGE value="Level editor: clipboard elements deletion from the main menu works just fine." />
     <MESSAGE value="Level editor: clipboard elements deletion by pressing RMB over the already highlighted point has been corrected." />
     <MESSAGE value="Level editor: menu revealing system slightly changed to let small menus with just several items being collided with mouse cursor and do not disappear immediately." />
@@ -526,6 +525,7 @@
     <MESSAGE value="Demolishers got the own sprite described by surface, but changed to rectangle, 'cause not all the demolishers will be the round shaped." />
     <MESSAGE value="Fixed sliding bug during location change." />
     <MESSAGE value="Demon 2 becomes more spooky :)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Demon 2 becomes more spooky :)" />
+    <MESSAGE value="Stamina reducing during slide." />
+    <option name="LAST_COMMIT_MESSAGE" value="Stamina reducing during slide." />
   </component>
 </project>

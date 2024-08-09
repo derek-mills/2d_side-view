@@ -22,6 +22,8 @@ class Entity(object):
         self.think_type: str = ''
         self.summon_demolisher = False
         self.summoned_demolisher_description = dict()
+        self.summon_particle = False
+        self.summoned_particle_descriptions = list()
         # self.summon_demolisher_at_frame = 0
         self.summon_demolisher_counter = -1
         self.ttl = 0
@@ -595,6 +597,24 @@ class Entity(object):
         # print(f'[entity.get_damage] {self.name} {self.id} gets damage: {amount} | {self.stats["health"]=}')
         # self.invincibility_timer = 100 if self.id == 0 else 30
         self.stats['health'] -= amount
+        self.summon_particle = True
+        for particle_quantity in range(randint(10, 20)):
+            size = randint(4,10)
+            self.summoned_particle_descriptions.append({
+                'particle TTL': 100,
+                'width': size,
+                'height': size,
+                'xy': self.rectangle.center,
+                'bounce': False,
+                'bounce factor': 0.,
+                'subtype': 'splatter',
+                'color': RED,
+                'look': self.look * -1,  # Splatter always fly in the opposite direction
+                'speed': 1 + randint(1,8),
+                'jump height': randint(0,10),
+                'collides': True,
+                'gravity affected': True
+            })
         # self.health -= amount
         if self.stats['health'] <= 0:
         # if self.health <= 0:
