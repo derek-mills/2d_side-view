@@ -5,6 +5,7 @@ from graphics import sprites
 
 demon_1 = {
     'name': 'demon 1',
+    'blood color': (0, 200, 0),
     'drop': ['exp' for i in range(randint(3,5))],
     # 'start_xy': (1500, 200),
     'health': 1500.,
@@ -333,24 +334,25 @@ demon_2 = {
     'health': 1500.,
     'height': 190,
     'width': 49,
-    'body state': {
-        'viewing range': 600,
-        'regeneration ability': 0.001,
-        'blood volume': 15000,
-        'blood volume replenish': .01,
-        'stamina replenish': 1,
-        'consciousness replenish': 10,
-        'consciousness threshold': 10,
-        'bleeding reduce': .01,  #
-        'bleeding resistance': 0,  # Reduce bleeding, in percents.
-        'max blood volume': 15000,
-        'max stamina': 120,
-        'max fatigue': 100,
-        'max consciousness': 1000,
-        'luck': 5,
-        'strength': 25,
-        'weight': 70,  # Kilos.
-    },
+    'blood color': (200, 50, 10),
+    # 'body state': {
+    #     'viewing range': 600,
+    #     'regeneration ability': 0.001,
+    #     'blood volume': 15000,
+    #     'blood volume replenish': .01,
+    #     'stamina replenish': 1,
+    #     'consciousness replenish': 10,
+    #     'consciousness threshold': 10,
+    #     'bleeding reduce': .01,  #
+    #     'bleeding resistance': 0,  # Reduce bleeding, in percents.
+    #     'max blood volume': 15000,
+    #     'max stamina': 120,
+    #     'max fatigue': 100,
+    #     'max consciousness': 1000,
+    #     'luck': 5,
+    #     'strength': 25,
+    #     'weight': 70,  # Kilos.
+    # },
     'gravity affected': True,
     'body': {
         'head': {
@@ -703,6 +705,7 @@ player_jake = {
     'health': 1000.,
     'height': 150,
     'width': 49,
+    'blood color': (255, 0, 0),
     # 'height': 190,
     # 'width': 49,
     'body state': {

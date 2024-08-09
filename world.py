@@ -99,6 +99,7 @@ class World(object):
         entity = Actor()
         entity.id = self.actor_id
         entity.name = description['name']
+        entity.blood_color = description['blood color']
         entity.stats['max health'] = description['health']
         # entity.max_health = description['health']
         entity.stats['health'] = description['health']

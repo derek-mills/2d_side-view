@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/particle.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
@@ -142,13 +142,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00320" summary="Items, described in location settings, add properly now as items, not as obstacles.">
-      <created>1722402993502</created>
-      <option name="number" value="00320" />
-      <option name="presentableId" value="LOCAL-00320" />
-      <option name="project" value="LOCAL" />
-      <updated>1722402993502</updated>
     </task>
     <task id="LOCAL-00321" summary="Corrected enemies animation.">
       <created>1722403399680</created>
@@ -486,7 +479,14 @@
       <option name="project" value="LOCAL" />
       <updated>1723168055874</updated>
     </task>
-    <option name="localTasksCounter" value="369" />
+    <task id="LOCAL-00369" summary="Blood splatters added.">
+      <created>1723171732713</created>
+      <option name="number" value="00369" />
+      <option name="presentableId" value="LOCAL-00369" />
+      <option name="project" value="LOCAL" />
+      <updated>1723171732713</updated>
+    </task>
+    <option name="localTasksCounter" value="370" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -501,7 +501,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Level editor: clipboard elements deletion from the main menu works just fine." />
     <MESSAGE value="Level editor: clipboard elements deletion by pressing RMB over the already highlighted point has been corrected." />
     <MESSAGE value="Level editor: menu revealing system slightly changed to let small menus with just several items being collided with mouse cursor and do not disappear immediately." />
     <MESSAGE value="Level editor: cancelling of obstacle edit causes no error anymore." />
@@ -526,6 +525,7 @@
     <MESSAGE value="Fixed sliding bug during location change." />
     <MESSAGE value="Demon 2 becomes more spooky :)" />
     <MESSAGE value="Stamina reducing during slide." />
-    <option name="LAST_COMMIT_MESSAGE" value="Stamina reducing during slide." />
+    <MESSAGE value="Blood splatters added." />
+    <option name="LAST_COMMIT_MESSAGE" value="Blood splatters added." />
   </component>
 </project>

@@ -33,6 +33,7 @@ class Entity(object):
         self.time_passed: int = 0
         self.cycles_passed: int = 0
         self.invincibility_timer: int = 0
+        self.blood_color = RED
 
         # STATS
         self.normal_stamina_lost_per_second_jump = 10.
@@ -599,7 +600,7 @@ class Entity(object):
         self.stats['health'] -= amount
         self.summon_particle = True
         for particle_quantity in range(randint(10, 20)):
-            size = randint(4,10)
+            size = randint(1,6)
             self.summoned_particle_descriptions.append({
                 'particle TTL': 100,
                 'width': size,
@@ -608,10 +609,10 @@ class Entity(object):
                 'bounce': False,
                 'bounce factor': 0.,
                 'subtype': 'splatter',
-                'color': RED,
+                'color': self.blood_color,
                 'look': self.look * -1,  # Splatter always fly in the opposite direction
                 'speed': 1 + randint(1,8),
-                'jump height': randint(0,10),
+                'jump height': randint(0,20),
                 'collides': True,
                 'gravity affected': True
             })
