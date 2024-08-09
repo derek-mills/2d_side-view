@@ -334,7 +334,7 @@ demon_2 = {
     'health': 1500.,
     'height': 190,
     'width': 49,
-    'blood color': (200, 50, 10),
+    'blood color': (150, 50, 10),
     # 'body state': {
     #     'viewing range': 600,
     #     'regeneration ability': 0.001,
@@ -1073,7 +1073,6 @@ player_jake = {
     'think type': '',
     'AI controlled': False
 }
-
 
 all_hostiles = {
     # zombie_male_zak['name']: zombie_male_zak,

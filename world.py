@@ -751,6 +751,7 @@ class World(object):
                         actor.set_action('attack')
 
             actor.get_time(self.time_passed, self.game_cycles_counter)
+            # actor.mask_update((self.camera.offset_x, self.camera.offset_y))
             actor.process()
 
             if actor.summon_demolisher:
@@ -860,7 +861,21 @@ class World(object):
 
             y = actor.rectangle.bottom - self.camera.offset_y - size[1]
 
+            # self.screen.blit(actor.current_sprite['mask'].to_surface(), (actor.current_sprite['current mask rect'].x - self.camera.offset_x,
+            #                                                              actor.current_sprite['current mask rect'].y - self.camera.offset_y,))
             self.screen.blit(actor.current_sprite['sprite'], (x, y))
+
+
+            # # Weak spot
+            # if actor.current_sprite['weak spot']:
+            #     # pygame.draw.circle(self.screen, YELLOW, (actor.rectangle.x + actor.current_sprite['weak spot'][0] - self.camera.offset_x,
+            #     #                                       actor.rectangle.y + actor.current_sprite['weak spot'][1] - self.camera.offset_y),
+            #     #                                       10)
+            #     pygame.draw.rect(self.screen, YELLOW, actor.current_sprite['weak spot rect'])
+            #     # pygame.draw.rect(self.screen, YELLOW, (actor.rectangle.x + actor.current_sprite['weak spot']['offset'][0] - self.camera.offset_x,
+            #     #                                       actor.rectangle.y + actor.current_sprite['weak spot']['offset'][1] - self.camera.offset_y,
+            #     #                                       actor.current_sprite['weak spot']['width'], actor.current_sprite['weak spot']['height']))
+
 
             # # Rectangle frame:
             # pygame.draw.rect(self.screen, GREEN, (actor.rectangle.x - self.camera.offset_x, actor.rectangle.y - self.camera.offset_y,

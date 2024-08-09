@@ -557,9 +557,10 @@ class Entity(object):
             #
             #     if current_mask.get_at((x, y)):
             current_mask = self.current_sprite['mask']
-            # print(self.current_sprite)
+            # # print(self.current_sprite)
             current_mask_rect = self.current_sprite['mask rect']
             current_mask_rect.center = self.rectangle.center
+            # self.current_sprite['current mask rect'] = current_mask_rect
 
             # print(self.rectangle, current_mask_rect)
             # exit()
@@ -570,8 +571,11 @@ class Entity(object):
             current_demolisher_mask_rect.center = dem.rectangle.center
             # current_demolisher_mask_rect = dem.current_sprite['mask rect'].move(dem.rectangle.topleft)
             # current_demolisher_mask_rect = current_demolisher_mask.get_rect(center=dem.rectangle.center)
+            # if self.current_sprite['current mask rect'].colliderect(current_demolisher_mask_rect):
             if current_mask_rect.colliderect(current_demolisher_mask_rect):
+            #     x = dem.rectangle.x - self.current_sprite['current mask rect'].x  # x coordinate relative to inner mask space
                 x = dem.rectangle.x - current_mask_rect.x  # x coordinate relative to inner mask space
+                # y = dem.rectangle.y - self.current_sprite['current mask rect'].y  # y coordinate relative to inner mask space
                 y = dem.rectangle.y - current_mask_rect.y  # y coordinate relative to inner mask space
             else:
                 continue
@@ -588,11 +592,28 @@ class Entity(object):
 
             # if current_mask.get_at((x, y)):
             if current_mask.overlap(current_demolisher_mask, (x,y)):
+                # if self.current_sprite['weak spot']:
+                #     if current_demolisher_mask_rect.colliderect(self.current_sprite['weak spot rect']):
+                #         print(f'[entity detect demolishers] INSTANT DEATH' )
+                #         self.dead = True
+                #         return
                 self.get_damage(dem.damage)
                 self.invincibility_timer = 100 if self.id == 0 else 30
                 # self.got_immunity_to_demolishers.append(dem.id)
                 self.set_state('hop back')
 
+    # def mask_update(self, offset):
+    # #     # current_mask = self.current_sprite['mask']
+    # #     # print(self.current_sprite)
+    #     current_mask_rect = self.current_sprite['mask rect']
+    #     current_mask_rect.center = self.rectangle.center
+    #     self.current_sprite['current mask rect'] = current_mask_rect
+    #     if self.current_sprite['weak spot']:
+    #         weak_spot_rect = pygame.Rect(current_mask_rect.x + self.current_sprite['weak spot']['offset'][0] - offset[0],
+    #                                      current_mask_rect.y + self.current_sprite['weak spot']['offset'][1] - offset[1],
+    #                                      self.current_sprite['weak spot']['width'],
+    #                                      self.current_sprite['weak spot']['height'])
+    #         self.current_sprite['weak spot rect'] = weak_spot_rect
 
     def get_damage(self, amount):
         # print(f'[entity.get_damage] {self.name} {self.id} gets damage: {amount} | {self.stats["health"]=}')

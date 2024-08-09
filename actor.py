@@ -229,6 +229,7 @@ class Actor(Entity):
         self.processing_rectangle_size()
         self.check_space_around()
         super().process()
+        # self.mask_update()
         # super().process(time_passed)
         # self.reset_self_flags()
 

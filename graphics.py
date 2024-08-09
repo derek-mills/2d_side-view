@@ -91,7 +91,8 @@ def load_single_frame(source, frame, name, scale_factor=1):
         'sprite center': snap_x * scale_factor,
         'sprite asymmetric': sprite_asymmetric,
         'mask': pygame.mask.from_surface(scaled_cropped_surf.convert_alpha()),
-        'mask rect': pygame.mask.from_surface(scaled_cropped_surf.convert_alpha()).get_rect()
+        'mask rect': pygame.mask.from_surface(scaled_cropped_surf.convert_alpha()).get_rect(),
+        'current mask rect': pygame.Rect(0,0,0,0)
     }
     sprites_reference[name] = {
         'sprite': scaled_cropped_surf,
@@ -149,6 +150,7 @@ def load_frames(source, approximate_frames, name, scale_factor=1):
     return
 
 def load_all_frames(source, max_frames, name, width, height, scale_factor=1):
+# def load_all_frames(source, max_frames, name, width, height, scale_factor=1, weak_spots=None):
     global sprites, sprites_reference
     x = 0
     y = 0
@@ -160,6 +162,8 @@ def load_all_frames(source, max_frames, name, width, height, scale_factor=1):
         frame = (x, y, width,height)
         snap_x = 0
         sub_surf = source.subsurface(frame)
+        # if weak_spots:
+        #     weak_spot_sub_surf = weak_spots.subsurface(frame)
         cropped_surf = sub_surf.subsurface(sub_surf.get_bounding_rect())
         sz = cropped_surf.get_size()
         sprite_asymmetric = False
@@ -184,47 +188,60 @@ def load_all_frames(source, max_frames, name, width, height, scale_factor=1):
                 break
 
         sz = cropped_surf.get_size()
+        # weak_spot_xy = None
         # If we can find a magenta dot in the remain picture, then consider it as snap point for revealing demolisher.
         for dy in range(cropped_surf.get_height()):
             for dx in range(cropped_surf.get_width()):
                 # print(cropped_surf.get_at((dx, 0)))
+                # if weak_spots:
+                #     # print(weak_spot_sub_surf.get_at((dx, dy)))
+                #     if weak_spot_sub_surf.get_at((dx, dy)) == (255, 255, 255, 255):
+                #         if dx > snap_x // scale_factor:
+                #             # right oriented sprite
+                #             weak_spot_xy = [scale_factor * (dx - (snap_x // scale_factor)), (dy - 1) * scale_factor]
+                #         else:
+                #             # left oriented sprite
+                #             weak_spot_xy = [scale_factor * ((dx + 1) - snap_x // scale_factor), (dy - 1) * scale_factor]
+                #         # weak_spot_xy = [dx * scale_factor, dy * scale_factor]
+                #         print(name, weak_spot_xy)
                 dot_color = cropped_surf.get_at((dx, dy))
                 # print(name, dot_color)
-                if dot_color == (255,0,255,255):
-                    # demol_snap_point = [dx * scale_factor, dy * scale_factor]
-                    # demol_snap_point = [snap_x - dx * scale_factor, dy * scale_factor]
+                if dot_color == (255,0,255,255):  # MAGENTA
+                    # Found demolisher's anchor:
                     if dx > snap_x // scale_factor:
                         # right oriented sprite
                         demol_snap_point = [ scale_factor * (dx - (snap_x // scale_factor)), (dy - 1) * scale_factor]
-                        # demol_snap_point = [ scale_factor * (dx - (sz[0] + snap_x // scale_factor)), (dy + 2) * scale_factor]
-                        # demol_snap_point = [dx * scale_factor - (sz[0] + snap_x), (dy + 2) * scale_factor]
                     else:
                         # left oriented sprite
                         demol_snap_point = [scale_factor * ((dx + 1) - snap_x // scale_factor), (dy - 1) * scale_factor]
-                        # demol_snap_point = [(dx + 1) * scale_factor - snap_x, (dy - 2) * scale_factor]
                     # Now we must erase the anchor magenta pixel:
                     cropped_surf.set_at([dx, dy], (0,0,0,0))
-                    # cropped_surf = cropped_surf.subsurface((0,1,sz[0], sz[1] - 1))
-                    # cropped_surf = cropped_surf.subsurface(cropped_surf.get_bounding_rect())
-                    # # ...and renew the sz variable.
-                    # sz = cropped_surf.get_size()
-                    # sprite_asymmetric = True
                     # print(name, frame_count, ': found snap point!', snap_x)
                     # print(name, frame_count, ' size is ', cropped_surf.get_size())
-                    print(name + ' ' + str(frame_count), demol_snap_point)
+                    # print(name + ' ' + str(frame_count), demol_snap_point)
                     break
+                # elif dot_color == (255, 0, 255, 255):
 
 
         scaled_cropped_surf = pygame.transform.scale(cropped_surf, (sz[0] * scale_factor, sz[1] * scale_factor))
         snap_x = scaled_cropped_surf.get_size()[0] // 2 if snap_x == 0 else snap_x
-
+        # if weak_spot_xy:
+        #     weak_spot = {
+        #         'offset': weak_spot_xy,
+        #         'width': 60,
+        #         'height': 60,
+        #     }
+        # else:
+        #     weak_spot = None
         sprites[name + ' ' + str(frame_count)] = {
             'sprite': scaled_cropped_surf,
             'sprite center': snap_x,  # Distance from the very left side of a sprite in pixels.
             'demolisher snap point': demol_snap_point,
             'sprite asymmetric': sprite_asymmetric,
             'mask': pygame.mask.from_surface(scaled_cropped_surf.convert_alpha()),
-            'mask rect': pygame.mask.from_surface(scaled_cropped_surf.convert_alpha()).get_rect()
+            'mask rect': pygame.mask.from_surface(scaled_cropped_surf.convert_alpha()).get_rect(),
+            # 'current mask rect': pygame.Rect(0, 0, 0, 0)
+            # 'weak spot': weak_spot
         }
         # sprites_reference[name + ' ' + str(frame_count)] = {
         #     'sprite': scaled_cropped_surf,
@@ -240,33 +257,33 @@ def load_all_frames(source, max_frames, name, width, height, scale_factor=1):
     # exit()
 
 
-scaled_sprites_cache = dict()
-def fill_scaled_sprites_cache(actor, cache_key, final_scale_factor):
-    if actor.location not in scaled_sprites_cache.keys():
-        scaled_sprites_cache[actor.location] = dict()
-    if actor.name not in scaled_sprites_cache[actor.location].keys():
-        scaled_sprites_cache[actor.location][actor.name] = dict()
-
-    if cache_key not in scaled_sprites_cache[actor.location][actor.name].keys():
-        current_sprite = sprites[actor.id]['sprites'][actor.current_animation][actor.gaze_direction][actor.current_frame]
-        # Fill cache of scaled sprites for current actor.
-        # print(f'[actor.fill_scaled_sprites_cache] Caching scaled sprite for {self.name}: "{cache_key}"')
-        size_original = current_sprite['sprite'].get_size()
-        scaled_sprites_cache[actor.location][actor.name][cache_key] = pygame.transform.scale(current_sprite['sprite'],
-                                                                                           (size_original[0] * final_scale_factor,
-                                                                                            size_original[1] * final_scale_factor))
+# scaled_sprites_cache = dict()
+# def fill_scaled_sprites_cache(actor, cache_key, final_scale_factor):
+#     if actor.location not in scaled_sprites_cache.keys():
+#         scaled_sprites_cache[actor.location] = dict()
+#     if actor.name not in scaled_sprites_cache[actor.location].keys():
+#         scaled_sprites_cache[actor.location][actor.name] = dict()
+#
+#     if cache_key not in scaled_sprites_cache[actor.location][actor.name].keys():
+#         current_sprite = sprites[actor.id]['sprites'][actor.current_animation][actor.gaze_direction][actor.current_frame]
+#         # Fill cache of scaled sprites for current actor.
+#         # print(f'[actor.fill_scaled_sprites_cache] Caching scaled sprite for {self.name}: "{cache_key}"')
+#         size_original = current_sprite['sprite'].get_size()
+#         scaled_sprites_cache[actor.location][actor.name][cache_key] = pygame.transform.scale(current_sprite['sprite'],
+#                                                                                            (size_original[0] * final_scale_factor,
+#                                                                                             size_original[1] * final_scale_factor))
     # self.get_scaled_sprite_from_cache(cache_key)
 
-def get_scaled_sprite_from_cache(actor, cache_key):
-    return pygame.transform.flip(scaled_sprites_cache[actor.location][actor.name][cache_key], True, False) \
-        if actor.current_sprite_flip else scaled_sprites_cache[actor.location][actor.name][cache_key]
-
-def scale_sprite(sprite, final_scale_factor, flip=False):
-    size_original = sprite.get_size()
-    return pygame.transform.flip(pygame.transform.scale(sprite, (size_original[0] * final_scale_factor,
-                                                                 size_original[1] * final_scale_factor)), True, False) \
-           if flip else pygame.transform.scale(sprite, (size_original[0] * final_scale_factor,
-                                                        size_original[1] * final_scale_factor))
+# def get_scaled_sprite_from_cache(actor, cache_key):
+#     return pygame.transform.flip(scaled_sprites_cache[actor.location][actor.name][cache_key], True, False) \
+#         if actor.current_sprite_flip else scaled_sprites_cache[actor.location][actor.name][cache_key]
+#
+# def scale_sprite(sprite, final_scale_factor, flip=False):
+#     size_original = sprite.get_size()
+#     return pygame.transform.flip(pygame.transform.scale(sprite, (size_original[0] * final_scale_factor,
+#                                                                  size_original[1] * final_scale_factor)), True, False) \
+#            if flip else pygame.transform.scale(sprite, (size_original[0] * final_scale_factor,
+#                                                         size_original[1] * final_scale_factor))
 
 sprites = dict()
 sprites_reference = dict()
@@ -285,7 +302,7 @@ items = pygame.image.load('img/items.png').convert_alpha()
 # sprites['light cone 225'] = pygame.transform.rotate(sprites['light cone 45'], 180)
 # sprites['light cone 315'] = pygame.transform.rotate(sprites['light cone 45'], 270)
 # sprites['question sign'] = avatars.subsurface((573, 1053, 145, 240))
-sprites['void'] = items.subsurface((0,0,10,10))
+# sprites['void'] = items.subsurface((0,0,10,10))
 load_single_frame(items, ((0,0,20,30),), 'exp', 2)
 load_single_frame(items, ((0,30,20,30),), 'health vial', 5)
 load_single_frame(items, ((20,0,20,30),), 'staff', 5)
@@ -300,6 +317,10 @@ load_single_frame(items, ((40,90,80,30),), 'whip demolisher', 4)
 # ___...---=== JAKE ===---...___
 name = 'Jake'
 tmp_sprites = pygame.image.load('img/animations/jake_8bit.png').convert_alpha()
+# try:
+#     weak_spots = pygame.image.load('img/animations/jake_8bit_weak_spot.png').convert_alpha()
+# except FileNotFoundError:
+#     weak_spots = None
 screen.convert_alpha(tmp_sprites)
 load_single_frame(tmp_sprites, ((260,150,20,18),), name + ' avatar')
 load_single_frame(tmp_sprites, ((260,150,20,18),), name + ' avatar front')
@@ -307,26 +328,20 @@ load_single_frame(tmp_sprites, ((260,150,20,18),), name + ' avatar front')
 # load_single_frame(tmp_sprites, ((1744,2194,332,205),), name + ' 98')  # Unconsciousness frame 1
 # load_single_frame(tmp_sprites, ((2076,2220,369,176),), name + ' 99')  # Unconsciousness frame 2
 load_all_frames(tmp_sprites, 97, name, 20, 30, 8)
-# tmp_sprites = pygame.image.load('img/animations/jake.png').convert_alpha()
-# load_single_frame(tmp_sprites, ((0, 1000, 300, 500),), name + ' avatar')
-# load_single_frame(tmp_sprites, ((0, 1000, 300, 500),), name + ' avatar front')
-# load_single_frame(tmp_sprites, ((1744,2194,332,205),), name + ' 98')  # Unconsciousness frame 1
-# load_single_frame(tmp_sprites, ((2076,2220,369,176),), name + ' 99')  # Unconsciousness frame 2
-# load_all_frames(tmp_sprites, 20, name)
-# print(sprites.keys())
-#dict_keys(['question sign', 'Jake avatar', 'Jake avatar front', 'Jake 0', 'Jake 1', 'Jake 2', 'Jake 3', 'Jake 4', 'Jake 5', 'Jake 6', 'Jake 7', 'Jake 8', 'Jake 9', 'Jake 10', 'Jake 11', 'Jake 12', 'Jake 13', 'Jake 14', 'Jake 15', 'Jake 16', 'Jake 17', 'Jake 18', 'Jake 19', 'Jake 20', 'Jake 21', 'Jake 22', 'Jake 23', 'Jake 24', 'Jake 25', 'Jake 26', 'Jake 27', 'Jake 28', 'Jake 29', 'Jake 30', 'Jake 31', 'Jake 32', 'Jake 33', 'Jake 34', 'Jake 35', 'Jake 36', 'Jake 37', 'Jake 38', 'Jake 39', 'Jake 40', 'Jake 41', 'Jake 42', 'Jake 43'])
-# print(sprites['Jake 0'])
-# {'sprite': <Surface(90x210x32 SW)>, 'sprite center': 45, 'sprite asymmetric': False}
-# exit()
+# load_all_frames(tmp_sprites, 97, name, 20, 30, 8, weak_spots)
 
 # ___...---=== DEMON 2 ===---...___
 name = 'demon 2'
 # tmp_sprites = pygame.image.load('img/animations/jake_8bit.png').convert_alpha()
 tmp_sprites = pygame.image.load('img/animations/demon_2.png').convert_alpha()
+try:
+    weak_spots = pygame.image.load('img/animations/demon_2_weak_spot.png').convert_alpha()
+except FileNotFoundError:
+    weak_spots = None
 load_single_frame(tmp_sprites, ((260,150,20,18),), name + ' avatar')
 load_single_frame(tmp_sprites, ((260,150,20,18),), name + ' avatar front')
-# load_single_frame(tmp_sprites, ((2660,1720,90,50),), name + 'floor shadow mask')
 load_all_frames(tmp_sprites, 97, name, 20, 30, 14)
+# load_all_frames(tmp_sprites, 97, name, 20, 30, 14, weak_spots)
 
 # ___...---=== DEMON MALE 1 ===---...___
 name = 'demon 1'
