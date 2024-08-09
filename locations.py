@@ -351,14 +351,6 @@ locations = {
             'description': 'apartment #1',
             'size': (2500, 1000),
             'hostiles': {
-            	(1450.0, 300.0): {
-                    'name': 'demon 1',
-                    'height': 190,
-                    'width': 49,
-                    'health': 10.0,
-                    'max speed': 5,
-            	},
-
               },
             'demolishers': {
                 'dem rectangles': (
@@ -391,7 +383,6 @@ locations = {
                 ((650, 900), (50, 50), 43),  #43
                 ((750, 900), (50, 50), 44),  #44
                 ((350, 350), (50, 50), 45),  #45
-                ((500, 450), (50, 500), 46),  #46
                   ), # OBSTACLE RECTANGLES SECTION END
                 'settings': {
                     6: {

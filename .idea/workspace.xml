@@ -7,12 +7,8 @@
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/animations/demon_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/animations/demon_2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/items.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/items.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,20 +142,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00317" summary="Dead enemies drop XP">
-      <created>1722328102177</created>
-      <option name="number" value="00317" />
-      <option name="presentableId" value="LOCAL-00317" />
-      <option name="project" value="LOCAL" />
-      <updated>1722328102177</updated>
-    </task>
-    <task id="LOCAL-00318" summary="Added sprite for exp-item.">
-      <created>1722330642941</created>
-      <option name="number" value="00318" />
-      <option name="presentableId" value="LOCAL-00318" />
-      <option name="project" value="LOCAL" />
-      <updated>1722330642941</updated>
     </task>
     <task id="LOCAL-00319" summary="Corrected demolishers behavior which could be snapped to already dead actor.">
       <created>1722402046469</created>
@@ -490,7 +472,21 @@
       <option name="project" value="LOCAL" />
       <updated>1723097262380</updated>
     </task>
-    <option name="localTasksCounter" value="366" />
+    <task id="LOCAL-00366" summary="Demon 2 becomes more spooky :)">
+      <created>1723107860158</created>
+      <option name="number" value="00366" />
+      <option name="presentableId" value="LOCAL-00366" />
+      <option name="project" value="LOCAL" />
+      <updated>1723107860158</updated>
+    </task>
+    <task id="LOCAL-00367" summary="Demon 2 becomes more spooky :)">
+      <created>1723108628845</created>
+      <option name="number" value="00367" />
+      <option name="presentableId" value="LOCAL-00367" />
+      <option name="project" value="LOCAL" />
+      <updated>1723108628845</updated>
+    </task>
+    <option name="localTasksCounter" value="368" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -505,7 +501,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Level editor: clipboard structure is simplified: self.clipboard[location] = [(x, y), ..., (xn, yn)]" />
     <MESSAGE value="Level editor: clipboard elements deletion implemented." />
     <MESSAGE value="Level editor: clipboard elements deletion from the main menu works just fine." />
     <MESSAGE value="Level editor: clipboard elements deletion by pressing RMB over the already highlighted point has been corrected." />
@@ -530,6 +525,7 @@
     <MESSAGE value="Demolishers got the own sprite described by surface, filled with a red circle, even if they don't get a sprite during creation." />
     <MESSAGE value="Demolishers got the own sprite described by surface, but changed to rectangle, 'cause not all the demolishers will be the round shaped." />
     <MESSAGE value="Fixed sliding bug during location change." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed sliding bug during location change." />
+    <MESSAGE value="Demon 2 becomes more spooky :)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Demon 2 becomes more spooky :)" />
   </component>
 </project>

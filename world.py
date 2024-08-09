@@ -172,6 +172,8 @@ class World(object):
         entity.rectangle.topleft = xy
         entity.origin_xy = xy
         entity.max_speed = 5
+        # entity.speed = 5
+        # entity.is_jump = True
         entity.is_force_render = True
         entity.sprite = item['sprite']
         entity.rectangle.width = sprites[entity.sprite]['sprite'].get_size()[0]
@@ -637,7 +639,7 @@ class World(object):
                 if all_hostiles[actor.name]['drop']:
                     # print(all_hostiles[actor.name]['drop'])
                     for drop in all_hostiles[actor.name]['drop']:
-                        self.add_item(all_items[drop], (randint(actor.rectangle.x, actor.rectangle.right), actor.rectangle.top))
+                        self.add_item(all_items[drop], (randint(actor.rectangle.left - 50, actor.rectangle.right + 50), actor.rectangle.top))
                 continue
 
             actor.percept({k: self.obstacles[self.location][k] for k in self.active_obstacles}, self.demolishers[self.location])
@@ -800,8 +802,8 @@ class World(object):
             self.screen.blit(actor.current_sprite['sprite'], (x, y))
 
             # # Rectangle frame:
-            pygame.draw.rect(self.screen, GREEN, (actor.rectangle.x - self.camera.offset_x, actor.rectangle.y - self.camera.offset_y,
-                                                  actor.rectangle.width, actor.rectangle.height), 5)
+            # pygame.draw.rect(self.screen, GREEN, (actor.rectangle.x - self.camera.offset_x, actor.rectangle.y - self.camera.offset_y,
+            #                                       actor.rectangle.width, actor.rectangle.height), 5)
             # # Colliders rects:
             # # pygame.draw.rect(self.screen, DARK_ORANGE, (actor.collision_detector_right.x - self.camera.offset_x, actor.collision_detector_right.y - self.camera.offset_y,
             # #                                       actor.collision_detector_right.width, actor.collision_detector_right.height))

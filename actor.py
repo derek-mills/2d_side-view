@@ -580,6 +580,7 @@ class Actor(Entity):
                     (self.look == -1 and self.is_enough_space_left):
                 self.ignore_user_input = True
                 self.set_state('sliding')
+                self.stamina_reduce(self.normal_stamina_lost_per_slide)
             else:
                 self.speed = 0
                 # self.speed = self.max_speed // 2
