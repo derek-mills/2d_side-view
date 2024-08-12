@@ -253,7 +253,8 @@ class Actor(Entity):
         # RIGHT actions
         if new_action == 'right action':
             # Apply filter of unwanted actions:
-            if self.__state not in ('jump', 'free', 'crouch', 'stand still', 'prone', 'run left', 'fly left', 'run right'):
+            if self.__state not in ('jump', 'free', 'crouch', 'stand still', 'prone',
+                                    'run left', 'fly left', 'run right', 'hold stash',):
                 return
             if not self.is_stand_on_ground:
                 if self.__state == 'jump':
@@ -263,7 +264,9 @@ class Actor(Entity):
 
                 self.set_state('fly right')
             else:
-                if self.__state == 'crouch':
+                if self.__state == 'hold stash':
+                    self.set_state('carry stash right')
+                elif self.__state == 'crouch':
                     if self.look == -1:
                         self.set_state('crouch turn right')
                     else:
@@ -280,19 +283,21 @@ class Actor(Entity):
                     self.set_action('left action cancel')
 
         elif new_action == 'right action cancel':
-            if self.__state == 'crawl right':
+            if self.__state == 'carry stash right':
+                self.set_state('hold stash')
+            elif self.__state == 'crawl right':
                 self.set_state('crouch')
             elif self.__state in ('run right', 'fly right'):
                 # self.speed = 0
                 self.set_state('stand still')
             elif self.__state == 'crawl prone right':
-            # elif self.__state in ('crawl prone left', 'crawl prone right'):
                 self.set_state('prone')
 
         # LEFT actions
         elif new_action == 'left action':
             # Apply filter of unwanted actions:
-            if self.__state not in ('jump', 'free', 'crouch', 'stand still', 'prone', 'run right', 'fly right', 'run left'):
+            if self.__state not in ('jump', 'free', 'crouch', 'stand still', 'prone',
+                                    'run right', 'fly right', 'run left', 'hold stash',):
             # if self.__state == 'hanging on edge'
                 return
             if not self.is_stand_on_ground:
@@ -302,7 +307,10 @@ class Actor(Entity):
                     self.is_jump_performed = False
                 self.set_state('fly left')
             else:
-                if self.__state == 'crouch':
+                if self.__state == 'hold stash':
+                    self.set_state('carry stash left')
+
+                elif self.__state == 'crouch':
                     if self.look == 1:
                         self.set_state('crouch turn left')
                     else:
@@ -322,7 +330,9 @@ class Actor(Entity):
                     self.set_action('right action cancel')
 
         elif new_action == 'left action cancel':
-            if self.__state == 'crawl left':
+            if self.__state == 'carry stash left':
+                self.set_state('hold stash')
+            elif self.__state == 'crawl left':
                 self.set_state('crouch')
             elif self.__state in ('run left', 'fly left'):
                 # self.speed = 0
@@ -434,7 +444,19 @@ class Actor(Entity):
                 self.set_state('prepare attack')
 
     def state_machine(self):
-        if self.__state == 'prepare attack':                          # PREPARING ATTACK
+        if self.__state == 'prepare carry stash':                          #
+            # self.speed = self.max_speed // 3
+            self.set_state('hold stash')
+        elif self.__state == 'hold stash':  #
+            self.speed = 0
+            self.heading[0] = 0
+        elif self.__state == 'carry stash right':  #
+            self.speed = self.max_speed // 3
+            self.look = 1
+        elif self.__state == 'carry stash left':  #
+            self.speed = self.max_speed // 3
+            self.look = -1
+        elif self.__state == 'prepare attack':                          # PREPARING ATTACK
             self.set_state(self.current_weapon['attack animation'])
             # self.stamina_reduce(self.current_stamina_lost_per_attack)
             # self.mana_reduce(self.current_mana_lost_per_attack)

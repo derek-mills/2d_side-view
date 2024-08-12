@@ -1082,6 +1082,38 @@ player_jake = {
             },
             'repeat from frame': 0
         },
+        'hold stash left': {
+            'repeat': True,
+            'sequence': (10,),  # 0 - 5
+            'speed': 3,
+            'activity at frames': {
+            },
+            'repeat from frame': 0
+        },
+        'hold stash right': {
+            'repeat': True,
+            'sequence': (22,),  # 0 - 5
+            'speed': 3,
+            'activity at frames': {
+            },
+            'repeat from frame': 0
+        },
+        'carry stash left': {
+            'repeat': True,
+            'sequence': (8,9,10,9,),  # 0 - 5
+            'speed': 3,
+            'activity at frames': {
+            },
+            'repeat from frame': 0
+        },
+        'carry stash right': {
+            'repeat': True,
+            'sequence': (22,23,24,23,),  # 0 - 5
+            'speed': 3,
+            'activity at frames': {
+            },
+            'repeat from frame': 0
+        },
     },
     'think type': '',
     'AI controlled': False
