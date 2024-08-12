@@ -756,6 +756,8 @@ class World(object):
 
             if actor.summon_demolisher:
                 actor.summon_demolisher = False
+                actor.stamina_reduce(actor.current_stamina_lost_per_attack)
+                actor.mana_reduce(actor.current_mana_lost_per_attack)
                 for d in actor.summoned_demolishers_description:
                     self.add_demolisher(d)
                 # self.add_demolisher(actor.summoned_demolisher_description)
@@ -909,10 +911,12 @@ class World(object):
             if actor.id != 0:
                 # pygame.draw.rect(self.screen, WHITE, (actor.rectangle.x - self.camera.offset_x - 2, actor.rectangle.y - 13 - self.camera.offset_y,
                 #                                      actor.rectangle.width + 4, 7), 1)
-                pygame.draw.rect(self.screen, RED, (actor.rectangle.centerx - 100 - self.camera.offset_x, actor.rectangle.bottom - actor.rectangle_height_default - self.camera.offset_y,
+                pygame.draw.rect(self.screen, RED, (actor.rectangle.centerx - 100 - self.camera.offset_x, actor.rectangle.bottom - actor.rectangle_height_default  - 9 - self.camera.offset_y,
                                                      actor.stats['health'] * 200 // actor.stats['max health'], 3))
-                pygame.draw.rect(self.screen, YELLOW, (actor.rectangle.centerx - 100 - self.camera.offset_x, actor.rectangle.bottom - actor.rectangle_height_default - 3 - self.camera.offset_y,
+                pygame.draw.rect(self.screen, YELLOW, (actor.rectangle.centerx - 100 - self.camera.offset_x, actor.rectangle.bottom - actor.rectangle_height_default - 6 - self.camera.offset_y,
                                                      actor.stats['stamina'] * 200 // actor.stats['max stamina'], 3))
+                pygame.draw.rect(self.screen, BLUE, (actor.rectangle.centerx - 100 - self.camera.offset_x, actor.rectangle.bottom - actor.rectangle_height_default - 3 - self.camera.offset_y,
+                                                     actor.stats['mana'] * 200 // actor.stats['max mana'], 3))
 
 
     def render_demolishers(self):

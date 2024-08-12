@@ -436,8 +436,8 @@ class Actor(Entity):
     def state_machine(self):
         if self.__state == 'prepare attack':                          # PREPARING ATTACK
             self.set_state(self.current_weapon['attack animation'])
-            self.stamina_reduce(self.current_stamina_lost_per_attack)
-            self.mana_reduce(self.current_mana_lost_per_attack)
+            # self.stamina_reduce(self.current_stamina_lost_per_attack)
+            # self.mana_reduce(self.current_mana_lost_per_attack)
             self.frames_changing_threshold_modifier = self.current_weapon['animation speed modifier']
             self.set_current_animation()
             self.ignore_user_input = self.current_weapon['ignore user input']
@@ -445,8 +445,8 @@ class Actor(Entity):
                 self.heading[0] = 0
         elif self.__state == 'prepare crouch attack left':                          # PREPARING ATTACK
             self.set_state(self.current_weapon['attack animation'] + ' crouch left')
-            self.stamina_reduce(self.current_stamina_lost_per_attack)
-            self.mana_reduce(self.current_mana_lost_per_attack)
+            # self.stamina_reduce(self.current_stamina_lost_per_attack)
+            # self.mana_reduce(self.current_mana_lost_per_attack)
             self.frames_changing_threshold_modifier = self.current_weapon['animation speed modifier']
             self.set_current_animation()
             self.ignore_user_input = self.current_weapon['ignore user input']
@@ -454,8 +454,8 @@ class Actor(Entity):
                 self.heading[0] = 0
         elif self.__state == 'prepare crouch attack right':                          # PREPARING ATTACK
             self.set_state(self.current_weapon['attack animation'] + ' crouch right')
-            self.stamina_reduce(self.current_stamina_lost_per_attack)
-            self.mana_reduce(self.current_mana_lost_per_attack)
+            # self.stamina_reduce(self.current_stamina_lost_per_attack)
+            # self.mana_reduce(self.current_mana_lost_per_attack)
             self.frames_changing_threshold_modifier = self.current_weapon['animation speed modifier']
             self.set_current_animation()
             self.ignore_user_input = self.current_weapon['ignore user input']

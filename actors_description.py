@@ -496,7 +496,7 @@ demon_2 = {
             'sequence': (74,74,74,75,76,76,76,77,75,74,
                          78,78,78,79,80,80,80,79,79,79),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
             # 'sequence': (74,74,74,75,76,76,76,77),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
-            'speed': 8,
+            'speed': 4,
             'activity at frames': {
                 4: {
                     'sound': True,
@@ -533,7 +533,7 @@ demon_2 = {
             # 74,74,74,74,74,  # 20 - 24
             # 74,74,74,75,75), # 25 - 29
             # 'demolisher offset': (46, 36),
-            'speed': 8,
+            'speed': 4,
             'activity at frames': {
                 4: {
                     'sound': True,
@@ -893,13 +893,13 @@ player_jake = {
                     'demolisher': True
                 },
                 },
-            'demolisher offset': {
-                1: (sprites['Jake 76']['demolisher snap point'][0],
-                    sprites['Jake 76']['demolisher snap point'][1]),
-                # -1: (-65, 60),
-                # 1: (65, 60),
-                # -1: (-65, 60),
-            },
+            # 'demolisher offset': {
+            #     1: (sprites['Jake 76']['demolisher snap point'][0],
+            #         sprites['Jake 76']['demolisher snap point'][1]),
+            #     # -1: (-65, 60),
+            #     # 1: (65, 60),
+            #     # -1: (-65, 60),
+            # },
             'repeat from frame': 0
         },
         'whip left': {
@@ -918,11 +918,11 @@ player_jake = {
                     'demolisher': True
                 },
             },
-            'demolisher offset': {
-                # 1: (65,60),
-                -1: (sprites['Jake 89']['demolisher snap point'][0],
-                     sprites['Jake 89']['demolisher snap point'][1]),
-            },
+            # 'demolisher offset': {
+            #     # 1: (65,60),
+            #     -1: (sprites['Jake 89']['demolisher snap point'][0],
+            #          sprites['Jake 89']['demolisher snap point'][1]),
+            # },
             'repeat from frame': 0
         },
         'whip crouch right': {
@@ -996,13 +996,13 @@ player_jake = {
                     'demolisher': True
                 },
             },
-            'demolisher offset': {
-                1: (sprites['Jake 75']['demolisher snap point'][0],
-                    sprites['Jake 75']['demolisher snap point'][1]),
+            # 'demolisher offset': {
+            #     1: (sprites['Jake 75']['demolisher snap point'][0],
+            #         sprites['Jake 75']['demolisher snap point'][1]),
 
                 # 1: (46, 36),
                 # -1: (-46, 36),
-            },
+            # },
             'repeat from frame': 0
         },
         'stab left': {

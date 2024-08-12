@@ -105,7 +105,7 @@ fireball_staff = {
     'amount threshold': 1,
     'amount decrease speed': 0,
     'affects on': '',
-    'stamina consumption': 2.5,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
+    'stamina consumption': .5,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
     'mana consumption': 2.,
     'attack animation': 'cast',
     'ignore user input': True,  # Steal the ability to control a character for a while.
