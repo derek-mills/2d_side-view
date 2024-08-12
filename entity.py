@@ -452,7 +452,7 @@ class Entity(object):
         else:
             self.apply_particular_animation(self.current_animation)
             self.current_sprite = sprites[self.id]['sprites'][self.current_animation][self.current_frame]
-        self.apply_rectangle_according_to_sprite()
+        # self.apply_rectangle_according_to_sprite()
 
     def apply_particular_animation(self, anim):
         self.frame_number = 0

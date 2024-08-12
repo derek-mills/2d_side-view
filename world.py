@@ -332,8 +332,8 @@ class World(object):
             actor = self.actors[self.location][description['snap to actor']]
             demol.parent_id = actor.id
             demol.snapping_offset = description['snapping offset']
-            # demol.snapping_offset = actor.animations[actor.current_animation]['demolisher offset'][actor.look]
-            demol.update(actor.look, actor.rectangle)
+            demol.update(actor.look, actor.sprite_rectangle)
+            # demol.update(actor.look, actor.rectangle)
             if demol.flyer:
                 demol.destination = (self.camera.max_offset_x + MAXX, demol.rectangle.y) if actor.look == 1 else (-100, demol.rectangle.y)
             demol.look = actor.look
@@ -623,7 +623,8 @@ class World(object):
                     dead.append(dem.id)
                     continue
                 actor = self.actors[self.location][dem.snap_to_actor]
-                dem.update(actor.look, actor.rectangle)
+                dem.update(actor.look, actor.sprite_rectangle)
+                # dem.update(actor.look, actor.rectangle)
 
             dem.get_time(self.time_passed, self.game_cycles_counter)
             dem.process_demolisher()

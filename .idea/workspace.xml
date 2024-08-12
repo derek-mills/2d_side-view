@@ -8,8 +8,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/animations/jake_8bit.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/animations/jake_8bit.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -144,13 +142,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00330" summary="some tiny, but important improvements  :^)">
-      <created>1722501820226</created>
-      <option name="number" value="00330" />
-      <option name="presentableId" value="LOCAL-00330" />
-      <option name="project" value="LOCAL" />
-      <updated>1722501820226</updated>
     </task>
     <task id="LOCAL-00331" summary="added room #81">
       <created>1722502049050</created>
@@ -488,7 +479,14 @@
       <option name="project" value="LOCAL" />
       <updated>1723448653668</updated>
     </task>
-    <option name="localTasksCounter" value="379" />
+    <task id="LOCAL-00379" summary="Returned old good independent rectangle.">
+      <created>1723451416698</created>
+      <option name="number" value="00379" />
+      <option name="presentableId" value="LOCAL-00379" />
+      <option name="project" value="LOCAL" />
+      <updated>1723451416698</updated>
+    </task>
+    <option name="localTasksCounter" value="380" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -503,7 +501,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Info panel upgraded." />
     <MESSAGE value="Stamina use mechanism implemented." />
     <MESSAGE value="Stamina use mechanism improved." />
     <MESSAGE value="Stamina use mechanism tiny improved." />
@@ -528,6 +525,7 @@
     <MESSAGE value="Added the Stash item." />
     <MESSAGE value="Added player actor's Stash carry ability." />
     <MESSAGE value="Added player actor's Stash drop ability." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added player actor's Stash drop ability." />
+    <MESSAGE value="Returned old good independent rectangle." />
+    <option name="LAST_COMMIT_MESSAGE" value="Returned old good independent rectangle." />
   </component>
 </project>

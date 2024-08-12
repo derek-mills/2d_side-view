@@ -257,6 +257,7 @@ class Actor(Entity):
         self.stamina_replenish()
         self.mana_replenish()
         self.processing_rectangle_size()
+        self.apply_rectangle_according_to_sprite()
         self.check_space_around()
         super().process()
         # self.mask_update()
