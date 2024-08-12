@@ -190,6 +190,7 @@ def load_all_frames(source, max_frames, name, width, height, scale_factor=1):
         sz = cropped_surf.get_size()
         # weak_spot_xy = None
         # If we can find a magenta dot in the remain picture, then consider it as snap point for revealing demolisher.
+        # for dy in range(cropped_surf.get_height() - 1, 0, -1):
         for dy in range(cropped_surf.get_height()):
             for dx in range(cropped_surf.get_width()):
                 # print(cropped_surf.get_at((dx, 0)))

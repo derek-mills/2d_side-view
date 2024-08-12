@@ -544,11 +544,11 @@ demon_2 = {
                     'demolisher': True
                 },
             },
-            'demolisher offset': {
-                # 1: (65,60),
-                -1: (sprites['demon 2 89']['demolisher snap point'][0],
-                     sprites['demon 2 89']['demolisher snap point'][1]),
-            },
+            # 'demolisher offset': {
+            #     # 1: (65,60),
+            #     -1: (sprites['demon 2 89']['demolisher snap point'][0],
+            #          sprites['demon 2 89']['demolisher snap point'][1]),
+            # },
             'repeat from frame': 0
         },
         'whip crouch right': {

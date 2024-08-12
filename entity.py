@@ -1,3 +1,5 @@
+import copy
+
 import pygame
 from math import sqrt, sin
 from constants import *
@@ -198,78 +200,85 @@ class Entity(object):
         # print(self.demolishers_around)
         # exit()
 
-    def set_rect_height(self, height):
-        floor = self.rectangle.bottom
-        self.rectangle.height = height
-        self.rectangle.bottom = floor
+    # def set_rect_height(self, height):
+    #     floor = self.rectangle.bottom
+    #     self.rectangle.height = height
+    #     self.rectangle.bottom = floor
+    #
+    # def set_rect_width(self, width):
+    #     floor = self.rectangle.bottom
+    #     center = self.rectangle.centerx
+    #     right = self.rectangle.right
+    #     left = self.rectangle.left
+    #     self.rectangle.width = width
+    #     if self.speed > 0:
+    #         if self.look == 1:
+    #             self.rectangle.left = left
+    #         else:
+    #             self.rectangle.right = right
+    #     else:
+    #         self.rectangle.centerx = center
+    #     self.rectangle.bottom = floor
 
-    def set_rect_width(self, width):
+    # def set_new_desired_height(self, h, speed=0):
+    #     self.target_height = h
+    #     self.rectangle_height_counter = self.rectangle.height
+    #     self.rectangle_height_counter_change_speed = speed
+    #
+    # def set_new_desired_width(self, w, speed=0):
+    #     self.target_width = w
+    #     self.rectangle_width_counter = self.rectangle.width
+    #     self.rectangle_width_counter_change_speed = speed
+
+    # def processing_rectangle_size(self):
+    #
+    #     if self.target_height != self.rectangle.height:
+    #         if self.rectangle_height_counter_change_speed == 0:
+    #             # If height changing speed set to 0, change it instantly:
+    #             self.set_rect_height(self.target_height)
+    #         else:
+    #             if self.rectangle.height > self.target_height:
+    #                 self.rectangle_height_counter -= self.rectangle_height_counter_change_speed
+    #                 if self.rectangle_height_counter < self.target_height:
+    #                     self.rectangle_height_counter = self.target_height
+    #             else:
+    #                 self.rectangle_height_counter += self.rectangle_height_counter_change_speed
+    #                 if self.rectangle_height_counter > self.target_height:
+    #                     self.rectangle_height_counter = self.target_height
+    #             self.set_rect_height(self.rectangle_height_counter)
+    #
+    #     if self.target_width != self.rectangle.width:
+    #         if self.rectangle_width_counter_change_speed == 0:
+    #             # If width changing speed set to 0, change it instantly:
+    #             self.set_rect_width(self.target_width)
+    #         else:
+    #             if self.rectangle.width > self.target_width:
+    #                 self.rectangle_width_counter -= self.rectangle_width_counter_change_speed
+    #                 if self.rectangle_width_counter < self.target_width:
+    #                     self.rectangle_width_counter = self.target_width
+    #             else:
+    #                 self.rectangle_width_counter += self.rectangle_width_counter_change_speed
+    #                 if self.rectangle_width_counter > self.target_width:
+    #                     self.rectangle_width_counter = self.target_width
+    #             self.set_rect_width(self.rectangle_width_counter)
+
+    # def apply_new_measurements(self):
+    #     # self.rectangle.width = w
+    #     # self.rectangle.height = h
+    #     # self.rectangle_height_default = self.rectangle.height
+    #     # self.rectangle_width_default = self.rectangle.width
+    #     self.rectangle_height_sit = self.rectangle.height // 3 * 2
+    #     self.rectangle_width_sit = self.rectangle.width
+    #     self.rectangle_height_slide = self.rectangle.height // 3
+    #     self.rectangle_width_slide = self.rectangle.height // 4 * 3
+
+    def apply_rectangle_according_to_sprite(self):
         floor = self.rectangle.bottom
         center = self.rectangle.centerx
-        right = self.rectangle.right
-        left = self.rectangle.left
-        self.rectangle.width = width
-        if self.speed > 0:
-            if self.look == 1:
-                self.rectangle.left = left
-            else:
-                self.rectangle.right = right
-        else:
-            self.rectangle.centerx = center
+        self.rectangle.width = self.current_sprite['sprite'].get_width()
+        self.rectangle.height = self.current_sprite['sprite'].get_height()
         self.rectangle.bottom = floor
-
-    def set_new_desired_height(self, h, speed=0):
-        self.target_height = h
-        self.rectangle_height_counter = self.rectangle.height
-        self.rectangle_height_counter_change_speed = speed
-
-    def set_new_desired_width(self, w, speed=0):
-        self.target_width = w
-        self.rectangle_width_counter = self.rectangle.width
-        self.rectangle_width_counter_change_speed = speed
-
-    def processing_rectangle_size(self):
-
-        if self.target_height != self.rectangle.height:
-            if self.rectangle_height_counter_change_speed == 0:
-                # If height changing speed set to 0, change it instantly:
-                self.set_rect_height(self.target_height)
-            else:
-                if self.rectangle.height > self.target_height:
-                    self.rectangle_height_counter -= self.rectangle_height_counter_change_speed
-                    if self.rectangle_height_counter < self.target_height:
-                        self.rectangle_height_counter = self.target_height
-                else:
-                    self.rectangle_height_counter += self.rectangle_height_counter_change_speed
-                    if self.rectangle_height_counter > self.target_height:
-                        self.rectangle_height_counter = self.target_height
-                self.set_rect_height(self.rectangle_height_counter)
-
-        if self.target_width != self.rectangle.width:
-            if self.rectangle_width_counter_change_speed == 0:
-                # If width changing speed set to 0, change it instantly:
-                self.set_rect_width(self.target_width)
-            else:
-                if self.rectangle.width > self.target_width:
-                    self.rectangle_width_counter -= self.rectangle_width_counter_change_speed
-                    if self.rectangle_width_counter < self.target_width:
-                        self.rectangle_width_counter = self.target_width
-                else:
-                    self.rectangle_width_counter += self.rectangle_width_counter_change_speed
-                    if self.rectangle_width_counter > self.target_width:
-                        self.rectangle_width_counter = self.target_width
-                self.set_rect_width(self.rectangle_width_counter)
-
-    def apply_new_measurements(self):
-        # self.rectangle.width = w
-        # self.rectangle.height = h
-        # self.rectangle_height_default = self.rectangle.height
-        # self.rectangle_width_default = self.rectangle.width
-        self.rectangle_height_sit = self.rectangle.height // 3 * 2
-        self.rectangle_width_sit = self.rectangle.width
-        self.rectangle_height_slide = self.rectangle.height // 3
-        self.rectangle_width_slide = self.rectangle.height // 4 * 3
-
+        self.rectangle.centerx = center
 
     def process(self):
     # def process(self, time_passed):
@@ -376,8 +385,10 @@ class Entity(object):
                 elif action == 'demolisher':
                     # print(f'[process active frames] make attack at frame {self.frame_number}')
                     self.summon_demolisher = True
-                    for d in self.current_weapon['demolishers']:
+                    self.summoned_demolishers_description = list()
+                    for d_origin in self.current_weapon['demolishers']:
                         # self.summon_demolisher_counter += 1
+                        d = copy.deepcopy(d_origin)
                         d['snap to actor'] = self.id
                         d['parent'] = self.name
                         d['snapping offset'] = sprites[self.name + ' ' + str(self.animation_sequence[self.frame_number])]['demolisher snap point']
@@ -439,6 +450,7 @@ class Entity(object):
         else:
             self.apply_particular_animation(self.current_animation)
             self.current_sprite = sprites[self.id]['sprites'][self.current_animation][self.current_frame]
+        self.apply_rectangle_according_to_sprite()
 
     def apply_particular_animation(self, anim):
         self.frame_number = 0

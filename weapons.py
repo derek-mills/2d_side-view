@@ -133,7 +133,7 @@ fireball_staff = {
 }
 
 whip = {
-    'description': 'Casual kitchen fireball staff.',
+    'description': 'A powerful whip, called Vampire Killer.',
     'class': 'weapons',
     'type': 'melee',
     'label': 'whip',
