@@ -623,8 +623,9 @@ class Entity(object):
                 #         return
                 self.get_damage(dem.damage)
                 self.invincibility_timer = 100 if self.id == 0 else 30
-                # self.got_immunity_to_demolishers.append(dem.id)
-                self.set_state('hop back')
+                # print('[detect_demolishers_collisions] actor get damage in state:', self.__state)
+                if self.get_state() not in ('hold stash', 'carry stash right', 'carry stash left'):
+                    self.set_state('hop back')
 
     # def mask_update(self, offset):
     # #     # current_mask = self.current_sprite['mask']

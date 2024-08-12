@@ -1073,7 +1073,8 @@ class World(object):
         self.render_actors()
         self.render_particles()
         # self.render_player_actor()
-        # self.render_debug_info()
+        if self.is_i:
+            self.render_debug_info()
         self.render_info_panel_overlay()
 
     def render_info_panel_overlay(self):

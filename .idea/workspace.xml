@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
@@ -142,13 +141,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00331" summary="added room #81">
-      <created>1722502049050</created>
-      <option name="number" value="00331" />
-      <option name="presentableId" value="LOCAL-00331" />
-      <option name="project" value="LOCAL" />
-      <updated>1722502049050</updated>
     </task>
     <task id="LOCAL-00332" summary="New Teleport property 'on touch' appeared. If it set to False, player need to push UP button to proceed to another location.">
       <created>1722567477041</created>
@@ -486,7 +478,14 @@
       <option name="project" value="LOCAL" />
       <updated>1723451416698</updated>
     </task>
-    <option name="localTasksCounter" value="380" />
+    <task id="LOCAL-00380" summary="Demolishers snap to the actors sprite rectangle, not to collision rectangle as it was earlier.">
+      <created>1723452299314</created>
+      <option name="number" value="00380" />
+      <option name="presentableId" value="LOCAL-00380" />
+      <option name="project" value="LOCAL" />
+      <updated>1723452299314</updated>
+    </task>
+    <option name="localTasksCounter" value="381" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -501,7 +500,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Stamina use mechanism implemented." />
     <MESSAGE value="Stamina use mechanism improved." />
     <MESSAGE value="Stamina use mechanism tiny improved." />
     <MESSAGE value="Demon 2 appearance changed, horns of the Abyss added :)" />
@@ -526,6 +524,7 @@
     <MESSAGE value="Added player actor's Stash carry ability." />
     <MESSAGE value="Added player actor's Stash drop ability." />
     <MESSAGE value="Returned old good independent rectangle." />
-    <option name="LAST_COMMIT_MESSAGE" value="Returned old good independent rectangle." />
+    <MESSAGE value="Demolishers snap to the actors sprite rectangle, not to collision rectangle as it was earlier." />
+    <option name="LAST_COMMIT_MESSAGE" value="Demolishers snap to the actors sprite rectangle, not to collision rectangle as it was earlier." />
   </component>
 </project>
