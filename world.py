@@ -163,6 +163,7 @@ class World(object):
         self.actor_id += 1
 
     def add_item(self, item, xy):
+        # print(f'[world.add_item] {item}')
         entity = Obstacle()
         self.item_id += 1
         # self.max_obs_id_in_current_location += 1
@@ -495,7 +496,7 @@ class World(object):
                         # print("ITEM GRABBED:", obs.item_name, all_items[obs.item_name])
                         if all_items[obs.item_name]['class'] == 'burden':
                             if self.is_input_up_arrow:
-                                # self.actors[self.location][0].add_items_to_inventory((all_items[obs.item_name],))
+                                self.actors[self.location][0].add_items_to_inventory((all_items[obs.item_name],))
                                 self.actors[self.location][0].set_state('prepare carry stash')
                                 dead.append(obs.id)
                                 continue
@@ -697,6 +698,9 @@ class World(object):
             # print(actor.name)
             # if not actor.rectangle.colliderect(self.camera.active_objects_rectangle):
             #     continue
+            while actor.drop_from_inventory:
+                i = actor.drop_from_inventory.pop()
+                self.add_item(all_items[i], (actor.rectangle.right if actor.look == 1 else actor.rectangle.left - sprites[i]['sprite'].get_width(), actor.rectangle.bottom - sprites[i]['sprite'].get_height()))
 
             if actor.dead:
                 dead.append(actor.id)

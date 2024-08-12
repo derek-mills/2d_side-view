@@ -8,6 +8,7 @@ class Actor(Entity):
         self.id: int = 0
         self.type = 'actor'
         self.inventory = dict()
+        self.drop_from_inventory = list()
         self.current_weapon = dict()
         self.current_weapon_demolishers_reveal_frames = list()
         self.is_collideable = True
@@ -196,6 +197,23 @@ class Actor(Entity):
             else:
                 self.inventory[item['class']][item['label']] = {'item': item.copy(), 'quantity': 1}
 
+    def remove_item_from_inventory(self, item):
+        if item['class'] in self.inventory.keys():
+            if item['label'] in self.inventory[item['class']].keys():
+                del self.inventory[item['class']][item['label']]
+                if len(self.inventory[item['class']]) == 0:
+                    del self.inventory[item['class']]
+
+    def drop_item_from_inventory(self, item):
+        print(f'[drop_item_from_inventory] {item=}')
+        if item['class'] in self.inventory.keys():
+            if item['label'] in self.inventory[item['class']].keys():
+                self.drop_from_inventory.append(item['label'])
+                # self.drop_from_inventory.append(self.inventory[item['class']][item['label']])
+                del self.inventory[item['class']][item['label']]
+                if len(self.inventory[item['class']]) == 0:
+                    del self.inventory[item['class']]
+
     def activate_weapon(self, uuid):
         if not self.inventory:
             return
@@ -344,10 +362,15 @@ class Actor(Entity):
         # DOWN actions
         elif new_action == 'down action':
             # Apply filter of unwanted actions:
-            if self.__state not in ('free', 'stand still', 'run right', 'run left', 'hanging on edge', 'hanging on ghost'):
+            if self.__state not in ('free', 'stand still', 'run right', 'run left',
+                                    'hanging on edge', 'hanging on ghost',
+                                    'carry stash left', 'carry stash right', 'hold stash'):
                 return
 
-            if self.__state in ('hanging on edge', 'hanging on ghost'):
+            if self.__state in ('carry stash left', 'carry stash right', 'hold stash'):
+                self.set_state('drop stash')
+                return
+            elif self.__state in ('hanging on edge', 'hanging on ghost'):
                 self.set_state('release edge')
                 return
             if self.is_stand_on_ground:
@@ -444,7 +467,10 @@ class Actor(Entity):
                 self.set_state('prepare attack')
 
     def state_machine(self):
-        if self.__state == 'prepare carry stash':                          #
+        if self.__state == 'drop stash':                          #
+            self.drop_item_from_inventory(self.inventory['burden']['stash']['item'])
+            self.set_state('stand still')
+        elif self.__state == 'prepare carry stash':                          #
             # self.speed = self.max_speed // 3
             self.set_state('hold stash')
         elif self.__state == 'hold stash':  #
