@@ -200,19 +200,22 @@ class Actor(Entity):
     def remove_item_from_inventory(self, item):
         if item['class'] in self.inventory.keys():
             if item['label'] in self.inventory[item['class']].keys():
-                del self.inventory[item['class']][item['label']]
-                if len(self.inventory[item['class']]) == 0:
-                    del self.inventory[item['class']]
+                self.inventory[item['class']][item['label']]['quantity'] -= 1
+                if self.inventory[item['class']][item['label']]['quantity'] == 0:
+                    del self.inventory[item['class']][item['label']]
+                    if len(self.inventory[item['class']]) == 0:
+                        del self.inventory[item['class']]
 
     def drop_item_from_inventory(self, item):
         print(f'[drop_item_from_inventory] {item=}')
         if item['class'] in self.inventory.keys():
             if item['label'] in self.inventory[item['class']].keys():
                 self.drop_from_inventory.append(item['label'])
-                # self.drop_from_inventory.append(self.inventory[item['class']][item['label']])
-                del self.inventory[item['class']][item['label']]
-                if len(self.inventory[item['class']]) == 0:
-                    del self.inventory[item['class']]
+                self.inventory[item['class']][item['label']]['quantity'] -= 1
+                if self.inventory[item['class']][item['label']]['quantity'] == 0:
+                    del self.inventory[item['class']][item['label']]
+                    if len(self.inventory[item['class']]) == 0:
+                        del self.inventory[item['class']]
 
     def activate_weapon(self, uuid):
         if not self.inventory:
@@ -253,7 +256,7 @@ class Actor(Entity):
         self.state_machine()
         self.stamina_replenish()
         self.mana_replenish()
-        # self.processing_rectangle_size()
+        self.processing_rectangle_size()
         self.check_space_around()
         super().process()
         # self.mask_update()
@@ -484,8 +487,8 @@ class Actor(Entity):
             self.look = -1
         elif self.__state == 'prepare attack':                          # PREPARING ATTACK
             self.set_state(self.current_weapon['attack animation'])
-            # self.stamina_reduce(self.current_stamina_lost_per_attack)
-            # self.mana_reduce(self.current_mana_lost_per_attack)
+            self.stamina_reduce(self.current_stamina_lost_per_attack)
+            self.mana_reduce(self.current_mana_lost_per_attack)
             self.frames_changing_threshold_modifier = self.current_weapon['animation speed modifier']
             self.set_current_animation()
             self.ignore_user_input = self.current_weapon['ignore user input']
@@ -493,8 +496,8 @@ class Actor(Entity):
                 self.heading[0] = 0
         elif self.__state == 'prepare crouch attack left':                          # PREPARING ATTACK
             self.set_state(self.current_weapon['attack animation'] + ' crouch left')
-            # self.stamina_reduce(self.current_stamina_lost_per_attack)
-            # self.mana_reduce(self.current_mana_lost_per_attack)
+            self.stamina_reduce(self.current_stamina_lost_per_attack)
+            self.mana_reduce(self.current_mana_lost_per_attack)
             self.frames_changing_threshold_modifier = self.current_weapon['animation speed modifier']
             self.set_current_animation()
             self.ignore_user_input = self.current_weapon['ignore user input']
@@ -502,8 +505,8 @@ class Actor(Entity):
                 self.heading[0] = 0
         elif self.__state == 'prepare crouch attack right':                          # PREPARING ATTACK
             self.set_state(self.current_weapon['attack animation'] + ' crouch right')
-            # self.stamina_reduce(self.current_stamina_lost_per_attack)
-            # self.mana_reduce(self.current_mana_lost_per_attack)
+            self.stamina_reduce(self.current_stamina_lost_per_attack)
+            self.mana_reduce(self.current_mana_lost_per_attack)
             self.frames_changing_threshold_modifier = self.current_weapon['animation speed modifier']
             self.set_current_animation()
             self.ignore_user_input = self.current_weapon['ignore user input']
@@ -519,8 +522,8 @@ class Actor(Entity):
         elif self.__state == 'crouch down':                       # CROUCH DOWN PROCESS
             self.is_crouch = True
             self.is_grabbers_active = False
-            # self.set_new_desired_height(self.rectangle_height_sit, 5)
-            # self.set_new_desired_width(self.rectangle_width_sit, 3)
+            self.set_new_desired_height(self.rectangle_height_sit, 5)
+            self.set_new_desired_width(self.rectangle_width_sit, 3)
             self.set_state('crouch')
         elif self.__state == 'crouch':                          # CROUCH
             self.speed = 0
@@ -534,7 +537,7 @@ class Actor(Entity):
         elif self.__state == 'crouch rise':  # CROUCH UP PROCESS
             self.is_crouch = False
             self.speed = 0
-            # self.set_new_desired_height(self.rectangle_height_default, 9)
+            self.set_new_desired_height(self.rectangle_height_default, 9)
             self.check_space_around()
             if self.is_enough_height:
                 self.is_jump_performed = False
@@ -581,8 +584,8 @@ class Actor(Entity):
             self.just_got_jumped = False
             self.is_abort_jump = True
             self.is_jump_performed = False
-            # # self.set_new_desired_height(self.rectangle_height_default, 5)
-            # # self.set_new_desired_width(self.rectangle_width_default, 5)
+            # self.set_new_desired_height(self.rectangle_height_default, 5)
+            # self.set_new_desired_width(self.rectangle_width_default, 5)
             if self.is_stand_on_ground:
                 self.set_state('stand still')
             else:
@@ -630,8 +633,8 @@ class Actor(Entity):
                     self.set_state('stand still')
         elif self.__state == 'slide':                           # SLIDE PREPARING
             self.speed = self.max_speed * 2.5
-            # self.set_new_desired_height(self.rectangle_height_slide, 0)
-            # self.set_new_desired_width(self.rectangle_width_slide, 6)
+            self.set_new_desired_height(self.rectangle_height_slide, 0)
+            self.set_new_desired_width(self.rectangle_width_slide, 6)
             self.is_grabbers_active = False
             self.check_space_around()
             if (self.look == 1 and self.is_enough_space_right) or\
@@ -642,8 +645,8 @@ class Actor(Entity):
             else:
                 self.speed = 0
                 # self.speed = self.max_speed // 2
-                # self.set_new_desired_height(self.rectangle_height_sit)
-                # self.set_new_desired_width(self.rectangle_width_sit, 4)
+                self.set_new_desired_height(self.rectangle_height_sit)
+                self.set_new_desired_width(self.rectangle_width_sit, 4)
                 # self.set_rect_width(self.rectangle_width_sit)
                 # self.set_rect_height(self.rectangle_height_sit)
                 self.set_state('crouch')
@@ -653,37 +656,38 @@ class Actor(Entity):
                 self.set_state('slide rise')
         elif self.__state == 'slide rise':                      # RISING AFTER SLIDE IS OVER
             self.ignore_user_input = False
-            # self.set_new_desired_height(self.rectangle_height_sit, 5)
+            self.set_new_desired_height(self.rectangle_height_sit, 5)
             self.check_space_around()
             if self.is_enough_height:
-                # self.set_new_desired_width(self.rectangle_width_sit,10)
+                self.set_new_desired_width(self.rectangle_width_sit,10)
                 self.set_state('crouch')
             else:
-                # self.set_new_desired_height(self.rectangle_height_slide, 0)
+                self.set_new_desired_height(self.rectangle_height_slide, 0)
                 self.set_state('prone')
         elif self.__state == 'crawl prone left':
             self.speed = self.max_speed // 3
             self.look = -1
             self.heading[0] = -1
             # print('sdsdsdsdsdsds')
-            # # self.set_new_desired_height(self.rectangle_height_slide, 0)
+            # self.set_new_desired_height(self.rectangle_height_slide, 0)
             # self.check_space_around()
         elif self.__state == 'crawl prone right':
             self.speed = self.max_speed // 3
             self.look = 1
             self.heading[0] = 1
             # print('sdsdsdsdsdsds')
-            # # self.set_new_desired_height(self.rectangle_height_slide, 0)
+            # self.set_new_desired_height(self.rectangle_height_slide, 0)
             # self.check_space_around()
         elif self.__state == 'prone':
             self.speed = 0
             self.heading[0] = 0
-            # self.set_new_desired_height(self.rectangle_height_sit, 0)
+            self.set_new_desired_height(self.rectangle_height_sit, 0)
             self.check_space_around()
             if self.is_enough_height:
                 self.set_state('crouch down')
-            # else:
-                # self.set_new_desired_height(self.rectangle_height_slide, 0)
+            else:
+                self.set_new_desired_height(self.rectangle_height_slide, 0)
+            # self.set_new_desired_height(self.rectangle_height_slide, 0)
         elif self.__state == 'stand still':                     # STANDING STILL
             self.heading[0] = 0
             # self.just_got_jumped = False
@@ -691,14 +695,14 @@ class Actor(Entity):
             # self.is_grabbers_active = True
             self.is_grabbers_active = False
             if self.rectangle.height != self.rectangle_height_default:
-                # self.set_new_desired_height(self.rectangle_height_default,10)
+                self.set_new_desired_height(self.rectangle_height_default,10)
                 self.check_space_around()
                 if not self.is_enough_height:
                     self.set_state('crouch down')
                     self.state_machine()
                     return
-            # if self.rectangle.width != self.rectangle_width_default:
-            #     # self.set_new_desired_width(self.rectangle_width_default,10)
+            if self.rectangle.width != self.rectangle_width_default:
+                self.set_new_desired_width(self.rectangle_width_default,10)
         elif self.__state == 'turn left':                       # TURN LEFT
             if self.look == 1 and self.speed > 0:  # Actor looks to the other side and runs.
                 # Switch off heading to force actor start reducing his speed and slow it down to zero.
@@ -739,11 +743,10 @@ class Actor(Entity):
                 self.look = -1
                 self.heading[0] = -1
                 self.is_grabbers_active = True
-                # if self.rectangle.height != self.rectangle_height_default:
-                #     # self.set_new_desired_height(self.rectangle_height_default,5)
-                # if self.rectangle.width != self.rectangle_width_default:
-                #     # self.set_new_desired_width(self.rectangle_width_default,5)
-
+                if self.rectangle.height != self.rectangle_height_default:
+                    self.set_new_desired_height(self.rectangle_height_default,5)
+                if self.rectangle.width != self.rectangle_width_default:
+                    self.set_new_desired_width(self.rectangle_width_default,5)
             # if self.is_stand_on_ground:
             #     self.set_state('stand still')
             #     return
@@ -752,17 +755,17 @@ class Actor(Entity):
             # self.heading[0] = -1
             # self.is_grabbers_active = True
             # if self.rectangle.height != self.rectangle_height_default:
-            #     # self.set_new_desired_height(self.rectangle_height_default,5)
+            #     self.set_new_desired_height(self.rectangle_height_default,5)
             # if self.rectangle.width != self.rectangle_width_default:
-            #     # self.set_new_desired_width(self.rectangle_width_default,5)
+            #     self.set_new_desired_width(self.rectangle_width_default,5)
         elif self.__state == 'run left':                        # RUN LEFT
             self.look = -1
             self.heading[0] = -1
             # self.is_grabbers_active = True
-            # if self.rectangle.height != self.rectangle_height_default:
-            #     # self.set_new_desired_height(self.rectangle_height_default,5)
-            # if self.rectangle.width != self.rectangle_width_default:
-            #     # self.set_new_desired_width(self.rectangle_width_default,5)
+            if self.rectangle.height != self.rectangle_height_default:
+                self.set_new_desired_height(self.rectangle_height_default,5)
+            if self.rectangle.width != self.rectangle_width_default:
+                self.set_new_desired_width(self.rectangle_width_default,5)
         elif self.__state == 'fly right':                        # IN MID-AIR MOVE RIGHT
             if self.is_stand_on_ground:
                 self.set_state('stand still')
@@ -776,24 +779,25 @@ class Actor(Entity):
                 self.look = 1
                 self.heading[0] = 1
                 self.is_grabbers_active = True
-                # if self.rectangle.height != self.rectangle_height_default:
-                #     # self.set_new_desired_height(self.rectangle_height_default,5)
-                # if self.rectangle.width != self.rectangle_width_default:
-                #     # self.set_new_desired_width(self.rectangle_width_default,5)
+                if self.rectangle.height != self.rectangle_height_default:
+                    self.set_new_desired_height(self.rectangle_height_default,5)
+                if self.rectangle.width != self.rectangle_width_default:
+                    self.set_new_desired_width(self.rectangle_width_default,5)
             # self.look = 1
             # self.heading[0] = 1
             # self.is_grabbers_active = True
             # if self.rectangle.height != self.rectangle_height_default:
-            #     # self.set_new_desired_height(self.rectangle_height_default,5)
+            #     self.set_new_desired_height(self.rectangle_height_default,5)
             # if self.rectangle.width != self.rectangle_width_default:
-            #     # self.set_new_desired_width(self.rectangle_width_default,5)
+            #     self.set_new_desired_width(self.rectangle_width_default,5)
         elif self.__state == 'run right':                        # RUN RIGHT
             self.look = 1
             self.heading[0] = 1
-            # if self.rectangle.height != self.rectangle_height_default:
-            #     # self.set_new_desired_height(self.rectangle_height_default,5)
-            # if self.rectangle.width != self.rectangle_width_default:
-            #     # self.set_new_desired_width(self.rectangle_width_default,5)
+            # self.is_grabbers_active = True
+            if self.rectangle.height != self.rectangle_height_default:
+                self.set_new_desired_height(self.rectangle_height_default,5)
+            if self.rectangle.width != self.rectangle_width_default:
+                self.set_new_desired_width(self.rectangle_width_default,5)
         elif self.__state == 'has just grabbed edge':            # GRAB THE EDGE
             self.potential_moving_distance = 0
             self.is_grabbers_active = False
@@ -803,8 +807,8 @@ class Actor(Entity):
             self.speed = 0
             self.rectangle.width = self.rectangle_width_default
             self.rectangle.height = self.rectangle_height_default
-            # # self.set_new_desired_height(self.rectangle_height_default)
-            # # self.set_new_desired_width(self.rectangle_width_default)
+            # self.set_new_desired_height(self.rectangle_height_default)
+            # self.set_new_desired_width(self.rectangle_width_default)
             # self.processing_rectangle_size()
             self.rectangle.top = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
             if self.look == -1:
@@ -834,8 +838,8 @@ class Actor(Entity):
             self.fall_speed = 0
             self.heading[0] = 0
             self.speed = 0
-            # # self.set_new_desired_height(self.rectangle_height_default, 5)
-            # # self.set_new_desired_width(self.rectangle_width_default, 5)
+            # self.set_new_desired_height(self.rectangle_height_default, 5)
+            # self.set_new_desired_width(self.rectangle_width_default, 5)
 
             self.rectangle.bottom = self.obstacles_around[self.influenced_by_obstacle].rectangle.bottom + 1
             # self.rectangle.top = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
@@ -857,7 +861,7 @@ class Actor(Entity):
         elif self.__state == 'climb on':                        # START CLIMBING ON AN OBSTACLE
             self.ignore_user_input = True
             self.is_jump_performed = False
-            # self.set_new_desired_height(self.rectangle_height_sit // 2, 6)
+            self.set_new_desired_height(self.rectangle_height_sit // 2, 6)
             self.set_state('climb on raise')
         elif self.__state == 'climb on raise':                        # START CLIMBING ON AN OBSTACLE
             if self.rectangle.height <= self.rectangle_height_sit // 2:
@@ -881,4 +885,3 @@ class Actor(Entity):
         self.is_move_down = False
         self.is_jump = False
         # self.is_edge_grabbed = False
-

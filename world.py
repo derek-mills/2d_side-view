@@ -895,8 +895,11 @@ class World(object):
 
 
             # # Rectangle frame:
-            # pygame.draw.rect(self.screen, GREEN, (actor.rectangle.x - self.camera.offset_x, actor.rectangle.y - self.camera.offset_y,
-            #                                       actor.rectangle.width, actor.rectangle.height), 5)
+            pygame.draw.rect(self.screen, GREEN, (actor.rectangle.x - self.camera.offset_x, actor.rectangle.y - self.camera.offset_y,
+                                                  actor.rectangle.width, actor.rectangle.height), 5)
+            # # SPRITE Rectangle frame:
+            pygame.draw.rect(self.screen, MAGENTA, (actor.sprite_rectangle.x - self.camera.offset_x, actor.sprite_rectangle.y - self.camera.offset_y,
+                                                  actor.sprite_rectangle.width, actor.sprite_rectangle.height), 3)
 
             # # Colliders rects:
             # # pygame.draw.rect(self.screen, DARK_ORANGE, (actor.collision_detector_right.x - self.camera.offset_x, actor.collision_detector_right.y - self.camera.offset_y,

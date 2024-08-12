@@ -87,6 +87,7 @@ class Entity(object):
         # GEOMETRY
         self.origin_xy: tuple = (0, 0)
         self.rectangle = pygame.Rect(0, 0, 50, 50)
+        self.sprite_rectangle = pygame.Rect(0, 0, 50, 50)
         self.target_height: int = 0
         self.target_width: int = 0
         self.rectangle_height_default = 0
@@ -201,85 +202,85 @@ class Entity(object):
         # print(self.demolishers_around)
         # exit()
 
-    # def set_rect_height(self, height):
-    #     floor = self.rectangle.bottom
-    #     self.rectangle.height = height
-    #     self.rectangle.bottom = floor
-    #
-    # def set_rect_width(self, width):
-    #     floor = self.rectangle.bottom
-    #     center = self.rectangle.centerx
-    #     right = self.rectangle.right
-    #     left = self.rectangle.left
-    #     self.rectangle.width = width
-    #     if self.speed > 0:
-    #         if self.look == 1:
-    #             self.rectangle.left = left
-    #         else:
-    #             self.rectangle.right = right
-    #     else:
-    #         self.rectangle.centerx = center
-    #     self.rectangle.bottom = floor
+    def set_rect_height(self, height):
+        floor = self.rectangle.bottom
+        self.rectangle.height = height
+        self.rectangle.bottom = floor
 
-    # def set_new_desired_height(self, h, speed=0):
-    #     self.target_height = h
-    #     self.rectangle_height_counter = self.rectangle.height
-    #     self.rectangle_height_counter_change_speed = speed
-    #
-    # def set_new_desired_width(self, w, speed=0):
-    #     self.target_width = w
-    #     self.rectangle_width_counter = self.rectangle.width
-    #     self.rectangle_width_counter_change_speed = speed
-
-    # def processing_rectangle_size(self):
-    #
-    #     if self.target_height != self.rectangle.height:
-    #         if self.rectangle_height_counter_change_speed == 0:
-    #             # If height changing speed set to 0, change it instantly:
-    #             self.set_rect_height(self.target_height)
-    #         else:
-    #             if self.rectangle.height > self.target_height:
-    #                 self.rectangle_height_counter -= self.rectangle_height_counter_change_speed
-    #                 if self.rectangle_height_counter < self.target_height:
-    #                     self.rectangle_height_counter = self.target_height
-    #             else:
-    #                 self.rectangle_height_counter += self.rectangle_height_counter_change_speed
-    #                 if self.rectangle_height_counter > self.target_height:
-    #                     self.rectangle_height_counter = self.target_height
-    #             self.set_rect_height(self.rectangle_height_counter)
-    #
-    #     if self.target_width != self.rectangle.width:
-    #         if self.rectangle_width_counter_change_speed == 0:
-    #             # If width changing speed set to 0, change it instantly:
-    #             self.set_rect_width(self.target_width)
-    #         else:
-    #             if self.rectangle.width > self.target_width:
-    #                 self.rectangle_width_counter -= self.rectangle_width_counter_change_speed
-    #                 if self.rectangle_width_counter < self.target_width:
-    #                     self.rectangle_width_counter = self.target_width
-    #             else:
-    #                 self.rectangle_width_counter += self.rectangle_width_counter_change_speed
-    #                 if self.rectangle_width_counter > self.target_width:
-    #                     self.rectangle_width_counter = self.target_width
-    #             self.set_rect_width(self.rectangle_width_counter)
-
-    # def apply_new_measurements(self):
-    #     # self.rectangle.width = w
-    #     # self.rectangle.height = h
-    #     # self.rectangle_height_default = self.rectangle.height
-    #     # self.rectangle_width_default = self.rectangle.width
-    #     self.rectangle_height_sit = self.rectangle.height // 3 * 2
-    #     self.rectangle_width_sit = self.rectangle.width
-    #     self.rectangle_height_slide = self.rectangle.height // 3
-    #     self.rectangle_width_slide = self.rectangle.height // 4 * 3
-
-    def apply_rectangle_according_to_sprite(self):
+    def set_rect_width(self, width):
         floor = self.rectangle.bottom
         center = self.rectangle.centerx
-        self.rectangle.width = self.current_sprite['sprite'].get_width()
-        self.rectangle.height = self.current_sprite['sprite'].get_height()
+        right = self.rectangle.right
+        left = self.rectangle.left
+        self.rectangle.width = width
+        if self.speed > 0:
+            if self.look == 1:
+                self.rectangle.left = left
+            else:
+                self.rectangle.right = right
+        else:
+            self.rectangle.centerx = center
         self.rectangle.bottom = floor
-        self.rectangle.centerx = center
+
+    def set_new_desired_height(self, h, speed=0):
+        self.target_height = h
+        self.rectangle_height_counter = self.rectangle.height
+        self.rectangle_height_counter_change_speed = speed
+
+    def set_new_desired_width(self, w, speed=0):
+        self.target_width = w
+        self.rectangle_width_counter = self.rectangle.width
+        self.rectangle_width_counter_change_speed = speed
+
+    def processing_rectangle_size(self):
+
+        if self.target_height != self.rectangle.height:
+            if self.rectangle_height_counter_change_speed == 0:
+                # If height changing speed set to 0, change it instantly:
+                self.set_rect_height(self.target_height)
+            else:
+                if self.rectangle.height > self.target_height:
+                    self.rectangle_height_counter -= self.rectangle_height_counter_change_speed
+                    if self.rectangle_height_counter < self.target_height:
+                        self.rectangle_height_counter = self.target_height
+                else:
+                    self.rectangle_height_counter += self.rectangle_height_counter_change_speed
+                    if self.rectangle_height_counter > self.target_height:
+                        self.rectangle_height_counter = self.target_height
+                self.set_rect_height(self.rectangle_height_counter)
+
+        if self.target_width != self.rectangle.width:
+            if self.rectangle_width_counter_change_speed == 0:
+                # If width changing speed set to 0, change it instantly:
+                self.set_rect_width(self.target_width)
+            else:
+                if self.rectangle.width > self.target_width:
+                    self.rectangle_width_counter -= self.rectangle_width_counter_change_speed
+                    if self.rectangle_width_counter < self.target_width:
+                        self.rectangle_width_counter = self.target_width
+                else:
+                    self.rectangle_width_counter += self.rectangle_width_counter_change_speed
+                    if self.rectangle_width_counter > self.target_width:
+                        self.rectangle_width_counter = self.target_width
+                self.set_rect_width(self.rectangle_width_counter)
+
+    def apply_new_measurements(self):
+        # self.rectangle.width = w
+        # self.rectangle.height = h
+        # self.rectangle_height_default = self.rectangle.height
+        # self.rectangle_width_default = self.rectangle.width
+        self.rectangle_height_sit = self.rectangle.height // 3 * 2
+        self.rectangle_width_sit = self.rectangle.width
+        self.rectangle_height_slide = self.rectangle.height // 3
+        self.rectangle_width_slide = self.rectangle.height // 4 * 3
+
+    def apply_rectangle_according_to_sprite(self):
+        # floor = self.rectangle.bottom
+        # center = self.rectangle.centerx
+        self.sprite_rectangle.width = self.current_sprite['sprite'].get_width()
+        self.sprite_rectangle.height = self.current_sprite['sprite'].get_height()
+        self.sprite_rectangle.bottom = self.rectangle.bottom
+        self.sprite_rectangle.centerx = self.rectangle.centerx
 
     def process(self):
     # def process(self, time_passed):
@@ -712,6 +713,47 @@ class Entity(object):
         self.is_being_collided_now = False
         self.is_stand_on_ground = False
         bottom_already_changed = False
+        # -----------------------------------
+        # Check bottom
+        for key in self.sorted_obs['below']:
+            obs = self.obstacles_around[key]
+            # obs.trigger_activated = False
+            obs.is_being_collided_now = False
+
+            # Check if obstacle is just a passable trigger for some event:
+            if obs.let_actors_pass_through:
+                if obs.trigger or obs.teleport:
+                    if obs.rectangle.colliderect(self.rectangle):
+                        if self.id == 0:
+                            obs.trigger_activated = True
+                            continue
+                continue
+
+            # if obs.is_ghost_platform:
+            if obs.rectangle.colliderect(self.collision_detector_bottom):
+                if bottom_already_changed and obs.rectangle.top > self.rectangle.bottom:
+                    # Current obstacle lower than the actor's rectangle after at least one bottom collision has been registered.
+                    # Skip it.
+                    continue
+
+                if self.id == 0:
+                    obs.trigger_activated = True
+                self.collided_bottom = True
+                # if self.collided_top:
+                #     self.ignore_user_input = True
+
+                if self.get_state() == 'hanging on edge' and self.influenced_by_obstacle != obs.id and obs.active:
+                    self.set_state('release edge')
+                obs.is_being_collided_now = True
+                self.is_being_collided_now = True
+                # if self.fall_speed >= 0:
+                self.rectangle.bottom = obs.rectangle.top
+                self.is_stand_on_ground = True
+                self.influenced_by_obstacle = obs.id
+                self.jump_attempts_counter = self.max_jump_attempts
+                bottom_already_changed = True
+                # break
+                    # continue
 
         #-----------------------------------
         # Check RIGHT
@@ -907,48 +949,6 @@ class Entity(object):
                         self.influenced_by_obstacle = obs.id
                         self.jump_attempts_counter = self.max_jump_attempts
                         continue
-
-        # -----------------------------------
-        # Check bottom
-        for key in self.sorted_obs['below']:
-            obs = self.obstacles_around[key]
-            # obs.trigger_activated = False
-            obs.is_being_collided_now = False
-
-            # Check if obstacle is just a passable trigger for some event:
-            if obs.let_actors_pass_through:
-                if obs.trigger or obs.teleport:
-                    if obs.rectangle.colliderect(self.rectangle):
-                        if self.id == 0:
-                            obs.trigger_activated = True
-                            continue
-                continue
-
-            # if obs.is_ghost_platform:
-            if obs.rectangle.colliderect(self.collision_detector_bottom):
-                if bottom_already_changed and obs.rectangle.top > self.rectangle.bottom:
-                    # Current obstacle lower than the actor's rectangle after at least one bottom collision has been registered.
-                    # Skip it.
-                    continue
-
-                if self.id == 0:
-                    obs.trigger_activated = True
-                self.collided_bottom = True
-                # if self.collided_top:
-                #     self.ignore_user_input = True
-
-                if self.get_state() == 'hanging on edge' and self.influenced_by_obstacle != obs.id and obs.active:
-                    self.set_state('release edge')
-                obs.is_being_collided_now = True
-                self.is_being_collided_now = True
-                # if self.fall_speed >= 0:
-                self.rectangle.bottom = obs.rectangle.top
-                self.is_stand_on_ground = True
-                self.influenced_by_obstacle = obs.id
-                self.jump_attempts_counter = self.max_jump_attempts
-                bottom_already_changed = True
-                # break
-                    # continue
 
         # -----------------------------------
         # Check top
