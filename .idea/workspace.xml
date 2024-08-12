@@ -6,10 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/animations/demon_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/animations/demon_2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -144,20 +140,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00323" summary="Corrected weapons description.&#10;Corrected item sprites.">
-      <created>1722405158425</created>
-      <option name="number" value="00323" />
-      <option name="presentableId" value="LOCAL-00323" />
-      <option name="project" value="LOCAL" />
-      <updated>1722405158425</updated>
-    </task>
-    <task id="LOCAL-00324" summary="Variable self.max_obs_id_in_current_location implemented to prevent obstacles IDs collisions when new items appear and disappear during gameplay (items and obstacles are the same objects with slightly different properties).">
-      <created>1722406979520</created>
-      <option name="number" value="00324" />
-      <option name="presentableId" value="LOCAL-00324" />
-      <option name="project" value="LOCAL" />
-      <updated>1722406979520</updated>
     </task>
     <task id="LOCAL-00325" summary="Some tiny improvements.&#10;TODO: in level editor submenu does not append multiple obstacles into obs editing mode.">
       <created>1722416873436</created>
@@ -488,7 +470,21 @@
       <option name="project" value="LOCAL" />
       <updated>1723194433369</updated>
     </task>
-    <option name="localTasksCounter" value="372" />
+    <task id="LOCAL-00372" summary="Slightly redesigned demolishers appearing system.">
+      <created>1723429262296</created>
+      <option name="number" value="00372" />
+      <option name="presentableId" value="LOCAL-00372" />
+      <option name="project" value="LOCAL" />
+      <updated>1723429262296</updated>
+    </task>
+    <task id="LOCAL-00373" summary="Old rectangle changing system removed. Rectangles now change according to a current animation sprite size.">
+      <created>1723432530162</created>
+      <option name="number" value="00373" />
+      <option name="presentableId" value="LOCAL-00373" />
+      <option name="project" value="LOCAL" />
+      <updated>1723432530162</updated>
+    </task>
+    <option name="localTasksCounter" value="374" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -503,8 +499,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Level editor: cancelling of obstacle edit causes no error anymore." />
-    <MESSAGE value="Level editor: changed menu shadow and rectangle calculations." />
     <MESSAGE value="Level editor: changed long and tall menus scrolling routine." />
     <MESSAGE value="Level editor: 'keep x' and 'keep y' implemented to the custom object edit menu." />
     <MESSAGE value="Added Jake's crawl attack animation" />
@@ -528,6 +522,8 @@
     <MESSAGE value="Blood splatters added." />
     <MESSAGE value="Actor has a color of blood." />
     <MESSAGE value="Tried to implement weak spot system, but no use, futile." />
-    <option name="LAST_COMMIT_MESSAGE" value="Tried to implement weak spot system, but no use, futile." />
+    <MESSAGE value="Slightly redesigned demolishers appearing system." />
+    <MESSAGE value="Old rectangle changing system removed. Rectangles now change according to a current animation sprite size." />
+    <option name="LAST_COMMIT_MESSAGE" value="Old rectangle changing system removed. Rectangles now change according to a current animation sprite size." />
   </component>
 </project>

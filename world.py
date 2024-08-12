@@ -880,8 +880,9 @@ class World(object):
 
 
             # # Rectangle frame:
-            pygame.draw.rect(self.screen, GREEN, (actor.rectangle.x - self.camera.offset_x, actor.rectangle.y - self.camera.offset_y,
-                                                  actor.rectangle.width, actor.rectangle.height), 5)
+            # pygame.draw.rect(self.screen, GREEN, (actor.rectangle.x - self.camera.offset_x, actor.rectangle.y - self.camera.offset_y,
+            #                                       actor.rectangle.width, actor.rectangle.height), 5)
+
             # # Colliders rects:
             # # pygame.draw.rect(self.screen, DARK_ORANGE, (actor.collision_detector_right.x - self.camera.offset_x, actor.collision_detector_right.y - self.camera.offset_y,
             # #                                       actor.collision_detector_right.width, actor.collision_detector_right.height))
@@ -906,10 +907,12 @@ class World(object):
             #                                       10, 20))
             # Enemies Health bar.
             if actor.id != 0:
-                pygame.draw.rect(self.screen, WHITE, (actor.rectangle.x - self.camera.offset_x - 2, actor.rectangle.y - 12 - self.camera.offset_y,
-                                                     actor.rectangle.width + 4, 7), 1)
-                pygame.draw.rect(self.screen, RED, (actor.rectangle.x - self.camera.offset_x, actor.rectangle.y - 10 - self.camera.offset_y,
-                                                     actor.stats['health'] * actor.rectangle.width // actor.stats['max health'], 3))
+                # pygame.draw.rect(self.screen, WHITE, (actor.rectangle.x - self.camera.offset_x - 2, actor.rectangle.y - 13 - self.camera.offset_y,
+                #                                      actor.rectangle.width + 4, 7), 1)
+                pygame.draw.rect(self.screen, RED, (actor.rectangle.centerx - 100 - self.camera.offset_x, actor.rectangle.bottom - actor.rectangle_height_default - self.camera.offset_y,
+                                                     actor.stats['health'] * 200 // actor.stats['max health'], 3))
+                pygame.draw.rect(self.screen, YELLOW, (actor.rectangle.centerx - 100 - self.camera.offset_x, actor.rectangle.bottom - actor.rectangle_height_default - 3 - self.camera.offset_y,
+                                                     actor.stats['stamina'] * 200 // actor.stats['max stamina'], 3))
 
 
     def render_demolishers(self):
