@@ -32,6 +32,18 @@ all_items = {
         'affects on': '',
 
     },
+    'stash': {
+        'description': 'Stash box to store items',
+        'class': 'burden',
+        'type': '',
+        'label': 'stash',
+        'sprite': 'stash',
+        'sound': None,
+        'amount': 0,
+        'amount threshold': 0,
+        'amount decrease speed': 0,
+        'affects on': '',
+    },
     'fireball staff': fireball_staff,
     'whip': whip,
     'kitchen knife': kitchen_knife,

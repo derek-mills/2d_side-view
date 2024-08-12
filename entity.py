@@ -113,14 +113,15 @@ class Entity(object):
         self.acceleration: float = self.default_acceleration
         self.default_air_acceleration: float = .1
         self.air_acceleration: float = self.default_air_acceleration
-        self.speed: float = 0.
         self.jump_height: int = 0
         self.max_jump_height: int = 22
+        self.default_max_jump_attempts: int = 1  #
         self.max_jump_attempts: int = 1  #
         self.jump_attempts_counter: int = 0
         self.just_got_jumped: bool = False
         self.default_max_speed: float = 15.0  # Maximum speed cap for this creature
         self.max_speed: float = self.default_max_speed
+        self.speed: float = 0.
         self.max_speed_penalty = 1
         self.heading: list = [0, 0]
         # In some cases entity will move in the opposite direction; default is 1.
