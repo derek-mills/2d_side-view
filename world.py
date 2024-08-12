@@ -756,7 +756,9 @@ class World(object):
 
             if actor.summon_demolisher:
                 actor.summon_demolisher = False
-                self.add_demolisher(actor.summoned_demolisher_description)
+                for d in actor.summoned_demolishers_description:
+                    self.add_demolisher(d)
+                # self.add_demolisher(actor.summoned_demolisher_description)
 
             if actor.summon_particle:
                 actor.summon_particle = False

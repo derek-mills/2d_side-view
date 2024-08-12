@@ -491,8 +491,42 @@ demon_2 = {
             'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 0
         },
         'whip right': {
+            'repeat': False,
+            # 'interruptable': True,
+            'sequence': (74,74,74,75,76,76,76,77,75,74,
+                         78,78,78,79,80,80,80,79,79,79),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            # 'sequence': (74,74,74,75,76,76,76,77),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'speed': 8,
+            'activity at frames': {
+                4: {
+                    'sound': True,
+                    'demolisher': True
+                },
+                14: {
+                    'sound': True,
+                    'demolisher': True
+                },
+                },
+            # 'demolisher offset': {
+            #     1: (sprites['demon 2 76']['demolisher snap point'][0],
+            #         sprites['demon 2 76']['demolisher snap point'][1]),
+            #     # -1: (-65, 60),
+            #     # 1: (65, 60),
+            #     # -1: (-65, 60),
+            # },
+            'repeat from frame': 0
+        },
+        'whip left': {
             'repeat': False, 'interruptable': True,
-            'sequence': (74,74,74,75,76,76,76,77),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'sequence': (91,91,91,90,89,89,89,88,90,91,
+                         94,94,94,93,92,92,92,93,93,93),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            # 74,74,74,74,74,  # 5 - 9
+            # 74,74,74,75,75,  # 10 - 14
+            # 74,74,74,74,74,  # 15 - 19
+            # 74,74,74,74,74,  # 20 - 24
+            # 74,74,74,75,75), # 25 - 29
+            # 'demolisher offset': (46, 36),
+            # 'sequence': (91,91,91,90,89,89,89,88),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
             # 74,74,74,74,74,  # 5 - 9
             # 74,74,74,75,75,  # 10 - 14
             # 74,74,74,74,74,  # 15 - 19
@@ -505,28 +539,7 @@ demon_2 = {
                     'sound': True,
                     'demolisher': True
                 },
-                },
-            'demolisher offset': {
-                1: (sprites['demon 2 76']['demolisher snap point'][0],
-                    sprites['demon 2 76']['demolisher snap point'][1]),
-                # -1: (-65, 60),
-                # 1: (65, 60),
-                # -1: (-65, 60),
-            },
-            'repeat from frame': 0
-        },
-        'whip left': {
-            'repeat': False, 'interruptable': True,
-            'sequence': (91,91,91,90,89,89,89,88),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
-            # 74,74,74,74,74,  # 5 - 9
-            # 74,74,74,75,75,  # 10 - 14
-            # 74,74,74,74,74,  # 15 - 19
-            # 74,74,74,74,74,  # 20 - 24
-            # 74,74,74,75,75), # 25 - 29
-            # 'demolisher offset': (46, 36),
-            'speed': 8,
-            'activity at frames': {
-                4: {
+                14: {
                     'sound': True,
                     'demolisher': True
                 },
@@ -708,24 +721,24 @@ player_jake = {
     'blood color': (255, 0, 0),
     # 'height': 190,
     # 'width': 49,
-    'body state': {
-        'viewing range': 600,
-        'regeneration ability': 0.001,
-        'blood volume': 15000,
-        'blood volume replenish': .01,
-        'stamina replenish': 1,
-        'consciousness replenish': 10,
-        'consciousness threshold': 10,
-        'bleeding reduce': .01,  #
-        'bleeding resistance': 0,  # Reduce bleeding, in percents.
-        'max blood volume': 15000,
-        'max stamina': 120,
-        'max fatigue': 100,
-        'max consciousness': 1000,
-        'luck': 5,
-        'strength': 25,
-        'weight': 70,  # Kilos.
-    },
+    # 'body state': {
+    #     'viewing range': 600,
+    #     'regeneration ability': 0.001,
+    #     'blood volume': 15000,
+    #     'blood volume replenish': .01,
+    #     'stamina replenish': 1,
+    #     'consciousness replenish': 10,
+    #     'consciousness threshold': 10,
+    #     'bleeding reduce': .01,  #
+    #     'bleeding resistance': 0,  # Reduce bleeding, in percents.
+    #     'max blood volume': 15000,
+    #     'max stamina': 120,
+    #     'max fatigue': 100,
+    #     'max consciousness': 1000,
+    #     'luck': 5,
+    #     'strength': 25,
+    #     'weight': 70,  # Kilos.
+    # },
     'gravity affected': True,
     'body': {
         'head': {

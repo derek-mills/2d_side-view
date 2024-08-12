@@ -21,7 +21,8 @@ class Entity(object):
         self.performing_an_interruptable_deed: bool = False
         self.think_type: str = ''
         self.summon_demolisher = False
-        self.summoned_demolisher_description = dict()
+        self.summoned_demolishers_description = list()
+        # self.summoned_demolisher_description = dict()
         self.summon_particle = False
         self.summoned_particle_descriptions = list()
         # self.summon_demolisher_at_frame = 0
@@ -374,13 +375,22 @@ class Entity(object):
                     # print(f'[process active frames] make step at frame {self.frame_number}')
                 elif action == 'demolisher':
                     # print(f'[process active frames] make attack at frame {self.frame_number}')
-                    if self.summon_demolisher_counter < len(self.current_weapon['demolishers']) - 1:
-                        self.summon_demolisher = True
-                        self.summon_demolisher_counter += 1
-                        self.summoned_demolisher_description = self.current_weapon['demolishers'][self.summon_demolisher_counter]
-                        self.summoned_demolisher_description['snap to actor'] = self.id
-                        self.summoned_demolisher_description['parent'] = self.name
-                        self.summoned_demolisher_description['snapping offset'] = self.animations[self.current_animation]['demolisher offset'][self.look]
+                    self.summon_demolisher = True
+                    for d in self.current_weapon['demolishers']:
+                        # self.summon_demolisher_counter += 1
+                        d['snap to actor'] = self.id
+                        d['parent'] = self.name
+                        d['snapping offset'] = sprites[self.name + ' ' + str(self.animation_sequence[self.frame_number])]['demolisher snap point']
+                        self.summoned_demolishers_description.append(d)
+                        # self.summoned_demolisher_description['snapping offset'] = self.animations[self.current_animation]['demolisher offset'][self.look]
+                    # if self.summon_demolisher_counter < len(self.current_weapon['demolishers']) - 1:
+                    #     self.summon_demolisher = True
+                    #     self.summon_demolisher_counter += 1
+                    #     self.summoned_demolisher_description = self.current_weapon['demolishers'][self.summon_demolisher_counter]
+                    #     self.summoned_demolisher_description['snap to actor'] = self.id
+                    #     self.summoned_demolisher_description['parent'] = self.name
+                    #     self.summoned_demolisher_description['snapping offset'] = sprites[self.name + ' ' + str(self.animation_sequence[self.frame_number])]['demolisher snap point']
+                    #     # self.summoned_demolisher_description['snapping offset'] = self.animations[self.current_animation]['demolisher offset'][self.look]
                 elif action == 'sound':
                     snd = self.animations[self.current_animation]['activity at frames'][self.frame_number]
                     # print(f'[entity.process_activity_at_current_animation_frame] make {snd} at frame {self.frame_number}')
