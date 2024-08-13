@@ -424,7 +424,7 @@ locations = {
                         'actions': {0: []},
                   },
                     31: {
-                        'sprite': 0,
+                        'sprite': 23,
                         'sprite elevated': False,
                         'force render': True,
                         'ghost': True,

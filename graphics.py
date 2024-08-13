@@ -385,7 +385,22 @@ load_all_frames(tmp_sprites, 97, name, 20, 30, 12)
 # sprites['knife cursor'] = cursors.subsurface((51,51,51,51))
 # sprites['fist cursor'] = cursors.subsurface((102,51,51,51))
 
-all_obstacles = ('pile 1x #1', 'box 1.5x #23','box single',)
-
+# all_obstacles = ('pile 1x #1', 'box 1.5x #23','box single',)
 # screen.convert_alpha(avatars)
 # screen.convert_alpha(env)
+
+
+start_x = 0
+start_y = 0
+tile_width = 96
+tile_height = 96
+tiles_x_gap = 0
+tiles_y_gap = 0
+tile_set = pygame.image.load('img/backgrounds/tiles/tileset_1.png')
+sz = tile_set.get_size()
+tile_number = 0
+for x in range(start_x, sz[0], tile_width + tiles_x_gap):
+    for y in range(start_y, sz[1], tile_height + tiles_y_gap):
+        load_single_frame(tile_set, ((x, y, tile_width, tile_height),), tile_number)
+        # self.tiles[tile_number] = tile_set.subsurface((x, y, tile_width, tile_height))
+        tile_number += 1

@@ -237,6 +237,7 @@ class World(object):
                 if 'exotic movement' in self.locations[self.location]['obstacles']['settings'][entity.id] else None
 
             entity.active = self.locations[self.location]['obstacles']['settings'][entity.id]['active']
+            entity.sprite = self.locations[self.location]['obstacles']['settings'][entity.id]['sprite']
             entity.is_force_render = self.locations[self.location]['obstacles']['settings'][entity.id]['force render'] if 'force render' in \
                                     self.locations[self.location]['obstacles']['settings'][entity.id].keys() else False
             entity.actions = self.locations[self.location]['obstacles']['settings'][entity.id]['actions']
@@ -1002,14 +1003,15 @@ class World(object):
             if not obs.is_force_render:
                 continue
             if obs.sprite:
-                self.screen.blit(sprites[obs.sprite]['sprite'], (obs.rectangle.x - self.camera.offset_x, obs.rectangle.y - self.camera.offset_y,
-                                                  obs.rectangle.width, obs.rectangle.height))
+                # print(obs.sprite, sprites[obs.sprite])
+                self.screen.blit(sprites[obs.sprite]['sprite'], (obs.rectangle.x - self.camera.offset_x, obs.rectangle.y - self.camera.offset_y))
+                                                                 # obs.rectangle.width, obs.rectangle.height))
                 continue
             # if obs.invisible:
             #     continue
-            color = YELLOW if obs.is_ghost_platform else CYAN
-            pygame.draw.rect(self.screen, color, (obs.rectangle.x - self.camera.offset_x, obs.rectangle.y - self.camera.offset_y,
-                                                  obs.rectangle.width, obs.rectangle.height))
+            # color = YELLOW if obs.is_ghost_platform else CYAN
+            # pygame.draw.rect(self.screen, color, (obs.rectangle.x - self.camera.offset_x, obs.rectangle.y - self.camera.offset_y,
+            #                                       obs.rectangle.width, obs.rectangle.height), 1)
             if obs.active:
                 dx = 10
                 stats_y = 1

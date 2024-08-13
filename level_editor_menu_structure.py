@@ -403,12 +403,16 @@ menu_structure = {
         'generate list from': '*self.tiles.keys()',
         'predefined keys': {
             # 'LMB action': None,
-            'value': '$description',
-            'label': '$description',
+            'LMB action': 'store value',
+            'value': '*item',
+            # 'value': '$description',
+            'label': '*item',
+            # 'label': '$description',
             # 'target': '',
             'description': '*item',
             'additional info': "*'^self.tiles[self.menu_structure[\"' + menu_name + '\"][' + str(item)+ '][\"value\"]]'",
             'active': True,
+            'after action': 'return to parent'
             # 'after action': 'keep going'
         },
     },
