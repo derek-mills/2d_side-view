@@ -239,22 +239,34 @@ class World(object):
             entity.active = self.locations[self.location]['obstacles']['settings'][entity.id]['active']
 
 
-            # Make sprite surface for obstacle:
-            # print(self.locations[self.location]['obstacles']['settings'][entity.id]['sprite'])
-            # print(sprites[self.locations[self.location]['obstacles']['settings'][entity.id]['sprite']])
-            entity.surface = pygame.Surface((entity.rectangle.width, entity.rectangle.height)).convert_alpha()
-            tile_name = 'tile ' + str(self.locations[self.location]['obstacles']['settings'][entity.id]['sprite'])
-            # print(tile_name, sprites[tile_name]['sprite'])
-            sprite_to_fill_surface = sprites[tile_name]['sprite']
-            sz = sprite_to_fill_surface.get_size()
-            for dx in range(0, entity.rectangle.width, sz[0]):
-                for dy in range(0, entity.rectangle.height, sz[1]):
-                    entity.surface.blit(sprite_to_fill_surface, (dx, dy))
-            # entity.sprite = self.locations[self.location]['obstacles']['settings'][entity.id]['sprite']
+            # # Make sprite surface for obstacle:
+            # # print(self.locations[self.location]['obstacles']['settings'][entity.id]['sprite'])
+            # # print(sprites[self.locations[self.location]['obstacles']['settings'][entity.id]['sprite']])
+            # entity.surface = pygame.Surface((entity.rectangle.width, entity.rectangle.height)).convert_alpha()
+            # tile_name = 'tile ' + str(self.locations[self.location]['obstacles']['settings'][entity.id]['sprite'])
+            # # print(tile_name, sprites[tile_name]['sprite'])
+            # sprite_to_fill_surface = sprites[tile_name]['sprite']
+            # sz = sprite_to_fill_surface.get_size()
+            # for dx in range(0, entity.rectangle.width, sz[0]):
+            #     for dy in range(0, entity.rectangle.height, sz[1]):
+            #         entity.surface.blit(sprite_to_fill_surface, (dx, dy))
 
             entity.is_force_render = self.locations[self.location]['obstacles']['settings'][entity.id]['force render'] if 'force render' in \
                                     self.locations[self.location]['obstacles']['settings'][entity.id].keys() else False
             entity.actions = self.locations[self.location]['obstacles']['settings'][entity.id]['actions']
+            if entity.actions:
+                # Make sprite surface for obstacle:
+                # print(self.locations[self.location]['obstacles']['settings'][entity.id]['sprite'])
+                # print(sprites[self.locations[self.location]['obstacles']['settings'][entity.id]['sprite']])
+                entity.surface = pygame.Surface((entity.rectangle.width, entity.rectangle.height)).convert_alpha()
+                tile_name = 'tile ' + str(self.locations[self.location]['obstacles']['settings'][entity.id]['sprite'])
+                # print(tile_name, sprites[tile_name]['sprite'])
+                sprite_to_fill_surface = sprites[tile_name]['sprite']
+                sz = sprite_to_fill_surface.get_size()
+                for dx in range(0, entity.rectangle.width, sz[0]):
+                    for dy in range(0, entity.rectangle.height, sz[1]):
+                        entity.surface.blit(sprite_to_fill_surface, (dx, dy))
+
             entity.trigger = self.locations[self.location]['obstacles']['settings'][entity.id]['trigger']
             entity.trigger_description = self.locations[self.location]['obstacles']['settings'][entity.id]['trigger description']
             entity.teleport = self.locations[self.location]['obstacles']['settings'][entity.id]['teleport']
