@@ -500,18 +500,19 @@ class World(object):
                                 self.actors[self.location][0].set_state('prepare carry stash')
                                 dead.append(obs.id)
                                 continue
-                            else:
-                                continue
+                            # else:
+                            #     continue
                         elif all_items[obs.item_name]['class'] == 'instant consume':
                             if all_items[obs.item_name]['type'] == 'stats gainer':
                                 self.actors[self.location][0].stats[all_items[obs.item_name]['affects on']] += obs.item_amount
-                                # self.actors[self.location][0].stats[all_items[obs.item_name]['affects on']] += all_items[obs.item_name]['amount']
+                                obs.trigger = False
+                                dead.append(obs.id)
+                                continue
                         else:
                             self.actors[self.location][0].add_items_to_inventory((all_items[obs.item_name],))
-                            # self.actors[self.location][0].add_items_to_inventory((all_items[obs.item_name],))
-                        obs.trigger = False
-                        dead.append(obs.id)
-                        continue
+                            obs.trigger = False
+                            dead.append(obs.id)
+                            continue
                     else:
                         if obs.trigger_description['make active'] is not None:
                             for obstacle_to_be_activated in obs.trigger_description['make active']:
@@ -535,13 +536,12 @@ class World(object):
                                 # self.obstacles[self.location][make_active_id].process_()
                                 # self.obstacles[self.location][make_active_id].next_action()
 
-                    if obs.trigger_description['disappear']:
-                        dead.append(obs.id)
-                        continue
+                    if obs.trigger_description:
+                        if obs.trigger_description['disappear']:
+                            dead.append(obs.id)
+                            continue
             obs.percept({k: self.obstacles[self.location][k] for k in self.active_obstacles}, self.demolishers[self.location])
             obs.get_time(self.time_passed, self.game_cycles_counter)
-            # if obs.id == 25:
-            #     print('obs #25 world process')
             obs.process_()
 
         if dead:
