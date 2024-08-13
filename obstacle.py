@@ -18,6 +18,7 @@ class Obstacle(Entity):
         self.item_amount_threshold = 0
         self.item_amount_decrease_speed = 0
         self.sprite = ''
+        self.surface = None  # Generated particular surface for this particular object.
         self.active_flag = False
         self.active = False
         self.actions = dict()

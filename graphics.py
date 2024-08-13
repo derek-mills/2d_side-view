@@ -94,11 +94,13 @@ def load_single_frame(source, frame, name, scale_factor=1):
         'mask rect': pygame.mask.from_surface(scaled_cropped_surf.convert_alpha()).get_rect(),
         'current mask rect': pygame.Rect(0,0,0,0)
     }
-    sprites_reference[name] = {
-        'sprite': scaled_cropped_surf,
-        'sprite center': snap_x * scale_factor,
-        'sprite asymmetric': sprite_asymmetric
-    }
+
+    print(f'[load single frame] added {name=} {sprites[name]}')
+    # sprites_reference[name] = {
+    #     'sprite': scaled_cropped_surf,
+    #     'sprite center': snap_x * scale_factor,
+    #     'sprite asymmetric': sprite_asymmetric
+    # }
 
 def load_frames(source, approximate_frames, name, scale_factor=1):
     frame_count = 0
@@ -401,6 +403,7 @@ sz = tile_set.get_size()
 tile_number = 0
 for x in range(start_x, sz[0], tile_width + tiles_x_gap):
     for y in range(start_y, sz[1], tile_height + tiles_y_gap):
-        load_single_frame(tile_set, ((x, y, tile_width, tile_height),), tile_number)
-        # self.tiles[tile_number] = tile_set.subsurface((x, y, tile_width, tile_height))
+        # load_single_frame(tile_set, ((x, y, tile_width, tile_height),), tile_number)
+        load_single_frame(tile_set, ((x, y, tile_width, tile_height),), 'tile ' + str(tile_number))
+
         tile_number += 1

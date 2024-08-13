@@ -237,7 +237,21 @@ class World(object):
                 if 'exotic movement' in self.locations[self.location]['obstacles']['settings'][entity.id] else None
 
             entity.active = self.locations[self.location]['obstacles']['settings'][entity.id]['active']
-            entity.sprite = self.locations[self.location]['obstacles']['settings'][entity.id]['sprite']
+
+
+            # Make sprite surface for obstacle:
+            # print(self.locations[self.location]['obstacles']['settings'][entity.id]['sprite'])
+            # print(sprites[self.locations[self.location]['obstacles']['settings'][entity.id]['sprite']])
+            entity.surface = pygame.Surface((entity.rectangle.width, entity.rectangle.height)).convert_alpha()
+            tile_name = 'tile ' + str(self.locations[self.location]['obstacles']['settings'][entity.id]['sprite'])
+            # print(tile_name, sprites[tile_name]['sprite'])
+            sprite_to_fill_surface = sprites[tile_name]['sprite']
+            sz = sprite_to_fill_surface.get_size()
+            for dx in range(0, entity.rectangle.width, sz[0]):
+                for dy in range(0, entity.rectangle.height, sz[1]):
+                    entity.surface.blit(sprite_to_fill_surface, (dx, dy))
+            # entity.sprite = self.locations[self.location]['obstacles']['settings'][entity.id]['sprite']
+
             entity.is_force_render = self.locations[self.location]['obstacles']['settings'][entity.id]['force render'] if 'force render' in \
                                     self.locations[self.location]['obstacles']['settings'][entity.id].keys() else False
             entity.actions = self.locations[self.location]['obstacles']['settings'][entity.id]['actions']
@@ -994,78 +1008,92 @@ class World(object):
             if key not in self.active_obstacles:
                 continue
             obs = self.obstacles[self.location][key]
+            if obs.invisible:
+                continue
             if obs.teleport:
                 if not obs.teleport_description['on touch']:
                     if obs.trigger_activated:
                         pygame.draw.rect(self.screen, CYAN, (obs.rectangle.x - self.camera.offset_x, obs.rectangle.y - self.camera.offset_y,
                                                               obs.rectangle.width, obs.rectangle.height), 1)
-
-            if not obs.is_force_render:
-                continue
-            if obs.sprite:
-                # print(obs.sprite, sprites[obs.sprite])
+            if obs.is_item:
                 self.screen.blit(sprites[obs.sprite]['sprite'], (obs.rectangle.x - self.camera.offset_x, obs.rectangle.y - self.camera.offset_y))
-                                                                 # obs.rectangle.width, obs.rectangle.height))
                 continue
-            # if obs.invisible:
+
+            if obs.surface:
+                self.screen.blit(obs.surface, (obs.rectangle.x - self.camera.offset_x, obs.rectangle.y - self.camera.offset_y))
+                continue
+
+            # if not obs.is_force_render:
             #     continue
+            # try:
+            #     self.screen.blit(sprites[obs.sprite]['sprite'], (obs.rectangle.x - self.camera.offset_x, obs.rectangle.y - self.camera.offset_y))
+            # except:
+            #     print(obs.id, obs.sprite, sprites[obs.sprite])
+
+            # if obs.sprite is not None:
+            #     print(obs.sprite, sprites[obs.sprite])
+            #     self.screen.blit(sprites[obs.sprite]['sprite'], (obs.rectangle.x - self.camera.offset_x, obs.rectangle.y - self.camera.offset_y))
+            #                                                      # obs.rectangle.width, obs.rectangle.height))
+            #     continue
+
             # color = YELLOW if obs.is_ghost_platform else CYAN
             # pygame.draw.rect(self.screen, color, (obs.rectangle.x - self.camera.offset_x, obs.rectangle.y - self.camera.offset_y,
             #                                       obs.rectangle.width, obs.rectangle.height), 1)
-            if obs.active:
-                dx = 10
-                stats_y = 1
-                gap = 1
-                font_size = 10
-                params = (
-                    ('ID: ' + str(obs.id), RED),
-                    ('ACTV: ' + str(obs.active), RED),
-                    ('TRGGRED: ' + str(obs.trigger_activated), RED),
-                    ('WAIT COUNTER    : ' + str(obs.wait_counter), RED),
-                    ('DEST REACHED    : ' + str(obs.is_destination_reached), RED),
-                    ('RECTANGLE       : ' + str(obs.rectangle), RED),
-                    ('ACTION          : ' + str(obs.actions[obs.actions_set_number][obs.current_action]), RED) if obs.current_action else ('', RED),
-                    ('NEED NEXT ACTION: ' + str(obs.need_next_action), RED),
-                    ('VEC TO DESTINTON: ' + str(obs.vec_to_destination), RED),
-                    ('DESTINATION AREA: ' + str(obs.destination_area), RED),
-                    ('DESTINATION PNT : ' + str(obs.destination_point), RED),
-                    ('DESTINATION     : ' + str(obs.destination), RED),
-                    ('GRAVITY         : ' + str(obs.is_gravity_affected), RED),
-                    # 'CR',
-                )
-                for p in params:
-                    if p == 'CR':
-                        dx += 300
-                        gap = 1
-                        continue
-                    self.screen.blit(fonts.all_fonts[font_size].render(p[0], True, p[1], WHITE),
-                                     (obs.rectangle.x + dx - self.camera.offset_x, obs.rectangle.y + gap - self.camera.offset_y))
-                    gap += font_size
-                # pygame.draw.rect(self.screen, MAGENTA, (obs.destination_area.x - self.camera.offset_x, obs.destination_area.y - self.camera.offset_y,
-                #                                       obs.destination_area.width, obs.destination_area.height))
 
-            else:
-                dx = 10
-                stats_y = 1
-                gap = 1
-                font_size = 10
-                params = (
-                    ('ID: ' + str(obs.id), BLACK),
-                    ('TRGGR: ' + str(obs.trigger_activated), YELLOW),
-                    # ('GRAVITY         : ' + str(obs.is_gravity_affected), RED),
-                    # ('IN GROUND       : ' + str(obs.is_stand_on_ground), RED),
-                    # ('EDGE GRABBED    : ' + str(obs.is_edge_grabbed), RED),
-                    # ('WAIT COUNTER    : ' + str(obs.wait_counter), BLACK),
-                    # ('IDLE            : ' + str(obs.idle), BLACK),
-                )
-                for p in params:
-                    if p == 'CR':
-                        dx += 300
-                        gap = 1
-                        continue
-                    self.screen.blit(fonts.all_fonts[font_size].render(p[0], True, p[1]),
-                                     (obs.rectangle.x + dx - self.camera.offset_x, obs.rectangle.y + gap - self.camera.offset_y))
-                    gap += font_size
+            # if obs.active:
+            #     dx = 10
+            #     stats_y = 1
+            #     gap = 1
+            #     font_size = 10
+            #     params = (
+            #         ('ID: ' + str(obs.id), RED),
+            #         ('ACTV: ' + str(obs.active), RED),
+            #         ('TRGGRED: ' + str(obs.trigger_activated), RED),
+            #         ('WAIT COUNTER    : ' + str(obs.wait_counter), RED),
+            #         ('DEST REACHED    : ' + str(obs.is_destination_reached), RED),
+            #         ('RECTANGLE       : ' + str(obs.rectangle), RED),
+            #         ('ACTION          : ' + str(obs.actions[obs.actions_set_number][obs.current_action]), RED) if obs.current_action else ('', RED),
+            #         ('NEED NEXT ACTION: ' + str(obs.need_next_action), RED),
+            #         ('VEC TO DESTINTON: ' + str(obs.vec_to_destination), RED),
+            #         ('DESTINATION AREA: ' + str(obs.destination_area), RED),
+            #         ('DESTINATION PNT : ' + str(obs.destination_point), RED),
+            #         ('DESTINATION     : ' + str(obs.destination), RED),
+            #         ('GRAVITY         : ' + str(obs.is_gravity_affected), RED),
+            #         # 'CR',
+            #     )
+            #     for p in params:
+            #         if p == 'CR':
+            #             dx += 300
+            #             gap = 1
+            #             continue
+            #         self.screen.blit(fonts.all_fonts[font_size].render(p[0], True, p[1], WHITE),
+            #                          (obs.rectangle.x + dx - self.camera.offset_x, obs.rectangle.y + gap - self.camera.offset_y))
+            #         gap += font_size
+            #     # pygame.draw.rect(self.screen, MAGENTA, (obs.destination_area.x - self.camera.offset_x, obs.destination_area.y - self.camera.offset_y,
+            #     #                                       obs.destination_area.width, obs.destination_area.height))
+            #
+            # else:
+            #     dx = 10
+            #     stats_y = 1
+            #     gap = 1
+            #     font_size = 10
+            #     params = (
+            #         ('ID: ' + str(obs.id), BLACK),
+            #         ('TRGGR: ' + str(obs.trigger_activated), YELLOW),
+            #         # ('GRAVITY         : ' + str(obs.is_gravity_affected), RED),
+            #         # ('IN GROUND       : ' + str(obs.is_stand_on_ground), RED),
+            #         # ('EDGE GRABBED    : ' + str(obs.is_edge_grabbed), RED),
+            #         # ('WAIT COUNTER    : ' + str(obs.wait_counter), BLACK),
+            #         # ('IDLE            : ' + str(obs.idle), BLACK),
+            #     )
+            #     for p in params:
+            #         if p == 'CR':
+            #             dx += 300
+            #             gap = 1
+            #             continue
+            #         self.screen.blit(fonts.all_fonts[font_size].render(p[0], True, p[1]),
+            #                          (obs.rectangle.x + dx - self.camera.offset_x, obs.rectangle.y + gap - self.camera.offset_y))
+            #         gap += font_size
 
 
     def render_all(self):
