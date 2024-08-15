@@ -719,7 +719,7 @@ player_jake = {
             'hardness': 100
         },
     },
-    'max speed': 12,
+    'max speed': 6,
     'items': (whip,demon_2_close),
     # 'items': (whip,fireball_staff,sword,kitchen_knife,),
     'animations': {
