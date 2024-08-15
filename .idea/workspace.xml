@@ -7,8 +7,8 @@
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locations_back.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations_back.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,13 +142,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00342" summary="Level editor: clipboard elements deletion implemented.">
-      <created>1722843818908</created>
-      <option name="number" value="00342" />
-      <option name="presentableId" value="LOCAL-00342" />
-      <option name="project" value="LOCAL" />
-      <updated>1722843818908</updated>
     </task>
     <task id="LOCAL-00343" summary="Level editor: clipboard elements deletion from the main menu works just fine.">
       <created>1722845004999</created>
@@ -486,7 +479,14 @@
       <option name="project" value="LOCAL" />
       <updated>1723699183917</updated>
     </task>
-    <option name="localTasksCounter" value="391" />
+    <task id="LOCAL-00391" summary="Added a counter to enemy set by random, that restricts ranged weapon unstoppable usage.">
+      <created>1723700213295</created>
+      <option name="number" value="00391" />
+      <option name="presentableId" value="LOCAL-00391" />
+      <option name="project" value="LOCAL" />
+      <updated>1723700213295</updated>
+    </task>
+    <option name="localTasksCounter" value="392" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -501,7 +501,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Demolishers got the own sprite described by surface, but changed to rectangle, 'cause not all the demolishers will be the round shaped." />
     <MESSAGE value="Fixed sliding bug during location change." />
     <MESSAGE value="Demon 2 becomes more spooky :)" />
     <MESSAGE value="Stamina reducing during slide." />
@@ -526,6 +525,7 @@
     <MESSAGE value="Improving enemy 'chasing' AI" />
     <MESSAGE value="Tiny improvement of render_text()" />
     <MESSAGE value="Enemy can decide to switch weapon back to melee if he doesn't have enough mana to use a ranged one." />
-    <option name="LAST_COMMIT_MESSAGE" value="Enemy can decide to switch weapon back to melee if he doesn't have enough mana to use a ranged one." />
+    <MESSAGE value="Added a counter to enemy set by random, that restricts ranged weapon unstoppable usage." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a counter to enemy set by random, that restricts ranged weapon unstoppable usage." />
   </component>
 </project>
