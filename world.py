@@ -103,6 +103,8 @@ class World(object):
         entity.stats['max health'] = description['health']
         # entity.max_health = description['health']
         entity.stats['health'] = description['health']
+        entity.stamina_replenish_modifier = description['stamina replenish']
+        entity.mana_replenish_modifier = description['mana replenish']
         # entity.health = description['health']
         # print(f'[add_actor] --------------------------------------------------------------')
         # print(f'[add_actor] Adding {entity.name}, id={entity.id}, {entity.stats["health"]=}')

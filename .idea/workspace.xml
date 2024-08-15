@@ -8,7 +8,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/misc_tools.py" beforeDir="false" afterPath="$PROJECT_DIR$/misc_tools.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -143,13 +143,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00340" summary="Level editor: added descriptor for clipboard points which reveals a map of every clipping point.">
-      <created>1722840825832</created>
-      <option name="number" value="00340" />
-      <option name="presentableId" value="LOCAL-00340" />
-      <option name="project" value="LOCAL" />
-      <updated>1722840825832</updated>
     </task>
     <task id="LOCAL-00341" summary="Level editor: clipboard structure is simplified: self.clipboard[location] = [(x, y), ..., (xn, yn)]">
       <created>1722842033596</created>
@@ -487,7 +480,14 @@
       <option name="project" value="LOCAL" />
       <updated>1723690971976</updated>
     </task>
-    <option name="localTasksCounter" value="389" />
+    <task id="LOCAL-00389" summary="Tiny improvement of render_text()">
+      <created>1723697793205</created>
+      <option name="number" value="00389" />
+      <option name="presentableId" value="LOCAL-00389" />
+      <option name="project" value="LOCAL" />
+      <updated>1723697793205</updated>
+    </task>
+    <option name="localTasksCounter" value="390" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -502,7 +502,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Collision detection with demolishers bug fixed." />
     <MESSAGE value="Demolishers got the own sprite described by surface, filled with a red circle, even if they don't get a sprite during creation." />
     <MESSAGE value="Demolishers got the own sprite described by surface, but changed to rectangle, 'cause not all the demolishers will be the round shaped." />
     <MESSAGE value="Fixed sliding bug during location change." />
@@ -527,6 +526,7 @@
     <MESSAGE value="Added claw attack weapon for Demon 2" />
     <MESSAGE value="Enemy is able to switch weapons depends on combat situation." />
     <MESSAGE value="Improving enemy 'chasing' AI" />
-    <option name="LAST_COMMIT_MESSAGE" value="Improving enemy 'chasing' AI" />
+    <MESSAGE value="Tiny improvement of render_text()" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tiny improvement of render_text()" />
   </component>
 </project>

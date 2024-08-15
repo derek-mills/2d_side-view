@@ -330,10 +330,9 @@ demon_1 = {
 demon_2 = {
     'name': 'demon 2',
     'drop': ['exp' for i in range(randint(3,5))],
-    # 'start_xy': (1500, 200),
     'health': 1500.,
-    'height': 190,
-    'width': 49,
+    'mana replenish': 50.,
+    'stamina replenish': 1.,
     'blood color': (150, 50, 10),
     # 'body state': {
     #     'viewing range': 600,
@@ -360,7 +359,7 @@ demon_2 = {
         },
     },
     'max speed': 2 + randint(1, 10) / 10,
-    'items': (demon_2_close, demon_2_mid,),
+    'items': (demon_2_close, demon_2_mid, fireball_staff),
     'animations': {
         'stand still right': {
                 'repeat': True, 'interruptable': True,
@@ -707,8 +706,6 @@ demon_2 = {
 player_jake = {
     'name': 'Jake',
     'health': 1000.,
-    'height': 150,
-    'width': 49,
     'blood color': (255, 0, 0),
     # 'height': 190,
     # 'width': 49,
@@ -731,6 +728,8 @@ player_jake = {
     #     'weight': 70,  # Kilos.
     # },
     'gravity affected': True,
+    'mana replenish': 1.,
+    'stamina replenish': 1.,
     'body': {
         'head': {
             'hardness': 100

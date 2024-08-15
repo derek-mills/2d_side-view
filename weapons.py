@@ -117,7 +117,7 @@ fireball_staff = {
     'droppable': True,
     'need ammo': False,
     'ammo': 0,
-    'reach': 50,
+    'reach': 1000,
     'demolishers': (
         {
             'rect': pygame.Rect(0, 0, 70, 70), 'flyer': False,

@@ -151,7 +151,7 @@ class Actor(Entity):
                 self.ai_input_right_arrow = False
                 # return
             else:
-                self.activate_weapon(1)  # Activate middle-ranged weapon (always has index 1).
+                # self.activate_weapon(1)  # Activate middle-ranged weapon (always has index 1).
 
                 if self.rectangle.centerx > self.target.rectangle.centerx:
                     # if self.rectangle.centerx - self.target.rectangle.centerx <= self.current_weapon['reach']:
@@ -165,8 +165,19 @@ class Actor(Entity):
                     # else:
                     self.ai_input_left_arrow = False
                     self.ai_input_right_arrow = True
+
+                self.activate_weapon(1)  # Activate middle-ranged weapon (always has index 1).
                 if abs(self.rectangle.centerx - self.target.rectangle.centerx) <= self.current_weapon['reach']:
                     self.ai_input_attack = True
+                else:
+                    if randint(0, 50) == 1:
+                        self.activate_weapon(2)
+                        if self.stats['mana'] < self.current_mana_lost_per_attack:
+                            self.activate_weapon(1)
+                        else:
+                            self.ai_input_attack = True
+                            self.ai_input_left_arrow = False
+                            self.ai_input_right_arrow = False
 
         if self.ai_input_right_arrow:
             self.set_action('right action')
@@ -251,6 +262,12 @@ class Actor(Entity):
 
     def get_state(self):
         return self.__state
+
+    # def got_enough_mana(self):
+    #     if self.current_weapon['mana consumption'] <= self.stats['mana']:
+    #         return True
+    #     else:
+    #         return False
 
     def set_state(self, new_state):
         # print(f'[actor.set_state] new state: {new_state} {self.cycles_passed}')
