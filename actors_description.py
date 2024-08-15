@@ -9,26 +9,10 @@ demon_1 = {
     'drop': ['exp' for i in range(randint(3,5))],
     # 'start_xy': (1500, 200),
     'health': 1500.,
-    'height': 190,
-    'width': 49,
-    'body state': {
-        'viewing range': 600,
-        'regeneration ability': 0.001,
-        'blood volume': 15000,
-        'blood volume replenish': .01,
-        'stamina replenish': 1,
-        'consciousness replenish': 10,
-        'consciousness threshold': 10,
-        'bleeding reduce': .01,  #
-        'bleeding resistance': 0,  # Reduce bleeding, in percents.
-        'max blood volume': 15000,
-        'max stamina': 120,
-        'max fatigue': 100,
-        'max consciousness': 1000,
-        'luck': 5,
-        'strength': 25,
-        'weight': 70,  # Kilos.
-    },
+    'mana replenish': .5,
+    'stamina replenish': 2.,
+    'height': 150,  # For level editor use only
+    'width': 50,  # For level editor use only
     'gravity affected': True,
     'body': {
         'head': {
@@ -36,7 +20,7 @@ demon_1 = {
         },
     },
     'max speed': 2 + randint(1, 10) / 10,
-    'items': (whip,),
+    'items': (demon_2_close, sword, fireball_staff),
     'animations': {
         'stand still right': {
                 'repeat': True, 'interruptable': True,

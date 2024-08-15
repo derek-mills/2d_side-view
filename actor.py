@@ -26,6 +26,7 @@ class Actor(Entity):
         self.ai_input_left_arrow = False
         self.ai_input_attack = False
         self.ai_input_jump = False
+        self.next_ranged_weapon_usage_counter = 0
 
         self.acceleration = .5
         self.air_acceleration = .4
@@ -170,7 +171,11 @@ class Actor(Entity):
                 if abs(self.rectangle.centerx - self.target.rectangle.centerx) <= self.current_weapon['reach']:
                     self.ai_input_attack = True
                 else:
-                    if randint(0, 50) == 1:
+                    # if randint(0, 50) == 1:
+                    if self.next_ranged_weapon_usage_counter > 0:
+                        self.next_ranged_weapon_usage_counter -= 1
+                    else:
+                        self.next_ranged_weapon_usage_counter = randint(100, 1200)
                         self.activate_weapon(2)
                         if self.stats['mana'] < self.current_mana_lost_per_attack:
                             self.activate_weapon(1)
