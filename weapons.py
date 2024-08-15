@@ -183,7 +183,7 @@ demon_2_mid = {
     'amount threshold': 1,
     'amount decrease speed': 0,
     'affects on': '',
-    'stamina consumption': 1.0,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
+    'stamina consumption': 0.5,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
     'mana consumption': 0.,
     'ignore user input': True,  # Steal the ability to control a character for a while.
     'animation speed modifier': 1.,  # 0 < x < 1: speed animation up, x > 1: slow down.
@@ -192,7 +192,7 @@ demon_2_mid = {
     'droppable': True,
     'need ammo': False,
     'ammo': 0,
-    'reach': 170,
+    'reach': 300,
     'demolishers': (
         {
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
@@ -220,7 +220,7 @@ demon_2_close = {
     'amount threshold': 1,
     'amount decrease speed': 0,
     'affects on': '',
-    'stamina consumption': 1.0,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
+    'stamina consumption': 0.2,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
     'mana consumption': 0.,
     'ignore user input': True,  # Steal the ability to control a character for a while.
     'animation speed modifier': 1.,  # 0 < x < 1: speed animation up, x > 1: slow down.
@@ -229,7 +229,7 @@ demon_2_close = {
     'droppable': True,
     'need ammo': False,
     'ammo': 0,
-    'reach': 100,
+    'reach': 200,
     'demolishers': (
         {
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,

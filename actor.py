@@ -144,22 +144,27 @@ class Actor(Entity):
             # Change weapon depends on target vicinity:
             # print('[think]', list(self.inventory['weapons'].keys()))
             if self.sprite_rectangle.colliderect(self.target.sprite_rectangle):
-                self.activate_weapon(list(self.inventory['weapons'].keys())[0])
+                self.activate_weapon(0)
+                self.ai_input_attack = True
+                self.ai_input_left_arrow = False
+                self.ai_input_right_arrow = False
+                # return
             else:
-                self.activate_weapon(list(self.inventory['weapons'].keys())[1])
+                self.activate_weapon(1)
 
-            if self.rectangle.left > self.target.rectangle.right:
-                if self.rectangle.left - self.target.rectangle.right <= self.current_weapon['reach']:
-                    self.ai_input_attack = True
+                if self.rectangle.centerx > self.target.rectangle.centerx:
+                    if self.rectangle.centerx - self.target.rectangle.centerx <= self.current_weapon['reach']:
+                        self.ai_input_attack = True
+                    else:
+                        self.ai_input_left_arrow = True
+                        self.ai_input_right_arrow = False
+                # elif self.rectangle.right < self.target.rectangle.left:
                 else:
-                    self.ai_input_left_arrow = True
-                    self.ai_input_right_arrow = False
-            elif self.rectangle.right < self.target.rectangle.left:
-                if self.target.rectangle.left - self.rectangle.right <= self.current_weapon['reach']:
-                    self.ai_input_attack = True
-                else:
-                    self.ai_input_left_arrow = False
-                    self.ai_input_right_arrow = True
+                    if self.target.rectangle.centerx - self.rectangle.centerx <= self.current_weapon['reach']:
+                        self.ai_input_attack = True
+                    else:
+                        self.ai_input_left_arrow = False
+                        self.ai_input_right_arrow = True
 
         # if self.is_input_up_arrow:
         #     actor.set_action('up action')
@@ -234,13 +239,21 @@ class Actor(Entity):
     def activate_weapon(self, uuid):
         if not self.inventory:
             return
-        print('[activate_weapon]', self.name, self.inventory['weapons'].keys())
+
         if type(uuid) is int:
         # if uuid == 0:
             all_weapons = list(self.inventory['weapons'].keys())
+            if self.current_weapon:
+                # print(f'{self.inventory["weapons"][all_weapons[uuid]]["item"]["label"]=}')
+                # print(f'{self.current_weapon["label"]=}')
+                if self.current_weapon['label'] == self.inventory["weapons"][all_weapons[uuid]]["item"]["label"]:
+                    return
             self.body['right hand']['weapon'] = self.inventory['weapons'][all_weapons[uuid]]
             # self.body['right hand']['weapon'] = self.inventory['weapons'][all_weapons[0]]
         else:
+            if self.current_weapon:
+                if self.current_weapon['label'] == self.inventory["weapons"][uuid]["item"]["label"]:
+                    return
             self.body['right hand']['weapon'] = self.inventory['weapons'][uuid]
 
         self.current_weapon = self.body['right hand']['weapon']['item']
@@ -248,6 +261,7 @@ class Actor(Entity):
         # print(self.current_weapon['demolishers'])
         self.current_stamina_lost_per_attack = self.normal_stamina_lost_per_attack * self.current_weapon['stamina consumption']
         self.current_mana_lost_per_attack = self.normal_mana_lost_per_attack * self.current_weapon['mana consumption']
+        print('[activate_weapon]', self.name, self.current_weapon)
         # print(self.current_weapon)
         # {'aimed fire': True, 'attack animation': 'stab', 'steal user input': True, 'leave particles': False, 'class': 'weapons', 'type': 'melee', 'sub-type': 'bladed', 'sound': 'sound_swing_2', 'droppable': True, 'need ammo': False, 'ammo': 0, 'label': 'KITCHEN KNIFE', 'sprite': 'kitchen knife', 'pierce': False, 'damager TTL': 200, 'damagers spread': False, 'damager static': True, 'damager radius': 1, 'damagers quantity': 1, 'damager reveal delay': 0, 'damager reveals with flash': False, 'damager brings light': False, 'damager fly speed reduce': 0, 'damager fly speed': 1.5, 'damager invisible': False, 'damager weight': 5, 'description': 'Casual kitchen knife.', 'reach': 1, 'weight': 5, 'hardness': 10, 'special': ('bleeding',)}
         # exit()
