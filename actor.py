@@ -134,6 +134,18 @@ class Actor(Entity):
 
     def think(self):
         if self.think_type == 'chaser':
+            # lst = list(self.actors['player'].inventory['weapons'].keys())
+            # indx = lst.index(self.actors['player'].current_weapon['label'])
+            # if indx + 1 > len(lst) - 1:
+            #     self.actors['player'].activate_weapon(0)
+            # else:
+            #     self.actors['player'].activate_weapon(lst[indx + 1])
+
+            # print(list(self.inventory['weapons'].keys()))
+            # if self.rectangle.colliderect(self.target.rectangle):
+            #     self.activate_weapon(list(self.inventory['weapons'].keys())[0])
+            # else:
+            #     self.activate_weapon(list(self.inventory['weapons'].keys())[1])
             if self.rectangle.left > self.target.rectangle.right:
                 if self.rectangle.left - self.target.rectangle.right <= self.current_weapon['reach']:
                     self.ai_input_attack = True

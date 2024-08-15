@@ -728,7 +728,10 @@ class World(object):
             #     continue
             while actor.drop_from_inventory:
                 i = actor.drop_from_inventory.pop()
-                self.add_item(all_items[i], (actor.rectangle.right if actor.look == 1 else actor.rectangle.left - sprites[i]['sprite'].get_width(), actor.rectangle.bottom - sprites[i]['sprite'].get_height()))
+                # self.add_item(all_items[i], actor.rectangle.topleft)
+                # self.add_item(all_items[i], (actor.rectangle.centerx, actor.rectangle.top))
+                # self.add_item(all_items[i], (actor.rectangle.right if actor.look == 1 else actor.rectangle.left - sprites[i]['sprite'].get_width(), actor.rectangle.bottom - sprites[i]['sprite'].get_height()))
+                self.add_item(all_items[i], (actor.rectangle.centerx - sprites[i]['sprite'].get_width() //2, actor.rectangle.bottom - sprites[i]['sprite'].get_height()))
 
             if actor.dead:
                 dead.append(actor.id)
@@ -1111,8 +1114,8 @@ class World(object):
     def render_all(self):
         self.render_background()
         self.render_obstacles()
-        self.render_demolishers()
         self.render_actors()
+        self.render_demolishers()
         self.render_particles()
         # self.render_player_actor()
         if self.is_i:

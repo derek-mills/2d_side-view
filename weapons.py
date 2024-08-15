@@ -169,3 +169,78 @@ whip = {
     ),
 
 }
+
+
+demon_2_mid = {
+    'description': 'Demon 2 middle ranged weapon',
+    'class': 'weapons',
+    'type': 'melee',
+    'label': 'demon 2 mid',
+    'sprite': 'whip',
+    'attack animation': 'whip',
+    'sound': 'sound_swing_2',
+    'amount': 1,
+    'amount threshold': 1,
+    'amount decrease speed': 0,
+    'affects on': '',
+    'stamina consumption': 1.0,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
+    'mana consumption': 0.,
+    'ignore user input': True,  # Steal the ability to control a character for a while.
+    'animation speed modifier': 1.,  # 0 < x < 1: speed animation up, x > 1: slow down.
+    'leave particles': False,
+    'attack type': 'pierce',
+    'droppable': True,
+    'need ammo': False,
+    'ammo': 0,
+    'reach': 170,
+    'demolishers': (
+        {
+            'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
+            'demolisher sprite': 'whip demolisher',
+            'pierce': False, 'demolisher TTL': 6, 'speed': 0,
+            'damage': 150, 'static': True, 'damage reduce': 0,
+            'collides': False, 'gravity affected': False,
+            'bounce': False, 'bounce factor': 0.,
+            # 'aftermath': 'explode'
+            'aftermath': 'disappear'
+        },
+    ),
+
+}
+
+demon_2_close = {
+    'description': 'Demon 2 close combat weapon',
+    'class': 'weapons',
+    'type': 'melee',
+    'label': 'demon 2 mid',
+    'sprite': 'whip',
+    'attack animation': 'stab',
+    'sound': 'sound_swing_2',
+    'amount': 1,
+    'amount threshold': 1,
+    'amount decrease speed': 0,
+    'affects on': '',
+    'stamina consumption': 1.0,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
+    'mana consumption': 0.,
+    'ignore user input': True,  # Steal the ability to control a character for a while.
+    'animation speed modifier': 1.,  # 0 < x < 1: speed animation up, x > 1: slow down.
+    'leave particles': False,
+    'attack type': 'pierce',
+    'droppable': True,
+    'need ammo': False,
+    'ammo': 0,
+    'reach': 100,
+    'demolishers': (
+        {
+            'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
+            'demolisher sprite': 'demon 2 claw demolisher',
+            'pierce': False, 'demolisher TTL': 10, 'speed': 0,
+            'damage': 2, 'static': True, 'damage reduce': 0,
+            'collides': False, 'gravity affected': False,
+            'bounce': False, 'bounce factor': 0.,
+            # 'aftermath': 'explode'
+            'aftermath': 'disappear'
+        },
+    ),
+
+}

@@ -6,9 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/graphics.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphics.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obstacle.py" beforeDir="false" afterPath="$PROJECT_DIR$/obstacle.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/animations/demon_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/animations/demon_2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/backgrounds/lux_ground.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/backgrounds/lux_ground.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/items.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/items.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -143,20 +148,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00335" summary="Actor's rectangle size based on the #0 sprite size.">
-      <created>1722579254638</created>
-      <option name="number" value="00335" />
-      <option name="presentableId" value="LOCAL-00335" />
-      <option name="project" value="LOCAL" />
-      <updated>1722579254638</updated>
-    </task>
-    <task id="LOCAL-00336" summary="Demolisher sticks to the magenta pixel of the actor's sprite.">
-      <created>1722584113695</created>
-      <option name="number" value="00336" />
-      <option name="presentableId" value="LOCAL-00336" />
-      <option name="project" value="LOCAL" />
-      <updated>1722584113695</updated>
     </task>
     <task id="LOCAL-00337" summary="Demolisher sticks to the magenta pixel of the actor's sprite: added for all the actors.">
       <created>1722588904844</created>
@@ -487,7 +478,21 @@
       <option name="project" value="LOCAL" />
       <updated>1723530990436</updated>
     </task>
-    <option name="localTasksCounter" value="384" />
+    <task id="LOCAL-00384" summary="Added particular unique 'surface' for active obstacles">
+      <created>1723538008880</created>
+      <option name="number" value="00384" />
+      <option name="presentableId" value="LOCAL-00384" />
+      <option name="project" value="LOCAL" />
+      <updated>1723538008880</updated>
+    </task>
+    <task id="LOCAL-00385" summary="Added particular unique 'surface' for active obstacles">
+      <created>1723538107893</created>
+      <option name="number" value="00385" />
+      <option name="presentableId" value="LOCAL-00385" />
+      <option name="project" value="LOCAL" />
+      <updated>1723538107893</updated>
+    </task>
+    <option name="localTasksCounter" value="386" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -502,7 +507,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Mana consumption mechanism implemented." />
     <MESSAGE value="Weapon icon appears on the info panel." />
     <MESSAGE value="Weapon description modified." />
     <MESSAGE value="Masks implemented.&#10;Demolishers have sprites now. &#10;Collision detection with demolishers based on masks." />
@@ -527,6 +531,7 @@
     <MESSAGE value="No hopping back if player actor loaded by the Stash and getting damaged." />
     <MESSAGE value="The Stash falls and collides the floor." />
     <MESSAGE value="Sprite tiles improved" />
-    <option name="LAST_COMMIT_MESSAGE" value="Sprite tiles improved" />
+    <MESSAGE value="Added particular unique 'surface' for active obstacles" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added particular unique 'surface' for active obstacles" />
   </component>
 </project>
