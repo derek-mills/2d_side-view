@@ -95,7 +95,7 @@ def load_single_frame(source, frame, name, scale_factor=1):
         'current mask rect': pygame.Rect(0,0,0,0)
     }
 
-    print(f'[load single frame] added {name=} {sprites[name]}')
+    # print(f'[load single frame] added {name=} {sprites[name]}')
     # sprites_reference[name] = {
     #     'sprite': scaled_cropped_surf,
     #     'sprite center': snap_x * scale_factor,

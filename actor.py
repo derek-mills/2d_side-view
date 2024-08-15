@@ -141,11 +141,13 @@ class Actor(Entity):
             # else:
             #     self.actors['player'].activate_weapon(lst[indx + 1])
 
-            # print(list(self.inventory['weapons'].keys()))
-            # if self.rectangle.colliderect(self.target.rectangle):
-            #     self.activate_weapon(list(self.inventory['weapons'].keys())[0])
-            # else:
-            #     self.activate_weapon(list(self.inventory['weapons'].keys())[1])
+            # Change weapon depends on target vicinity:
+            # print('[think]', list(self.inventory['weapons'].keys()))
+            if self.sprite_rectangle.colliderect(self.target.sprite_rectangle):
+                self.activate_weapon(list(self.inventory['weapons'].keys())[0])
+            else:
+                self.activate_weapon(list(self.inventory['weapons'].keys())[1])
+
             if self.rectangle.left > self.target.rectangle.right:
                 if self.rectangle.left - self.target.rectangle.right <= self.current_weapon['reach']:
                     self.ai_input_attack = True
@@ -200,8 +202,8 @@ class Actor(Entity):
     def add_items_to_inventory(self, items):
         if not items:
             return
-        # print(items)
         for item in items:
+            print(f'[add_items_to_inventory], {self.name} prepare to get an item: {item["description"]}')
             if item['class'] not in self.inventory.keys():
                 self.inventory[item['class']] = dict()
             if item['label'] in self.inventory[item['class']].keys():
@@ -232,22 +234,18 @@ class Actor(Entity):
     def activate_weapon(self, uuid):
         if not self.inventory:
             return
-        # print(self.inventory)
-        if uuid == 0:
+        print('[activate_weapon]', self.name, self.inventory['weapons'].keys())
+        if type(uuid) is int:
+        # if uuid == 0:
             all_weapons = list(self.inventory['weapons'].keys())
-            self.body['right hand']['weapon'] = self.inventory['weapons'][all_weapons[0]]
+            self.body['right hand']['weapon'] = self.inventory['weapons'][all_weapons[uuid]]
+            # self.body['right hand']['weapon'] = self.inventory['weapons'][all_weapons[0]]
         else:
             self.body['right hand']['weapon'] = self.inventory['weapons'][uuid]
-        # self.current_weapon.clear()
-        # if uuid == 0:
-        #     all_weapons = list(self.inventory['weapons'].keys())
-        #     self.current_weapon = self.inventory['weapons'][all_weapons[0]]['item']
-        # else:
-        #     self.current_weapon = self.inventory['weapons'][uuid]['item']
 
         self.current_weapon = self.body['right hand']['weapon']['item']
-        print('------------------------------')
-        print(self.current_weapon['demolishers'])
+        # print('------------------------------')
+        # print(self.current_weapon['demolishers'])
         self.current_stamina_lost_per_attack = self.normal_stamina_lost_per_attack * self.current_weapon['stamina consumption']
         self.current_mana_lost_per_attack = self.normal_mana_lost_per_attack * self.current_weapon['mana consumption']
         # print(self.current_weapon)

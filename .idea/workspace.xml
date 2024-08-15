@@ -9,12 +9,7 @@
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/graphics.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphics.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/animations/demon_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/animations/demon_2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/backgrounds/lux_ground.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/backgrounds/lux_ground.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/items.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/items.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,13 +143,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00337" summary="Demolisher sticks to the magenta pixel of the actor's sprite: added for all the actors.">
-      <created>1722588904844</created>
-      <option name="number" value="00337" />
-      <option name="presentableId" value="LOCAL-00337" />
-      <option name="project" value="LOCAL" />
-      <updated>1722588904844</updated>
     </task>
     <task id="LOCAL-00338" summary="If location changes, demolishers die.">
       <created>1722825563256</created>
@@ -492,7 +480,14 @@
       <option name="project" value="LOCAL" />
       <updated>1723538107893</updated>
     </task>
-    <option name="localTasksCounter" value="386" />
+    <task id="LOCAL-00386" summary="Added claw attack weapon for Demon 2">
+      <created>1723687776682</created>
+      <option name="number" value="00386" />
+      <option name="presentableId" value="LOCAL-00386" />
+      <option name="project" value="LOCAL" />
+      <updated>1723687776682</updated>
+    </task>
+    <option name="localTasksCounter" value="387" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -507,7 +502,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Weapon icon appears on the info panel." />
     <MESSAGE value="Weapon description modified." />
     <MESSAGE value="Masks implemented.&#10;Demolishers have sprites now. &#10;Collision detection with demolishers based on masks." />
     <MESSAGE value="Collision detection with demolishers bug fixed." />
@@ -532,6 +526,7 @@
     <MESSAGE value="The Stash falls and collides the floor." />
     <MESSAGE value="Sprite tiles improved" />
     <MESSAGE value="Added particular unique 'surface' for active obstacles" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added particular unique 'surface' for active obstacles" />
+    <MESSAGE value="Added claw attack weapon for Demon 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added claw attack weapon for Demon 2" />
   </component>
 </project>

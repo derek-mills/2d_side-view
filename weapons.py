@@ -212,7 +212,7 @@ demon_2_close = {
     'description': 'Demon 2 close combat weapon',
     'class': 'weapons',
     'type': 'melee',
-    'label': 'demon 2 mid',
+    'label': 'demon 2 close',
     'sprite': 'whip',
     'attack animation': 'stab',
     'sound': 'sound_swing_2',

@@ -360,7 +360,7 @@ demon_2 = {
         },
     },
     'max speed': 2 + randint(1, 10) / 10,
-    'items': (demon_2_close,demon_2_mid,),
+    'items': (demon_2_close, demon_2_mid,),
     'animations': {
         'stand still right': {
                 'repeat': True, 'interruptable': True,
@@ -737,7 +737,7 @@ player_jake = {
         },
     },
     'max speed': 12,
-    'items': (whip,),
+    'items': (whip,demon_2_close),
     # 'items': (whip,fireball_staff,sword,kitchen_knife,),
     'animations': {
         'stand still right': {
