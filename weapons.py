@@ -176,7 +176,7 @@ demon_2_mid = {
     'class': 'weapons',
     'type': 'melee',
     'label': 'demon 2 mid',
-    'sprite': 'whip',
+    'sprite': 'demon 2 mid claw demolisher',
     'attack animation': 'whip',
     'sound': 'sound_swing_2',
     'amount': 1,
@@ -192,11 +192,11 @@ demon_2_mid = {
     'droppable': True,
     'need ammo': False,
     'ammo': 0,
-    'reach': 300,
+    'reach': 200,
     'demolishers': (
         {
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
-            'demolisher sprite': 'whip demolisher',
+            'demolisher sprite': 'demon 2 mid claw demolisher',
             'pierce': False, 'demolisher TTL': 6, 'speed': 0,
             'damage': 150, 'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,

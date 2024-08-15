@@ -316,6 +316,7 @@ load_single_frame(items, ((20,60,20,30),), 'short sword', 5)
 load_single_frame(items, ((20,90,20,30),), 'whip', 5)
 load_single_frame(items, ((40,90,80,30),), 'whip demolisher', 4)
 load_single_frame(items, ((40,120,40,30),), 'demon 2 claw demolisher', 5)
+load_single_frame(items, ((80,120,40,30),), 'demon 2 mid claw demolisher', 5)
 load_single_frame(items, ((0,60,20,30),), 'stash', 8)
 
 
