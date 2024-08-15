@@ -138,13 +138,14 @@ def render_text(text, screen, font_size, font_color, font_name, *alignment):
 
     text_xy = [0, 0]
     if alignment:
+        print(f'[game over] {alignment=}')
         # text_xy = [0, 0]
         for align in alignment:
             # align[0] - description pf text alignment (center, stick left side, stick to the right etc.)
             # align[1] - how many pixels does text offsets from the alignment point.
-            if align[0] == 'center_x':
+            if align == 'center_x':
                 text_xy[0] = MAXX_DIV_2 - txt_sz[0] // 2  # + align[1]
-            if align[0] == 'center_y':
+            elif align == 'center_y':
                 text_xy[1] = MAXY_DIV_2 - txt_sz[1] // 2  # + align[1]
 
 

@@ -235,7 +235,7 @@ demon_2_close = {
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
             'demolisher sprite': 'demon 2 claw demolisher',
             'pierce': False, 'demolisher TTL': 10, 'speed': 0,
-            'damage': 2, 'static': True, 'damage reduce': 0,
+            'damage': 250, 'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
             # 'aftermath': 'explode'

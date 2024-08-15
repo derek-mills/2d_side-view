@@ -144,39 +144,29 @@ class Actor(Entity):
             # Change weapon depends on target vicinity:
             # print('[think]', list(self.inventory['weapons'].keys()))
             if self.sprite_rectangle.colliderect(self.target.sprite_rectangle):
-                self.activate_weapon(0)
+                # Smash actor immediately:
+                self.activate_weapon(0)  # Activate close combat weapon (always has index 0).
                 self.ai_input_attack = True
                 self.ai_input_left_arrow = False
                 self.ai_input_right_arrow = False
                 # return
             else:
-                self.activate_weapon(1)
+                self.activate_weapon(1)  # Activate middle-ranged weapon (always has index 1).
 
                 if self.rectangle.centerx > self.target.rectangle.centerx:
-                    if self.rectangle.centerx - self.target.rectangle.centerx <= self.current_weapon['reach']:
-                        self.ai_input_attack = True
-                    else:
-                        self.ai_input_left_arrow = True
-                        self.ai_input_right_arrow = False
-                # elif self.rectangle.right < self.target.rectangle.left:
+                    # if self.rectangle.centerx - self.target.rectangle.centerx <= self.current_weapon['reach']:
+                    #     self.ai_input_attack = True
+                    # else:
+                    self.ai_input_left_arrow = True
+                    self.ai_input_right_arrow = False
                 else:
-                    if self.target.rectangle.centerx - self.rectangle.centerx <= self.current_weapon['reach']:
-                        self.ai_input_attack = True
-                    else:
-                        self.ai_input_left_arrow = False
-                        self.ai_input_right_arrow = True
-
-        # if self.is_input_up_arrow:
-        #     actor.set_action('up action')
-        # else:
-        #     # if actor.get_state() == 'up action':
-        #     actor.set_action('up action cancel')
-        #
-        # if self.is_input_down_arrow:
-        #     actor.set_action('down action')
-        # else:
-        #     # if actor.get_state() == 'down action':
-        #     actor.set_action('down action cancel')
+                    # if self.target.rectangle.centerx - self.rectangle.centerx <= self.current_weapon['reach']:
+                    #     self.ai_input_attack = True
+                    # else:
+                    self.ai_input_left_arrow = False
+                    self.ai_input_right_arrow = True
+                if abs(self.rectangle.centerx - self.target.rectangle.centerx) <= self.current_weapon['reach']:
+                    self.ai_input_attack = True
 
         if self.ai_input_right_arrow:
             self.set_action('right action')
@@ -192,13 +182,6 @@ class Actor(Entity):
             self.set_action('jump action')
         else:
             self.set_action('jump action cancel')
-
-        # if self.is_l_alt and not self.l_alt_multiple_press_prevent:
-        #     self.l_alt_multiple_press_prevent = True
-        #     actor.set_action('hop back')
-        # else:
-        #     if actor.get_state() == 'hop back progress':
-        #         actor.set_action('hop back action cancel')
 
         if self.ai_input_attack:
             self.ai_input_attack = False
