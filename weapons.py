@@ -170,6 +170,43 @@ whip = {
 
 }
 
+jake_kick = {
+    'description': 'A powerful kick, called The Boot of Doom.',
+    'class': 'weapons',
+    'type': 'melee',
+    'label': 'jake kick',
+    'sprite': 'boot',
+    'sound': 'sound_swing_2',
+    'amount': 1,
+    'amount threshold': 1,
+    'amount decrease speed': 0,
+    'affects on': '',
+    'stamina consumption': .1,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
+    'mana consumption': 0.,
+    'attack animation': 'kick',
+    'ignore user input': True,  # Steal the ability to control a character for a while.
+    'animation speed modifier': 1.,  # 0 < x < 1: speed animation up, x > 1: slow down.
+    'leave particles': False,
+    'attack type': 'pierce',
+    'droppable': False,
+    'need ammo': False,
+    'ammo': 0,
+    'reach': 170,
+    'demolishers': (
+        {
+            'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
+            'demolisher sprite': 'jake kick demolisher',
+            'pierce': False, 'demolisher TTL': 8, 'speed': 0,
+            'damage': 10, 'static': True, 'damage reduce': 0,
+            'collides': False, 'gravity affected': False,
+            'bounce': False, 'bounce factor': 0.,
+            # 'aftermath': 'explode'
+            'aftermath': 'disappear'
+        },
+    ),
+
+}
+
 
 demon_2_mid = {
     'description': 'Demon 2 middle ranged weapon',

@@ -27,6 +27,8 @@ class Actor(Entity):
         self.ai_input_attack = False
         self.ai_input_jump = False
         self.next_ranged_weapon_usage_counter = 0
+        self.previously_used_weapon = ''
+        self.force_use_previous_weapon = False
 
         self.acceleration = .5
         self.air_acceleration = .4
@@ -247,13 +249,16 @@ class Actor(Entity):
                 # print(f'{self.current_weapon["label"]=}')
                 if self.current_weapon['label'] == self.inventory["weapons"][all_weapons[uuid]]["item"]["label"]:
                     return
+                self.previously_used_weapon = self.current_weapon['label']
             self.body['right hand']['weapon'] = self.inventory['weapons'][all_weapons[uuid]]
             # self.body['right hand']['weapon'] = self.inventory['weapons'][all_weapons[0]]
         else:
             if self.current_weapon:
                 if self.current_weapon['label'] == self.inventory["weapons"][uuid]["item"]["label"]:
                     return
+                self.previously_used_weapon = self.current_weapon['label']
             self.body['right hand']['weapon'] = self.inventory['weapons'][uuid]
+
 
         self.current_weapon = self.body['right hand']['weapon']['item']
         # print('------------------------------')
@@ -485,11 +490,17 @@ class Actor(Entity):
             # self.movement_direction_inverter = 1
 
         elif new_action == 'attack':
-            if self.stats['stamina'] <= self.current_stamina_lost_per_attack \
-                    or self.stats['mana'] <= self.current_mana_lost_per_attack:
+            if self.stats['stamina'] <= self.current_stamina_lost_per_attack:
+                print(f'[state machine] NOT ENOUGH STAMINA')
+                if self.name == 'Jake':
+                    self.set_state('prepare kick')
                 return
-            if self.__state not in ('free', 'stand still', 'run right', 'run left', 'stand still', 'jump', 'crawl right', 'crawl left', \
-                                    'crouch', 'fly right', 'fly left'):
+            if self.stats['mana'] <= self.current_mana_lost_per_attack:
+                print(f'[state machine] NOT ENOUGH MANA')
+                return
+            if self.__state not in ('free', 'stand still', 'run right', 'run left',
+                                    'stand still', 'jump', 'crawl right', 'crawl left',
+                                    'crouch', 'fly right', 'fly left', 'turn right', 'turn left'):
                 return
             if self.__state in ('crawl left', 'crouch', 'crawl right'):
                 if self.look == 1:
@@ -515,6 +526,22 @@ class Actor(Entity):
         elif self.__state == 'carry stash left':  #
             self.speed = self.max_speed // 3
             self.look = -1
+        elif self.__state == 'prepare kick':                          # PREPARING kick ATTACK
+            self.activate_weapon('jake kick')
+            self.set_state('prepare attack')
+            self.force_use_previous_weapon = True
+            # if self.look == 1:
+            #     self.set_state('kick right')
+            # else:
+            #     self.set_state('kick left')
+            # self.set_state(self.current_weapon['attack animation'])
+            # self.stamina_reduce(self.current_stamina_lost_per_attack)
+            # self.mana_reduce(self.current_mana_lost_per_attack)
+            # self.frames_changing_threshold_modifier = self.current_weapon['animation speed modifier']
+            # self.set_current_animation()
+            # self.ignore_user_input = self.current_weapon['ignore user input']
+            # if self.is_stand_on_ground:
+            #     self.heading[0] = 0
         elif self.__state == 'prepare attack':                          # PREPARING ATTACK
             self.set_state(self.current_weapon['attack animation'])
             self.stamina_reduce(self.current_stamina_lost_per_attack)
@@ -542,9 +569,13 @@ class Actor(Entity):
             self.ignore_user_input = self.current_weapon['ignore user input']
             if self.is_stand_on_ground:
                 self.heading[0] = 0
-        elif self.__state in ('stab', 'cast', 'whip', 'whip crouch right', 'whip crouch left'):                          # ATTACKING IN PROCESS...
+        elif self.__state in ('stab', 'cast', 'whip', 'whip crouch right', 'whip crouch left',
+                              'kick'):                          # ATTACKING IN PROCESS...
             if self.animation_sequence_done:
                 self.ignore_user_input = False
+                if self.force_use_previous_weapon:
+                    self.force_use_previous_weapon = False
+                    self.activate_weapon(self.previously_used_weapon)
                 if self.__state in ('whip crouch right', 'whip crouch left'):
                     self.set_state('crouch')
                 else:
@@ -742,11 +773,6 @@ class Actor(Entity):
                 self.look = -1
                 self.heading[0] = -1
                 self.set_state('stand still')
-
-            # self.is_move_left = True
-            # self.look = -1
-            # print('jj')
-            # self.set_state('stand still')
         elif self.__state == 'turn right':                      # TURN RIGHT
             if self.look == -1 and self.speed > 0:  # Actor looks to the other side and runs.
                 # Switch off heading to force actor start reducing his speed and slow it down to zero.

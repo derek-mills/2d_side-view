@@ -719,8 +719,8 @@ player_jake = {
             'hardness': 100
         },
     },
-    'max speed': 6,
-    'items': (whip,demon_2_close),
+    'max speed': 8,
+    'items': (whip,jake_kick),
     # 'items': (whip,fireball_staff,sword,kitchen_knife,),
     'animations': {
         'stand still right': {
@@ -1009,6 +1009,38 @@ player_jake = {
                 # -1: (-46, 36),
             },
             'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 2
+        },
+        'kick right': {
+            'repeat': False, 'interruptable': True,
+            'sequence': (63,63,64,64,65,65,65,65), # 5 - 9
+            'speed': 1,
+            'activity at frames': {
+                4: {
+                    'sound': True,
+                    # 'move': 10,  # Slightly move actor forward,
+                    'demolisher': True
+                },
+            },
+            'repeat from frame': 0
+        },
+        'kick left': {
+            'repeat': False, 'interruptable': True,
+            'sequence': (68,68,67,67,66,66,66,66,),  # 0 - 4
+                         # 89, 89, 89, 89, 89,  # 5 - 9
+                         # 89, 89, 89, 88, 88,  # 10 - 14
+                         # 89, 89, 89, 89, 89,  # 15 - 19
+                         # 89, 89, 89, 89, 89,  # 20 - 24
+                         # 89, 89, 89, 88, 88),  # 25 - 29
+            # 'demolisher offset': (-46,36),
+            'activity at frames': {
+                4: {
+                    'sound': True,
+                    # 'move': 10, # Slightly move actor forward,
+                    'demolisher': True
+                },
+            },
+            'speed': 1,
+            'repeat from frame': 0
         },
         'cast right': {
             'repeat': False, 'interruptable': True,
