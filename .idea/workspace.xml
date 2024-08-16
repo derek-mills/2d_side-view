@@ -6,13 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphics.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphics.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/animations/jake_8bit.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/animations/jake_8bit.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/animations/demon_male_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/animations/demon_male_1.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/items.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/items.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,13 +142,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00346" summary="Level editor: cancelling of obstacle edit causes no error anymore.">
-      <created>1722907830607</created>
-      <option name="number" value="00346" />
-      <option name="presentableId" value="LOCAL-00346" />
-      <option name="project" value="LOCAL" />
-      <updated>1722907830608</updated>
     </task>
     <task id="LOCAL-00347" summary="Level editor: changed menu shadow and rectangle calculations.">
       <created>1722914844878</created>
@@ -490,7 +479,14 @@
       <option name="project" value="LOCAL" />
       <updated>1723709992594</updated>
     </task>
-    <option name="localTasksCounter" value="395" />
+    <task id="LOCAL-00395" summary="Jake's kick added">
+      <created>1723779353654</created>
+      <option name="number" value="00395" />
+      <option name="presentableId" value="LOCAL-00395" />
+      <option name="project" value="LOCAL" />
+      <updated>1723779353654</updated>
+    </task>
+    <option name="localTasksCounter" value="396" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -505,7 +501,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Stamina reducing during slide." />
     <MESSAGE value="Blood splatters added." />
     <MESSAGE value="Actor has a color of blood." />
     <MESSAGE value="Tried to implement weak spot system, but no use, futile." />
@@ -530,6 +525,7 @@
     <MESSAGE value="Added a counter to enemy set by random, that restricts ranged weapon unstoppable usage." />
     <MESSAGE value="Some" />
     <MESSAGE value="Tuning of enemies being." />
-    <option name="LAST_COMMIT_MESSAGE" value="Tuning of enemies being." />
+    <MESSAGE value="Jake's kick added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Jake's kick added" />
   </component>
 </project>

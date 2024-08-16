@@ -262,8 +262,7 @@ demon_1 = {
         },
         'cast right': {
             'repeat': False, 'interruptable': True,
-            'sequence': (74, 74, 74, 74, 74,  # 0 - 4
-                         74, 74, 74, 74, 75, 75),  # 5 - 9
+            'sequence': (60,60,60,60,60,60,61,62,62,62,62),  # 5 - 9
             # 74,74,74,74,74,  # 5 - 9
             # 74,74,74,75,75,  # 10 - 14
             # 74,74,74,74,74,  # 15 - 19
@@ -272,21 +271,16 @@ demon_1 = {
             # 'demolisher offset': (46, 36),
             'speed': 2,
             'activity at frames': {
-                9: {
+                7: {
                     'sound': True,
                     'demolisher': True
                 },
-            },
-            'demolisher offset': {
-                1: (46, 36),
-                -1: (-46, 36),
             },
             'repeat from frame': 0
         },
         'cast left': {
             'repeat': False, 'interruptable': True,
-            'sequence': (89,89,89,89,89,89,  # 0 - 4
-                         89,89,89,89,88,88),  # 5 - 9
+            'sequence': (65,65,65,65,65,65,64,63,63,63,63),  # 5 - 9
             # 74,74,74,74,74,  # 5 - 9
             # 74,74,74,75,75,  # 10 - 14
             # 74,74,74,74,74,  # 15 - 19
@@ -295,14 +289,10 @@ demon_1 = {
             # 'demolisher offset': (46, 36),
             'speed': 3,
             'activity at frames': {
-                9: {
+                7: {
                     'sound': True,
                     'demolisher': True
                 },
-            },
-            'demolisher offset': {
-                1: (46, 36),
-                -1: (-46, 36),
             },
             'repeat from frame': 0
         },
@@ -713,7 +703,7 @@ player_jake = {
     # },
     'gravity affected': True,
     'mana replenish': 1.,
-    'stamina replenish': 1.,
+    'stamina replenish': 1.5,
     'body': {
         'head': {
             'hardness': 100
