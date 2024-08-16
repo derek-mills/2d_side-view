@@ -20,7 +20,7 @@ demon_1 = {
         },
     },
     'max speed': 2 + randint(1, 10) / 10,
-    'items': (demon_2_close, sword, fireball_staff),
+    'items': (demon_2_close, sword, spikeball_staff),
     'animations': {
         'stand still right': {
                 'repeat': True, 'interruptable': True,
@@ -269,7 +269,7 @@ demon_1 = {
             # 74,74,74,74,74,  # 20 - 24
             # 74,74,74,75,75), # 25 - 29
             # 'demolisher offset': (46, 36),
-            'speed': 2,
+            'speed': 4,
             'activity at frames': {
                 7: {
                     'sound': True,
@@ -287,7 +287,7 @@ demon_1 = {
             # 74,74,74,74,74,  # 20 - 24
             # 74,74,74,75,75), # 25 - 29
             # 'demolisher offset': (46, 36),
-            'speed': 3,
+            'speed': 4,
             'activity at frames': {
                 7: {
                     'sound': True,

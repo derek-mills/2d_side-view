@@ -17,7 +17,7 @@ for dy in range(-1, maxy - cell_h, cell_h):
     for dx in range(-1, maxx - cell_w, cell_w):
         pygame.draw.line(surface, (0, 0, 0, 255), (dx,0), (dx,maxy))
         pygame.draw.line(surface, (0, 0, 0, 255), (0, dy), (maxx,dy))
-        s = all_fonts[10].render(str(counter), False, (0, 0, 0, 255))
+        s = all_fonts[10].render(str(counter), False, (255,255,255, 255))
         sz = s.get_size()
         surface.blit(s, (dx + cell_w - sz[0], dy + cell_h - sz[1]))
         counter += 1

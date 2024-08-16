@@ -6,9 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/animations/demon_male_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/animations/demon_male_1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphics.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphics.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/gimp_originals/sprite_sheet_net.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/gimp_originals/sprite_sheet_net.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/items.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/items.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,8 +134,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.main " />
-        <item itemvalue="Python.level_editor" />
         <item itemvalue="Python.generate_sprite_sheet" />
+        <item itemvalue="Python.level_editor" />
       </list>
     </recent_temporary>
   </component>
@@ -142,13 +147,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00347" summary="Level editor: changed menu shadow and rectangle calculations.">
-      <created>1722914844878</created>
-      <option name="number" value="00347" />
-      <option name="presentableId" value="LOCAL-00347" />
-      <option name="project" value="LOCAL" />
-      <updated>1722914844878</updated>
     </task>
     <task id="LOCAL-00348" summary="Level editor: changed long and tall menus scrolling routine.">
       <created>1722915410399</created>
@@ -486,7 +484,14 @@
       <option name="project" value="LOCAL" />
       <updated>1723779353654</updated>
     </task>
-    <option name="localTasksCounter" value="396" />
+    <task id="LOCAL-00396" summary="Some animations tuning">
+      <created>1723780465684</created>
+      <option name="number" value="00396" />
+      <option name="presentableId" value="LOCAL-00396" />
+      <option name="project" value="LOCAL" />
+      <updated>1723780465684</updated>
+    </task>
+    <option name="localTasksCounter" value="397" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -501,7 +506,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Blood splatters added." />
     <MESSAGE value="Actor has a color of blood." />
     <MESSAGE value="Tried to implement weak spot system, but no use, futile." />
     <MESSAGE value="Slightly redesigned demolishers appearing system." />
@@ -526,6 +530,7 @@
     <MESSAGE value="Some" />
     <MESSAGE value="Tuning of enemies being." />
     <MESSAGE value="Jake's kick added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Jake's kick added" />
+    <MESSAGE value="Some animations tuning" />
+    <option name="LAST_COMMIT_MESSAGE" value="Some animations tuning" />
   </component>
 </project>

@@ -132,6 +132,44 @@ fireball_staff = {
 
 }
 
+spikeball_staff = {
+    'description': 'Ball of spikes.',
+    'class': 'weapons',
+    'type': 'melee',
+    'label': 'spikeball staff',
+    'sprite': 'staff',
+    'sound': 'sound_swing_2',
+    'amount': 1,
+    'amount threshold': 1,
+    'amount decrease speed': 0,
+    'affects on': '',
+    'stamina consumption': .5,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
+    'mana consumption': 2.,
+    'attack animation': 'cast',
+    'ignore user input': True,  # Steal the ability to control a character for a while.
+    # 'actor forward moving speed': 0.3,  # During attack an actor may uncontrollably move forward (min 0.5).
+    'animation speed modifier': 1.,  # 0 < x < 1: speed animation up, x > 1: slow down.
+    'leave particles': False,
+
+    'attack type': 'pierce',
+    'droppable': True,
+    'need ammo': False,
+    'ammo': 0,
+    'reach': 1000,
+    'demolishers': (
+        {
+            'rect': pygame.Rect(0, 0, 70, 70), 'flyer': False,
+            'demolisher sprite': 'spikeball staff demolisher',
+            'pierce': False, 'demolisher TTL': 250, 'speed': 30,
+            'damage': 50, 'static': False, 'damage reduce': 0,
+            'collides': True, 'gravity affected': True,
+            'bounce': True, 'bounce factor': 0.9,
+            'aftermath': 'disappear'
+        },
+    ),
+
+}
+
 whip = {
     'description': 'A powerful whip, called Vampire Killer.',
     'class': 'weapons',

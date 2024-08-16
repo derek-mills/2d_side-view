@@ -521,10 +521,12 @@ class Actor(Entity):
             self.speed = 0
             self.heading[0] = 0
         elif self.__state == 'carry stash right':  #
-            self.speed = self.max_speed // 3
+            self.speed = 5
+            # self.speed = self.max_speed // 3
             self.look = 1
         elif self.__state == 'carry stash left':  #
-            self.speed = self.max_speed // 3
+            self.speed = 5
+            # self.speed = self.max_speed // 3
             self.look = -1
         elif self.__state == 'prepare kick':                          # PREPARING kick ATTACK
             self.activate_weapon('jake kick')
