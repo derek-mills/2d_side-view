@@ -20,7 +20,7 @@ demon_1 = {
         },
     },
     'max speed': 2 + randint(1, 10) / 10,
-    'items': (demon_2_close, sword, spikeball_staff),
+    'items': (demon_2_close, demon_2_mid, spikeball_staff),
     'animations': {
         'stand still right': {
                 'repeat': True, 'interruptable': True,
@@ -940,39 +940,20 @@ player_jake = {
         },
         'stab right': {
             'repeat': False, 'interruptable': True,
-            'sequence': (74,74,74,74,75,  # 0 - 4
-                         74,74,74,74,75, 75), # 5 - 9
-                         # 74,74,74,74,74,  # 5 - 9
-                         # 74,74,74,75,75,  # 10 - 14
-                         # 74,74,74,74,74,  # 15 - 19
-                         # 74,74,74,74,74,  # 20 - 24
-                         # 74,74,74,75,75), # 25 - 29
-            # 'demolisher offset': (46, 36),
+            'sequence': (74,75,76,76,76,),  # 0 - 4
             'speed': 2,
             'activity at frames': {
-                4: {
+                2: {
                     'sound': True,
                     # 'move': 10,  # Slightly move actor forward,
                     'demolisher': True
                 },
-                9: {
-                    # 'move': 10,  # Slightly move actor forward,
-                    'demolisher': True
-                },
             },
-            # 'demolisher offset': {
-            #     1: (sprites['Jake 75']['demolisher snap point'][0],
-            #         sprites['Jake 75']['demolisher snap point'][1]),
-
-                # 1: (46, 36),
-                # -1: (-46, 36),
-            # },
             'repeat from frame': 0
         },
         'stab left': {
             'repeat': False, 'interruptable': True,
-            'sequence': (89, 89, 89, 89, 88,
-                         89, 89, 89, 89, 88, 88),  # 0 - 4
+            'sequence': (91,90,89,89,89),  # 0 - 4
                          # 89, 89, 89, 89, 89,  # 5 - 9
                          # 89, 89, 89, 88, 88,  # 10 - 14
                          # 89, 89, 89, 89, 89,  # 15 - 19
@@ -980,25 +961,14 @@ player_jake = {
                          # 89, 89, 89, 88, 88),  # 25 - 29
             # 'demolisher offset': (-46,36),
             'activity at frames': {
-                4: {
+                2: {
                     'sound': True,
-                    # 'move': 10, # Slightly move actor forward,
-                    'demolisher': True
-                },
-                9: {
                     # 'move': 10, # Slightly move actor forward,
                     'demolisher': True
                 },
             },
             'speed': 1,
-            'demolisher offset': {
-                -1: (sprites['Jake 88']['demolisher snap point'][0],
-                    sprites['Jake 88']['demolisher snap point'][1]),
-
-                # 1: (46, 36),
-                # -1: (-46, 36),
-            },
-            'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 2
+            'repeat from frame': 2
         },
         'kick right': {
             'repeat': False, 'interruptable': True,

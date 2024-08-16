@@ -308,20 +308,29 @@ items = pygame.image.load('img/items.png').convert_alpha()
 # sprites['void'] = items.subsurface((0,0,10,10))
 load_single_frame(items, ((0,0,20,30),), 'exp', 2)
 load_single_frame(items, ((0,30,20,30),), 'health vial', 5)
+load_single_frame(items, ((0,60,20,30),), 'stash', 8)
+
 load_single_frame(items, ((20,0,20,30),), 'staff', 5)
 load_single_frame(items, ((40,0,20,30),), 'staff demolisher', 8)
+
 load_single_frame(items, ((20,30,20,30),), 'kitchen knife', 5)
-load_single_frame(items, ((40,0,20,30),), 'kitchen knife demolisher', 3)
+load_single_frame(items, ((40,30,20,30),), 'kitchen knife demolisher', 3)
+
 load_single_frame(items, ((20,60,20,30),), 'short sword', 5)
+load_single_frame(items, ((40,60,29,30),), 'short sword demolisher', 5)
+
 load_single_frame(items, ((20,90,20,30),), 'whip', 5)
 load_single_frame(items, ((40,90,80,30),), 'whip demolisher', 4)
+
 load_single_frame(items, ((20,180,20,30),), 'spikeball staff', 5)
 load_single_frame(items, ((40,180,80,30),), 'spikeball staff demolisher', 5)
+
 load_single_frame(items, ((20,150,20,30),), 'boot', 5)
-load_single_frame(items, ((40,150,20,30),), 'jake kick demolisher', 4)
+load_single_frame(items, ((40,150,20,30),), 'jake kick demolisher', 5)
+
 load_single_frame(items, ((40,120,40,30),), 'demon 2 claw demolisher', 5)
 load_single_frame(items, ((80,120,40,30),), 'demon 2 mid claw demolisher', 5)
-load_single_frame(items, ((0,60,20,30),), 'stash', 8)
+
 
 
 # ___...---=== JAKE ===---...___

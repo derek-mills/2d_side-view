@@ -623,9 +623,33 @@ class Entity(object):
                 #         return
                 self.get_damage(dem.damage)
                 self.invincibility_timer = 100 if self.id == 0 else 30
+
+                # Blood splatters:
+                if 'slash' in dem.attack_type:
+                    self.summon_particle = True
+                    for particle_quantity in range(randint(2, 2 + dem.damage // 10)):
+                    # for particle_quantity in range(randint(10, 20)):
+                        size = randint(1, dem.damage >> 4)
+                        self.summoned_particle_descriptions.append({
+                            'particle TTL': 100,
+                            'width': size,
+                            'height': size,
+                            'xy': self.rectangle.center,
+                            'bounce': False,
+                            'bounce factor': 0.,
+                            'subtype': 'splatter',
+                            'color': self.blood_color,
+                            'look': self.look * -1,  # Splatter always fly in the opposite direction
+                            'speed': 1 + randint(1, 8),
+                            'jump height': randint(0, 20),
+                            'collides': True,
+                            'gravity affected': True
+                        })
+
                 # print('[detect_demolishers_collisions] actor get damage in state:', self.__state)
-                if self.get_state() not in ('hold stash', 'carry stash right', 'carry stash left'):
-                    self.set_state('hop back')
+                if 'smash' in dem.attack_type:
+                    if self.get_state() not in ('hold stash', 'carry stash right', 'carry stash left'):
+                        self.set_state('hop back')
 
     # def mask_update(self, offset):
     # #     # current_mask = self.current_sprite['mask']
@@ -642,29 +666,27 @@ class Entity(object):
 
     def get_damage(self, amount):
         # print(f'[entity.get_damage] {self.name} {self.id} gets damage: {amount} | {self.stats["health"]=}')
-        # self.invincibility_timer = 100 if self.id == 0 else 30
         self.stats['health'] -= amount
-        self.summon_particle = True
-        for particle_quantity in range(randint(10, 20)):
-            size = randint(1,6)
-            self.summoned_particle_descriptions.append({
-                'particle TTL': 100,
-                'width': size,
-                'height': size,
-                'xy': self.rectangle.center,
-                'bounce': False,
-                'bounce factor': 0.,
-                'subtype': 'splatter',
-                'color': self.blood_color,
-                'look': self.look * -1,  # Splatter always fly in the opposite direction
-                'speed': 1 + randint(1,8),
-                'jump height': randint(0,20),
-                'collides': True,
-                'gravity affected': True
-            })
-        # self.health -= amount
+
+        # self.summon_particle = True
+        # for particle_quantity in range(randint(10, 20)):
+        #     size = randint(1,6)
+        #     self.summoned_particle_descriptions.append({
+        #         'particle TTL': 100,
+        #         'width': size,
+        #         'height': size,
+        #         'xy': self.rectangle.center,
+        #         'bounce': False,
+        #         'bounce factor': 0.,
+        #         'subtype': 'splatter',
+        #         'color': self.blood_color,
+        #         'look': self.look * -1,  # Splatter always fly in the opposite direction
+        #         'speed': 1 + randint(1,8),
+        #         'jump height': randint(0,20),
+        #         'collides': True,
+        #         'gravity affected': True
+        #     })
         if self.stats['health'] <= 0:
-        # if self.health <= 0:
             self.dead = True
 
     def mana_reduce(self, amount):

@@ -19,6 +19,7 @@ class Demolisher(Entity):
         self.parent_id: int = -1
         self.parent: str = ''
         self.static = True
+        self.attack_type = list()
         self.bounce = False
         self.bounce_factor: float = 0.  # Vertical and horizontal speed reducing after every bounce.
         self.aftermath: str = ''  # Description of the demolisher behavior after TTL timer runs out.

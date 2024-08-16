@@ -381,6 +381,7 @@ class World(object):
         demol.speed = description['speed']
         demol.is_collideable = description['collides']
         demol.is_gravity_affected = description['gravity affected']
+        demol.attack_type = description['attack type']
         # demol.rectangle.y += randint(-150, 150)
 
         # self.demolishers[self.location][self.demolisher_id] = ent

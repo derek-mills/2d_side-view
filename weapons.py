@@ -13,7 +13,6 @@ sword = {
     'leave particles': False,
     'class': 'weapons',
     'type': 'melee',
-    'attack type': 'pierce',
     'sound': 'sound_swing_2',
     'droppable': True,
     'need ammo': False,
@@ -24,20 +23,22 @@ sword = {
     'demolishers': (
         {
             'rect': pygame.Rect(0, 0, 70, 10), 'flyer': False,
-            'demolisher sprite': None,
-            'pierce': False, 'demolisher TTL': 2, 'speed': 0,
+            'demolisher sprite': 'short sword demolisher',
+            'pierce': False, 'demolisher TTL': 6, 'speed': 0,
             'damage': 50, 'static': True, 'damage reduce': 0,
             'collides': True, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0,
+            'attack type': ('slash',),
             'aftermath': 'disappear'
         },
         {
             'rect': pygame.Rect(0, 0, 75, 10), 'flyer': False,
-            'demolisher sprite': None,
-            'pierce': False, 'demolisher TTL': 2, 'speed': 0,
+            'demolisher sprite': 'short sword demolisher',
+            'pierce': False, 'demolisher TTL': 8, 'speed': 0,
             'damage': 60, 'static': True, 'damage reduce': 0,
             'collides': True, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0,
+            'attack type': ('slash',),
             'aftermath': 'disappear'
         },
     ),
@@ -49,8 +50,8 @@ kitchen_knife = {
     'amount threshold': 1,
     'amount decrease speed': 0,
     'affects on': '',
-    'stamina consumption': 1.0,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
-    'mana consumption': 1.1,
+    'stamina consumption': 0.4,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
+    'mana consumption': 0.,
     'aimed fire': True,
     'attack animation': 'stab',
     'ignore user input': True,  # Steal the ability to control a character for a while.
@@ -59,7 +60,6 @@ kitchen_knife = {
     'leave particles': False,
     'class': 'weapons',
     'type': 'melee',
-    'attack type': 'pierce',
     'sound': 'sound_swing_2',
     'droppable': True,
     'need ammo': False,
@@ -73,23 +73,33 @@ kitchen_knife = {
     'reach': 50,
     'demolishers': (
         {
-            'rect': pygame.Rect(0, 0, 10, 10), 'flyer': False,
-            'demolisher sprite': None,
-            'pierce': False, 'demolisher TTL': 50, 'speed': 22,
-            'damage': 10, 'static': False, 'damage reduce': .1,
-            'collides': True, 'gravity affected': True,
-            'bounce': True, 'bounce factor': .9,
-            'aftermath': 'disappear'
-        },
-        {
             'rect': pygame.Rect(0, 0, 30, 30), 'flyer': False,
             'demolisher sprite': 'kitchen knife demolisher',
-            'pierce': False, 'demolisher TTL': 100, 'speed': 12,
-            'damage': 10, 'static': False, 'damage reduce': .1,
-            'collides': True, 'gravity affected': True,
-            'bounce': True, 'bounce factor': 1.,
-            'aftermath': 'explode'
+            'pierce': False, 'demolisher TTL': 10, 'speed': 12,
+            'damage': 100, 'static': True, 'damage reduce': .1,
+            'collides': True, 'gravity affected': False,
+            'bounce': False, 'bounce factor': 0.,
+            'attack type': ('slash',),
+            'aftermath': None
         },
+        # {
+        #     'rect': pygame.Rect(0, 0, 10, 10), 'flyer': False,
+        #     'demolisher sprite': None,
+        #     'pierce': False, 'demolisher TTL': 50, 'speed': 22,
+        #     'damage': 10, 'static': False, 'damage reduce': .1,
+        #     'collides': True, 'gravity affected': True,
+        #     'bounce': True, 'bounce factor': .9,
+        #     'aftermath': 'disappear'
+        # },
+        # {
+        #     'rect': pygame.Rect(0, 0, 30, 30), 'flyer': False,
+        #     'demolisher sprite': 'kitchen knife demolisher',
+        #     'pierce': False, 'demolisher TTL': 100, 'speed': 12,
+        #     'damage': 10, 'static': False, 'damage reduce': .1,
+        #     'collides': True, 'gravity affected': True,
+        #     'bounce': True, 'bounce factor': 1.,
+        #     'aftermath': 'explode'
+        # },
     ),
     'description': 'Casual kitchen knife.',
 }
@@ -112,8 +122,6 @@ fireball_staff = {
     # 'actor forward moving speed': 0.3,  # During attack an actor may uncontrollably move forward (min 0.5).
     'animation speed modifier': 1.,  # 0 < x < 1: speed animation up, x > 1: slow down.
     'leave particles': False,
-
-    'attack type': 'pierce',
     'droppable': True,
     'need ammo': False,
     'ammo': 0,
@@ -126,6 +134,7 @@ fireball_staff = {
             'damage': 150, 'static': False, 'damage reduce': 0,
             'collides': True, 'gravity affected': True,
             'bounce': True, 'bounce factor': 0.3,
+            'attack type': ('fire', 'smash'),
             'aftermath': 'disappear'
         },
     ),
@@ -150,8 +159,6 @@ spikeball_staff = {
     # 'actor forward moving speed': 0.3,  # During attack an actor may uncontrollably move forward (min 0.5).
     'animation speed modifier': 1.,  # 0 < x < 1: speed animation up, x > 1: slow down.
     'leave particles': False,
-
-    'attack type': 'pierce',
     'droppable': True,
     'need ammo': False,
     'ammo': 0,
@@ -164,6 +171,7 @@ spikeball_staff = {
             'damage': 50, 'static': False, 'damage reduce': 0,
             'collides': True, 'gravity affected': True,
             'bounce': True, 'bounce factor': 0.9,
+            'attack type': ('pierce',),
             'aftermath': 'disappear'
         },
     ),
@@ -188,7 +196,6 @@ whip = {
     'ignore user input': True,  # Steal the ability to control a character for a while.
     'animation speed modifier': 1.,  # 0 < x < 1: speed animation up, x > 1: slow down.
     'leave particles': False,
-    'attack type': 'pierce',
     'droppable': True,
     'need ammo': False,
     'ammo': 0,
@@ -201,6 +208,7 @@ whip = {
             'damage': 150, 'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
+            'attack type': ('pierce',),
             # 'aftermath': 'explode'
             'aftermath': 'disappear'
         },
@@ -225,7 +233,6 @@ jake_kick = {
     'ignore user input': True,  # Steal the ability to control a character for a while.
     'animation speed modifier': 1.,  # 0 < x < 1: speed animation up, x > 1: slow down.
     'leave particles': False,
-    'attack type': 'pierce',
     'droppable': False,
     'need ammo': False,
     'ammo': 0,
@@ -238,6 +245,7 @@ jake_kick = {
             'damage': 10, 'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
+            'attack type': ('smash',),
             # 'aftermath': 'explode'
             'aftermath': 'disappear'
         },
@@ -263,7 +271,6 @@ demon_2_mid = {
     'ignore user input': True,  # Steal the ability to control a character for a while.
     'animation speed modifier': 1.,  # 0 < x < 1: speed animation up, x > 1: slow down.
     'leave particles': False,
-    'attack type': 'pierce',
     'droppable': True,
     'need ammo': False,
     'ammo': 0,
@@ -276,6 +283,7 @@ demon_2_mid = {
             'damage': 150, 'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
+            'attack type': ('slash', 'smash', 'pierce'),
             # 'aftermath': 'explode'
             'aftermath': 'disappear'
         },
@@ -300,7 +308,6 @@ demon_2_close = {
     'ignore user input': True,  # Steal the ability to control a character for a while.
     'animation speed modifier': 1.,  # 0 < x < 1: speed animation up, x > 1: slow down.
     'leave particles': False,
-    'attack type': 'pierce',
     'droppable': True,
     'need ammo': False,
     'ammo': 0,
@@ -313,6 +320,7 @@ demon_2_close = {
             'damage': 250, 'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
+            'attack type': ('slash', 'smash', 'pierce'),
             # 'aftermath': 'explode'
             'aftermath': 'disappear'
         },
