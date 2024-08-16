@@ -7,7 +7,8 @@ demon_1 = {
     'name': 'demon 1',
     'blood color': (0, 200, 0),
     'drop': ['exp' for i in range(randint(3,5))],
-    # 'start_xy': (1500, 200),
+    'strength': 10,
+    'body weight': 50,
     'health': 1500.,
     'mana replenish': .5,
     'stamina replenish': 2.,
@@ -303,11 +304,14 @@ demon_1 = {
 
 demon_2 = {
     'name': 'demon 2',
-    'drop': ['exp' for i in range(randint(3,5))],
+    'drop': ['exp' for i in range(randint(8,12))],
     'health': 1500.,
     'mana replenish': 50.,
     'stamina replenish': 1.,
     'blood color': (150, 50, 10),
+    'strength': 15,
+    'body weight': 140,
+
     # 'body state': {
     #     'viewing range': 600,
     #     'regeneration ability': 0.001,
@@ -681,29 +685,11 @@ player_jake = {
     'name': 'Jake',
     'health': 1000.,
     'blood color': (255, 0, 0),
-    # 'height': 190,
-    # 'width': 49,
-    # 'body state': {
-    #     'viewing range': 600,
-    #     'regeneration ability': 0.001,
-    #     'blood volume': 15000,
-    #     'blood volume replenish': .01,
-    #     'stamina replenish': 1,
-    #     'consciousness replenish': 10,
-    #     'consciousness threshold': 10,
-    #     'bleeding reduce': .01,  #
-    #     'bleeding resistance': 0,  # Reduce bleeding, in percents.
-    #     'max blood volume': 15000,
-    #     'max stamina': 120,
-    #     'max fatigue': 100,
-    #     'max consciousness': 1000,
-    #     'luck': 5,
-    #     'strength': 25,
-    #     'weight': 70,  # Kilos.
-    # },
     'gravity affected': True,
     'mana replenish': 1.,
     'stamina replenish': 1.5,
+    'strength': 5,
+    'body weight': 60,
     'body': {
         'head': {
             'hardness': 100

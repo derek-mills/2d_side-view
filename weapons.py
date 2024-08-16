@@ -134,7 +134,7 @@ fireball_staff = {
             'damage': 150, 'static': False, 'damage reduce': 0,
             'collides': True, 'gravity affected': True,
             'bounce': True, 'bounce factor': 0.3,
-            'attack type': ('fire', 'smash'),
+            'attack type': ('fire', ),
             'aftermath': 'disappear'
         },
     ),
@@ -252,7 +252,6 @@ jake_kick = {
     ),
 
 }
-
 
 demon_2_mid = {
     'description': 'Demon 2 middle ranged weapon',

@@ -6,11 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demolisher.py" beforeDir="false" afterPath="$PROJECT_DIR$/demolisher.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphics.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphics.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/items.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/items.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
@@ -146,13 +144,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00349" summary="Level editor: 'keep x' and 'keep y' implemented to the custom object edit menu.">
-      <created>1722927126275</created>
-      <option name="number" value="00349" />
-      <option name="presentableId" value="LOCAL-00349" />
-      <option name="project" value="LOCAL" />
-      <updated>1722927126275</updated>
     </task>
     <task id="LOCAL-00350" summary="Added Jake's crawl attack animation">
       <created>1722929085380</created>
@@ -490,7 +481,14 @@
       <option name="project" value="LOCAL" />
       <updated>1723784938911</updated>
     </task>
-    <option name="localTasksCounter" value="398" />
+    <task id="LOCAL-00398" summary="Added attack type matter: blood splatter appear only if weapon do slash damage, hop back after getting hurt causes if a weapon has 'smash' ability.">
+      <created>1723790288321</created>
+      <option name="number" value="00398" />
+      <option name="presentableId" value="LOCAL-00398" />
+      <option name="project" value="LOCAL" />
+      <updated>1723790288321</updated>
+    </task>
+    <option name="localTasksCounter" value="399" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -505,7 +503,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Tried to implement weak spot system, but no use, futile." />
     <MESSAGE value="Slightly redesigned demolishers appearing system." />
     <MESSAGE value="Old rectangle changing system removed. Rectangles now change according to a current animation sprite size." />
     <MESSAGE value="Enemies status bar changed." />
@@ -530,6 +527,7 @@
     <MESSAGE value="Jake's kick added" />
     <MESSAGE value="Some animations tuning" />
     <MESSAGE value="Some animations tuning&#10;Staff of spikes weapon added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Some animations tuning&#10;Staff of spikes weapon added" />
+    <MESSAGE value="Added attack type matter: blood splatter appear only if weapon do slash damage, hop back after getting hurt causes if a weapon has 'smash' ability." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added attack type matter: blood splatter appear only if weapon do slash damage, hop back after getting hurt causes if a weapon has 'smash' ability." />
   </component>
 </project>

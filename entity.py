@@ -51,7 +51,8 @@ class Entity(object):
         self.mana_replenish_modifier = 1
         self.normal_mana_lost_per_attack = 5.
         self.current_mana_lost_per_attack = 0.
-
+        self.body_weight = 0
+        self.strength = 0
         self.stats = {
             'level': 0,
             'exp': 0,
@@ -114,8 +115,10 @@ class Entity(object):
         self.acceleration: float = self.default_acceleration
         self.default_air_acceleration: float = .1
         self.air_acceleration: float = self.default_air_acceleration
-        self.jump_height: int = 0
-        self.max_jump_height: int = 22
+        self.jump_height = 0.
+        self.max_jump_height = 22.
+        self.default_hop_back_jump_height_modifier: float = 0.6  # Rarely used, mostly while hopping back.
+        self.hop_back_jump_height_modifier = 0.6  # Rarely used, mostly while hopping back.
         self.default_max_jump_attempts: int = 1  #
         self.max_jump_attempts: int = 1  #
         self.jump_attempts_counter: int = 0
@@ -394,6 +397,9 @@ class Entity(object):
                         d['snap to actor'] = self.id
                         d['parent'] = self.name
                         d['snapping offset'] = sprites[self.name + ' ' + str(self.animation_sequence[self.frame_number])]['demolisher snap point']
+                        d['parent strength'] = self.strength
+                        d['parent weight'] = self.body_weight
+
                         self.summoned_demolishers_description.append(d)
                         # self.summoned_demolisher_description['snapping offset'] = self.animations[self.current_animation]['demolisher offset'][self.look]
                     # if self.summon_demolisher_counter < len(self.current_weapon['demolishers']) - 1:
@@ -649,6 +655,7 @@ class Entity(object):
                 # print('[detect_demolishers_collisions] actor get damage in state:', self.__state)
                 if 'smash' in dem.attack_type:
                     if self.get_state() not in ('hold stash', 'carry stash right', 'carry stash left'):
+                        self.hop_back_jump_height_modifier = (dem.parent_strength / self.strength) + (dem.parent_weight / self.body_weight)
                         self.set_state('hop back')
 
     # def mask_update(self, offset):

@@ -100,6 +100,8 @@ class World(object):
         entity.id = self.actor_id
         entity.name = description['name']
         entity.blood_color = description['blood color']
+        entity.body_weight = description['body weight']
+        entity.strength = description['strength']
         entity.stats['max health'] = description['health']
         # entity.max_health = description['health']
         entity.stats['health'] = description['health']
@@ -382,9 +384,9 @@ class World(object):
         demol.is_collideable = description['collides']
         demol.is_gravity_affected = description['gravity affected']
         demol.attack_type = description['attack type']
-        # demol.rectangle.y += randint(-150, 150)
+        demol.parent_strength = description['parent strength']
+        demol.parent_weight = description['parent weight']
 
-        # self.demolishers[self.location][self.demolisher_id] = ent
         self.demolishers[self.location][demol.id] = demol
         # print(f'[add_demolisher] Added: {demol.id=} {demol.name} {demol.rectangle} {demol.max_speed=} {demol.destination=}')
 

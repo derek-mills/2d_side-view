@@ -14,14 +14,6 @@ class Actor(Entity):
         self.is_collideable = True
         self.is_destructible = True
 
-        # self.exp = 0
-        # self.level = 0
-
-        # self.weapon_snap_points ={
-        #     'left hand': {},
-        #     'right hand': {},
-        # }
-
         self.ai_input_right_arrow = False
         self.ai_input_left_arrow = False
         self.ai_input_attack = False
@@ -668,13 +660,15 @@ class Actor(Entity):
                         self.jump_attempts_counter -= 1
                         self.is_jump = True
                         self.influenced_by_obstacle = -1
-                        self.jump_height = self.max_jump_height * 0.6
-                        # self.jump_height = self.max_jump_height // 2
-                        self.speed = self.max_speed
+                        self.jump_height = min(5 * self.hop_back_jump_height_modifier, 15)
+                        # self.jump_height = self.max_jump_height * 0.6
+                        self.speed = min(5 * self.hop_back_jump_height_modifier, 30)
+                        print(f'{self.hop_back_jump_height_modifier=} {self.jump_height=} {self.speed=}')
                         self.movement_direction_inverter = -1
                         self.heading[0] = 0
                         self.idle_counter = 20
                         self.invincibility_timer = 20
+                        self.hop_back_jump_height_modifier = self.default_hop_back_jump_height_modifier
                     self.is_abort_jump = False
                     self.set_state('hopping back process')
             else:
