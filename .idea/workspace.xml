@@ -4,20 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demolisher.py" beforeDir="false" afterPath="$PROJECT_DIR$/demolisher.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphics.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphics.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/animations/demon_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/animations/demon_2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/animations/demon_male_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/animations/demon_male_1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/animations/jake_8bit.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/animations/jake_8bit.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/items.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/items.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
-    </list>
+    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -150,13 +137,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00353" summary="Info panel upgraded.">
-      <created>1722996577661</created>
-      <option name="number" value="00353" />
-      <option name="presentableId" value="LOCAL-00353" />
-      <option name="project" value="LOCAL" />
-      <updated>1722996577662</updated>
     </task>
     <task id="LOCAL-00354" summary="Stamina use mechanism implemented.">
       <created>1722998145022</created>
@@ -494,7 +474,14 @@
       <option name="project" value="LOCAL" />
       <updated>1724035082674</updated>
     </task>
-    <option name="localTasksCounter" value="402" />
+    <task id="LOCAL-00402" summary="Fighting with demolisher sprites offset during attack.">
+      <created>1724055726815</created>
+      <option name="number" value="00402" />
+      <option name="presentableId" value="LOCAL-00402" />
+      <option name="project" value="LOCAL" />
+      <updated>1724055726815</updated>
+    </task>
+    <option name="localTasksCounter" value="403" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -509,7 +496,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Stamina and mana consumes only when demolisher appears." />
     <MESSAGE value="Added the Stash item." />
     <MESSAGE value="Added player actor's Stash carry ability." />
     <MESSAGE value="Added player actor's Stash drop ability." />
@@ -534,6 +520,7 @@
     <MESSAGE value="Tuning of victim's hopping back after being attacked." />
     <MESSAGE value="A demolisher gets an instance of his parent's class as a reference." />
     <MESSAGE value="Hopping back after damage improved." />
-    <option name="LAST_COMMIT_MESSAGE" value="Hopping back after damage improved." />
+    <MESSAGE value="Fighting with demolisher sprites offset during attack." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fighting with demolisher sprites offset during attack." />
   </component>
 </project>

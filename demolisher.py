@@ -49,22 +49,24 @@ class Demolisher(Entity):
 
         if snap_side == 1:  # Snapping to the actor's right side
             self.rectangle.centerx = snap_rect.centerx + self.snapping_offset['offset inside actor'][0] \
-                                     + abs(self.snapping_offset['offset inside demolisher'][0])
+                                     - self.snapping_offset['offset inside demolisher'][0]
             self.rectangle.centery = snap_rect.centery + self.snapping_offset['offset inside actor'][1] \
-                                     + abs(self.snapping_offset['offset inside demolisher'][1])
+                                     - self.snapping_offset['offset inside demolisher'][1]
+            # self.rectangle.centerx = snap_rect.centerx + self.snapping_offset['offset inside actor'][0] \
+            #                          + abs(self.snapping_offset['offset inside demolisher'][0])
+            # self.rectangle.centery = snap_rect.centery + self.snapping_offset['offset inside actor'][1] \
+            #                          + abs(self.snapping_offset['offset inside demolisher'][1])
 
-            # self.rectangle.left = snap_rect.centerx + self.snapping_offset[0]
-            # self.rectangle.top = snap_rect.top + self.snapping_offset[1]
         else:
             self.rectangle.centerx = snap_rect.centerx + self.snapping_offset['offset inside actor'][0] \
                                      - self.snapping_offset['offset inside demolisher'][0] * -1
             self.rectangle.centery = snap_rect.centery + self.snapping_offset['offset inside actor'][1] \
-                                     + abs(self.snapping_offset['offset inside demolisher'][1])
+                                     - self.snapping_offset['offset inside demolisher'][1]
+            # self.rectangle.centerx = snap_rect.centerx + self.snapping_offset['offset inside actor'][0] \
+            #                          - self.snapping_offset['offset inside demolisher'][0] * -1
+            # self.rectangle.centery = snap_rect.centery + self.snapping_offset['offset inside actor'][1] \
+            #                          + abs(self.snapping_offset['offset inside demolisher'][1])
 
-            # self.rectangle.centerx = snap_rect.centerx - self.snapping_offset[snap_side][0]
-            # self.rectangle.centery = snap_rect.centery - self.snapping_offset[snap_side][1]
-            # self.rectangle.right = snap_rect.centerx + self.snapping_offset[0]
-            # self.rectangle.top = snap_rect.top + self.snapping_offset[1]
 
     def detect_collisions_with_obstacles(self):
         # self.influenced_by_obstacle = None
