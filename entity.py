@@ -396,8 +396,10 @@ class Entity(object):
                         d = copy.deepcopy(d_origin)
                         d['snap to actor'] = self.id
                         d['parent'] = self
+                        d['demolisher sprite'] = d_origin['demolisher sprite']
                         # d['parent'] = self.name
                         d['snapping offset'] = sprites[self.name + ' ' + str(self.animation_sequence[self.frame_number])]['demolisher snap point']
+                        # d['snapping offset'] = sprites[self.name + ' ' + str(self.animation_sequence[self.frame_number])]['demolisher snap point']
                         # d['parent strength'] = self.strength
                         # d['parent weight'] = self.body_weight
 

@@ -241,7 +241,7 @@ jake_kick = {
         {
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
             'demolisher sprite': 'jake kick demolisher',
-            'pierce': False, 'demolisher TTL': 8, 'speed': 0,
+            'pierce': False, 'demolisher TTL': 80, 'speed': 0,
             'damage': 10, 'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,

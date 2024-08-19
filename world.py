@@ -352,11 +352,11 @@ class World(object):
                 'mask': mask,
                 'mask rect': mask.get_rect()
             }
+
         demol.bounce = description['bounce']
         demol.bounce_factor = description['bounce factor']
         demol.flyer = description['flyer']
         demol.parent = description['parent']
-
 
         if description['snap to actor'] >= 0:
             demol.snap_to_actor = description['snap to actor']
@@ -364,8 +364,32 @@ class World(object):
             # actor = self.actors[self.location][description['snap to actor']]
             demol.parent_id = demol.parent.id
             # demol.parent_id = actor.id
-            demol.snapping_offset = description['snapping offset']
-            demol.update(actor.look, actor.sprite_rectangle)
+
+            snap_p = sprites[description['demolisher sprite']]['demolisher snap point']
+            # point_to_glue_a_demolisher = (description['snapping offset'][0],
+            #                               description['snapping offset'][1])
+            # point_to_glue_a_demolisher = (-snap_p[0] + description['snapping offset'][0],
+            #                               -snap_p[1] + description['snapping offset'][1])
+            print(f"[add demolisher] point inside actor: {description['snapping offset']}; point inside demol: {snap_p}")
+            # demol.snapping_offset = sprites[description['demolisher sprite']]['demolisher snap point']
+            demol.snapping_offset = {
+               'offset inside actor': description['snapping offset'],
+               'offset inside demolisher': sprites[description['demolisher sprite']]['demolisher snap point']
+            }
+            # demol.snapping_offset = {
+            #     1: (description['snapping offset'][0] + abs(snap_p[0]),
+            #         description['snapping offset'][1] + abs(snap_p[1])),
+            #     -1: (description['snapping offset'][0] + snap_p[0],
+            #         description['snapping offset'][1] + snap_p[1]),
+            #
+            #     }
+            # demol.rectangle.topleft = point_to_glue_a_demolisher
+            demol.update(actor.look, actor.rectangle)
+            # demol.update(actor.look, point_to_glue_a_demolisher)
+            # print(f"[add demolisher] {point_to_glue_a_demolisher=} {demol.snapping_offset=} {demol.rectangle=}")
+            # pygame.display.flip()
+            # self.press_any_key()
+            # demol.update(actor.look, actor.sprite_rectangle)
             # demol.update(actor.look, actor.rectangle)
             if demol.flyer:
                 demol.destination = (self.camera.max_offset_x + MAXX, demol.rectangle.y) if actor.look == 1 else (-100, demol.rectangle.y)
@@ -659,8 +683,9 @@ class World(object):
                     dead.append(dem.id)
                     continue
                 actor = self.actors[self.location][dem.snap_to_actor]
-                dem.update(actor.look, actor.sprite_rectangle)
-                # dem.update(actor.look, actor.rectangle)
+                # dem.update(actor.vec_to_destination)
+                dem.update(actor.look, actor.rectangle)
+                # dem.update(actor.look, actor.sprite_rectangle)
 
             dem.get_time(self.time_passed, self.game_cycles_counter)
             dem.process_demolisher()
@@ -980,9 +1005,9 @@ class World(object):
             # if key not in self.active_obstacles:
             #     continue
             dem = self.demolishers[self.location][key]
-            # color = (max(0, 255 - dem.ttl*4), 10,0) if dem.ttl < 50 else PINK
-            # pygame.draw.rect(self.screen, color, (dem.rectangle.x - self.camera.offset_x, dem.rectangle.y - self.camera.offset_y,
-            #                                       dem.rectangle.width, dem.rectangle.height))
+            color = (max(0, 255 - dem.ttl*4), 10,0) if dem.ttl < 50 else PINK
+            pygame.draw.rect(self.screen, color, (dem.rectangle.x - self.camera.offset_x, dem.rectangle.y - self.camera.offset_y,
+                                                  dem.rectangle.width, dem.rectangle.height),1)
 
             # self.screen.blit(fonts.all_fonts[20].render(str(dem.id) + ' ' + str(dem.speed) + ' ' + str(dem.rectangle.y), True, CYAN),
             #                  (dem.rectangle.x - self.camera.offset_x, dem.rectangle.bottom - self.camera.offset_y + dem.id * 20))
@@ -1127,9 +1152,9 @@ class World(object):
         self.render_demolishers()
         self.render_particles()
         # self.render_player_actor()
+        self.render_info_panel_overlay()
         if self.is_i:
             self.render_debug_info()
-        self.render_info_panel_overlay()
 
     def render_info_panel_overlay(self):
         # Player stats:
@@ -1421,7 +1446,8 @@ class World(object):
             ('LOCATION: ' + str(self.location), GREEN),
             ('SCREEN OFFSETS: ' + str(self.camera.offset_x) + ' ' + str(self.camera.offset_y), GREEN),
             ('', WHITE),
-            (' RECT: ' + str(self.actors['player'].rectangle), WHITE),
+            (' RECT       : ' + str(self.actors['player'].rectangle), WHITE),
+            (' SPRITE RECT: ' + str(self.actors['player'].sprite_rectangle), WHITE),
             ('╔ TARGET HEIGHT ╗: ' + str(self.actors['player'].target_height), YELLOW),
             ('╚ TARGET WIDTH  ╝: ' + str(self.actors['player'].target_width), YELLOW),
             (' FALL SPEED: ' + str(self.actors['player'].fall_speed), WHITE),

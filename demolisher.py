@@ -13,7 +13,8 @@ class Demolisher(Entity):
         # self.air_acceleration = 0
         # self.max_speed = 0
         self.snap_to_actor: int = 0  # Active actor which cause this demolisher to be glued.
-        self.snapping_offset = list()
+        self.snapping_offset = dict()
+        # self.snapping_offset = list()
         self.damage: float = 0.
         self.damage_reduce: float = 0.
         self.parent_id: int = -1
@@ -26,16 +27,44 @@ class Demolisher(Entity):
         self.flyer = False
         # self.rectangle = Rect(0, 0, 50, 50)
 
-    def update(self, snap_side, snap_rect):
+    # def update(self, update_distance):
+    #     self.rectangle.x += update_distance[0]
+    #     self.rectangle.y += update_distance[1]
+
+    def update__(self, snap_side, snap_rect):
+        # print(f"[demolisher update] Enter: {snap_side=} {snap_rect=} {self.rectangle=}")
         if snap_side == 1:  # Snapping to the actor's right side
             self.rectangle.left = snap_rect.centerx + self.snapping_offset[0]
-            # self.rectangle.left = snap_rect.left + self.snapping_offset[0]
-            # self.rectangle.left = snap_rect.right + self.snapping_offset[0]
-            self.rectangle.top = snap_rect.top + self.snapping_offset[1]
+            self.rectangle.top = snap_rect.centery + self.snapping_offset[1]
         else:
             self.rectangle.right = snap_rect.centerx + self.snapping_offset[0]
-            # self.rectangle.right = snap_rect.left - self.snapping_offset[0]
-            self.rectangle.top = snap_rect.top + self.snapping_offset[1]
+            self.rectangle.top = snap_rect.centery + self.snapping_offset[1]
+        # print(f"[demolisher update] Exit with: {self.rectangle=}")
+        # print(f"[demolisher update] ---------------------------")
+
+
+    def update(self, snap_side, snap_rect):
+        # self.rectangle.centerx = snap_rect.centerx + self.snapping_offset[snap_side][0]
+        # self.rectangle.centery = snap_rect.centery + self.snapping_offset[snap_side][1]
+
+        if snap_side == 1:  # Snapping to the actor's right side
+            self.rectangle.centerx = snap_rect.centerx + self.snapping_offset['offset inside actor'][0] \
+                                     + abs(self.snapping_offset['offset inside demolisher'][0])
+            self.rectangle.centery = snap_rect.centery + self.snapping_offset['offset inside actor'][1] \
+                                     + abs(self.snapping_offset['offset inside demolisher'][1])
+
+            # self.rectangle.left = snap_rect.centerx + self.snapping_offset[0]
+            # self.rectangle.top = snap_rect.top + self.snapping_offset[1]
+        else:
+            self.rectangle.centerx = snap_rect.centerx + self.snapping_offset['offset inside actor'][0] \
+                                     - self.snapping_offset['offset inside demolisher'][0] * -1
+            self.rectangle.centery = snap_rect.centery + self.snapping_offset['offset inside actor'][1] \
+                                     + abs(self.snapping_offset['offset inside demolisher'][1])
+
+            # self.rectangle.centerx = snap_rect.centerx - self.snapping_offset[snap_side][0]
+            # self.rectangle.centery = snap_rect.centery - self.snapping_offset[snap_side][1]
+            # self.rectangle.right = snap_rect.centerx + self.snapping_offset[0]
+            # self.rectangle.top = snap_rect.top + self.snapping_offset[1]
 
     def detect_collisions_with_obstacles(self):
         # self.influenced_by_obstacle = None
