@@ -646,7 +646,8 @@ class Entity(object):
                             'bounce factor': 0.,
                             'subtype': 'splatter',
                             'color': self.blood_color,
-                            'look': self.look * -1,  # Splatter always fly in the opposite direction
+                            'look': dem.parent.look,
+                            # 'look': self.look * -1,  # Splatter always fly in the opposite direction
                             'speed': 1 + randint(1, 8),
                             'jump height': randint(0, 20),
                             'collides': True,
@@ -657,6 +658,7 @@ class Entity(object):
                 if 'smash' in dem.attack_type:
                     if self.get_state() not in ('hold stash', 'carry stash right', 'carry stash left'):
                         self.hop_back_jump_height_modifier = (dem.parent_strength / self.strength) + (dem.parent_weight / self.body_weight)
+                        self.movement_direction_inverter = -1 if dem.parent.look != self.look else 1
                         self.set_state('hop back')
 
     # def mask_update(self, offset):
