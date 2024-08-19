@@ -17,7 +17,7 @@ class Demolisher(Entity):
         self.damage: float = 0.
         self.damage_reduce: float = 0.
         self.parent_id: int = -1
-        self.parent: str = ''
+        self.parent = None  # Instance of parent Entity() class.
         self.static = True
         self.attack_type = list()
         self.bounce = False

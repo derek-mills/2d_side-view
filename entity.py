@@ -395,10 +395,11 @@ class Entity(object):
                         # self.summon_demolisher_counter += 1
                         d = copy.deepcopy(d_origin)
                         d['snap to actor'] = self.id
-                        d['parent'] = self.name
+                        d['parent'] = self
+                        # d['parent'] = self.name
                         d['snapping offset'] = sprites[self.name + ' ' + str(self.animation_sequence[self.frame_number])]['demolisher snap point']
-                        d['parent strength'] = self.strength
-                        d['parent weight'] = self.body_weight
+                        # d['parent strength'] = self.strength
+                        # d['parent weight'] = self.body_weight
 
                         self.summoned_demolishers_description.append(d)
                         # self.summoned_demolisher_description['snapping offset'] = self.animations[self.current_animation]['demolisher offset'][self.look]
@@ -635,7 +636,7 @@ class Entity(object):
                     self.summon_particle = True
                     for particle_quantity in range(randint(2, 2 + dem.damage // 10)):
                     # for particle_quantity in range(randint(10, 20)):
-                        size = randint(1, dem.damage >> 4)
+                        size = randint(1, int(dem.damage) >> 4)
                         self.summoned_particle_descriptions.append({
                             'particle TTL': 100,
                             'width': size,

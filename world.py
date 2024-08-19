@@ -360,8 +360,10 @@ class World(object):
 
         if description['snap to actor'] >= 0:
             demol.snap_to_actor = description['snap to actor']
-            actor = self.actors[self.location][description['snap to actor']]
-            demol.parent_id = actor.id
+            actor = self.actors[self.location][demol.parent.id]
+            # actor = self.actors[self.location][description['snap to actor']]
+            demol.parent_id = demol.parent.id
+            # demol.parent_id = actor.id
             demol.snapping_offset = description['snapping offset']
             demol.update(actor.look, actor.sprite_rectangle)
             # demol.update(actor.look, actor.rectangle)
@@ -384,8 +386,10 @@ class World(object):
         demol.is_collideable = description['collides']
         demol.is_gravity_affected = description['gravity affected']
         demol.attack_type = description['attack type']
-        demol.parent_strength = description['parent strength']
-        demol.parent_weight = description['parent weight']
+        demol.parent_strength = demol.parent.strength
+        demol.parent_weight = demol.parent.body_weight
+        # demol.parent_strength = description['parent strength']
+        # demol.parent_weight = description['parent weight']
 
         self.demolishers[self.location][demol.id] = demol
         # print(f'[add_demolisher] Added: {demol.id=} {demol.name} {demol.rectangle} {demol.max_speed=} {demol.destination=}')
