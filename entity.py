@@ -391,7 +391,9 @@ class Entity(object):
                     # print(f'[process active frames] make attack at frame {self.frame_number}')
                     self.summon_demolisher = True
                     self.summoned_demolishers_description = list()
-                    for d_origin in self.current_weapon['demolishers']:
+                    dem_set_num = self.animations[self.current_animation]['activity at frames'][self.frame_number]['demolishers set number']
+                    for d_origin in self.current_weapon['demolishers'][dem_set_num]:
+                    # for d_origin in self.current_weapon['demolishers'][self.frame_number]:
                         # self.summon_demolisher_counter += 1
                         d = copy.deepcopy(d_origin)
                         d['snap to actor'] = self.id

@@ -181,6 +181,7 @@ locations = {
                 ((750, 900), (50, 50), 44),  #44
                 ((450, 600), (50, 50), 46),  #46
                 ((-100, 950), (2600, 100), 47),  #47
+                ((600, 450), (50, 50), 48),  #48
                   ), # OBSTACLE RECTANGLES SECTION END
                 'settings': {
                     6: {
@@ -322,6 +323,26 @@ locations = {
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': False,
                         'teleport description': {'new location': '', 'on touch': True, 'xy': [0, 0]},
+                  },
+                    48: {
+                        'sprite elevated': False,
+                        'sprite': 0,
+                        'force render': True,
+                        'ghost': False,
+                        'actors pass through': True,
+                        'actors may grab': False,
+                        'speed': 0.2,
+                        'collideable': True,
+                        'gravity affected': True,
+                        'invisible': False,
+                        'teleport': False,
+                        'teleport description': {'new location': '', 'on touch': True, 'xy': [0, 0]},
+                        'trigger': True,
+                        'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
+                        'item': True,
+                        'item name': {'name': 'axe'},
+                        'active': False,
+                        'actions': {0: []},
                   },
                   } # OBSTACLE SETTINGS SECTION END
               },

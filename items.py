@@ -48,6 +48,7 @@ all_items = {
     'whip': whip,
     'kitchen knife': kitchen_knife,
     'sword': sword,
+    'axe': axe
 }
 # all_items = {
 #     'exp': exp,

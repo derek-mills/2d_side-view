@@ -346,6 +346,11 @@ load_single_frame(items, ((40,150,20,30),), 'jake kick demolisher', 5)
 load_single_frame(items, ((40,120,40,30),), 'demon 2 claw demolisher', 5)
 load_single_frame(items, ((80,120,40,30),), 'demon 2 mid claw demolisher', 5)
 
+load_single_frame(items, ((20,210,20,30),), 'axe', 5)
+load_single_frame(items, ((40,210,20,30),), 'axe 45 demolisher', 9)
+load_single_frame(items, ((60,210,20,30),), 'axe 0 demolisher', 9)
+load_single_frame(items, ((80,210,20,30),), 'axe 315 demolisher', 9)
+
 
 
 # ___...---=== JAKE ===---...___

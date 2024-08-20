@@ -21,7 +21,7 @@ sword = {
     'sprite': 'short sword',
     'reach': 50,
     'demolishers': (
-        {
+        ({
             'rect': pygame.Rect(0, 0, 70, 10), 'flyer': False,
             'demolisher sprite': 'short sword demolisher',
             'pierce': False, 'demolisher TTL': 6, 'speed': 0,
@@ -40,7 +40,7 @@ sword = {
             'bounce': False, 'bounce factor': 0,
             'attack type': ('slash',),
             'aftermath': 'disappear'
-        },
+        },),
     ),
     'description': 'Casual kitchen knife.',
 }
@@ -72,7 +72,7 @@ kitchen_knife = {
     # },
     'reach': 50,
     'demolishers': (
-        {
+        ({
             'rect': pygame.Rect(0, 0, 30, 30), 'flyer': False,
             'demolisher sprite': 'kitchen knife demolisher',
             'pierce': False, 'demolisher TTL': 10, 'speed': 12,
@@ -81,7 +81,7 @@ kitchen_knife = {
             'bounce': False, 'bounce factor': 0.,
             'attack type': ('slash',),
             'aftermath': None
-        },
+        },)
         # {
         #     'rect': pygame.Rect(0, 0, 10, 10), 'flyer': False,
         #     'demolisher sprite': None,
@@ -127,7 +127,7 @@ fireball_staff = {
     'ammo': 0,
     'reach': 1000,
     'demolishers': (
-        {
+        ({
             'rect': pygame.Rect(0, 0, 70, 70), 'flyer': False,
             'demolisher sprite': 'staff demolisher',
             'pierce': False, 'demolisher TTL': 150, 'speed': 30,
@@ -136,7 +136,7 @@ fireball_staff = {
             'bounce': True, 'bounce factor': 0.3,
             'attack type': ('fire', ),
             'aftermath': 'disappear'
-        },
+        },),
     ),
 
 }
@@ -164,7 +164,7 @@ spikeball_staff = {
     'ammo': 0,
     'reach': 1000,
     'demolishers': (
-        {
+        ({
             'rect': pygame.Rect(0, 0, 70, 70), 'flyer': False,
             'demolisher sprite': 'spikeball staff demolisher',
             'pierce': False, 'demolisher TTL': 250, 'speed': 30,
@@ -173,7 +173,7 @@ spikeball_staff = {
             'bounce': True, 'bounce factor': 0.9,
             'attack type': ('pierce',),
             'aftermath': 'disappear'
-        },
+        },),
     ),
 
 }
@@ -201,7 +201,7 @@ whip = {
     'ammo': 0,
     'reach': 170,
     'demolishers': (
-        {
+        ({
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
             'demolisher sprite': 'whip demolisher',
             'pierce': False, 'demolisher TTL': 5, 'speed': 0,
@@ -211,7 +211,7 @@ whip = {
             'attack type': ('pierce',),
             # 'aftermath': 'explode'
             'aftermath': 'disappear'
-        },
+        },),
     ),
 
 }
@@ -238,7 +238,7 @@ jake_kick = {
     'ammo': 0,
     'reach': 170,
     'demolishers': (
-        {
+        ({
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
             'demolisher sprite': 'jake kick demolisher',
             'pierce': False, 'demolisher TTL': 80, 'speed': 0,
@@ -248,7 +248,65 @@ jake_kick = {
             'attack type': ('smash',),
             # 'aftermath': 'explode'
             'aftermath': 'disappear'
-        },
+        },),
+    ),
+
+}
+axe = {
+    'description': 'Golden Axe 3',
+    'class': 'weapons',
+    'type': 'melee',
+    'label': 'axe',
+    'sprite': 'axe',
+    'sound': 'sound_swing_2',
+    'amount': 1,
+    'amount threshold': 1,
+    'amount decrease speed': 0,
+    'affects on': '',
+    'stamina consumption': .1,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
+    'mana consumption': 0.,
+    'attack animation': 'stab',
+    'ignore user input': True,  # Steal the ability to control a character for a while.
+    'animation speed modifier': 3.,  # 0 < x < 1: speed animation up, x > 1: slow down.
+    'leave particles': False,
+    'droppable': False,
+    'need ammo': False,
+    'ammo': 0,
+    'reach': 170,
+    'demolishers': (
+        ({
+            'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
+            'demolisher sprite': 'axe 45 demolisher',
+            'pierce': False, 'demolisher TTL': 4, 'speed': 0,
+            'damage': 100, 'static': True, 'damage reduce': 0,
+            'collides': False, 'gravity affected': False,
+            'bounce': False, 'bounce factor': 0.,
+            'attack type': ('smash','slash'),
+            # 'aftermath': 'explode'
+            'aftermath': 'disappear'
+        },),
+        ({
+            'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
+            'demolisher sprite': 'axe 0 demolisher',
+            'pierce': False, 'demolisher TTL': 4, 'speed': 0,
+            'damage': 100, 'static': True, 'damage reduce': 0,
+            'collides': False, 'gravity affected': False,
+            'bounce': False, 'bounce factor': 0.,
+            'attack type': ('smash','slash'),
+            # 'aftermath': 'explode'
+            'aftermath': 'disappear'
+        },),
+        ({
+            'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
+            'demolisher sprite': 'axe 315 demolisher',
+            'pierce': False, 'demolisher TTL': 18, 'speed': 0,
+            'damage': 150, 'static': True, 'damage reduce': 0,
+            'collides': False, 'gravity affected': False,
+            'bounce': False, 'bounce factor': 0.,
+            'attack type': ('smash','slash'),
+            # 'aftermath': 'explode'
+            'aftermath': 'disappear'
+        },),
     ),
 
 }
@@ -275,7 +333,7 @@ demon_2_mid = {
     'ammo': 0,
     'reach': 200,
     'demolishers': (
-        {
+        ({
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
             'demolisher sprite': 'demon 2 mid claw demolisher',
             'pierce': False, 'demolisher TTL': 6, 'speed': 0,
@@ -285,7 +343,7 @@ demon_2_mid = {
             'attack type': ('slash', 'smash', 'pierce'),
             # 'aftermath': 'explode'
             'aftermath': 'disappear'
-        },
+        },),
     ),
 
 }
@@ -312,7 +370,7 @@ demon_2_close = {
     'ammo': 0,
     'reach': 200,
     'demolishers': (
-        {
+        ({
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
             'demolisher sprite': 'demon 2 claw demolisher',
             'pierce': False, 'demolisher TTL': 10, 'speed': 0,
@@ -322,7 +380,7 @@ demon_2_close = {
             'attack type': ('slash', 'smash', 'pierce'),
             # 'aftermath': 'explode'
             'aftermath': 'disappear'
-        },
+        },),
     ),
 
 }
