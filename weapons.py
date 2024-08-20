@@ -81,7 +81,7 @@ kitchen_knife = {
             'bounce': False, 'bounce factor': 0.,
             'attack type': ('slash',),
             'aftermath': None
-        },)
+        },),
         # {
         #     'rect': pygame.Rect(0, 0, 10, 10), 'flyer': False,
         #     'demolisher sprite': None,
@@ -265,7 +265,7 @@ axe = {
     'affects on': '',
     'stamina consumption': .1,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
     'mana consumption': 0.,
-    'attack animation': 'stab',
+    'attack animation': 'axe swing',
     'ignore user input': True,  # Steal the ability to control a character for a while.
     'animation speed modifier': 3.,  # 0 < x < 1: speed animation up, x > 1: slow down.
     'leave particles': False,

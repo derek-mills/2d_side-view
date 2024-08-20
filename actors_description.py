@@ -154,48 +154,26 @@ demon_1 = {
         'whip right': {
             'repeat': False, 'interruptable': True,
             'sequence': (74,74,74,75,76,76,76,77),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
-            # 74,74,74,74,74,  # 5 - 9
-            # 74,74,74,75,75,  # 10 - 14
-            # 74,74,74,74,74,  # 15 - 19
-            # 74,74,74,74,74,  # 20 - 24
-            # 74,74,74,75,75), # 25 - 29
-            # 'demolisher offset': (46, 36),
             'speed': 3,
             'activity at frames': {
                 4: {
                     'sound': True,
+                    'demolishers set number': 0,
                     'demolisher': True
                 },
                 },
-            'demolisher offset': {
-                1: (sprites['demon 1 76']['demolisher snap point'][0],
-                    sprites['demon 1 76']['demolisher snap point'][1]),
-                # -1: (-65, 60),
-                # 1: (65, 60),
-                # -1: (-65, 60),
-            },
             'repeat from frame': 0
         },
         'whip left': {
             'repeat': False, 'interruptable': True,
             'sequence': (91,91,91,90,89,89,89,88),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
-            # 74,74,74,74,74,  # 5 - 9
-            # 74,74,74,75,75,  # 10 - 14
-            # 74,74,74,74,74,  # 15 - 19
-            # 74,74,74,74,74,  # 20 - 24
-            # 74,74,74,75,75), # 25 - 29
-            # 'demolisher offset': (46, 36),
             'speed': 1,
             'activity at frames': {
                 4: {
                     'sound': True,
+                    'demolishers set number': 0,
                     'demolisher': True
                 },
-            },
-            'demolisher offset': {
-                # 1: (65,60),
-                -1: (sprites['demon 1 89']['demolisher snap point'][0],
-                     sprites['demon 1 89']['demolisher snap point'][1]),
             },
             'repeat from frame': 0
         },
@@ -203,30 +181,19 @@ demon_1 = {
             'repeat': False, 'interruptable': True,
             'sequence': (74,74,74,74,75,  # 0 - 4
                          74,74,74,74,75, 75), # 5 - 9
-                         # 74,74,74,74,74,  # 5 - 9
-                         # 74,74,74,75,75,  # 10 - 14
-                         # 74,74,74,74,74,  # 15 - 19
-                         # 74,74,74,74,74,  # 20 - 24
-                         # 74,74,74,75,75), # 25 - 29
-            # 'demolisher offset': (46, 36),
             'speed': 2,
             'activity at frames': {
                 4: {
                     'sound': True,
                     # 'move': 10,  # Slightly move actor forward,
+                    'demolishers set number': 0,
                     'demolisher': True
                 },
                 9: {
                     # 'move': 10,  # Slightly move actor forward,
+                    'demolishers set number': 0,
                     'demolisher': True
                 },
-            },
-            'demolisher offset': {
-                1: (sprites['demon 1 75']['demolisher snap point'][0],
-                    sprites['demon 1 75']['demolisher snap point'][1]),
-
-                # 1: (46, 36),
-                # -1: (-46, 36),
             },
             'repeat from frame': 0
         },
@@ -234,46 +201,30 @@ demon_1 = {
             'repeat': False, 'interruptable': True,
             'sequence': (89, 89, 89, 89, 88,
                          89, 89, 89, 89, 88, 88),  # 0 - 4
-                         # 89, 89, 89, 89, 89,  # 5 - 9
-                         # 89, 89, 89, 88, 88,  # 10 - 14
-                         # 89, 89, 89, 89, 89,  # 15 - 19
-                         # 89, 89, 89, 89, 89,  # 20 - 24
-                         # 89, 89, 89, 88, 88),  # 25 - 29
-            # 'demolisher offset': (-46,36),
             'activity at frames': {
                 4: {
                     'sound': True,
                     # 'move': 10, # Slightly move actor forward,
+                    'demolishers set number': 0,
                     'demolisher': True
                 },
                 9: {
                     # 'move': 10, # Slightly move actor forward,
-                    'demolisher': True
+                    'demolisher': True,
+                    'demolishers set number': 0,
                 },
             },
             'speed': 1,
-            'demolisher offset': {
-                -1: (sprites['demon 1 88']['demolisher snap point'][0],
-                    sprites['demon 1 88']['demolisher snap point'][1]),
-
-                # 1: (46, 36),
-                # -1: (-46, 36),
-            },
             'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 2
         },
         'cast right': {
             'repeat': False, 'interruptable': True,
             'sequence': (60,60,60,60,60,60,61,62,62,62,62),  # 5 - 9
-            # 74,74,74,74,74,  # 5 - 9
-            # 74,74,74,75,75,  # 10 - 14
-            # 74,74,74,74,74,  # 15 - 19
-            # 74,74,74,74,74,  # 20 - 24
-            # 74,74,74,75,75), # 25 - 29
-            # 'demolisher offset': (46, 36),
             'speed': 4,
             'activity at frames': {
                 7: {
                     'sound': True,
+                    'demolishers set number': 0,
                     'demolisher': True
                 },
             },
@@ -282,16 +233,11 @@ demon_1 = {
         'cast left': {
             'repeat': False, 'interruptable': True,
             'sequence': (65,65,65,65,65,65,64,63,63,63,63),  # 5 - 9
-            # 74,74,74,74,74,  # 5 - 9
-            # 74,74,74,75,75,  # 10 - 14
-            # 74,74,74,74,74,  # 15 - 19
-            # 74,74,74,74,74,  # 20 - 24
-            # 74,74,74,75,75), # 25 - 29
-            # 'demolisher offset': (46, 36),
             'speed': 4,
             'activity at frames': {
                 7: {
                     'sound': True,
+                    'demolishers set number': 0,
                     'demolisher': True
                 },
             },
@@ -311,25 +257,6 @@ demon_2 = {
     'blood color': (150, 50, 10),
     'strength': 15,
     'body weight': 140,
-
-    # 'body state': {
-    #     'viewing range': 600,
-    #     'regeneration ability': 0.001,
-    #     'blood volume': 15000,
-    #     'blood volume replenish': .01,
-    #     'stamina replenish': 1,
-    #     'consciousness replenish': 10,
-    #     'consciousness threshold': 10,
-    #     'bleeding reduce': .01,  #
-    #     'bleeding resistance': 0,  # Reduce bleeding, in percents.
-    #     'max blood volume': 15000,
-    #     'max stamina': 120,
-    #     'max fatigue': 100,
-    #     'max consciousness': 1000,
-    #     'luck': 5,
-    #     'strength': 25,
-    #     'weight': 70,  # Kilos.
-    # },
     'gravity affected': True,
     'body': {
         'head': {
@@ -884,22 +811,10 @@ player_jake = {
             'sequence': (74,75,76,76,76,),  # 0 - 4
             'speed': 2,
             'activity at frames': {
-                0: {
-                    'sound': True,
-                    # 'move': 10,  # Slightly move actor forward,
-                    'demolishers set number': 0,
-                    'demolisher': True
-                },
-                1: {
-                    'sound': True,
-                    # 'move': 10,  # Slightly move actor forward,
-                    'demolishers set number': 1,
-                    'demolisher': True
-                },
                 2: {
                     'sound': True,
                     # 'move': 10,  # Slightly move actor forward,
-                    'demolishers set number': 2,
+                    'demolishers set number': 0,
                     'demolisher': True
                 },
             },
@@ -909,22 +824,10 @@ player_jake = {
             'repeat': False, 'interruptable': True,
             'sequence': (91,90,89,89,89),  # 0 - 4
             'activity at frames': {
-                0: {
-                    'sound': True,
-                    # 'move': 10,  # Slightly move actor forward,
-                    'demolishers set number': 0,
-                    'demolisher': True
-                },
-                1: {
-                    'sound': True,
-                    # 'move': 10,  # Slightly move actor forward,
-                    'demolishers set number': 1,
-                    'demolisher': True
-                },
                 2: {
                     'sound': True,
                     # 'move': 10, # Slightly move actor forward,
-                    'demolishers set number': 2,
+                    'demolishers set number': 0,
                     'demolisher': True
                 },
             },
@@ -1020,30 +923,58 @@ player_jake = {
             },
             'repeat from frame': 0
         },
-        # 'axe swing right': {
-        #     'repeat': False, 'interruptable': True,
-        #     'sequence': (74, 74, 74, 75, 76, 76, 76, 77),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
-        #     'speed': 2,
-        #     'activity at frames': {
-        #         4: {
-        #             'sound': True,
-        #             'demolisher': True
-        #         },
-        #     },
-        #     'repeat from frame': 0
-        # },
-        # 'axe swing left': {
-        #     'repeat': False, 'interruptable': True,
-        #     'sequence': (91, 91, 91, 90, 89, 89, 89, 88),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
-        #     'speed': 2,
-        #     'activity at frames': {
-        #         4: {
-        #             'sound': True,
-        #             'demolisher': True
-        #         },
-        #     },
-        #     'repeat from frame': 0
-        # },
+        'axe swing right': {
+            'repeat': False, 'interruptable': True,
+            'sequence': (74, 75, 76, 76, 76,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'speed': 2,
+            'activity at frames': {
+                0: {
+                    'sound': True,
+                    # 'move': 10,  # Slightly move actor forward,
+                    'demolishers set number': 0,
+                    'demolisher': True
+                },
+                1: {
+                    'sound': True,
+                    # 'move': 10,  # Slightly move actor forward,
+                    'demolishers set number': 1,
+                    'demolisher': True
+                },
+                2: {
+                    'sound': True,
+                    # 'move': 10,  # Slightly move actor forward,
+                    'demolishers set number': 2,
+                    'demolisher': True
+                },
+            },
+            'repeat from frame': 0
+        },
+        'axe swing left': {
+            'repeat': False, 'interruptable': True,
+            'sequence': (91, 90, 89, 89, 89,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'speed': 2,
+            'activity at frames': {
+                0: {
+                    'sound': True,
+                    # 'move': 10,  # Slightly move actor forward,
+                    'demolishers set number': 0,
+                    'demolisher': True
+                },
+                1: {
+                    'sound': True,
+                    # 'move': 10,  # Slightly move actor forward,
+                    'demolishers set number': 1,
+                    'demolisher': True
+                },
+                2: {
+                    'sound': True,
+                    # 'move': 10, # Slightly move actor forward,
+                    'demolishers set number': 2,
+                    'demolisher': True
+                },
+            },
+            'repeat from frame': 0
+        },
     },
     'think type': '',
     'AI controlled': False

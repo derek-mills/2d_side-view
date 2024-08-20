@@ -392,6 +392,7 @@ class Entity(object):
                     self.summon_demolisher = True
                     self.summoned_demolishers_description = list()
                     dem_set_num = self.animations[self.current_animation]['activity at frames'][self.frame_number]['demolishers set number']
+                    # if dem_set_num <= len(self.current_weapon['demolishers']) - 1:
                     for d_origin in self.current_weapon['demolishers'][dem_set_num]:
                     # for d_origin in self.current_weapon['demolishers'][self.frame_number]:
                         # self.summon_demolisher_counter += 1

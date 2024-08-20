@@ -6,14 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphics.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphics.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/animations/jake_8bit.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/animations/jake_8bit.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/items.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/items.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/items.py" beforeDir="false" afterPath="$PROJECT_DIR$/items.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -148,13 +143,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00355" summary="Stamina use mechanism improved.">
-      <created>1723000212311</created>
-      <option name="number" value="00355" />
-      <option name="presentableId" value="LOCAL-00355" />
-      <option name="project" value="LOCAL" />
-      <updated>1723000212311</updated>
     </task>
     <task id="LOCAL-00356" summary="Stamina use mechanism tiny improved.">
       <created>1723000682878</created>
@@ -492,7 +480,14 @@
       <option name="project" value="LOCAL" />
       <updated>1724057367769</updated>
     </task>
-    <option name="localTasksCounter" value="404" />
+    <task id="LOCAL-00404" summary="Added the Axe weapon. &#10;Added intermediate demolishers appearing during all phases of animation.">
+      <created>1724119931773</created>
+      <option name="number" value="00404" />
+      <option name="presentableId" value="LOCAL-00404" />
+      <option name="project" value="LOCAL" />
+      <updated>1724119931774</updated>
+    </task>
+    <option name="localTasksCounter" value="405" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -507,7 +502,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added the Stash item." />
     <MESSAGE value="Added player actor's Stash carry ability." />
     <MESSAGE value="Added player actor's Stash drop ability." />
     <MESSAGE value="Returned old good independent rectangle." />
@@ -532,6 +526,7 @@
     <MESSAGE value="A demolisher gets an instance of his parent's class as a reference." />
     <MESSAGE value="Hopping back after damage improved." />
     <MESSAGE value="Fighting with demolisher sprites offset during attack." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fighting with demolisher sprites offset during attack." />
+    <MESSAGE value="Added the Axe weapon. &#10;Added intermediate demolishers appearing during all phases of animation." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added the Axe weapon. &#10;Added intermediate demolishers appearing during all phases of animation." />
   </component>
 </project>
