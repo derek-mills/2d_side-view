@@ -117,8 +117,8 @@ class Entity(object):
         self.air_acceleration: float = self.default_air_acceleration
         self.jump_height = 0.
         self.max_jump_height = 22.
-        self.default_hop_back_jump_height_modifier: float = 0.6  # Rarely used, mostly while hopping back.
-        self.hop_back_jump_height_modifier = 0.6  # Rarely used, mostly while hopping back.
+        self.default_hop_back_jump_height_modifier: float = 2.6  # Rarely used, mostly while hopping back.
+        self.hop_back_jump_height_modifier = 2.6  # Rarely used, mostly while hopping back.
         self.default_max_jump_attempts: int = 1  #
         self.max_jump_attempts: int = 1  #
         self.jump_attempts_counter: int = 0
@@ -580,7 +580,7 @@ class Entity(object):
             return
         for key in self.demolishers_around.keys():
             dem = self.demolishers_around[key]
-            if dem.id in self.got_immunity_to_demolishers or dem.parent_id == self.id or dem.parent == self.name:
+            if dem.id in self.got_immunity_to_demolishers or dem.parent_id == self.id or dem.parent.name == self.name:
                 continue
 
             # A piece of code from my Turn-based game project:

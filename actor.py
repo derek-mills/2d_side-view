@@ -471,6 +471,7 @@ class Actor(Entity):
                 return
             # if self.is_stand_on_ground:
             #     if self.is_enough_space_above:
+            self.movement_direction_inverter = -1
             self.set_state('hop back')
         elif new_action == 'hop back action cancel':
             # self.set_state('jump cancel')

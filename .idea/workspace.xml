@@ -6,10 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,13 +140,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00356" summary="Stamina use mechanism tiny improved.">
-      <created>1723000682878</created>
-      <option name="number" value="00356" />
-      <option name="presentableId" value="LOCAL-00356" />
-      <option name="project" value="LOCAL" />
-      <updated>1723000682878</updated>
     </task>
     <task id="LOCAL-00357" summary="Demon 2 appearance changed, horns of the Abyss added :)">
       <created>1723009242511</created>
@@ -487,7 +477,14 @@
       <option name="project" value="LOCAL" />
       <updated>1724119931774</updated>
     </task>
-    <option name="localTasksCounter" value="405" />
+    <task id="LOCAL-00405" summary="Added separate Axe swing attack.">
+      <created>1724122389885</created>
+      <option name="number" value="00405" />
+      <option name="presentableId" value="LOCAL-00405" />
+      <option name="project" value="LOCAL" />
+      <updated>1724122389885</updated>
+    </task>
+    <option name="localTasksCounter" value="406" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -502,7 +499,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added player actor's Stash carry ability." />
     <MESSAGE value="Added player actor's Stash drop ability." />
     <MESSAGE value="Returned old good independent rectangle." />
     <MESSAGE value="Demolishers snap to the actors sprite rectangle, not to collision rectangle as it was earlier." />
@@ -527,6 +523,7 @@
     <MESSAGE value="Hopping back after damage improved." />
     <MESSAGE value="Fighting with demolisher sprites offset during attack." />
     <MESSAGE value="Added the Axe weapon. &#10;Added intermediate demolishers appearing during all phases of animation." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added the Axe weapon. &#10;Added intermediate demolishers appearing during all phases of animation." />
+    <MESSAGE value="Added separate Axe swing attack." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added separate Axe swing attack." />
   </component>
 </project>
