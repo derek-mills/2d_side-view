@@ -335,7 +335,9 @@ load_single_frame(items, ((20,60,20,30),), 'short sword', 5)
 load_single_frame(items, ((40,60,29,30),), 'short sword demolisher', 5)
 
 load_single_frame(items, ((20,90,20,30),), 'whip', 5)
-load_single_frame(items, ((40,90,80,30),), 'whip demolisher', 4)
+load_single_frame(items, ((40,90,80,30),), 'whip demolisher long', 4)
+load_single_frame(items, ((120,90,60,30),), 'whip demolisher medium', 4)
+load_single_frame(items, ((180,90,40,30),), 'whip demolisher short', 4)
 
 load_single_frame(items, ((20,180,20,30),), 'spikeball staff', 5)
 load_single_frame(items, ((40,180,80,30),), 'spikeball staff demolisher', 5)

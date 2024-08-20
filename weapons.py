@@ -203,7 +203,29 @@ whip = {
     'demolishers': (
         ({
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
-            'demolisher sprite': 'whip demolisher',
+            'demolisher sprite': 'whip demolisher short',
+            'pierce': False, 'demolisher TTL': 1, 'speed': 0,
+            'damage': 150, 'static': True, 'damage reduce': 0,
+            'collides': False, 'gravity affected': False,
+            'bounce': False, 'bounce factor': 0.,
+            'attack type': ('pierce',),
+            # 'aftermath': 'explode'
+            'aftermath': 'disappear'
+        },),
+        ({
+            'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
+            'demolisher sprite': 'whip demolisher medium',
+            'pierce': False, 'demolisher TTL': 1, 'speed': 0,
+            'damage': 150, 'static': True, 'damage reduce': 0,
+            'collides': False, 'gravity affected': False,
+            'bounce': False, 'bounce factor': 0.,
+            'attack type': ('pierce',),
+            # 'aftermath': 'explode'
+            'aftermath': 'disappear'
+        },),
+        ({
+            'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
+            'demolisher sprite': 'whip demolisher long',
             'pierce': False, 'demolisher TTL': 5, 'speed': 0,
             'damage': 150, 'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
@@ -241,7 +263,7 @@ jake_kick = {
         ({
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
             'demolisher sprite': 'jake kick demolisher',
-            'pierce': False, 'demolisher TTL': 80, 'speed': 0,
+            'pierce': False, 'demolisher TTL': 8, 'speed': 0,
             'damage': 10, 'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
