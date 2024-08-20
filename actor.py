@@ -525,18 +525,6 @@ class Actor(Entity):
             self.activate_weapon('jake kick')
             self.set_state('prepare attack')
             self.force_use_previous_weapon = True
-            # if self.look == 1:
-            #     self.set_state('kick right')
-            # else:
-            #     self.set_state('kick left')
-            # self.set_state(self.current_weapon['attack animation'])
-            # self.stamina_reduce(self.current_stamina_lost_per_attack)
-            # self.mana_reduce(self.current_mana_lost_per_attack)
-            # self.frames_changing_threshold_modifier = self.current_weapon['animation speed modifier']
-            # self.set_current_animation()
-            # self.ignore_user_input = self.current_weapon['ignore user input']
-            # if self.is_stand_on_ground:
-            #     self.heading[0] = 0
         elif self.__state == 'prepare attack':                          # PREPARING ATTACK
             self.set_state(self.current_weapon['attack animation'])
             self.stamina_reduce(self.current_stamina_lost_per_attack)

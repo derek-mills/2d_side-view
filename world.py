@@ -330,7 +330,7 @@ class World(object):
         demol.id = self.demolisher_id
         self.demolisher_id += 1
         demol.name = 'demolisher ' + str(demol.id)
-        demol.ttl = description['demolisher TTL']
+        # demol.ttl = description['demolisher TTL']
 
         if description['demolisher sprite']:
             demol.current_sprite = sprites[description['demolisher sprite']]
@@ -357,6 +357,7 @@ class World(object):
         demol.bounce_factor = description['bounce factor']
         demol.flyer = description['flyer']
         demol.parent = description['parent']
+        demol.ttl = description['demolisher TTL'] * demol.parent.frames_changing_threshold_modifier
 
         if description['snap to actor'] >= 0:
             demol.snap_to_actor = description['snap to actor']
