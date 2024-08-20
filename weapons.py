@@ -358,12 +358,34 @@ demon_2_mid = {
     'demolishers': (
         ({
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
-            'demolisher sprite': 'demon 2 mid claw demolisher',
+            'demolisher sprite': 'demon 2 mid claw demolisher 1',
+            'pierce': False, 'demolisher TTL': 2, 'speed': 0,
+            'damage': 150, 'static': True, 'damage reduce': 0,
+            'collides': False, 'gravity affected': False,
+            'bounce': False, 'bounce factor': 0.,
+            'attack type': ('slash', ),
+            # 'aftermath': 'explode'
+            'aftermath': 'disappear'
+        },),
+        ({
+            'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
+            'demolisher sprite': 'demon 2 mid claw demolisher 2',
+            'pierce': False, 'demolisher TTL': 5, 'speed': 0,
+            'damage': 150, 'static': True, 'damage reduce': 0,
+            'collides': False, 'gravity affected': False,
+            'bounce': False, 'bounce factor': 0.,
+            'attack type': ('slash', 'pierce'),
+            # 'aftermath': 'explode'
+            'aftermath': 'disappear'
+        },),
+        ({
+            'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
+            'demolisher sprite': 'demon 2 mid claw demolisher 3',
             'pierce': False, 'demolisher TTL': 6, 'speed': 0,
             'damage': 150, 'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
-            'attack type': ('slash', 'smash', 'pierce'),
+            'attack type': ('smash', ),
             # 'aftermath': 'explode'
             'aftermath': 'disappear'
         },),

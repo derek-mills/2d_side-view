@@ -346,7 +346,9 @@ load_single_frame(items, ((20,150,20,30),), 'boot', 5)
 load_single_frame(items, ((40,150,20,30),), 'jake kick demolisher', 5)
 
 load_single_frame(items, ((40,120,40,30),), 'demon 2 claw demolisher', 5)
-load_single_frame(items, ((80,120,40,30),), 'demon 2 mid claw demolisher', 5)
+load_single_frame(items, ((80,120,40,30),), 'demon 2 mid claw demolisher 1', 5)
+load_single_frame(items, ((120,120,40,30),), 'demon 2 mid claw demolisher 2', 5)
+load_single_frame(items, ((160,120,40,30),), 'demon 2 mid claw demolisher 3', 5)
 
 load_single_frame(items, ((20,210,20,30),), 'axe', 5)
 load_single_frame(items, ((40,210,20,30),), 'axe 45 demolisher', 9)
