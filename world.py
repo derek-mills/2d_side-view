@@ -381,7 +381,8 @@ class World(object):
             demol.look = description['look'] if 'look' in description.keys() else 1
             demol.destination_point = description['destination'] if 'destination' in description.keys() else (0, 0)
         demol.aftermath = description['aftermath']
-        demol.damage = description['damage'] / demol.parent.frames_changing_threshold_penalty
+        demol.damage = description['damage'] / demol.parent.frames_changing_threshold_penalty + abs(demol.parent.speed) + abs(demol.parent.fall_speed)
+        print(f'[add damager] {demol.damage=}')
         # demol.damage = description['damage']
         demol.static = description['static']
         demol.damage_reduce = description['damage reduce']

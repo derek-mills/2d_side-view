@@ -120,6 +120,32 @@ menu_structure = {
         },
     },
 
+    'monster single selection': {
+        'header': {
+            'rectangle': None,
+            'label': 'CHOOSE MONSTER:',
+            'description': 'item single selection',
+            'on hover action': None,
+            'LMB action': None,
+            'active': False,
+            'after action': None
+        },
+        'generate list from': '*all_hostiles.keys()',
+        'predefined keys': {
+            'LMB action': 'store value',
+            # 'value': '$description',
+            # 'label': '$description',
+            'value': '*item',
+            'label': '*item',
+            # 'target': '$description',
+            # 'target': '',
+            'description': '*item',
+            'active': True,
+            'after action': 'return to parent'
+            # 'after action': 'return value'
+        },
+    },
+
     'obs single selection': {
         'generate list from': '*self.obstacles[location].keys()',
         'predefined keys': {
@@ -773,24 +799,24 @@ menu_structure = {
             # 'after action': 'keep going',
             'after action': 'return to parent',
         },
-        'monster': {
-            'rectangle': pygame.Rect(0, 0, 0, 0),
-            'label': 'monster',
-            'on hover action': None,
-            'LMB action': 'switch state',
-            'target': ("self.menu_structure['custom obs properties']['ok']['value']['item']",
-                       "self.menu_structure['custom obs properties']['ok']['value']['actors pass through']",
-                       "self.menu_structure['custom obs properties']['ok']['value']['force render']",
-                       "self.menu_structure['custom obs properties']['ok']['value']['collideable']",
-                       "self.menu_structure['custom obs properties']['ok']['value']['gravity affected']",
-                       "self.menu_structure['custom obs properties']['ok']['value']['trigger']",
-                       ),
-            # 'target': ("self.menu_structure['custom obs properties']['ok']['value']['trigger']",
-            #           "self.menu_structure['custom obs properties']['ok']['value']['teleport']"),
-            'additional info': "*self.menu_structure['custom obs properties']['ok']['value']['item']",
-            'active': True,
-            'after action': 'keep going'
-        },
+        # 'monster': {
+        #     'rectangle': pygame.Rect(0, 0, 0, 0),
+        #     'label': 'monster',
+        #     'on hover action': None,
+        #     'LMB action': 'switch state',
+        #     'target': ("self.menu_structure['custom obs properties']['ok']['value']['item']",
+        #                "self.menu_structure['custom obs properties']['ok']['value']['actors pass through']",
+        #                "self.menu_structure['custom obs properties']['ok']['value']['force render']",
+        #                "self.menu_structure['custom obs properties']['ok']['value']['collideable']",
+        #                "self.menu_structure['custom obs properties']['ok']['value']['gravity affected']",
+        #                "self.menu_structure['custom obs properties']['ok']['value']['trigger']",
+        #                ),
+        #     # 'target': ("self.menu_structure['custom obs properties']['ok']['value']['trigger']",
+        #     #           "self.menu_structure['custom obs properties']['ok']['value']['teleport']"),
+        #     'additional info': "*self.menu_structure['custom obs properties']['ok']['value']['item']",
+        #     'active': True,
+        #     'after action': 'keep going'
+        # },
         'monster name': {
             'rectangle': pygame.Rect(0, 0, 0, 0),
             'label': 'select monster type >',
