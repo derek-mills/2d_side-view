@@ -2327,7 +2327,6 @@ class World(object):
         self.obs_settings[obs.id] = dict()
         self.obs_settings[obs.id] = deepcopy(self.menu_return_value)
 
-
         # for k in self.obs_settings[obs.id].keys():
         #     o = self.obs_settings[obs.id][k]
         #     print(f'[edit_obs] {k}: {o}')

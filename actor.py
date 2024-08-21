@@ -484,10 +484,14 @@ class Actor(Entity):
 
         elif new_action == 'attack':
             if self.stats['stamina'] <= self.current_stamina_lost_per_attack:
-                print(f'[state machine] NOT ENOUGH STAMINA')
-                if self.name == 'Jake':
-                    self.set_state('prepare kick')
-                return
+                print(f'[state machine] NOT ENOUGH STAMINA.')
+                self.frames_changing_threshold_penalty = 3  # x3 times slower animation
+                # self.frames_changing_threshold_modifier = self.current_weapon['animation speed modifier'] *
+                # if self.name == 'Jake':
+                #     self.set_state('prepare kick')
+                # return
+            else:
+                self.frames_changing_threshold_penalty = 1.
             if self.stats['mana'] <= self.current_mana_lost_per_attack:
                 print(f'[state machine] NOT ENOUGH MANA')
                 return
@@ -529,7 +533,7 @@ class Actor(Entity):
             self.set_state(self.current_weapon['attack animation'])
             self.stamina_reduce(self.current_stamina_lost_per_attack)
             self.mana_reduce(self.current_mana_lost_per_attack)
-            self.frames_changing_threshold_modifier = self.current_weapon['animation speed modifier']
+            self.frames_changing_threshold_modifier = self.current_weapon['animation speed modifier'] * self.frames_changing_threshold_penalty
             self.set_current_animation()
             self.ignore_user_input = self.current_weapon['ignore user input']
             if self.is_stand_on_ground:
@@ -538,7 +542,7 @@ class Actor(Entity):
             self.set_state(self.current_weapon['attack animation'] + ' crouch left')
             self.stamina_reduce(self.current_stamina_lost_per_attack)
             self.mana_reduce(self.current_mana_lost_per_attack)
-            self.frames_changing_threshold_modifier = self.current_weapon['animation speed modifier']
+            self.frames_changing_threshold_modifier = self.current_weapon['animation speed modifier'] * self.frames_changing_threshold_penalty
             self.set_current_animation()
             self.ignore_user_input = self.current_weapon['ignore user input']
             if self.is_stand_on_ground:
@@ -547,7 +551,7 @@ class Actor(Entity):
             self.set_state(self.current_weapon['attack animation'] + ' crouch right')
             self.stamina_reduce(self.current_stamina_lost_per_attack)
             self.mana_reduce(self.current_mana_lost_per_attack)
-            self.frames_changing_threshold_modifier = self.current_weapon['animation speed modifier']
+            self.frames_changing_threshold_modifier = self.current_weapon['animation speed modifier'] * self.frames_changing_threshold_penalty
             self.set_current_animation()
             self.ignore_user_input = self.current_weapon['ignore user input']
             if self.is_stand_on_ground:

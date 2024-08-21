@@ -75,6 +75,7 @@ class Entity(object):
         self.frame_change_counter: int = 0
         self.frames_changing_threshold: float = 0.
         self.frames_changing_threshold_modifier: float = 1.
+        self.frames_changing_threshold_penalty: float = 1.  # Use above 1 if got need to slow down current animation speed
         self.current_sprite_snap = 0
         self.current_sprite_flip = False
         self.current_frame = 0
@@ -397,6 +398,7 @@ class Entity(object):
                     # for d_origin in self.current_weapon['demolishers'][self.frame_number]:
                         # self.summon_demolisher_counter += 1
                         d = copy.deepcopy(d_origin)
+                        # d['damage'] = d_origin['damage'] / self.frames_changing_threshold_penalty
                         d['snap to actor'] = self.id
                         d['parent'] = self
                         d['demolisher sprite'] = d_origin['demolisher sprite']
@@ -662,7 +664,7 @@ class Entity(object):
                 # print('[detect_demolishers_collisions] actor get damage in state:', self.__state)
                 if 'smash' in dem.attack_type:
                     if self.get_state() not in ('hold stash', 'carry stash right', 'carry stash left'):
-                        self.hop_back_jump_height_modifier = (dem.parent_strength / self.strength) + (dem.parent_weight / self.body_weight)
+                        self.hop_back_jump_height_modifier = ((dem.parent_strength / self.strength) + (dem.parent_weight / self.body_weight)) / dem.parent_penalty
                         self.movement_direction_inverter = -1 if dem.parent.look != self.look else 1
                         self.set_state('hop back')
 
@@ -680,7 +682,7 @@ class Entity(object):
     #         self.current_sprite['weak spot rect'] = weak_spot_rect
 
     def get_damage(self, amount):
-        # print(f'[entity.get_damage] {self.name} {self.id} gets damage: {amount} | {self.stats["health"]=}')
+        print(f'[entity.get_damage] {self.name} {self.id} gets damage: {amount} | {self.stats["health"]=}')
         self.stats['health'] -= amount
 
         # self.summon_particle = True
@@ -721,11 +723,19 @@ class Entity(object):
             self.stats['mana'] += (self.normal_mana_replenish * self.mana_replenish_modifier)
 
     def stamina_reduce(self, amount):
-        if self.stats['stamina'] == 0:
+        if self.stats['stamina'] < 0:
             return
         self.stats['stamina'] -= amount
-        if self.stats['stamina'] < 0:
-             self.stats['stamina'] = 0
+        # if self.stats['stamina'] < 0:
+        #      self.stats['stamina'] = 0
+
+    # Backup
+    # def stamina_reduce(self, amount):
+    #     if self.stats['stamina'] == 0:
+    #         return
+    #     self.stats['stamina'] -= amount
+    #     if self.stats['stamina'] < 0:
+    #          self.stats['stamina'] = 0
 
     def stamina_replenish(self):
         if self.stats['stamina'] > self.stats['max stamina']:

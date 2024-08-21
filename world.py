@@ -362,36 +362,14 @@ class World(object):
         if description['snap to actor'] >= 0:
             demol.snap_to_actor = description['snap to actor']
             actor = self.actors[self.location][demol.parent.id]
-            # actor = self.actors[self.location][description['snap to actor']]
             demol.parent_id = demol.parent.id
-            # demol.parent_id = actor.id
-
             snap_p = sprites[description['demolisher sprite']]['demolisher snap point']
-            # point_to_glue_a_demolisher = (description['snapping offset'][0],
-            #                               description['snapping offset'][1])
-            # point_to_glue_a_demolisher = (-snap_p[0] + description['snapping offset'][0],
-            #                               -snap_p[1] + description['snapping offset'][1])
-            print(f"[add demolisher] point inside actor: {description['snapping offset']}; point inside demol: {snap_p}")
-            # demol.snapping_offset = sprites[description['demolisher sprite']]['demolisher snap point']
+            # print(f"[add demolisher] point inside actor: {description['snapping offset']}; point inside demol: {snap_p}")
             demol.snapping_offset = {
                'offset inside actor': description['snapping offset'],
                'offset inside demolisher': sprites[description['demolisher sprite']]['demolisher snap point']
             }
-            # demol.snapping_offset = {
-            #     1: (description['snapping offset'][0] + abs(snap_p[0]),
-            #         description['snapping offset'][1] + abs(snap_p[1])),
-            #     -1: (description['snapping offset'][0] + snap_p[0],
-            #         description['snapping offset'][1] + snap_p[1]),
-            #
-            #     }
-            # demol.rectangle.topleft = point_to_glue_a_demolisher
             demol.update(actor.look, actor.rectangle)
-            # demol.update(actor.look, point_to_glue_a_demolisher)
-            # print(f"[add demolisher] {point_to_glue_a_demolisher=} {demol.snapping_offset=} {demol.rectangle=}")
-            # pygame.display.flip()
-            # self.press_any_key()
-            # demol.update(actor.look, actor.sprite_rectangle)
-            # demol.update(actor.look, actor.rectangle)
             if demol.flyer:
                 demol.destination = (self.camera.max_offset_x + MAXX, demol.rectangle.y) if actor.look == 1 else (-100, demol.rectangle.y)
             demol.look = actor.look
@@ -403,7 +381,8 @@ class World(object):
             demol.look = description['look'] if 'look' in description.keys() else 1
             demol.destination_point = description['destination'] if 'destination' in description.keys() else (0, 0)
         demol.aftermath = description['aftermath']
-        demol.damage = description['damage']
+        demol.damage = description['damage'] / demol.parent.frames_changing_threshold_penalty
+        # demol.damage = description['damage']
         demol.static = description['static']
         demol.damage_reduce = description['damage reduce']
         demol.max_speed = description['speed']
@@ -413,6 +392,7 @@ class World(object):
         demol.attack_type = description['attack type']
         demol.parent_strength = demol.parent.strength
         demol.parent_weight = demol.parent.body_weight
+        demol.parent_penalty = demol.parent.frames_changing_threshold_penalty
         # demol.parent_strength = description['parent strength']
         # demol.parent_weight = description['parent weight']
 
