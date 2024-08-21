@@ -382,8 +382,7 @@ class World(object):
             demol.destination_point = description['destination'] if 'destination' in description.keys() else (0, 0)
         demol.aftermath = description['aftermath']
         demol.damage = description['damage'] / demol.parent.frames_changing_threshold_penalty + abs(demol.parent.speed) + abs(demol.parent.fall_speed)
-        print(f'[add damager] {demol.damage=}')
-        # demol.damage = description['damage']
+        # print(f'[add damager] {demol.damage=}')
         demol.static = description['static']
         demol.damage_reduce = description['damage reduce']
         demol.max_speed = description['speed']
@@ -394,13 +393,9 @@ class World(object):
         demol.parent_strength = demol.parent.strength
         demol.parent_weight = demol.parent.body_weight
         demol.parent_penalty = demol.parent.frames_changing_threshold_penalty
-        # demol.parent_strength = description['parent strength']
-        # demol.parent_weight = description['parent weight']
-
         self.demolishers[self.location][demol.id] = demol
         # print(f'[add_demolisher] Added: {demol.id=} {demol.name} {demol.rectangle} {demol.max_speed=} {demol.destination=}')
 
-    # def process(self):
     def process(self, time_passed):
         self.time_passed = time_passed
         self.processing_obstacles()
@@ -988,8 +983,8 @@ class World(object):
             #     continue
             dem = self.demolishers[self.location][key]
             color = (max(0, 255 - dem.ttl*4), 10,0) if dem.ttl < 50 else PINK
-            pygame.draw.rect(self.screen, color, (dem.rectangle.x - self.camera.offset_x, dem.rectangle.y - self.camera.offset_y,
-                                                  dem.rectangle.width, dem.rectangle.height),1)
+            # pygame.draw.rect(self.screen, color, (dem.rectangle.x - self.camera.offset_x, dem.rectangle.y - self.camera.offset_y,
+            #                                       dem.rectangle.width, dem.rectangle.height),1)
 
             # self.screen.blit(fonts.all_fonts[20].render(str(dem.id) + ' ' + str(dem.speed) + ' ' + str(dem.rectangle.y), True, CYAN),
             #                  (dem.rectangle.x - self.camera.offset_x, dem.rectangle.bottom - self.camera.offset_y + dem.id * 20))

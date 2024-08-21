@@ -635,7 +635,8 @@ class Entity(object):
                 #         print(f'[entity detect demolishers] INSTANT DEATH' )
                 #         self.dead = True
                 #         return
-                self.get_damage(dem.damage)
+                # If actor hit from behind, the damage increased by 50%:
+                self.get_damage(dem.damage if dem.look != self.look else dem.damage * 1.5)
                 self.invincibility_timer = 100 if self.id == 0 else 30
 
                 # Blood splatters:
@@ -682,7 +683,7 @@ class Entity(object):
     #         self.current_sprite['weak spot rect'] = weak_spot_rect
 
     def get_damage(self, amount):
-        print(f'[entity.get_damage] {self.name} {self.id} gets damage: {amount} | {self.stats["health"]=}')
+        print(f'[entity.get_damage] {amount} of damage dealt to {self.name} | {self.stats["health"]=}')
         self.stats['health'] -= amount
 
         # self.summon_particle = True

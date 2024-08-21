@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/level_editor_menu_structure.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor_menu_structure.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/items.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/items.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -141,13 +142,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00362" summary="Collision detection with demolishers bug fixed.">
-      <created>1723088558632</created>
-      <option name="number" value="00362" />
-      <option name="presentableId" value="LOCAL-00362" />
-      <option name="project" value="LOCAL" />
-      <updated>1723088558632</updated>
     </task>
     <task id="LOCAL-00363" summary="Demolishers got the own sprite described by surface, filled with a red circle, even if they don't get a sprite during creation.">
       <created>1723093653870</created>
@@ -485,7 +479,14 @@
       <option name="project" value="LOCAL" />
       <updated>1724219902947</updated>
     </task>
-    <option name="localTasksCounter" value="411" />
+    <task id="LOCAL-00411" summary="Actor deals more damage while moving or jumping.">
+      <created>1724224160029</created>
+      <option name="number" value="00411" />
+      <option name="presentableId" value="LOCAL-00411" />
+      <option name="project" value="LOCAL" />
+      <updated>1724224160029</updated>
+    </task>
+    <option name="localTasksCounter" value="412" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -500,7 +501,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Sprite tiles improved" />
     <MESSAGE value="Added particular unique 'surface' for active obstacles" />
     <MESSAGE value="Added claw attack weapon for Demon 2" />
     <MESSAGE value="Enemy is able to switch weapons depends on combat situation." />
@@ -525,6 +525,7 @@
     <MESSAGE value="Whip has three stages of length." />
     <MESSAGE value="Demon 2 attack modified." />
     <MESSAGE value="After stamina runs out, actor's hits become three times weaker and slower." />
-    <option name="LAST_COMMIT_MESSAGE" value="After stamina runs out, actor's hits become three times weaker and slower." />
+    <MESSAGE value="Actor deals more damage while moving or jumping." />
+    <option name="LAST_COMMIT_MESSAGE" value="Actor deals more damage while moving or jumping." />
   </component>
 </project>
