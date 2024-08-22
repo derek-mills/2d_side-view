@@ -932,6 +932,8 @@ class Actor(Entity):
                     self.set_state('hanging on edge')
             else:
                 self.rectangle.top = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
+        elif self.__state == 'lie dead':                        # START CLIMBING ON AN OBSTACLE
+            ...
 
     def reset_self_flags(self):
         self.is_move_left = False

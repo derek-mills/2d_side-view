@@ -79,6 +79,7 @@ class World(object):
         # self.camera.setup(MAXX*2, MAXY)
         self.time_passed: int = 0
         self.game_cycles_counter: int = 0
+        self.player_is_dead_counter_to_game_over = 0  # Count this down to reach zero and show game over screen
         self.is_quit:bool = False
 
         # GRAPHIC
@@ -411,6 +412,10 @@ class World(object):
 
     def process(self, time_passed):
         self.time_passed = time_passed
+        if self.player_is_dead_counter_to_game_over > 0:
+            self.player_is_dead_counter_to_game_over -= 1
+            if self.player_is_dead_counter_to_game_over == 0:
+                self.game_over()
         self.processing_obstacles()
         if self.location_has_been_changed:
             self.actors['player'].influenced_by_obstacle = -1
@@ -419,8 +424,8 @@ class World(object):
         self.processing_human_input()
         # self.processing_player_actor()
         self.processing_actors()
-        if self.actors['player'].dead:
-            self.game_over()
+        # if self.actors['player'].dead:
+        #     self.game_over()
         self.processing_demolishers()
         self.processing_particles()
 
@@ -750,20 +755,30 @@ class World(object):
             # print(actor.name)
             # if not actor.rectangle.colliderect(self.camera.active_objects_rectangle):
             #     continue
+
+            if actor.dead:
+                continue
+
+            if actor.dying:
+                actor.dead = True
+                actor.invincibility_timer = 0
+                actor.set_state('lie dead')
+                dead.append(actor.id)
+                if actor.id == 0:
+                    self.player_is_dead_counter_to_game_over = 300
+                    continue
+                if all_hostiles[actor.name]['drop']:
+                    # print(all_hostiles[actor.name]['drop'])
+                    for drop in all_hostiles[actor.name]['drop']:
+                        self.add_item(all_items[drop], (randint(actor.rectangle.left - 50, actor.rectangle.right + 50), actor.rectangle.top))
+                continue
+
             while actor.drop_from_inventory:
                 i = actor.drop_from_inventory.pop()
                 # self.add_item(all_items[i], actor.rectangle.topleft)
                 # self.add_item(all_items[i], (actor.rectangle.centerx, actor.rectangle.top))
                 # self.add_item(all_items[i], (actor.rectangle.right if actor.look == 1 else actor.rectangle.left - sprites[i]['sprite'].get_width(), actor.rectangle.bottom - sprites[i]['sprite'].get_height()))
                 self.add_item(all_items[i], (actor.rectangle.centerx - sprites[i]['sprite'].get_width() //2, actor.rectangle.bottom - sprites[i]['sprite'].get_height()))
-
-            if actor.dead:
-                dead.append(actor.id)
-                if all_hostiles[actor.name]['drop']:
-                    # print(all_hostiles[actor.name]['drop'])
-                    for drop in all_hostiles[actor.name]['drop']:
-                        self.add_item(all_items[drop], (randint(actor.rectangle.left - 50, actor.rectangle.right + 50), actor.rectangle.top))
-                continue
 
             actor.percept({k: self.obstacles[self.location][k] for k in self.active_obstacles}, self.demolishers[self.location])
 
@@ -836,8 +851,8 @@ class World(object):
                     self.add_particle(description)
                 actor.summoned_particle_descriptions = list()
 
-        for dead_id in dead:
-            del self.actors[self.location][dead_id]
+        # for dead_id in dead:
+        #     del self.actors[self.location][dead_id]
 
     def render_background_(self):
         # pygame.draw.rect(self.screen, GRAY, (0,0,MAXX, MAXY))

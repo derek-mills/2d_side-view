@@ -33,6 +33,7 @@ class Entity(object):
         self.summon_demolisher_counter = -1
         self.ttl = 0
         self.dead = False
+        self.dying = False
         self.is_destructible: bool = False
         self.current_weapon = dict()
         self.time_passed: int = 0
@@ -735,7 +736,9 @@ class Entity(object):
         #         'gravity affected': True
         #     })
         if self.stats['health'] <= 0:
-            self.dead = True
+            self.dying = True
+            # self.dead = True
+            # self.set_state('lie dead')
 
     def mana_reduce(self, amount):
         if self.stats['mana'] == 0:

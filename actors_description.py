@@ -278,6 +278,18 @@ demon_2 = {
             'activity at frames': {},
             'sound': None, 'sound at frames': (0,), 'repeat from frame': 0
         },
+        'lie dead right': {
+                'repeat': True,
+                'sequence': (14,), 'speed': 20,
+                'activity at frames': {},
+                'repeat from frame': 0
+            },
+        'lie dead left': {
+            'repeat': True,
+            'sequence': (17,), 'speed': 20,
+            'activity at frames': {},
+            'repeat from frame': 0
+        },
         'sliding right': {
             'repeat': True, 'interruptable': True,
             'sequence': (56,), 'speed': 1,
@@ -660,6 +672,18 @@ player_jake = {
             'sequence': (15,15,15,15,15,15,16,15,16,15,15,15,15), 'speed': 20,
             'activity at frames': {},
             'sound': None, 'sound at frames': (0,), 'repeat from frame': 0
+        },
+        'lie dead right': {
+            'repeat': True,
+            'sequence': (14,), 'speed': 20,
+            'activity at frames': {},
+            'repeat from frame': 0
+        },
+        'lie dead left': {
+            'repeat': True,
+            'sequence': (17,), 'speed': 20,
+            'activity at frames': {},
+            'repeat from frame': 0
         },
         'sliding right': {
             'repeat': True, 'interruptable': True,

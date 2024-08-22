@@ -407,7 +407,7 @@ demon_2_close = {
     'amount threshold': 1,
     'amount decrease speed': 0,
     'affects on': '',
-    'stamina consumption': 0.2,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
+    'stamina consumption': 0.5,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
     'mana consumption': 0.,
     'ignore user input': True,  # Steal the ability to control a character for a while.
     'animation speed modifier': 1.,  # 0 < x < 1: speed animation up, x > 1: slow down.
@@ -420,7 +420,7 @@ demon_2_close = {
         ({
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
             'demolisher sprite': 'demon 2 claw demolisher 2',
-            'pierce': False, 'demolisher TTL': 10, 'speed': 0,
+            'pierce': False, 'demolisher TTL': 8, 'speed': 0,
             'damage': 250, 'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
