@@ -138,6 +138,7 @@ class Entity(object):
         self.potential_moving_distance: float = 0.
         self.potential_falling_distance: float = 0.
         self.fall_speed: float = 0.
+        self.fall_speed_correction: float = 1.0
         self.is_stand_on_ground: bool = False
         self.is_gravity_affected: bool = False
         self.destination: list = [0, 0]
@@ -146,6 +147,7 @@ class Entity(object):
         self.destination_area = pygame.Rect(0,0,0,0)
         self.vec_to_destination: list = [0, 0]
         self.exotic_movement = ''
+
 
         # Collisions
         self.is_collideable = False
@@ -640,12 +642,15 @@ class Entity(object):
                 # If actor hit from behind, the damage increased by 50%:
                 total_damage = dem.damage if dem.look != self.look else dem.damage * 1.5
                 self.get_damage(total_damage)
-                self.invincibility_timer = 100 if self.id == 0 else 30
+                self.invincibility_timer = 30
+                # self.invincibility_timer = 100 if self.id == 0 else 30
+                # Damage amount show:
                 self.summon_particle = True
-                txt_color = WHITE
+                txt_color = RED if self.id == 0 else WHITE
                 sprite = fonts.all_fonts[40].render(str(int(total_damage)), True, txt_color)
                 self.summoned_particle_descriptions.append({
                     'sprite': sprite,
+                    'fall speed correction': 0.6,
                     'particle TTL': 100,
                     'width': sprite.get_width(),
                     'height': sprite.get_height(),
@@ -656,8 +661,9 @@ class Entity(object):
                     'color': txt_color,
                     'look': dem.parent.look,
                     # 'look': self.look * -1,  # Splatter always fly in the opposite direction
-                    'speed': 1 + randint(1, 8),
-                    'jump height': randint(0, 20),
+                    'speed': 1 + randint(6, 8),
+                    'jump height': 15,
+                    # 'jump height': randint(15, 20),
                     'collides': True,
                     'gravity affected': True
                 })
@@ -1175,7 +1181,7 @@ class Entity(object):
         if self.fall_speed > GRAVITY_CAP:
             self.fall_speed = GRAVITY_CAP
         else:
-            self.fall_speed += GRAVITY
+            self.fall_speed += GRAVITY * self.fall_speed_correction
 
         if self.is_abort_jump:
             if self.fall_speed >= 0:

@@ -307,6 +307,7 @@ class World(object):
         p = Particle()
         p.id = self.particle_id
         self.particle_id += 1
+        p.fall_speed_correction = description['fall speed correction'] if 'fall speed correction' in description.keys() else 1.0
         p.ttl = description['particle TTL']
         p.rectangle.width = description['width']
         p.rectangle.height = description['height']

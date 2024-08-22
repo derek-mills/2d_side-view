@@ -142,13 +142,6 @@
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
     </task>
-    <task id="LOCAL-00364" summary="Demolishers got the own sprite described by surface, but changed to rectangle, 'cause not all the demolishers will be the round shaped.">
-      <created>1723094026783</created>
-      <option name="number" value="00364" />
-      <option name="presentableId" value="LOCAL-00364" />
-      <option name="project" value="LOCAL" />
-      <updated>1723094026783</updated>
-    </task>
     <task id="LOCAL-00365" summary="Fixed sliding bug during location change.">
       <created>1723097262380</created>
       <option name="number" value="00365" />
@@ -485,7 +478,14 @@
       <option name="project" value="LOCAL" />
       <updated>1724229447497</updated>
     </task>
-    <option name="localTasksCounter" value="413" />
+    <task id="LOCAL-00413" summary="After taking damage an actor throws a white ciphers.">
+      <created>1724290616702</created>
+      <option name="number" value="00413" />
+      <option name="presentableId" value="LOCAL-00413" />
+      <option name="project" value="LOCAL" />
+      <updated>1724290616703</updated>
+    </task>
+    <option name="localTasksCounter" value="414" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -500,7 +500,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added claw attack weapon for Demon 2" />
     <MESSAGE value="Enemy is able to switch weapons depends on combat situation." />
     <MESSAGE value="Improving enemy 'chasing' AI" />
     <MESSAGE value="Tiny improvement of render_text()" />
@@ -525,6 +524,7 @@
     <MESSAGE value="After stamina runs out, actor's hits become three times weaker and slower." />
     <MESSAGE value="Actor deals more damage while moving or jumping." />
     <MESSAGE value="Actor gets more damage from behind." />
-    <option name="LAST_COMMIT_MESSAGE" value="Actor gets more damage from behind." />
+    <MESSAGE value="After taking damage an actor throws a white ciphers." />
+    <option name="LAST_COMMIT_MESSAGE" value="After taking damage an actor throws a white ciphers." />
   </component>
 </project>
