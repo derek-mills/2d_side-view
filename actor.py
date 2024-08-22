@@ -129,13 +129,6 @@ class Actor(Entity):
 
     def think(self):
         if self.think_type == 'chaser':
-            # lst = list(self.actors['player'].inventory['weapons'].keys())
-            # indx = lst.index(self.actors['player'].current_weapon['label'])
-            # if indx + 1 > len(lst) - 1:
-            #     self.actors['player'].activate_weapon(0)
-            # else:
-            #     self.actors['player'].activate_weapon(lst[indx + 1])
-
             # Change weapon depends on target vicinity:
             # print('[think]', list(self.inventory['weapons'].keys()))
             if self.sprite_rectangle.colliderect(self.target.sprite_rectangle):
@@ -170,7 +163,7 @@ class Actor(Entity):
                         self.next_ranged_weapon_usage_counter -= 1
                     else:
                         self.next_ranged_weapon_usage_counter = randint(100, 1200)
-                        self.activate_weapon(2)
+                        self.activate_weapon(2)  # Activate ranged weapon (always has index 2).
                         if self.stats['mana'] < self.current_mana_lost_per_attack:
                             self.activate_weapon(1)
                         else:

@@ -114,60 +114,61 @@ def load_single_frame(source, frame, name, scale_factor=1):
         # 'demolisher snap point': demol_snap_point,
         'sprite asymmetric': sprite_asymmetric,
         'mask': pygame.mask.from_surface(scaled_cropped_surf.convert_alpha()),
+        'mask flipped': pygame.mask.from_surface(pygame.transform.flip(scaled_cropped_surf.convert_alpha(), True, False)),
         'mask rect': pygame.mask.from_surface(scaled_cropped_surf.convert_alpha()).get_rect(),
         'current mask rect': pygame.Rect(0,0,0,0)
     }
 
     if sprites[name]["demolisher snap point"] != [0,0]:
         print(f'[load single frame] added {name=} {sprites[name]["demolisher snap point"]}')
-def load_frames(source, approximate_frames, name, scale_factor=1):
-    frame_count = 0
-    global sprites, sprites_reference
-    for frame in approximate_frames:
-        snap_x = 0
-        sub_surf = source.subsurface(frame)
-        cropped_surf = sub_surf.subsurface(sub_surf.get_bounding_rect())
-        sz = cropped_surf.get_size()
-        sprite_asymmetric = False
-
-        # If we can find a magenta dot in the very first row, then consider it as new snap point for x coordinate.
-        for dx in range(cropped_surf.get_size()[0]):
-            # print(cropped_surf.get_at((dx, 0)))
-            dot_color = cropped_surf.get_at((dx, 0))
-            # print(name, dot_color)
-            if dot_color == (255,0,255,255):
-                snap_x = dx * scale_factor
-                # Now we must erase the anchor magenta pixel, resize sprite...
-                cropped_surf = cropped_surf.subsurface((0,1,sz[0], sz[1] - 1))
-                cropped_surf = cropped_surf.subsurface(cropped_surf.get_bounding_rect())
-                # ...and renew the sz variable.
-                sz = cropped_surf.get_size()
-                sprite_asymmetric = True
-                # print(name, frame_count, ': found snap point!', snap_x)
-                # print(name, frame_count, ' size is ', cropped_surf.get_size())
-                break
-
-        scaled_cropped_surf = pygame.transform.scale(cropped_surf, (sz[0] * scale_factor, sz[1] * scale_factor))
-        # scaled_cropped_surf = pygame.transform.scale(cropped_surf, (cropped_surf.get_size()[0] * scale_factor, cropped_surf.get_size()[1] * scale_factor))
-        snap_x = scaled_cropped_surf.get_size()[0] // 2 if snap_x == 0 else snap_x
-
-        sprites[name + str(frame_count)] = {
-            'sprite': scaled_cropped_surf,
-            'sprite center': snap_x,
-            'sprite asymmetric': sprite_asymmetric
-        }
-        sprites_reference[name + str(frame_count)] = {
-            'sprite': scaled_cropped_surf,
-            'sprite center': snap_x,
-            'sprite asymmetric': sprite_asymmetric
-        }
-        # sprites[name + str(frame_count)] = scaled_cropped_surf
-        # sprites[name + str(frame_count) + ' snap x'] = snap_x * scale_factor
-
-        # print(snap_x * scale_factor)
-        # sprites[name + str(frame_count)] = tmp_surf.subsurface(tmp_surf.get_bounding_rect())
-        frame_count += 1
-    return
+# def load_frames(source, approximate_frames, name, scale_factor=1):
+#     frame_count = 0
+#     global sprites, sprites_reference
+#     for frame in approximate_frames:
+#         snap_x = 0
+#         sub_surf = source.subsurface(frame)
+#         cropped_surf = sub_surf.subsurface(sub_surf.get_bounding_rect())
+#         sz = cropped_surf.get_size()
+#         sprite_asymmetric = False
+#
+#         # If we can find a magenta dot in the very first row, then consider it as new snap point for x coordinate.
+#         for dx in range(cropped_surf.get_size()[0]):
+#             # print(cropped_surf.get_at((dx, 0)))
+#             dot_color = cropped_surf.get_at((dx, 0))
+#             # print(name, dot_color)
+#             if dot_color == (255,0,255,255):
+#                 snap_x = dx * scale_factor
+#                 # Now we must erase the anchor magenta pixel, resize sprite...
+#                 cropped_surf = cropped_surf.subsurface((0,1,sz[0], sz[1] - 1))
+#                 cropped_surf = cropped_surf.subsurface(cropped_surf.get_bounding_rect())
+#                 # ...and renew the sz variable.
+#                 sz = cropped_surf.get_size()
+#                 sprite_asymmetric = True
+#                 # print(name, frame_count, ': found snap point!', snap_x)
+#                 # print(name, frame_count, ' size is ', cropped_surf.get_size())
+#                 break
+#
+#         scaled_cropped_surf = pygame.transform.scale(cropped_surf, (sz[0] * scale_factor, sz[1] * scale_factor))
+#         # scaled_cropped_surf = pygame.transform.scale(cropped_surf, (cropped_surf.get_size()[0] * scale_factor, cropped_surf.get_size()[1] * scale_factor))
+#         snap_x = scaled_cropped_surf.get_size()[0] // 2 if snap_x == 0 else snap_x
+#
+#         sprites[name + str(frame_count)] = {
+#             'sprite': scaled_cropped_surf,
+#             'sprite center': snap_x,
+#             'sprite asymmetric': sprite_asymmetric
+#         }
+#         sprites_reference[name + str(frame_count)] = {
+#             'sprite': scaled_cropped_surf,
+#             'sprite center': snap_x,
+#             'sprite asymmetric': sprite_asymmetric
+#         }
+#         # sprites[name + str(frame_count)] = scaled_cropped_surf
+#         # sprites[name + str(frame_count) + ' snap x'] = snap_x * scale_factor
+#
+#         # print(snap_x * scale_factor)
+#         # sprites[name + str(frame_count)] = tmp_surf.subsurface(tmp_surf.get_bounding_rect())
+#         frame_count += 1
+#     return
 
 def load_all_frames(source, max_frames, name, width, height, scale_factor=1):
 # def load_all_frames(source, max_frames, name, width, height, scale_factor=1, weak_spots=None):
@@ -255,6 +256,7 @@ def load_all_frames(source, max_frames, name, width, height, scale_factor=1):
             'demolisher snap point': [demol_snap_point[0] * scale_factor, demol_snap_point[1] * scale_factor,],
             'sprite asymmetric': sprite_asymmetric,
             'mask': pygame.mask.from_surface(scaled_cropped_surf.convert_alpha()),
+            'mask flipped': pygame.mask.from_surface(pygame.transform.flip(scaled_cropped_surf.convert_alpha(), True, False)),
             'mask rect': pygame.mask.from_surface(scaled_cropped_surf.convert_alpha()).get_rect(),
             # 'current mask rect': pygame.Rect(0, 0, 0, 0)
             # 'weak spot': weak_spot

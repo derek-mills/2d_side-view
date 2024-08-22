@@ -598,7 +598,7 @@ class Entity(object):
             #     y = int(d.rectangle.centery - current_mask_rect.y)  # y coordinate relative to inner mask space
             #
             #     if current_mask.get_at((x, y)):
-            current_mask = self.current_sprite['mask']
+            current_mask = self.current_sprite['mask'] if self.look == 1 else self.current_sprite['mask flipped']
             # # print(self.current_sprite)
             current_mask_rect = self.current_sprite['mask rect']
             current_mask_rect.center = self.rectangle.center
@@ -608,7 +608,7 @@ class Entity(object):
             # exit()
             # current_mask_rect = current_mask.get_rect(center=self.rectangle.center)
             # print(dem.current_sprite)
-            current_demolisher_mask = dem.current_sprite['mask']
+            current_demolisher_mask = dem.current_sprite['mask'] if dem.look == 1 else dem.current_sprite['mask flipped']
             current_demolisher_mask_rect = dem.current_sprite['mask rect']
             current_demolisher_mask_rect.center = dem.rectangle.center
             # current_demolisher_mask_rect = dem.current_sprite['mask rect'].move(dem.rectangle.topleft)

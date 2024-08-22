@@ -995,7 +995,7 @@ class World(object):
             # if key not in self.active_obstacles:
             #     continue
             dem = self.demolishers[self.location][key]
-            color = (max(0, 255 - dem.ttl*4), 10,0) if dem.ttl < 50 else PINK
+            # color = (max(0, 255 - dem.ttl*4), 10,0) if dem.ttl < 50 else PINK
             # pygame.draw.rect(self.screen, color, (dem.rectangle.x - self.camera.offset_x, dem.rectangle.y - self.camera.offset_y,
             #                                       dem.rectangle.width, dem.rectangle.height),1)
 
