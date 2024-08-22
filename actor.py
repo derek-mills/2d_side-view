@@ -155,8 +155,23 @@ class Actor(Entity):
                     self.ai_input_right_arrow = True
 
                 self.activate_weapon(1)  # Activate middle-ranged weapon (always has index 1).
+
+                # if self.target.rectangle.colliderect(self.rectangle.inflate(self.rectangle.width + self.current_weapon['reach'],
+                #                                                             self.rectangle.height)):
                 if abs(self.rectangle.centerx - self.target.rectangle.centerx) <= self.current_weapon['reach']:
-                    self.ai_input_attack = True
+
+                    if self.rectangle.centery >= self.target.rectangle.centery:
+                        if self.get_state() != 'jump':
+                            self.ai_input_jump = True
+                            print('wanna jump')
+                        else:
+                            self.ai_input_attack = True
+                            print('wanna attack in the air')
+                    else:
+                        self.ai_input_attack = True
+                        print('wanna attack')
+                    # if self.get_state() == 'jump':
+                    #     self.ai_input_attack = True
                 else:
                     # if randint(0, 50) == 1:
                     if self.next_ranged_weapon_usage_counter > 0:
@@ -171,6 +186,13 @@ class Actor(Entity):
                             self.ai_input_left_arrow = False
                             self.ai_input_right_arrow = False
 
+        if self.ai_input_jump:
+            # self.ai_input_jump = False
+            self.set_action('jump action')
+            # return
+        else:
+            self.set_action('jump action cancel')
+
         if self.ai_input_right_arrow:
             self.set_action('right action')
         else:
@@ -180,11 +202,6 @@ class Actor(Entity):
             self.set_action('left action')
         else:
             self.set_action('left action cancel')
-
-        if self.ai_input_jump:
-            self.set_action('jump action')
-        else:
-            self.set_action('jump action cancel')
 
         if self.ai_input_attack:
             self.ai_input_attack = False

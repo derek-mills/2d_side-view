@@ -1,4 +1,5 @@
 import pygame
+
 sword = {
     'amount': 1,
     'amount threshold': 1,
@@ -354,7 +355,8 @@ demon_2_mid = {
     'droppable': True,
     'need ammo': False,
     'ammo': 0,
-    'reach': 200,
+    'reach': 400,
+    # 'reach': sprites['demon 2 mid claw demolisher 1']['mask rect'].width,
     'demolishers': (
         ({
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
@@ -415,6 +417,17 @@ demon_2_close = {
     'ammo': 0,
     'reach': 200,
     'demolishers': (
+        ({
+            'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
+            'demolisher sprite': 'demon 2 claw demolisher 2',
+            'pierce': False, 'demolisher TTL': 10, 'speed': 0,
+            'damage': 250, 'static': True, 'damage reduce': 0,
+            'collides': False, 'gravity affected': False,
+            'bounce': False, 'bounce factor': 0.,
+            'attack type': ('slash', 'smash', 'pierce'),
+            # 'aftermath': 'explode'
+            'aftermath': 'disappear'
+        },),
         ({
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
             'demolisher sprite': 'demon 2 claw demolisher',

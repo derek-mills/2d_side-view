@@ -529,10 +529,16 @@ demon_2 = {
             # 'demolisher offset': (46, 36),
             'speed': 1,
             'activity at frames': {
-                4: {
+                0: {
                     'sound': True,
                     # 'move': 10,  # Slightly move actor forward,
                     'demolishers set number': 0,
+                    'demolisher': True
+                },
+                4: {
+                    'sound': True,
+                    # 'move': 10,  # Slightly move actor forward,
+                    'demolishers set number': 1,
                     'demolisher': True
                 },
             },
@@ -555,10 +561,16 @@ demon_2 = {
                          # 74,74,74,75,75), # 25 - 29
             # 'demolisher offset': (46, 36),
             'activity at frames': {
+                0: {
+                    'sound': True,
+                    # 'move': 10,  # Slightly move actor forward,
+                    'demolishers set number': 0,
+                    'demolisher': True
+                },
                 4: {
                     'sound': True,
-                    # 'move': 10, # Slightly move actor forward,
-                    'demolishers set number': 0,
+                    # 'move': 10,  # Slightly move actor forward,
+                    'demolishers set number': 1,
                     'demolisher': True
                 },
             },
@@ -614,8 +626,8 @@ demon_2 = {
             'repeat from frame': 0
         },
     },
-    'think type': '',
-    # 'think type': 'chaser',
+    # 'think type': '',
+    'think type': 'chaser',
     'AI controlled': True
 }
 
