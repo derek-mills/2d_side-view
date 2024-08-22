@@ -403,7 +403,7 @@ class Entity(object):
                         # self.summon_demolisher_counter += 1
                         d = copy.deepcopy(d_origin)
                         # d['damage'] = d_origin['damage'] / self.frames_changing_threshold_penalty
-                        d['snap to actor'] = self.id
+                        # d['snap to actor'] = self.id if d_origin['static'] else -1
                         d['parent'] = self
                         d['demolisher sprite'] = d_origin['demolisher sprite']
                         # d['parent'] = self.name
@@ -640,7 +640,7 @@ class Entity(object):
                 #         self.dead = True
                 #         return
                 # If actor hit from behind, the damage increased by 50%:
-                total_damage = dem.damage if dem.look != self.look else dem.damage * 1.5
+                total_damage = dem.damage * 1.5 if dem.look == self.look and dem.snap_to_actor >= 0 else dem.damage
                 self.get_damage(total_damage)
                 self.invincibility_timer = 30
                 # self.invincibility_timer = 100 if self.id == 0 else 30
@@ -671,7 +671,7 @@ class Entity(object):
                 # Blood splatters:
                 if 'slash' in dem.attack_type:
                     # self.summon_particle = True
-                    for particle_quantity in range(randint(2, 2 + dem.damage // 10)):
+                    for particle_quantity in range(randint(12, 12 + dem.damage // 10)):
                     # for particle_quantity in range(randint(10, 20)):
                         size = randint(1, int(dem.damage) >> 4)
                         self.summoned_particle_descriptions.append({

@@ -142,13 +142,6 @@
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
     </task>
-    <task id="LOCAL-00365" summary="Fixed sliding bug during location change.">
-      <created>1723097262380</created>
-      <option name="number" value="00365" />
-      <option name="presentableId" value="LOCAL-00365" />
-      <option name="project" value="LOCAL" />
-      <updated>1723097262380</updated>
-    </task>
     <task id="LOCAL-00366" summary="Demon 2 becomes more spooky :)">
       <created>1723107860158</created>
       <option name="number" value="00366" />
@@ -485,7 +478,14 @@
       <option name="project" value="LOCAL" />
       <updated>1724290616703</updated>
     </task>
-    <option name="localTasksCounter" value="414" />
+    <task id="LOCAL-00414" summary="Improving text-like particles, which shows the damage amount taken by an actor.">
+      <created>1724291138462</created>
+      <option name="number" value="00414" />
+      <option name="presentableId" value="LOCAL-00414" />
+      <option name="project" value="LOCAL" />
+      <updated>1724291138462</updated>
+    </task>
+    <option name="localTasksCounter" value="415" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -500,7 +500,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Enemy is able to switch weapons depends on combat situation." />
     <MESSAGE value="Improving enemy 'chasing' AI" />
     <MESSAGE value="Tiny improvement of render_text()" />
     <MESSAGE value="Enemy can decide to switch weapon back to melee if he doesn't have enough mana to use a ranged one." />
@@ -525,6 +524,7 @@
     <MESSAGE value="Actor deals more damage while moving or jumping." />
     <MESSAGE value="Actor gets more damage from behind." />
     <MESSAGE value="After taking damage an actor throws a white ciphers." />
-    <option name="LAST_COMMIT_MESSAGE" value="After taking damage an actor throws a white ciphers." />
+    <MESSAGE value="Improving text-like particles, which shows the damage amount taken by an actor." />
+    <option name="LAST_COMMIT_MESSAGE" value="Improving text-like particles, which shows the damage amount taken by an actor." />
   </component>
 </project>

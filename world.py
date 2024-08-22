@@ -359,29 +359,40 @@ class World(object):
         demol.bounce_factor = description['bounce factor']
         demol.flyer = description['flyer']
         demol.parent = description['parent']
+        demol.parent_id = demol.parent.id
+        demol.look = demol.parent.look
         demol.ttl = description['demolisher TTL'] * demol.parent.frames_changing_threshold_modifier
+        demol.snapping_offset = {
+            'offset inside actor': description['snapping offset'],
+            'offset inside demolisher': sprites[description['demolisher sprite']]['demolisher snap point']
+        }
+        demol.update(demol.parent.look, demol.parent.rectangle)
+        if demol.flyer:
+            demol.destination = (self.camera.max_offset_x + MAXX, demol.rectangle.y) if demol.parent.look == 1 else (-100, demol.rectangle.y)
 
-        if description['snap to actor'] >= 0:
-            demol.snap_to_actor = description['snap to actor']
-            actor = self.actors[self.location][demol.parent.id]
-            demol.parent_id = demol.parent.id
-            snap_p = sprites[description['demolisher sprite']]['demolisher snap point']
+        if description['static']:
+        # if description['snap to actor'] >= 0:
+        #     demol.snap_to_actor = description['snap to actor']
+            demol.snap_to_actor = demol.parent.id
+            # actor = self.actors[self.location][demol.parent.id]
+            # demol.parent_id = demol.parent.id
+            # snap_p = sprites[description['demolisher sprite']]['demolisher snap point']
             # print(f"[add demolisher] point inside actor: {description['snapping offset']}; point inside demol: {snap_p}")
-            demol.snapping_offset = {
-               'offset inside actor': description['snapping offset'],
-               'offset inside demolisher': sprites[description['demolisher sprite']]['demolisher snap point']
-            }
-            demol.update(actor.look, actor.rectangle)
-            if demol.flyer:
-                demol.destination = (self.camera.max_offset_x + MAXX, demol.rectangle.y) if actor.look == 1 else (-100, demol.rectangle.y)
-            demol.look = actor.look
+            # demol.snapping_offset = {
+            #    'offset inside actor': description['snapping offset'],
+            #    'offset inside demolisher': sprites[description['demolisher sprite']]['demolisher snap point']
+            # }
+            # demol.update(demol.parent.look, demol.parent.rectangle)
+            # if demol.flyer:
+            #     demol.destination = (self.camera.max_offset_x + MAXX, demol.rectangle.y) if demol.parent.look == 1 else (-100, demol.rectangle.y)
+            # demol.look = demol.parent.look
         else:
-            demol.rectangle.topleft = description['rect'].topleft
-            demol.snapping_offset = [0, 0]
-            demol.parent_id = -1
+            # demol.rectangle.center = dem.paren
+            # demol.snapping_offset = [0, 0]
+            # demol.parent_id = -1
             demol.snap_to_actor = -1
-            demol.look = description['look'] if 'look' in description.keys() else 1
-            demol.destination_point = description['destination'] if 'destination' in description.keys() else (0, 0)
+            # demol.look = description['look'] if 'look' in description.keys() else 1
+            # demol.destination_point = description['destination'] if 'destination' in description.keys() else (0, 0)
         demol.aftermath = description['aftermath']
         demol.damage = description['damage'] / demol.parent.frames_changing_threshold_penalty + abs(demol.parent.speed) + abs(demol.parent.fall_speed)
         # print(f'[add damager] {demol.damage=}')
