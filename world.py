@@ -320,6 +320,7 @@ class World(object):
         p.fall_speed = -description['jump height'] if description['jump height'] > 0 else 0
         p.max_speed = description['speed']
         p.speed = description['speed']
+        p.current_sprite = description['sprite']
         p.is_collideable = description['collides']
         p.is_gravity_affected = description['gravity affected']
         self.particles[self.location][p.id] = p
@@ -1009,8 +1010,11 @@ class World(object):
             #     continue
             p = self.particles[self.location][key]
             # color = (max(0, 255 - p.ttl*4), 10,0) if p.ttl < 50 else PINK
+
             if p.subtype == 'splatter':
                 pygame.draw.circle(self.screen, p.color, (p.rectangle.centerx - self.camera.offset_x, p.rectangle.centery - self.camera.offset_y), p.rectangle.width)
+            elif p.subtype == 'text':
+                self.screen.blit(p.current_sprite, (p.rectangle.centerx - self.camera.offset_x, p.rectangle.centery - self.camera.offset_y))
             else:
                 pygame.draw.rect(self.screen, p.color, (p.rectangle.x - self.camera.offset_x, p.rectangle.y - self.camera.offset_y,
                                                         p.rectangle.width, p.rectangle.height))

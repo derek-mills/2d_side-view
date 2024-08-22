@@ -2,6 +2,8 @@ import copy
 
 import pygame
 from math import sqrt, sin
+
+import fonts
 from constants import *
 from graphics import *
 
@@ -636,16 +638,38 @@ class Entity(object):
                 #         self.dead = True
                 #         return
                 # If actor hit from behind, the damage increased by 50%:
-                self.get_damage(dem.damage if dem.look != self.look else dem.damage * 1.5)
+                total_damage = dem.damage if dem.look != self.look else dem.damage * 1.5
+                self.get_damage(total_damage)
                 self.invincibility_timer = 100 if self.id == 0 else 30
+                self.summon_particle = True
+                txt_color = WHITE
+                sprite = fonts.all_fonts[40].render(str(int(total_damage)), True, txt_color)
+                self.summoned_particle_descriptions.append({
+                    'sprite': sprite,
+                    'particle TTL': 100,
+                    'width': sprite.get_width(),
+                    'height': sprite.get_height(),
+                    'xy': self.rectangle.center,
+                    'bounce': False,
+                    'bounce factor': 0.,
+                    'subtype': 'text',
+                    'color': txt_color,
+                    'look': dem.parent.look,
+                    # 'look': self.look * -1,  # Splatter always fly in the opposite direction
+                    'speed': 1 + randint(1, 8),
+                    'jump height': randint(0, 20),
+                    'collides': True,
+                    'gravity affected': True
+                })
 
                 # Blood splatters:
                 if 'slash' in dem.attack_type:
-                    self.summon_particle = True
+                    # self.summon_particle = True
                     for particle_quantity in range(randint(2, 2 + dem.damage // 10)):
                     # for particle_quantity in range(randint(10, 20)):
                         size = randint(1, int(dem.damage) >> 4)
                         self.summoned_particle_descriptions.append({
+                            'sprite': None,
                             'particle TTL': 100,
                             'width': size,
                             'height': size,
