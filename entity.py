@@ -320,7 +320,7 @@ class Entity(object):
             self.calculate_colliders()  # Calculate colliders around actor based on his current movement and fall speeds.
             self.detect_collisions()
 
-        if self.is_destructible:
+        if self.is_destructible:  # and not self.dead:
             self.detect_demolishers_collisions()
 
         if self.is_gravity_affected:
@@ -369,6 +369,27 @@ class Entity(object):
         self.correct_position_if_influenced()
 
     def set_current_animation(self):
+        state = self.get_state()
+        # print(state)
+        current_animation = state + str(self.look)
+        if 'right' not in state and 'left' not in state:
+            if self.look == 1:
+                current_animation = state + ' right'
+            else:
+                current_animation = state + ' left'
+        else:
+            current_animation = state
+
+        # If animation for current state does not exist, set default:
+        if current_animation not in self.animations.keys():
+            return
+            # self.current_animation = 'stand still right'
+        else:
+            self.current_animation = current_animation
+            self.apply_particular_animation(self.current_animation)
+        self.active_frames = list(self.animations[self.current_animation]['activity at frames'].keys())
+
+    def set_current_animation_back(self):
         state = self.get_state()
         # print(state)
         self.current_animation = state + str(self.look)
@@ -634,7 +655,7 @@ class Entity(object):
                     hit_detected = True
 
             if hit_detected:
-                if not dem.pierce:
+                if not dem.pierce and not self.dead:
                     self.has_just_stopped_demolishers.append(dem.id)
                 self.summon_particle = True
                 self.invincibility_timer = 30
@@ -667,12 +688,11 @@ class Entity(object):
                         'gravity affected': True
                     })
 
-                    if 'smash' in dem.attack_type:
-                        if self.get_state() not in ('hold stash', 'carry stash right', 'carry stash left'):
-                            self.hop_back_jump_height_modifier = ((dem.parent_strength / self.strength) + (dem.parent_weight / self.body_weight)) / dem.parent_penalty
-                            self.movement_direction_inverter = -1 if dem.parent.look != self.look else 1
-                            self.set_state('hop back')
-
+                if 'smash' in dem.attack_type:
+                    if self.get_state() not in ('hold stash', 'carry stash right', 'carry stash left'):
+                        self.hop_back_jump_height_modifier = ((dem.parent_strength / self.strength) + (dem.parent_weight / self.body_weight)) / dem.parent_penalty
+                        self.movement_direction_inverter = -1 if dem.parent.look != self.look else 1
+                        self.set_state('hop back')
 
                 # Blood splatters:
                 if 'slash' in dem.attack_type:

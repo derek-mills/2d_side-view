@@ -494,7 +494,7 @@ class Actor(Entity):
 
         elif new_action == 'attack':
             if self.stats['stamina'] <= self.current_stamina_lost_per_attack:
-                print(f'[state machine] NOT ENOUGH STAMINA.')
+                # print(f'[state machine] NOT ENOUGH STAMINA.')
                 self.frames_changing_threshold_penalty = 3  # x3 times slower animation
                 # self.frames_changing_threshold_modifier = self.current_weapon['animation speed modifier'] *
                 # if self.name == 'Jake':
@@ -503,7 +503,7 @@ class Actor(Entity):
             else:
                 self.frames_changing_threshold_penalty = 1.
             if self.stats['mana'] <= self.current_mana_lost_per_attack:
-                print(f'[state machine] NOT ENOUGH MANA')
+                # print(f'[state machine] NOT ENOUGH MANA')
                 return
             if self.__state not in ('free', 'stand still', 'run right', 'run left',
                                     'stand still', 'jump', 'crawl right', 'crawl left',
@@ -657,7 +657,19 @@ class Actor(Entity):
             if self.is_stand_on_ground:
                 if self.is_enough_space_above:
                     self.ignore_user_input = True
+                    self.ai_input_right_arrow = False
+                    self.ai_input_left_arrow = False
+                    self.ai_input_attack = False
+                    self.ai_input_jump = False
                     self.is_grabbers_active = False
+                    self.is_move_right: bool = False
+                    self.is_move_left: bool = False
+                    self.is_move_up: bool = False
+                    self.is_move_down: bool = False
+                    self.is_jump: bool = False
+                    self.is_crouch: bool = False
+                    self.is_abort_jump: bool = False
+                    self.is_jump_performed: bool = False
                     if not self.just_got_jumped:
                         self.stamina_reduce(self.normal_stamina_lost_per_hop_back)
                         self.just_got_jumped = True
@@ -674,7 +686,12 @@ class Actor(Entity):
                         self.invincibility_timer = 20
                         self.hop_back_jump_height_modifier = self.default_hop_back_jump_height_modifier
                     self.is_abort_jump = False
-                    self.set_state('hopping back process')
+                    if self.dead:
+                        self.set_state('lie dead')
+                    else:
+                        self.set_state('hopping back process')
+                else:
+                    self.set_state('crouch down')
             else:
                 self.set_state('release edge')
             # else:
@@ -691,7 +708,10 @@ class Actor(Entity):
                     self.is_abort_jump = True
                     # self.movement_direction_inverter = 1
                     # self.set_state('crouch')
-                    self.set_state('stand still')
+                    if not self.dead:
+                        self.set_state('stand still')
+                    else:
+                        self.set_state('lie dead')
         elif self.__state == 'slide':                           # SLIDE PREPARING
             self.speed = self.max_speed * 2.5
             self.set_new_desired_height(self.rectangle_height_slide, 0)
@@ -934,7 +954,15 @@ class Actor(Entity):
             else:
                 self.rectangle.top = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
         elif self.__state == 'lie dead':                        # START CLIMBING ON AN OBSTACLE
-            ...
+            if self.idle_counter > 0:
+                self.idle_counter -= 1
+                # self.invincibility_timer -= 1
+            else:
+                if self.speed <= 0:
+                    self.ignore_user_input = False
+                    if self.just_got_jumped:
+                        self.just_got_jumped = False
+                    self.is_abort_jump = True
 
     def reset_self_flags(self):
         self.is_move_left = False

@@ -709,9 +709,6 @@ player_jake = {
             'repeat': True, 'interruptable': True,
             'sequence': (5,), 'speed': 1,
             'activity at frames': {
-                1: {
-                    'sound': 'step',
-                },
             },
             'repeat from frame': 0
         },
@@ -719,9 +716,6 @@ player_jake = {
             'repeat': True, 'interruptable': True,
             'sequence': (20,), 'speed': 1,
             'activity at frames': {
-                1: {
-                    'sound': 'step',
-                },
             },
             'repeat from frame': 0
         },

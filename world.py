@@ -1018,7 +1018,7 @@ class World(object):
             # pygame.draw.rect(self.screen, CYAN, (actor.rectangle.x + gaze_direction_mod - self.camera.offset_x, actor.rectangle.centery - 10 - self.camera.offset_y,
             #                                       10, 20))
             # Enemies Health bar.
-            if actor.id != 0:
+            if actor.id != 0 and not actor.dead:
                 # pygame.draw.rect(self.screen, WHITE, (actor.rectangle.x - self.camera.offset_x - 2, actor.rectangle.y - 13 - self.camera.offset_y,
                 #                                      actor.rectangle.width + 4, 7), 1)
                 pygame.draw.rect(self.screen, RED, (actor.rectangle.centerx - 100 - self.camera.offset_x, actor.rectangle.bottom - actor.rectangle_height_default  - 9 - self.camera.offset_y,
