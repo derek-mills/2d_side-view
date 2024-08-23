@@ -338,6 +338,7 @@ class World(object):
         demol.parent = description['parent']
         demol.parent_id = demol.parent.id
         demol.look = demol.parent.look
+        demol.pierce = description['pierce']
         demol.ttl = description['demolisher TTL'] * demol.parent.frames_changing_threshold_modifier
 
         if description['visible']:
@@ -387,7 +388,7 @@ class World(object):
 
 
         if demol.flyer:
-            demol.destination = (self.camera.max_offset_x + MAXX, demol.rectangle.y) if demol.parent.look == 1 else (-100, demol.rectangle.y)
+            demol.destination_point = (self.camera.max_offset_x + MAXX, demol.rectangle.y) if demol.parent.look == 1 else (-100, demol.rectangle.y)
 
         if description['static']:
         # if description['snap to actor'] >= 0:
@@ -854,6 +855,11 @@ class World(object):
 
             actor.get_time(self.time_passed, self.game_cycles_counter)
             actor.process()
+
+            if actor.has_just_stopped_demolishers:
+                while actor.has_just_stopped_demolishers:
+                    d_id = actor.has_just_stopped_demolishers.pop()
+                    self.demolishers[self.location][d_id].become_mr_floppy()
 
             if actor.summon_demolisher:
                 actor.summon_demolisher = False

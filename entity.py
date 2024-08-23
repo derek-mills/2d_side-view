@@ -40,6 +40,7 @@ class Entity(object):
         self.cycles_passed: int = 0
         self.invincibility_timer: int = 0
         self.blood_color = RED
+        self.has_just_stopped_demolishers = list()
 
         # STATS
         self.normal_stamina_lost_per_second_jump = 10.
@@ -185,7 +186,6 @@ class Entity(object):
         self.is_enough_space_left = True
         self.is_being_collided_now = False
 
-        
 
     def percept(self, obstacles, demolishers):
         self.obstacles_around = obstacles
@@ -587,7 +587,9 @@ class Entity(object):
             return
         for key in self.demolishers_around.keys():
             dem = self.demolishers_around[key]
-            if dem.id in self.got_immunity_to_demolishers or dem.parent_id == self.id or dem.parent.name == self.name:
+            if dem.id in self.got_immunity_to_demolishers or \
+                dem.parent_id == self.id or dem.parent.name == self.name or \
+                 dem.floppy:
                 continue
             hit_detected = False
             if dem.invisible:
@@ -632,10 +634,12 @@ class Entity(object):
                     hit_detected = True
 
             if hit_detected:
-                # If actor hit from behind, the damage increased by 50%:
+                if not dem.pierce:
+                    self.has_just_stopped_demolishers.append(dem.id)
                 self.summon_particle = True
                 self.invincibility_timer = 30
                 if not self.dead:
+                    # If actor hit from behind, the damage increased by 50%:
                     total_damage = dem.damage * 1.5 if dem.look == self.look and dem.snap_to_actor >= 0 else dem.damage
                     self.get_damage(total_damage)
                     # self.invincibility_timer = 100 if self.id == 0 else 30

@@ -473,7 +473,7 @@ pistol = {
     'amount decrease speed': 0,
     'affects on': '',
     'stamina consumption': 0.1,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
-    'mana consumption': 0.,
+    'mana consumption': 0.4,
     'ignore user input': True,  # Steal the ability to control a character for a while.
     'animation speed modifier': 1.,  # 0 < x < 1: speed animation up, x > 1: slow down.
     'leave particles': False,
@@ -483,10 +483,10 @@ pistol = {
     'reach': 200,
     'demolishers': (
         ({
-            'rect': pygame.Rect(0, 0, 5000, 1), 'flyer': False,
+            'rect': pygame.Rect(0, 0, 2, 2), 'flyer': True,
             'visible': False,
             'demolisher sprite': None,
-            'pierce': False, 'demolisher TTL': 2, 'speed': 0,
+            'pierce': False, 'demolisher TTL': 120, 'speed': 1,
             'damage': 50, 'static': False, 'damage reduce': 0,
             'collides': True, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,

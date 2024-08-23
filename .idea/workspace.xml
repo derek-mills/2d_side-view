@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demolisher.py" beforeDir="false" afterPath="$PROJECT_DIR$/demolisher.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -140,13 +143,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00372" summary="Slightly redesigned demolishers appearing system.">
-      <created>1723429262296</created>
-      <option name="number" value="00372" />
-      <option name="presentableId" value="LOCAL-00372" />
-      <option name="project" value="LOCAL" />
-      <updated>1723429262296</updated>
     </task>
     <task id="LOCAL-00373" summary="Old rectangle changing system removed. Rectangles now change according to a current animation sprite size.">
       <created>1723432530162</created>
@@ -484,7 +480,14 @@
       <option name="project" value="LOCAL" />
       <updated>1724393757470</updated>
     </task>
-    <option name="localTasksCounter" value="421" />
+    <task id="LOCAL-00421" summary="Fixed some bugs.">
+      <created>1724394066847</created>
+      <option name="number" value="00421" />
+      <option name="presentableId" value="LOCAL-00421" />
+      <option name="project" value="LOCAL" />
+      <updated>1724394066847</updated>
+    </task>
+    <option name="localTasksCounter" value="422" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -499,7 +502,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Jake's kick added" />
     <MESSAGE value="Some animations tuning" />
     <MESSAGE value="Some animations tuning&#10;Staff of spikes weapon added" />
     <MESSAGE value="Added attack type matter: blood splatter appear only if weapon do slash damage, hop back after getting hurt causes if a weapon has 'smash' ability." />
@@ -524,6 +526,7 @@
     <MESSAGE value="Added &quot;lie dead&quot; state after health reaching 0.&#10;Bodies remain lying in the world.&#10;Game over message appears after a while, not instantly after the player's death." />
     <MESSAGE value="Even after death actor remains to be affected by the enemy hits, gravitation, and he summon blood splatters" />
     <MESSAGE value="Added 'pistol' weapon and invisible damagers without sprite." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added 'pistol' weapon and invisible damagers without sprite." />
+    <MESSAGE value="Fixed some bugs." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed some bugs." />
   </component>
 </project>

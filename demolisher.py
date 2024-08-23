@@ -25,6 +25,8 @@ class Demolisher(Entity):
         self.bounce_factor: float = 0.  # Vertical and horizontal speed reducing after every bounce.
         self.aftermath: str = ''  # Description of the demolisher behavior after TTL timer runs out.
         self.flyer = False
+        # self.speed = 5
+        self.floppy = False     # If Demolisher becomes floppy, it is unable to make harm to anybody.
         # self.rectangle = Rect(0, 0, 50, 50)
 
     # def update(self, update_distance):
@@ -197,6 +199,9 @@ class Demolisher(Entity):
             if obs.rectangle.colliderect(self.rectangle):
                 self.is_being_collided_now = True
                 return
+
+    def become_mr_floppy(self):
+        self.floppy = True
 
     def process_demolisher(self):
     # def process_demolisher(self, time_passed):
