@@ -329,33 +329,9 @@ class World(object):
 
     def add_demolisher(self, description):
         demol = Demolisher()
-        # demol.id = description[-1]
         demol.id = self.demolisher_id
         self.demolisher_id += 1
         demol.name = 'demolisher ' + str(demol.id)
-        # demol.ttl = description['demolisher TTL']
-
-        if description['demolisher sprite']:
-            demol.current_sprite = sprites[description['demolisher sprite']]
-            demol.rectangle.width = sprites[description['demolisher sprite']]['mask rect'].width
-            demol.rectangle.height = sprites[description['demolisher sprite']]['mask rect'].height
-        else:
-            # demol.current_sprite = None
-            demol.rectangle.width = description['rect'].width
-            demol.rectangle.height = description['rect'].height
-            sprite = pygame.Surface((demol.rectangle.width, demol.rectangle.height)).convert_alpha()
-            # sprite = pygame.Surface((demol.rectangle.width, demol.rectangle.height)).convert_alpha()
-            sprite.fill(RED)
-            # pygame.draw.circle(sprite, RED, demol.rectangle.center, demol.rectangle.width //2)
-            mask = pygame.mask.from_surface(sprite.convert_alpha())
-            demol.current_sprite = {
-                'sprite': sprite,
-                'sprite center': demol.rectangle.center,
-                'sprite asymmetric': None,
-                'mask': mask,
-                'mask rect': mask.get_rect()
-            }
-
         demol.bounce = description['bounce']
         demol.bounce_factor = description['bounce factor']
         demol.flyer = description['flyer']
@@ -363,11 +339,53 @@ class World(object):
         demol.parent_id = demol.parent.id
         demol.look = demol.parent.look
         demol.ttl = description['demolisher TTL'] * demol.parent.frames_changing_threshold_modifier
-        demol.snapping_offset = {
-            'offset inside actor': description['snapping offset'],
-            'offset inside demolisher': sprites[description['demolisher sprite']]['demolisher snap point']
-        }
+
+        if description['visible']:
+            if description['demolisher sprite']:
+                demol.current_sprite = sprites[description['demolisher sprite']]
+                demol.rectangle.width = sprites[description['demolisher sprite']]['mask rect'].width
+                demol.rectangle.height = sprites[description['demolisher sprite']]['mask rect'].height
+                demol.snapping_offset = {
+                    'offset inside actor': description['snapping offset'],
+                    'offset inside demolisher': sprites[description['demolisher sprite']]['demolisher snap point']
+                }
+                # demol.update(demol.parent.look, demol.parent.rectangle)
+            else:
+                # demol.current_sprite = None
+                demol.rectangle.width = description['rect'].width
+                demol.rectangle.height = description['rect'].height
+                sprite = pygame.Surface((demol.rectangle.width, demol.rectangle.height)).convert_alpha()
+                # sprite = pygame.Surface((demol.rectangle.width, demol.rectangle.height)).convert_alpha()
+                sprite.fill(RED)
+                # pygame.draw.circle(sprite, RED, demol.rectangle.center, demol.rectangle.width //2)
+                mask = pygame.mask.from_surface(sprite.convert_alpha())
+                demol.current_sprite = {
+                    'sprite': sprite,
+                    'sprite center': demol.rectangle.center,
+                    'sprite asymmetric': None,
+                    'demolisher snap point': (0, 0),
+                    'mask': mask,
+                    'mask rect': mask.get_rect()
+                }
+                demol.snapping_offset = {
+                    'offset inside actor': description['snapping offset'],
+                    'offset inside demolisher': demol.current_sprite['demolisher snap point']
+                }
+                # demol.update(demol.parent.look, demol.parent.rectangle)
+        else:
+            # if demol.parent.look == 1:
+            #     demol.rectangle.x = demol.parent.rectangle. description['snapping offset'][0]
+            demol.rectangle.width = description['rect'].width
+            demol.rectangle.height = description['rect'].height
+            demol.invisible = True
+            demol.snapping_offset = {
+                'offset inside actor': description['snapping offset'],
+                'offset inside demolisher': (-demol.rectangle.width//2,0)  # if demol.look == 1 else (demol.rectangle.width, 0)
+            }
+
         demol.update(demol.parent.look, demol.parent.rectangle)
+
+
         if demol.flyer:
             demol.destination = (self.camera.max_offset_x + MAXX, demol.rectangle.y) if demol.parent.look == 1 else (-100, demol.rectangle.y)
 
@@ -1010,6 +1028,10 @@ class World(object):
             # if key not in self.active_obstacles:
             #     continue
             dem = self.demolishers[self.location][key]
+            if dem.invisible:
+                pygame.draw.rect(self.screen, MAGENTA, (dem.rectangle.x - self.camera.offset_x, dem.rectangle.y - self.camera.offset_y,
+                                                      dem.rectangle.width, dem.rectangle.height),1)
+                continue
             # color = (max(0, 255 - dem.ttl*4), 10,0) if dem.ttl < 50 else PINK
             # pygame.draw.rect(self.screen, color, (dem.rectangle.x - self.camera.offset_x, dem.rectangle.y - self.camera.offset_y,
             #                                       dem.rectangle.width, dem.rectangle.height),1)

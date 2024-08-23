@@ -589,58 +589,49 @@ class Entity(object):
             dem = self.demolishers_around[key]
             if dem.id in self.got_immunity_to_demolishers or dem.parent_id == self.id or dem.parent.name == self.name:
                 continue
-
-            # A piece of code from my Turn-based game project:
-
-            # current_mask = self.active_obj_masks[(actor.name, actor.id)]['floor shadow mask']
-            # current_mask_rect = current_mask.get_rect(center=actor.rectangle.center)
-            # if current_mask_rect.collidepoint(d.rectangle.center):
-            #     x = int(d.rectangle.centerx - current_mask_rect.x)  # x coordinate relative to inner mask space
-            #     y = int(d.rectangle.centery - current_mask_rect.y)  # y coordinate relative to inner mask space
-            #
-            #     if current_mask.get_at((x, y)):
-            current_mask = self.current_sprite['mask'] if self.look == 1 else self.current_sprite['mask flipped']
-            # # print(self.current_sprite)
-            current_mask_rect = self.current_sprite['mask rect']
-            current_mask_rect.center = self.rectangle.center
-            # self.current_sprite['current mask rect'] = current_mask_rect
-
-            # print(self.rectangle, current_mask_rect)
-            # exit()
-            # current_mask_rect = current_mask.get_rect(center=self.rectangle.center)
-            # print(dem.current_sprite)
-            current_demolisher_mask = dem.current_sprite['mask'] if dem.look == 1 else dem.current_sprite['mask flipped']
-            current_demolisher_mask_rect = dem.current_sprite['mask rect']
-            current_demolisher_mask_rect.center = dem.rectangle.center
-            # current_demolisher_mask_rect = dem.current_sprite['mask rect'].move(dem.rectangle.topleft)
-            # current_demolisher_mask_rect = current_demolisher_mask.get_rect(center=dem.rectangle.center)
-            # if self.current_sprite['current mask rect'].colliderect(current_demolisher_mask_rect):
-            if current_mask_rect.colliderect(current_demolisher_mask_rect):
-            #     x = dem.rectangle.x - self.current_sprite['current mask rect'].x  # x coordinate relative to inner mask space
-                x = dem.rectangle.x - current_mask_rect.x  # x coordinate relative to inner mask space
-                # y = dem.rectangle.y - self.current_sprite['current mask rect'].y  # y coordinate relative to inner mask space
-                y = dem.rectangle.y - current_mask_rect.y  # y coordinate relative to inner mask space
+            hit_detected = False
+            if dem.invisible:
+                # Just a rectangle-based collision detector:
+                if self.rectangle.colliderect(dem.rectangle):
+                    hit_detected = True
             else:
-                continue
 
-            # print( current_mask_rect, current_demolisher_mask_rect)
-            # if current_mask_rect.colliderect(dem.rectangle):
-            #     x = int(dem.rectangle.centerx - current_mask_rect.centerx)  # x coordinate relative to inner mask space
-            #     y = int(dem.rectangle.centery - current_mask_rect.centery)  # y coordinate relative to inner mask space
-            # else:
-            #     continue
+                current_mask = self.current_sprite['mask'] if self.look == 1 else self.current_sprite['mask flipped']
+                # # print(self.current_sprite)
+                current_mask_rect = self.current_sprite['mask rect']
+                current_mask_rect.center = self.rectangle.center
+                # self.current_sprite['current mask rect'] = current_mask_rect
 
-            # Just a rectangle-based collision detector:
-            # if self.rectangle.colliderect(dem.rectangle):
+                # print(self.rectangle, current_mask_rect)
+                # exit()
+                # current_mask_rect = current_mask.get_rect(center=self.rectangle.center)
+                # print(dem.current_sprite)
+                current_demolisher_mask = dem.current_sprite['mask'] if dem.look == 1 else dem.current_sprite['mask flipped']
+                current_demolisher_mask_rect = dem.current_sprite['mask rect']
+                current_demolisher_mask_rect.center = dem.rectangle.center
+                # current_demolisher_mask_rect = dem.current_sprite['mask rect'].move(dem.rectangle.topleft)
+                # current_demolisher_mask_rect = current_demolisher_mask.get_rect(center=dem.rectangle.center)
+                # if self.current_sprite['current mask rect'].colliderect(current_demolisher_mask_rect):
+                if current_mask_rect.colliderect(current_demolisher_mask_rect):
+                #     x = dem.rectangle.x - self.current_sprite['current mask rect'].x  # x coordinate relative to inner mask space
+                    x = dem.rectangle.x - current_mask_rect.x  # x coordinate relative to inner mask space
+                    # y = dem.rectangle.y - self.current_sprite['current mask rect'].y  # y coordinate relative to inner mask space
+                    y = dem.rectangle.y - current_mask_rect.y  # y coordinate relative to inner mask space
+                else:
+                    continue
 
-            # if current_mask.get_at((x, y)):
-            if current_mask.overlap(current_demolisher_mask, (x,y)):
-                # if self.current_sprite['weak spot']:
-                #     if current_demolisher_mask_rect.colliderect(self.current_sprite['weak spot rect']):
-                #         print(f'[entity detect demolishers] INSTANT DEATH' )
-                #         self.dead = True
-                #         return
-                #
+                # print( current_mask_rect, current_demolisher_mask_rect)
+                # if current_mask_rect.colliderect(dem.rectangle):
+                #     x = int(dem.rectangle.centerx - current_mask_rect.centerx)  # x coordinate relative to inner mask space
+                #     y = int(dem.rectangle.centery - current_mask_rect.centery)  # y coordinate relative to inner mask space
+                # else:
+                #     continue
+
+                # if current_mask.get_at((x, y)):
+                if current_mask.overlap(current_demolisher_mask, (x,y)):
+                    hit_detected = True
+
+            if hit_detected:
                 # If actor hit from behind, the damage increased by 50%:
                 self.summon_particle = True
                 if not self.dead:

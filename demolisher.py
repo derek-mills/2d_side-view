@@ -31,16 +31,16 @@ class Demolisher(Entity):
     #     self.rectangle.x += update_distance[0]
     #     self.rectangle.y += update_distance[1]
 
-    def update__(self, snap_side, snap_rect):
-        # print(f"[demolisher update] Enter: {snap_side=} {snap_rect=} {self.rectangle=}")
-        if snap_side == 1:  # Snapping to the actor's right side
-            self.rectangle.left = snap_rect.centerx + self.snapping_offset[0]
-            self.rectangle.top = snap_rect.centery + self.snapping_offset[1]
-        else:
-            self.rectangle.right = snap_rect.centerx + self.snapping_offset[0]
-            self.rectangle.top = snap_rect.centery + self.snapping_offset[1]
-        # print(f"[demolisher update] Exit with: {self.rectangle=}")
-        # print(f"[demolisher update] ---------------------------")
+    # def update__(self, snap_side, snap_rect):
+    #     # print(f"[demolisher update] Enter: {snap_side=} {snap_rect=} {self.rectangle=}")
+    #     if snap_side == 1:  # Snapping to the actor's right side
+    #         self.rectangle.left = snap_rect.centerx + self.snapping_offset[0]
+    #         self.rectangle.top = snap_rect.centery + self.snapping_offset[1]
+    #     else:
+    #         self.rectangle.right = snap_rect.centerx + self.snapping_offset[0]
+    #         self.rectangle.top = snap_rect.centery + self.snapping_offset[1]
+    #     # print(f"[demolisher update] Exit with: {self.rectangle=}")
+    #     # print(f"[demolisher update] ---------------------------")
 
 
     def update(self, snap_side, snap_rect):

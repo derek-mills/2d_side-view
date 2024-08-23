@@ -358,6 +358,8 @@ load_single_frame(items, ((40,210,20,30),), 'axe 45 demolisher', 9)
 load_single_frame(items, ((60,210,20,30),), 'axe 0 demolisher', 9)
 load_single_frame(items, ((80,210,20,30),), 'axe 315 demolisher', 9)
 
+load_single_frame(items, ((20,240,20,30),), 'pistol', 9)
+
 
 
 # ___...---=== JAKE ===---...___

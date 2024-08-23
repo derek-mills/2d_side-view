@@ -24,6 +24,7 @@ sword = {
     'demolishers': (
         ({
             'rect': pygame.Rect(0, 0, 70, 10), 'flyer': False,
+             'visible': True,
             'demolisher sprite': 'short sword demolisher',
             'pierce': False, 'demolisher TTL': 6, 'speed': 0,
             'damage': 50, 'static': True, 'damage reduce': 0,
@@ -34,6 +35,7 @@ sword = {
         },
         {
             'rect': pygame.Rect(0, 0, 75, 10), 'flyer': False,
+            'visible': True,
             'demolisher sprite': 'short sword demolisher',
             'pierce': False, 'demolisher TTL': 8, 'speed': 0,
             'damage': 60, 'static': True, 'damage reduce': 0,
@@ -75,6 +77,7 @@ kitchen_knife = {
     'demolishers': (
         ({
             'rect': pygame.Rect(0, 0, 30, 30), 'flyer': False,
+             'visible': True,
             'demolisher sprite': 'kitchen knife demolisher',
             'pierce': False, 'demolisher TTL': 10, 'speed': 12,
             'damage': 100, 'static': True, 'damage reduce': .1,
@@ -130,6 +133,7 @@ fireball_staff = {
     'demolishers': (
         ({
             'rect': pygame.Rect(0, 0, 70, 70), 'flyer': False,
+             'visible': True,
             'demolisher sprite': 'staff demolisher',
             'pierce': False, 'demolisher TTL': 150, 'speed': 30,
             'damage': 150, 'static': False, 'damage reduce': 0,
@@ -167,6 +171,7 @@ spikeball_staff = {
     'demolishers': (
         ({
             'rect': pygame.Rect(0, 0, 70, 70), 'flyer': False,
+             'visible': True,
             'demolisher sprite': 'spikeball staff demolisher',
             'pierce': False, 'demolisher TTL': 250, 'speed': 30,
             'damage': 50, 'static': False, 'damage reduce': 0,
@@ -204,6 +209,7 @@ whip = {
     'demolishers': (
         ({
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
+             'visible': True,
             'demolisher sprite': 'whip demolisher short',
             'pierce': False, 'demolisher TTL': 1, 'speed': 0,
             'damage': 150, 'static': True, 'damage reduce': 0,
@@ -215,6 +221,7 @@ whip = {
         },),
         ({
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
+             'visible': True,
             'demolisher sprite': 'whip demolisher medium',
             'pierce': False, 'demolisher TTL': 1, 'speed': 0,
             'damage': 150, 'static': True, 'damage reduce': 0,
@@ -226,6 +233,7 @@ whip = {
         },),
         ({
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
+             'visible': True,
             'demolisher sprite': 'whip demolisher long',
             'pierce': False, 'demolisher TTL': 5, 'speed': 0,
             'damage': 150, 'static': True, 'damage reduce': 0,
@@ -263,6 +271,7 @@ jake_kick = {
     'demolishers': (
         ({
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
+             'visible': True,
             'demolisher sprite': 'jake kick demolisher',
             'pierce': False, 'demolisher TTL': 8, 'speed': 0,
             'damage': 10, 'static': True, 'damage reduce': 0,
@@ -300,6 +309,7 @@ axe = {
     'demolishers': (
         ({
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
+             'visible': True,
             'demolisher sprite': 'axe 45 demolisher',
             'pierce': False, 'demolisher TTL': 2, 'speed': 0,
             'damage': 100, 'static': True, 'damage reduce': 0,
@@ -311,6 +321,7 @@ axe = {
         },),
         ({
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
+             'visible': True,
             'demolisher sprite': 'axe 0 demolisher',
             'pierce': False, 'demolisher TTL': 2, 'speed': 0,
             'damage': 100, 'static': True, 'damage reduce': 0,
@@ -322,6 +333,7 @@ axe = {
         },),
         ({
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
+             'visible': True,
             'demolisher sprite': 'axe 315 demolisher',
             'pierce': False, 'demolisher TTL': 6, 'speed': 0,
             'damage': 150, 'static': True, 'damage reduce': 0,
@@ -360,6 +372,7 @@ demon_2_mid = {
     'demolishers': (
         ({
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
+             'visible': True,
             'demolisher sprite': 'demon 2 mid claw demolisher 1',
             'pierce': False, 'demolisher TTL': 2, 'speed': 0,
             'damage': 150, 'static': True, 'damage reduce': 0,
@@ -371,6 +384,7 @@ demon_2_mid = {
         },),
         ({
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
+             'visible': True,
             'demolisher sprite': 'demon 2 mid claw demolisher 2',
             'pierce': False, 'demolisher TTL': 5, 'speed': 0,
             'damage': 150, 'static': True, 'damage reduce': 0,
@@ -382,6 +396,7 @@ demon_2_mid = {
         },),
         ({
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
+             'visible': True,
             'demolisher sprite': 'demon 2 mid claw demolisher 3',
             'pierce': False, 'demolisher TTL': 6, 'speed': 0,
             'damage': 150, 'static': True, 'damage reduce': 0,
@@ -419,6 +434,7 @@ demon_2_close = {
     'demolishers': (
         ({
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
+            'visible': True,
             'demolisher sprite': 'demon 2 claw demolisher 2',
             'pierce': False, 'demolisher TTL': 8, 'speed': 0,
             'damage': 250, 'static': True, 'damage reduce': 0,
@@ -430,10 +446,49 @@ demon_2_close = {
         },),
         ({
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
+             'visible': True,
             'demolisher sprite': 'demon 2 claw demolisher',
             'pierce': False, 'demolisher TTL': 10, 'speed': 0,
             'damage': 250, 'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
+            'bounce': False, 'bounce factor': 0.,
+            'attack type': ('slash', 'smash', 'pierce'),
+            # 'aftermath': 'explode'
+            'aftermath': 'disappear'
+        },),
+    ),
+
+}
+
+pistol = {
+    'description': 'Handy handgun.',
+    'class': 'weapons',
+    'type': 'firearms',
+    'label': 'pistol',
+    'sprite': 'pistol',
+    'attack animation': 'pistol shot',
+    'sound': 'sound_swing_2',
+    'amount': 1,
+    'amount threshold': 1,
+    'amount decrease speed': 0,
+    'affects on': '',
+    'stamina consumption': 0.1,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
+    'mana consumption': 0.,
+    'ignore user input': True,  # Steal the ability to control a character for a while.
+    'animation speed modifier': 1.,  # 0 < x < 1: speed animation up, x > 1: slow down.
+    'leave particles': False,
+    'droppable': True,
+    'need ammo': True,
+    'ammo': 20,
+    'reach': 200,
+    'demolishers': (
+        ({
+            'rect': pygame.Rect(0, 0, 5000, 1), 'flyer': False,
+            'visible': False,
+            'demolisher sprite': None,
+            'pierce': False, 'demolisher TTL': 2, 'speed': 0,
+            'damage': 50, 'static': False, 'damage reduce': 0,
+            'collides': True, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
             'attack type': ('slash', 'smash', 'pierce'),
             # 'aftermath': 'explode'

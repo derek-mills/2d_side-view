@@ -658,7 +658,7 @@ player_jake = {
         },
     },
     'max speed': 8,
-    'items': (axe,whip,jake_kick),
+    'items': (pistol,axe,whip,jake_kick),
     # 'items': (whip,fireball_staff,sword,kitchen_knife,),
     'animations': {
         'stand still right': {
@@ -1037,6 +1037,34 @@ player_jake = {
                     'sound': True,
                     # 'move': 10, # Slightly move actor forward,
                     'demolishers set number': 2,
+                    'demolisher': True
+                },
+            },
+            'repeat from frame': 0
+        },
+        'pistol shot right': {
+            'repeat': False, 'interruptable': True,
+            'sequence': (57,57,58,58,57,57,57,57),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'speed': 1,
+            'activity at frames': {
+                2: {
+                    'sound': True,
+                    # 'move': 10,  # Slightly move actor forward,
+                    'demolishers set number': 0,
+                    'demolisher': True
+                },
+            },
+            'repeat from frame': 0
+        },
+        'pistol shot left': {
+            'repeat': False, 'interruptable': True,
+            'sequence': (72,72,71,71,72,72,72,72,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'speed': 1,
+            'activity at frames': {
+                2: {
+                    'sound': True,
+                    # 'move': 10,  # Slightly move actor forward,
+                    'demolishers set number': 0,
                     'demolisher': True
                 },
             },

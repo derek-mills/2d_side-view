@@ -566,8 +566,9 @@ class Actor(Entity):
             self.ignore_user_input = self.current_weapon['ignore user input']
             if self.is_stand_on_ground:
                 self.heading[0] = 0
-        elif self.__state in ('stab', 'cast', 'axe swing', 'whip', 'whip crouch right', 'whip crouch left',
-                              'kick'):                          # ATTACKING IN PROCESS...
+        elif self.__state in ('stab', 'cast', 'axe swing', 'whip',
+                              'whip crouch right', 'whip crouch left',
+                              'kick', 'pistol shot'):                          # ATTACKING IN PROCESS...
             if self.animation_sequence_done:
                 self.ignore_user_input = False
                 if self.force_use_previous_weapon:
