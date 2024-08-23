@@ -640,34 +640,37 @@ class Entity(object):
                 #         print(f'[entity detect demolishers] INSTANT DEATH' )
                 #         self.dead = True
                 #         return
+                #
                 # If actor hit from behind, the damage increased by 50%:
-                total_damage = dem.damage * 1.5 if dem.look == self.look and dem.snap_to_actor >= 0 else dem.damage
-                self.get_damage(total_damage)
-                self.invincibility_timer = 30
-                # self.invincibility_timer = 100 if self.id == 0 else 30
-                # Damage amount show:
                 self.summon_particle = True
-                txt_color = RED if self.id == 0 else WHITE
-                sprite = fonts.all_fonts[40].render(str(int(total_damage)), True, txt_color)
-                self.summoned_particle_descriptions.append({
-                    'sprite': sprite,
-                    'fall speed correction': 0.6,
-                    'particle TTL': 100,
-                    'width': sprite.get_width(),
-                    'height': sprite.get_height(),
-                    'xy': self.rectangle.center,
-                    'bounce': False,
-                    'bounce factor': 0.,
-                    'subtype': 'text',
-                    'color': txt_color,
-                    'look': dem.parent.look,
-                    # 'look': self.look * -1,  # Splatter always fly in the opposite direction
-                    'speed': 1 + randint(6, 8),
-                    'jump height': 15,
-                    # 'jump height': randint(15, 20),
-                    'collides': True,
-                    'gravity affected': True
-                })
+                if not self.dead:
+                    total_damage = dem.damage * 1.5 if dem.look == self.look and dem.snap_to_actor >= 0 else dem.damage
+                    self.get_damage(total_damage)
+                    self.invincibility_timer = 30
+                    # self.invincibility_timer = 100 if self.id == 0 else 30
+                    # Damage amount show:
+                    # self.summon_particle = True
+                    txt_color = RED if self.id == 0 else WHITE
+                    sprite = fonts.all_fonts[40].render(str(int(total_damage)), True, txt_color)
+                    self.summoned_particle_descriptions.append({
+                        'sprite': sprite,
+                        'fall speed correction': 0.6,
+                        'particle TTL': 100,
+                        'width': sprite.get_width(),
+                        'height': sprite.get_height(),
+                        'xy': self.rectangle.center,
+                        'bounce': False,
+                        'bounce factor': 0.,
+                        'subtype': 'text',
+                        'color': txt_color,
+                        'look': dem.parent.look,
+                        # 'look': self.look * -1,  # Splatter always fly in the opposite direction
+                        'speed': 1 + randint(6, 8),
+                        'jump height': 15,
+                        # 'jump height': randint(15, 20),
+                        'collides': True,
+                        'gravity affected': True
+                    })
 
                 # Blood splatters:
                 if 'slash' in dem.attack_type:
@@ -714,6 +717,8 @@ class Entity(object):
     #         self.current_sprite['weak spot rect'] = weak_spot_rect
 
     def get_damage(self, amount):
+        if self.dead:
+            return
         print(f'[entity.get_damage] {amount} of damage dealt to {self.name} | {self.stats["health"]=}')
         self.stats['health'] -= amount
 

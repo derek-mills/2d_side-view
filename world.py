@@ -414,6 +414,7 @@ class World(object):
         self.time_passed = time_passed
         if self.player_is_dead_counter_to_game_over > 0:
             self.player_is_dead_counter_to_game_over -= 1
+            # print(self.player_is_dead_counter_to_game_over)
             if self.player_is_dead_counter_to_game_over == 0:
                 self.game_over()
         self.processing_obstacles()
@@ -756,28 +757,27 @@ class World(object):
             # if not actor.rectangle.colliderect(self.camera.active_objects_rectangle):
             #     continue
 
-            if actor.dead:
-                continue
+            # if actor.dead:
+            #     continue
 
             if actor.dying:
                 actor.dead = True
+                actor.dying = False
                 actor.invincibility_timer = 0
                 actor.set_state('lie dead')
                 dead.append(actor.id)
                 if actor.id == 0:
                     self.player_is_dead_counter_to_game_over = 300
-                    continue
-                if all_hostiles[actor.name]['drop']:
-                    # print(all_hostiles[actor.name]['drop'])
-                    for drop in all_hostiles[actor.name]['drop']:
-                        self.add_item(all_items[drop], (randint(actor.rectangle.left - 50, actor.rectangle.right + 50), actor.rectangle.top))
-                continue
+                    # continue
+                else:
+                    if all_hostiles[actor.name]['drop']:
+                        # print(all_hostiles[actor.name]['drop'])
+                        for drop in all_hostiles[actor.name]['drop']:
+                            self.add_item(all_items[drop], (randint(actor.rectangle.left - 50, actor.rectangle.right + 50), actor.rectangle.top))
+                    # continue
 
             while actor.drop_from_inventory:
                 i = actor.drop_from_inventory.pop()
-                # self.add_item(all_items[i], actor.rectangle.topleft)
-                # self.add_item(all_items[i], (actor.rectangle.centerx, actor.rectangle.top))
-                # self.add_item(all_items[i], (actor.rectangle.right if actor.look == 1 else actor.rectangle.left - sprites[i]['sprite'].get_width(), actor.rectangle.bottom - sprites[i]['sprite'].get_height()))
                 self.add_item(all_items[i], (actor.rectangle.centerx - sprites[i]['sprite'].get_width() //2, actor.rectangle.bottom - sprites[i]['sprite'].get_height()))
 
             actor.percept({k: self.obstacles[self.location][k] for k in self.active_obstacles}, self.demolishers[self.location])
@@ -786,55 +786,55 @@ class World(object):
             # if not actor.ignore_user_input:
             #     actor.think()
 
-            if actor.ai_controlled:
-                actor.get_target(self.actors['player'])
-                if not actor.ignore_user_input:
-                    actor.think()
-            else:
-                if not actor.ignore_user_input:  # routines for Player actor
-                # if key == 0 and not actor.ignore_user_input:  # routines for Player actor
-                    if self.is_input_up_arrow:
-                        actor.set_action('up action')
-                    else:
-                        # if actor.get_state() == 'up action':
-                        actor.set_action('up action cancel')
+            if not actor.dead:
+                if actor.ai_controlled:
+                    actor.get_target(self.actors['player'])
+                    if not actor.ignore_user_input:
+                        actor.think()
+                else:
+                    if not actor.ignore_user_input:  # routines for Player actor
+                    # if key == 0 and not actor.ignore_user_input:  # routines for Player actor
+                        if self.is_input_up_arrow:
+                            actor.set_action('up action')
+                        else:
+                            # if actor.get_state() == 'up action':
+                            actor.set_action('up action cancel')
 
-                    if self.is_input_down_arrow:
-                        actor.set_action('down action')
-                    else:
-                        # if actor.get_state() == 'down action':
-                        actor.set_action('down action cancel')
+                        if self.is_input_down_arrow:
+                            actor.set_action('down action')
+                        else:
+                            # if actor.get_state() == 'down action':
+                            actor.set_action('down action cancel')
 
-                    if self.is_input_right_arrow:
-                        actor.set_action('right action')
-                    else:
-                        # if actor.get_state() == 'right action':
-                        actor.set_action('right action cancel')
+                        if self.is_input_right_arrow:
+                            actor.set_action('right action')
+                        else:
+                            # if actor.get_state() == 'right action':
+                            actor.set_action('right action cancel')
 
-                    if self.is_input_left_arrow:
-                        actor.set_action('left action')
-                    else:
-                        # if actor.get_state() == 'left action':
-                        actor.set_action('left action cancel')
+                        if self.is_input_left_arrow:
+                            actor.set_action('left action')
+                        else:
+                            # if actor.get_state() == 'left action':
+                            actor.set_action('left action cancel')
 
-                    if self.is_jump_button:
-                        actor.set_action('jump action')
-                    else:
-                        actor.set_action('jump action cancel')
+                        if self.is_jump_button:
+                            actor.set_action('jump action')
+                        else:
+                            actor.set_action('jump action cancel')
 
-                    if self.is_l_alt and not self.l_alt_multiple_press_prevent:
-                        self.l_alt_multiple_press_prevent = True
-                        actor.set_action('hop back')
-                    else:
-                        if actor.get_state() == 'hop back progress':
-                            actor.set_action('hop back action cancel')
+                        if self.is_l_alt and not self.l_alt_multiple_press_prevent:
+                            self.l_alt_multiple_press_prevent = True
+                            actor.set_action('hop back')
+                        else:
+                            if actor.get_state() == 'hop back progress':
+                                actor.set_action('hop back action cancel')
 
-                    if self.is_attack:
-                        self.is_attack = False
-                        actor.set_action('attack')
+                        if self.is_attack:
+                            self.is_attack = False
+                            actor.set_action('attack')
 
             actor.get_time(self.time_passed, self.game_cycles_counter)
-            # actor.mask_update((self.camera.offset_x, self.camera.offset_y))
             actor.process()
 
             if actor.summon_demolisher:

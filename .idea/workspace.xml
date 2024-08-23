@@ -4,15 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
+    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="Added &quot;lie dead&quot; state after health reaching 0.&#10;Bodies remain lying in the world.&#10;Game over message appears after a while, not instantly after the player's death.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/animations/demon_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/animations/demon_2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/animations/jake_8bit.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/animations/jake_8bit.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -147,13 +141,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00369" summary="Blood splatters added.">
-      <created>1723171732713</created>
-      <option name="number" value="00369" />
-      <option name="presentableId" value="LOCAL-00369" />
-      <option name="project" value="LOCAL" />
-      <updated>1723171732713</updated>
     </task>
     <task id="LOCAL-00370" summary="Actor has a color of blood.">
       <created>1723179469850</created>
@@ -491,7 +478,14 @@
       <option name="project" value="LOCAL" />
       <updated>1724309669341</updated>
     </task>
-    <option name="localTasksCounter" value="418" />
+    <task id="LOCAL-00418" summary="Added &quot;lie dead&quot; state after health reaching 0.&#10;Bodies remain lying in the world.&#10;Game over message appears after a while, not instantly after the player's death.">
+      <created>1724312450382</created>
+      <option name="number" value="00418" />
+      <option name="presentableId" value="LOCAL-00418" />
+      <option name="project" value="LOCAL" />
+      <updated>1724312450382</updated>
+    </task>
+    <option name="localTasksCounter" value="419" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -506,7 +500,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added a counter to enemy set by random, that restricts ranged weapon unstoppable usage." />
     <MESSAGE value="Some" />
     <MESSAGE value="Tuning of enemies being." />
     <MESSAGE value="Jake's kick added" />
@@ -531,6 +524,7 @@
     <MESSAGE value="Slightly redesigned demolishers appearing instructions." />
     <MESSAGE value="Introduced flipped mask, which should be introduced and used in collisions detection long time ago..." />
     <MESSAGE value="Demon 2 close attack animation improved by adding one more demolisher.&#10;Shy try to expand enemies thinking ability." />
-    <option name="LAST_COMMIT_MESSAGE" value="Demon 2 close attack animation improved by adding one more demolisher.&#10;Shy try to expand enemies thinking ability." />
+    <MESSAGE value="Added &quot;lie dead&quot; state after health reaching 0.&#10;Bodies remain lying in the world.&#10;Game over message appears after a while, not instantly after the player's death." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added &quot;lie dead&quot; state after health reaching 0.&#10;Bodies remain lying in the world.&#10;Game over message appears after a while, not instantly after the player's death." />
   </component>
 </project>
