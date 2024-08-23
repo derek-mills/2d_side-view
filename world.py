@@ -949,7 +949,7 @@ class World(object):
     def render_actors(self):
         for key in self.actors[self.location].keys():
             actor = self.actors[self.location][key]
-            if actor.invincibility_timer > 0:
+            if actor.invincibility_timer > 0 and not actor.dead:
                 if self.game_cycles_counter // 2 == self.game_cycles_counter / 2:
                     continue
             size = actor.current_sprite['sprite'].get_size()

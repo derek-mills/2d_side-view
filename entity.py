@@ -634,10 +634,10 @@ class Entity(object):
             if hit_detected:
                 # If actor hit from behind, the damage increased by 50%:
                 self.summon_particle = True
+                self.invincibility_timer = 30
                 if not self.dead:
                     total_damage = dem.damage * 1.5 if dem.look == self.look and dem.snap_to_actor >= 0 else dem.damage
                     self.get_damage(total_damage)
-                    self.invincibility_timer = 30
                     # self.invincibility_timer = 100 if self.id == 0 else 30
                     # Damage amount show:
                     # self.summon_particle = True
@@ -662,6 +662,13 @@ class Entity(object):
                         'collides': True,
                         'gravity affected': True
                     })
+
+                    if 'smash' in dem.attack_type:
+                        if self.get_state() not in ('hold stash', 'carry stash right', 'carry stash left'):
+                            self.hop_back_jump_height_modifier = ((dem.parent_strength / self.strength) + (dem.parent_weight / self.body_weight)) / dem.parent_penalty
+                            self.movement_direction_inverter = -1 if dem.parent.look != self.look else 1
+                            self.set_state('hop back')
+
 
                 # Blood splatters:
                 if 'slash' in dem.attack_type:
@@ -688,11 +695,6 @@ class Entity(object):
                         })
 
                 # print('[detect_demolishers_collisions] actor get damage in state:', self.__state)
-                if 'smash' in dem.attack_type:
-                    if self.get_state() not in ('hold stash', 'carry stash right', 'carry stash left'):
-                        self.hop_back_jump_height_modifier = ((dem.parent_strength / self.strength) + (dem.parent_weight / self.body_weight)) / dem.parent_penalty
-                        self.movement_direction_inverter = -1 if dem.parent.look != self.look else 1
-                        self.set_state('hop back')
 
     # def mask_update(self, offset):
     # #     # current_mask = self.current_sprite['mask']
