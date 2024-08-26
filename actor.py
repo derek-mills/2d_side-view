@@ -163,13 +163,13 @@ class Actor(Entity):
                     if self.rectangle.centery >= self.target.rectangle.centery:
                         if self.get_state() != 'jump':
                             self.ai_input_jump = True
-                            print('wanna jump')
+                            # print('wanna jump')
                         else:
                             self.ai_input_attack = True
-                            print('wanna attack in the air')
+                            # print('wanna attack in the air')
                     else:
                         self.ai_input_attack = True
-                        print('wanna attack')
+                        # print('wanna attack')
                     # if self.get_state() == 'jump':
                     #     self.ai_input_attack = True
                 else:
@@ -654,22 +654,27 @@ class Actor(Entity):
                     self.set_state('fly left')
             # self.set_state('stand still')
         elif self.__state == 'hop back':                        # HOP BACK
+            self.heading = [0, 0]
+            # self.heading[0] = 0
+            self.ignore_user_input = True
+            self.ai_input_right_arrow = False
+            self.ai_input_left_arrow = False
+            self.ai_input_attack = False
+            self.ai_input_jump = False
+            self.is_grabbers_active = False
+            self.is_move_right: bool = False
+            self.is_move_left: bool = False
+            self.is_move_up: bool = False
+            self.is_move_down: bool = False
+            self.is_jump: bool = False
+            self.is_crouch: bool = False
+            self.is_abort_jump: bool = False
+            self.is_jump_performed: bool = False
+            self.speed = 0
+
             if self.is_stand_on_ground:
                 if self.is_enough_space_above:
-                    self.ignore_user_input = True
-                    self.ai_input_right_arrow = False
-                    self.ai_input_left_arrow = False
-                    self.ai_input_attack = False
-                    self.ai_input_jump = False
-                    self.is_grabbers_active = False
-                    self.is_move_right: bool = False
-                    self.is_move_left: bool = False
-                    self.is_move_up: bool = False
-                    self.is_move_down: bool = False
-                    self.is_jump: bool = False
-                    self.is_crouch: bool = False
-                    self.is_abort_jump: bool = False
-                    self.is_jump_performed: bool = False
+                    # self.heading[0] = 0
                     if not self.just_got_jumped:
                         self.stamina_reduce(self.normal_stamina_lost_per_hop_back)
                         self.just_got_jumped = True
@@ -679,9 +684,9 @@ class Actor(Entity):
                         self.jump_height = min(5 * self.hop_back_jump_height_modifier, 15)
                         # self.jump_height = self.max_jump_height * 0.6
                         self.speed = min(5 * self.hop_back_jump_height_modifier, 30)
-                        print(f'{self.hop_back_jump_height_modifier=} {self.jump_height=} {self.speed=}')
+                        print(f'[state machine] hop back prepare: {self.hop_back_jump_height_modifier=} {self.jump_height=} {self.speed=}')
                         # self.movement_direction_inverter = -1
-                        self.heading[0] = 0
+                        # self.heading[0] = 0
                         self.idle_counter = 20
                         self.invincibility_timer = 20
                         self.hop_back_jump_height_modifier = self.default_hop_back_jump_height_modifier

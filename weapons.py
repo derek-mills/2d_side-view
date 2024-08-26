@@ -367,7 +367,7 @@ demon_2_mid = {
     'droppable': True,
     'need ammo': False,
     'ammo': 0,
-    'reach': 400,
+    'reach': 300,
     # 'reach': sprites['demon 2 mid claw demolisher 1']['mask rect'].width,
     'demolishers': (
         ({
