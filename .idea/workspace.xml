@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="Fixing minor but annoying bugs">
+    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,13 +139,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00375" summary="Stamina and mana consumes only when demolisher appears.">
-      <created>1723438613305</created>
-      <option name="number" value="00375" />
-      <option name="presentableId" value="LOCAL-00375" />
-      <option name="project" value="LOCAL" />
-      <updated>1723438613305</updated>
     </task>
     <task id="LOCAL-00376" summary="Added the Stash item.">
       <created>1723442272495</created>
@@ -485,7 +476,14 @@
       <option name="project" value="LOCAL" />
       <updated>1724400674012</updated>
     </task>
-    <option name="localTasksCounter" value="424" />
+    <task id="LOCAL-00424" summary="Try to avoid infinite sliding after hopping back got by injury.">
+      <created>1724653491429</created>
+      <option name="number" value="00424" />
+      <option name="presentableId" value="LOCAL-00424" />
+      <option name="project" value="LOCAL" />
+      <updated>1724653491430</updated>
+    </task>
+    <option name="localTasksCounter" value="425" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -500,7 +498,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added attack type matter: blood splatter appear only if weapon do slash damage, hop back after getting hurt causes if a weapon has 'smash' ability." />
     <MESSAGE value="Tuning of victim's hopping back after being attacked." />
     <MESSAGE value="A demolisher gets an instance of his parent's class as a reference." />
     <MESSAGE value="Hopping back after damage improved." />
@@ -525,6 +522,7 @@
     <MESSAGE value="Fixed some bugs." />
     <MESSAGE value="Inserted routines to handle 'piercing' demolishers, which may damage several targets, and not piercing demolishers, which become harmless after hit somebody." />
     <MESSAGE value="Fixing minor but annoying bugs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixing minor but annoying bugs" />
+    <MESSAGE value="Try to avoid infinite sliding after hopping back got by injury." />
+    <option name="LAST_COMMIT_MESSAGE" value="Try to avoid infinite sliding after hopping back got by injury." />
   </component>
 </project>

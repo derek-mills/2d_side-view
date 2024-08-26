@@ -953,7 +953,7 @@ class World(object):
                                               10, 20))
 
     def render_actors(self):
-        for key in self.actors[self.location].keys():
+        for key in reversed(self.actors[self.location].keys()):
             actor = self.actors[self.location][key]
             if actor.invincibility_timer > 0 and not actor.dead:
                 if self.game_cycles_counter // 2 == self.game_cycles_counter / 2:
