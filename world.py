@@ -974,8 +974,8 @@ class World(object):
 
             x = actor.sprite_x - self.camera.offset_x
             y = actor.sprite_y - self.camera.offset_y
-            tmp_mask_sprite = actor.current_sprite['mask'].to_surface() if actor.look == 1 else actor.current_sprite['mask flipped'].to_surface()
-            self.screen.blit(tmp_mask_sprite, (x, y))
+            # tmp_mask_sprite = actor.current_sprite['mask'].to_surface()
+            # self.screen.blit(tmp_mask_sprite, (x, y))
 
             self.screen.blit(actor.current_sprite['sprite'], (x, y))
 

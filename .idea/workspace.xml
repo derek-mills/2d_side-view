@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
@@ -142,13 +141,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00378" summary="Added player actor's Stash drop ability.">
-      <created>1723448653668</created>
-      <option name="number" value="00378" />
-      <option name="presentableId" value="LOCAL-00378" />
-      <option name="project" value="LOCAL" />
-      <updated>1723448653668</updated>
     </task>
     <task id="LOCAL-00379" summary="Returned old good independent rectangle.">
       <created>1723451416698</created>
@@ -486,7 +478,14 @@
       <option name="project" value="LOCAL" />
       <updated>1724658359066</updated>
     </task>
-    <option name="localTasksCounter" value="427" />
+    <task id="LOCAL-00427" summary="Actor calculate his own X and Y for every sprite in animation sequence.">
+      <created>1724660502914</created>
+      <option name="number" value="00427" />
+      <option name="presentableId" value="LOCAL-00427" />
+      <option name="project" value="LOCAL" />
+      <updated>1724660502914</updated>
+    </task>
+    <option name="localTasksCounter" value="428" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -501,7 +500,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Hopping back after damage improved." />
     <MESSAGE value="Fighting with demolisher sprites offset during attack." />
     <MESSAGE value="Added the Axe weapon. &#10;Added intermediate demolishers appearing during all phases of animation." />
     <MESSAGE value="Added separate Axe swing attack." />
@@ -526,6 +524,7 @@
     <MESSAGE value="Try to avoid infinite sliding after hopping back got by injury." />
     <MESSAGE value="Actors' render queue has been reversed to provide player's actor #0 to be on the foreground before all other sprites." />
     <MESSAGE value="Some improvements." />
-    <option name="LAST_COMMIT_MESSAGE" value="Some improvements." />
+    <MESSAGE value="Actor calculate his own X and Y for every sprite in animation sequence." />
+    <option name="LAST_COMMIT_MESSAGE" value="Actor calculate his own X and Y for every sprite in animation sequence." />
   </component>
 </project>

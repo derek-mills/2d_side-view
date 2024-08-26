@@ -638,8 +638,8 @@ demon_2 = {
             'repeat from frame': 0
         },
     },
-    # 'think type': '',
-    'think type': 'chaser',
+    'think type': '',
+    # 'think type': 'chaser',
     'AI controlled': True
 }
 

@@ -632,10 +632,11 @@ class Entity(object):
                     hit_detected = True
             else:
 
-                current_mask = self.current_sprite['mask'] if self.look == 1 else self.current_sprite['mask flipped']
+                current_mask = self.current_sprite['mask']
+                # current_mask = self.current_sprite['mask'] if self.look == 1 else self.current_sprite['mask flipped']
                 # # print(self.current_sprite)
                 current_mask_rect = self.current_sprite['mask rect']
-                current_mask_rect.center = self.rectangle.center
+                current_mask_rect.center = self.sprite_rectangle.center
                 # self.current_sprite['current mask rect'] = current_mask_rect
 
                 # print(self.rectangle, current_mask_rect)
