@@ -161,6 +161,7 @@ class Actor(Entity):
                 if abs(self.rectangle.centerx - self.target.rectangle.centerx) <= self.current_weapon['reach']:
 
                     if self.rectangle.centery >= self.target.rectangle.centery:
+                        self.activate_weapon(0)  # Activate close combat weapon (always has index 0).
                         if self.get_state() != 'jump':
                             self.ai_input_jump = True
                             # print('wanna jump')
@@ -654,27 +655,41 @@ class Actor(Entity):
                     self.set_state('fly left')
             # self.set_state('stand still')
         elif self.__state == 'hop back':                        # HOP BACK
-            self.heading = [0, 0]
-            # self.heading[0] = 0
-            self.ignore_user_input = True
-            self.ai_input_right_arrow = False
-            self.ai_input_left_arrow = False
-            self.ai_input_attack = False
-            self.ai_input_jump = False
-            self.is_grabbers_active = False
-            self.is_move_right: bool = False
-            self.is_move_left: bool = False
-            self.is_move_up: bool = False
-            self.is_move_down: bool = False
-            self.is_jump: bool = False
-            self.is_crouch: bool = False
-            self.is_abort_jump: bool = False
-            self.is_jump_performed: bool = False
+            # self.heading = [0, 0]
+            self.heading[0] = 0
+            # self.ignore_user_input = True
+            # self.ai_input_right_arrow = False
+            # self.ai_input_left_arrow = False
+            # self.ai_input_attack = False
+            # self.ai_input_jump = False
+            # self.is_grabbers_active = False
+            # self.is_move_right: bool = False
+            # self.is_move_left: bool = False
+            # self.is_move_up: bool = False
+            # self.is_move_down: bool = False
+            # self.is_jump: bool = False
+            # self.is_crouch: bool = False
+            # self.is_abort_jump: bool = False
+            # self.is_jump_performed: bool = False
             self.speed = 0
 
             if self.is_stand_on_ground:
                 if self.is_enough_space_above:
                     # self.heading[0] = 0
+                    self.ignore_user_input = True
+                    self.ai_input_right_arrow = False
+                    self.ai_input_left_arrow = False
+                    self.ai_input_attack = False
+                    self.ai_input_jump = False
+                    self.is_grabbers_active = False
+                    self.is_move_right: bool = False
+                    self.is_move_left: bool = False
+                    self.is_move_up: bool = False
+                    self.is_move_down: bool = False
+                    self.is_jump: bool = False
+                    self.is_crouch: bool = False
+                    self.is_abort_jump: bool = False
+                    self.is_jump_performed: bool = False
                     if not self.just_got_jumped:
                         self.stamina_reduce(self.normal_stamina_lost_per_hop_back)
                         self.just_got_jumped = True
@@ -692,6 +707,7 @@ class Actor(Entity):
                         self.hop_back_jump_height_modifier = self.default_hop_back_jump_height_modifier
                     self.is_abort_jump = False
                     if self.dead:
+                        self.heading[0] = 0
                         self.set_state('lie dead')
                     else:
                         self.set_state('hopping back process')
@@ -959,6 +975,8 @@ class Actor(Entity):
             else:
                 self.rectangle.top = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
         elif self.__state == 'lie dead':                        # START CLIMBING ON AN OBSTACLE
+            ...
+            self.heading = [0, 0]
             if self.idle_counter > 0:
                 self.idle_counter -= 1
                 # self.invincibility_timer -= 1

@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,13 +140,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00376" summary="Added the Stash item.">
-      <created>1723442272495</created>
-      <option name="number" value="00376" />
-      <option name="presentableId" value="LOCAL-00376" />
-      <option name="project" value="LOCAL" />
-      <updated>1723442272495</updated>
     </task>
     <task id="LOCAL-00377" summary="Added player actor's Stash carry ability.">
       <created>1723446331092</created>
@@ -483,7 +477,14 @@
       <option name="project" value="LOCAL" />
       <updated>1724653491430</updated>
     </task>
-    <option name="localTasksCounter" value="425" />
+    <task id="LOCAL-00425" summary="Actors' render queue has been reversed to provide player's actor #0 to be on the foreground before all other sprites.">
+      <created>1724656685694</created>
+      <option name="number" value="00425" />
+      <option name="presentableId" value="LOCAL-00425" />
+      <option name="project" value="LOCAL" />
+      <updated>1724656685694</updated>
+    </task>
+    <option name="localTasksCounter" value="426" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -498,7 +499,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Tuning of victim's hopping back after being attacked." />
     <MESSAGE value="A demolisher gets an instance of his parent's class as a reference." />
     <MESSAGE value="Hopping back after damage improved." />
     <MESSAGE value="Fighting with demolisher sprites offset during attack." />
@@ -523,6 +523,7 @@
     <MESSAGE value="Inserted routines to handle 'piercing' demolishers, which may damage several targets, and not piercing demolishers, which become harmless after hit somebody." />
     <MESSAGE value="Fixing minor but annoying bugs" />
     <MESSAGE value="Try to avoid infinite sliding after hopping back got by injury." />
-    <option name="LAST_COMMIT_MESSAGE" value="Try to avoid infinite sliding after hopping back got by injury." />
+    <MESSAGE value="Actors' render queue has been reversed to provide player's actor #0 to be on the foreground before all other sprites." />
+    <option name="LAST_COMMIT_MESSAGE" value="Actors' render queue has been reversed to provide player's actor #0 to be on the foreground before all other sprites." />
   </component>
 </project>
