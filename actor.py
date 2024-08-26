@@ -699,7 +699,7 @@ class Actor(Entity):
                         self.jump_height = min(5 * self.hop_back_jump_height_modifier, 15)
                         # self.jump_height = self.max_jump_height * 0.6
                         self.speed = min(5 * self.hop_back_jump_height_modifier, 30)
-                        print(f'[state machine] hop back prepare: {self.hop_back_jump_height_modifier=} {self.jump_height=} {self.speed=}')
+                        # print(f'[state machine] hop back prepare: {self.hop_back_jump_height_modifier=} {self.jump_height=} {self.speed=}')
                         # self.movement_direction_inverter = -1
                         # self.heading[0] = 0
                         self.idle_counter = 20

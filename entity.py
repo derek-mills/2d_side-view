@@ -89,6 +89,8 @@ class Entity(object):
         self.current_mask_flip = False
         self.active_frames = list()
         self.invisible: bool = False
+        self.sprite_x = 0
+        self.sprite_y = 0
 
         # GEOMETRY
         self.origin_xy: tuple = (0, 0)
@@ -485,6 +487,17 @@ class Entity(object):
                     #         self.consider_which_sound_to_make()
                 self.set_current_sprite()
 
+            size = self.current_sprite['sprite'].get_size()
+            if self.current_sprite_flip:
+                if self.current_sprite['sprite asymmetric']:
+                    self.sprite_x = self.rectangle.centerx - size[0] + self.current_sprite['sprite center']
+                else:
+                    self.sprite_x = self.rectangle.centerx - self.current_sprite['sprite center']
+            else:
+                self.sprite_x = self.rectangle.centerx - self.current_sprite['sprite center']
+
+            self.sprite_y = self.rectangle.bottom - size[1]
+
     def set_current_sprite(self):
         self.current_frame = self.animation_descriptor + ' ' + str(self.animation_sequence[self.frame_number])  # For ex., 'Jane 8'
         if self.current_frame in sprites[self.id]['sprites'][self.current_animation].keys():
@@ -652,6 +665,8 @@ class Entity(object):
 
                 # if current_mask.get_at((x, y)):
                 if current_mask.overlap(current_demolisher_mask, (x,y)):
+                    # tmp_mask_sprite = current_mask.to_surface()
+
                     hit_detected = True
 
             if hit_detected:

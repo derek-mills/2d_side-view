@@ -958,24 +958,26 @@ class World(object):
             if actor.invincibility_timer > 0 and not actor.dead:
                 if self.game_cycles_counter // 2 == self.game_cycles_counter / 2:
                     continue
-            size = actor.current_sprite['sprite'].get_size()
+            # size = actor.current_sprite['sprite'].get_size()
             # Offset sprite to the left from the center of rectangle using anchor point.
-            if actor.current_sprite_flip:
-                if actor.current_sprite['sprite asymmetric']:
-                    x = actor.rectangle.centerx - self.camera.offset_x \
-                        - size[0] + actor.current_sprite['sprite center']
-                else:
-                    x = actor.rectangle.centerx - self.camera.offset_x \
-                        - actor.current_sprite['sprite center']
-            else:
-                x = actor.rectangle.centerx - self.camera.offset_x - actor.current_sprite['sprite center']
+            # if actor.current_sprite_flip:
+            #     if actor.current_sprite['sprite asymmetric']:
+            #         x = actor.rectangle.centerx - self.camera.offset_x \
+            #             - size[0] + actor.current_sprite['sprite center']
+            #     else:
+            #         x = actor.rectangle.centerx - self.camera.offset_x \
+            #             - actor.current_sprite['sprite center']
+            # else:
+            #     x = actor.rectangle.centerx - self.camera.offset_x - actor.current_sprite['sprite center']
+            #
+            # y = actor.rectangle.bottom - self.camera.offset_y - size[1]
 
-            y = actor.rectangle.bottom - self.camera.offset_y - size[1]
+            x = actor.sprite_x - self.camera.offset_x
+            y = actor.sprite_y - self.camera.offset_y
+            tmp_mask_sprite = actor.current_sprite['mask'].to_surface() if actor.look == 1 else actor.current_sprite['mask flipped'].to_surface()
+            self.screen.blit(tmp_mask_sprite, (x, y))
 
-            # self.screen.blit(actor.current_sprite['mask'].to_surface(), (actor.current_sprite['current mask rect'].x - self.camera.offset_x,
-            #                                                              actor.current_sprite['current mask rect'].y - self.camera.offset_y,))
             self.screen.blit(actor.current_sprite['sprite'], (x, y))
-
 
             # # Weak spot
             # if actor.current_sprite['weak spot']:
