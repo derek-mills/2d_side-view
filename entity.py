@@ -787,7 +787,8 @@ class Entity(object):
         #         'gravity affected': True
         #     })
         if self.stats['health'] <= 0:
-            self.dying = True
+            self.set_state('dying')
+            # self.dying = True
             # self.dead = True
             # self.set_state('lie dead')
 

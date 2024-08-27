@@ -187,7 +187,8 @@ class Actor(Entity):
                             self.ai_input_left_arrow = False
                             self.ai_input_right_arrow = False
         elif self.think_type == 'exploding barrel':
-            if self.stats['health'] <= self.stats['max health'] * 0.5:
+            if self.get_state() == 'dying':
+            # if self.stats['health'] <= self.stats['max health'] * 0.5:
                 self.set_state('almost explode')
                 # self.ai_input_attack = True
                 self.think_type = ''
@@ -997,6 +998,8 @@ class Actor(Entity):
             self.set_state('explosion')
         elif self.__state == 'explosion':
             print(f'[state machine] {self.name} is getting explode.')
+            if self.animation_sequence_done:
+                self.dying = True
 
 
 
