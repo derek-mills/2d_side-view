@@ -445,7 +445,7 @@ class World(object):
         demol.speed = description['speed']
         demol.is_collideable = description['collides']
         demol.is_gravity_affected = description['gravity affected']
-        demol.attack_type = description['attack type']
+        # demol.attack_type = description['attack type']
         # demol.parent_strength = demol.parent.strength
         # demol.parent_weight = demol.parent.body_weight
         # demol.parent_penalty = demol.parent.frames_changing_threshold_penalty
@@ -661,14 +661,18 @@ class World(object):
                 'bounce factor': 0,
                 'flyer': True,
                 'aftermath': '',
-                'damage': 100,
+                'damage': {
+                    'fire': 100,
+                    'smash': 10,
+                    'pierce': 100,
+                },
                 'static': False,
                 'parent': None,
                 'damage reduce': .01,
                 'pierce': False,
                 'visible': False,
                 'snapping offset': (0, 0),
-                'attack type': ('fire', 'smash', 'pierce', ),
+                # 'attack type': ('fire', 'smash', 'pierce', ),
                 'speed': 0.5 + randint(1, 5) / 10,
                 'collides': True,
                 'gravity affected': False

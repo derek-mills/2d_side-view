@@ -155,6 +155,26 @@ locations = {
                     'name': 'demon 2',
                     'height': 150,
                     'width': 50,
+                    'health': 1500.0,
+                    'max speed': 2.8,
+            	},
+
+            	(650.0, 650.0): {
+                    'name': 'exploding barrel',
+                    'height': 150,
+                    'width': 50,
+            	},
+
+            	(900.0, 650.0): {
+                    'name': 'exploding barrel',
+                    'height': 150,
+                    'width': 50,
+            	},
+
+            	(1150.0, 650.0): {
+                    'name': 'exploding barrel',
+                    'height': 150,
+                    'width': 50,
             	},
 
               },

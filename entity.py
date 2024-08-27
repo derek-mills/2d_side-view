@@ -735,7 +735,7 @@ class Entity(object):
                             'bounce factor': 0.,
                             'subtype': 'splatter',
                             'color': self.blood_color,
-                            'look': dem.parent.look,
+                            'look': dem.parent.look if dem.parent else dem.look,
                             # 'look': self.look * -1,  # Splatter always fly in the opposite direction
                             'speed': 1 + randint(1, 8),
                             'jump height': randint(0, 20),

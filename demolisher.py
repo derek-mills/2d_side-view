@@ -213,7 +213,8 @@ class Demolisher(Entity):
                 self.die()
                 return
         if self.damage_reduce > 0:
-            self.damage -= self.damage_reduce
+            for damage_type in self.damage.keys():
+                self.damage[damage_type] -= self.damage_reduce
         if self.is_collideable:
             # print('Demolisher check collisions with ', self.obstacles_around.keys())
             self.calculate_colliders()

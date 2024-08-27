@@ -144,7 +144,7 @@ fireball_staff = {
             'rect': pygame.Rect(0, 0, 70, 70), 'flyer': False,
              'visible': True,
             'demolisher sprite': 'staff demolisher',
-            'pierce': False, 'demolisher TTL': 150, 'speed': 30,
+            'pierce': True, 'demolisher TTL': 150, 'speed': 30,
             'static': False, 'damage reduce': 0,
             'collides': True, 'gravity affected': True,
             'bounce': True, 'bounce factor': 0.3,

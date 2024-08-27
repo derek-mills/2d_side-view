@@ -657,8 +657,8 @@ demon_2 = {
             'repeat from frame': 0
         },
     },
-    # 'think type': '',
-    'think type': 'chaser',
+    'think type': '',
+    # 'think type': 'chaser',
     'disappear after death': False,
     'AI controlled': True
 }
@@ -666,7 +666,7 @@ demon_2 = {
 exploding_barrel = {
     'name': 'exploding barrel',
     'drop': [],
-    'health': 50.,
+    'health': 500.,
     'mana replenish': 0.,
     'stamina replenish': 10.,
     'blood color': (0, 0, 0),
@@ -675,10 +675,10 @@ exploding_barrel = {
     'resistances': {
         # Zero is total resistance, such type of damage multiples by zero.
         # Above 1 is a weakness to particular type of damage.
-        'slash': 0,
-        'pierce': 0,
-        'smash': 0,
-        'fire': 10
+        'slash': 0.,
+        'pierce': 0.1,
+        'smash': 0.2,
+        'fire': 2
     },
     'height': 150,  # For level editor use only
     'width': 50,  # For level editor use only
