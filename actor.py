@@ -186,6 +186,12 @@ class Actor(Entity):
                             self.ai_input_attack = True
                             self.ai_input_left_arrow = False
                             self.ai_input_right_arrow = False
+        elif self.think_type == 'exploding barrel':
+            if self.stats['health'] <= self.stats['max health'] * 0.5:
+                print('1231232131')
+                self.set_state('almost explode')
+                # self.ai_input_attack = True
+                self.think_type = ''
 
         if self.ai_input_jump:
             # self.ai_input_jump = False
@@ -517,6 +523,7 @@ class Actor(Entity):
                     self.set_state('prepare crouch attack left')
             else:
                 self.set_state('prepare attack')
+                print(f'[set action] {self.name} prepares to attack.')
 
     def state_machine(self):
         if self.__state == 'drop stash':                          #
@@ -986,6 +993,13 @@ class Actor(Entity):
                     if self.just_got_jumped:
                         self.just_got_jumped = False
                     self.is_abort_jump = True
+        elif self.__state == 'almost explode':
+            print(f'[state machine] {self.name} is going to explode.')
+            self.set_state('explosion')
+        elif self.__state == 'explosion':
+            print(f'[state machine] {self.name} is getting explode.')
+
+
 
     def reset_self_flags(self):
         self.is_move_left = False

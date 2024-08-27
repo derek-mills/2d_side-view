@@ -151,6 +151,14 @@ locations = {
             'description': 'apartment #1',
             'size': (2500, 1000),
             'hostiles': {
+            	(500.0, 250.0): {
+                    'name': 'exploding barrel',
+                    'height': 150,
+                    'width': 50,
+                    'health': 150.0,
+                    'max speed': 2.6,
+
+              },
               },
             'demolishers': {
                 'dem rectangles': (
@@ -182,6 +190,7 @@ locations = {
                 ((450, 600), (50, 50), 46),  #46
                 ((-100, 950), (2600, 100), 47),  #47
                 ((600, 450), (50, 50), 48),  #48
+                ((950, 600), (50, 50), 49),  #49
                   ), # OBSTACLE RECTANGLES SECTION END
                 'settings': {
                     6: {
@@ -344,6 +353,7 @@ locations = {
                         'active': False,
                         'actions': {0: []},
                   },
+
                   } # OBSTACLE SETTINGS SECTION END
               },
             'items': {},

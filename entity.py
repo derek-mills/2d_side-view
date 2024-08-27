@@ -34,6 +34,7 @@ class Entity(object):
         self.ttl = 0
         self.dead = False
         self.dying = False
+        self.disappear_after_death = False
         self.is_destructible: bool = False
         self.current_weapon = dict()
         self.time_passed: int = 0
@@ -621,10 +622,11 @@ class Entity(object):
             return
         for key in self.demolishers_around.keys():
             dem = self.demolishers_around[key]
-            if dem.id in self.got_immunity_to_demolishers or \
-                dem.parent_id == self.id or dem.parent.name == self.name or \
-                 dem.floppy:
-                continue
+            if dem.parent_id > 0:
+                if dem.id in self.got_immunity_to_demolishers or \
+                    dem.parent_id == self.id or dem.parent.name == self.name or \
+                     dem.floppy:
+                    continue
             hit_detected = False
             if dem.invisible:
                 # Just a rectangle-based collision detector:
@@ -695,7 +697,7 @@ class Entity(object):
                         'bounce factor': 0.,
                         'subtype': 'text',
                         'color': txt_color,
-                        'look': dem.parent.look,
+                        'look': dem.parent.look if dem.parent else 1,
                         # 'look': self.look * -1,  # Splatter always fly in the opposite direction
                         'speed': 1 + randint(6, 8),
                         'jump height': 15,
@@ -706,8 +708,11 @@ class Entity(object):
 
                 if 'smash' in dem.attack_type:
                     if self.get_state() not in ('hold stash', 'carry stash right', 'carry stash left'):
-                        self.hop_back_jump_height_modifier = ((dem.parent_strength / self.strength) + (dem.parent_weight / self.body_weight)) / dem.parent_penalty
-                        self.movement_direction_inverter = -1 if dem.parent.look != self.look else 1
+                        if dem.parent:
+                            self.hop_back_jump_height_modifier = ((dem.parent_strength / self.strength) + (dem.parent_weight / self.body_weight)) / dem.parent_penalty
+                            self.movement_direction_inverter = -1 if dem.parent.look != self.look else 1
+                        else:
+                            self.movement_direction_inverter = -1 if dem.look != self.look else 1
                         self.set_state('hop back')
 
                 # Blood splatters:

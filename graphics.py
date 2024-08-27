@@ -378,6 +378,14 @@ load_single_frame(tmp_sprites, ((260,150,20,18),), name + ' avatar front')
 load_all_frames(tmp_sprites, 97, name, 20, 30, 8)
 # load_all_frames(tmp_sprites, 97, name, 20, 30, 8, weak_spots)
 
+# ___...---=== EXPLODING BARREL ===---...___
+name = 'exploding barrel'
+tmp_sprites = pygame.image.load('img/animations/exploding_barrel.png').convert_alpha()
+screen.convert_alpha(tmp_sprites)
+load_single_frame(tmp_sprites, ((260,150,20,18),), name + ' avatar')
+load_single_frame(tmp_sprites, ((260,150,20,18),), name + ' avatar front')
+load_all_frames(tmp_sprites, 2, name, 20, 30, 8)
+
 # ___...---=== DEMON 2 ===---...___
 name = 'demon 2'
 # tmp_sprites = pygame.image.load('img/animations/jake_8bit.png').convert_alpha()

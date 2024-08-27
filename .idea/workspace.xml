@@ -5,8 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphics.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -141,13 +147,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00379" summary="Returned old good independent rectangle.">
-      <created>1723451416698</created>
-      <option name="number" value="00379" />
-      <option name="presentableId" value="LOCAL-00379" />
-      <option name="project" value="LOCAL" />
-      <updated>1723451416698</updated>
     </task>
     <task id="LOCAL-00380" summary="Demolishers snap to the actors sprite rectangle, not to collision rectangle as it was earlier.">
       <created>1723452299314</created>
@@ -485,7 +484,14 @@
       <option name="project" value="LOCAL" />
       <updated>1724660502914</updated>
     </task>
-    <option name="localTasksCounter" value="428" />
+    <task id="LOCAL-00428" summary="Improved masks collisions detection.">
+      <created>1724660974915</created>
+      <option name="number" value="00428" />
+      <option name="presentableId" value="LOCAL-00428" />
+      <option name="project" value="LOCAL" />
+      <updated>1724660974915</updated>
+    </task>
+    <option name="localTasksCounter" value="429" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -500,7 +506,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fighting with demolisher sprites offset during attack." />
     <MESSAGE value="Added the Axe weapon. &#10;Added intermediate demolishers appearing during all phases of animation." />
     <MESSAGE value="Added separate Axe swing attack." />
     <MESSAGE value="Hopping back ability corrected." />
@@ -525,6 +530,7 @@
     <MESSAGE value="Actors' render queue has been reversed to provide player's actor #0 to be on the foreground before all other sprites." />
     <MESSAGE value="Some improvements." />
     <MESSAGE value="Actor calculate his own X and Y for every sprite in animation sequence." />
-    <option name="LAST_COMMIT_MESSAGE" value="Actor calculate his own X and Y for every sprite in animation sequence." />
+    <MESSAGE value="Improved masks collisions detection." />
+    <option name="LAST_COMMIT_MESSAGE" value="Improved masks collisions detection." />
   </component>
 </project>

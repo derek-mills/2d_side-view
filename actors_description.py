@@ -245,6 +245,7 @@ demon_1 = {
         },
     },
     'think type': 'chaser',
+    'disappear after death': False,
     'AI controlled': True
 }
 
@@ -640,6 +641,69 @@ demon_2 = {
     },
     'think type': '',
     # 'think type': 'chaser',
+    'disappear after death': False,
+    'AI controlled': True
+}
+
+exploding_barrel = {
+    'name': 'exploding barrel',
+    'drop': [],
+    'health': 50.,
+    'mana replenish': 0.,
+    'stamina replenish': 10.,
+    'blood color': (0, 0, 0),
+    'strength': 5,
+    'body weight': 240,
+    'gravity affected': True,
+    'max speed': 2 + randint(1, 10) / 10,
+    'items': (barrel_explosion,),
+    'animations': {
+        'stand still right': {
+                'repeat': True,
+                'sequence': (0,), 'speed': 20,
+                'activity at frames': {},
+                'repeat from frame': 0
+            },
+        'almost explode right': {
+                'repeat': True,
+                'sequence': (1,2,1,2), 'speed': 10,
+                'activity at frames': {},
+                'repeat from frame': 0
+            },
+        'almost explode left': {
+                'repeat': True,
+                'sequence': (1,2,1,2), 'speed': 10,
+                'activity at frames': {},
+                'repeat from frame': 0
+            },
+        'explosion right': {
+                'repeat': True,
+                'sequence': (1,2,1,2,1,2,1,2), 'speed': 1,
+                'activity at frames': {
+                    7: {
+                        'sound': True,
+                        'demolishers set number': 0,
+                        'demolisher': True
+                    },
+                },
+                'repeat from frame': 0
+            },
+        'explosion left': {
+                'repeat': True,
+                'sequence': (1,2,1,2,1,2,1,2), 'speed': 1,
+                'activity at frames': {
+                    7: {
+                        'sound': True,
+                        'demolishers set number': 0,
+                        'demolisher': True
+                    },
+                },
+                'repeat from frame': 0
+            },
+    },
+    'think type': 'exploding barrel',
+    # 'think type': 'chaser',
+    'disappear after death': True,
     'AI controlled': True
 }
 
@@ -1066,14 +1130,14 @@ player_jake = {
         },
     },
     'think type': '',
+    'disappear after death': False,
     'AI controlled': False
 }
 
 all_hostiles = {
-    # zombie_male_zak['name']: zombie_male_zak,
-    # demon_female_1['name']: demon_female_1,
     demon_1['name']: demon_1,
-    demon_2['name']: demon_2
+    demon_2['name']: demon_2,
+    exploding_barrel['name']: exploding_barrel,
 }
 
 all_players = {

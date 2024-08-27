@@ -100,6 +100,7 @@ class World(object):
         entity = Actor()
         entity.id = self.actor_id
         entity.name = description['name']
+        entity.disappear_after_death = description['disappear after death']
         entity.blood_color = description['blood color']
         entity.body_weight = description['body weight']
         entity.strength = description['strength']
@@ -118,9 +119,12 @@ class World(object):
         entity.rectangle.height = sprites[entity.name + ' 0']['sprite'].get_height()
         entity.rectangle.width = int(sprites[entity.name + ' 0']['sprite'].get_width() * 0.7)  # Width of rectangle is 70% of sprite width.
         entity.rectangle_width_sit = entity.rectangle.width * 1.34
-        entity.rectangle_height_sit = sprites[entity.name + ' 18']['sprite'].get_height()
+        if entity.name + ' 18' in sprites.keys():
+            entity.rectangle_height_sit = sprites[entity.name + ' 18']['sprite'].get_height()
+        else:
+            entity.rectangle_height_sit = entity.rectangle.height
 
-        # entity.rectangle.height = description['height']
+            # entity.rectangle.height = description['height']
         # entity.rectangle.width = description['width']
         entity.rectangle.center = start_xy
         # entity.rectangle.center = description['start_xy']
@@ -336,10 +340,25 @@ class World(object):
         demol.bounce_factor = description['bounce factor']
         demol.flyer = description['flyer']
         demol.parent = description['parent']
-        demol.parent_id = demol.parent.id
-        demol.look = demol.parent.look
+        # print(f'{demol.parent=}')
+        if demol.parent:
+            demol.parent_id = demol.parent.id
+            demol.look = demol.parent.look
+            demol.ttl = description['demolisher TTL'] * demol.parent.frames_changing_threshold_modifier
+            demol.damage = description['damage'] / demol.parent.frames_changing_threshold_penalty + abs(demol.parent.speed) + abs(demol.parent.fall_speed)
+            demol.parent_strength = demol.parent.strength
+            demol.parent_weight = demol.parent.body_weight
+            demol.parent_penalty = demol.parent.frames_changing_threshold_penalty
+        else:
+            # demol.look = 1
+            demol.ttl = description['demolisher TTL']
+            demol.damage = description['damage']
+            demol.parent_strength = 0
+            demol.parent_weight = 0
+            demol.parent_penalty = 0
+
         demol.pierce = description['pierce']
-        demol.ttl = description['demolisher TTL'] * demol.parent.frames_changing_threshold_modifier
+
 
         if description['visible']:
             if description['demolisher sprite']:
@@ -383,12 +402,14 @@ class World(object):
                 'offset inside actor': description['snapping offset'],
                 'offset inside demolisher': (-demol.rectangle.width//2,0)  # if demol.look == 1 else (demol.rectangle.width, 0)
             }
-
-        demol.update(demol.parent.look, demol.parent.rectangle)
-
-
-        if demol.flyer:
-            demol.destination_point = (self.camera.max_offset_x + MAXX, demol.rectangle.y) if demol.parent.look == 1 else (-100, demol.rectangle.y)
+        if demol.parent:
+            demol.update(demol.parent.look, demol.parent.rectangle)
+            if demol.flyer:
+                demol.destination_point = (self.camera.max_offset_x + MAXX, demol.rectangle.y) if demol.parent.look == 1 else (-100, demol.rectangle.y)
+        else:
+            demol.rectangle = description['rect']
+            demol.destination_point = description['destination']
+            demol.look = 1 if demol.rectangle.center < demol.destination_point else -1
 
         if description['static']:
         # if description['snap to actor'] >= 0:
@@ -414,7 +435,7 @@ class World(object):
             # demol.look = description['look'] if 'look' in description.keys() else 1
             # demol.destination_point = description['destination'] if 'destination' in description.keys() else (0, 0)
         demol.aftermath = description['aftermath']
-        demol.damage = description['damage'] / demol.parent.frames_changing_threshold_penalty + abs(demol.parent.speed) + abs(demol.parent.fall_speed)
+        # demol.damage = description['damage'] / demol.parent.frames_changing_threshold_penalty + abs(demol.parent.speed) + abs(demol.parent.fall_speed)
         # print(f'[add damager] {demol.damage=}')
         demol.static = description['static']
         demol.damage_reduce = description['damage reduce']
@@ -423,9 +444,9 @@ class World(object):
         demol.is_collideable = description['collides']
         demol.is_gravity_affected = description['gravity affected']
         demol.attack_type = description['attack type']
-        demol.parent_strength = demol.parent.strength
-        demol.parent_weight = demol.parent.body_weight
-        demol.parent_penalty = demol.parent.frames_changing_threshold_penalty
+        # demol.parent_strength = demol.parent.strength
+        # demol.parent_weight = demol.parent.body_weight
+        # demol.parent_penalty = demol.parent.frames_changing_threshold_penalty
         self.demolishers[self.location][demol.id] = demol
         # print(f'[add_demolisher] Added: {demol.id=} {demol.name} {demol.rectangle} {demol.max_speed=} {demol.destination=}')
 
@@ -638,10 +659,14 @@ class World(object):
                 'bounce factor': 0,
                 'flyer': True,
                 'aftermath': '',
-                'damage': 10,
+                'damage': 100,
                 'static': False,
-                'parent': '',
+                'parent': None,
                 'damage reduce': .01,
+                'pierce': False,
+                'visible': False,
+                'snapping offset': (0, 0),
+                'attack type': ('fire', 'smash', 'pierce', ),
                 'speed': 0.5 + randint(1, 5) / 10,
                 'collides': True,
                 'gravity affected': False
@@ -784,7 +809,8 @@ class World(object):
                 actor.dying = False
                 actor.invincibility_timer = 0
                 actor.set_state('lie dead')
-                dead.append(actor.id)
+                if actor.disappear_after_death:
+                    dead.append(actor.id)
                 if actor.id == 0:
                     self.player_is_dead_counter_to_game_over = 300
                     # continue
@@ -875,8 +901,8 @@ class World(object):
                     self.add_particle(description)
                 actor.summoned_particle_descriptions = list()
 
-        # for dead_id in dead:
-        #     del self.actors[self.location][dead_id]
+        for dead_id in dead:
+            del self.actors[self.location][dead_id]
 
     def render_background_(self):
         # pygame.draw.rect(self.screen, GRAY, (0,0,MAXX, MAXY))
