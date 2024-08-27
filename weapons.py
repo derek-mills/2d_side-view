@@ -27,10 +27,13 @@ sword = {
              'visible': True,
             'demolisher sprite': 'short sword demolisher',
             'pierce': False, 'demolisher TTL': 6, 'speed': 0,
-            'damage': 50, 'static': True, 'damage reduce': 0,
+            'static': True, 'damage reduce': 0,
             'collides': True, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0,
             'attack type': ('slash',),
+             'damage': {
+                 'slash': 80
+             },
             'aftermath': 'disappear'
         },
         {
@@ -38,10 +41,13 @@ sword = {
             'visible': True,
             'demolisher sprite': 'short sword demolisher',
             'pierce': False, 'demolisher TTL': 8, 'speed': 0,
-            'damage': 60, 'static': True, 'damage reduce': 0,
+            'static': True, 'damage reduce': 0,
             'collides': True, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0,
             'attack type': ('slash',),
+            'damage': {
+                'slash': 100
+            },
             'aftermath': 'disappear'
         },),
     ),
@@ -80,10 +86,13 @@ kitchen_knife = {
              'visible': True,
             'demolisher sprite': 'kitchen knife demolisher',
             'pierce': False, 'demolisher TTL': 10, 'speed': 12,
-            'damage': 100, 'static': True, 'damage reduce': .1,
+            'static': True, 'damage reduce': .1,
             'collides': True, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
             'attack type': ('slash',),
+             'damage': {
+                 'slash': 100
+             },
             'aftermath': None
         },),
         # {
@@ -136,10 +145,13 @@ fireball_staff = {
              'visible': True,
             'demolisher sprite': 'staff demolisher',
             'pierce': False, 'demolisher TTL': 150, 'speed': 30,
-            'damage': 150, 'static': False, 'damage reduce': 0,
+            'static': False, 'damage reduce': 0,
             'collides': True, 'gravity affected': True,
             'bounce': True, 'bounce factor': 0.3,
             'attack type': ('fire', ),
+             'damage': {
+                 'fire': 150,
+             },
             'aftermath': 'disappear'
         },),
     ),
@@ -174,10 +186,13 @@ spikeball_staff = {
              'visible': True,
             'demolisher sprite': 'spikeball staff demolisher',
             'pierce': False, 'demolisher TTL': 250, 'speed': 30,
-            'damage': 50, 'static': False, 'damage reduce': 0,
+            'static': False, 'damage reduce': 0,
             'collides': True, 'gravity affected': True,
             'bounce': True, 'bounce factor': 0.9,
             'attack type': ('pierce',),
+             'damage': {
+                 'pierce': 100,
+             },
             'aftermath': 'disappear'
         },),
     ),
@@ -212,10 +227,13 @@ whip = {
              'visible': True,
             'demolisher sprite': 'whip demolisher short',
             'pierce': False, 'demolisher TTL': 1, 'speed': 0,
-            'damage': 150, 'static': True, 'damage reduce': 0,
+            'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
             'attack type': ('pierce',),
+             'damage': {
+                 'pierce': 10,
+             },
             # 'aftermath': 'explode'
             'aftermath': 'disappear'
         },),
@@ -224,10 +242,13 @@ whip = {
              'visible': True,
             'demolisher sprite': 'whip demolisher medium',
             'pierce': False, 'demolisher TTL': 1, 'speed': 0,
-            'damage': 150, 'static': True, 'damage reduce': 0,
+            'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
             'attack type': ('pierce',),
+             'damage': {
+                 'pierce': 30,
+             },
             # 'aftermath': 'explode'
             'aftermath': 'disappear'
         },),
@@ -236,10 +257,13 @@ whip = {
              'visible': True,
             'demolisher sprite': 'whip demolisher long',
             'pierce': True, 'demolisher TTL': 5, 'speed': 0,
-            'damage': 150, 'static': True, 'damage reduce': 0,
+            'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
             'attack type': ('pierce',),
+             'damage': {
+                 'pierce': 60,
+             },
             # 'aftermath': 'explode'
             'aftermath': 'disappear'
         },),
@@ -274,10 +298,13 @@ jake_kick = {
              'visible': True,
             'demolisher sprite': 'jake kick demolisher',
             'pierce': False, 'demolisher TTL': 8, 'speed': 0,
-            'damage': 10, 'static': True, 'damage reduce': 0,
+            'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
             'attack type': ('smash',),
+             'damage': {
+                 'smash': 10,
+             },
             # 'aftermath': 'explode'
             'aftermath': 'disappear'
         },),
@@ -312,10 +339,14 @@ axe = {
              'visible': True,
             'demolisher sprite': 'axe 45 demolisher',
             'pierce': False, 'demolisher TTL': 2, 'speed': 0,
-            'damage': 100, 'static': True, 'damage reduce': 0,
+            'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
             'attack type': ('smash','slash'),
+             'damage': {
+                 'smash': 10,
+                 'slash': 10
+             },
             # 'aftermath': 'explode'
             'aftermath': 'disappear'
         },),
@@ -324,10 +355,14 @@ axe = {
              'visible': True,
             'demolisher sprite': 'axe 0 demolisher',
             'pierce': False, 'demolisher TTL': 2, 'speed': 0,
-            'damage': 100, 'static': True, 'damage reduce': 0,
+            'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
             'attack type': ('smash','slash'),
+             'damage': {
+                 'smash': 50,
+                 'slash': 50
+             },
             # 'aftermath': 'explode'
             'aftermath': 'disappear'
         },),
@@ -336,10 +371,14 @@ axe = {
              'visible': True,
             'demolisher sprite': 'axe 315 demolisher',
             'pierce': False, 'demolisher TTL': 6, 'speed': 0,
-            'damage': 150, 'static': True, 'damage reduce': 0,
+            'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
             'attack type': ('smash','slash'),
+             'damage': {
+                 'smash': 70,
+                 'slash': 70
+             },
             # 'aftermath': 'explode'
             'aftermath': 'disappear'
         },),
@@ -375,10 +414,13 @@ demon_2_mid = {
              'visible': True,
             'demolisher sprite': 'demon 2 mid claw demolisher 1',
             'pierce': False, 'demolisher TTL': 2, 'speed': 0,
-            'damage': 150, 'static': True, 'damage reduce': 0,
+            'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
             'attack type': ('slash', ),
+             'damage': {
+                 'slash': 100
+             },
             # 'aftermath': 'explode'
             'aftermath': 'disappear'
         },),
@@ -387,10 +429,14 @@ demon_2_mid = {
              'visible': True,
             'demolisher sprite': 'demon 2 mid claw demolisher 2',
             'pierce': False, 'demolisher TTL': 5, 'speed': 0,
-            'damage': 150, 'static': True, 'damage reduce': 0,
+            'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
             'attack type': ('slash', 'pierce'),
+             'damage': {
+                 'pierce': 100,
+                 'slash': 10
+             },
             # 'aftermath': 'explode'
             'aftermath': 'disappear'
         },),
@@ -399,10 +445,13 @@ demon_2_mid = {
              'visible': True,
             'demolisher sprite': 'demon 2 mid claw demolisher 3',
             'pierce': False, 'demolisher TTL': 6, 'speed': 0,
-            'damage': 150, 'static': True, 'damage reduce': 0,
+            'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
             'attack type': ('smash', ),
+             'damage': {
+                 'smash': 100,
+             },
             # 'aftermath': 'explode'
             'aftermath': 'disappear'
         },),
@@ -437,10 +486,16 @@ demon_2_close = {
             'visible': True,
             'demolisher sprite': 'demon 2 claw demolisher 2',
             'pierce': False, 'demolisher TTL': 8, 'speed': 0,
-            'damage': 250, 'static': True, 'damage reduce': 0,
+            'static': True, 'damage reduce': 0,
+            # 'damage': 250, 'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
             'attack type': ('slash', 'smash', 'pierce'),
+             'damage': {
+                 'smash': 100,
+                 'pierce': 100,
+                 'slash': 10
+             },
             # 'aftermath': 'explode'
             'aftermath': 'disappear'
         },),
@@ -449,10 +504,16 @@ demon_2_close = {
              'visible': True,
             'demolisher sprite': 'demon 2 claw demolisher',
             'pierce': False, 'demolisher TTL': 10, 'speed': 0,
-            'damage': 250, 'static': True, 'damage reduce': 0,
+            'static': True, 'damage reduce': 0,
+            # 'damage': 250, 'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
             'attack type': ('slash', 'smash', 'pierce'),
+             'damage': {
+                 'smash': 100,
+                 'pierce': 100,
+                 'slash': 10
+             },
             # 'aftermath': 'explode'
             'aftermath': 'disappear'
         },),
@@ -487,10 +548,16 @@ pistol = {
             'visible': False,
             'demolisher sprite': None,
             'pierce': False, 'demolisher TTL': 120, 'speed': 1,
-            'damage': 50, 'static': False, 'damage reduce': 0,
+            'static': False, 'damage reduce': 0,
+            # 'damage': 50, 'static': False, 'damage reduce': 0,
             'collides': True, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
             'attack type': ('slash', 'smash', 'pierce'),
+             'damage': {
+                 'fire': 5,
+                 'smash': 10,
+                 'pierce': 10,
+             },
             # 'aftermath': 'explode'
             'aftermath': 'disappear'
         },),
@@ -525,10 +592,17 @@ barrel_explosion = {
             'visible': False,
             'demolisher sprite': None,
             'pierce': False, 'demolisher TTL': 2, 'speed': 0,
-            'damage': 500, 'static': True, 'damage reduce': 0,
+            'static': True, 'damage reduce': 0,
+            # 'damage': 500, 'static': True, 'damage reduce': 0,
             'collides': True, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
             'attack type': ('fire', 'smash', 'pierce', 'slash'),
+            'damage': {
+                'fire': 50,
+                'smash': 100,
+                'pierce': 100,
+                'slash': 10
+            },
             'aftermath': 'explode'
             # 'aftermath': 'disappear'
         },),

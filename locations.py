@@ -151,46 +151,10 @@ locations = {
             'description': 'apartment #1',
             'size': (2500, 1000),
             'hostiles': {
-            	(550.0, 500.0): {
-                    'name': 'exploding barrel',
-                    'height': 150,
-                    'width': 50,
-                    'max speed': 2.6,
-            	},
-
-            	(700.0, 500.0): {
-                    'name': 'exploding barrel',
-                    'height': 150,
-                    'width': 50,
-                    'max speed': 2.6,
-            	},
-
-            	(850.0, 500.0): {
-                    'name': 'demon 1',
-                    'height': 150,
-                    'width': 50,
-                    'max speed': 2.6,
-            	},
-
-            	(1000.0, 500.0): {
-                    'name': 'demon 1',
-                    'height': 150,
-                    'width': 50,
-                    'max speed': 2.6,
-            	},
-
-            	(1150.0, 500.0): {
+            	(800.0, 450.0): {
                     'name': 'demon 2',
                     'height': 150,
                     'width': 50,
-                    'max speed': 2.6,
-            	},
-
-            	(1300.0, 500.0): {
-                    'name': 'demon 2',
-                    'height': 150,
-                    'width': 50,
-                    'max speed': 2.6,
             	},
 
               },

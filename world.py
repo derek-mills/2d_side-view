@@ -100,6 +100,7 @@ class World(object):
         entity = Actor()
         entity.id = self.actor_id
         entity.name = description['name']
+        entity.resistances = description['resistances']
         entity.disappear_after_death = description['disappear after death']
         entity.blood_color = description['blood color']
         entity.body_weight = description['body weight']
@@ -345,7 +346,8 @@ class World(object):
             demol.parent_id = demol.parent.id
             demol.look = demol.parent.look
             demol.ttl = description['demolisher TTL'] * demol.parent.frames_changing_threshold_modifier
-            demol.damage = description['damage'] / demol.parent.frames_changing_threshold_penalty + abs(demol.parent.speed) + abs(demol.parent.fall_speed)
+            for k in description['damage']:
+                demol.damage[k] = description['damage'][k] / demol.parent.frames_changing_threshold_penalty + abs(demol.parent.speed) + abs(demol.parent.fall_speed)
             demol.parent_strength = demol.parent.strength
             demol.parent_weight = demol.parent.body_weight
             demol.parent_penalty = demol.parent.frames_changing_threshold_penalty

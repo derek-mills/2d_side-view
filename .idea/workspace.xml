@@ -6,12 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demolisher.py" beforeDir="false" afterPath="$PROJECT_DIR$/demolisher.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/level_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/level_editor_menu_structure.py" beforeDir="false" afterPath="$PROJECT_DIR$/level_editor_menu_structure.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,13 +145,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00381" summary="No hopping back if player actor loaded by the Stash and getting damaged.">
-      <created>1723453425351</created>
-      <option name="number" value="00381" />
-      <option name="presentableId" value="LOCAL-00381" />
-      <option name="project" value="LOCAL" />
-      <updated>1723453425351</updated>
     </task>
     <task id="LOCAL-00382" summary="The Stash falls and collides the floor.">
       <created>1723527356568</created>
@@ -489,7 +482,14 @@
       <option name="project" value="LOCAL" />
       <updated>1724728336144</updated>
     </task>
-    <option name="localTasksCounter" value="430" />
+    <task id="LOCAL-00430" summary="Level editor (mostly): added enemy type changing ability.">
+      <created>1724739866956</created>
+      <option name="number" value="00430" />
+      <option name="presentableId" value="LOCAL-00430" />
+      <option name="project" value="LOCAL" />
+      <updated>1724739866956</updated>
+    </task>
+    <option name="localTasksCounter" value="431" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -504,7 +504,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added separate Axe swing attack." />
     <MESSAGE value="Hopping back ability corrected." />
     <MESSAGE value="Demolishers TTL obeys how to 'animation speed modifier' in weapon description section to correspond the key frames of this animation, which summon such demolishers." />
     <MESSAGE value="Whip has three stages of length." />
@@ -529,6 +528,7 @@
     <MESSAGE value="Actor calculate his own X and Y for every sprite in animation sequence." />
     <MESSAGE value="Improved masks collisions detection." />
     <MESSAGE value="Added exploding barrel as a new foe type, which stay still all the time and attack only before death." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added exploding barrel as a new foe type, which stay still all the time and attack only before death." />
+    <MESSAGE value="Level editor (mostly): added enemy type changing ability." />
+    <option name="LAST_COMMIT_MESSAGE" value="Level editor (mostly): added enemy type changing ability." />
   </component>
 </project>

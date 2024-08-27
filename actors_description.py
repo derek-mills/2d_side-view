@@ -14,6 +14,14 @@ demon_1 = {
     'stamina replenish': 2.,
     'height': 150,  # For level editor use only
     'width': 50,  # For level editor use only
+    'resistances': {
+        # Zero is total resistance, such type of damage multiples by zero.
+        # Above 1 is a weakness to particular type of damage.
+        'slash': 0.1,
+        'pierce': 1,
+        'smash': 1,
+        'fire': 1
+    },
     'gravity affected': True,
     'body': {
         'head': {
@@ -258,6 +266,14 @@ demon_2 = {
     'blood color': (150, 50, 10),
     'strength': 15,
     'body weight': 140,
+    'resistances': {
+        # Zero is total resistance, such type of damage multiples by zero.
+        # Above 1 is a weakness to particular type of damage.
+        'slash': 0,
+        'pierce': 0.5,
+        'smash': 0.1,
+        'fire': 0.8
+    },
     'height': 150,  # For level editor use only
     'width': 50,  # For level editor use only
     'gravity affected': True,
@@ -656,6 +672,14 @@ exploding_barrel = {
     'blood color': (0, 0, 0),
     'strength': 5,
     'body weight': 240,
+    'resistances': {
+        # Zero is total resistance, such type of damage multiples by zero.
+        # Above 1 is a weakness to particular type of damage.
+        'slash': 0,
+        'pierce': 0,
+        'smash': 0,
+        'fire': 10
+    },
     'height': 150,  # For level editor use only
     'width': 50,  # For level editor use only
     'gravity affected': True,
@@ -720,6 +744,14 @@ player_jake = {
     'stamina replenish': 1.5,
     'strength': 5,
     'body weight': 60,
+    'resistances': {
+        # Zero is total resistance, such type of damage multiples by zero.
+        # Above 1 is a weakness to particular type of damage.
+        'slash': 1,
+        'pierce': 1,
+        'smash': 1,
+        'fire': 1
+    },
     'body': {
         'head': {
             'hardness': 100

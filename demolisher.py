@@ -15,7 +15,8 @@ class Demolisher(Entity):
         self.snap_to_actor: int = 0  # Active actor which cause this demolisher to be glued.
         self.snapping_offset = dict()
         # self.snapping_offset = list()
-        self.damage: float = 0.
+        self.damage = dict()
+        # self.damage: float = 0.
         self.damage_reduce: float = 0.
         self.parent_id: int = -1
         self.parent = None  # Instance of parent Entity() class.

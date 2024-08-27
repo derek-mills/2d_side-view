@@ -42,6 +42,8 @@ class Entity(object):
         self.invincibility_timer: int = 0
         self.blood_color = RED
         self.has_just_stopped_demolishers = list()
+        self.resistances = dict()
+        self.total_damage_has_got = 0  # Variable storing a momentary amount of damage got from a single demolisher.
 
         # STATS
         self.normal_stamina_lost_per_second_jump = 10.
@@ -679,13 +681,13 @@ class Entity(object):
                 self.invincibility_timer = 30
                 if not self.dead:
                     # If actor hit from behind, the damage increased by 50%:
-                    total_damage = dem.damage * 1.5 if dem.look == self.look and dem.snap_to_actor >= 0 else dem.damage
-                    self.get_damage(total_damage)
+                    total_damage_multiplier = 1.5 if dem.look == self.look and dem.snap_to_actor >= 0 else 1
+                    self.get_damage(dem.damage, total_damage_multiplier)
                     # self.invincibility_timer = 100 if self.id == 0 else 30
                     # Damage amount show:
                     # self.summon_particle = True
                     txt_color = RED if self.id == 0 else WHITE
-                    sprite = fonts.all_fonts[40].render(str(int(total_damage)), True, txt_color)
+                    sprite = fonts.all_fonts[40].render(str(int(self.total_damage_has_got)), True, txt_color)
                     self.summoned_particle_descriptions.append({
                         'sprite': sprite,
                         'fall speed correction': 0.6,
@@ -706,7 +708,8 @@ class Entity(object):
                         'gravity affected': True
                     })
 
-                if 'smash' in dem.attack_type:
+                if 'smash' in dem.damage.keys():
+                # if 'smash' in dem.attack_type:
                     if self.get_state() not in ('hold stash', 'carry stash right', 'carry stash left'):
                         if dem.parent:
                             self.hop_back_jump_height_modifier = ((dem.parent_strength / self.strength) + (dem.parent_weight / self.body_weight)) / dem.parent_penalty
@@ -716,11 +719,12 @@ class Entity(object):
                         self.set_state('hop back')
 
                 # Blood splatters:
-                if 'slash' in dem.attack_type:
+                if 'slash' in dem.damage.keys():
+                # if 'slash' in dem.attack_type:
                     # self.summon_particle = True
-                    for particle_quantity in range(randint(12, 12 + dem.damage // 10)):
+                    for particle_quantity in range(randint(12, 12 + dem.damage['slash'] // 10)):
                     # for particle_quantity in range(randint(10, 20)):
-                        size = randint(1, int(dem.damage) >> 4)
+                        size = randint(1, max(2, int(dem.damage['slash']) >> 4))
                         self.summoned_particle_descriptions.append({
                             'sprite': None,
                             'particle TTL': 100,
@@ -754,11 +758,15 @@ class Entity(object):
     #                                      self.current_sprite['weak spot']['height'])
     #         self.current_sprite['weak spot rect'] = weak_spot_rect
 
-    def get_damage(self, amount):
+    def get_damage(self, damage, damage_multiplier):
         if self.dead:
             return
-        print(f'[entity.get_damage] {amount} of damage dealt to {self.name} | {self.stats["health"]=}')
-        self.stats['health'] -= amount
+        # print(f'[entity.get_damage] {amount} of damage dealt to {self.name} | {self.stats["health"]=}')
+        self.total_damage_has_got = 0
+        for damage_type in damage:
+            d = damage[damage_type] * self.resistances[damage_type]
+            self.stats['health'] -= d
+            self.total_damage_has_got += d
 
         # self.summon_particle = True
         # for particle_quantity in range(randint(10, 20)):
