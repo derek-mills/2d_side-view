@@ -758,7 +758,7 @@ player_jake = {
         },
     },
     'max speed': 8,
-    'items': (pistol,axe,whip,jake_kick),
+    'items': (fireball_staff,pistol,axe,whip,jake_kick),
     # 'items': (whip,fireball_staff,sword,kitchen_knife,),
     'animations': {
         'stand still right': {

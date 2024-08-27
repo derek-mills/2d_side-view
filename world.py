@@ -1011,6 +1011,8 @@ class World(object):
 
             self.screen.blit(actor.current_sprite['sprite'], (x, y))
 
+            self.screen.blit(fonts.all_fonts[10].render(actor.get_state() + ' dead: ' + str(actor.dead), True, WHITE, BLACK), (x, y))
+
             # # Weak spot
             # if actor.current_sprite['weak spot']:
             #     # pygame.draw.circle(self.screen, YELLOW, (actor.rectangle.x + actor.current_sprite['weak spot'][0] - self.camera.offset_x,

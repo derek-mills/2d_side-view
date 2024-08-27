@@ -716,6 +716,7 @@ class Entity(object):
                             self.movement_direction_inverter = -1 if dem.parent.look != self.look else 1
                         else:
                             self.movement_direction_inverter = -1 if dem.look != self.look else 1
+                        # if self.get_state() != 'lie dead':
                         self.set_state('hop back')
 
                 # Blood splatters:

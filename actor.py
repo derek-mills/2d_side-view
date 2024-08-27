@@ -981,7 +981,12 @@ class Actor(Entity):
                     self.set_state('hanging on edge')
             else:
                 self.rectangle.top = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
-        elif self.__state == 'lie dead':                        # START CLIMBING ON AN OBSTACLE
+        elif self.__state == 'dying':
+            print(f'[state machine] {self.name} is going to die.')
+            # if self.animation_sequence_done:
+            self.dying = True
+                # self.set_state('lie dead')
+        elif self.__state == 'lie dead':                        #
             ...
             self.heading = [0, 0]
             if self.idle_counter > 0:
