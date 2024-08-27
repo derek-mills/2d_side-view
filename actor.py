@@ -188,7 +188,6 @@ class Actor(Entity):
                             self.ai_input_right_arrow = False
         elif self.think_type == 'exploding barrel':
             if self.stats['health'] <= self.stats['max health'] * 0.5:
-                print('1231232131')
                 self.set_state('almost explode')
                 # self.ai_input_attack = True
                 self.think_type = ''

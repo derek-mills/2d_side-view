@@ -78,7 +78,8 @@ class World(object):
         self.camera_follows_mouse = True
         self.camera_scroll_speed = 4
 
-        self.object_types = ('obstacle', 'enemy', 'item')
+        self.object_types = ('obstacle', 'enemy')
+        # self.object_types = ('obstacle', 'enemy', 'item')
         # self.object_types = ('obstacle', 'demolisher')
         self.current_object_type = 0
 
@@ -449,6 +450,8 @@ class World(object):
                                     try:
                                         self.menu_return_value = copy(eval(menu_item['value']))
                                     except NameError:
+                                        self.menu_return_value = menu_item['value']
+                                    except SyntaxError:
                                         self.menu_return_value = menu_item['value']
 
                                 print('[processing menu] RETURN FROM:', menu_item['label'])
@@ -2289,6 +2292,36 @@ class World(object):
                 return obs.id
         return -1
 
+    def edit_enemy(self, enemy):
+        # self.edit_enemy(self.enemies[hostile_xy])
+        self.reset_menu()
+        self.reset_menu_walk_tree()
+        self.menu_structure = deepcopy(menu_structure)
+        self.add_menu({'submenu name': 'monster single selection', 'value': ''}, self.mouse_xy, 400, 15)
+        background = self.screen.convert_alpha()
+        while not self.menu_actions_done:
+            self.processing_human_input()
+            self.processing_menu_items()
+            self.render_background(background)
+            self.dim()
+            self.render_menu_items()
+            self.render_debug_info()
+            pygame.display.flip()
+        self.reset_human_input()
+
+        if 'CANCEL MENU' in self.menu_walk_tree:
+            self.reset_menu_walk_tree()
+            self.reset_menu()
+            return
+            # return 'CANCEL'
+
+        print(f'[edit monster] {self.menu_walk_tree=} {self.menu_return_value=}')
+        enemy['name'] = self.menu_return_value
+
+        self.reset_menu_walk_tree()
+        self.reset_menu()
+        # return self.menu_return_value
+
     def edit_obs(self, obs):
         # self.menu_action_pending = ''
         self.reset_menu()
@@ -2546,21 +2579,28 @@ class World(object):
                         self.obstacles[self.location][obs_id].active_flag = True
                     return
                 else:
-                    if self.location not in self.clipboard:
-                        self.clipboard[self.location] = list()
-
-                    if self.mouse_xy_snapped_to_mesh in self.clipboard[self.location]:
-                        # Delete existing dot from the clipboard.
-                        self.clipboard[self.location].remove(self.mouse_xy_snapped_to_mesh)
-                        # del self.clipboard[self.location][self.mouse_xy_snapped_to_mesh]
-                        # del self.clipboard[self.mouse_xy_snapped_to_mesh]
+                    if hostile_xy != -1:
+                        self.edit_enemy(self.enemies[hostile_xy])
+                        # edit_result = self.edit_enemy(self.enemies[hostile_xy])
+                        # if edit_result != 'CANCEL':
+                        #     self.enemies[hostile_xy]['name'] = edit_result
+                        # return
                     else:
-                        # Place current mouse coordinate to clipboard.
-                        self.clipboard[self.location].append(self.mouse_xy_snapped_to_mesh)
-                        # self.clipboard[self.mouse_xy_snapped_to_mesh] = {
-                        #     'location': self.location,
-                        #     'coordinate': self.mouse_xy_snapped_to_mesh
-                        # }
+                        if self.location not in self.clipboard:
+                            self.clipboard[self.location] = list()
+
+                        if self.mouse_xy_snapped_to_mesh in self.clipboard[self.location]:
+                            # Delete existing dot from the clipboard.
+                            self.clipboard[self.location].remove(self.mouse_xy_snapped_to_mesh)
+                            # del self.clipboard[self.location][self.mouse_xy_snapped_to_mesh]
+                            # del self.clipboard[self.mouse_xy_snapped_to_mesh]
+                        else:
+                            # Place current mouse coordinate to clipboard.
+                            self.clipboard[self.location].append(self.mouse_xy_snapped_to_mesh)
+                            # self.clipboard[self.mouse_xy_snapped_to_mesh] = {
+                            #     'location': self.location,
+                            #     'coordinate': self.mouse_xy_snapped_to_mesh
+                            # }
 
             if self.is_right_bracket:
                 self.is_right_bracket = False
@@ -2589,8 +2629,8 @@ class World(object):
                     self.enemies[self.mouse_xy_snapped_to_mesh]['name'] = enemy_to_add['name']
                     self.enemies[self.mouse_xy_snapped_to_mesh]['height'] = enemy_to_add['height']
                     self.enemies[self.mouse_xy_snapped_to_mesh]['width'] = enemy_to_add['width']
-                    self.enemies[self.mouse_xy_snapped_to_mesh]['health'] = enemy_to_add['health']
-                    self.enemies[self.mouse_xy_snapped_to_mesh]['max speed'] = enemy_to_add['max speed']
+                    # self.enemies[self.mouse_xy_snapped_to_mesh]['health'] = enemy_to_add['health']
+                    # self.enemies[self.mouse_xy_snapped_to_mesh]['max speed'] = enemy_to_add['max speed']
                     self.is_left_mouse_button_down = False
                     if self.show_minimap:
                         self.refresh_minimap()

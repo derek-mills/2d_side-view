@@ -622,7 +622,7 @@ class Entity(object):
             return
         for key in self.demolishers_around.keys():
             dem = self.demolishers_around[key]
-            if dem.parent_id > 0:
+            if dem.parent:
                 if dem.id in self.got_immunity_to_demolishers or \
                     dem.parent_id == self.id or dem.parent.name == self.name or \
                      dem.floppy:

@@ -258,6 +258,8 @@ demon_2 = {
     'blood color': (150, 50, 10),
     'strength': 15,
     'body weight': 140,
+    'height': 150,  # For level editor use only
+    'width': 50,  # For level editor use only
     'gravity affected': True,
     'body': {
         'head': {
@@ -639,8 +641,8 @@ demon_2 = {
             'repeat from frame': 0
         },
     },
-    'think type': '',
-    # 'think type': 'chaser',
+    # 'think type': '',
+    'think type': 'chaser',
     'disappear after death': False,
     'AI controlled': True
 }
@@ -654,6 +656,8 @@ exploding_barrel = {
     'blood color': (0, 0, 0),
     'strength': 5,
     'body weight': 240,
+    'height': 150,  # For level editor use only
+    'width': 50,  # For level editor use only
     'gravity affected': True,
     'max speed': 2 + randint(1, 10) / 10,
     'items': (barrel_explosion,),
