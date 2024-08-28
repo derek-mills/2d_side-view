@@ -680,7 +680,7 @@ class Entity(object):
                     self.has_just_stopped_demolishers.append(dem.id)
                 self.summon_particle = True
                 self.invincibility_timer = 30
-                if not self.dead or not self.dying:
+                if not self.dead:  # or not self.dying:
                     # If actor hit from behind, the damage increased by 50%:
                     total_damage_multiplier = 1.5 if dem.look == self.look and dem.snap_to_actor >= 0 else 1
                     self.get_damage(dem.damage, total_damage_multiplier)
@@ -775,10 +775,10 @@ class Entity(object):
     def get_damage(self, damage, damage_multiplier):
         # if self.dead:
         #     return
-        # print(f'[entity.get_damage] {amount} of damage dealt to {self.name} | {self.stats["health"]=}')
+        print(f'[entity.get_damage] incoming damage dealt to {self.name} | {self.stats["health"]=}')
         self.total_damage_has_got = 0
         for damage_type in damage:
-            d = damage[damage_type] * self.resistances[damage_type]
+            d = damage[damage_type] * self.resistances[damage_type] * damage_multiplier
             self.stats['health'] -= d
             self.total_damage_has_got += d
 

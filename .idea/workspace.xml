@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
-    </list>
+    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -139,13 +137,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00387" summary="Enemy is able to switch weapons depends on combat situation.">
-      <created>1723689248358</created>
-      <option name="number" value="00387" />
-      <option name="presentableId" value="LOCAL-00387" />
-      <option name="project" value="LOCAL" />
-      <updated>1723689248358</updated>
     </task>
     <task id="LOCAL-00388" summary="Improving enemy 'chasing' AI">
       <created>1723690971976</created>
@@ -483,7 +474,14 @@
       <option name="project" value="LOCAL" />
       <updated>1724812347233</updated>
     </task>
-    <option name="localTasksCounter" value="436" />
+    <task id="LOCAL-00436" summary="Improving 'hop back' to avoid dead actors become 'stay still' if they get some damage being dropped in the air.">
+      <created>1724812991602</created>
+      <option name="number" value="00436" />
+      <option name="presentableId" value="LOCAL-00436" />
+      <option name="project" value="LOCAL" />
+      <updated>1724812991602</updated>
+    </task>
+    <option name="localTasksCounter" value="437" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -498,7 +496,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Actor deals more damage while moving or jumping." />
     <MESSAGE value="Actor gets more damage from behind." />
     <MESSAGE value="After taking damage an actor throws a white ciphers." />
     <MESSAGE value="Improving text-like particles, which shows the damage amount taken by an actor." />
@@ -523,6 +520,7 @@
     <MESSAGE value="Barrels explosion improved." />
     <MESSAGE value="Some fixes" />
     <MESSAGE value="Renovation of checking health condition and dying\dead states setting" />
-    <option name="LAST_COMMIT_MESSAGE" value="Renovation of checking health condition and dying\dead states setting" />
+    <MESSAGE value="Improving 'hop back' to avoid dead actors become 'stay still' if they get some damage being dropped in the air." />
+    <option name="LAST_COMMIT_MESSAGE" value="Improving 'hop back' to avoid dead actors become 'stay still' if they get some damage being dropped in the air." />
   </component>
 </project>
