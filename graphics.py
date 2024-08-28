@@ -261,13 +261,10 @@ def load_all_frames(source, max_frames, name, width, height, scale_factor=1):
             # 'current mask rect': pygame.Rect(0, 0, 0, 0)
             # 'weak spot': weak_spot
         }
-        if sprites[name + ' ' + str(frame_count)]["demolisher snap point"] != [0, 0]:
-            print(f'[load all frames] added {name=} {sprites[name + " " + str(frame_count)]["demolisher snap point"]}')
-        # sprites_reference[name + ' ' + str(frame_count)] = {
-        #     'sprite': scaled_cropped_surf,
-        #     'sprite center': snap_x,
-        #     'sprite asymmetric': sprite_asymmetric
-        # }
+
+        # if sprites[name + ' ' + str(frame_count)]["demolisher snap point"] != [0, 0]:
+        #     print(f'[load all frames] added {name=} {sprites[name + " " + str(frame_count)]["demolisher snap point"]}')
+
         x = x + width
         if x + width > max_x:
             x = 0

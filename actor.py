@@ -127,98 +127,11 @@ class Actor(Entity):
     def get_target(self, target):
         self.target = target
 
-    def think(self):
-        if self.think_type == 'chaser':
-            # Change weapon depends on target vicinity:
-            # print('[think]', list(self.inventory['weapons'].keys()))
-            if self.sprite_rectangle.colliderect(self.target.sprite_rectangle):
-                # Smash actor immediately:
-                self.activate_weapon(0)  # Activate close combat weapon (always has index 0).
-                self.ai_input_attack = True
-                self.ai_input_left_arrow = False
-                self.ai_input_right_arrow = False
-                # return
-            else:
-                # self.activate_weapon(1)  # Activate middle-ranged weapon (always has index 1).
-
-                if self.rectangle.centerx > self.target.rectangle.centerx:
-                    # if self.rectangle.centerx - self.target.rectangle.centerx <= self.current_weapon['reach']:
-                    #     self.ai_input_attack = True
-                    # else:
-                    self.ai_input_left_arrow = True
-                    self.ai_input_right_arrow = False
-                else:
-                    # if self.target.rectangle.centerx - self.rectangle.centerx <= self.current_weapon['reach']:
-                    #     self.ai_input_attack = True
-                    # else:
-                    self.ai_input_left_arrow = False
-                    self.ai_input_right_arrow = True
-
-                self.activate_weapon(1)  # Activate middle-ranged weapon (always has index 1).
-
-                # if self.target.rectangle.colliderect(self.rectangle.inflate(self.rectangle.width + self.current_weapon['reach'],
-                #                                                             self.rectangle.height)):
-                if abs(self.rectangle.centerx - self.target.rectangle.centerx) <= self.current_weapon['reach']:
-
-                    if self.rectangle.centery >= self.target.rectangle.centery:
-                        self.activate_weapon(0)  # Activate close combat weapon (always has index 0).
-                        if self.get_state() != 'jump':
-                            self.ai_input_jump = True
-                            # print('wanna jump')
-                        else:
-                            self.ai_input_attack = True
-                            # print('wanna attack in the air')
-                    else:
-                        self.ai_input_attack = True
-                        # print('wanna attack')
-                    # if self.get_state() == 'jump':
-                    #     self.ai_input_attack = True
-                else:
-                    # if randint(0, 50) == 1:
-                    if self.next_ranged_weapon_usage_counter > 0:
-                        self.next_ranged_weapon_usage_counter -= 1
-                    else:
-                        self.next_ranged_weapon_usage_counter = randint(100, 1200)
-                        self.activate_weapon(2)  # Activate ranged weapon (always has index 2).
-                        if self.stats['mana'] < self.current_mana_lost_per_attack:
-                            self.activate_weapon(1)
-                        else:
-                            self.ai_input_attack = True
-                            self.ai_input_left_arrow = False
-                            self.ai_input_right_arrow = False
-        elif self.think_type == 'exploding barrel':
-            if self.get_state() == 'dying':
-            # if self.stats['health'] <= self.stats['max health'] * 0.5:
-                self.set_state('almost explode')
-                # self.ai_input_attack = True
-                self.think_type = ''
-
-        if self.ai_input_jump:
-            # self.ai_input_jump = False
-            self.set_action('jump action')
-            # return
-        else:
-            self.set_action('jump action cancel')
-
-        if self.ai_input_right_arrow:
-            self.set_action('right action')
-        else:
-            self.set_action('right action cancel')
-
-        if self.ai_input_left_arrow:
-            self.set_action('left action')
-        else:
-            self.set_action('left action cancel')
-
-        if self.ai_input_attack:
-            self.ai_input_attack = False
-            self.set_action('attack')
-
     def add_items_to_inventory(self, items):
         if not items:
             return
         for item in items:
-            print(f'[add_items_to_inventory], {self.name} prepare to get an item: {item["description"]}')
+            # print(f'[add_items_to_inventory], {self.name} prepare to get an item: {item["description"]}')
             if item['class'] not in self.inventory.keys():
                 self.inventory[item['class']] = dict()
             if item['label'] in self.inventory[item['class']].keys():
@@ -289,7 +202,7 @@ class Actor(Entity):
     #         return False
 
     def set_state(self, new_state):
-        # print(f'[actor.set_state] new state: {new_state} {self.cycles_passed}')
+        print(f'[actor.set_state] {self.name} (#{self.id}) got new state: {new_state} at {self.cycles_passed}')
         self.__state = new_state
         self.set_current_animation()
 
@@ -525,29 +438,117 @@ class Actor(Entity):
                 self.set_state('prepare attack')
                 print(f'[set action] {self.name} prepares to attack.')
 
+    def think(self):
+        if self.think_type == 'chaser':
+            # Change weapon depends on target vicinity:
+            # print('[think]', list(self.inventory['weapons'].keys()))
+            if self.sprite_rectangle.colliderect(self.target.sprite_rectangle):
+                # Smash actor immediately:
+                self.activate_weapon(0)  # Activate close combat weapon (always has index 0).
+                self.ai_input_attack = True
+                self.ai_input_left_arrow = False
+                self.ai_input_right_arrow = False
+                # return
+            else:
+                # self.activate_weapon(1)  # Activate middle-ranged weapon (always has index 1).
+
+                if self.rectangle.centerx > self.target.rectangle.centerx:
+                    # if self.rectangle.centerx - self.target.rectangle.centerx <= self.current_weapon['reach']:
+                    #     self.ai_input_attack = True
+                    # else:
+                    self.ai_input_left_arrow = True
+                    self.ai_input_right_arrow = False
+                else:
+                    # if self.target.rectangle.centerx - self.rectangle.centerx <= self.current_weapon['reach']:
+                    #     self.ai_input_attack = True
+                    # else:
+                    self.ai_input_left_arrow = False
+                    self.ai_input_right_arrow = True
+
+                self.activate_weapon(1)  # Activate middle-ranged weapon (always has index 1).
+
+                # if self.target.rectangle.colliderect(self.rectangle.inflate(self.rectangle.width + self.current_weapon['reach'],
+                #                                                             self.rectangle.height)):
+                if abs(self.rectangle.centerx - self.target.rectangle.centerx) <= self.current_weapon['reach']:
+
+                    if self.rectangle.centery >= self.target.rectangle.centery:
+                        self.activate_weapon(0)  # Activate close combat weapon (always has index 0).
+                        if self.get_state() != 'jump':
+                            self.ai_input_jump = True
+                            # print('wanna jump')
+                        else:
+                            self.ai_input_attack = True
+                            # print('wanna attack in the air')
+                    else:
+                        self.ai_input_attack = True
+                        # print('wanna attack')
+                    # if self.get_state() == 'jump':
+                    #     self.ai_input_attack = True
+                else:
+                    # if randint(0, 50) == 1:
+                    if self.next_ranged_weapon_usage_counter > 0:
+                        self.next_ranged_weapon_usage_counter -= 1
+                    else:
+                        self.next_ranged_weapon_usage_counter = randint(100, 1200)
+                        self.activate_weapon(2)  # Activate ranged weapon (always has index 2).
+                        if self.stats['mana'] < self.current_mana_lost_per_attack:
+                            self.activate_weapon(1)
+                        else:
+                            self.ai_input_attack = True
+                            self.ai_input_left_arrow = False
+                            self.ai_input_right_arrow = False
+        elif self.think_type == 'exploding barrel':
+            ...
+            # if self.get_state() == 'dying':
+            #     print(f'[think] A barrel consider to be dying.')
+            #     self.set_state('almost explode')
+            #     # self.ai_input_attack = True
+            #     self.think_type = ''
+
+        if self.ai_input_jump:
+            # self.ai_input_jump = False
+            self.set_action('jump action')
+            # return
+        else:
+            self.set_action('jump action cancel')
+
+        if self.ai_input_right_arrow:
+            self.set_action('right action')
+        else:
+            self.set_action('right action cancel')
+
+        if self.ai_input_left_arrow:
+            self.set_action('left action')
+        else:
+            self.set_action('left action cancel')
+
+        if self.ai_input_attack:
+            self.ai_input_attack = False
+            self.set_action('attack')
+
     def state_machine(self):
-        if self.__state == 'drop stash':                          #
+        if self.get_state() == 'drop stash':                          #
             self.drop_item_from_inventory(self.inventory['burden']['stash']['item'])
             self.set_state('stand still')
-        elif self.__state == 'prepare carry stash':                          #
+        elif self.get_state() == 'prepare carry stash':                          #
             # self.speed = self.max_speed // 3
             self.set_state('hold stash')
-        elif self.__state == 'hold stash':  #
+        elif self.get_state() == 'hold stash':  #
             self.speed = 0
             self.heading[0] = 0
-        elif self.__state == 'carry stash right':  #
+        elif self.get_state() == 'carry stash right':  #
             self.speed = 5
             # self.speed = self.max_speed // 3
             self.look = 1
-        elif self.__state == 'carry stash left':  #
+        elif self.get_state() == 'carry stash left':  #
             self.speed = 5
             # self.speed = self.max_speed // 3
             self.look = -1
-        elif self.__state == 'prepare kick':                          # PREPARING kick ATTACK
+        elif self.get_state() == 'prepare kick':                          # PREPARING kick ATTACK
             self.activate_weapon('jake kick')
             self.set_state('prepare attack')
             self.force_use_previous_weapon = True
-        elif self.__state == 'prepare attack':                          # PREPARING ATTACK
+        elif self.get_state() == 'prepare attack':                          # PREPARING ATTACK
             self.set_state(self.current_weapon['attack animation'])
             self.stamina_reduce(self.current_stamina_lost_per_attack)
             self.mana_reduce(self.current_mana_lost_per_attack)
@@ -556,7 +557,7 @@ class Actor(Entity):
             self.ignore_user_input = self.current_weapon['ignore user input']
             if self.is_stand_on_ground:
                 self.heading[0] = 0
-        elif self.__state == 'prepare crouch attack left':                          # PREPARING ATTACK
+        elif self.get_state() == 'prepare crouch attack left':                          # PREPARING ATTACK
             self.set_state(self.current_weapon['attack animation'] + ' crouch left')
             self.stamina_reduce(self.current_stamina_lost_per_attack)
             self.mana_reduce(self.current_mana_lost_per_attack)
@@ -565,7 +566,7 @@ class Actor(Entity):
             self.ignore_user_input = self.current_weapon['ignore user input']
             if self.is_stand_on_ground:
                 self.heading[0] = 0
-        elif self.__state == 'prepare crouch attack right':                          # PREPARING ATTACK
+        elif self.get_state() == 'prepare crouch attack right':                          # PREPARING ATTACK
             self.set_state(self.current_weapon['attack animation'] + ' crouch right')
             self.stamina_reduce(self.current_stamina_lost_per_attack)
             self.mana_reduce(self.current_mana_lost_per_attack)
@@ -586,22 +587,22 @@ class Actor(Entity):
                     self.set_state('crouch')
                 else:
                     self.set_state('stand still')
-        elif self.__state == 'crouch down':                       # CROUCH DOWN PROCESS
+        elif self.get_state() == 'crouch down':                       # CROUCH DOWN PROCESS
             self.is_crouch = True
             self.is_grabbers_active = False
             self.set_new_desired_height(self.rectangle_height_sit, 5)
             self.set_new_desired_width(self.rectangle_width_sit, 3)
             self.set_state('crouch')
-        elif self.__state == 'crouch':                          # CROUCH
+        elif self.get_state() == 'crouch':                          # CROUCH
             self.speed = 0
             self.heading[0] = 0
-        elif self.__state == 'crouch turn left':                # CROUCH TURN RIGHT
+        elif self.get_state() == 'crouch turn left':                # CROUCH TURN RIGHT
             self.look = -1
             self.set_state('crouch')
-        elif self.__state == 'crouch turn right':               # CROUCH TURN LEFT
+        elif self.get_state() == 'crouch turn right':               # CROUCH TURN LEFT
             self.look = 1
             self.set_state('crouch')
-        elif self.__state == 'crouch rise':  # CROUCH UP PROCESS
+        elif self.get_state() == 'crouch rise':  # CROUCH UP PROCESS
             self.is_crouch = False
             self.speed = 0
             self.set_new_desired_height(self.rectangle_height_default, 9)
@@ -612,18 +613,18 @@ class Actor(Entity):
             else:
                 self.set_state('crouch down')
                 self.state_machine()
-        elif self.__state == 'crawl right':
+        elif self.get_state() == 'crawl right':
             # self.look = 1
             self.speed = self.max_speed // 3
             # self.heading[0] = 1
-        elif self.__state == 'crawl left':
+        elif self.get_state() == 'crawl left':
             # self.look = 1
             self.speed = self.max_speed // 3
             # self.heading[0] = -1
-        elif self.__state == 'free':
+        elif self.get_state() == 'free':
             # self.heading[0] = 0
             ...
-        elif self.__state == 'jump':
+        elif self.get_state() == 'jump':
             # print('try to jump...')
             if not self.just_got_jumped:
                 self.just_got_jumped = True
@@ -647,7 +648,7 @@ class Actor(Entity):
                     self.set_state('stand still')
                     # self.set_state('jump cancel')
             self.is_abort_jump = False
-        elif self.__state == 'jump cancel':                     # CANCEL JUMP
+        elif self.get_state() == 'jump cancel':                     # CANCEL JUMP
             self.just_got_jumped = False
             self.is_abort_jump = True
             self.is_jump_performed = False
@@ -661,28 +662,11 @@ class Actor(Entity):
                 else:
                     self.set_state('fly left')
             # self.set_state('stand still')
-        elif self.__state == 'hop back':                        # HOP BACK
-            # self.heading = [0, 0]
+        elif self.get_state() == 'hop back':                        # HOP BACK
             self.heading[0] = 0
-            # self.ignore_user_input = True
-            # self.ai_input_right_arrow = False
-            # self.ai_input_left_arrow = False
-            # self.ai_input_attack = False
-            # self.ai_input_jump = False
-            # self.is_grabbers_active = False
-            # self.is_move_right: bool = False
-            # self.is_move_left: bool = False
-            # self.is_move_up: bool = False
-            # self.is_move_down: bool = False
-            # self.is_jump: bool = False
-            # self.is_crouch: bool = False
-            # self.is_abort_jump: bool = False
-            # self.is_jump_performed: bool = False
             self.speed = 0
-
             if self.is_stand_on_ground:
                 if self.is_enough_space_above:
-                    # self.heading[0] = 0
                     self.ignore_user_input = True
                     self.ai_input_right_arrow = False
                     self.ai_input_left_arrow = False
@@ -724,7 +708,7 @@ class Actor(Entity):
                 self.set_state('release edge')
             # else:
             #     self.set_state('stand still')
-        elif self.__state == 'hopping back process':            # HOPPING BACK PROCESS
+        elif self.get_state() == 'hopping back process':            # HOPPING BACK PROCESS
             if self.idle_counter > 0:
                 self.idle_counter -= 1
                 # self.invincibility_timer -= 1
@@ -740,7 +724,7 @@ class Actor(Entity):
                         self.set_state('stand still')
                     else:
                         self.set_state('lie dead')
-        elif self.__state == 'slide':                           # SLIDE PREPARING
+        elif self.get_state() == 'slide':                           # SLIDE PREPARING
             self.speed = self.max_speed * 2.5
             self.set_new_desired_height(self.rectangle_height_slide, 0)
             self.set_new_desired_width(self.rectangle_width_slide, 6)
@@ -759,11 +743,11 @@ class Actor(Entity):
                 # self.set_rect_width(self.rectangle_width_sit)
                 # self.set_rect_height(self.rectangle_height_sit)
                 self.set_state('crouch')
-        elif self.__state == 'sliding':                         # SLIDING PROCESS
+        elif self.get_state() == 'sliding':                         # SLIDING PROCESS
             self.heading[0] = 0
             if self.speed == 0:
                 self.set_state('slide rise')
-        elif self.__state == 'slide rise':                      # RISING AFTER SLIDE IS OVER
+        elif self.get_state() == 'slide rise':                      # RISING AFTER SLIDE IS OVER
             self.ignore_user_input = False
             self.set_new_desired_height(self.rectangle_height_sit, 5)
             self.check_space_around()
@@ -773,21 +757,21 @@ class Actor(Entity):
             else:
                 self.set_new_desired_height(self.rectangle_height_slide, 0)
                 self.set_state('prone')
-        elif self.__state == 'crawl prone left':
+        elif self.get_state() == 'crawl prone left':
             self.speed = self.max_speed // 3
             self.look = -1
             self.heading[0] = -1
             # print('sdsdsdsdsdsds')
             # self.set_new_desired_height(self.rectangle_height_slide, 0)
             # self.check_space_around()
-        elif self.__state == 'crawl prone right':
+        elif self.get_state() == 'crawl prone right':
             self.speed = self.max_speed // 3
             self.look = 1
             self.heading[0] = 1
             # print('sdsdsdsdsdsds')
             # self.set_new_desired_height(self.rectangle_height_slide, 0)
             # self.check_space_around()
-        elif self.__state == 'prone':
+        elif self.get_state() == 'prone':
             self.speed = 0
             self.heading[0] = 0
             self.set_new_desired_height(self.rectangle_height_sit, 0)
@@ -797,7 +781,7 @@ class Actor(Entity):
             else:
                 self.set_new_desired_height(self.rectangle_height_slide, 0)
             # self.set_new_desired_height(self.rectangle_height_slide, 0)
-        elif self.__state == 'stand still':                     # STANDING STILL
+        elif self.get_state() == 'stand still':                     # STANDING STILL
             self.heading[0] = 0
             # self.just_got_jumped = False
             # self.is_abort_jump = True
@@ -812,7 +796,7 @@ class Actor(Entity):
                     return
             if self.rectangle.width != self.rectangle_width_default:
                 self.set_new_desired_width(self.rectangle_width_default,10)
-        elif self.__state == 'turn left':                       # TURN LEFT
+        elif self.get_state() == 'turn left':                       # TURN LEFT
             if self.look == 1 and self.speed > 0:  # Actor looks to the other side and runs.
                 # Switch off heading to force actor start reducing his speed and slow it down to zero.
                 # After that self is going to be able to start acceleration to proper direction.
@@ -821,7 +805,7 @@ class Actor(Entity):
                 self.look = -1
                 self.heading[0] = -1
                 self.set_state('stand still')
-        elif self.__state == 'turn right':                      # TURN RIGHT
+        elif self.get_state() == 'turn right':                      # TURN RIGHT
             if self.look == -1 and self.speed > 0:  # Actor looks to the other side and runs.
                 # Switch off heading to force actor start reducing his speed and slow it down to zero.
                 # After that self is going to be able to start acceleration to proper direction.
@@ -834,7 +818,7 @@ class Actor(Entity):
             # self.is_move_right = True
             # self.look = 1
             # self.set_state('stand still')
-        elif self.__state == 'fly left':                        # IN MID-AIR FLY LEFT
+        elif self.get_state() == 'fly left':                        # IN MID-AIR FLY LEFT
             if self.is_stand_on_ground:
                 self.set_state('stand still')
                 return
@@ -862,7 +846,7 @@ class Actor(Entity):
             #     self.set_new_desired_height(self.rectangle_height_default,5)
             # if self.rectangle.width != self.rectangle_width_default:
             #     self.set_new_desired_width(self.rectangle_width_default,5)
-        elif self.__state == 'run left':                        # RUN LEFT
+        elif self.get_state() == 'run left':                        # RUN LEFT
             self.look = -1
             self.heading[0] = -1
             # self.is_grabbers_active = True
@@ -870,7 +854,7 @@ class Actor(Entity):
                 self.set_new_desired_height(self.rectangle_height_default,5)
             if self.rectangle.width != self.rectangle_width_default:
                 self.set_new_desired_width(self.rectangle_width_default,5)
-        elif self.__state == 'fly right':                        # IN MID-AIR MOVE RIGHT
+        elif self.get_state() == 'fly right':                        # IN MID-AIR MOVE RIGHT
             if self.is_stand_on_ground:
                 self.set_state('stand still')
                 return
@@ -894,7 +878,7 @@ class Actor(Entity):
             #     self.set_new_desired_height(self.rectangle_height_default,5)
             # if self.rectangle.width != self.rectangle_width_default:
             #     self.set_new_desired_width(self.rectangle_width_default,5)
-        elif self.__state == 'run right':                        # RUN RIGHT
+        elif self.get_state() == 'run right':                        # RUN RIGHT
             self.look = 1
             self.heading[0] = 1
             # self.is_grabbers_active = True
@@ -902,7 +886,7 @@ class Actor(Entity):
                 self.set_new_desired_height(self.rectangle_height_default,5)
             if self.rectangle.width != self.rectangle_width_default:
                 self.set_new_desired_width(self.rectangle_width_default,5)
-        elif self.__state == 'has just grabbed edge':            # GRAB THE EDGE
+        elif self.get_state() == 'has just grabbed edge':            # GRAB THE EDGE
             self.potential_moving_distance = 0
             self.is_grabbers_active = False
             self.is_edge_grabbed = True
@@ -924,17 +908,17 @@ class Actor(Entity):
             self.jump_attempts_counter = 0
             # self.jump_attempts_counter = self.max_jump_attempts
             self.set_state('hanging on edge')
-        elif self.__state == 'hanging on edge':                 # HANGING ON THE EDGE
+        elif self.get_state() == 'hanging on edge':                 # HANGING ON THE EDGE
             self.just_got_jumped = False
             self.is_abort_jump = True
             # self.rectangle.top = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
-        # elif self.__state == 'hanging on ghost':                # HANGING ON THE GHOST PLATFORM
+        # elif self.get_state() == 'hanging on ghost':                # HANGING ON THE GHOST PLATFORM
         #     self.rectangle.top = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
         #     if self.idle_counter > 0:
         #         self.idle_counter -= 1
         #     else:
         #         self.ignore_user_input = False
-        elif self.__state == 'hop down from ghost':             # PREPARE TO HOP DOWN FROM THE GHOST PLATFORM
+        elif self.get_state() == 'hop down from ghost':             # PREPARE TO HOP DOWN FROM THE GHOST PLATFORM
             self.potential_moving_distance = 0
             # self.is_edge_grabbed = True
             # self.ignore_user_input = True
@@ -952,7 +936,7 @@ class Actor(Entity):
             self.influenced_by_obstacle = -1
             self.set_state('jump cancel')
             # self.set_state('hanging on ghost')
-        elif self.__state == 'release edge':                    # RELEASE
+        elif self.get_state() == 'release edge':                    # RELEASE
             self.is_edge_grabbed = False
             self.is_grabbers_active = False
             self.rectangle.y += self.look * -10
@@ -962,12 +946,12 @@ class Actor(Entity):
             self.ignore_user_input = False
             # if self.is_stand_on_ground:
             self.set_state('stand still')
-        elif self.__state == 'climb on':                        # START CLIMBING ON AN OBSTACLE
+        elif self.get_state() == 'climb on':                        # START CLIMBING ON AN OBSTACLE
             self.ignore_user_input = True
             self.is_jump_performed = False
             self.set_new_desired_height(self.rectangle_height_sit // 2, 6)
             self.set_state('climb on raise')
-        elif self.__state == 'climb on raise':                        # START CLIMBING ON AN OBSTACLE
+        elif self.get_state() == 'climb on raise':                        # START CLIMBING ON AN OBSTACLE
             if self.rectangle.height <= self.rectangle_height_sit // 2:
                 self.check_space_around()
                 if self.is_enough_height:
@@ -981,12 +965,15 @@ class Actor(Entity):
                     self.set_state('hanging on edge')
             else:
                 self.rectangle.top = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
-        elif self.__state == 'dying':
-            print(f'[state machine] {self.name} is going to die.')
+        elif self.get_state() == 'dying':
+            print(f'[state machine] {self.name} state: *DYING*.')
             # if self.animation_sequence_done:
-            self.dying = True
-                # self.set_state('lie dead')
-        elif self.__state == 'lie dead':                        #
+            if self.think_type == 'exploding barrel':
+                self.set_state('almost explode')
+            else:
+                self.dying = True
+                self.set_state('lie dead')
+        elif self.get_state() == 'lie dead':                        #
             ...
             self.heading = [0, 0]
             if self.idle_counter > 0:
@@ -998,12 +985,13 @@ class Actor(Entity):
                     if self.just_got_jumped:
                         self.just_got_jumped = False
                     self.is_abort_jump = True
-        elif self.__state == 'almost explode':
-            print(f'[state machine] {self.name} is going to explode.')
+        elif self.get_state() == 'almost explode':
+            # print(f'[state machine] {self.name} is going to explode.')
+            print(f'[state machine] {self.name} state: *ALMOST EXPLODE*.')
             self.set_state('explosion')
-        elif self.__state == 'explosion':
-            print(f'[state machine] {self.name} is getting explode.')
+        elif self.get_state() == 'explosion':
             if self.animation_sequence_done:
+                print(f'[state machine] {self.name} state: *EXPLOSION*.')
                 self.dying = True
 
 

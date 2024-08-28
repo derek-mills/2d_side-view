@@ -327,6 +327,7 @@ class Entity(object):
 
         if self.is_destructible:  # and not self.dead:
             self.detect_demolishers_collisions()
+            self.check_condition()
 
         if self.is_gravity_affected:
             # self.calculate_fall_speed()  # Discover speed and potential fall distance
@@ -344,34 +345,34 @@ class Entity(object):
         # self.fly(time_passed)
         self.correct_position_if_influenced()
 
-    def process_backup(self, time_passed):
-        if self.ttl > 0:
-            self.ttl -= 1
-            if self.ttl == 0:
-                self.die()
-        self.process_animation()
-        self.process_activity_at_current_animation_frame()
-        if self.is_jump:
-            # Jump
-            self.fall_speed = -self.jump_height
-            self.is_jump = False
-            self.is_stand_on_ground = False
-
-        self.processing_rectangle_size()
-        self.check_space_around()  # Detect obstacles on the right and left sides
-        self.calculate_fall_speed()  # Discover speed and potential fall distance
-        self.calculate_speed()       # Discover fall speed and potential move distance
-        self.calculate_colliders()   # Calculate colliders around actor based on his current movement and fall speeds.
-        self.detect_collisions()
-        self.detect_demolishers_collisions()
-
-        if self.is_gravity_affected:
-            if not self.is_stand_on_ground and not self.is_edge_grabbed:
-                # print('fall!')
-                self.fall()
-        self.move(time_passed)
-        # self.fly(time_passed)
-        self.correct_position_if_influenced()
+    # def process_backup(self, time_passed):
+    #     if self.ttl > 0:
+    #         self.ttl -= 1
+    #         if self.ttl == 0:
+    #             self.die()
+    #     self.process_animation()
+    #     self.process_activity_at_current_animation_frame()
+    #     if self.is_jump:
+    #         # Jump
+    #         self.fall_speed = -self.jump_height
+    #         self.is_jump = False
+    #         self.is_stand_on_ground = False
+    #
+    #     self.processing_rectangle_size()
+    #     self.check_space_around()  # Detect obstacles on the right and left sides
+    #     self.calculate_fall_speed()  # Discover speed and potential fall distance
+    #     self.calculate_speed()       # Discover fall speed and potential move distance
+    #     self.calculate_colliders()   # Calculate colliders around actor based on his current movement and fall speeds.
+    #     self.detect_collisions()
+    #     self.detect_demolishers_collisions()
+    #
+    #     if self.is_gravity_affected:
+    #         if not self.is_stand_on_ground and not self.is_edge_grabbed:
+    #             # print('fall!')
+    #             self.fall()
+    #     self.move(time_passed)
+    #     # self.fly(time_passed)
+    #     self.correct_position_if_influenced()
 
     def set_current_animation(self):
         state = self.get_state()
@@ -679,7 +680,7 @@ class Entity(object):
                     self.has_just_stopped_demolishers.append(dem.id)
                 self.summon_particle = True
                 self.invincibility_timer = 30
-                if not self.dead:
+                if not self.dead or not self.dying:
                     # If actor hit from behind, the damage increased by 50%:
                     total_damage_multiplier = 1.5 if dem.look == self.look and dem.snap_to_actor >= 0 else 1
                     self.get_damage(dem.damage, total_damage_multiplier)
@@ -759,9 +760,21 @@ class Entity(object):
     #                                      self.current_sprite['weak spot']['height'])
     #         self.current_sprite['weak spot rect'] = weak_spot_rect
 
-    def get_damage(self, damage, damage_multiplier):
-        if self.dead:
+    def check_condition(self):
+        if self.dead or self.dying:
+            # if self.get_state() != 'lie dead':
+            #     self.set_state('lie dead')
             return
+        if self.stats['health'] < 0:
+            self.stats['health'] = 0
+            self.set_state('dying')
+            # print(f'[check condition] {self.name} (#{self.id}): change state to *DYING* | HP: {self.stats["health"]}')
+            # self.dying = True
+            # self.dead = True
+
+    def get_damage(self, damage, damage_multiplier):
+        # if self.dead:
+        #     return
         # print(f'[entity.get_damage] {amount} of damage dealt to {self.name} | {self.stats["health"]=}')
         self.total_damage_has_got = 0
         for damage_type in damage:
@@ -769,29 +782,12 @@ class Entity(object):
             self.stats['health'] -= d
             self.total_damage_has_got += d
 
-        # self.summon_particle = True
-        # for particle_quantity in range(randint(10, 20)):
-        #     size = randint(1,6)
-        #     self.summoned_particle_descriptions.append({
-        #         'particle TTL': 100,
-        #         'width': size,
-        #         'height': size,
-        #         'xy': self.rectangle.center,
-        #         'bounce': False,
-        #         'bounce factor': 0.,
-        #         'subtype': 'splatter',
-        #         'color': self.blood_color,
-        #         'look': self.look * -1,  # Splatter always fly in the opposite direction
-        #         'speed': 1 + randint(1,8),
-        #         'jump height': randint(0,20),
-        #         'collides': True,
-        #         'gravity affected': True
-        #     })
-        if self.stats['health'] <= 0:
-            self.set_state('dying')
-            # self.dying = True
-            # self.dead = True
-            # self.set_state('lie dead')
+        # if self.stats['health'] <= 0:
+        #     self.set_state('dying')
+        #     print(f'[entity.get_damage] {self.name} {self.id} ***DYING*** | {self.stats["health"]=}')
+        #     # self.dying = True
+        #     # self.dead = True
+        #     # self.set_state('lie dead')
 
     def mana_reduce(self, amount):
         if self.stats['mana'] == 0:

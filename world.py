@@ -648,7 +648,7 @@ class World(object):
             self.detect_active_obstacles()
 
     def make_explosion(self, xy):
-        # print(f'[process demolishers] KA-BOOM!')
+        print(f'[process demolishers] KA-BOOM!')
         for i in range(randint(40, 50)):
             demolisher_description = {
 
@@ -814,7 +814,7 @@ class World(object):
                 actor.dead = True
                 actor.dying = False
                 actor.invincibility_timer = 0
-                actor.set_state('lie dead')
+                # actor.set_state('lie dead')
                 if actor.disappear_after_death:
                     dead.append(actor.id)
                 if actor.id == 0:
@@ -827,23 +827,21 @@ class World(object):
                             self.add_item(all_items[drop], (randint(actor.rectangle.left - 50, actor.rectangle.right + 50), actor.rectangle.top))
                     # continue
 
-            while actor.drop_from_inventory:
-                i = actor.drop_from_inventory.pop()
-                self.add_item(all_items[i], (actor.rectangle.centerx - sprites[i]['sprite'].get_width() //2, actor.rectangle.bottom - sprites[i]['sprite'].get_height()))
-
             actor.percept({k: self.obstacles[self.location][k] for k in self.active_obstacles}, self.demolishers[self.location])
 
             # actor.get_target(self.actors['player'])
             # if not actor.ignore_user_input:
             #     actor.think()
 
-            if not actor.dead:
+            if not actor.dead or not actor.dying:
                 if actor.ai_controlled:
+                    # routines for AI
                     actor.get_target(self.actors['player'])
                     if not actor.ignore_user_input:
                         actor.think()
                 else:
-                    if not actor.ignore_user_input:  # routines for Player actor
+                    # routines for Player actor
+                    if not actor.ignore_user_input:
                     # if key == 0 and not actor.ignore_user_input:  # routines for Player actor
                         if self.is_input_up_arrow:
                             actor.set_action('up action')
@@ -888,6 +886,10 @@ class World(object):
             actor.get_time(self.time_passed, self.game_cycles_counter)
             actor.process()
 
+            while actor.drop_from_inventory:
+                i = actor.drop_from_inventory.pop()
+                self.add_item(all_items[i], (actor.rectangle.centerx - sprites[i]['sprite'].get_width() //2, actor.rectangle.bottom - sprites[i]['sprite'].get_height()))
+
             if actor.has_just_stopped_demolishers:
                 while actor.has_just_stopped_demolishers:
                     d_id = actor.has_just_stopped_demolishers.pop()
@@ -908,6 +910,7 @@ class World(object):
                 actor.summoned_particle_descriptions = list()
 
         for dead_id in dead:
+            # Erase actors which must be disappeared after death.
             del self.actors[self.location][dead_id]
 
     def render_background_(self):
@@ -1011,7 +1014,7 @@ class World(object):
 
             self.screen.blit(actor.current_sprite['sprite'], (x, y))
 
-            self.screen.blit(fonts.all_fonts[10].render(actor.get_state() + ' dead: ' + str(actor.dead), True, WHITE, BLACK), (x, y))
+            self.screen.blit(fonts.all_fonts[10].render(actor.get_state() + ' dying: ' + str(actor.dying)+ ' dead: ' + str(actor.dead), True, WHITE, BLACK), (x, y))
 
             # # Weak spot
             # if actor.current_sprite['weak spot']:
