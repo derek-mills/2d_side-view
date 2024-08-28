@@ -163,18 +163,24 @@ locations = {
                     'name': 'exploding barrel',
                     'height': 150,
                     'width': 50,
+                    'health': 500.0,
+                    'max speed': 2.6,
             	},
 
             	(900.0, 650.0): {
                     'name': 'exploding barrel',
                     'height': 150,
                     'width': 50,
+                    'health': 500.0,
+                    'max speed': 2.6,
             	},
 
             	(1150.0, 650.0): {
                     'name': 'exploding barrel',
                     'height': 150,
                     'width': 50,
+                    'health': 500.0,
+                    'max speed': 2.6,
             	},
 
               },
@@ -204,6 +210,7 @@ locations = {
                 ((1875, 775), (75, 25), 39),  #39
                 ((2025, 725), (75, 25), 40),  #40
                 ((-100, 950), (2600, 100), 47),  #47
+                ((2100, 250), (50, 50), 48),  #48
                   ), # OBSTACLE RECTANGLES SECTION END
                 'settings': {
                     6: {
@@ -285,6 +292,26 @@ locations = {
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'teleport': True,
                         'teleport description': {'on touch': True, 'new location': 'penthouse', 'xy': ('keep x', 850.0)},
+                  },
+                    48: {
+                        'sprite elevated': False,
+                        'sprite': 0,
+                        'force render': True,
+                        'ghost': False,
+                        'actors pass through': True,
+                        'actors may grab': False,
+                        'speed': 0.2,
+                        'collideable': True,
+                        'gravity affected': True,
+                        'invisible': False,
+                        'teleport': False,
+                        'teleport description': {'new location': '', 'on touch': True, 'xy': [0, 0]},
+                        'trigger': True,
+                        'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
+                        'item': True,
+                        'item name': {'name': 'stash'},
+                        'active': False,
+                        'actions': {0: []},
                   },
                   } # OBSTACLE SETTINGS SECTION END
               },

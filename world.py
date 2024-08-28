@@ -1698,6 +1698,32 @@ class World(object):
         black_out(self.screen, self.screen, 10)
         render_text('GAME OVER', self.screen, 150, RED, 'AlbionicRegular.ttf', 'center_x', 'center_y')
         pygame.display.flip()
+        pygame.time.wait(1000)
+        pygame.event.clear()
         self.press_any_key()
-        pygame.quit()
-        exit()
+        self.actors['player'].stats['health'] = self.actors['player'].stats['max health']
+        self.actors['player'].stats['mana'] = self.actors['player'].stats['max mana']
+        self.actors['player'].dead = False
+        self.actors['player'].dying = False
+        self.actors['player'].set_state('stand still')
+        self.actors['player'].invincibility_timer = 300
+        for location in self.obstacles.keys():
+            obstacles = self.obstacles[location]
+            for obs_key in obstacles.keys():
+                obs = obstacles[obs_key]
+                # print(obs)
+                if obs.is_item:
+                    if obs.item_name == 'stash':
+                        self.change_location({'new location': location,
+                                              'xy': obs.rectangle.topright
+                                              }
+                                             )
+
+                        return
+
+        self.change_location({'new location': 'entrance',
+                              'xy': (100, 100)
+                              }
+                             )
+        # pygame.quit()
+        # exit()

@@ -282,7 +282,7 @@ demon_2 = {
             'hardness': 100
         },
     },
-    'max speed': 2 + randint(1, 10) / 10,
+    'max speed': 5 + randint(1, 10) / 10,
     'items': (demon_2_close, demon_2_mid, fireball_staff),
     'animations': {
         'stand still right': {
@@ -657,8 +657,8 @@ demon_2 = {
             'repeat from frame': 0
         },
     },
-    'think type': '',
-    # 'think type': 'chaser',
+    # 'think type': '',
+    'think type': 'chaser',
     'disappear after death': False,
     'AI controlled': True
 }
@@ -742,7 +742,7 @@ player_jake = {
     'gravity affected': True,
     'mana replenish': 1.,
     'stamina replenish': 1.5,
-    'strength': 5,
+    'strength': 15,
     'body weight': 60,
     'resistances': {
         # Zero is total resistance, such type of damage multiples by zero.

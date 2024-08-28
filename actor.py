@@ -162,9 +162,42 @@ class Actor(Entity):
     def activate_weapon(self, uuid):
         if not self.inventory:
             return
+        # print(self.inventory['weapons']['jake kick'])
+        if type(uuid) is int:
+            all_weapons = list(self.inventory['weapons'].keys())
+            if self.current_weapon:
+                # print(f'{self.inventory["weapons"][all_weapons[uuid]]["item"]["label"]=}')
+                # print(f'{self.current_weapon["label"]=}')
+                if self.current_weapon['label'] == self.inventory["weapons"][all_weapons[uuid]]["item"]["label"]:
+                    return
+                self.previously_used_weapon = self.current_weapon['label']
+            self.body['right hand']['weapon'] = self.inventory['weapons'][all_weapons[uuid]]
+            # self.body['left hand']['weapon'] = self.inventory['weapons']['jake kick']
+            # self.body['right hand']['weapon'] = self.inventory['weapons'][all_weapons[0]]
+        else:
+            if self.current_weapon:
+                if self.current_weapon['label'] == self.inventory["weapons"][uuid]["item"]["label"]:
+                    return
+                self.previously_used_weapon = self.current_weapon['label']
+            self.body['right hand']['weapon'] = self.inventory['weapons'][uuid]
+            # self.body['left hand']['weapon'] = self.inventory['weapons'][uuid + 1]
+
+
+        self.current_weapon = self.body['right hand']['weapon']['item']
+        # print('------------------------------')
+        # print(self.current_weapon['demolishers'])
+        self.current_stamina_lost_per_attack = self.normal_stamina_lost_per_attack * self.current_weapon['stamina consumption']
+        self.current_mana_lost_per_attack = self.normal_mana_lost_per_attack * self.current_weapon['mana consumption']
+        # print('[activate_weapon]', self.name, self.current_weapon)
+        # print(self.current_weapon)
+        # {'aimed fire': True, 'attack animation': 'stab', 'steal user input': True, 'leave particles': False, 'class': 'weapons', 'type': 'melee', 'sub-type': 'bladed', 'sound': 'sound_swing_2', 'droppable': True, 'need ammo': False, 'ammo': 0, 'label': 'KITCHEN KNIFE', 'sprite': 'kitchen knife', 'pierce': False, 'damager TTL': 200, 'damagers spread': False, 'damager static': True, 'damager radius': 1, 'damagers quantity': 1, 'damager reveal delay': 0, 'damager reveals with flash': False, 'damager brings light': False, 'damager fly speed reduce': 0, 'damager fly speed': 1.5, 'damager invisible': False, 'damager weight': 5, 'description': 'Casual kitchen knife.', 'reach': 1, 'weight': 5, 'hardness': 10, 'special': ('bleeding',)}
+        # exit()
+
+    def activate_weapon_old(self, uuid):
+        if not self.inventory:
+            return
 
         if type(uuid) is int:
-        # if uuid == 0:
             all_weapons = list(self.inventory['weapons'].keys())
             if self.current_weapon:
                 # print(f'{self.inventory["weapons"][all_weapons[uuid]]["item"]["label"]=}')
@@ -202,7 +235,7 @@ class Actor(Entity):
     #         return False
 
     def set_state(self, new_state):
-        print(f'[actor.set_state] {self.name} (#{self.id}) got new state: {new_state} at {self.cycles_passed}')
+        # print(f'[actor.set_state] {self.name} (#{self.id}) got new state: {new_state} at {self.cycles_passed}')
         self.__state = new_state
         self.set_current_animation()
 
@@ -436,7 +469,7 @@ class Actor(Entity):
                     self.set_state('prepare crouch attack left')
             else:
                 self.set_state('prepare attack')
-                print(f'[set action] {self.name} prepares to attack.')
+                # print(f'[set action] {self.name} prepares to attack.')
 
     def think(self):
         if self.think_type == 'chaser':
