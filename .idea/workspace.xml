@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphics.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphics.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,13 +139,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00386" summary="Added claw attack weapon for Demon 2">
-      <created>1723687776682</created>
-      <option name="number" value="00386" />
-      <option name="presentableId" value="LOCAL-00386" />
-      <option name="project" value="LOCAL" />
-      <updated>1723687776682</updated>
     </task>
     <task id="LOCAL-00387" summary="Enemy is able to switch weapons depends on combat situation.">
       <created>1723689248358</created>
@@ -487,7 +476,14 @@
       <option name="project" value="LOCAL" />
       <updated>1724750047368</updated>
     </task>
-    <option name="localTasksCounter" value="435" />
+    <task id="LOCAL-00435" summary="Renovation of checking health condition and dying\dead states setting">
+      <created>1724812347233</created>
+      <option name="number" value="00435" />
+      <option name="presentableId" value="LOCAL-00435" />
+      <option name="project" value="LOCAL" />
+      <updated>1724812347233</updated>
+    </task>
+    <option name="localTasksCounter" value="436" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -502,7 +498,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="After stamina runs out, actor's hits become three times weaker and slower." />
     <MESSAGE value="Actor deals more damage while moving or jumping." />
     <MESSAGE value="Actor gets more damage from behind." />
     <MESSAGE value="After taking damage an actor throws a white ciphers." />
@@ -527,6 +522,7 @@
     <MESSAGE value="Fixing some bugs." />
     <MESSAGE value="Barrels explosion improved." />
     <MESSAGE value="Some fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Some fixes" />
+    <MESSAGE value="Renovation of checking health condition and dying\dead states setting" />
+    <option name="LAST_COMMIT_MESSAGE" value="Renovation of checking health condition and dying\dead states setting" />
   </component>
 </project>
