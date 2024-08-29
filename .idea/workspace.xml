@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/misc_tools.py" beforeDir="false" afterPath="$PROJECT_DIR$/misc_tools.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -141,13 +140,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00392" summary="Some">
-      <created>1723706445758</created>
-      <option name="number" value="00392" />
-      <option name="presentableId" value="LOCAL-00392" />
-      <option name="project" value="LOCAL" />
-      <updated>1723706445758</updated>
     </task>
     <task id="LOCAL-00393" summary="Tuning of enemies being.">
       <created>1723709098750</created>
@@ -485,7 +477,14 @@
       <option name="project" value="LOCAL" />
       <updated>1724899177022</updated>
     </task>
-    <option name="localTasksCounter" value="441" />
+    <task id="LOCAL-00441" summary="activate_weapon() left to be used by non-player actors.&#10;Player actor has now two different attack, which use separate weapons in the right and left hands by pressing different attack buttons.">
+      <created>1724900287896</created>
+      <option name="number" value="00441" />
+      <option name="presentableId" value="LOCAL-00441" />
+      <option name="project" value="LOCAL" />
+      <updated>1724900287896</updated>
+    </task>
+    <option name="localTasksCounter" value="442" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -500,7 +499,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Introduced flipped mask, which should be introduced and used in collisions detection long time ago..." />
     <MESSAGE value="Demon 2 close attack animation improved by adding one more demolisher.&#10;Shy try to expand enemies thinking ability." />
     <MESSAGE value="Added &quot;lie dead&quot; state after health reaching 0.&#10;Bodies remain lying in the world.&#10;Game over message appears after a while, not instantly after the player's death." />
     <MESSAGE value="Even after death actor remains to be affected by the enemy hits, gravitation, and he summon blood splatters" />
@@ -525,6 +523,7 @@
     <MESSAGE value="Added reviving after death in a place where the Stash is." />
     <MESSAGE value="Added the Stash drop after death if player actor has it loaded." />
     <MESSAGE value="render_text() and game_over() tiny updates." />
-    <option name="LAST_COMMIT_MESSAGE" value="render_text() and game_over() tiny updates." />
+    <MESSAGE value="activate_weapon() left to be used by non-player actors.&#10;Player actor has now two different attack, which use separate weapons in the right and left hands by pressing different attack buttons." />
+    <option name="LAST_COMMIT_MESSAGE" value="activate_weapon() left to be used by non-player actors.&#10;Player actor has now two different attack, which use separate weapons in the right and left hands by pressing different attack buttons." />
   </component>
 </project>

@@ -38,6 +38,7 @@ class World(object):
         self.is_new_location_loading: bool = True
         self.new_location_description = dict()
         self.obstacles_changes_pending = dict()
+        self.player_actor_hand_to_change_weapon = 'right hand'
 
         # CONTROLS
         self.is_key_pressed = False
@@ -1279,7 +1280,7 @@ class World(object):
         background_height = len(params) * self.info_panel_font_size + 5 + (self.info_panel_gap_between_stripes * len(params))
 
         pygame.draw.rect(self.screen, BLACK, (self.info_panel_start_x - 5, self.info_panel_start_y - 5, background_width, background_height))
-        self.screen.blit(sprites[self.actors['player'].current_weapon['sprite']]['sprite'], (self.info_panel_start_x, self.info_panel_start_y))
+
         for p in params:
             txt = fonts.all_fonts[self.info_panel_font_size].render(p[0], True, p[2])
             txt_shadow = fonts.all_fonts[self.info_panel_font_size].render(p[0], True, GRAY)
@@ -1290,6 +1291,18 @@ class World(object):
                 pygame.draw.rect(self.screen, p[2], (self.info_panel_start_x + txt_width ,self.info_panel_start_y + dy, p[1],10))
             dy += (self.info_panel_font_size + self.info_panel_gap_between_stripes)
 
+        # Show weapons in both player hands:
+        weapon_sprite_start_x = self.info_panel_start_x + background_width + 5
+        for hand in ('left hand', 'right hand'):
+            s = sprites[self.actors['player'].body[hand]['weapon']['item']['sprite']]['sprite']
+            sz = s.get_size()
+            if hand == self.player_actor_hand_to_change_weapon:
+                pygame.draw.rect(self.screen, WHITE, (weapon_sprite_start_x, self.info_panel_start_y, sz[0], sz[1]), 3, 10, 10)
+
+            self.screen.blit(s, (weapon_sprite_start_x, self.info_panel_start_y))
+            weapon_sprite_start_x += sz[0]
+        # self.screen.blit(sprites[self.actors['player'].current_weapon['sprite']]['sprite'], (self.info_panel_start_x, self.info_panel_start_y))
+        
     def load(self):
         if self.location not in self.locations.keys():
             self.locations[self.location] = dict()
@@ -1424,14 +1437,24 @@ class World(object):
                     self.is_attack = True
                 elif event.key == K_DOWN:
                     self.is_alternate_attack = True
+                if event.key == K_1:
+                    self.player_actor_hand_to_change_weapon = 'left hand'
+                elif event.key == K_2:
+                    self.player_actor_hand_to_change_weapon = 'right hand'
                 # TABULATION
                 if event.key == K_TAB:
-                    lst = list(self.actors['player'].inventory['weapons'].keys())
-                    indx =  lst.index(self.actors['player'].current_weapon['label'])
-                    if indx + 1 > len(lst) - 1:
-                        self.actors['player'].activate_weapon(0)
+                    # entity.body['right hand']['weapon'] = entity.inventory['weapons'][all_weapons[0]]
+                    # entity.body['left hand']['weapon'] = entity.inventory['weapons'][all_weapons[1]]
+
+                    all_weapons = list(self.actors['player'].inventory['weapons'].keys())
+                    indx = all_weapons.index(self.actors['player'].body[self.player_actor_hand_to_change_weapon]['weapon']['item']['label'])
+                    # indx =  all_weapons.index(self.actors['player'].current_weapon['label'])
+                    if indx + 1 > len(all_weapons) - 1:
+                        self.actors['player'].body[self.player_actor_hand_to_change_weapon]['weapon'] = self.actors['player'].inventory['weapons'][all_weapons[0]]
+                        # self.actors['player'].activate_weapon(0)
                     else:
-                        self.actors['player'].activate_weapon(lst[indx+1])
+                        self.actors['player'].body[self.player_actor_hand_to_change_weapon]['weapon'] = self.actors['player'].inventory['weapons'][all_weapons[indx+1]]
+                        # self.actors['player'].activate_weapon(all_weapons[indx+1])
                 # DIRECTION KEYS
                 if event.key == K_d:
                     self.is_input_right_arrow = True
