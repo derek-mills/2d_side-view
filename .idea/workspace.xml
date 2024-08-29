@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -140,13 +142,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00393" summary="Tuning of enemies being.">
-      <created>1723709098750</created>
-      <option name="number" value="00393" />
-      <option name="presentableId" value="LOCAL-00393" />
-      <option name="project" value="LOCAL" />
-      <updated>1723709098750</updated>
     </task>
     <task id="LOCAL-00394" summary="Tuning of enemies being.">
       <created>1723709992593</created>
@@ -484,7 +479,14 @@
       <option name="project" value="LOCAL" />
       <updated>1724900287896</updated>
     </task>
-    <option name="localTasksCounter" value="442" />
+    <task id="LOCAL-00442" summary="Player actor has got an ability to switch weapons separately in every hand.">
+      <created>1724901958737</created>
+      <option name="number" value="00442" />
+      <option name="presentableId" value="LOCAL-00442" />
+      <option name="project" value="LOCAL" />
+      <updated>1724901958738</updated>
+    </task>
+    <option name="localTasksCounter" value="443" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -499,7 +501,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Demon 2 close attack animation improved by adding one more demolisher.&#10;Shy try to expand enemies thinking ability." />
     <MESSAGE value="Added &quot;lie dead&quot; state after health reaching 0.&#10;Bodies remain lying in the world.&#10;Game over message appears after a while, not instantly after the player's death." />
     <MESSAGE value="Even after death actor remains to be affected by the enemy hits, gravitation, and he summon blood splatters" />
     <MESSAGE value="Added 'pistol' weapon and invisible damagers without sprite." />
@@ -524,6 +525,7 @@
     <MESSAGE value="Added the Stash drop after death if player actor has it loaded." />
     <MESSAGE value="render_text() and game_over() tiny updates." />
     <MESSAGE value="activate_weapon() left to be used by non-player actors.&#10;Player actor has now two different attack, which use separate weapons in the right and left hands by pressing different attack buttons." />
-    <option name="LAST_COMMIT_MESSAGE" value="activate_weapon() left to be used by non-player actors.&#10;Player actor has now two different attack, which use separate weapons in the right and left hands by pressing different attack buttons." />
+    <MESSAGE value="Player actor has got an ability to switch weapons separately in every hand." />
+    <option name="LAST_COMMIT_MESSAGE" value="Player actor has got an ability to switch weapons separately in every hand." />
   </component>
 </project>

@@ -580,28 +580,31 @@ class World(object):
                     if obs.item_amount != obs.item_amount_threshold:
                         # print('decrease amount', obs.item_amount)
                         obs.item_amount += obs.item_amount_decrease_speed
-            if obs.teleport:
-                if obs.trigger_activated:
+            if obs.id in self.actors['player'].activated_triggers_list:
+                if obs.teleport:
+                # if obs.trigger_activated:
                     # print('obs')
                     if obs.teleport_description['on touch']:
                         self.change_location(obs.teleport_description)
                         obs.trigger_activated = False
+                        self.actors['player'].activated_triggers_list = list()
                         return
                     else:
                         if self.is_input_up_arrow:
                             self.change_location(obs.teleport_description)
+                            self.actors['player'].activated_triggers_list = list()
                             obs.trigger_activated = False
                             return
                         else:
                             obs.trigger_activated = False
                             continue
-            if obs.trigger:
-                if obs.trigger_activated:
+                if obs.trigger:
+                # if obs.trigger_activated:
                     # obs.trigger = False
                     if obs.is_item:
                         # print("ITEM GRABBED:", obs.item_name, all_items[obs.item_name])
                         if all_items[obs.item_name]['class'] == 'burden':
-                            if self.is_input_up_arrow:
+                            if self.is_input_up_arrow and self.actors['player'].get_state() == 'stand still':
                                 self.actors[self.location][0].add_items_to_inventory((all_items[obs.item_name],))
                                 self.actors[self.location][0].set_state('prepare carry stash')
                                 dead.append(obs.id)
@@ -646,6 +649,7 @@ class World(object):
                         if obs.trigger_description['disappear']:
                             dead.append(obs.id)
                             continue
+
             obs.percept({k: self.obstacles[self.location][k] for k in self.active_obstacles}, self.demolishers[self.location])
             obs.get_time(self.time_passed, self.game_cycles_counter)
             obs.process_()
@@ -1435,7 +1439,7 @@ class World(object):
                 # ATTACKING CHECKS
                 if event.key == K_RIGHT:
                     self.is_attack = True
-                elif event.key == K_DOWN:
+                elif event.key == K_LEFT:
                     self.is_alternate_attack = True
                 if event.key == K_1:
                     self.player_actor_hand_to_change_weapon = 'left hand'

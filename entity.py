@@ -159,6 +159,7 @@ class Entity(object):
         # Collisions
         self.is_collideable = False
         self.obstacles_around = None
+        self.activated_triggers_list = list()
         self.sorted_obs = dict()
             # 'above': list(),
             # 'below': list(),
@@ -844,19 +845,24 @@ class Entity(object):
         self.is_being_collided_now = False
         self.is_stand_on_ground = False
         bottom_already_changed = False
+        self.activated_triggers_list = list()
+        # for k in self.obstacles_around.keys():
+        #     self.obstacles_around[k].trigger_activated = False
         # -----------------------------------
         # Check bottom
         for key in self.sorted_obs['below']:
             obs = self.obstacles_around[key]
             # obs.trigger_activated = False
             obs.is_being_collided_now = False
-
+            # obs.trigger_activated = False
             # Check if obstacle is just a passable trigger for some event:
             if obs.let_actors_pass_through:
                 if obs.trigger or obs.teleport:
+                    # obs.trigger_activated = False
                     if obs.rectangle.colliderect(self.rectangle):
                         if self.id == 0:
-                            obs.trigger_activated = True
+                            # # obs.trigger_activated = True
+                            self.activated_triggers_list.append(key)
                             continue
                 continue
 
@@ -868,7 +874,8 @@ class Entity(object):
                     continue
 
                 if self.id == 0:
-                    obs.trigger_activated = True
+                    # obs.trigger_activated = True
+                    self.activated_triggers_list.append(key)
                 self.collided_bottom = True
                 # if self.collided_top:
                 #     self.ignore_user_input = True
@@ -901,7 +908,8 @@ class Entity(object):
                     if self.id == 0:
                         if obs.rectangle.colliderect(self.rectangle):
                             obs.is_being_collided_now = True
-                            obs.trigger_activated = True
+                            # obs.trigger_activated = True
+                            self.activated_triggers_list.append(key)
                             continue
                 continue
 
@@ -913,14 +921,16 @@ class Entity(object):
 
                         if self.collision_grabber_right.collidepoint(obs.rectangle.topleft):
                             self.influenced_by_obstacle = obs.id
-                            # obs.trigger_activated = True
+                            # # obs.trigger_activated = True
+                            self.activated_triggers_list.append(key)
                             self.set_state('has just grabbed edge')
                             self.state_machine()
                             continue
 
             if obs.rectangle.colliderect(self.collision_detector_right):
                 # if self.id == 0:
-                #     obs.trigger_activated = True
+                #     # obs.trigger_activated = True
+                self.activated_triggers_list.append(key)
                 obs.is_being_collided_now = True
                 self.is_being_collided_now = True
                 self.collided_right = True
@@ -1000,7 +1010,8 @@ class Entity(object):
                 if obs.trigger or obs.teleport:
                     if obs.rectangle.colliderect(self.rectangle):
                         if self.id == 0:
-                            obs.trigger_activated = True
+                            # obs.trigger_activated = True
+                            self.activated_triggers_list.append(key)
                             continue
                 continue
 
@@ -1095,7 +1106,8 @@ class Entity(object):
                 if obs.trigger or obs.teleport:
                     if obs.rectangle.colliderect(self.rectangle):
                         if self.id == 0:
-                            obs.trigger_activated = True
+                            # obs.trigger_activated = True
+                            self.activated_triggers_list.append(key)
                             continue
                 continue
 
