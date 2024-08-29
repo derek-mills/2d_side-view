@@ -819,6 +819,8 @@ class World(object):
                     dead.append(actor.id)
                 if actor.id == 0:
                     self.player_is_dead_counter_to_game_over = 300
+                    if actor.has_item_in_inventory(all_items['stash']):
+                        actor.drop_item_from_inventory(actor.inventory['burden']['stash']['item'])
                     # continue
                 else:
                     if all_hostiles[actor.name]['drop']:
@@ -1707,6 +1709,7 @@ class World(object):
         self.actors['player'].dying = False
         self.actors['player'].set_state('stand still')
         self.actors['player'].invincibility_timer = 300
+        self.actors['player'].ignore_user_input = False
         for location in self.obstacles.keys():
             obstacles = self.obstacles[location]
             for obs_key in obstacles.keys():

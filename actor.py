@@ -159,6 +159,15 @@ class Actor(Entity):
                     if len(self.inventory[item['class']]) == 0:
                         del self.inventory[item['class']]
 
+    def has_item_in_inventory(self, item):
+        if item['class'] in self.inventory.keys():
+            if item['label'] in self.inventory[item['class']].keys():
+                return True
+            else:
+                return False
+        else:
+            return False
+
     def activate_weapon(self, uuid):
         if not self.inventory:
             return
