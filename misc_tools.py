@@ -144,16 +144,16 @@ def render_text(text, screen, font_size, font_color, font_name, *alignment):
             # align[0] - description pf text alignment (center, stick left side, stick to the right etc.)
             # align[1] - how many pixels does text offsets from the alignment point.
             if type(align) == tuple:
-                text_xy = (int(align[0]), int(align[1]))
+                text_xy = (text_xy[0] + int(align[0]), text_xy[1] + int(align[1]))
                 break
             if align == 'center_x':
                 text_xy[0] = MAXX_DIV_2 - txt_sz[0] // 2  # + align[1]
             elif align == 'center_y':
                 text_xy[1] = MAXY_DIV_2 - txt_sz[1] // 2  # + align[1]
             elif align == '1/4_x':
-                text_xy[0] = MAXX_DIV_2 // 4 - txt_sz[0] // 2
+                text_xy[0] = MAXX // 4 - txt_sz[0] // 2
             elif align == '1/4_y':
-                text_xy[1] = MAXY_DIV_2 // 4 - txt_sz[1] // 2
+                text_xy[1] = MAXY // 4 - txt_sz[1] // 2
             elif align == '3/4_x':
                 text_xy[0] = MAXX // 4 * 3 - txt_sz[0] // 2
             elif align == '3/4_y':

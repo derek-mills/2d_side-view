@@ -153,7 +153,13 @@ class World(object):
         entity.ai_controlled = description['AI controlled']
         entity.think_type = description['think type']
         entity.add_items_to_inventory(description['items'])
-        entity.activate_weapon(0)
+        if entity.id != 0:
+            entity.activate_weapon(0)
+        else:
+            all_weapons = list(entity.inventory['weapons'].keys())
+            entity.body['right hand']['weapon'] = entity.inventory['weapons'][all_weapons[0]]
+            entity.body['left hand']['weapon'] = entity.inventory['weapons'][all_weapons[1]]
+            entity.current_weapon = entity.body['right hand']['weapon']['item']
         # entity.activate_weapon('WHIP')
         # entity.activate_weapon('SHORT SWORD')
 
@@ -884,6 +890,15 @@ class World(object):
 
                         if self.is_attack:
                             self.is_attack = False
+                            actor.current_weapon = actor.body['right hand']['weapon']['item']
+                            actor.current_stamina_lost_per_attack = actor.normal_stamina_lost_per_attack * actor.current_weapon['stamina consumption']
+                            actor.current_mana_lost_per_attack = actor.normal_mana_lost_per_attack * actor.current_weapon['mana consumption']
+                            actor.set_action('attack')
+                        elif self.is_alternate_attack:
+                            self.is_alternate_attack = False
+                            actor.current_weapon = actor.body['left hand']['weapon']['item']
+                            actor.current_stamina_lost_per_attack = actor.normal_stamina_lost_per_attack * actor.current_weapon['stamina consumption']
+                            actor.current_mana_lost_per_attack = actor.normal_mana_lost_per_attack * actor.current_weapon['mana consumption']
                             actor.set_action('attack')
 
             actor.get_time(self.time_passed, self.game_cycles_counter)
@@ -1707,7 +1722,7 @@ class World(object):
         render_text('YOU DIED', self.screen, 150, RED, 'AlbionicRegular.ttf', 'center_x', 'center_y')
         pygame.display.flip()
         pygame.time.wait(1000)
-        render_text('press a key to revive', self.screen, 50, RED, 'AlbionicRegular.ttf', 'center_x', '3/4_y')
+        render_text('press a key to revive', self.screen, 50, RED, 'AlbionicRegular.ttf', 'center_x', '3/4_y')  #, (-200, 0))
         pygame.display.flip()
         pygame.event.clear()
         self.press_any_key()
