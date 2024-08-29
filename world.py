@@ -42,6 +42,7 @@ class World(object):
         # CONTROLS
         self.is_key_pressed = False
         self.is_attack = False
+        self.is_alternate_attack = False
         self.is_input_up_arrow = False
         self.is_input_down_arrow = False
         self.is_input_right_arrow = False
@@ -1403,8 +1404,12 @@ class World(object):
                 if event.key == K_ESCAPE:
                     pygame.quit()
                     raise SystemExit()
+                # ATTACKING CHECKS
                 if event.key == K_RIGHT:
                     self.is_attack = True
+                elif event.key == K_DOWN:
+                    self.is_alternate_attack = True
+                # TABULATION
                 if event.key == K_TAB:
                     lst = list(self.actors['player'].inventory['weapons'].keys())
                     indx =  lst.index(self.actors['player'].current_weapon['label'])
@@ -1412,6 +1417,7 @@ class World(object):
                         self.actors['player'].activate_weapon(0)
                     else:
                         self.actors['player'].activate_weapon(lst[indx+1])
+                # DIRECTION KEYS
                 if event.key == K_d:
                     self.is_input_right_arrow = True
                 if event.key == K_a:
@@ -1698,9 +1704,11 @@ class World(object):
         # self.info_windows[0].get_new_message("--== G A M E   O V E R ==--")
         # from misc_tools import render_text
         black_out(self.screen, self.screen, 10)
-        render_text('GAME OVER', self.screen, 150, RED, 'AlbionicRegular.ttf', 'center_x', 'center_y')
+        render_text('YOU DIED', self.screen, 150, RED, 'AlbionicRegular.ttf', 'center_x', 'center_y')
         pygame.display.flip()
         pygame.time.wait(1000)
+        render_text('press a key to revive', self.screen, 50, RED, 'AlbionicRegular.ttf', 'center_x', '3/4_y')
+        pygame.display.flip()
         pygame.event.clear()
         self.press_any_key()
         self.actors['player'].stats['health'] = self.actors['player'].stats['max health']

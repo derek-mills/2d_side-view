@@ -324,24 +324,24 @@ load_single_frame(items, ((0,0,20,30),), 'exp', 2)
 load_single_frame(items, ((0,30,20,30),), 'health vial', 5)
 load_single_frame(items, ((0,60,20,30),), 'stash', 8)
 
-load_single_frame(items, ((20,0,20,30),), 'staff', 5)
+load_single_frame(items, ((20,0,20,30),), 'staff', 3)
 load_single_frame(items, ((40,0,20,30),), 'staff demolisher', 8)
 
-load_single_frame(items, ((20,30,20,30),), 'kitchen knife', 5)
+load_single_frame(items, ((20,30,20,30),), 'kitchen knife', 3)
 load_single_frame(items, ((40,30,20,30),), 'kitchen knife demolisher', 3)
 
-load_single_frame(items, ((20,60,20,30),), 'short sword', 5)
+load_single_frame(items, ((20,60,20,30),), 'short sword', 3)
 load_single_frame(items, ((40,60,29,30),), 'short sword demolisher', 5)
 
-load_single_frame(items, ((20,90,20,30),), 'whip', 5)
+load_single_frame(items, ((20,90,20,30),), 'whip', 3)
 load_single_frame(items, ((40,90,80,30),), 'whip demolisher long', 4)
 load_single_frame(items, ((120,90,60,30),), 'whip demolisher medium', 4)
 load_single_frame(items, ((180,90,40,30),), 'whip demolisher short', 4)
 
-load_single_frame(items, ((20,180,20,30),), 'spikeball staff', 5)
+load_single_frame(items, ((20,180,20,30),), 'spikeball staff', 3)
 load_single_frame(items, ((40,180,80,30),), 'spikeball staff demolisher', 5)
 
-load_single_frame(items, ((20,150,20,30),), 'boot', 5)
+load_single_frame(items, ((20,150,20,30),), 'boot', 3)
 load_single_frame(items, ((40,150,20,30),), 'jake kick demolisher', 5)
 
 load_single_frame(items, ((40,120,40,30),), 'demon 2 claw demolisher', 5)
@@ -350,12 +350,12 @@ load_single_frame(items, ((80,120,40,30),), 'demon 2 mid claw demolisher 1', 5)
 load_single_frame(items, ((120,120,40,30),), 'demon 2 mid claw demolisher 2', 5)
 load_single_frame(items, ((160,120,40,30),), 'demon 2 mid claw demolisher 3', 5)
 
-load_single_frame(items, ((20,210,20,30),), 'axe', 5)
+load_single_frame(items, ((20,210,20,30),), 'axe', 3)
 load_single_frame(items, ((40,210,20,30),), 'axe 45 demolisher', 9)
 load_single_frame(items, ((60,210,20,30),), 'axe 0 demolisher', 9)
 load_single_frame(items, ((80,210,20,30),), 'axe 315 demolisher', 9)
 
-load_single_frame(items, ((20,240,20,30),), 'pistol', 9)
+load_single_frame(items, ((20,240,20,30),), 'pistol', 6)
 
 
 
