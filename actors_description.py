@@ -29,6 +29,8 @@ demon_1 = {
         },
     },
     'max speed': 2 + randint(1, 10) / 10,
+    'acceleration': .4,
+    'air acceleration': .4,
     'items': (demon_2_close, demon_2_mid, spikeball_staff),
     'animations': {
         'stand still right': {
@@ -283,6 +285,9 @@ demon_2 = {
         },
     },
     'max speed': 5 + randint(1, 10) / 10,
+    'acceleration': .3,
+    'air acceleration': .3,
+
     'items': (demon_2_close, demon_2_mid, fireball_staff),
     'animations': {
         'stand still right': {
@@ -683,7 +688,10 @@ exploding_barrel = {
     'height': 150,  # For level editor use only
     'width': 50,  # For level editor use only
     'gravity affected': True,
-    'max speed': 2 + randint(1, 10) / 10,
+    'max speed': 1,
+    'acceleration': .5,
+    'air acceleration': .4,
+
     'items': (barrel_explosion,),
     'animations': {
         'stand still right': {
@@ -758,6 +766,8 @@ player_jake = {
         },
     },
     'max speed': 8,
+    'acceleration': .8,
+    'air acceleration': .4,
     'items': (fireball_staff,jake_kick,pistol,axe,whip,),
     # 'items': (whip,fireball_staff,sword,kitchen_knife,),
     'animations': {

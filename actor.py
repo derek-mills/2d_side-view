@@ -22,8 +22,8 @@ class Actor(Entity):
         self.previously_used_weapon = ''
         self.force_use_previous_weapon = False
 
-        self.acceleration = .5
-        self.air_acceleration = .4
+        # self.acceleration = .5
+        # self.air_acceleration = .4
         self.jump_height: int = 22
         self.max_jump_attempts = 2
 

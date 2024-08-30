@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/graphics.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -140,13 +142,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00396" summary="Some animations tuning">
-      <created>1723780465684</created>
-      <option name="number" value="00396" />
-      <option name="presentableId" value="LOCAL-00396" />
-      <option name="project" value="LOCAL" />
-      <updated>1723780465684</updated>
     </task>
     <task id="LOCAL-00397" summary="Some animations tuning&#10;Staff of spikes weapon added">
       <created>1723784938911</created>
@@ -484,7 +479,14 @@
       <option name="project" value="LOCAL" />
       <updated>1724988240689</updated>
     </task>
-    <option name="localTasksCounter" value="445" />
+    <task id="LOCAL-00445" summary="Improved revealing of weapons icons aesthetic.">
+      <created>1724988724700</created>
+      <option name="number" value="00445" />
+      <option name="presentableId" value="LOCAL-00445" />
+      <option name="project" value="LOCAL" />
+      <updated>1724988724700</updated>
+    </task>
+    <option name="localTasksCounter" value="446" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -499,7 +501,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added 'pistol' weapon and invisible damagers without sprite." />
     <MESSAGE value="Fixed some bugs." />
     <MESSAGE value="Inserted routines to handle 'piercing' demolishers, which may damage several targets, and not piercing demolishers, which become harmless after hit somebody." />
     <MESSAGE value="Fixing minor but annoying bugs" />
@@ -524,6 +525,7 @@
     <MESSAGE value="Player actor has got an ability to switch weapons separately in every hand." />
     <MESSAGE value="Slightly changed triggers and teleports interaction system." />
     <MESSAGE value="It is now impossible to get the same weapon in both hands." />
-    <option name="LAST_COMMIT_MESSAGE" value="It is now impossible to get the same weapon in both hands." />
+    <MESSAGE value="Improved revealing of weapons icons aesthetic." />
+    <option name="LAST_COMMIT_MESSAGE" value="Improved revealing of weapons icons aesthetic." />
   </component>
 </project>

@@ -136,6 +136,10 @@ class World(object):
         entity.destination[0] = entity.rectangle.centerx
         entity.destination[1] = entity.rectangle.centery
         entity.max_speed = description['max speed']
+        entity.acceleration = description['acceleration']
+        entity.default_acceleration = description['acceleration']
+        entity.air_acceleration = description['air acceleration']
+        entity.default_air_acceleration = description['air acceleration']
         entity.default_max_speed = description['max speed']
 
         entity.animations = description['animations']
