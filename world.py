@@ -1790,7 +1790,8 @@ class World(object):
                         return
 
         self.change_location({'new location': 'entrance',
-                              'xy': (100, 100)
+                              'xy': (100, locations['entrance']['size'][1] - 200)
+                              # 'xy': (100, 100)
                               }
                              )
         # pygame.quit()

@@ -683,7 +683,7 @@ exploding_barrel = {
         'slash': 0.,
         'pierce': 0.1,
         'smash': 0.2,
-        'fire': 2
+        'fire': 5
     },
     'height': 150,  # For level editor use only
     'width': 50,  # For level editor use only
@@ -702,21 +702,21 @@ exploding_barrel = {
             },
         'almost explode right': {
                 'repeat': True,
-                'sequence': (1,2,1,2), 'speed': 10,
+                'sequence': (1,2,1,2,1,2,1,2,1,2,1,2), 'speed': 10,
                 'activity at frames': {},
                 'repeat from frame': 0
             },
         'almost explode left': {
                 'repeat': True,
-                'sequence': (1,2,1,2), 'speed': 10,
+                'sequence': (1,2,1,2,1,2,1,2,1,2,1,2), 'speed': 10,
                 'activity at frames': {},
                 'repeat from frame': 0
             },
         'explosion right': {
                 'repeat': True,
-                'sequence': (1,2,1,2,1,2,1,2), 'speed': 1,
+                'sequence': (3,4,5,3,4,5,3,4,5,3,4,5), 'speed': 1,
                 'activity at frames': {
-                    7: {
+                    11: {
                         'sound': True,
                         'demolishers set number': 0,
                         'demolisher': True
@@ -726,9 +726,9 @@ exploding_barrel = {
             },
         'explosion left': {
                 'repeat': True,
-                'sequence': (1,2,1,2,1,2,1,2), 'speed': 1,
+                'sequence': (3,4,5,3,4,5,3,4,5,3,4,5), 'speed': 1,
                 'activity at frames': {
-                    7: {
+                    11: {
                         'sound': True,
                         'demolishers set number': 0,
                         'demolisher': True

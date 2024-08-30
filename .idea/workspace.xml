@@ -8,6 +8,13 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphics.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/animations/exploding_barrel.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/animations/exploding_barrel.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/items.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/items.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -142,13 +149,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00397" summary="Some animations tuning&#10;Staff of spikes weapon added">
-      <created>1723784938911</created>
-      <option name="number" value="00397" />
-      <option name="presentableId" value="LOCAL-00397" />
-      <option name="project" value="LOCAL" />
-      <updated>1723784938911</updated>
     </task>
     <task id="LOCAL-00398" summary="Added attack type matter: blood splatter appear only if weapon do slash damage, hop back after getting hurt causes if a weapon has 'smash' ability.">
       <created>1723790288321</created>
@@ -486,7 +486,14 @@
       <option name="project" value="LOCAL" />
       <updated>1724988724700</updated>
     </task>
-    <option name="localTasksCounter" value="446" />
+    <task id="LOCAL-00446" summary="Changed acceleration handling for all actors">
+      <created>1724990651318</created>
+      <option name="number" value="00446" />
+      <option name="presentableId" value="LOCAL-00446" />
+      <option name="project" value="LOCAL" />
+      <updated>1724990651318</updated>
+    </task>
+    <option name="localTasksCounter" value="447" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -501,7 +508,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed some bugs." />
     <MESSAGE value="Inserted routines to handle 'piercing' demolishers, which may damage several targets, and not piercing demolishers, which become harmless after hit somebody." />
     <MESSAGE value="Fixing minor but annoying bugs" />
     <MESSAGE value="Try to avoid infinite sliding after hopping back got by injury." />
@@ -526,6 +532,7 @@
     <MESSAGE value="Slightly changed triggers and teleports interaction system." />
     <MESSAGE value="It is now impossible to get the same weapon in both hands." />
     <MESSAGE value="Improved revealing of weapons icons aesthetic." />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved revealing of weapons icons aesthetic." />
+    <MESSAGE value="Changed acceleration handling for all actors" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed acceleration handling for all actors" />
   </component>
 </project>

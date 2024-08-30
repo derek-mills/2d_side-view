@@ -540,7 +540,8 @@ class Actor(Entity):
                             self.ai_input_left_arrow = False
                             self.ai_input_right_arrow = False
         elif self.think_type == 'exploding barrel':
-            ...
+            if self.fall_speed > 20:  # barrel explodes if it falls from the height of 4 blocks (50 pixels * 4)
+                self.set_state('almost explode')
             # if self.get_state() == 'dying':
             #     print(f'[think] A barrel consider to be dying.')
             #     self.set_state('almost explode')
@@ -1036,8 +1037,9 @@ class Actor(Entity):
                     self.is_abort_jump = True
         elif self.get_state() == 'almost explode':
             # print(f'[state machine] {self.name} is going to explode.')
-            print(f'[state machine] {self.name} state: *ALMOST EXPLODE*.')
-            self.set_state('explosion')
+            # print(f'[state machine] {self.name} state: *ALMOST EXPLODE*.')
+            if self.animation_sequence_done:
+                self.set_state('explosion')
         elif self.get_state() == 'explosion':
             if self.animation_sequence_done:
                 print(f'[state machine] {self.name} state: *EXPLOSION*.')

@@ -539,8 +539,8 @@ pistol = {
     'animation speed modifier': 1.,  # 0 < x < 1: speed animation up, x > 1: slow down.
     'leave particles': False,
     'droppable': True,
-    'need ammo': True,
-    'ammo': 20,
+    # 'need ammo': True,
+    # 'ammo': 20,
     'reach': 200,
     'demolishers': (
         ({
@@ -554,9 +554,9 @@ pistol = {
             'bounce': False, 'bounce factor': 0.,
             'attack type': ('slash', 'smash', 'pierce'),
              'damage': {
-                 'fire': 5,
+                 'fire': 25,
                  'smash': 10,
-                 'pierce': 10,
+                 'pierce': 100,
              },
             # 'aftermath': 'explode'
             'aftermath': 'disappear'

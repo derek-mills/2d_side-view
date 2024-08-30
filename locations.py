@@ -151,36 +151,26 @@ locations = {
             'description': 'apartment #1',
             'size': (2500, 1000),
             'hostiles': {
-            	(800.0, 450.0): {
-                    'name': 'demon 2',
-                    'height': 150,
-                    'width': 50,
-                    'health': 1500.0,
-                    'max speed': 2.8,
-            	},
-
-            	(650.0, 650.0): {
+            	(850.0, 650.0): {
                     'name': 'exploding barrel',
                     'height': 150,
                     'width': 50,
                     'health': 500.0,
-                    'max speed': 2.6,
+                    'max speed': 1,
             	},
 
-            	(900.0, 650.0): {
+            	(2100.0, 300.0): {
                     'name': 'exploding barrel',
                     'height': 150,
                     'width': 50,
                     'health': 500.0,
-                    'max speed': 2.6,
+                    'max speed': 1,
             	},
 
-            	(1150.0, 650.0): {
+            	(450.0, 250.0): {
                     'name': 'exploding barrel',
                     'height': 150,
                     'width': 50,
-                    'health': 500.0,
-                    'max speed': 2.6,
             	},
 
               },
@@ -199,7 +189,7 @@ locations = {
                 ((2100, 450), (350, 50), 22),  #22
                 ((2100, 700), (350, 50), 23),  #23
                 ((1400, 925), (100, 25), 28),  #28
-                ((50, 200), (550, 50), 30),  #30
+                ((50, 400), (550, 50), 30),  #30
                 ((600, 200), (1850, 50), 31),  #31
                 ((1950, 750), (150, 50), 33),  #33
                 ((1800, 800), (150, 50), 34),  #34
@@ -310,6 +300,26 @@ locations = {
                         'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
                         'item': True,
                         'item name': {'name': 'stash'},
+                        'active': False,
+                        'actions': {0: []},
+                  },
+                    30: {
+                        'sprite elevated': False,
+                        'sprite': 0,
+                        'force render': True,
+                        'ghost': False,
+                        'actors pass through': False,
+                        'actors may grab': True,
+                        'speed': 0.2,
+                        'collideable': False,
+                        'gravity affected': False,
+                        'invisible': False,
+                        'teleport': False,
+                        'teleport description': {'new location': '', 'on touch': False, 'xy': [0, 0]},
+                        'trigger': False,
+                        'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
+                        'item': False,
+                        'item name': {'name': ''},
                         'active': False,
                         'actions': {0: []},
                   },

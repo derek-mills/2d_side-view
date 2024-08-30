@@ -381,7 +381,7 @@ tmp_sprites = pygame.image.load('img/animations/exploding_barrel.png').convert_a
 screen.convert_alpha(tmp_sprites)
 load_single_frame(tmp_sprites, ((260,150,20,18),), name + ' avatar')
 load_single_frame(tmp_sprites, ((260,150,20,18),), name + ' avatar front')
-load_all_frames(tmp_sprites, 2, name, 20, 30, 8)
+load_all_frames(tmp_sprites, 5, name, 20, 30, 8)
 
 # ___...---=== DEMON 2 ===---...___
 name = 'demon 2'

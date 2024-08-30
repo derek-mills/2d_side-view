@@ -776,7 +776,7 @@ class Entity(object):
     def get_damage(self, damage, damage_multiplier):
         # if self.dead:
         #     return
-        print(f'[entity.get_damage] incoming damage dealt to {self.name} | {self.stats["health"]=}')
+        # print(f'[entity.get_damage] incoming damage dealt to {self.name} | {self.stats["health"]=}')
         self.total_damage_has_got = 0
         for damage_type in damage:
             d = damage[damage_type] * self.resistances[damage_type] * damage_multiplier
