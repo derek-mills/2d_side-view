@@ -1451,14 +1451,23 @@ class World(object):
                     # entity.body['left hand']['weapon'] = entity.inventory['weapons'][all_weapons[1]]
 
                     all_weapons = list(self.actors['player'].inventory['weapons'].keys())
-                    indx = all_weapons.index(self.actors['player'].body[self.player_actor_hand_to_change_weapon]['weapon']['item']['label'])
-                    # indx =  all_weapons.index(self.actors['player'].current_weapon['label'])
-                    if indx + 1 > len(all_weapons) - 1:
-                        self.actors['player'].body[self.player_actor_hand_to_change_weapon]['weapon'] = self.actors['player'].inventory['weapons'][all_weapons[0]]
-                        # self.actors['player'].activate_weapon(0)
+                    current_index = all_weapons.index(self.actors['player'].body[self.player_actor_hand_to_change_weapon]['weapon']['item']['label'])
+                    if current_index + 1 > len(all_weapons) - 1:
+                        next_index = 0
                     else:
-                        self.actors['player'].body[self.player_actor_hand_to_change_weapon]['weapon'] = self.actors['player'].inventory['weapons'][all_weapons[indx+1]]
-                        # self.actors['player'].activate_weapon(all_weapons[indx+1])
+                        next_index = current_index + 1
+
+                    while self.actors['player'].inventory['weapons'][all_weapons[next_index]] == \
+                          self.actors['player'].body['left hand' if self.player_actor_hand_to_change_weapon == 'right hand' else 'right hand']['weapon']: \
+                        next_index = 0 if next_index + 1 > len(all_weapons) - 1 else next_index + 1
+
+                    self.actors['player'].body[self.player_actor_hand_to_change_weapon]['weapon'] = self.actors['player'].inventory['weapons'][all_weapons[next_index]]
+
+                    # if current_index + 1 > len(all_weapons) - 1:
+                    #     self.actors['player'].body[self.player_actor_hand_to_change_weapon]['weapon'] = self.actors['player'].inventory['weapons'][all_weapons[0]]
+                    # else:
+                    #     self.actors['player'].body[self.player_actor_hand_to_change_weapon]['weapon'] = self.actors['player'].inventory['weapons'][all_weapons[current_index+1]]
+
                 # DIRECTION KEYS
                 if event.key == K_d:
                     self.is_input_right_arrow = True
