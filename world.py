@@ -1295,16 +1295,18 @@ class World(object):
                 pygame.draw.rect(self.screen, p[2], (self.info_panel_start_x + txt_width ,self.info_panel_start_y + dy, p[1],10))
             dy += (self.info_panel_font_size + self.info_panel_gap_between_stripes)
 
-        # Show weapons in both player hands:
+        # Show weapons ICONS in both player's hands:
         weapon_sprite_start_x = self.info_panel_start_x + background_width + 5
+        frame_sz = sprites['axe']['sprite'].get_size()
         for hand in ('left hand', 'right hand'):
             s = sprites[self.actors['player'].body[hand]['weapon']['item']['sprite']]['sprite']
             sz = s.get_size()
             if hand == self.player_actor_hand_to_change_weapon:
-                pygame.draw.rect(self.screen, WHITE, (weapon_sprite_start_x, self.info_panel_start_y, sz[0], sz[1]), 3, 10, 10)
+                pygame.draw.rect(self.screen, WHITE, (weapon_sprite_start_x, self.info_panel_start_y, frame_sz[0], frame_sz[1]), 3, 10, 10)
 
-            self.screen.blit(s, (weapon_sprite_start_x, self.info_panel_start_y))
-            weapon_sprite_start_x += sz[0]
+            self.screen.blit(s, (weapon_sprite_start_x + frame_sz[0] // 2 - sz[0] // 2,
+                                 self.info_panel_start_y + frame_sz[1] // 2 - sz[1] // 2))
+            weapon_sprite_start_x += frame_sz[0]
         # self.screen.blit(sprites[self.actors['player'].current_weapon['sprite']]['sprite'], (self.info_panel_start_x, self.info_panel_start_y))
         
     def load(self):

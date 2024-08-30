@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphics.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphics.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -142,13 +140,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00395" summary="Jake's kick added">
-      <created>1723779353654</created>
-      <option name="number" value="00395" />
-      <option name="presentableId" value="LOCAL-00395" />
-      <option name="project" value="LOCAL" />
-      <updated>1723779353654</updated>
     </task>
     <task id="LOCAL-00396" summary="Some animations tuning">
       <created>1723780465684</created>
@@ -486,7 +477,14 @@
       <option name="project" value="LOCAL" />
       <updated>1724919548083</updated>
     </task>
-    <option name="localTasksCounter" value="444" />
+    <task id="LOCAL-00444" summary="It is now impossible to get the same weapon in both hands.">
+      <created>1724988240689</created>
+      <option name="number" value="00444" />
+      <option name="presentableId" value="LOCAL-00444" />
+      <option name="project" value="LOCAL" />
+      <updated>1724988240689</updated>
+    </task>
+    <option name="localTasksCounter" value="445" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -501,7 +499,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Even after death actor remains to be affected by the enemy hits, gravitation, and he summon blood splatters" />
     <MESSAGE value="Added 'pistol' weapon and invisible damagers without sprite." />
     <MESSAGE value="Fixed some bugs." />
     <MESSAGE value="Inserted routines to handle 'piercing' demolishers, which may damage several targets, and not piercing demolishers, which become harmless after hit somebody." />
@@ -526,6 +523,7 @@
     <MESSAGE value="activate_weapon() left to be used by non-player actors.&#10;Player actor has now two different attack, which use separate weapons in the right and left hands by pressing different attack buttons." />
     <MESSAGE value="Player actor has got an ability to switch weapons separately in every hand." />
     <MESSAGE value="Slightly changed triggers and teleports interaction system." />
-    <option name="LAST_COMMIT_MESSAGE" value="Slightly changed triggers and teleports interaction system." />
+    <MESSAGE value="It is now impossible to get the same weapon in both hands." />
+    <option name="LAST_COMMIT_MESSAGE" value="It is now impossible to get the same weapon in both hands." />
   </component>
 </project>

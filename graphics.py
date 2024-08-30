@@ -341,7 +341,7 @@ load_single_frame(items, ((180,90,40,30),), 'whip demolisher short', 4)
 load_single_frame(items, ((20,180,20,30),), 'spikeball staff', 3)
 load_single_frame(items, ((40,180,80,30),), 'spikeball staff demolisher', 5)
 
-load_single_frame(items, ((20,150,20,30),), 'boot', 3)
+load_single_frame(items, ((20,150,20,30),), 'boot', 4)
 load_single_frame(items, ((40,150,20,30),), 'jake kick demolisher', 5)
 
 load_single_frame(items, ((40,120,40,30),), 'demon 2 claw demolisher', 5)
