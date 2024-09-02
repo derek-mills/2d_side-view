@@ -600,6 +600,8 @@ class Actor(Entity):
             self.ignore_user_input = self.current_weapon['ignore user input']
             if self.is_stand_on_ground:
                 self.heading[0] = 0
+        elif self.get_state() == 'protect':
+            ...
         elif self.get_state() == 'prepare crouch attack left':                          # PREPARING ATTACK
             self.set_state(self.current_weapon['attack animation'] + ' crouch left')
             self.stamina_reduce(self.current_stamina_lost_per_attack)
@@ -1044,8 +1046,6 @@ class Actor(Entity):
             if self.animation_sequence_done:
                 print(f'[state machine] {self.name} state: *EXPLOSION*.')
                 self.dying = True
-
-
 
     def reset_self_flags(self):
         self.is_move_left = False

@@ -119,8 +119,8 @@ def load_single_frame(source, frame, name, scale_factor=1):
         'current mask rect': pygame.Rect(0,0,0,0)
     }
 
-    if sprites[name]["demolisher snap point"] != [0,0]:
-        print(f'[load single frame] added {name=} {sprites[name]["demolisher snap point"]}')
+    # if sprites[name]["demolisher snap point"] != [0,0]:
+    #     print(f'[load single frame] added {name=} {sprites[name]["demolisher snap point"]}')
 # def load_frames(source, approximate_frames, name, scale_factor=1):
 #     frame_count = 0
 #     global sprites, sprites_reference
@@ -357,6 +357,9 @@ load_single_frame(items, ((80,210,20,30),), 'axe 315 demolisher', 9)
 
 load_single_frame(items, ((20,240,20,30),), 'pistol', 3)
 
+load_single_frame(items, ((20,270,20,30),), 'small shield', 4)
+load_single_frame(items, ((40,270,20,30),), 'small shield protector', 4)
+
 
 
 # ___...---=== JAKE ===---...___
@@ -372,7 +375,7 @@ load_single_frame(tmp_sprites, ((260,150,20,18),), name + ' avatar front')
 # load_single_frame(tmp_sprites, ((2660,1720,90,50),), name + 'floor shadow mask')
 # load_single_frame(tmp_sprites, ((1744,2194,332,205),), name + ' 98')  # Unconsciousness frame 1
 # load_single_frame(tmp_sprites, ((2076,2220,369,176),), name + ' 99')  # Unconsciousness frame 2
-load_all_frames(tmp_sprites, 97, name, 20, 30, 8)
+load_all_frames(tmp_sprites, 122, name, 20, 30, 8)
 # load_all_frames(tmp_sprites, 97, name, 20, 30, 8, weak_spots)
 
 # ___...---=== EXPLODING BARREL ===---...___

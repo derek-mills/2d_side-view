@@ -898,13 +898,13 @@ class World(object):
                                 actor.set_action('hop back action cancel')
 
                         if self.is_attack:
-                            self.is_attack = False
+                            # self.is_attack = False
                             actor.current_weapon = actor.body['right hand']['weapon']['item']
                             actor.current_stamina_lost_per_attack = actor.normal_stamina_lost_per_attack * actor.current_weapon['stamina consumption']
                             actor.current_mana_lost_per_attack = actor.normal_mana_lost_per_attack * actor.current_weapon['mana consumption']
                             actor.set_action('attack')
                         elif self.is_alternate_attack:
-                            self.is_alternate_attack = False
+                            # self.is_alternate_attack = False
                             actor.current_weapon = actor.body['left hand']['weapon']['item']
                             actor.current_stamina_lost_per_attack = actor.normal_stamina_lost_per_attack * actor.current_weapon['stamina consumption']
                             actor.current_mana_lost_per_attack = actor.normal_mana_lost_per_attack * actor.current_weapon['mana consumption']
@@ -1435,6 +1435,10 @@ class World(object):
                 # if event.key == K_SPACE:
                     self.is_jump_button = False
                     self.jump_button_multiple_press_prevent = False
+                if event.key == K_RIGHT:
+                    self.is_attack = False
+                elif event.key == K_LEFT:
+                    self.is_alternate_attack = False
                 # if event.key == K_RIGHT:
                 #     self.is_attack = False
             if event.type == KEYDOWN:
@@ -1457,16 +1461,25 @@ class World(object):
                     # entity.body['left hand']['weapon'] = entity.inventory['weapons'][all_weapons[1]]
 
                     all_weapons = list(self.actors['player'].inventory['weapons'].keys())
+                    # all_shields = list(self.actors['player'].inventory['shields'].keys())
+                    # all_gear = all_shields + all_weapons
+                    # current_index = all_gear.index(self.actors['player'].body[self.player_actor_hand_to_change_weapon]['weapon']['item']['label'])
                     current_index = all_weapons.index(self.actors['player'].body[self.player_actor_hand_to_change_weapon]['weapon']['item']['label'])
+                    # if current_index + 1 > len(all_gear) - 1:
                     if current_index + 1 > len(all_weapons) - 1:
                         next_index = 0
                     else:
                         next_index = current_index + 1
 
+                    # while self.actors['player'].inventory['weapons'][all_gear[next_index]] == \
+                    #       self.actors['player'].body['left hand' if self.player_actor_hand_to_change_weapon == 'right hand' else 'right hand']['weapon']: \
+                    #     next_index = 0 if next_index + 1 > len(all_gear) - 1 else next_index + 1
+
                     while self.actors['player'].inventory['weapons'][all_weapons[next_index]] == \
                           self.actors['player'].body['left hand' if self.player_actor_hand_to_change_weapon == 'right hand' else 'right hand']['weapon']: \
                         next_index = 0 if next_index + 1 > len(all_weapons) - 1 else next_index + 1
 
+                    # self.actors['player'].body[self.player_actor_hand_to_change_weapon]['weapon'] = self.actors['player'].inventory['weapons'][all_gear[next_index]]
                     self.actors['player'].body[self.player_actor_hand_to_change_weapon]['weapon'] = self.actors['player'].inventory['weapons'][all_weapons[next_index]]
 
                     # if current_index + 1 > len(all_weapons) - 1:

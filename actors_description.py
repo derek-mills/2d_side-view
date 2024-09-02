@@ -768,7 +768,7 @@ player_jake = {
     'max speed': 8,
     'acceleration': .8,
     'air acceleration': .4,
-    'items': (fireball_staff,jake_kick,pistol,axe,whip,),
+    'items': (fireball_staff,small_shield,jake_kick,pistol,axe,whip,),
     # 'items': (whip,fireball_staff,sword,kitchen_knife,),
     'animations': {
         'stand still right': {
@@ -1170,6 +1170,70 @@ player_jake = {
                     # 'move': 10,  # Slightly move actor forward,
                     'demolishers set number': 0,
                     'demolisher': True
+                },
+            },
+            'repeat from frame': 0
+        },
+        'protect right': {
+            'repeat': False, 'interruptable': True,
+            'sequence': (98,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'speed': 1,
+            'activity at frames': {
+                0: {
+                    'sound': None,
+                    # 'move': 10,  # Slightly move actor forward,
+                    'protectors set number': 0,
+                    'demolishers set number': 0,
+                    'protector': True,
+                    'demolisher': False
+                },
+            },
+            'repeat from frame': 0
+        },
+        'protect left': {
+            'repeat': False, 'interruptable': True,
+            'sequence': (122,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'speed': 1,
+            'activity at frames': {
+                0: {
+                    'sound': None,
+                    # 'move': 10,  # Slightly move actor forward,
+                    'protectors set number': 0,
+                    'demolishers set number': 0,
+                    'protector': True,
+                    'demolisher': False
+                },
+            },
+            'repeat from frame': 0
+        },
+        'protect walk right': {
+            'repeat': True,
+            'sequence': (98,99,100,101,102,103,104,105,106,107,108,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'speed': 1,
+            'activity at frames': {
+                0: {
+                    'sound': None,
+                    # 'move': 10,  # Slightly move actor forward,
+                    'protectors set number': 0,
+                    'demolishers set number': 0,
+                    'protector': True,
+                    'demolisher': False
+                },
+            },
+            'repeat from frame': 0
+        },
+        'protect walk left': {
+            'repeat': True,
+            'sequence': (122,121,120,119,118,117,116,115,114,113,112,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'speed': 1,
+            'activity at frames': {
+                0: {
+                    'sound': None,
+                    # 'move': 10,  # Slightly move actor forward,
+                    'protectors set number': 0,
+                    'demolishers set number': 0,
+                    'protector': True,
+                    'demolisher': False
                 },
             },
             'repeat from frame': 0

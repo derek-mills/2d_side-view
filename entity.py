@@ -26,6 +26,8 @@ class Entity(object):
         self.think_type: str = ''
         self.summon_demolisher = False
         self.summoned_demolishers_description = list()
+        self.summon_protector = False
+        self.summoned_protectors_description = list()
         # self.summoned_demolisher_description = dict()
         self.summon_particle = False
         self.summoned_particle_descriptions = list()
@@ -418,42 +420,38 @@ class Entity(object):
         if self.frame_number in self.active_frames:
             for action in self.animations[self.current_animation]['activity at frames'][self.frame_number]:
                 # print(self.frame_number, action)
-                if action == 'move':
-                    self.speed = self.animations[self.current_animation]['activity at frames'][self.frame_number]['move']
-                    # print(f'[process active frames] make step at frame {self.frame_number}')
-                elif action == 'demolisher':
-                    # print(f'[process active frames] make attack at frame {self.frame_number}')
-                    self.summon_demolisher = True
-                    self.summoned_demolishers_description = list()
-                    dem_set_num = self.animations[self.current_animation]['activity at frames'][self.frame_number]['demolishers set number']
-                    # if dem_set_num <= len(self.current_weapon['demolishers']) - 1:
-                    for d_origin in self.current_weapon['demolishers'][dem_set_num]:
-                    # for d_origin in self.current_weapon['demolishers'][self.frame_number]:
-                        # self.summon_demolisher_counter += 1
-                        d = copy.deepcopy(d_origin)
-                        # d['damage'] = d_origin['damage'] / self.frames_changing_threshold_penalty
-                        # d['snap to actor'] = self.id if d_origin['static'] else -1
-                        d['parent'] = self
-                        d['demolisher sprite'] = d_origin['demolisher sprite']
-                        # d['parent'] = self.name
-                        d['snapping offset'] = sprites[self.name + ' ' + str(self.animation_sequence[self.frame_number])]['demolisher snap point']
-                        # d['snapping offset'] = sprites[self.name + ' ' + str(self.animation_sequence[self.frame_number])]['demolisher snap point']
-                        # d['parent strength'] = self.strength
-                        # d['parent weight'] = self.body_weight
-
-                        self.summoned_demolishers_description.append(d)
-                        # self.summoned_demolisher_description['snapping offset'] = self.animations[self.current_animation]['demolisher offset'][self.look]
-                    # if self.summon_demolisher_counter < len(self.current_weapon['demolishers']) - 1:
-                    #     self.summon_demolisher = True
-                    #     self.summon_demolisher_counter += 1
-                    #     self.summoned_demolisher_description = self.current_weapon['demolishers'][self.summon_demolisher_counter]
-                    #     self.summoned_demolisher_description['snap to actor'] = self.id
-                    #     self.summoned_demolisher_description['parent'] = self.name
-                    #     self.summoned_demolisher_description['snapping offset'] = sprites[self.name + ' ' + str(self.animation_sequence[self.frame_number])]['demolisher snap point']
-                    #     # self.summoned_demolisher_description['snapping offset'] = self.animations[self.current_animation]['demolisher offset'][self.look]
-                elif action == 'sound':
-                    snd = self.animations[self.current_animation]['activity at frames'][self.frame_number]
-                    # print(f'[entity.process_activity_at_current_animation_frame] make {snd} at frame {self.frame_number}')
+                if self.animations[self.current_animation]['activity at frames'][self.frame_number][action]:
+                    # IF ACTION IS TRUE:
+                    if action == 'protector':
+                        # print(f'[process active frames] defend at frame {self.frame_number}')
+                        self.summon_protector = True
+                        self.summoned_protectors_description = list()
+                        dem_set_num = self.animations[self.current_animation]['activity at frames'][self.frame_number]['protectors set number']
+                        for d_origin in self.current_weapon['protectors'][dem_set_num]:
+                            d = copy.deepcopy(d_origin)
+                            d['parent'] = self
+                            d['protector sprite'] = d_origin['protector sprite']
+                            d['snapping offset'] = sprites[self.name + ' ' + str(self.animation_sequence[self.frame_number])]['demolisher snap point']
+                            self.summoned_protectors_description.append(d)
+                    elif action == 'demolisher':
+                        # print(f'[process active frames] make attack at frame {self.frame_number}')
+                        self.summon_demolisher = True
+                        self.summoned_demolishers_description = list()
+                        dem_set_num = self.animations[self.current_animation]['activity at frames'][self.frame_number]['demolishers set number']
+                        for d_origin in self.current_weapon['demolishers'][dem_set_num]:
+                            d = copy.deepcopy(d_origin)
+                            d['parent'] = self
+                            d['demolisher sprite'] = d_origin['demolisher sprite']
+                            d['snapping offset'] = sprites[self.name + ' ' + str(self.animation_sequence[self.frame_number])]['demolisher snap point']
+                            self.summoned_demolishers_description.append(d)
+                else:
+                    # Other actions
+                    if action == 'move':
+                        self.speed = self.animations[self.current_animation]['activity at frames'][self.frame_number]['move']
+                        # print(f'[process active frames] make step at frame {self.frame_number}')
+                    elif action == 'sound':
+                        snd = self.animations[self.current_animation]['activity at frames'][self.frame_number]
+                        # print(f'[entity.process_activity_at_current_animation_frame] make {snd} at frame {self.frame_number}')
             self.active_frames = self.active_frames[1:]
 
 
