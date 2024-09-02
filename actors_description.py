@@ -1175,7 +1175,7 @@ player_jake = {
             'repeat from frame': 0
         },
         'protect right': {
-            'repeat': False, 'interruptable': True,
+            'repeat': True, 'interruptable': True,
             'sequence': (98,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
             'speed': 1,
             'activity at frames': {
@@ -1191,7 +1191,7 @@ player_jake = {
             'repeat from frame': 0
         },
         'protect left': {
-            'repeat': False, 'interruptable': True,
+            'repeat': True, 'interruptable': True,
             'sequence': (122,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
             'speed': 1,
             'activity at frames': {

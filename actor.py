@@ -454,6 +454,9 @@ class Actor(Entity):
             self.ignore_user_input = False
             # self.movement_direction_inverter = 1
 
+        elif new_action == 'protect':
+            self.set_state('protect')
+
         elif new_action == 'attack':
             if self.stats['stamina'] <= self.current_stamina_lost_per_attack:
                 # print(f'[state machine] NOT ENOUGH STAMINA.')
@@ -479,95 +482,6 @@ class Actor(Entity):
             else:
                 self.set_state('prepare attack')
                 # print(f'[set action] {self.name} prepares to attack.')
-
-    def think(self):
-        if self.think_type == 'chaser':
-            # Change weapon depends on target vicinity:
-            # print('[think]', list(self.inventory['weapons'].keys()))
-            if self.sprite_rectangle.colliderect(self.target.sprite_rectangle):
-                # Smash actor immediately:
-                self.activate_weapon(0)  # Activate close combat weapon (always has index 0).
-                self.ai_input_attack = True
-                self.ai_input_left_arrow = False
-                self.ai_input_right_arrow = False
-                # return
-            else:
-                # self.activate_weapon(1)  # Activate middle-ranged weapon (always has index 1).
-
-                if self.rectangle.centerx > self.target.rectangle.centerx:
-                    # if self.rectangle.centerx - self.target.rectangle.centerx <= self.current_weapon['reach']:
-                    #     self.ai_input_attack = True
-                    # else:
-                    self.ai_input_left_arrow = True
-                    self.ai_input_right_arrow = False
-                else:
-                    # if self.target.rectangle.centerx - self.rectangle.centerx <= self.current_weapon['reach']:
-                    #     self.ai_input_attack = True
-                    # else:
-                    self.ai_input_left_arrow = False
-                    self.ai_input_right_arrow = True
-
-                self.activate_weapon(1)  # Activate middle-ranged weapon (always has index 1).
-
-                # if self.target.rectangle.colliderect(self.rectangle.inflate(self.rectangle.width + self.current_weapon['reach'],
-                #                                                             self.rectangle.height)):
-                if abs(self.rectangle.centerx - self.target.rectangle.centerx) <= self.current_weapon['reach']:
-
-                    if self.rectangle.centery >= self.target.rectangle.centery:
-                        self.activate_weapon(0)  # Activate close combat weapon (always has index 0).
-                        if self.get_state() != 'jump':
-                            self.ai_input_jump = True
-                            # print('wanna jump')
-                        else:
-                            self.ai_input_attack = True
-                            # print('wanna attack in the air')
-                    else:
-                        self.ai_input_attack = True
-                        # print('wanna attack')
-                    # if self.get_state() == 'jump':
-                    #     self.ai_input_attack = True
-                else:
-                    # if randint(0, 50) == 1:
-                    if self.next_ranged_weapon_usage_counter > 0:
-                        self.next_ranged_weapon_usage_counter -= 1
-                    else:
-                        self.next_ranged_weapon_usage_counter = randint(100, 1200)
-                        self.activate_weapon(2)  # Activate ranged weapon (always has index 2).
-                        if self.stats['mana'] < self.current_mana_lost_per_attack:
-                            self.activate_weapon(1)
-                        else:
-                            self.ai_input_attack = True
-                            self.ai_input_left_arrow = False
-                            self.ai_input_right_arrow = False
-        elif self.think_type == 'exploding barrel':
-            if self.fall_speed > 20:  # barrel explodes if it falls from the height of 4 blocks (50 pixels * 4)
-                self.set_state('almost explode')
-            # if self.get_state() == 'dying':
-            #     print(f'[think] A barrel consider to be dying.')
-            #     self.set_state('almost explode')
-            #     # self.ai_input_attack = True
-            #     self.think_type = ''
-
-        if self.ai_input_jump:
-            # self.ai_input_jump = False
-            self.set_action('jump action')
-            # return
-        else:
-            self.set_action('jump action cancel')
-
-        if self.ai_input_right_arrow:
-            self.set_action('right action')
-        else:
-            self.set_action('right action cancel')
-
-        if self.ai_input_left_arrow:
-            self.set_action('left action')
-        else:
-            self.set_action('left action cancel')
-
-        if self.ai_input_attack:
-            self.ai_input_attack = False
-            self.set_action('attack')
 
     def state_machine(self):
         if self.get_state() == 'drop stash':                          #
@@ -601,7 +515,7 @@ class Actor(Entity):
             if self.is_stand_on_ground:
                 self.heading[0] = 0
         elif self.get_state() == 'protect':
-            ...
+            self.heading[0] = 0
         elif self.get_state() == 'prepare crouch attack left':                          # PREPARING ATTACK
             self.set_state(self.current_weapon['attack animation'] + ' crouch left')
             self.stamina_reduce(self.current_stamina_lost_per_attack)
@@ -620,14 +534,15 @@ class Actor(Entity):
             self.ignore_user_input = self.current_weapon['ignore user input']
             if self.is_stand_on_ground:
                 self.heading[0] = 0
-        elif self.__state in ('stab', 'cast', 'axe swing', 'whip',
-                              'whip crouch right', 'whip crouch left',
-                              'kick', 'pistol shot'):                          # ATTACKING IN PROCESS...
+        elif self.get_state() in ('stab', 'cast', 'axe swing', 'whip',
+                                  'whip crouch right', 'whip crouch left',
+                                  'kick', 'pistol shot'):                          # ATTACKING IN PROCESS...
+                                  # 'kick', 'protect', 'pistol shot'):                          # ATTACKING IN PROCESS...
             if self.animation_sequence_done:
                 self.ignore_user_input = False
-                if self.force_use_previous_weapon:
-                    self.force_use_previous_weapon = False
-                    self.activate_weapon(self.previously_used_weapon)
+                # if self.force_use_previous_weapon:
+                #     self.force_use_previous_weapon = False
+                #     self.activate_weapon(self.previously_used_weapon)
                 if self.__state in ('whip crouch right', 'whip crouch left'):
                     self.set_state('crouch')
                 else:
@@ -1054,3 +969,92 @@ class Actor(Entity):
         self.is_move_down = False
         self.is_jump = False
         # self.is_edge_grabbed = False
+
+    def think(self):
+        if self.think_type == 'chaser':
+            # Change weapon depends on target vicinity:
+            # print('[think]', list(self.inventory['weapons'].keys()))
+            if self.sprite_rectangle.colliderect(self.target.sprite_rectangle):
+                # Smash actor immediately:
+                self.activate_weapon(0)  # Activate close combat weapon (always has index 0).
+                self.ai_input_attack = True
+                self.ai_input_left_arrow = False
+                self.ai_input_right_arrow = False
+                # return
+            else:
+                # self.activate_weapon(1)  # Activate middle-ranged weapon (always has index 1).
+
+                if self.rectangle.centerx > self.target.rectangle.centerx:
+                    # if self.rectangle.centerx - self.target.rectangle.centerx <= self.current_weapon['reach']:
+                    #     self.ai_input_attack = True
+                    # else:
+                    self.ai_input_left_arrow = True
+                    self.ai_input_right_arrow = False
+                else:
+                    # if self.target.rectangle.centerx - self.rectangle.centerx <= self.current_weapon['reach']:
+                    #     self.ai_input_attack = True
+                    # else:
+                    self.ai_input_left_arrow = False
+                    self.ai_input_right_arrow = True
+
+                self.activate_weapon(1)  # Activate middle-ranged weapon (always has index 1).
+
+                # if self.target.rectangle.colliderect(self.rectangle.inflate(self.rectangle.width + self.current_weapon['reach'],
+                #                                                             self.rectangle.height)):
+                if abs(self.rectangle.centerx - self.target.rectangle.centerx) <= self.current_weapon['reach']:
+
+                    if self.rectangle.centery >= self.target.rectangle.centery:
+                        self.activate_weapon(0)  # Activate close combat weapon (always has index 0).
+                        if self.get_state() != 'jump':
+                            self.ai_input_jump = True
+                            # print('wanna jump')
+                        else:
+                            self.ai_input_attack = True
+                            # print('wanna attack in the air')
+                    else:
+                        self.ai_input_attack = True
+                        # print('wanna attack')
+                    # if self.get_state() == 'jump':
+                    #     self.ai_input_attack = True
+                else:
+                    # if randint(0, 50) == 1:
+                    if self.next_ranged_weapon_usage_counter > 0:
+                        self.next_ranged_weapon_usage_counter -= 1
+                    else:
+                        self.next_ranged_weapon_usage_counter = randint(100, 1200)
+                        self.activate_weapon(2)  # Activate ranged weapon (always has index 2).
+                        if self.stats['mana'] < self.current_mana_lost_per_attack:
+                            self.activate_weapon(1)
+                        else:
+                            self.ai_input_attack = True
+                            self.ai_input_left_arrow = False
+                            self.ai_input_right_arrow = False
+        elif self.think_type == 'exploding barrel':
+            if self.fall_speed > 20:  # barrel explodes if it falls from the height of 4 blocks (50 pixels * 4)
+                self.set_state('almost explode')
+            # if self.get_state() == 'dying':
+            #     print(f'[think] A barrel consider to be dying.')
+            #     self.set_state('almost explode')
+            #     # self.ai_input_attack = True
+            #     self.think_type = ''
+
+        if self.ai_input_jump:
+            # self.ai_input_jump = False
+            self.set_action('jump action')
+            # return
+        else:
+            self.set_action('jump action cancel')
+
+        if self.ai_input_right_arrow:
+            self.set_action('right action')
+        else:
+            self.set_action('right action cancel')
+
+        if self.ai_input_left_arrow:
+            self.set_action('left action')
+        else:
+            self.set_action('left action cancel')
+
+        if self.ai_input_attack:
+            self.ai_input_attack = False
+            self.set_action('attack')

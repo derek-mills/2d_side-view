@@ -25,6 +25,8 @@ class World(object):
         self.max_obs_id_in_current_location: int = 0
         self.demolishers = dict()
         self.demolisher_id: int = 0
+        self.protectors = dict()
+        self.protector_id: int = 0
         self.actors = dict()
         self.actor_id: int = 0
         self.items = dict()
@@ -463,6 +465,126 @@ class World(object):
         # demol.parent_penalty = demol.parent.frames_changing_threshold_penalty
         self.demolishers[self.location][demol.id] = demol
         # print(f'[add_demolisher] Added: {demol.id=} {demol.name} {demol.rectangle} {demol.max_speed=} {demol.destination=}')
+    
+    def add_protector(self, description):
+        protector = Demolisher()
+        protector.id = self.protector_id
+        self.protector_id += 1
+        protector.name = 'protector ' + str(protector.id)
+        protector.bounce = description['bounce']
+        protector.bounce_factor = description['bounce factor']
+        protector.flyer = description['flyer']
+        protector.parent = description['parent']
+        # print(f'{protector.parent=}')
+        if protector.parent:
+            protector.parent_id = protector.parent.id
+            protector.look = protector.parent.look
+            protector.ttl = description['protector TTL'] * protector.parent.frames_changing_threshold_modifier
+            for k in description['damage']:
+                protector.damage[k] = description['damage'][k] / protector.parent.frames_changing_threshold_penalty + abs(protector.parent.speed) + abs(protector.parent.fall_speed)
+            protector.parent_strength = protector.parent.strength
+            protector.parent_weight = protector.parent.body_weight
+            protector.parent_penalty = protector.parent.frames_changing_threshold_penalty
+        else:
+            # protector.look = 1
+            protector.ttl = description['protector TTL']
+            protector.damage = description['damage']
+            protector.parent_strength = 0
+            protector.parent_weight = 0
+            protector.parent_penalty = 0
+
+        protector.pierce = description['pierce']
+
+
+        if description['visible']:
+            if description['protector sprite']:
+                protector.current_sprite = sprites[description['protector sprite']]
+                protector.rectangle.width = sprites[description['protector sprite']]['mask rect'].width
+                protector.rectangle.height = sprites[description['protector sprite']]['mask rect'].height
+                protector.snapping_offset = {
+                    'offset inside actor': description['snapping offset'],
+                    'offset inside demolisher': sprites[description['protector sprite']]['demolisher snap point']
+                }
+                # protector.update(protector.parent.look, protector.parent.rectangle)
+            else:
+                # protector.current_sprite = None
+                protector.rectangle.width = description['rect'].width
+                protector.rectangle.height = description['rect'].height
+                sprite = pygame.Surface((protector.rectangle.width, protector.rectangle.height)).convert_alpha()
+                # sprite = pygame.Surface((protector.rectangle.width, protector.rectangle.height)).convert_alpha()
+                sprite.fill(RED)
+                # pygame.draw.circle(sprite, RED, protector.rectangle.center, protector.rectangle.width //2)
+                mask = pygame.mask.from_surface(sprite.convert_alpha())
+                protector.current_sprite = {
+                    'sprite': sprite,
+                    'sprite center': protector.rectangle.center,
+                    'sprite asymmetric': None,
+                    'demolisher snap point': (0, 0),
+                    'mask': mask,
+                    'mask rect': mask.get_rect()
+                }
+                protector.snapping_offset = {
+                    'offset inside actor': description['snapping offset'],
+                    'offset inside demolisher': protector.current_sprite['demolisher snap point']
+                }
+                # protector.update(protector.parent.look, protector.parent.rectangle)
+        else:
+            # if protector.parent.look == 1:
+            #     protector.rectangle.x = protector.parent.rectangle. description['snapping offset'][0]
+            protector.rectangle.width = description['rect'].width
+            protector.rectangle.height = description['rect'].height
+            protector.invisible = True
+            protector.snapping_offset = {
+                'offset inside actor': description['snapping offset'],
+                'offset inside demolisher': (-protector.rectangle.width//2,0)  # if protector.look == 1 else (protector.rectangle.width, 0)
+            }
+        if protector.parent:
+            protector.update(protector.parent.look, protector.parent.rectangle)
+            if protector.flyer:
+                protector.destination_point = (self.camera.max_offset_x + MAXX, protector.rectangle.y) if protector.parent.look == 1 else (-100, protector.rectangle.y)
+        else:
+            protector.rectangle = description['rect']
+            protector.destination_point = description['destination']
+            protector.look = 1 if protector.rectangle.center < protector.destination_point else -1
+
+        if description['static']:
+        # if description['snap to actor'] >= 0:
+        #     protector.snap_to_actor = description['snap to actor']
+            protector.snap_to_actor = protector.parent.id
+            # actor = self.actors[self.location][protector.parent.id]
+            # protector.parent_id = protector.parent.id
+            # snap_p = sprites[description['demolisher sprite']]['demolisher snap point']
+            # print(f"[add demolisher] point inside actor: {description['snapping offset']}; point inside protector: {snap_p}")
+            # protector.snapping_offset = {
+            #    'offset inside actor': description['snapping offset'],
+            #    'offset inside demolisher': sprites[description['demolisher sprite']]['demolisher snap point']
+            # }
+            # protector.update(protector.parent.look, protector.parent.rectangle)
+            # if protector.flyer:
+            #     protector.destination = (self.camera.max_offset_x + MAXX, protector.rectangle.y) if protector.parent.look == 1 else (-100, protector.rectangle.y)
+            # protector.look = protector.parent.look
+        else:
+            # protector.rectangle.center = dem.paren
+            # protector.snapping_offset = [0, 0]
+            # protector.parent_id = -1
+            protector.snap_to_actor = -1
+            # protector.look = description['look'] if 'look' in description.keys() else 1
+            # protector.destination_point = description['destination'] if 'destination' in description.keys() else (0, 0)
+        protector.aftermath = description['aftermath']
+        # protector.damage = description['damage'] / protector.parent.frames_changing_threshold_penalty + abs(protector.parent.speed) + abs(protector.parent.fall_speed)
+        # print(f'[add damager] {protector.damage=}')
+        protector.static = description['static']
+        protector.damage_reduce = description['damage reduce']
+        protector.max_speed = description['speed']
+        protector.speed = description['speed']
+        protector.is_collideable = description['collides']
+        protector.is_gravity_affected = description['gravity affected']
+        # protector.attack_type = description['attack type']
+        # protector.parent_strength = protector.parent.strength
+        # protector.parent_weight = protector.parent.body_weight
+        # protector.parent_penalty = protector.parent.frames_changing_threshold_penalty
+        self.protectors[self.location][protector.id] = protector
+        # print(f'[add_demolisher] Added: {protector.id=} {protector.name} {protector.rectangle} {protector.max_speed=} {protector.destination=}')
 
     def process(self, time_passed):
         self.time_passed = time_passed
@@ -481,6 +603,7 @@ class World(object):
         self.processing_actors()
         # if self.actors['player'].dead:
         #     self.game_over()
+        self.processing_protectors()
         self.processing_demolishers()
         self.processing_particles()
 
@@ -757,6 +880,31 @@ class World(object):
             del self.demolishers[self.location][dead_id]
         for expl in explosions:
             self.make_explosion(expl)
+    
+    def processing_protectors(self):
+        dead = list()
+        for key in self.protectors[self.location].keys():
+            protector = self.protectors[self.location][key]
+            if protector.dead:
+                dead.append(protector.id)
+                continue
+            if protector.is_collideable:
+                protector.percept({k: self.obstacles[self.location][k] for k in self.active_obstacles}, None)
+            if protector.static:
+                if protector.snap_to_actor not in self.actors[self.location].keys():
+                    dead.append(protector.id)
+                    continue
+                actor = self.actors[self.location][protector.snap_to_actor]
+                # protector.update(actor.vec_to_destination)
+                protector.update(actor.look, actor.rectangle)
+                # protector.update(actor.look, actor.sprite_rectangle)
+
+            protector.get_time(self.time_passed, self.game_cycles_counter)
+            protector.process_demolisher()
+            # protector.process_demolisher(self.time_passed)
+
+        for dead_id in dead:
+            del self.protectors[self.location][dead_id]
 
     def processing_player_actor(self):
         actor = self.actors['player']
@@ -902,13 +1050,27 @@ class World(object):
                             actor.current_weapon = actor.body['right hand']['weapon']['item']
                             actor.current_stamina_lost_per_attack = actor.normal_stamina_lost_per_attack * actor.current_weapon['stamina consumption']
                             actor.current_mana_lost_per_attack = actor.normal_mana_lost_per_attack * actor.current_weapon['mana consumption']
-                            actor.set_action('attack')
-                        elif self.is_alternate_attack:
+                            if actor.current_weapon['type'] == 'shields':
+                                actor.set_action('protect')
+                            else:
+                                actor.set_action('attack')
+                        else:
+                            if actor.get_state() == 'protect':
+                                actor.set_state('stand still')
+
+                        if self.is_alternate_attack:
                             # self.is_alternate_attack = False
                             actor.current_weapon = actor.body['left hand']['weapon']['item']
                             actor.current_stamina_lost_per_attack = actor.normal_stamina_lost_per_attack * actor.current_weapon['stamina consumption']
                             actor.current_mana_lost_per_attack = actor.normal_mana_lost_per_attack * actor.current_weapon['mana consumption']
-                            actor.set_action('attack')
+                            if actor.current_weapon['type'] == 'shields':
+                                actor.set_action('protect')
+                            else:
+                                actor.set_action('attack')
+                        else:
+                            if actor.get_state() == 'protect':
+                                actor.set_state('stand still')
+                            # actor.set_action('attack')
 
             actor.get_time(self.time_passed, self.game_cycles_counter)
             actor.process()
@@ -921,6 +1083,12 @@ class World(object):
                 while actor.has_just_stopped_demolishers:
                     d_id = actor.has_just_stopped_demolishers.pop()
                     self.demolishers[self.location][d_id].become_mr_floppy()
+
+            if actor.summon_protector:
+                actor.summon_protector = False
+                while actor.summoned_protectors_description:
+                    p = actor.summoned_protectors_description.pop()
+                    self.add_protector(p)
 
             if actor.summon_demolisher:
                 actor.summon_demolisher = False
@@ -1125,6 +1293,20 @@ class World(object):
             else:
                 self.screen.blit(pygame.transform.flip(dem.current_sprite['sprite'], True, False), (dem.rectangle.x - self.camera.offset_x, dem.rectangle.y - self.camera.offset_y))
     
+    def render_protectors(self):
+        for key in self.protectors[self.location].keys():
+            # if key not in self.active_obstacles:
+            #     continue
+            protector = self.protectors[self.location][key]
+            if protector.invisible:
+                pygame.draw.rect(self.screen, MAGENTA, (protector.rectangle.x - self.camera.offset_x, protector.rectangle.y - self.camera.offset_y,
+                                                      protector.rectangle.width, protector.rectangle.height),1)
+                continue
+            if protector.look == 1:
+                self.screen.blit(protector.current_sprite['sprite'], (protector.rectangle.x - self.camera.offset_x, protector.rectangle.y - self.camera.offset_y))
+            else:
+                self.screen.blit(pygame.transform.flip(protector.current_sprite['sprite'], True, False), (protector.rectangle.x - self.camera.offset_x, protector.rectangle.y - self.camera.offset_y))
+    
     def render_particles(self):
         for key in self.particles[self.location].keys():
             # if key not in self.active_obstacles:
@@ -1252,6 +1434,7 @@ class World(object):
         self.render_obstacles()
         self.render_actors()
         self.render_demolishers()
+        self.render_protectors()
         self.render_particles()
         # self.render_player_actor()
         self.render_info_panel_overlay()
@@ -1318,6 +1501,7 @@ class World(object):
             self.locations[self.location] = dict()
             self.obstacles[self.location] = dict()
             self.demolishers[self.location] = dict()
+            self.protectors[self.location] = dict()
             self.particles[self.location] = dict()
             # self.actors[self.location] = dict()
             # print(f'{self.location=}')

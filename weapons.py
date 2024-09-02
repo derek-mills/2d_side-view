@@ -624,16 +624,17 @@ small_shield = {
     'affects on': '',
     'stamina consumption': 0.,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
     'mana consumption': 0.,
-    'ignore user input': False,  # Steal the ability to control a character for a while.
+    'ignore user input': True,  # Steal the ability to control a character for a while.
+    # 'ignore user input': False,  # Steal the ability to control a character for a while.
     'animation speed modifier': 1.,  # 0 < x < 1: speed animation up, x > 1: slow down.
     'leave particles': False,
     'droppable': False,
     'protectors': (
         ({
             'rect': pygame.Rect(0, 0, 50, 50), 'flyer': False,
-            'visible': False,
+            'visible': True,
             'protector sprite': 'small shield protector',
-            'pierce': False, 'protector TTL': 0, 'speed': 0,
+            'pierce': False, 'protector TTL': 1, 'speed': 0,
             'static': True, 'damage reduce': 0,
             'collides': True, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
