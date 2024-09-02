@@ -6,9 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demolisher.py" beforeDir="false" afterPath="$PROJECT_DIR$/demolisher.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/items.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/items.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obstacle.py" beforeDir="false" afterPath="$PROJECT_DIR$/obstacle.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -143,13 +144,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00400" summary="A demolisher gets an instance of his parent's class as a reference.">
-      <created>1724033853485</created>
-      <option name="number" value="00400" />
-      <option name="presentableId" value="LOCAL-00400" />
-      <option name="project" value="LOCAL" />
-      <updated>1724033853486</updated>
     </task>
     <task id="LOCAL-00401" summary="Hopping back after damage improved.">
       <created>1724035082674</created>
@@ -487,7 +481,14 @@
       <option name="project" value="LOCAL" />
       <updated>1725255665233</updated>
     </task>
-    <option name="localTasksCounter" value="449" />
+    <task id="LOCAL-00449" summary="Shield is a variation of demolisher, reveals like a demolisher, but has separate storage and processing\rendering routines.">
+      <created>1725259674111</created>
+      <option name="number" value="00449" />
+      <option name="presentableId" value="LOCAL-00449" />
+      <option name="project" value="LOCAL" />
+      <updated>1725259674111</updated>
+    </task>
+    <option name="localTasksCounter" value="450" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -502,7 +503,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Try to avoid infinite sliding after hopping back got by injury." />
     <MESSAGE value="Actors' render queue has been reversed to provide player's actor #0 to be on the foreground before all other sprites." />
     <MESSAGE value="Some improvements." />
     <MESSAGE value="Actor calculate his own X and Y for every sprite in animation sequence." />
@@ -527,6 +527,7 @@
     <MESSAGE value="Changed acceleration handling for all actors" />
     <MESSAGE value="Barrels explosion made more beautiful." />
     <MESSAGE value="Added shield and foundation for protection by shields has established.&#10;Added multiple attack until attack button being released." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added shield and foundation for protection by shields has established.&#10;Added multiple attack until attack button being released." />
+    <MESSAGE value="Shield is a variation of demolisher, reveals like a demolisher, but has separate storage and processing\rendering routines." />
+    <option name="LAST_COMMIT_MESSAGE" value="Shield is a variation of demolisher, reveals like a demolisher, but has separate storage and processing\rendering routines." />
   </component>
 </project>

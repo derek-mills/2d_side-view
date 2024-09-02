@@ -71,6 +71,15 @@ class Demolisher(Entity):
             #                          + abs(self.snapping_offset['offset inside demolisher'][1])
 
 
+    def detect_collisions_with_protectors(self):
+        if self.protectors_around:
+            for k in self.protectors_around.keys():
+                p = self.protectors_around[k]
+                if self.rectangle.colliderect(p.rectangle):
+                    print(f'[detect collision with protectors] collided with {p.name}')
+                    self.become_mr_floppy()
+                break
+
     def detect_collisions_with_obstacles(self):
         # self.influenced_by_obstacle = None
         sorted_obs = {
@@ -204,6 +213,46 @@ class Demolisher(Entity):
     def become_mr_floppy(self):
         self.floppy = True
 
+    def process_protector(self):
+    # def process_demolisher(self, time_passed):
+        if self.ttl > 0:
+            self.ttl -= 1
+            if self.ttl == 0:
+                # if self.aftermath == 'disappear':
+                self.die()
+                return
+        # if self.damage_reduce > 0:
+        #     for damage_type in self.damage.keys():
+        #         self.damage[damage_type] -= self.damage_reduce
+        # if self.is_collideable:
+        #     # print('Demolisher check collisions with ', self.obstacles_around.keys())
+        #     self.calculate_colliders()
+        #     self.detect_collisions_with_obstacles()
+        #     if self.is_being_collided_now:
+        #         if self.bounce:
+        #             self.speed *= self.bounce_factor
+        #             if self.collided_left:
+        #                 self.look = 1
+        #             elif self.collided_right:
+        #                 self.look = -1
+        #             elif self.collided_bottom:
+        #                 self.fall_speed *= -self.bounce_factor  # Bounce up from the floor.
+        #                 self.is_stand_on_ground = False
+        #         else:
+        #             self.die()
+        #             return
+        if not self.static:
+            self.calculate_speed()
+            if self.flyer:
+                self.fly()
+                # self.fly(time_passed)
+            else:
+                self.move()
+                # self.move(time_passed)
+            if self.is_gravity_affected:
+                self.calculate_fall_speed()  # Discover speed and potential fall distance
+                self.fall()
+
     def process_demolisher(self):
     # def process_demolisher(self, time_passed):
         if self.ttl > 0:
@@ -215,10 +264,12 @@ class Demolisher(Entity):
         if self.damage_reduce > 0:
             for damage_type in self.damage.keys():
                 self.damage[damage_type] -= self.damage_reduce
+        self.detect_collisions_with_protectors()
         if self.is_collideable:
             # print('Demolisher check collisions with ', self.obstacles_around.keys())
             self.calculate_colliders()
             self.detect_collisions_with_obstacles()
+
             if self.is_being_collided_now:
                 if self.bounce:
                     self.speed *= self.bounce_factor

@@ -107,6 +107,8 @@ class Obstacle(Entity):
             if key == self.id:
                 continue
             obs = self.obstacles_around[key]
+            # if obs.type == 'protector':
+            #     continue
             if obs.let_actors_pass_through:
                 continue
             #-----------------------------------

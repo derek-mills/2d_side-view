@@ -469,6 +469,7 @@ class World(object):
     def add_protector(self, description):
         protector = Demolisher()
         protector.id = self.protector_id
+        protector.type = 'protector'
         self.protector_id += 1
         protector.name = 'protector ' + str(protector.id)
         protector.bounce = description['bounce']
@@ -584,6 +585,8 @@ class World(object):
         # protector.parent_weight = protector.parent.body_weight
         # protector.parent_penalty = protector.parent.frames_changing_threshold_penalty
         self.protectors[self.location][protector.id] = protector
+        # self.obstacles[self.location][self.obstacle_id] = protector
+        # self.obstacle_id += 1
         # print(f'[add_demolisher] Added: {protector.id=} {protector.name} {protector.rectangle} {protector.max_speed=} {protector.destination=}')
 
     def process(self, time_passed):
@@ -599,12 +602,10 @@ class World(object):
             self.location_has_been_changed = False
             return
         self.processing_human_input()
-        # self.processing_player_actor()
-        self.processing_actors()
-        # if self.actors['player'].dead:
-        #     self.game_over()
         self.processing_protectors()
         self.processing_demolishers()
+
+        self.processing_actors()
         self.processing_particles()
 
         # Applying camera offset:
@@ -698,6 +699,8 @@ class World(object):
         dead = list()
         for key in self.active_obstacles:
             obs = self.obstacles[self.location][key]
+            # if obs.type == 'protector':
+            #     continue
             if obs.dead:
                 dead.append(obs.id)
                 continue
@@ -777,7 +780,7 @@ class World(object):
                             dead.append(obs.id)
                             continue
 
-            obs.percept({k: self.obstacles[self.location][k] for k in self.active_obstacles}, self.demolishers[self.location])
+            obs.percept({k: self.obstacles[self.location][k] for k in self.active_obstacles}, self.demolishers[self.location], self.protectors[self.location])
             obs.get_time(self.time_passed, self.game_cycles_counter)
             obs.process_()
 
@@ -833,7 +836,7 @@ class World(object):
                 dead.append(p.id)
                 continue
             if p.is_collideable:
-                p.percept({k: self.obstacles[self.location][k] for k in self.active_obstacles}, None)
+                p.percept({k: self.obstacles[self.location][k] for k in self.active_obstacles}, None, self.protectors[self.location])
             # if p.static:
             #     if p.snap_to_actor not in self.actors[self.location].keys():
             #         dead.append(p.id)
@@ -861,8 +864,9 @@ class World(object):
                     # self.make_explosion(dem.rectangle.center)
                 dead.append(dem.id)
                 continue
-            if dem.is_collideable:
-                dem.percept({k: self.obstacles[self.location][k] for k in self.active_obstacles}, None)
+            # if dem.is_collideable:
+            #     dem.percept({k: self.obstacles[self.location][k] for k in self.active_obstacles}, None, self.protectors[self.location])
+            dem.percept({k: self.obstacles[self.location][k] for k in self.active_obstacles}, None, self.protectors[self.location])
             if dem.static:
                 if dem.snap_to_actor not in self.actors[self.location].keys():
                     dead.append(dem.id)
@@ -888,8 +892,8 @@ class World(object):
             if protector.dead:
                 dead.append(protector.id)
                 continue
-            if protector.is_collideable:
-                protector.percept({k: self.obstacles[self.location][k] for k in self.active_obstacles}, None)
+            # if protector.is_collideable:
+            # protector.percept({k: self.demolishers[self.location][k] for k in self.demolishers[self.location].keys()}, None, None)
             if protector.static:
                 if protector.snap_to_actor not in self.actors[self.location].keys():
                     dead.append(protector.id)
@@ -900,7 +904,7 @@ class World(object):
                 # protector.update(actor.look, actor.sprite_rectangle)
 
             protector.get_time(self.time_passed, self.game_cycles_counter)
-            protector.process_demolisher()
+            protector.process_protector()
             # protector.process_demolisher(self.time_passed)
 
         for dead_id in dead:
@@ -993,7 +997,7 @@ class World(object):
                             self.add_item(all_items[drop], (randint(actor.rectangle.left - 50, actor.rectangle.right + 50), actor.rectangle.top))
                     # continue
 
-            actor.percept({k: self.obstacles[self.location][k] for k in self.active_obstacles}, self.demolishers[self.location])
+            actor.percept({k: self.obstacles[self.location][k] for k in self.active_obstacles}, self.demolishers[self.location], self.protectors[self.location])
 
             # actor.get_target(self.actors['player'])
             # if not actor.ignore_user_input:

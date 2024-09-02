@@ -168,6 +168,7 @@ class Entity(object):
             # 'right': list(),
             # 'left': list(),
         self.demolishers_around = None
+        self.protectors_around = None
         self.collision_detector_right = pygame.Rect(0,0,0,0)
         self.collision_detector_left = pygame.Rect(0,0,0,0)
         self.collision_detector_top = pygame.Rect(0,0,0,0)
@@ -195,7 +196,7 @@ class Entity(object):
         self.is_being_collided_now = False
 
 
-    def percept(self, obstacles, demolishers):
+    def percept(self, obstacles, demolishers, protectors):
         self.obstacles_around = obstacles
         self.sorted_obs = {
             'above': list(),
@@ -215,6 +216,7 @@ class Entity(object):
                 self.sorted_obs['right'].append(obs.id)
 
         self.demolishers_around = demolishers
+        self.protectors_around = protectors
         # print(self.obstacles_around)
         # print(self.demolishers_around)
         # exit()
@@ -1138,6 +1140,8 @@ class Entity(object):
         # for obs in self.obstacles_around:
         for key in self.obstacles_around.keys():
             obs = self.obstacles_around[key]
+            # if obs.type == 'protector':
+            #     continue
             if obs.is_ghost_platform or obs.let_actors_pass_through:
                 continue
 
