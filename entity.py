@@ -629,8 +629,8 @@ class Entity(object):
             dem = self.demolishers_around[key]
             if dem.parent:
                 if dem.id in self.got_immunity_to_demolishers or \
-                    dem.parent_id == self.id or dem.parent.name == self.name or \
-                     dem.floppy:
+                    dem.parent_id == self.id or dem.parent.name == self.name:  # or \
+                     # dem.floppy:
                     continue
             hit_detected = False
             if dem.invisible:
@@ -678,13 +678,17 @@ class Entity(object):
                     hit_detected = True
 
             if hit_detected:
-                # if 'smash' in dem.damage.keys() and dem.floppy:
-                #     if dem.parent:
-                #         self.hop_back_jump_height_modifier = ((dem.parent_strength / self.strength) + (dem.parent_weight / self.body_weight)) / dem.parent_penalty
-                #         self.movement_direction_inverter = -1 if dem.parent.look != self.look else 1
-                #     else:
-                #         self.movement_direction_inverter = -1 if dem.look != self.look else 1
-                #     self.set_state('hop back')
+                if dem.floppy:
+                    if dem.parent:
+                        # self.hop_back_jump_height_modifier = ((dem.parent_strength / self.strength) + (dem.parent_weight / self.body_weight)) / dem.parent_penalty
+                        self.movement_direction_inverter = -1 if dem.parent.look != self.look else 1
+                        self.speed = 5 + ((dem.parent_strength / self.strength) + (dem.parent_weight / self.body_weight)) / dem.parent_penalty
+                    else:
+                        self.movement_direction_inverter = -1 if dem.look != self.look else 1
+                        self.speed = 5
+                    if 'smash' in dem.damage.keys():
+                        self.speed *= 2
+                    continue
 
                 if not dem.pierce and not self.dead:
                     self.has_just_stopped_demolishers.append(dem.id)
@@ -757,18 +761,6 @@ class Entity(object):
 
                 # print('[detect_demolishers_collisions] actor get damage in state:', self.__state)
 
-    # def mask_update(self, offset):
-    # #     # current_mask = self.current_sprite['mask']
-    # #     # print(self.current_sprite)
-    #     current_mask_rect = self.current_sprite['mask rect']
-    #     current_mask_rect.center = self.rectangle.center
-    #     self.current_sprite['current mask rect'] = current_mask_rect
-    #     if self.current_sprite['weak spot']:
-    #         weak_spot_rect = pygame.Rect(current_mask_rect.x + self.current_sprite['weak spot']['offset'][0] - offset[0],
-    #                                      current_mask_rect.y + self.current_sprite['weak spot']['offset'][1] - offset[1],
-    #                                      self.current_sprite['weak spot']['width'],
-    #                                      self.current_sprite['weak spot']['height'])
-    #         self.current_sprite['weak spot rect'] = weak_spot_rect
 
     def check_condition(self):
         if self.dead or self.dying:

@@ -811,7 +811,7 @@ class World(object):
                 'static': False,
                 'parent': None,
                 'damage reduce': .01,
-                'pierce': False,
+                'pierce': True,
                 'visible': False,
                 'snapping offset': (0, 0),
                 # 'attack type': ('fire', 'smash', 'pierce', ),
@@ -1089,7 +1089,8 @@ class World(object):
             if actor.has_just_stopped_demolishers:
                 while actor.has_just_stopped_demolishers:
                     d_id = actor.has_just_stopped_demolishers.pop()
-                    self.demolishers[self.location][d_id].become_mr_floppy()
+                    del self.demolishers[self.location][d_id]
+                    # self.demolishers[self.location][d_id].become_mr_floppy()
 
             if actor.summon_protector:
                 actor.summon_protector = False
