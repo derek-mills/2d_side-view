@@ -71,15 +71,6 @@ class Demolisher(Entity):
             #                          + abs(self.snapping_offset['offset inside demolisher'][1])
 
 
-    def detect_collisions_with_protectors(self):
-        if self.protectors_around:
-            for k in self.protectors_around.keys():
-                p = self.protectors_around[k]
-                if self.rectangle.colliderect(p.rectangle):
-                    print(f'[detect collision with protectors] collided with {p.name}')
-                    self.become_mr_floppy()
-                break
-
     def detect_collisions_with_obstacles(self):
         # self.influenced_by_obstacle = None
         sorted_obs = {
@@ -213,6 +204,19 @@ class Demolisher(Entity):
     def become_mr_floppy(self):
         self.floppy = True
 
+    def detect_collisions_with_protectors(self):
+        if self.protectors_around:
+            for k in self.protectors_around.keys():
+                p = self.protectors_around[k]
+                if self.rectangle.colliderect(p.rectangle):
+                    print(f'[detect collision with protectors] collided with {p.name}')
+                    self.become_mr_floppy()
+                    self.is_being_collided_now = True
+                    if self.rectangle.centerx > p.rectangle.centerx:
+                        self.collided_left = True
+                    else:
+                        self.collided_right = True
+                break
     def process_protector(self):
     # def process_demolisher(self, time_passed):
         if self.ttl > 0:
@@ -267,11 +271,13 @@ class Demolisher(Entity):
         self.detect_collisions_with_protectors()
         if self.is_collideable:
             # print('Demolisher check collisions with ', self.obstacles_around.keys())
-            self.calculate_colliders()
-            self.detect_collisions_with_obstacles()
+            if not self.floppy:
+                self.calculate_colliders()
+                self.detect_collisions_with_obstacles()
 
             if self.is_being_collided_now:
                 if self.bounce:
+                    self.floppy = False
                     self.speed *= self.bounce_factor
                     if self.collided_left:
                         self.look = 1

@@ -677,6 +677,14 @@ class Entity(object):
                     hit_detected = True
 
             if hit_detected:
+                # if 'smash' in dem.damage.keys() and dem.floppy:
+                #     if dem.parent:
+                #         self.hop_back_jump_height_modifier = ((dem.parent_strength / self.strength) + (dem.parent_weight / self.body_weight)) / dem.parent_penalty
+                #         self.movement_direction_inverter = -1 if dem.parent.look != self.look else 1
+                #     else:
+                #         self.movement_direction_inverter = -1 if dem.look != self.look else 1
+                #     self.set_state('hop back')
+
                 if not dem.pierce and not self.dead:
                     self.has_just_stopped_demolishers.append(dem.id)
                 self.summon_particle = True
