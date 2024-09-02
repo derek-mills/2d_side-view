@@ -6,8 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demolisher.py" beforeDir="false" afterPath="$PROJECT_DIR$/demolisher.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,13 +142,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00402" summary="Fighting with demolisher sprites offset during attack.">
-      <created>1724055726815</created>
-      <option name="number" value="00402" />
-      <option name="presentableId" value="LOCAL-00402" />
-      <option name="project" value="LOCAL" />
-      <updated>1724055726815</updated>
     </task>
     <task id="LOCAL-00403" summary="Fighting with demolisher sprites offset during attack.">
       <created>1724057367769</created>
@@ -485,7 +479,14 @@
       <option name="project" value="LOCAL" />
       <updated>1725264221624</updated>
     </task>
-    <option name="localTasksCounter" value="451" />
+    <task id="LOCAL-00451" summary="Demolisher bounces back after touching a protector.">
+      <created>1725265033936</created>
+      <option name="number" value="00451" />
+      <option name="presentableId" value="LOCAL-00451" />
+      <option name="project" value="LOCAL" />
+      <updated>1725265033937</updated>
+    </task>
+    <option name="localTasksCounter" value="452" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -500,7 +501,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Some improvements." />
     <MESSAGE value="Actor calculate his own X and Y for every sprite in animation sequence." />
     <MESSAGE value="Improved masks collisions detection." />
     <MESSAGE value="Added exploding barrel as a new foe type, which stay still all the time and attack only before death." />
@@ -525,6 +525,7 @@
     <MESSAGE value="Added shield and foundation for protection by shields has established.&#10;Added multiple attack until attack button being released." />
     <MESSAGE value="Shield is a variation of demolisher, reveals like a demolisher, but has separate storage and processing\rendering routines." />
     <MESSAGE value="Demolisher becomes Mr. Floppy after touches a protector." />
-    <option name="LAST_COMMIT_MESSAGE" value="Demolisher becomes Mr. Floppy after touches a protector." />
+    <MESSAGE value="Demolisher bounces back after touching a protector." />
+    <option name="LAST_COMMIT_MESSAGE" value="Demolisher bounces back after touching a protector." />
   </component>
 </project>

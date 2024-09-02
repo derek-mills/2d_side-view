@@ -633,8 +633,9 @@ small_shield = {
         ({
             'rect': pygame.Rect(0, 0, 50, 50), 'flyer': False,
             'visible': True,
+            'keep alive': True,  # If button holding down, we must keep this particular protector alive and not allow to summon the new ones.
             'protector sprite': 'small shield protector',
-            'pierce': False, 'protector TTL': 1, 'speed': 0,
+            'pierce': False, 'protector TTL': 2, 'speed': 0,
             'static': True, 'damage reduce': 0,
             'collides': True, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,

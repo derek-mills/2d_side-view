@@ -1064,13 +1064,16 @@ class World(object):
 
                         if self.is_alternate_attack:
                             # self.is_alternate_attack = False
-                            actor.current_weapon = actor.body['left hand']['weapon']['item']
-                            actor.current_stamina_lost_per_attack = actor.normal_stamina_lost_per_attack * actor.current_weapon['stamina consumption']
-                            actor.current_mana_lost_per_attack = actor.normal_mana_lost_per_attack * actor.current_weapon['mana consumption']
-                            if actor.current_weapon['type'] == 'shields':
-                                actor.set_action('protect')
+                            if not actor.get_state() == 'protect':
+                                actor.current_weapon = actor.body['left hand']['weapon']['item']
+                                actor.current_stamina_lost_per_attack = actor.normal_stamina_lost_per_attack * actor.current_weapon['stamina consumption']
+                                actor.current_mana_lost_per_attack = actor.normal_mana_lost_per_attack * actor.current_weapon['mana consumption']
+                                if actor.current_weapon['type'] == 'shields':
+                                    actor.set_action('protect')
+                                else:
+                                    actor.set_action('attack')
                             else:
-                                actor.set_action('attack')
+                                ...
                         else:
                             if actor.get_state() == 'protect':
                                 actor.set_state('stand still')
@@ -1092,6 +1095,10 @@ class World(object):
                 actor.summon_protector = False
                 while actor.summoned_protectors_description:
                     p = actor.summoned_protectors_description.pop()
+                    if p['keep alive'] and self.protectors[self.location]:
+                        for k in self.protectors[self.location].keys():
+                            self.protectors[self.location][k].ttl += 1
+                        break
                     self.add_protector(p)
 
             if actor.summon_demolisher:
