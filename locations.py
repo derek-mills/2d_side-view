@@ -15,30 +15,6 @@ locations = {
                     'max speed': 2.6,
 
               },
-            	(1250.0, 250.0): {
-                    'name': 'demon 1',
-                    'height': 150,
-                    'width': 50,
-                    'health': 1500.0,
-                    'max speed': 2.6,
-
-              },
-            	(1300.0, 250.0): {
-                    'name': 'demon 1',
-                    'height': 150,
-                    'width': 50,
-                    'health': 1500.0,
-                    'max speed': 2.6,
-
-              },
-            	(1350.0, 250.0): {
-                    'name': 'demon 1',
-                    'height': 150,
-                    'width': 50,
-                    'health': 1500.0,
-                    'max speed': 2.6,
-
-              },
               },
             'demolishers': {
                 'dem rectangles': (
@@ -159,18 +135,12 @@ locations = {
                     'max speed': 1,
             	},
 
-            	(2100.0, 300.0): {
+            	(450.0, 250.0): {
                     'name': 'exploding barrel',
                     'height': 150,
                     'width': 50,
                     'health': 500.0,
                     'max speed': 1,
-            	},
-
-            	(450.0, 250.0): {
-                    'name': 'exploding barrel',
-                    'height': 150,
-                    'width': 50,
             	},
 
               },
@@ -190,7 +160,6 @@ locations = {
                 ((2100, 700), (350, 50), 23),  #23
                 ((1400, 925), (100, 25), 28),  #28
                 ((50, 400), (550, 50), 30),  #30
-                ((600, 200), (1850, 50), 31),  #31
                 ((1950, 750), (150, 50), 33),  #33
                 ((1800, 800), (150, 50), 34),  #34
                 ((1650, 850), (150, 50), 35),  #35
@@ -243,26 +212,6 @@ locations = {
                         'teleport': False,
                         'teleport description': {'on touch': True, 'new location': '', 'xy': [0, 0]},
                   },
-                    31: {
-                        'sprite': 23,
-                        'sprite elevated': False,
-                        'force render': True,
-                        'invisible': False,
-                        'ghost': True,
-                        'speed': 0.2,
-                        'item': False,
-                        'item name': {'name': ''},
-                        'actors may grab': False,
-                        'actors pass through': False,
-                        'active': False,
-                        'actions': {0: []},
-                        'collideable': False,
-                        'gravity affected': False,
-                        'trigger': False,
-                        'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
-                        'teleport': False,
-                        'teleport description': {'on touch': True, 'new location': '', 'xy': [0, 0]},
-                  },
                     5: {
                         'sprite': 0,
                         'sprite elevated': False,
@@ -284,44 +233,44 @@ locations = {
                         'teleport description': {'on touch': True, 'new location': 'penthouse', 'xy': ('keep x', 850.0)},
                   },
                     48: {
-                        'sprite elevated': False,
                         'sprite': 0,
+                        'sprite elevated': False,
                         'force render': True,
-                        'ghost': False,
-                        'actors pass through': True,
-                        'actors may grab': False,
-                        'speed': 0.2,
-                        'collideable': True,
-                        'gravity affected': True,
                         'invisible': False,
-                        'teleport': False,
-                        'teleport description': {'new location': '', 'on touch': True, 'xy': [0, 0]},
-                        'trigger': True,
-                        'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
+                        'ghost': False,
+                        'speed': 0.2,
                         'item': True,
                         'item name': {'name': 'stash'},
+                        'actors may grab': False,
+                        'actors pass through': True,
                         'active': False,
                         'actions': {0: []},
+                        'collideable': True,
+                        'gravity affected': True,
+                        'trigger': True,
+                        'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
+                        'teleport': False,
+                        'teleport description': {'new location': '', 'on touch': True, 'xy': [0, 0]},
                   },
                     30: {
-                        'sprite elevated': False,
                         'sprite': 0,
+                        'sprite elevated': False,
                         'force render': True,
-                        'ghost': False,
-                        'actors pass through': False,
-                        'actors may grab': True,
-                        'speed': 0.2,
-                        'collideable': False,
-                        'gravity affected': False,
                         'invisible': False,
-                        'teleport': False,
-                        'teleport description': {'new location': '', 'on touch': False, 'xy': [0, 0]},
-                        'trigger': False,
-                        'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
+                        'ghost': False,
+                        'speed': 0.2,
                         'item': False,
                         'item name': {'name': ''},
+                        'actors may grab': True,
+                        'actors pass through': False,
                         'active': False,
                         'actions': {0: []},
+                        'collideable': False,
+                        'gravity affected': False,
+                        'trigger': False,
+                        'trigger description': {'make active': [(0, 'self', 0)], 'disappear': False},
+                        'teleport': False,
+                        'teleport description': {'new location': '', 'on touch': False, 'xy': [0, 0]},
                   },
                   } # OBSTACLE SETTINGS SECTION END
               },

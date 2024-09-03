@@ -8,7 +8,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/locations.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,13 +142,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00409" summary="Demon 2 attack modified.">
-      <created>1724142127448</created>
-      <option name="number" value="00409" />
-      <option name="presentableId" value="LOCAL-00409" />
-      <option name="project" value="LOCAL" />
-      <updated>1724142127448</updated>
     </task>
     <task id="LOCAL-00410" summary="After stamina runs out, actor's hits become three times weaker and slower.">
       <created>1724219902947</created>
@@ -486,7 +479,14 @@
       <option name="project" value="LOCAL" />
       <updated>1725336365585</updated>
     </task>
-    <option name="localTasksCounter" value="458" />
+    <task id="LOCAL-00458" summary="Solved problem with multiple dying exploding barrels.">
+      <created>1725340837240</created>
+      <option name="number" value="00458" />
+      <option name="presentableId" value="LOCAL-00458" />
+      <option name="project" value="LOCAL" />
+      <updated>1725340837240</updated>
+    </task>
+    <option name="localTasksCounter" value="459" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -501,7 +501,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Barrels explosion improved." />
     <MESSAGE value="Some fixes" />
     <MESSAGE value="Renovation of checking health condition and dying\dead states setting" />
     <MESSAGE value="Improving 'hop back' to avoid dead actors become 'stay still' if they get some damage being dropped in the air." />
@@ -526,6 +525,7 @@
     <MESSAGE value="If actor guards by shield and get a blow from behind, protection becomes futile." />
     <MESSAGE value=" Total damage amount is necessary to burn out stamina of a sneaky actor, protected by shield." />
     <MESSAGE value="Stamina burns out if actor defend himself by a shield and getting blows." />
-    <option name="LAST_COMMIT_MESSAGE" value="Stamina burns out if actor defend himself by a shield and getting blows." />
+    <MESSAGE value="Solved problem with multiple dying exploding barrels." />
+    <option name="LAST_COMMIT_MESSAGE" value="Solved problem with multiple dying exploding barrels." />
   </component>
 </project>
