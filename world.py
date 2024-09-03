@@ -355,13 +355,22 @@ class World(object):
         demol.bounce_factor = description['bounce factor']
         demol.flyer = description['flyer']
         demol.parent = description['parent']
+
+        if description['static']:
+            demol.snap_to_actor = demol.parent.id
+        else:
+            demol.snap_to_actor = -1
+
         # print(f'{demol.parent=}')
         if demol.parent:
             demol.parent_id = demol.parent.id
             demol.look = demol.parent.look
             demol.ttl = description['demolisher TTL'] * demol.parent.frames_changing_threshold_modifier
-            for k in description['damage']:
-                demol.damage[k] = description['damage'][k] / demol.parent.frames_changing_threshold_penalty + abs(demol.parent.speed) + abs(demol.parent.fall_speed)
+            if description['static']:
+                for k in description['damage']:
+                    demol.damage[k] = description['damage'][k] / demol.parent.frames_changing_threshold_penalty + abs(demol.parent.speed) + abs(demol.parent.fall_speed)
+            else:
+                demol.damage = description['damage']
             demol.parent_strength = demol.parent.strength
             demol.parent_weight = demol.parent.body_weight
             demol.parent_penalty = demol.parent.frames_changing_threshold_penalty
@@ -427,29 +436,10 @@ class World(object):
             demol.destination_point = description['destination']
             demol.look = 1 if demol.rectangle.center < demol.destination_point else -1
 
-        if description['static']:
-        # if description['snap to actor'] >= 0:
-        #     demol.snap_to_actor = description['snap to actor']
-            demol.snap_to_actor = demol.parent.id
-            # actor = self.actors[self.location][demol.parent.id]
-            # demol.parent_id = demol.parent.id
-            # snap_p = sprites[description['demolisher sprite']]['demolisher snap point']
-            # print(f"[add demolisher] point inside actor: {description['snapping offset']}; point inside demol: {snap_p}")
-            # demol.snapping_offset = {
-            #    'offset inside actor': description['snapping offset'],
-            #    'offset inside demolisher': sprites[description['demolisher sprite']]['demolisher snap point']
-            # }
-            # demol.update(demol.parent.look, demol.parent.rectangle)
-            # if demol.flyer:
-            #     demol.destination = (self.camera.max_offset_x + MAXX, demol.rectangle.y) if demol.parent.look == 1 else (-100, demol.rectangle.y)
-            # demol.look = demol.parent.look
-        else:
-            # demol.rectangle.center = dem.paren
-            # demol.snapping_offset = [0, 0]
-            # demol.parent_id = -1
-            demol.snap_to_actor = -1
-            # demol.look = description['look'] if 'look' in description.keys() else 1
-            # demol.destination_point = description['destination'] if 'destination' in description.keys() else (0, 0)
+        # if description['static']:
+        #     demol.snap_to_actor = demol.parent.id
+        # else:
+        #     demol.snap_to_actor = -1
         demol.aftermath = description['aftermath']
         # demol.damage = description['damage'] / demol.parent.frames_changing_threshold_penalty + abs(demol.parent.speed) + abs(demol.parent.fall_speed)
         # print(f'[add damager] {demol.damage=}')
@@ -477,19 +467,29 @@ class World(object):
         protector.flyer = description['flyer']
         protector.parent = description['parent']
         # print(f'{protector.parent=}')
+
+        if description['static']:
+            protector.snap_to_actor = protector.parent.id
+        else:
+            protector.snap_to_actor = -1
+
         if protector.parent:
             protector.parent_id = protector.parent.id
             protector.look = protector.parent.look
             protector.ttl = description['protector TTL'] * protector.parent.frames_changing_threshold_modifier
-            for k in description['damage']:
-                protector.damage[k] = description['damage'][k] / protector.parent.frames_changing_threshold_penalty + abs(protector.parent.speed) + abs(protector.parent.fall_speed)
+            # if description['static']:
+            #     for k in description['damage']:
+            #         protector.damage[k] = description['damage'][k] / protector.parent.frames_changing_threshold_penalty + abs(protector.parent.speed) + abs(protector.parent.fall_speed)
+            # else:
+            protector.protection = description['protection']
             protector.parent_strength = protector.parent.strength
             protector.parent_weight = protector.parent.body_weight
             protector.parent_penalty = protector.parent.frames_changing_threshold_penalty
         else:
             # protector.look = 1
             protector.ttl = description['protector TTL']
-            protector.damage = description['damage']
+            protector.protection = description['protection']
+            # protector.damage = description['damage']
             protector.parent_strength = 0
             protector.parent_weight = 0
             protector.parent_penalty = 0
@@ -548,29 +548,10 @@ class World(object):
             protector.destination_point = description['destination']
             protector.look = 1 if protector.rectangle.center < protector.destination_point else -1
 
-        if description['static']:
-        # if description['snap to actor'] >= 0:
-        #     protector.snap_to_actor = description['snap to actor']
-            protector.snap_to_actor = protector.parent.id
-            # actor = self.actors[self.location][protector.parent.id]
-            # protector.parent_id = protector.parent.id
-            # snap_p = sprites[description['demolisher sprite']]['demolisher snap point']
-            # print(f"[add demolisher] point inside actor: {description['snapping offset']}; point inside protector: {snap_p}")
-            # protector.snapping_offset = {
-            #    'offset inside actor': description['snapping offset'],
-            #    'offset inside demolisher': sprites[description['demolisher sprite']]['demolisher snap point']
-            # }
-            # protector.update(protector.parent.look, protector.parent.rectangle)
-            # if protector.flyer:
-            #     protector.destination = (self.camera.max_offset_x + MAXX, protector.rectangle.y) if protector.parent.look == 1 else (-100, protector.rectangle.y)
-            # protector.look = protector.parent.look
-        else:
-            # protector.rectangle.center = dem.paren
-            # protector.snapping_offset = [0, 0]
-            # protector.parent_id = -1
-            protector.snap_to_actor = -1
-            # protector.look = description['look'] if 'look' in description.keys() else 1
-            # protector.destination_point = description['destination'] if 'destination' in description.keys() else (0, 0)
+        # if description['static']:
+        #     protector.snap_to_actor = protector.parent.id
+        # else:
+        #     protector.snap_to_actor = -1
         protector.aftermath = description['aftermath']
         # protector.damage = description['damage'] / protector.parent.frames_changing_threshold_penalty + abs(protector.parent.speed) + abs(protector.parent.fall_speed)
         # print(f'[add damager] {protector.damage=}')

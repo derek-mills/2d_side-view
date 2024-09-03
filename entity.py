@@ -678,17 +678,20 @@ class Entity(object):
                     hit_detected = True
 
             if hit_detected:
-                if dem.floppy:
-                    if dem.parent:
-                        # self.hop_back_jump_height_modifier = ((dem.parent_strength / self.strength) + (dem.parent_weight / self.body_weight)) / dem.parent_penalty
-                        self.movement_direction_inverter = -1 if dem.parent.look != self.look else 1
-                        self.speed = 5 + ((dem.parent_strength / self.strength) + (dem.parent_weight / self.body_weight)) / dem.parent_penalty
-                    else:
-                        self.movement_direction_inverter = -1 if dem.look != self.look else 1
-                        self.speed = 5
-                    if 'smash' in dem.damage.keys():
-                        self.speed *= 2
-                    continue
+                # if dem.floppy:
+                #     if dem.parent:
+                #         # self.hop_back_jump_height_modifier = ((dem.parent_strength / self.strength) + (dem.parent_weight / self.body_weight)) / dem.parent_penalty
+                #         self.movement_direction_inverter = -1 if dem.parent.look != self.look else 1
+                #         self.speed = 5 + ((dem.parent_strength / self.strength) + (dem.parent_weight / self.body_weight)) / dem.parent_penalty
+                #     else:
+                #         self.movement_direction_inverter = -1 if dem.look != self.look else 1
+                #         self.speed = 5
+                #     if 'smash' in dem.damage.keys():
+                #         self.speed *= 2
+                #     continue
+
+                # if dem.floppy:
+
 
                 if not dem.pierce and not self.dead:
                     self.has_just_stopped_demolishers.append(dem.id)
@@ -724,7 +727,6 @@ class Entity(object):
                     })
 
                 if 'smash' in dem.damage.keys():
-                # if 'smash' in dem.attack_type:
                     if self.get_state() not in ('hold stash', 'carry stash right', 'carry stash left'):
                         if dem.parent:
                             self.hop_back_jump_height_modifier = ((dem.parent_strength / self.strength) + (dem.parent_weight / self.body_weight)) / dem.parent_penalty

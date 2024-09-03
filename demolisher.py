@@ -15,6 +15,7 @@ class Demolisher(Entity):
         self.snap_to_actor: int = 0  # Active actor which cause this demolisher to be glued.
         self.snapping_offset = dict()
         # self.snapping_offset = list()
+        self.protection = dict()
         self.damage = dict()
         # self.damage: float = 0.
         self.damage_reduce: float = 0.
@@ -216,6 +217,8 @@ class Demolisher(Entity):
                         self.collided_left = True
                     else:
                         self.collided_right = True
+                    for damage_type in self.damage:
+                        self.damage[damage_type] *= p.protection[damage_type]
                 break
     def process_protector(self):
     # def process_demolisher(self, time_passed):
