@@ -17,6 +17,10 @@ class Demolisher(Entity):
         # self.snapping_offset = list()
         self.protection = dict()
         self.damage = dict()
+
+        # Total damage amount is necessary to burn out stamina of a sneaky actor, protected by shield.
+        self.total_damage_amount: float = 0.
+
         # self.damage: float = 0.
         self.damage_reduce: float = 0.
         self.parent_id: int = -1
@@ -212,13 +216,17 @@ class Demolisher(Entity):
                 if self.rectangle.colliderect(p.rectangle) and self.look != p.look:
                     print(f'[detect collision with protectors] collided with {p.name}, {p.look=}, {self.look=}')
                     self.become_mr_floppy()
-                    self.is_being_collided_now = True
-                    if self.rectangle.centerx > p.rectangle.centerx:
-                        self.collided_left = True
+                    if self.bounce:
+                        self.is_being_collided_now = True
+                        self.parent_id = -1
+                        self.parent = None
+                        if self.rectangle.centerx > p.rectangle.centerx:
+                            self.collided_left = True
+                        else:
+                            self.collided_right = True
                     else:
-                        self.collided_right = True
-                    for damage_type in self.damage:
-                        self.damage[damage_type] *= p.protection[damage_type]
+                        for damage_type in self.damage:
+                            self.damage[damage_type] *= p.protection[damage_type]
                 break
     def process_protector(self):
     # def process_demolisher(self, time_passed):

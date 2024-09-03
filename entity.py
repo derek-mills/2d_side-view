@@ -688,13 +688,13 @@ class Entity(object):
                         self.speed = 5
                     if 'smash' in dem.damage.keys():
                         self.speed *= 2
-                    # for damage_type in dem.damage:
-                    #     dem.damage[damage_type] *= p.protection[damage_type]
-
-                    # continue
+                    if self.stats['stamina'] > 0:
+                        self.stamina_reduce(dem.total_damage_amount)
+                        continue
 
                 if not dem.pierce and not self.dead:
                     self.has_just_stopped_demolishers.append(dem.id)
+
                 self.summon_particle = True
                 self.invincibility_timer = 30
                 if not self.dead:  # or not self.dying:
@@ -702,10 +702,12 @@ class Entity(object):
                     total_damage_multiplier = 1.5 if dem.look == self.look and dem.snap_to_actor >= 0 else 1
                     self.get_damage(dem.damage, total_damage_multiplier)
                     # self.invincibility_timer = 100 if self.id == 0 else 30
+
                     # Damage amount show:
-                    # self.summon_particle = True
                     txt_color = RED if self.id == 0 else WHITE
                     sprite = fonts.all_fonts[40].render(str(int(self.total_damage_has_got)), True, txt_color)
+                    # if self.total_damage_has_got > 0:
+                    #     self.invincibility_timer = 30
                     self.summoned_particle_descriptions.append({
                         'sprite': sprite,
                         'fall speed correction': 0.6,
@@ -725,6 +727,8 @@ class Entity(object):
                         'collides': True,
                         'gravity affected': True
                     })
+                # else:
+                #     self.invincibility_timer = 30
 
                 if 'smash' in dem.damage.keys():
                     if self.get_state() not in ('hold stash', 'carry stash right', 'carry stash left'):
@@ -810,9 +814,9 @@ class Entity(object):
             self.stats['mana'] += (self.normal_mana_replenish * self.mana_replenish_modifier)
 
     def stamina_reduce(self, amount):
-        if self.stats['stamina'] < 0:
-            return
-        self.stats['stamina'] -= amount
+        if self.stats['stamina'] > 0:
+            # return
+            self.stats['stamina'] -= amount
         # if self.stats['stamina'] < 0:
         #      self.stats['stamina'] = 0
 

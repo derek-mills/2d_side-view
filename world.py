@@ -384,7 +384,11 @@ class World(object):
 
         demol.pierce = description['pierce']
 
+        # Total damage amount is necessary to burn out stamina of a sneaky actor, protected by shield.
+        for damage_type in demol.damage.keys():
+            demol.total_damage_amount += demol.damage[damage_type]
 
+        # Appearance:
         if description['visible']:
             if description['demolisher sprite']:
                 demol.current_sprite = sprites[description['demolisher sprite']]
@@ -427,6 +431,8 @@ class World(object):
                 'offset inside actor': description['snapping offset'],
                 'offset inside demolisher': (-demol.rectangle.width//2,0)  # if demol.look == 1 else (demol.rectangle.width, 0)
             }
+
+        # Geometry and coordinates:
         if demol.parent:
             demol.update(demol.parent.look, demol.parent.rectangle)
             if demol.flyer:
@@ -436,12 +442,7 @@ class World(object):
             demol.destination_point = description['destination']
             demol.look = 1 if demol.rectangle.center < demol.destination_point else -1
 
-        # if description['static']:
-        #     demol.snap_to_actor = demol.parent.id
-        # else:
-        #     demol.snap_to_actor = -1
         demol.aftermath = description['aftermath']
-        # demol.damage = description['damage'] / demol.parent.frames_changing_threshold_penalty + abs(demol.parent.speed) + abs(demol.parent.fall_speed)
         # print(f'[add damager] {demol.damage=}')
         demol.static = description['static']
         demol.damage_reduce = description['damage reduce']
