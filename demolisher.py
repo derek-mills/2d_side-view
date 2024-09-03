@@ -209,8 +209,8 @@ class Demolisher(Entity):
         if self.protectors_around:
             for k in self.protectors_around.keys():
                 p = self.protectors_around[k]
-                if self.rectangle.colliderect(p.rectangle):
-                    print(f'[detect collision with protectors] collided with {p.name}')
+                if self.rectangle.colliderect(p.rectangle) and self.look != p.look:
+                    print(f'[detect collision with protectors] collided with {p.name}, {p.look=}, {self.look=}')
                     self.become_mr_floppy()
                     self.is_being_collided_now = True
                     if self.rectangle.centerx > p.rectangle.centerx:

@@ -678,20 +678,20 @@ class Entity(object):
                     hit_detected = True
 
             if hit_detected:
-                # if dem.floppy:
-                #     if dem.parent:
-                #         # self.hop_back_jump_height_modifier = ((dem.parent_strength / self.strength) + (dem.parent_weight / self.body_weight)) / dem.parent_penalty
-                #         self.movement_direction_inverter = -1 if dem.parent.look != self.look else 1
-                #         self.speed = 5 + ((dem.parent_strength / self.strength) + (dem.parent_weight / self.body_weight)) / dem.parent_penalty
-                #     else:
-                #         self.movement_direction_inverter = -1 if dem.look != self.look else 1
-                #         self.speed = 5
-                #     if 'smash' in dem.damage.keys():
-                #         self.speed *= 2
-                #     continue
+                if dem.floppy:
+                    if dem.parent:
+                        # self.hop_back_jump_height_modifier = ((dem.parent_strength / self.strength) + (dem.parent_weight / self.body_weight)) / dem.parent_penalty
+                        self.movement_direction_inverter = -1 if dem.parent.look != self.look else 1
+                        self.speed = 5 + ((dem.parent_strength / self.strength) + (dem.parent_weight / self.body_weight)) / dem.parent_penalty
+                    else:
+                        self.movement_direction_inverter = -1 if dem.look != self.look else 1
+                        self.speed = 5
+                    if 'smash' in dem.damage.keys():
+                        self.speed *= 2
+                    # for damage_type in dem.damage:
+                    #     dem.damage[damage_type] *= p.protection[damage_type]
 
-                # if dem.floppy:
-
+                    # continue
 
                 if not dem.pierce and not self.dead:
                     self.has_just_stopped_demolishers.append(dem.id)

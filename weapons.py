@@ -644,10 +644,10 @@ small_shield = {
             # 1: 0% protection
             # >1: protector will amplify the damage amount of such type.
             'protection': {
-                'fire': 0.5,
-                'smash': 0.5,
-                'pierce': 0.5,
-                'slash': 0.5
+                'fire': 0.,
+                'smash': 0.,
+                'pierce': 0,
+                'slash': 0.
             },
             'aftermath': None
             # 'aftermath': 'explode'
