@@ -644,6 +644,7 @@ small_shield = {
             # 1: 0% protection
             # >1: protector will amplify the damage amount of such type.
             'protection': {
+                # 'stamina': 0.08,  # The lesser, the better stamina saving.
                 'fire': 0.2,
                 'smash': 0.2,
                 'pierce': 0.2,

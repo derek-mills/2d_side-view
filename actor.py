@@ -460,7 +460,7 @@ class Actor(Entity):
         elif new_action == 'attack':
             if self.stats['stamina'] <= self.current_stamina_lost_per_attack:
                 # print(f'[state machine] NOT ENOUGH STAMINA.')
-                self.frames_changing_threshold_penalty = 3  # x3 times slower animation
+                self.frames_changing_threshold_penalty = 2  # x2 times slower animation
                 # self.frames_changing_threshold_modifier = self.current_weapon['animation speed modifier'] *
                 # if self.name == 'Jake':
                 #     self.set_state('prepare kick')
@@ -955,6 +955,7 @@ class Actor(Entity):
         elif self.get_state() == 'almost explode':
             # print(f'[state machine] {self.name} is going to explode.')
             # print(f'[state machine] {self.name} state: *ALMOST EXPLODE*.')
+            self.invincibility_timer = 100
             if self.animation_sequence_done:
                 self.set_state('explosion')
         elif self.get_state() == 'explosion':

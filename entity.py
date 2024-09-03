@@ -694,7 +694,9 @@ class Entity(object):
                     if 'smash' in dem.damage.keys():
                         self.speed *= 2
                     if self.stats['stamina'] > 0:
-                        self.stamina_reduce(dem.total_damage_amount * forces_balance * 0.05)
+                        self.stamina_reduce(dem.total_damage_amount * forces_balance * 0.08)
+                        self.invincibility_timer = 20
+                        # self.stamina_reduce(dem.total_damage_amount * forces_balance * 0.08)
                         continue
 
                 if not dem.pierce and not self.dead:
