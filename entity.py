@@ -50,7 +50,7 @@ class Entity(object):
 
         # STATS
         self.normal_stamina_lost_per_second_jump = 10.
-        self.normal_stamina_lost_per_hop_back = 5.
+        self.normal_stamina_lost_per_hop_back = 5.5
         self.normal_stamina_lost_per_slide = 15.
         self.normal_stamina_lost_per_attack = 10.
         self.current_stamina_lost_per_attack = 0.  # Depends on current weapon penalty.
@@ -682,14 +682,19 @@ class Entity(object):
                     if dem.parent:
                         # self.hop_back_jump_height_modifier = ((dem.parent_strength / self.strength) + (dem.parent_weight / self.body_weight)) / dem.parent_penalty
                         self.movement_direction_inverter = -1 if dem.parent.look != self.look else 1
-                        self.speed = 5 + ((dem.parent_strength / self.strength) + (dem.parent_weight / self.body_weight)) / dem.parent_penalty
+                        forces_balance = ((dem.parent_strength + dem.parent_weight) / dem.parent_penalty) / (self.strength + self.body_weight)
+                        # forces_balance = ((dem.parent_strength / self.strength) + (dem.parent_weight / self.body_weight)) / dem.parent_penalty
+                        self.speed = 5 + forces_balance
+                        print(f'{dem.total_damage_amount=} {forces_balance=} {dem.parent_penalty=}')
                     else:
                         self.movement_direction_inverter = -1 if dem.look != self.look else 1
-                        self.speed = 5
+                        forces_balance = 0.1
+                        self.speed = 3
+                        print(f'{dem.total_damage_amount=} {forces_balance=} {dem.parent_penalty=}')
                     if 'smash' in dem.damage.keys():
                         self.speed *= 2
                     if self.stats['stamina'] > 0:
-                        self.stamina_reduce(dem.total_damage_amount)
+                        self.stamina_reduce(dem.total_damage_amount * forces_balance * 0.05)
                         continue
 
                 if not dem.pierce and not self.dead:
@@ -814,6 +819,8 @@ class Entity(object):
             self.stats['mana'] += (self.normal_mana_replenish * self.mana_replenish_modifier)
 
     def stamina_reduce(self, amount):
+        if self.id == 0:
+            print(f'[entity stamina reduce] player stamina reduced by amount: {amount}')
         if self.stats['stamina'] > 0:
             # return
             self.stats['stamina'] -= amount
