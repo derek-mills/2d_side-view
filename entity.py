@@ -68,10 +68,13 @@ class Entity(object):
             'exp': 0,
             'health': 100.,
             'max health': 100.,
+            'target health': 100.,
             'stamina': 100.,
             'max stamina': 100.,
+            'target stamina': 100.,
             'mana': 100.,
             'max mana': 100.,
+            'target mana': 100.,
         }
         # ANIMATION
         self.animations = dict()
@@ -796,8 +799,24 @@ class Entity(object):
             # if self.get_state() != 'lie dead':
             #     self.set_state('lie dead')
             return
+        if int(self.stats['stamina']) < self.stats['target stamina']:
+            self.stats['target stamina'] -= 1
+        elif int(self.stats['stamina']) > self.stats['target stamina']:
+            self.stats['target stamina'] += 1
+
+        if int(self.stats['mana']) < self.stats['target mana']:
+            self.stats['target mana'] -= 1
+        elif int(self.stats['mana']) > self.stats['target mana']:
+            self.stats['target mana'] += 1
+
+        if int(self.stats['health']) < self.stats['target health']:
+            self.stats['target health'] -= 1
+        elif int(self.stats['health']) > self.stats['target health']:
+            self.stats['target health'] += 1
+
         if self.stats['health'] < 0:
             self.stats['health'] = 0
+            self.stats['target health'] = 0
             self.set_state('dying')
             # print(f'[check condition] {self.name} (#{self.id}): change state to *DYING* | HP: {self.stats["health"]}')
             # self.dying = True
@@ -811,6 +830,7 @@ class Entity(object):
         for damage_type in damage:
             d = damage[damage_type] * self.resistances[damage_type] * damage_multiplier
             self.stats['health'] -= d
+            # self.stats['health'] -= d
             self.total_damage_has_got += d
 
         # if self.stats['health'] <= 0:
@@ -845,15 +865,14 @@ class Entity(object):
         # if self.stats['stamina'] < 0:
         #      self.stats['stamina'] = 0
 
-    # Backup
-    # def stamina_reduce(self, amount):
-    #     if self.stats['stamina'] == 0:
-    #         return
-    #     self.stats['stamina'] -= amount
-    #     if self.stats['stamina'] < 0:
-    #          self.stats['stamina'] = 0
-
     def stamina_replenish(self):
+        # if self.stats['target stamina'] > self.stats['max stamina']:
+        #     self.stats['target stamina'] = self.stats['max stamina']
+        #     return
+        # elif self.stats['target stamina'] == self.stats['max stamina']:
+        #     return
+        # else:
+        #     self.stats['target stamina'] += (self.normal_stamina_replenish * self.stamina_replenish_modifier)
         if self.stats['stamina'] > self.stats['max stamina']:
             self.stats['stamina'] = self.stats['max stamina']
             return

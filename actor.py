@@ -1044,7 +1044,7 @@ class Actor(Entity):
             else:
                 self.rectangle.top = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
         elif self.get_state() == 'dying':
-            print(f'[state machine] {self.name} state: *DYING*.')
+            # print(f'[state machine] {self.name} state: *DYING*.')
             # if self.animation_sequence_done:
             if self.think_type == 'exploding barrel':
                 self.set_state('almost explode')
