@@ -655,7 +655,7 @@ class Actor(Entity):
                     # self.movement_direction_inverter = -1
                     # self.heading[0] = 0
                     self.idle_counter = 20
-                    self.invincibility_timer = 20
+                    # self.invincibility_timer = 20
                     self.hop_back_jump_height_modifier = self.default_hop_back_jump_height_modifier
                 self.is_abort_jump = False
 
@@ -765,11 +765,35 @@ class Actor(Entity):
                     return
             if self.rectangle.width != self.rectangle_width_default:
                 self.set_new_desired_width(self.rectangle_width_default,10)
+        # elif self.get_state() == 'turn left':                       # TURN LEFT
+        #     if self.look == 1 and self.speed > 0:  # Actor looks to the other side and runs.
+        #         # Switch off heading to force actor start reducing his speed and slow it down to zero.
+        #         # After that self is going to be able to start acceleration to proper direction.
+        #         self.heading[0] = 0
+        #         # self.look = -1
+        #     else:
+        #         self.look = -1
+        #         self.heading[0] = -1
+        #         self.set_state('stand still')
+        # elif self.get_state() == 'turn right':                      # TURN RIGHT
+        #     if self.speed > 0:
+        #         # if self.look == -1:  # and self.speed > 0:  # Actor looks to the other side and runs.
+        #         #     # Switch off heading to force actor start reducing his speed and slow it down to zero.
+        #         #     # After that self is going to be able to start acceleration to proper direction.
+        #         #     self.heading[0] = 0
+        #         self.heading[0] = 0
+        #         # self.look = 1
+        #     else:
+        #         self.look = 1
+        #         self.heading[0] = 1
+        #         self.set_state('stand still')
+        # Movement directions change routines backup:
         elif self.get_state() == 'turn left':                       # TURN LEFT
             if self.look == 1 and self.speed > 0:  # Actor looks to the other side and runs.
                 # Switch off heading to force actor start reducing his speed and slow it down to zero.
                 # After that self is going to be able to start acceleration to proper direction.
                 self.heading[0] = 0
+                # self.look = -1
             else:
                 self.look = -1
                 self.heading[0] = -1
@@ -779,14 +803,12 @@ class Actor(Entity):
                 # Switch off heading to force actor start reducing his speed and slow it down to zero.
                 # After that self is going to be able to start acceleration to proper direction.
                 self.heading[0] = 0
+                # self.look = 1
             else:
                 self.look = 1
                 self.heading[0] = 1
                 self.set_state('stand still')
 
-            # self.is_move_right = True
-            # self.look = 1
-            # self.set_state('stand still')
         elif self.get_state() == 'fly left':                        # IN MID-AIR FLY LEFT
             if self.is_stand_on_ground:
                 self.set_state('stand still')
@@ -977,44 +999,38 @@ class Actor(Entity):
         if self.think_type == 'chaser':
             # Change weapon depends on target vicinity:
             # print('[think]', list(self.inventory['weapons'].keys()))
+            if self.rectangle.centerx > self.target.rectangle.centerx:
+                self.ai_input_left_arrow = True
+                self.ai_input_right_arrow = False
+                self.ai_input_attack = False
+                self.look = -1
+            else:
+                self.ai_input_left_arrow = False
+                self.ai_input_right_arrow = True
+                self.ai_input_attack = False
+                self.look = 1
+
             if self.sprite_rectangle.colliderect(self.target.sprite_rectangle):
                 # Smash actor immediately:
                 self.activate_weapon(0)  # Activate close combat weapon (always has index 0).
                 self.ai_input_attack = True
-                self.ai_input_left_arrow = False
-                self.ai_input_right_arrow = False
-                # return
+                # self.ai_input_left_arrow = False
+                # self.ai_input_right_arrow = False
             else:
-                # self.activate_weapon(1)  # Activate middle-ranged weapon (always has index 1).
 
-                if self.rectangle.centerx > self.target.rectangle.centerx:
-                    # if self.rectangle.centerx - self.target.rectangle.centerx <= self.current_weapon['reach']:
-                    #     self.ai_input_attack = True
-                    # else:
-                    self.ai_input_left_arrow = True
-                    self.ai_input_right_arrow = False
-                else:
-                    # if self.target.rectangle.centerx - self.rectangle.centerx <= self.current_weapon['reach']:
-                    #     self.ai_input_attack = True
-                    # else:
-                    self.ai_input_left_arrow = False
-                    self.ai_input_right_arrow = True
-
-                self.activate_weapon(1)  # Activate middle-ranged weapon (always has index 1).
-
-                # if self.target.rectangle.colliderect(self.rectangle.inflate(self.rectangle.width + self.current_weapon['reach'],
-                #                                                             self.rectangle.height)):
                 if abs(self.rectangle.centerx - self.target.rectangle.centerx) <= self.current_weapon['reach']:
 
                     if self.rectangle.centery >= self.target.rectangle.centery:
-                        self.activate_weapon(0)  # Activate close combat weapon (always has index 0).
+                        # self.activate_weapon(0)  # Activate close combat weapon (always has index 0).
                         if self.get_state() != 'jump':
                             self.ai_input_jump = True
                             # print('wanna jump')
                         else:
+                            self.activate_weapon(0)  # Activate close combat weapon (always has index 0).
                             self.ai_input_attack = True
                             # print('wanna attack in the air')
                     else:
+                        self.activate_weapon(1)  # Activate middle-ranged weapon (always has index 1).
                         self.ai_input_attack = True
                         # print('wanna attack')
                     # if self.get_state() == 'jump':
@@ -1025,13 +1041,17 @@ class Actor(Entity):
                         self.next_ranged_weapon_usage_counter -= 1
                     else:
                         self.next_ranged_weapon_usage_counter = randint(100, 1200)
-                        self.activate_weapon(2)  # Activate ranged weapon (always has index 2).
-                        if self.stats['mana'] < self.current_mana_lost_per_attack:
-                            self.activate_weapon(1)
-                        else:
+                        if self.stats['mana'] >= self.current_mana_lost_per_attack:
+                            self.activate_weapon(2)  # Activate ranged weapon (always has index 2).
                             self.ai_input_attack = True
                             self.ai_input_left_arrow = False
                             self.ai_input_right_arrow = False
+                        # if self.stats['mana'] < self.current_mana_lost_per_attack:
+                        #     self.activate_weapon(1)
+                        # else:
+                        #     self.ai_input_attack = True
+                        #     self.ai_input_left_arrow = False
+                        #     self.ai_input_right_arrow = False
         elif self.think_type == 'exploding barrel':
             if self.fall_speed > 20:  # barrel explodes if it falls from the height of 4 blocks (50 pixels * 4)
                 self.set_state('almost explode')
@@ -1050,11 +1070,13 @@ class Actor(Entity):
 
         if self.ai_input_right_arrow:
             self.set_action('right action')
+            # return
         else:
             self.set_action('right action cancel')
 
         if self.ai_input_left_arrow:
             self.set_action('left action')
+            # return
         else:
             self.set_action('left action cancel')
 

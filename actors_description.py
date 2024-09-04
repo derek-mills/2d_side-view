@@ -766,7 +766,7 @@ player_jake = {
         },
     },
     'max speed': 8,
-    'acceleration': .8,
+    'acceleration': .9,
     'air acceleration': .4,
     'items': (fireball_staff,small_shield,jake_kick,pistol,axe,whip,),
     # 'items': (whip,fireball_staff,sword,kitchen_knife,),

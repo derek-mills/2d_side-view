@@ -230,7 +230,7 @@ whip = {
             'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
-            'attack type': ('pierce',),
+            # 'attack type': ('pierce',),
              'damage': {
                  'pierce': 10,
              },
@@ -245,7 +245,7 @@ whip = {
             'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
-            'attack type': ('pierce',),
+            # 'attack type': ('pierce',),
              'damage': {
                  'pierce': 30,
              },
@@ -260,7 +260,7 @@ whip = {
             'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
-            'attack type': ('pierce',),
+            # 'attack type': ('pierce',),
              'damage': {
                  'pierce': 60,
              },
@@ -342,7 +342,7 @@ axe = {
             'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
-            'attack type': ('smash','slash'),
+            # 'attack type': ('smash','slash'),
              'damage': {
                  'smash': 10,
                  'slash': 10
@@ -358,7 +358,7 @@ axe = {
             'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
-            'attack type': ('smash','slash'),
+            # 'attack type': ('smash','slash'),
              'damage': {
                  'smash': 50,
                  'slash': 50
@@ -370,11 +370,11 @@ axe = {
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
              'visible': True,
             'demolisher sprite': 'axe 315 demolisher',
-            'pierce': False, 'demolisher TTL': 6, 'speed': 0,
+            'pierce': True, 'demolisher TTL': 6, 'speed': 0,
             'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
-            'attack type': ('smash','slash'),
+            # 'attack type': ('smash','slash'),
              'damage': {
                  'smash': 70,
                  'slash': 70
@@ -417,7 +417,7 @@ demon_2_mid = {
             'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
-            'attack type': ('slash', ),
+            # 'attack type': ('slash', ),
              'damage': {
                  'slash': 100
              },
@@ -432,7 +432,7 @@ demon_2_mid = {
             'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
-            'attack type': ('slash', 'pierce'),
+            # 'attack type': ('slash', 'pierce'),
              'damage': {
                  'pierce': 100,
                  'slash': 10
@@ -448,7 +448,7 @@ demon_2_mid = {
             'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
-            'attack type': ('smash', ),
+            # 'attack type': ('smash', ),
              'damage': {
                  'smash': 100,
              },
