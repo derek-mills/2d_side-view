@@ -7,9 +7,7 @@
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,13 +141,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00411" summary="Actor deals more damage while moving or jumping.">
-      <created>1724224160029</created>
-      <option name="number" value="00411" />
-      <option name="presentableId" value="LOCAL-00411" />
-      <option name="project" value="LOCAL" />
-      <updated>1724224160029</updated>
     </task>
     <task id="LOCAL-00412" summary="Actor gets more damage from behind.">
       <created>1724229447497</created>
@@ -487,7 +478,14 @@
       <option name="project" value="LOCAL" />
       <updated>1725349519072</updated>
     </task>
-    <option name="localTasksCounter" value="460" />
+    <task id="LOCAL-00460" summary="AI 'chaser' think type improved.">
+      <created>1725416972257</created>
+      <option name="number" value="00460" />
+      <option name="presentableId" value="LOCAL-00460" />
+      <option name="project" value="LOCAL" />
+      <updated>1725416972257</updated>
+    </task>
+    <option name="localTasksCounter" value="461" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -502,7 +500,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Renovation of checking health condition and dying\dead states setting" />
     <MESSAGE value="Improving 'hop back' to avoid dead actors become 'stay still' if they get some damage being dropped in the air." />
     <MESSAGE value="Solved problem when actor continues to get damaged even if he became dead." />
     <MESSAGE value="Added reviving after death in a place where the Stash is." />
@@ -527,6 +524,7 @@
     <MESSAGE value="Stamina burns out if actor defend himself by a shield and getting blows." />
     <MESSAGE value="Solved problem with multiple dying exploding barrels." />
     <MESSAGE value="Stamina replenishes slowly (down to 30% of normal amount) while actor in defending state." />
-    <option name="LAST_COMMIT_MESSAGE" value="Stamina replenishes slowly (down to 30% of normal amount) while actor in defending state." />
+    <MESSAGE value="AI 'chaser' think type improved." />
+    <option name="LAST_COMMIT_MESSAGE" value="AI 'chaser' think type improved." />
   </component>
 </project>

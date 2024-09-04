@@ -53,6 +53,8 @@ class World(object):
         self.is_input_confirm = False
         self.is_input_cancel = False
         self.is_z = False
+        self.is_q = False
+        self.is_e = False
         self.is_p = False
         self.is_i = False
         self.is_x = False
@@ -1024,12 +1026,27 @@ class World(object):
                         else:
                             actor.set_action('jump action cancel')
 
-                        if self.is_l_alt and not self.l_alt_multiple_press_prevent:
-                            self.l_alt_multiple_press_prevent = True
-                            actor.set_action('hop back')
+                        if self.is_q:
+                        # if self.is_l_alt and not self.l_alt_multiple_press_prevent:
+                        #     self.l_alt_multiple_press_prevent = True
+                            if actor.look == 1:
+                                actor.set_action('hop back')
+                            else:
+                                actor.set_action('hop forward')
                         else:
-                            if actor.get_state() == 'hop back progress':
-                                actor.set_action('hop back action cancel')
+                            if actor.get_state() in ('hopping back progress', 'hopping forward progress'):
+                                actor.set_action('hop action cancel')
+
+                        if self.is_e:
+                        # if self.is_l_alt and not self.l_alt_multiple_press_prevent:
+                        #     self.l_alt_multiple_press_prevent = True
+                            if actor.look == -1:
+                                actor.set_action('hop back')
+                            else:
+                                actor.set_action('hop forward')
+                        else:
+                            if actor.get_state() in ('hopping back progress', 'hopping forward progress'):
+                                actor.set_action('hop action cancel')
 
                         if self.is_attack:
                             # self.is_attack = False
@@ -1601,6 +1618,12 @@ class World(object):
             # print(self.l_shift)
             if event.type == KEYUP:
                 self.is_key_pressed = False
+
+                if event.key == K_q:
+                    self.is_q = False
+                if event.key == K_e:
+                    self.is_e = False
+
                 if event.key == K_d:
                     self.is_input_right_arrow = False
                 if event.key == K_a:
@@ -1664,6 +1687,11 @@ class World(object):
                     #     self.actors['player'].body[self.player_actor_hand_to_change_weapon]['weapon'] = self.actors['player'].inventory['weapons'][all_weapons[0]]
                     # else:
                     #     self.actors['player'].body[self.player_actor_hand_to_change_weapon]['weapon'] = self.actors['player'].inventory['weapons'][all_weapons[current_index+1]]
+
+                if event.key == K_q:
+                    self.is_q = True
+                if event.key == K_e:
+                    self.is_e = True
 
                 # DIRECTION KEYS
                 if event.key == K_d:

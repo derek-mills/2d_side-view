@@ -444,8 +444,26 @@ class Actor(Entity):
             # if self.is_stand_on_ground:
             #     if self.is_enough_space_above:
             self.movement_direction_inverter = -1
-            self.set_state('hop back')
-        elif new_action == 'hop back action cancel':
+            self.set_state('hopping prepare')
+        # elif new_action == 'hop action cancel':
+        #     # self.set_state('jump cancel')
+        #     # self.is_grabbers_active = False
+        #     if self.just_got_jumped:
+        #         self.just_got_jumped = False
+        #     self.is_abort_jump = True
+        #     self.ignore_user_input = False
+        #     # self.movement_direction_inverter = 1
+
+        # HOP FORWARD
+        elif new_action == 'hop forward':
+            # Apply filter of unwanted actions:
+            if self.__state not in ('run left', 'run right', 'stand still', 'fly right', 'fly left', 'jump'):
+                return
+            # if self.is_stand_on_ground:
+            #     if self.is_enough_space_above:
+            # self.movement_direction_inverter = -1
+            self.set_state('hopping prepare')
+        elif new_action == 'hop action cancel':
             # self.set_state('jump cancel')
             # self.is_grabbers_active = False
             if self.just_got_jumped:
@@ -623,7 +641,7 @@ class Actor(Entity):
                 else:
                     self.set_state('fly left')
             # self.set_state('stand still')
-        elif self.get_state() == 'hop back':                        # HOP BACK
+        elif self.get_state() == 'hopping prepare':                        # HOP BACK
             self.heading[0] = 0
             self.speed = 0
             # if self.is_stand_on_ground:
@@ -654,7 +672,7 @@ class Actor(Entity):
                     # print(f'[state machine] hop back prepare: {self.hop_back_jump_height_modifier=} {self.jump_height=} {self.speed=}')
                     # self.movement_direction_inverter = -1
                     # self.heading[0] = 0
-                    self.idle_counter = 20
+                    self.idle_counter = 15
                     # self.invincibility_timer = 20
                     self.hop_back_jump_height_modifier = self.default_hop_back_jump_height_modifier
                 self.is_abort_jump = False
@@ -666,7 +684,7 @@ class Actor(Entity):
                     if self.get_state() == 'hanging on edge':
                         self.set_state('release edge')
                     else:
-                        self.set_state('hopping back process')
+                        self.set_state('hopping process')
                     # else:
                     #     self.set_state('crouch down')
                 # return
@@ -676,7 +694,7 @@ class Actor(Entity):
             #     self.set_state('release edge')
             # else:
             #     self.set_state('stand still')
-        elif self.get_state() == 'hopping back process':            # HOPPING BACK PROCESS
+        elif self.get_state() == 'hopping process':            # HOPPING BACK PROCESS
             if self.idle_counter > 0:
                 self.idle_counter -= 1
                 # self.invincibility_timer -= 1
@@ -692,6 +710,75 @@ class Actor(Entity):
                         self.set_state('stand still')
                     else:
                         self.set_state('lie dead')
+        # elif self.get_state() == 'hop forward':                        # HOP BACK
+        #     self.heading[0] = 0
+        #     self.speed = 0
+        #     # if self.is_stand_on_ground:
+        #     if self.is_enough_space_above:
+        #         self.ignore_user_input = True
+        #         self.ai_input_right_arrow = False
+        #         self.ai_input_left_arrow = False
+        #         self.ai_input_attack = False
+        #         self.ai_input_jump = False
+        #         self.is_grabbers_active = False
+        #         self.is_move_right: bool = False
+        #         self.is_move_left: bool = False
+        #         self.is_move_up: bool = False
+        #         self.is_move_down: bool = False
+        #         self.is_jump: bool = False
+        #         self.is_crouch: bool = False
+        #         self.is_abort_jump: bool = False
+        #         self.is_jump_performed: bool = False
+        #         if not self.just_got_jumped:
+        #             self.stamina_reduce(self.normal_stamina_lost_per_hop_back)
+        #             self.just_got_jumped = True
+        #             self.jump_attempts_counter -= 1
+        #             self.is_jump = True
+        #             self.influenced_by_obstacle = -1
+        #             self.jump_height = min(5 * self.hop_back_jump_height_modifier, 15)
+        #             # self.jump_height = self.max_jump_height * 0.6
+        #             self.speed = min(5 * self.hop_back_jump_height_modifier, 30)
+        #             # print(f'[state machine] hop back prepare: {self.hop_back_jump_height_modifier=} {self.jump_height=} {self.speed=}')
+        #             # self.movement_direction_inverter = -1
+        #             # self.heading[0] = 0
+        #             self.idle_counter = 20
+        #             # self.invincibility_timer = 20
+        #             self.hop_back_jump_height_modifier = self.default_hop_back_jump_height_modifier
+        #         self.is_abort_jump = False
+        #
+        #         if self.dead:
+        #             # self.heading[0] = 0
+        #             self.set_state('lie dead')
+        #         else:
+        #             if self.get_state() == 'hanging on edge':
+        #                 self.set_state('release edge')
+        #             else:
+        #                 self.set_state('hopping forward process')
+        #             # else:
+        #             #     self.set_state('crouch down')
+        #         # return
+        #
+        #
+        #     # else:
+        #     #     self.set_state('release edge')
+        #     # else:
+        #     #     self.set_state('stand still')
+        # elif self.get_state() == 'hopping forward process':            # HOPPING BACK PROCESS
+        #     if self.idle_counter > 0:
+        #         self.idle_counter -= 1
+        #         # self.invincibility_timer -= 1
+        #     else:
+        #         if self.speed <= 0:
+        #             self.ignore_user_input = False
+        #             if self.just_got_jumped:
+        #                 self.just_got_jumped = False
+        #             self.is_abort_jump = True
+        #             # self.movement_direction_inverter = 1
+        #             # self.set_state('crouch')
+        #             if not self.dead:
+        #                 self.set_state('stand still')
+        #             else:
+        #                 self.set_state('lie dead')
         elif self.get_state() == 'slide':                           # SLIDE PREPARING
             self.speed = self.max_speed * 2.5
             self.set_new_desired_height(self.rectangle_height_slide, 0)
