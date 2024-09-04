@@ -8,6 +8,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphics.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,13 +143,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00414" summary="Improving text-like particles, which shows the damage amount taken by an actor.">
-      <created>1724291138462</created>
-      <option name="number" value="00414" />
-      <option name="presentableId" value="LOCAL-00414" />
-      <option name="project" value="LOCAL" />
-      <updated>1724291138462</updated>
     </task>
     <task id="LOCAL-00415" summary="Slightly redesigned demolishers appearing instructions.">
       <created>1724293935561</created>
@@ -485,7 +480,14 @@
       <option name="project" value="LOCAL" />
       <updated>1725425965056</updated>
     </task>
-    <option name="localTasksCounter" value="463" />
+    <task id="LOCAL-00463" summary="AI actors do not turn to proper side if they are lying dead and being kicked up.">
+      <created>1725430668484</created>
+      <option name="number" value="00463" />
+      <option name="presentableId" value="LOCAL-00463" />
+      <option name="project" value="LOCAL" />
+      <updated>1725430668484</updated>
+    </task>
+    <option name="localTasksCounter" value="464" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -500,7 +502,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added reviving after death in a place where the Stash is." />
     <MESSAGE value="Added the Stash drop after death if player actor has it loaded." />
     <MESSAGE value="render_text() and game_over() tiny updates." />
     <MESSAGE value="activate_weapon() left to be used by non-player actors.&#10;Player actor has now two different attack, which use separate weapons in the right and left hands by pressing different attack buttons." />
@@ -525,6 +526,7 @@
     <MESSAGE value="AI 'chaser' think type improved." />
     <MESSAGE value="Player actor is able to hop back and forward now by pressing 'q' and 'e' buttons." />
     <MESSAGE value="Correcting errors in hopping process after get damaged." />
-    <option name="LAST_COMMIT_MESSAGE" value="Correcting errors in hopping process after get damaged." />
+    <MESSAGE value="AI actors do not turn to proper side if they are lying dead and being kicked up." />
+    <option name="LAST_COMMIT_MESSAGE" value="AI actors do not turn to proper side if they are lying dead and being kicked up." />
   </component>
 </project>

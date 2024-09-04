@@ -683,7 +683,7 @@ class Entity(object):
 
             if hit_detected:
                 if dem.floppy:
-                    # Most probably a demolishers has collision with protector (player shield).
+                    # Most probably a demolishers has a collision with protector (player shield).
                     if dem.parent:
                         # self.hop_back_jump_height_modifier = ((dem.parent_strength / self.strength) + (dem.parent_weight / self.body_weight)) / dem.parent_penalty
                         self.movement_direction_inverter = -1 if dem.parent.look != self.look else 1

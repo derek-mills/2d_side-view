@@ -9,7 +9,7 @@ demon_1 = {
     'drop': ['exp' for i in range(randint(3,5))],
     'strength': 10,
     'body weight': 50,
-    'health': 1500.,
+    'health': 200.,
     'mana replenish': .5,
     'stamina replenish': 2.,
     'height': 150,  # For level editor use only
@@ -262,7 +262,7 @@ demon_1 = {
 demon_2 = {
     'name': 'demon 2',
     'drop': ['exp' for i in range(randint(8,12))],
-    'health': 15.,
+    'health': 2500.,
     'mana replenish': 50.,
     'stamina replenish': 1.,
     'blood color': (150, 50, 10),
@@ -662,8 +662,8 @@ demon_2 = {
             'repeat from frame': 0
         },
     },
-    # 'think type': '',
-    'think type': 'chaser',
+    'think type': '',
+    # 'think type': 'chaser',
     'disappear after death': False,
     'AI controlled': True
 }
@@ -748,16 +748,17 @@ player_jake = {
     'health': 1000.,
     'blood color': (255, 0, 0),
     'gravity affected': True,
-    'mana replenish': 1.,
-    'stamina replenish': 1.5,
-    'strength': 15,
+    'mana replenish': 3.,
+    'stamina replenish': 3.5,
+    'strength': 150,
     'body weight': 60,
     'resistances': {
         # Zero is total resistance, such type of damage multiples by zero.
         # Above 1 is a weakness to particular type of damage.
-        'slash': 1,
-        'pierce': 1,
-        'smash': 1,
+        # In the other terms, this is a just incoming damage multiplier.
+        'slash': .1,
+        'pierce': .1,
+        'smash': .1,
         'fire': 1
     },
     'body': {

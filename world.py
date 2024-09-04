@@ -370,7 +370,10 @@ class World(object):
             demol.ttl = description['demolisher TTL'] * demol.parent.frames_changing_threshold_modifier
             if description['static']:
                 for k in description['damage']:
-                    demol.damage[k] = description['damage'][k] / demol.parent.frames_changing_threshold_penalty + abs(demol.parent.speed) + abs(demol.parent.fall_speed)
+                    demol.damage[k] = description['damage'][k] / demol.parent.frames_changing_threshold_penalty \
+                                      + 2 * (abs(demol.parent.speed) + abs(demol.parent.fall_speed))
+                                      # + 2 * (max(1, (abs(demol.parent.speed) + abs(demol.parent.fall_speed))))
+                                      # * (abs(demol.parent.speed) + abs(demol.parent.fall_speed))
             else:
                 demol.damage = description['damage']
             demol.parent_strength = demol.parent.strength

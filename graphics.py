@@ -396,7 +396,7 @@ except FileNotFoundError:
     weak_spots = None
 load_single_frame(tmp_sprites, ((260,150,20,18),), name + ' avatar')
 load_single_frame(tmp_sprites, ((260,150,20,18),), name + ' avatar front')
-load_all_frames(tmp_sprites, 97, name, 20, 30, 14)
+load_all_frames(tmp_sprites, 97, name, 20, 30, 18)
 # load_all_frames(tmp_sprites, 97, name, 20, 30, 14, weak_spots)
 
 # ___...---=== DEMON MALE 1 ===---...___
