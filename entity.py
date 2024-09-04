@@ -525,6 +525,9 @@ class Entity(object):
     def get_state(self):
         return self.__state
 
+    def set_action(self, new_action):
+        ...
+
     def set_state(self, new_state):
         self.__state = new_state
 
@@ -736,18 +739,29 @@ class Entity(object):
                         'collides': True,
                         'gravity affected': True
                     })
-                # else:
-                #     self.invincibility_timer = 30
 
                 if 'smash' in dem.damage.keys():
                     if self.get_state() not in ('hold stash', 'carry stash right', 'carry stash left'):
                         if dem.parent:
-                            self.hop_back_jump_height_modifier = ((dem.parent_strength / self.strength) + (dem.parent_weight / self.body_weight)) / dem.parent_penalty
+                            # print('sdsdsadasdsadasd')
+                            self.hop_back_jump_height_modifier = ((dem.parent_strength + dem.parent_weight) / (self.strength + self.body_weight))  # / dem.parent_penalty
+                            # self.hop_back_jump_height_modifier = ((dem.parent_strength / self.strength) + (dem.parent_weight / self.body_weight)) / dem.parent_penalty
                             self.movement_direction_inverter = -1 if dem.parent.look != self.look else 1
+                            # if dem.parent.look != self.look:
+                            #     self.set_state('hop back')
+                            # else:
+                            #     self.set_state('hop forward')
+                            # self.movement_direction_inverter = -1 if dem.parent.look != self.look else 1
                         else:
                             self.movement_direction_inverter = -1 if dem.look != self.look else 1
+                            # if dem.look != self.look:
+                            #     self.set_state('hop back')
+                            # else:
+                            #     self.set_state('hop forward')
+                            # self.movement_direction_inverter = -1 if dem.look != self.look else 1
                         # if self.get_state() != 'lie dead':
-                        self.set_state('hop back')
+                        self.set_state('hopping prepare')
+                        # self.set_state('hop back')
 
                 # Blood splatters:
                 if 'slash' in dem.damage.keys():
@@ -823,8 +837,8 @@ class Entity(object):
             self.stats['mana'] += (self.normal_mana_replenish * self.mana_replenish_modifier)
 
     def stamina_reduce(self, amount):
-        if self.id == 0:
-            print(f'[entity stamina reduce] player stamina reduced by amount: {amount}')
+        # if self.id == 0:
+        #     print(f'[entity stamina reduce] player stamina reduced by amount: {amount}')
         if self.stats['stamina'] > 0:
             # return
             self.stats['stamina'] -= amount
