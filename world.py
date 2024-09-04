@@ -970,7 +970,7 @@ class World(object):
                 if actor.disappear_after_death:
                     dead.append(actor.id)
                 if actor.id == 0:
-                    self.player_is_dead_counter_to_game_over = 300
+                    self.player_is_dead_counter_to_game_over = 200
                     if actor.has_item_in_inventory(all_items['stash']):
                         actor.drop_item_from_inventory(actor.inventory['burden']['stash']['item'])
                     # continue
@@ -987,7 +987,7 @@ class World(object):
             # if not actor.ignore_user_input:
             #     actor.think()
 
-            if not actor.dead or not actor.dying:
+            if not actor.dead:  # or not actor.dying:
                 if actor.ai_controlled:
                     # routines for AI
                     actor.get_target(self.actors['player'])

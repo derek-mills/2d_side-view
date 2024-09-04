@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -140,13 +141,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00413" summary="After taking damage an actor throws a white ciphers.">
-      <created>1724290616702</created>
-      <option name="number" value="00413" />
-      <option name="presentableId" value="LOCAL-00413" />
-      <option name="project" value="LOCAL" />
-      <updated>1724290616703</updated>
     </task>
     <task id="LOCAL-00414" summary="Improving text-like particles, which shows the damage amount taken by an actor.">
       <created>1724291138462</created>
@@ -484,7 +478,14 @@
       <option name="project" value="LOCAL" />
       <updated>1725421592457</updated>
     </task>
-    <option name="localTasksCounter" value="462" />
+    <task id="LOCAL-00462" summary="Correcting errors in hopping process after get damaged.">
+      <created>1725425965056</created>
+      <option name="number" value="00462" />
+      <option name="presentableId" value="LOCAL-00462" />
+      <option name="project" value="LOCAL" />
+      <updated>1725425965056</updated>
+    </task>
+    <option name="localTasksCounter" value="463" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -499,7 +500,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Solved problem when actor continues to get damaged even if he became dead." />
     <MESSAGE value="Added reviving after death in a place where the Stash is." />
     <MESSAGE value="Added the Stash drop after death if player actor has it loaded." />
     <MESSAGE value="render_text() and game_over() tiny updates." />
@@ -524,6 +524,7 @@
     <MESSAGE value="Stamina replenishes slowly (down to 30% of normal amount) while actor in defending state." />
     <MESSAGE value="AI 'chaser' think type improved." />
     <MESSAGE value="Player actor is able to hop back and forward now by pressing 'q' and 'e' buttons." />
-    <option name="LAST_COMMIT_MESSAGE" value="Player actor is able to hop back and forward now by pressing 'q' and 'e' buttons." />
+    <MESSAGE value="Correcting errors in hopping process after get damaged." />
+    <option name="LAST_COMMIT_MESSAGE" value="Correcting errors in hopping process after get damaged." />
   </component>
 </project>

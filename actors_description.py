@@ -262,7 +262,7 @@ demon_1 = {
 demon_2 = {
     'name': 'demon 2',
     'drop': ['exp' for i in range(randint(8,12))],
-    'health': 1500.,
+    'health': 15.,
     'mana replenish': 50.,
     'stamina replenish': 1.,
     'blood color': (150, 50, 10),

@@ -697,7 +697,7 @@ class Entity(object):
                         self.speed = 3
                         print(f'{dem.total_damage_amount=} {forces_balance=} {dem.parent_penalty=}')
                     if 'smash' in dem.damage.keys():
-                        self.speed *= 2
+                        self.speed *= 1.5
                     if self.stats['stamina'] > 0:
                         self.stamina_reduce(dem.total_damage_amount * forces_balance * 0.08)
                         self.invincibility_timer = 20
