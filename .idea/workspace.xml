@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="Improved attack power modifier if actor moves or falls.">
+    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -142,13 +142,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00416" summary="Introduced flipped mask, which should be introduced and used in collisions detection long time ago...">
-      <created>1724304732317</created>
-      <option name="number" value="00416" />
-      <option name="presentableId" value="LOCAL-00416" />
-      <option name="project" value="LOCAL" />
-      <updated>1724304732317</updated>
     </task>
     <task id="LOCAL-00417" summary="Demon 2 close attack animation improved by adding one more demolisher.&#10;Shy try to expand enemies thinking ability.">
       <created>1724309669341</created>
@@ -486,7 +479,14 @@
       <option name="project" value="LOCAL" />
       <updated>1725434591213</updated>
     </task>
-    <option name="localTasksCounter" value="465" />
+    <task id="LOCAL-00465" summary="Info panel overlay remake.">
+      <created>1725441331462</created>
+      <option name="number" value="00465" />
+      <option name="presentableId" value="LOCAL-00465" />
+      <option name="project" value="LOCAL" />
+      <updated>1725441331462</updated>
+    </task>
+    <option name="localTasksCounter" value="466" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -501,7 +501,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="render_text() and game_over() tiny updates." />
     <MESSAGE value="activate_weapon() left to be used by non-player actors.&#10;Player actor has now two different attack, which use separate weapons in the right and left hands by pressing different attack buttons." />
     <MESSAGE value="Player actor has got an ability to switch weapons separately in every hand." />
     <MESSAGE value="Slightly changed triggers and teleports interaction system." />
@@ -526,6 +525,7 @@
     <MESSAGE value="Correcting errors in hopping process after get damaged." />
     <MESSAGE value="AI actors do not turn to proper side if they are lying dead and being kicked up." />
     <MESSAGE value="Improved attack power modifier if actor moves or falls." />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved attack power modifier if actor moves or falls." />
+    <MESSAGE value="Info panel overlay remake." />
+    <option name="LAST_COMMIT_MESSAGE" value="Info panel overlay remake." />
   </component>
 </project>

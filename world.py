@@ -54,7 +54,9 @@ class World(object):
         self.is_input_cancel = False
         self.is_z = False
         self.is_q = False
+        self.q_multiple_press_prevent = False
         self.is_e = False
+        self.e_multiple_press_prevent = False
         self.is_p = False
         self.is_i = False
         self.is_x = False
@@ -1033,6 +1035,8 @@ class World(object):
                         if self.is_q:
                         # if self.is_l_alt and not self.l_alt_multiple_press_prevent:
                         #     self.l_alt_multiple_press_prevent = True
+                            self.q_multiple_press_prevent = True
+                            self.is_q = False
                             if actor.look == 1:
                                 actor.set_action('hop back')
                             else:
@@ -1044,6 +1048,8 @@ class World(object):
                         if self.is_e:
                         # if self.is_l_alt and not self.l_alt_multiple_press_prevent:
                         #     self.l_alt_multiple_press_prevent = True
+                            self.e_multiple_press_prevent = True
+                            self.is_e = False
                             if actor.look == -1:
                                 actor.set_action('hop back')
                             else:
@@ -1709,8 +1715,10 @@ class World(object):
 
                 if event.key == K_q:
                     self.is_q = False
+                    self.q_multiple_press_prevent = False
                 if event.key == K_e:
                     self.is_e = False
+                    self.e_multiple_press_prevent = False
 
                 if event.key == K_d:
                     self.is_input_right_arrow = False
@@ -1777,9 +1785,12 @@ class World(object):
                     #     self.actors['player'].body[self.player_actor_hand_to_change_weapon]['weapon'] = self.actors['player'].inventory['weapons'][all_weapons[current_index+1]]
 
                 if event.key == K_q:
-                    self.is_q = True
+                    if not self.q_multiple_press_prevent:
+                        self.is_q = True
                 if event.key == K_e:
-                    self.is_e = True
+                    if not self.e_multiple_press_prevent:
+                        self.e_multiple_press_prevent = True
+                        self.is_e = True
 
                 # DIRECTION KEYS
                 if event.key == K_d:

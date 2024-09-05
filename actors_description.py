@@ -662,8 +662,8 @@ demon_2 = {
             'repeat from frame': 0
         },
     },
-    'think type': '',
-    # 'think type': 'chaser',
+    # 'think type': '',
+    'think type': 'chaser',
     'disappear after death': False,
     'AI controlled': True
 }
@@ -749,7 +749,7 @@ player_jake = {
     'blood color': (255, 0, 0),
     'gravity affected': True,
     'mana replenish': 3.,
-    'stamina replenish': 3.5,
+    'stamina replenish': 13.5,
     'strength': 150,
     'body weight': 60,
     'resistances': {

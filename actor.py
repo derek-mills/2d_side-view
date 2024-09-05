@@ -439,7 +439,9 @@ class Actor(Entity):
         # HOP BACK
         elif new_action == 'hop back':
             # Apply filter of unwanted actions:
-            if self.__state not in ('run left', 'run right', 'stand still', 'fly right', 'fly left', 'jump'):
+            if not self.is_stand_on_ground:
+            # if self.__state not in ('run left', 'run right', 'stand still',):
+            # if self.__state not in ('run left', 'run right', 'stand still', 'fly right', 'fly left', 'jump'):
                 return
             # if self.is_stand_on_ground:
             #     if self.is_enough_space_above:
@@ -457,7 +459,9 @@ class Actor(Entity):
         # HOP FORWARD
         elif new_action == 'hop forward':
             # Apply filter of unwanted actions:
-            if self.__state not in ('run left', 'run right', 'stand still', 'fly right', 'fly left', 'jump'):
+            if not self.is_stand_on_ground:
+            # if self.__state not in ('run left', 'run right', 'stand still',):
+            # if self.__state not in ('run left', 'run right', 'stand still', 'fly right', 'fly left', 'jump'):
                 return
             # if self.is_stand_on_ground:
             #     if self.is_enough_space_above:
