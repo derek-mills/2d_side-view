@@ -114,11 +114,14 @@ class World(object):
         entity.body_weight = description['body weight']
         entity.strength = description['strength']
         entity.stats['max health'] = description['health']
-        # entity.max_health = description['health']
         entity.stats['health'] = description['health']
         entity.stats['target health'] = description['health']
-        entity.stamina_replenish_modifier = description['stamina replenish']
-        entity.mana_replenish_modifier = description['mana replenish']
+        # entity.stamina_replenish_modifier = description['stamina replenish']
+        entity.default_normal_stamina_replenish = description['stamina replenish']
+        entity.normal_stamina_replenish = description['stamina replenish']
+        # entity.mana_replenish_modifier = description['mana replenish']
+        entity.default_normal_mana_replenish = description['mana replenish']
+        entity.normal_mana_replenish = description['mana replenish']
         # entity.health = description['health']
         # print(f'[add_actor] --------------------------------------------------------------')
         # print(f'[add_actor] Adding {entity.name}, id={entity.id}, {entity.stats["health"]=}')
@@ -178,7 +181,7 @@ class World(object):
         # entity.change_animation()
         # entity.process_animation_counter()
 
-        entity.set_state('stand still')
+        # entity.set_state('stand still')
         # entity.max_jump_attempts = 3
 
         if self.location not in self.actors.keys():
@@ -1506,7 +1509,7 @@ class World(object):
         background_width = self.info_panel_max_stripes_width + 10 + txt_width
         background_height = len(params) * self.info_panel_font_size + 5 + (self.info_panel_gap_between_stripes * len(params))
 
-        pygame.draw.rect(self.screen, BLACK, (self.info_panel_start_x - 5, self.info_panel_start_y - 5, background_width, background_height))
+        # pygame.draw.rect(self.screen, BLACK, (self.info_panel_start_x - 5, self.info_panel_start_y - 5, background_width, background_height))
 
         for p in params:
             txt = fonts.all_fonts[self.info_panel_font_size].render(p[0], True, p[2])
@@ -1517,9 +1520,12 @@ class World(object):
 
             # Stripes:
             if p[1]:
+                size_shrinker = 0
                 for stripe in p[1]:
                     if stripe[0] > 0:
-                        pygame.draw.rect(self.screen, stripe[1], (self.info_panel_start_x + txt_width ,self.info_panel_start_y + dy, stripe[0], 10))
+                        pygame.draw.rect(self.screen, stripe[1], (self.info_panel_start_x + txt_width + size_shrinker,
+                                                                  self.info_panel_start_y + dy + size_shrinker, stripe[0] - size_shrinker*2, 10 - size_shrinker*2))
+                        size_shrinker += 1
             dy += (self.info_panel_font_size + self.info_panel_gap_between_stripes)
 
         # Show weapons ICONS in both player's hands:
@@ -1918,6 +1924,7 @@ class World(object):
             (' JUST JUMPED   : ' + str(self.actors['player'].just_got_jumped), YELLOW),
             (' JUMP PERFORMED: ' + str(self.actors['player'].is_jump_performed), YELLOW),
             (' IGNORES INPUT: ' + str(self.actors['player'].ignore_user_input), WHITE),
+            (' STAMINA MODIFIER: ' + str(self.actors['player'].stamina_replenish_modifier), WHITE),
             (' __STATE: ' + str(self.actors['player'].get_state()), CYAN),
             (' STAND ON GROUND: ' + str(self.actors['player'].is_stand_on_ground), WHITE),
             ('HEIGHT SPACE: ' + str(self.actors['player'].is_enough_height), GREEN),

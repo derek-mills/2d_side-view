@@ -537,7 +537,8 @@ class Actor(Entity):
             if self.is_stand_on_ground:
                 self.heading[0] = 0
         elif self.get_state() == 'protect':
-            self.stamina_replenish_modifier = 0.3
+            self.normal_stamina_replenish = 0.08
+            # self.stamina_replenish_modifier = 0.3
             self.heading[0] = 0
         elif self.get_state() == 'prepare crouch attack left':                          # PREPARING ATTACK
             self.set_state(self.current_weapon['attack animation'] + ' crouch left')
@@ -842,7 +843,7 @@ class Actor(Entity):
             # self.set_new_desired_height(self.rectangle_height_slide, 0)
         elif self.get_state() == 'stand still':                     # STANDING STILL
             self.heading[0] = 0
-            self.stamina_replenish_modifier = 1
+            self.normal_stamina_replenish = self.default_normal_stamina_replenish
             # self.just_got_jumped = False
             # self.is_abort_jump = True
             # self.is_grabbers_active = True

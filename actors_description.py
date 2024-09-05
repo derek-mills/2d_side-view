@@ -262,7 +262,7 @@ demon_1 = {
 demon_2 = {
     'name': 'demon 2',
     'drop': ['exp' for i in range(randint(8,12))],
-    'health': 2500.,
+    'health': 50.,
     'mana replenish': 50.,
     'stamina replenish': 1.,
     'blood color': (150, 50, 10),
@@ -748,8 +748,8 @@ player_jake = {
     'health': 1000.,
     'blood color': (255, 0, 0),
     'gravity affected': True,
-    'mana replenish': 3.,
-    'stamina replenish': 13.5,
+    'mana replenish': .01,
+    'stamina replenish': .2,
     'strength': 150,
     'body weight': 60,
     'resistances': {

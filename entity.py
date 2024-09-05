@@ -54,9 +54,11 @@ class Entity(object):
         self.normal_stamina_lost_per_slide = 15.
         self.normal_stamina_lost_per_attack = 10.
         self.current_stamina_lost_per_attack = 0.  # Depends on current weapon penalty.
-        self.normal_stamina_replenish = .1
+        self.default_normal_stamina_replenish = .1
+        self.normal_stamina_replenish = self.default_normal_stamina_replenish
         self.stamina_replenish_modifier = 1
 
+        self.default_normal_mana_replenish = .001
         self.normal_mana_replenish = .001
         self.mana_replenish_modifier = 1
         self.normal_mana_lost_per_attack = 5.
