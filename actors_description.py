@@ -45,6 +45,18 @@ demon_1 = {
             'activity at frames': {},
             'sound': None, 'sound at frames': (0,), 'repeat from frame': 0
         },
+        'lie dead right': {
+            'repeat': True,
+            'sequence': (56,), 'speed': 20,
+            'activity at frames': {},
+            'repeat from frame': 0
+        },
+        'lie dead left': {
+            'repeat': True,
+            'sequence': (70,), 'speed': 20,
+            'activity at frames': {},
+            'repeat from frame': 0
+        },
         'sliding right': {
             'repeat': True, 'interruptable': True,
             'sequence': (56,), 'speed': 1,

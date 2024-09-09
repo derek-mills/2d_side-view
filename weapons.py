@@ -541,7 +541,7 @@ pistol = {
     'droppable': True,
     # 'need ammo': True,
     # 'ammo': 20,
-    'reach': 200,
+    'reach': 2000,
     'demolishers': (
         ({
              'rect': pygame.Rect(0, 0, 2, 2), 'flyer': False,
@@ -569,7 +569,7 @@ pistol = {
             # 'damage': 50, 'static': False, 'damage reduce': 0,
             'collides': True, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
-            'attack type': ('slash', 'smash', 'pierce'),
+            # 'attack type': ('slash', 'smash', 'pierce'),
              'damage': {
                  'fire': 25,
                  'smash': 10,
