@@ -544,6 +544,23 @@ pistol = {
     'reach': 200,
     'demolishers': (
         ({
+             'rect': pygame.Rect(0, 0, 2, 2), 'flyer': False,
+             'visible': True,
+             'demolisher sprite': 'pistol muzzle flash',
+             'pierce': True, 'demolisher TTL': 2, 'speed': 1,
+             'static': True, 'damage reduce': 0,
+             'collides': False, 'gravity affected': False,
+             'bounce': False, 'bounce factor': 0.,
+             # 'attack type': ('slash', 'smash', 'pierce'),
+             'damage': {
+                 'fire': 225,
+                 'smash': 2,
+                 'pierce': 10,
+             },
+             # 'aftermath': 'explode'
+             'aftermath': 'disappear'
+         },
+        {
             'rect': pygame.Rect(0, 0, 2, 2), 'flyer': True,
             'visible': False,
             'demolisher sprite': None,

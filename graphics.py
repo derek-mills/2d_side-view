@@ -356,6 +356,7 @@ load_single_frame(items, ((60,210,20,30),), 'axe 0 demolisher', 9)
 load_single_frame(items, ((80,210,20,30),), 'axe 315 demolisher', 9)
 
 load_single_frame(items, ((20,240,20,30),), 'pistol', 3)
+load_single_frame(items, ((40,240,40,30),), 'pistol muzzle flash', 3)
 
 load_single_frame(items, ((20,270,20,30),), 'small shield', 4)
 load_single_frame(items, ((40,270,20,30),), 'small shield protector', 4)
