@@ -65,6 +65,7 @@ class Entity(object):
         self.current_mana_lost_per_attack = 0.
         self.body_weight = 0
         self.strength = 0
+        self.athletics_index = 0  # Will be calculated as strength divided by weight.
         self.stats = {
             'level': 0,
             'exp': 0,
@@ -133,16 +134,17 @@ class Entity(object):
         self.acceleration: float = self.default_acceleration
         self.default_air_acceleration: float = .1
         self.air_acceleration: float = self.default_air_acceleration
-        self.jump_height = 0.
+        self.base_max_jump_height = 22.
         self.max_jump_height = 22.
+        self.jump_height = 0.
         self.default_hop_back_jump_height_modifier: float = 2.6  # Rarely used, mostly while hopping back.
         self.hop_back_jump_height_modifier = 2.6  # Rarely used, mostly while hopping back.
         self.default_max_jump_attempts: int = 1  #
         self.max_jump_attempts: int = 1  #
         self.jump_attempts_counter: int = 0
         self.just_got_jumped: bool = False
-        self.default_max_speed: float = 15.0  # Maximum speed cap for this creature
-        self.max_speed: float = self.default_max_speed
+        self.base_max_speed: float = 15.0  # Maximum speed cap for this creature
+        self.max_speed: float = self.base_max_speed
         self.speed: float = 0.
         self.max_speed_penalty = 1
         self.heading: list = [0, 0]
@@ -1355,3 +1357,12 @@ class Entity(object):
 
     def die(self):
         self.dead = True
+
+    def calculate_athletics_index(self):
+        self.athletics_index = self.body_weight / self.strength
+
+    def calculate_max_jump_height_and_speed(self):
+        self.max_jump_height = self.base_max_jump_height - self.athletics_index
+        # self.max_jump_height = self.base_max_jump_height - self.base_max_jump_height * self.athletics_index
+        self.max_speed = self.base_max_speed - self.athletics_index
+        # self.max_speed = self.base_max_speed - self.base_max_speed * self.athletics_index

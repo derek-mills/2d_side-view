@@ -111,8 +111,14 @@ class World(object):
         entity.resistances = description['resistances']
         entity.disappear_after_death = description['disappear after death']
         entity.blood_color = description['blood color']
-        entity.body_weight = description['body weight']
+
         entity.strength = description['strength']
+        entity.body_weight = description['body weight']
+        entity.base_max_speed = description['max speed']
+        entity.base_max_jump_height = description['max jump height']
+        entity.calculate_athletics_index()
+        entity.calculate_max_jump_height_and_speed()
+
         entity.stats['max health'] = description['health']
         entity.stats['health'] = description['health']
         entity.stats['target health'] = description['health']
@@ -145,12 +151,12 @@ class World(object):
         entity.apply_measurements()
         entity.destination[0] = entity.rectangle.centerx
         entity.destination[1] = entity.rectangle.centery
-        entity.max_speed = description['max speed']
+        # entity.max_speed = description['max speed']
         entity.acceleration = description['acceleration']
         entity.default_acceleration = description['acceleration']
         entity.air_acceleration = description['air acceleration']
         entity.default_air_acceleration = description['air acceleration']
-        entity.default_max_speed = description['max speed']
+        # entity.default_max_speed = description['max speed']
 
         entity.animations = description['animations']
         entity.animation_descriptor = entity.name  # for ex.: 'player1'

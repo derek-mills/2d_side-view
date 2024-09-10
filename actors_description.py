@@ -29,6 +29,7 @@ demon_1 = {
         },
     },
     'max speed': 2 + randint(1, 10) / 10,
+    'max jump height': 5,
     'acceleration': .4,
     'air acceleration': .4,
     'items': (demon_2_close, demon_2_mid, spikeball_staff),
@@ -296,7 +297,8 @@ demon_2 = {
             'hardness': 100
         },
     },
-    'max speed': 5 + randint(1, 10) / 10,
+    'max speed': 15 + randint(1, 10) / 10,
+    'max jump height': 27,
     'acceleration': .3,
     'air acceleration': .3,
 
@@ -701,6 +703,7 @@ exploding_barrel = {
     'width': 50,  # For level editor use only
     'gravity affected': True,
     'max speed': 1,
+    'max jump height': 1,
     'acceleration': .5,
     'air acceleration': .4,
 
@@ -762,7 +765,7 @@ player_jake = {
     'gravity affected': True,
     'mana replenish': .01,
     'stamina replenish': .2,
-    'strength': 1500,
+    'strength': 10,
     'body weight': 60,
     'resistances': {
         # Zero is total resistance, such type of damage multiples by zero.
@@ -778,7 +781,8 @@ player_jake = {
             'hardness': 100
         },
     },
-    'max speed': 8,
+    'max speed': 16,  # Base value, which will be reduced upon athletic index.
+    'max jump height': 28, # Base value, which will be reduced upon athletic index.
     'acceleration': .9,
     'air acceleration': .4,
     'items': (fireball_staff,small_shield,jake_kick,pistol,axe,whip,),

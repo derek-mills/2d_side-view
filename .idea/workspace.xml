@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,13 +142,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00423" summary="Fixing minor but annoying bugs">
-      <created>1724400674012</created>
-      <option name="number" value="00423" />
-      <option name="presentableId" value="LOCAL-00423" />
-      <option name="project" value="LOCAL" />
-      <updated>1724400674012</updated>
     </task>
     <task id="LOCAL-00424" summary="Try to avoid infinite sliding after hopping back got by injury.">
       <created>1724653491429</created>
@@ -483,7 +479,14 @@
       <option name="project" value="LOCAL" />
       <updated>1725952235231</updated>
     </task>
-    <option name="localTasksCounter" value="472" />
+    <task id="LOCAL-00472" summary="Fixed improperly state changing during damage receiving while actor hangs the edge (ver 3).">
+      <created>1725952480787</created>
+      <option name="number" value="00472" />
+      <option name="presentableId" value="LOCAL-00472" />
+      <option name="project" value="LOCAL" />
+      <updated>1725952480788</updated>
+    </task>
+    <option name="localTasksCounter" value="473" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -498,7 +501,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Barrels explosion made more beautiful." />
     <MESSAGE value="Added shield and foundation for protection by shields has established.&#10;Added multiple attack until attack button being released." />
     <MESSAGE value="Shield is a variation of demolisher, reveals like a demolisher, but has separate storage and processing\rendering routines." />
     <MESSAGE value="Demolisher becomes Mr. Floppy after touches a protector." />
@@ -523,6 +525,7 @@
     <MESSAGE value="SOme." />
     <MESSAGE value="Fixed improperly state changing during damage receiving while actor hangs the edge." />
     <MESSAGE value="Fixed improperly state changing during damage receiving while actor hangs the edge (ver 2)." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed improperly state changing during damage receiving while actor hangs the edge (ver 2)." />
+    <MESSAGE value="Fixed improperly state changing during damage receiving while actor hangs the edge (ver 3)." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed improperly state changing during damage receiving while actor hangs the edge (ver 3)." />
   </component>
 </project>
