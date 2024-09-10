@@ -765,8 +765,8 @@ player_jake = {
     'gravity affected': True,
     'mana replenish': .01,
     'stamina replenish': .2,
-    'strength': 10,
-    'body weight': 60,
+    'strength': 10,  # The more the strength, the less the inner athletic index, the more max speed and jump height.
+    'body weight': 60,  # The more the weight, the more the inner athletic index, the less max speed and jump height.
     'resistances': {
         # Zero is total resistance, such type of damage multiples by zero.
         # Above 1 is a weakness to particular type of damage.

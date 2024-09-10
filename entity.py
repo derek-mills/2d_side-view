@@ -1359,6 +1359,7 @@ class Entity(object):
         self.dead = True
 
     def calculate_athletics_index(self):
+        # The lesser this index -- the greater the max speed and jump height.
         self.athletics_index = self.body_weight / self.strength
 
     def calculate_max_jump_height_and_speed(self):
