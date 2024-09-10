@@ -447,15 +447,6 @@ class Actor(Entity):
             #     if self.is_enough_space_above:
             self.movement_direction_inverter = -1
             self.set_state('hopping prepare')
-        # elif new_action == 'hop action cancel':
-        #     # self.set_state('jump cancel')
-        #     # self.is_grabbers_active = False
-        #     if self.just_got_jumped:
-        #         self.just_got_jumped = False
-        #     self.is_abort_jump = True
-        #     self.ignore_user_input = False
-        #     # self.movement_direction_inverter = 1
-
         # HOP FORWARD
         elif new_action == 'hop forward':
             # Apply filter of unwanted actions:
