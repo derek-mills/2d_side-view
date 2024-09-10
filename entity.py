@@ -719,6 +719,9 @@ class Entity(object):
                     total_damage_multiplier = 1.5 if dem.look == self.look and dem.snap_to_actor >= 0 else 1
                     self.get_damage(dem.damage, total_damage_multiplier)
                     # self.invincibility_timer = 100 if self.id == 0 else 30
+                    if self.get_state() in ('hanging on edge', 'has just grabbed edge', 'climb on', 'climb on rise'):
+                        self.set_state('release edge')
+                        self.state_machine()
 
                     # Damage amount show:
                     txt_color = RED if self.id == 0 else WHITE
@@ -765,12 +768,7 @@ class Entity(object):
                             #     self.set_state('hop forward')
                             # self.movement_direction_inverter = -1 if dem.look != self.look else 1
                         # if self.get_state() != 'lie dead':
-                        if self.get_state() in ('hanging on edge', 'has just grabbed edge', 'climb on', 'climb on rise'):
-                            self.set_state('release edge')
-                        else:
-                            self.set_state('hopping prepare')
-
-                        self.state_machine()
+                        self.set_state('hopping prepare')
                         # self.set_state('hop back')
 
                 # Blood splatters:

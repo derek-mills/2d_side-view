@@ -762,7 +762,7 @@ player_jake = {
     'gravity affected': True,
     'mana replenish': .01,
     'stamina replenish': .2,
-    'strength': 150,
+    'strength': 1500,
     'body weight': 60,
     'resistances': {
         # Zero is total resistance, such type of damage multiples by zero.
