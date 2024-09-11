@@ -738,8 +738,9 @@ class World(object):
                                 self.actors[self.location][0].set_state('prepare carry stash')
                                 dead.append(obs.id)
                                 continue
-                            # else:
-                            #     continue
+                            else:
+                                self.actors['player'].health_replenish()
+                                self.actors['player'].mana_replenish_modifier = 5
                         elif all_items[obs.item_name]['class'] == 'instant consume':
                             if all_items[obs.item_name]['type'] == 'stats gainer':
                                 self.actors[self.location][0].stats[all_items[obs.item_name]['affects on']] += obs.item_amount

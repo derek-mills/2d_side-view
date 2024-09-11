@@ -847,6 +847,10 @@ class Entity(object):
         #     # self.dead = True
         #     # self.set_state('lie dead')
 
+    def health_replenish(self):
+        if self.stats['health'] < self.stats['max health']:
+            self.stats['health'] += 1
+
     def mana_reduce(self, amount):
         if self.stats['mana'] == 0:
             return
@@ -887,6 +891,8 @@ class Entity(object):
             return
         else:
             self.stats['stamina'] += (self.normal_stamina_replenish * self.stamina_replenish_modifier)
+            # If modifier was changed before, we have to return it to normal state.
+            self.mana_replenish_modifier = 1
 
     def detect_collisions(self):
         # self.influenced_by_obstacle = None
