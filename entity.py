@@ -866,6 +866,8 @@ class Entity(object):
             return
         else:
             self.stats['mana'] += (self.normal_mana_replenish * self.mana_replenish_modifier)
+            # If modifier was changed before, we have to return it to normal state.
+            self.mana_replenish_modifier = 1
 
     def stamina_reduce(self, amount):
         # if self.id == 0:
@@ -891,8 +893,7 @@ class Entity(object):
             return
         else:
             self.stats['stamina'] += (self.normal_stamina_replenish * self.stamina_replenish_modifier)
-            # If modifier was changed before, we have to return it to normal state.
-            self.mana_replenish_modifier = 1
+
 
     def detect_collisions(self):
         # self.influenced_by_obstacle = None

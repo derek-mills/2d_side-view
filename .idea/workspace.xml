@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,13 +139,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00426" summary="Some improvements.">
-      <created>1724658359066</created>
-      <option name="number" value="00426" />
-      <option name="presentableId" value="LOCAL-00426" />
-      <option name="project" value="LOCAL" />
-      <updated>1724658359066</updated>
     </task>
     <task id="LOCAL-00427" summary="Actor calculate his own X and Y for every sprite in animation sequence.">
       <created>1724660502914</created>
@@ -486,7 +476,14 @@
       <option name="project" value="LOCAL" />
       <updated>1725958302463</updated>
     </task>
-    <option name="localTasksCounter" value="475" />
+    <task id="LOCAL-00475" summary="The Stash helps to replenish mana and health now.">
+      <created>1726027154291</created>
+      <option name="number" value="00475" />
+      <option name="presentableId" value="LOCAL-00475" />
+      <option name="project" value="LOCAL" />
+      <updated>1726027154291</updated>
+    </task>
+    <option name="localTasksCounter" value="476" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -501,7 +498,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Shield is a variation of demolisher, reveals like a demolisher, but has separate storage and processing\rendering routines." />
     <MESSAGE value="Demolisher becomes Mr. Floppy after touches a protector." />
     <MESSAGE value="Demolisher bounces back after touching a protector." />
     <MESSAGE value="If protect button is holding down, new protectors do not appear, just keeping alive already existing ones." />
@@ -526,6 +522,7 @@
     <MESSAGE value="Fixed improperly state changing during damage receiving while actor hangs the edge (ver 2)." />
     <MESSAGE value="Fixed improperly state changing during damage receiving while actor hangs the edge (ver 3)." />
     <MESSAGE value="Added parameter of athletic, which affects on moving speed and jump height." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added parameter of athletic, which affects on moving speed and jump height." />
+    <MESSAGE value="The Stash helps to replenish mana and health now." />
+    <option name="LAST_COMMIT_MESSAGE" value="The Stash helps to replenish mana and health now." />
   </component>
 </project>
