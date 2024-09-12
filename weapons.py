@@ -554,8 +554,6 @@ pistol = {
              # 'attack type': ('slash', 'smash', 'pierce'),
              'damage': {
                  'fire': 225,
-                 'smash': 2,
-                 'pierce': 10,
              },
              # 'aftermath': 'explode'
              'aftermath': 'disappear'
@@ -572,7 +570,7 @@ pistol = {
             # 'attack type': ('slash', 'smash', 'pierce'),
              'damage': {
                  'fire': 25,
-                 'smash': 10,
+                 'smash': 1,
                  'pierce': 100,
              },
             # 'aftermath': 'explode'

@@ -754,7 +754,11 @@ class Entity(object):
                     if self.get_state() not in ('hold stash', 'carry stash right', 'carry stash left'):
                         if dem.parent:
                             # print('sdsdsadasdsadasd')
-                            self.hop_back_jump_height_modifier = ((dem.parent_strength + dem.parent_weight) / (self.strength + self.body_weight))  # / dem.parent_penalty
+                            # self.hop_back_jump_height_modifier = min(10, self.total_damage_has_got + ((dem.parent_strength + dem.parent_weight) / (self.strength + self.body_weight)))
+                            # self.hop_back_jump_height_modifier = ((dem.parent_strength + dem.parent_weight) / (self.strength + self.body_weight))  # / dem.parent_penalty
+                            # self.hop_back_jump_height_modifier = min(5, self.total_damage_has_got ** ((dem.parent_strength + dem.parent_weight) / (self.strength + self.body_weight)))
+                            self.hop_back_jump_height_modifier = min(5, dem.damage['smash'] ** ((dem.parent_strength + dem.parent_weight) / (self.strength + self.body_weight)))
+                            # print(f'{self.hop_back_jump_height_modifier} {self.total_damage_has_got=}')
                             # self.hop_back_jump_height_modifier = ((dem.parent_strength / self.strength) + (dem.parent_weight / self.body_weight)) / dem.parent_penalty
                             self.movement_direction_inverter = -1 if dem.parent.look != self.look else 1
                             # if dem.parent.look != self.look:
@@ -763,6 +767,8 @@ class Entity(object):
                             #     self.set_state('hop forward')
                             # self.movement_direction_inverter = -1 if dem.parent.look != self.look else 1
                         else:
+                            self.hop_back_jump_height_modifier = min(5, dem.damage['smash'] * 0.1)
+                            # self.hop_back_jump_height_modifier = min(5, self.total_damage_has_got * 0.1)
                             self.movement_direction_inverter = -1 if dem.look != self.look else 1
                             # if dem.look != self.look:
                             #     self.set_state('hop back')
@@ -770,6 +776,8 @@ class Entity(object):
                             #     self.set_state('hop forward')
                             # self.movement_direction_inverter = -1 if dem.look != self.look else 1
                         # if self.get_state() != 'lie dead':
+                        print(f'{self.hop_back_jump_height_modifier} {dem.damage["smash"]=}')
+                        # print(f'{self.hop_back_jump_height_modifier} {self.total_damage_has_got=}')
                         self.set_state('hopping prepare')
                         # self.set_state('hop back')
 
