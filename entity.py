@@ -760,8 +760,7 @@ class Entity(object):
                             # self.hop_back_jump_height_modifier = min(5, self.total_damage_has_got ** ((dem.parent_strength + dem.parent_weight) / (self.strength + self.body_weight)))
                             # self.hop_back_jump_height_modifier = min(5, dem.damage['smash'] ** ((dem.parent_strength + dem.parent_weight) / (self.strength + self.body_weight)))
 
-                            # If such formulae is going to use, 'smash' damage in amount of 120 points will cause hopping back strength in amount of 3.071 points.
-                            self.hop_back_jump_height_modifier = (dem.damage['smash'] * 0.1) ** ((dem.parent_strength + dem.parent_weight) / (self.strength + self.body_weight))
+                            self.hop_back_jump_height_modifier = (dem.damage['smash'] * 0.05) ** ((dem.parent_strength + dem.parent_weight) / (self.strength + self.body_weight))
 
                             self.movement_direction_inverter = -1 if dem.parent.look != self.look else 1
                         else:

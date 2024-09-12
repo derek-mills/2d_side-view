@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -141,13 +140,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00429" summary="Added exploding barrel as a new foe type, which stay still all the time and attack only before death.">
-      <created>1724728336144</created>
-      <option name="number" value="00429" />
-      <option name="presentableId" value="LOCAL-00429" />
-      <option name="project" value="LOCAL" />
-      <updated>1724728336144</updated>
     </task>
     <task id="LOCAL-00430" summary="Level editor (mostly): added enemy type changing ability.">
       <created>1724739866956</created>
@@ -485,7 +477,14 @@
       <option name="project" value="LOCAL" />
       <updated>1726110702045</updated>
     </task>
-    <option name="localTasksCounter" value="478" />
+    <task id="LOCAL-00478" summary="Tuning of hopping back after taking damage (iteration 2).">
+      <created>1726119690536</created>
+      <option name="number" value="00478" />
+      <option name="presentableId" value="LOCAL-00478" />
+      <option name="project" value="LOCAL" />
+      <updated>1726119690536</updated>
+    </task>
+    <option name="localTasksCounter" value="479" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -500,7 +499,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="If protect button is holding down, new protectors do not appear, just keeping alive already existing ones." />
     <MESSAGE value="Tuning demolishers" />
     <MESSAGE value="Shields reduces damage amount of demolishers by the given multiplier in 'protection' property." />
     <MESSAGE value="If actor guards by shield and get a blow from behind, protection becomes futile." />
@@ -525,6 +523,7 @@
     <MESSAGE value="The Stash helps to replenish mana and health now." />
     <MESSAGE value="The Stash helps to replenish mana and health now (correction)." />
     <MESSAGE value="Tuning of hopping back after taking damage." />
-    <option name="LAST_COMMIT_MESSAGE" value="Tuning of hopping back after taking damage." />
+    <MESSAGE value="Tuning of hopping back after taking damage (iteration 2)." />
+    <option name="LAST_COMMIT_MESSAGE" value="Tuning of hopping back after taking damage (iteration 2)." />
   </component>
 </project>
