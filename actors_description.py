@@ -690,7 +690,7 @@ exploding_barrel = {
     'stamina replenish': 10.,
     'blood color': (0, 0, 0),
     'strength': 1,
-    'body weight': 140,
+    'body weight': 240,
     'resistances': {
         # Zero is total resistance, such type of damage multiples by zero.
         # Above 1 is a weakness to particular type of damage.
