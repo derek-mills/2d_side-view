@@ -131,13 +131,18 @@ class Actor(Entity):
         if not items:
             return
         for item in items:
-            # print(f'[add_items_to_inventory], {self.name} prepare to get an item: {item["description"]}')
+            print(f'[add_items_to_inventory], {self.name} prepare to get an item: {item["description"]}')
             if item['class'] not in self.inventory.keys():
                 self.inventory[item['class']] = dict()
             if item['label'] in self.inventory[item['class']].keys():
                 self.inventory[item['class']][item['label']]['quantity'] += 1
             else:
                 self.inventory[item['class']][item['label']] = {'item': item.copy(), 'quantity': 1}
+            if 'weight' in  item.keys():
+                self.body_weight +=  item['weight']
+                print(f'[add item to inv] {self.name}\'s weight becomes: {self.body_weight}')
+                self.calculate_athletics_index()
+                self.calculate_max_jump_height_and_speed()
 
     def remove_item_from_inventory(self, item):
         if item['class'] in self.inventory.keys():
@@ -147,6 +152,11 @@ class Actor(Entity):
                     del self.inventory[item['class']][item['label']]
                     if len(self.inventory[item['class']]) == 0:
                         del self.inventory[item['class']]
+                        if 'weight' in  item.keys():
+                            self.body_weight -=  item['weight']
+                            print(f'[add item to inv] {self.name}\'s weight becomes: {self.body_weight}')
+                            self.calculate_athletics_index()
+                            self.calculate_max_jump_height_and_speed()
 
     def drop_item_from_inventory(self, item):
         print(f'[drop_item_from_inventory] {item=}')

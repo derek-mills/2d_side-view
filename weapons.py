@@ -21,6 +21,7 @@ sword = {
     'label': 'sword',
     'sprite': 'short sword',
     'reach': 50,
+    'weight': 10,
     'demolishers': (
         ({
             'rect': pygame.Rect(0, 0, 70, 10), 'flyer': False,
@@ -80,6 +81,7 @@ kitchen_knife = {
     #     -1: (-46, 36),
     # },
     'reach': 50,
+    'weight': 10,
     'demolishers': (
         ({
             'rect': pygame.Rect(0, 0, 30, 30), 'flyer': False,
@@ -139,6 +141,7 @@ fireball_staff = {
     'need ammo': False,
     'ammo': 0,
     'reach': 1000,
+    'weight': 10,
     'demolishers': (
         ({
             'rect': pygame.Rect(0, 0, 70, 70), 'flyer': False,
@@ -180,6 +183,7 @@ spikeball_staff = {
     'need ammo': False,
     'ammo': 0,
     'reach': 1000,
+    'weight': 10,
     'demolishers': (
         ({
             'rect': pygame.Rect(0, 0, 70, 70), 'flyer': False,
@@ -221,6 +225,7 @@ whip = {
     'need ammo': False,
     'ammo': 0,
     'reach': 170,
+    'weight': 10,
     'demolishers': (
         ({
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
@@ -292,6 +297,7 @@ jake_kick = {
     'need ammo': False,
     'ammo': 0,
     'reach': 170,
+    'weight': 10,
     'demolishers': (
         ({
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
@@ -333,6 +339,7 @@ axe = {
     'need ammo': False,
     'ammo': 0,
     'reach': 170,
+    'weight': 10,
     'demolishers': (
         ({
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
@@ -408,6 +415,7 @@ demon_2_mid = {
     'ammo': 0,
     'reach': 300,
     # 'reach': sprites['demon 2 mid claw demolisher 1']['mask rect'].width,
+    'weight': 10,
     'demolishers': (
         ({
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
@@ -480,6 +488,7 @@ demon_2_close = {
     'need ammo': False,
     'ammo': 0,
     'reach': 200,
+    'weight': 10,
     'demolishers': (
         ({
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
@@ -542,6 +551,7 @@ pistol = {
     # 'need ammo': True,
     # 'ammo': 20,
     'reach': 2000,
+    'weight': 10,
     'demolishers': (
         ({
              'rect': pygame.Rect(0, 0, 2, 2), 'flyer': False,
@@ -601,6 +611,7 @@ barrel_explosion = {
     'need ammo': False,
     'ammo': 0,
     'reach': 0,
+    'weight': 10,
     'demolishers': (
         ({
             'rect': pygame.Rect(0, 0, 50, 50), 'flyer': False,

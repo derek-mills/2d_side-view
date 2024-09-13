@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,13 +141,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00430" summary="Level editor (mostly): added enemy type changing ability.">
-      <created>1724739866956</created>
-      <option name="number" value="00430" />
-      <option name="presentableId" value="LOCAL-00430" />
-      <option name="project" value="LOCAL" />
-      <updated>1724739866956</updated>
     </task>
     <task id="LOCAL-00431" summary="Damage has been divided by several types with particular amount of damage deal of every type; every actor has now the resistance to each type of damage.">
       <created>1724742218540</created>
@@ -484,7 +478,14 @@
       <option name="project" value="LOCAL" />
       <updated>1726119690536</updated>
     </task>
-    <option name="localTasksCounter" value="479" />
+    <task id="LOCAL-00479" summary="Tuning of hopping back after taking damage (iteration 3).">
+      <created>1726121120658</created>
+      <option name="number" value="00479" />
+      <option name="presentableId" value="LOCAL-00479" />
+      <option name="project" value="LOCAL" />
+      <updated>1726121120658</updated>
+    </task>
+    <option name="localTasksCounter" value="480" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -499,7 +500,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Tuning demolishers" />
     <MESSAGE value="Shields reduces damage amount of demolishers by the given multiplier in 'protection' property." />
     <MESSAGE value="If actor guards by shield and get a blow from behind, protection becomes futile." />
     <MESSAGE value=" Total damage amount is necessary to burn out stamina of a sneaky actor, protected by shield." />
@@ -524,6 +524,7 @@
     <MESSAGE value="The Stash helps to replenish mana and health now (correction)." />
     <MESSAGE value="Tuning of hopping back after taking damage." />
     <MESSAGE value="Tuning of hopping back after taking damage (iteration 2)." />
-    <option name="LAST_COMMIT_MESSAGE" value="Tuning of hopping back after taking damage (iteration 2)." />
+    <MESSAGE value="Tuning of hopping back after taking damage (iteration 3)." />
+    <option name="LAST_COMMIT_MESSAGE" value="Tuning of hopping back after taking damage (iteration 3)." />
   </component>
 </project>
