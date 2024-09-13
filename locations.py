@@ -734,7 +734,7 @@ locations = {
                         'ghost': False,
                         'speed': 0.2,
                         'item': True,
-                        'item name': {'name': 'sword'},
+                        'item name': {'name': 'short sword'},
                         'actors may grab': False,
                         'actors pass through': True,
                         'active': False,

@@ -1103,7 +1103,15 @@ class World(object):
 
             while actor.drop_from_inventory:
                 i = actor.drop_from_inventory.pop()
-                self.add_item(all_items[i], (actor.rectangle.centerx - sprites[i]['sprite'].get_width() //2, actor.rectangle.bottom - sprites[i]['sprite'].get_height()))
+                print(all_items, i)
+                # self.add_item(all_items[i], (actor.rectangle.right + sprites[i]['sprite'].get_width() //2,
+                #                                 actor.rectangle.bottom - sprites[i]['sprite'].get_height()))
+                if actor.look == 1:
+                    self.add_item(all_items[i], (actor.rectangle.left - sprites[i]['sprite'].get_width() - 20,
+                                                 actor.rectangle.top - sprites[i]['sprite'].get_height() - 20))
+                else:
+                    self.add_item(all_items[i], (actor.rectangle.right + sprites[i]['sprite'].get_width() + 20,
+                                                 actor.rectangle.top - sprites[i]['sprite'].get_height() - 20))
 
             if actor.has_just_stopped_demolishers:
                 while actor.has_just_stopped_demolishers:
@@ -1765,37 +1773,38 @@ class World(object):
                     self.player_actor_hand_to_change_weapon = 'left hand'
                 elif event.key == K_2:
                     self.player_actor_hand_to_change_weapon = 'right hand'
+                if event.key == K_BACKSPACE:
+                    all_weapons = list(self.actors['player'].inventory['weapons'].keys())
+                    if len(all_weapons) > 1:
+                        current_index = all_weapons.index(self.actors['player'].body[self.player_actor_hand_to_change_weapon]['weapon']['item']['label'])
+                        if current_index + 1 > len(all_weapons) - 1:
+                            next_index = 0
+                        else:
+                            next_index = current_index + 1
+
+                        while self.actors['player'].inventory['weapons'][all_weapons[next_index]] == \
+                              self.actors['player'].body['left hand' if self.player_actor_hand_to_change_weapon == 'right hand' else 'right hand']['weapon']: \
+                            next_index = 0 if next_index + 1 > len(all_weapons) - 1 else next_index + 1
+                        self.actors['player'].body[self.player_actor_hand_to_change_weapon]['weapon'] = self.actors['player'].inventory['weapons'][all_weapons[next_index]]
+                        # actor.drop_item_from_inventory(actor.inventory['burden']['stash']['item'])
+                        # self.add_item(all_items[drop], (randint(actor.rectangle.left - 50, actor.rectangle.right + 50), actor.rectangle.top))
+                        self.actors['player'].drop_item_from_inventory(self.actors['player'].inventory['weapons'][all_weapons[current_index]]['item'])
+                    else:
+                        print(f'[processing human input] There is only one weapon left')
                 # TABULATION
                 if event.key == K_TAB:
-                    # entity.body['right hand']['weapon'] = entity.inventory['weapons'][all_weapons[0]]
-                    # entity.body['left hand']['weapon'] = entity.inventory['weapons'][all_weapons[1]]
-
                     all_weapons = list(self.actors['player'].inventory['weapons'].keys())
-                    # all_shields = list(self.actors['player'].inventory['shields'].keys())
-                    # all_gear = all_shields + all_weapons
-                    # current_index = all_gear.index(self.actors['player'].body[self.player_actor_hand_to_change_weapon]['weapon']['item']['label'])
                     current_index = all_weapons.index(self.actors['player'].body[self.player_actor_hand_to_change_weapon]['weapon']['item']['label'])
-                    # if current_index + 1 > len(all_gear) - 1:
                     if current_index + 1 > len(all_weapons) - 1:
                         next_index = 0
                     else:
                         next_index = current_index + 1
 
-                    # while self.actors['player'].inventory['weapons'][all_gear[next_index]] == \
-                    #       self.actors['player'].body['left hand' if self.player_actor_hand_to_change_weapon == 'right hand' else 'right hand']['weapon']: \
-                    #     next_index = 0 if next_index + 1 > len(all_gear) - 1 else next_index + 1
-
                     while self.actors['player'].inventory['weapons'][all_weapons[next_index]] == \
                           self.actors['player'].body['left hand' if self.player_actor_hand_to_change_weapon == 'right hand' else 'right hand']['weapon']: \
                         next_index = 0 if next_index + 1 > len(all_weapons) - 1 else next_index + 1
 
-                    # self.actors['player'].body[self.player_actor_hand_to_change_weapon]['weapon'] = self.actors['player'].inventory['weapons'][all_gear[next_index]]
                     self.actors['player'].body[self.player_actor_hand_to_change_weapon]['weapon'] = self.actors['player'].inventory['weapons'][all_weapons[next_index]]
-
-                    # if current_index + 1 > len(all_weapons) - 1:
-                    #     self.actors['player'].body[self.player_actor_hand_to_change_weapon]['weapon'] = self.actors['player'].inventory['weapons'][all_weapons[0]]
-                    # else:
-                    #     self.actors['player'].body[self.player_actor_hand_to_change_weapon]['weapon'] = self.actors['player'].inventory['weapons'][all_weapons[current_index+1]]
 
                 if event.key == K_q:
                     if not self.q_multiple_press_prevent:
@@ -1923,6 +1932,7 @@ class World(object):
             ('╚ TARGET WIDTH  ╝: ' + str(self.actors['player'].target_width), YELLOW),
             (' FALL SPEED: ' + str(self.actors['player'].fall_speed), WHITE),
             (' SPEED: ' + str(self.actors['player'].speed), WHITE),
+            (' MAX SPEED: ' + str(self.actors['player'].max_speed), WHITE),
             (' LOOK: ' + str(self.actors['player'].look), WHITE),
             (' HEADING: ' + str(self.actors['player'].heading), WHITE),
             (' IDLE COUNT: ' + str(self.actors['player'].idle_counter), (200, 100, 50)),

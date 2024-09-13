@@ -13,7 +13,7 @@ all_items = {
         'label': 'exp',
         'sprite': 'exp',
         'sound': None,
-
+        'droppable': True,
         'amount': 200,
         'amount threshold': 100,
         'amount decrease speed': -.01,
@@ -25,6 +25,7 @@ all_items = {
         'type': 'stats gainer',
         'label': 'health vial',
         'sprite': 'health vial',
+        'droppable': True,
         'sound': None,
         'amount': 100,
         'amount threshold': 100,
@@ -37,6 +38,7 @@ all_items = {
         'class': 'burden',
         'type': '',
         'label': 'stash',
+        'droppable': True,
         'sprite': 'stash',
         'sound': None,
         'amount': 0,
@@ -47,7 +49,8 @@ all_items = {
     'fireball staff': fireball_staff,
     'whip': whip,
     'kitchen knife': kitchen_knife,
-    'sword': sword,
+    'short sword': sword,
+    'pistol': pistol,
     'axe': axe
 }
 # all_items = {

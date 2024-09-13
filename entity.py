@@ -310,9 +310,6 @@ class Entity(object):
         self.sprite_rectangle.centerx = self.rectangle.centerx
 
     def process(self):
-    # def process(self, time_passed):
-    #     if self.id == 25:
-    #         print('super process of #25')
         if self.ttl > 0:
             self.ttl -= 1
             if self.ttl == 0:
@@ -1358,6 +1355,8 @@ class Entity(object):
                     self.speed += self.acceleration
                 else:
                     self.speed += self.air_acceleration
+            else:
+                self.speed = self.max_speed
 
         if self.speed <= 0:
             self.movement_direction_inverter = 1
@@ -1375,6 +1374,7 @@ class Entity(object):
         self.athletics_index = self.body_weight / self.strength
 
     def calculate_max_jump_height_and_speed(self):
+        # print(f'[calculate_max_jump_height_and_speed] enter...')
         self.max_jump_height = self.base_max_jump_height - self.athletics_index
         # self.max_jump_height = self.base_max_jump_height - self.base_max_jump_height * self.athletics_index
         self.max_speed = self.base_max_speed - self.athletics_index

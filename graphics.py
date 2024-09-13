@@ -324,8 +324,8 @@ load_single_frame(items, ((0,0,20,30),), 'exp', 2)
 load_single_frame(items, ((0,30,20,30),), 'health vial', 5)
 load_single_frame(items, ((0,60,20,30),), 'stash', 8)
 
-load_single_frame(items, ((20,0,20,30),), 'staff', 3)
-load_single_frame(items, ((40,0,20,30),), 'staff demolisher', 8)
+load_single_frame(items, ((20,0,20,30),), 'fireball staff', 3)
+load_single_frame(items, ((40,0,20,30),), 'fireball demolisher', 8)
 
 load_single_frame(items, ((20,30,20,30),), 'kitchen knife', 3)
 load_single_frame(items, ((40,30,20,30),), 'kitchen knife demolisher', 3)
