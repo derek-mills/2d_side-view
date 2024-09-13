@@ -785,7 +785,8 @@ player_jake = {
     'max jump height': 28, # Base value, which will be reduced upon athletic index.
     'acceleration': .9,
     'air acceleration': .4,
-    'items': (fireball_staff,small_shield,jake_kick,pistol,axe,whip,),
+    # First item in list must be an undroppable weapon.
+    'items': (jake_kick, fireball_staff,small_shield,pistol,axe,whip,),
     # 'items': (whip,fireball_staff,sword,kitchen_knife,),
     'animations': {
         'stand still right': {

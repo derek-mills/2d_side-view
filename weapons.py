@@ -335,7 +335,7 @@ axe = {
     'ignore user input': True,  # Steal the ability to control a character for a while.
     'animation speed modifier': 2.,  # 0 < x < 1: speed animation up, x > 1: slow down.
     'leave particles': False,
-    'droppable': False,
+    'droppable': True,
     'need ammo': False,
     'ammo': 0,
     'reach': 170,
@@ -644,9 +644,9 @@ small_shield = {
     'sprite': 'small shield',
     'attack animation': 'protect',
     'sound': 'sound_swing_2',
-    # 'amount': 1,
-    # 'amount threshold': 1,
-    # 'amount decrease speed': 0,
+    'amount': 1,
+    'amount threshold': 1,
+    'amount decrease speed': 0,
     'affects on': '',
     'stamina consumption': 0.,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
     'mana consumption': 0.,
@@ -654,7 +654,7 @@ small_shield = {
     # 'ignore user input': False,  # Steal the ability to control a character for a while.
     'animation speed modifier': 1.,  # 0 < x < 1: speed animation up, x > 1: slow down.
     'leave particles': False,
-    'droppable': False,
+    'droppable': True,
     'protectors': (
         ({
             'rect': pygame.Rect(0, 0, 50, 50), 'flyer': False,

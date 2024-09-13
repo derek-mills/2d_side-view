@@ -1782,27 +1782,33 @@ class World(object):
                         else:
                             next_index = current_index + 1
 
-                        while self.actors['player'].inventory['weapons'][all_weapons[next_index]] == \
-                              self.actors['player'].body['left hand' if self.player_actor_hand_to_change_weapon == 'right hand' else 'right hand']['weapon']: \
-                            next_index = 0 if next_index + 1 > len(all_weapons) - 1 else next_index + 1
+                        # while self.actors['player'].inventory['weapons'][all_weapons[next_index]] == \
+                        #       self.actors['player'].body['left hand' if self.player_actor_hand_to_change_weapon == 'right hand' else 'right hand']['weapon']: \
+                        # next_index = 0 if next_index + 1 > len(all_weapons) - 1 else next_index + 1
                         self.actors['player'].body[self.player_actor_hand_to_change_weapon]['weapon'] = self.actors['player'].inventory['weapons'][all_weapons[next_index]]
                         # actor.drop_item_from_inventory(actor.inventory['burden']['stash']['item'])
                         # self.add_item(all_items[drop], (randint(actor.rectangle.left - 50, actor.rectangle.right + 50), actor.rectangle.top))
+                        if self.actors['player'].body['left hand' if self.player_actor_hand_to_change_weapon == 'right hand' else 'right hand']['weapon']['item']['label'] == \
+                            self.actors['player'].inventory['weapons'][all_weapons[current_index]]['item']['label']:
+                            print('THE SAME!!')
+                            self.actors['player'].body['left hand' if self.player_actor_hand_to_change_weapon == 'right hand' else 'right hand']['weapon'] = self.actors['player'].inventory['weapons'][all_weapons[0]]
+
                         self.actors['player'].drop_item_from_inventory(self.actors['player'].inventory['weapons'][all_weapons[current_index]]['item'])
                     else:
                         print(f'[processing human input] There is only one weapon left')
                 # TABULATION
                 if event.key == K_TAB:
                     all_weapons = list(self.actors['player'].inventory['weapons'].keys())
+                    # print(all_weapons)
                     current_index = all_weapons.index(self.actors['player'].body[self.player_actor_hand_to_change_weapon]['weapon']['item']['label'])
                     if current_index + 1 > len(all_weapons) - 1:
                         next_index = 0
                     else:
                         next_index = current_index + 1
 
-                    while self.actors['player'].inventory['weapons'][all_weapons[next_index]] == \
-                          self.actors['player'].body['left hand' if self.player_actor_hand_to_change_weapon == 'right hand' else 'right hand']['weapon']: \
-                        next_index = 0 if next_index + 1 > len(all_weapons) - 1 else next_index + 1
+                    # while self.actors['player'].inventory['weapons'][all_weapons[next_index]] == \
+                    #       self.actors['player'].body['left hand' if self.player_actor_hand_to_change_weapon == 'right hand' else 'right hand']['weapon']: \
+                    # next_index = 0 if next_index + 1 > len(all_weapons) - 1 else next_index + 1
 
                     self.actors['player'].body[self.player_actor_hand_to_change_weapon]['weapon'] = self.actors['player'].inventory['weapons'][all_weapons[next_index]]
 

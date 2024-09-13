@@ -51,6 +51,7 @@ all_items = {
     'kitchen knife': kitchen_knife,
     'short sword': sword,
     'pistol': pistol,
+    'small shield': small_shield,
     'axe': axe
 }
 # all_items = {
