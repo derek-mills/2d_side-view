@@ -28,7 +28,7 @@ demon_1 = {
     #         'hardness': 100
     #     },
     # },
-    'max speed': 20,
+    'max speed': 5 + randint(1, 10) / 10,
     'max jump height': 25,
     'acceleration': .4,
     'air acceleration': .4,
@@ -297,7 +297,7 @@ demon_2 = {
             'hardness': 100
         },
     },
-    'max speed': 20 + randint(1, 10) / 10,
+    'max speed': 5 + randint(1, 10) / 10,
     'max jump height': 27,
     'acceleration': .3,
     'air acceleration': .3,
@@ -781,12 +781,13 @@ player_jake = {
     #         'hardness': 100
     #     },
     # },
-    'max speed': 16,  # Base value, which will be reduced upon athletic index.
+    'max speed': 8,  # Base value, which will be reduced upon athletic index.
+    # 'max speed': 16,  # Base value, which will be reduced upon athletic index.
     'max jump height': 28, # Base value, which will be reduced upon athletic index.
     'acceleration': .9,
     'air acceleration': .4,
     # First item in list must be an undroppable weapon.
-    'items': (jake_kick, fireball_staff,small_shield,pistol,axe,whip,),
+    'items': (jake_kick, small_shield, fireball_staff,pistol,axe,whip,),
     # 'items': (whip,fireball_staff,sword,kitchen_knife,),
     'animations': {
         'stand still right': {

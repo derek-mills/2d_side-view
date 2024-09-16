@@ -166,13 +166,6 @@
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
     </task>
-    <task id="LOCAL-00433" summary="Barrels explosion improved.">
-      <created>1724746019878</created>
-      <option name="number" value="00433" />
-      <option name="presentableId" value="LOCAL-00433" />
-      <option name="project" value="LOCAL" />
-      <updated>1724746019878</updated>
-    </task>
     <task id="LOCAL-00434" summary="Some fixes">
       <created>1724750047368</created>
       <option name="number" value="00434" />
@@ -509,7 +502,14 @@
       <option name="project" value="LOCAL" />
       <updated>1726207273591</updated>
     </task>
-    <option name="localTasksCounter" value="482" />
+    <task id="LOCAL-00482" summary="Fixed wrong demon 1 description">
+      <created>1726465381224</created>
+      <option name="number" value="00482" />
+      <option name="presentableId" value="LOCAL-00482" />
+      <option name="project" value="LOCAL" />
+      <updated>1726465381224</updated>
+    </task>
+    <option name="localTasksCounter" value="483" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -524,7 +524,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value=" Total damage amount is necessary to burn out stamina of a sneaky actor, protected by shield." />
     <MESSAGE value="Stamina burns out if actor defend himself by a shield and getting blows." />
     <MESSAGE value="Solved problem with multiple dying exploding barrels." />
     <MESSAGE value="Stamina replenishes slowly (down to 30% of normal amount) while actor in defending state." />
@@ -549,6 +548,7 @@
     <MESSAGE value="Tuning of hopping back after taking damage (iteration 3)." />
     <MESSAGE value="Inventory load affect on actor's weight and causes speed and jump height changing." />
     <MESSAGE value="Item drop implemented (by pressing BACKSPACE)." />
-    <option name="LAST_COMMIT_MESSAGE" value="Item drop implemented (by pressing BACKSPACE)." />
+    <MESSAGE value="Fixed wrong demon 1 description" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed wrong demon 1 description" />
   </component>
 </project>

@@ -1378,6 +1378,6 @@ class Entity(object):
         # print(f'[calculate_max_jump_height_and_speed] enter...')
         self.max_jump_height = self.base_max_jump_height - self.athletics_index
         # self.max_jump_height = self.base_max_jump_height - self.base_max_jump_height * self.athletics_index
-        self.max_speed = self.base_max_speed - self.athletics_index
+        self.max_speed = self.base_max_speed - self.athletics_index *0.1
         print(f'[calc max speed and jump] {self.name}: {self.max_jump_height=} {self.max_speed=} {self.base_max_speed=}')
         # self.max_speed = self.base_max_speed - self.base_max_speed * self.athletics_index
