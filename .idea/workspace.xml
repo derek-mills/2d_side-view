@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/items.py" beforeDir="false" afterPath="$PROJECT_DIR$/items.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -58,6 +58,27 @@
     </option>
   </component>
   <component name="RunManager" selected="Python.main ">
+    <configuration name="entity" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ver_0.000.1" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/entity.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="generate_sprite_sheet" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ver_0.000.1" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -122,6 +143,7 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.entity" />
       <item itemvalue="Python.generate_sprite_sheet" />
       <item itemvalue="Python.level_editor" />
       <item itemvalue="Python.main " />
@@ -130,6 +152,7 @@
       <list>
         <item itemvalue="Python.main " />
         <item itemvalue="Python.level_editor" />
+        <item itemvalue="Python.entity" />
         <item itemvalue="Python.generate_sprite_sheet" />
       </list>
     </recent_temporary>

@@ -105,6 +105,7 @@ class World(object):
 
 
     def add_actor(self, description, start_xy):
+        print(f'[ADDING ACTOR] ----------------------------------------------------------')
         entity = Actor()
         entity.id = self.actor_id
         entity.name = description['name']
@@ -115,9 +116,10 @@ class World(object):
         entity.strength = description['strength']
         entity.body_weight = description['body weight']
         entity.base_max_speed = description['max speed']
+        print(f'[ADDING ACTOR] {entity.base_max_speed=} {entity.body_weight=} {entity.strength=}')
         entity.base_max_jump_height = description['max jump height']
-        entity.calculate_athletics_index()
-        entity.calculate_max_jump_height_and_speed()
+        # entity.calculate_athletics_index()
+        # entity.calculate_max_jump_height_and_speed()
 
         entity.stats['max health'] = description['health']
         entity.stats['health'] = description['health']
@@ -152,6 +154,7 @@ class World(object):
         entity.destination[0] = entity.rectangle.centerx
         entity.destination[1] = entity.rectangle.centery
         # entity.max_speed = description['max speed']
+
         entity.acceleration = description['acceleration']
         entity.default_acceleration = description['acceleration']
         entity.air_acceleration = description['air acceleration']
@@ -199,6 +202,7 @@ class World(object):
 
         self.actors[self.location][entity.id] = entity
         self.actor_id += 1
+        print(f'[ADDING ACTOR] ----------------------E-N-D------------------------------')
 
     def add_item(self, item, xy):
         # print(f'[world.add_item] {item}')

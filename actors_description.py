@@ -23,13 +23,13 @@ demon_1 = {
         'fire': 1
     },
     'gravity affected': True,
-    'body': {
-        'head': {
-            'hardness': 100
-        },
-    },
-    'max speed': 2 + randint(1, 10) / 10,
-    'max jump height': 5,
+    # 'body': {
+    #     'head': {
+    #         'hardness': 100
+    #     },
+    # },
+    'max speed': 20,
+    'max jump height': 25,
     'acceleration': .4,
     'air acceleration': .4,
     'items': (demon_2_close, demon_2_mid, spikeball_staff),
@@ -297,7 +297,7 @@ demon_2 = {
             'hardness': 100
         },
     },
-    'max speed': 15 + randint(1, 10) / 10,
+    'max speed': 20 + randint(1, 10) / 10,
     'max jump height': 27,
     'acceleration': .3,
     'air acceleration': .3,
@@ -676,8 +676,8 @@ demon_2 = {
             'repeat from frame': 0
         },
     },
-    'think type': '',
-    # 'think type': 'chaser',
+    # 'think type': '',
+    'think type': 'chaser',
     'disappear after death': False,
     'AI controlled': True
 }
@@ -776,11 +776,11 @@ player_jake = {
         'smash': .1,
         'fire': 1
     },
-    'body': {
-        'head': {
-            'hardness': 100
-        },
-    },
+    # 'body': {
+    #     'head': {
+    #         'hardness': 100
+    #     },
+    # },
     'max speed': 16,  # Base value, which will be reduced upon athletic index.
     'max jump height': 28, # Base value, which will be reduced upon athletic index.
     'acceleration': .9,

@@ -1372,10 +1372,12 @@ class Entity(object):
     def calculate_athletics_index(self):
         # The lesser this index -- the greater the max speed and jump height.
         self.athletics_index = self.body_weight / self.strength
+        print(f'[calc athletics] {self.name} has athletic index: {self.athletics_index}')
 
     def calculate_max_jump_height_and_speed(self):
         # print(f'[calculate_max_jump_height_and_speed] enter...')
         self.max_jump_height = self.base_max_jump_height - self.athletics_index
         # self.max_jump_height = self.base_max_jump_height - self.base_max_jump_height * self.athletics_index
         self.max_speed = self.base_max_speed - self.athletics_index
+        print(f'[calc max speed and jump] {self.name}: {self.max_jump_height=} {self.max_speed=} {self.base_max_speed=}')
         # self.max_speed = self.base_max_speed - self.base_max_speed * self.athletics_index

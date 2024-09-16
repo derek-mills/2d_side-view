@@ -143,6 +143,12 @@ locations = {
                     'max speed': 1,
             	},
 
+            	(1050.0, 650.0): {
+                    'name': 'demon 1',
+                    'height': 150,
+                    'width': 50,
+            	},
+
               },
             'demolishers': {
                 'dem rectangles': (
@@ -346,14 +352,6 @@ locations = {
             'description': 'apartment #1',
             'size': (2000, 500),
             'hostiles': {
-            	(150.0, 250.0): {
-                    'name': 'demon 1',
-                    'height': 150,
-                    'width': 50,
-                    'health': 1500.0,
-                    'max speed': 2.6,
-
-              },
               },
             'demolishers': {
                 'dem rectangles': (
