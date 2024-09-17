@@ -45,7 +45,9 @@ class World(object):
         # CONTROLS
         self.is_key_pressed = False
         self.is_attack = False
+        self.attack_time = 0
         self.is_alternate_attack = False
+        self.alternate_attack_time = 0
         self.is_input_up_arrow = False
         self.is_input_down_arrow = False
         self.is_input_right_arrow = False
@@ -1002,6 +1004,7 @@ class World(object):
                     # continue
 
             actor.percept({k: self.obstacles[self.location][k] for k in self.active_obstacles}, self.demolishers[self.location], self.protectors[self.location])
+            actor.get_time(self.time_passed, self.game_cycles_counter)
 
             # actor.get_target(self.actors['player'])
             # if not actor.ignore_user_input:
@@ -1114,16 +1117,28 @@ class World(object):
                         #
                         #         actor.set_state('stand still')
 
-                        if self.is_attack:
-                            hand = 'right hand'
-                        elif self.is_alternate_attack:
-                            hand = 'left hand'
+                        if self.is_attack and self.is_alternate_attack:
+                            print(self.alternate_attack_time, self.attack_time)
+
+                            if self.alternate_attack_time > self.attack_time:
+                                hand = 'left hand'
+                                self.alternate_attack_time = 0
+                            else:
+                                hand = 'right hand'
+                                self.attack_time = 0
                         else:
-                            hand = None
+                            if self.is_alternate_attack:
+                                hand = 'left hand'
+                            elif self.is_attack:
+                                hand = 'right hand'
+                            else:
+                                hand = None
 
                         if hand:
-                            if not actor.get_state() == 'protect':
-                                actor.current_weapon = actor.body[hand]['weapon']['item']
+                            actor.current_weapon = actor.body[hand]['weapon']['item']
+                            if actor.get_state() == 'protect' and actor.current_weapon['type'] == 'shields':
+                                ...
+                            else:
                                 # actor.current_weapon = actor.body['right hand']['weapon']['item']
                                 actor.current_stamina_lost_per_attack = actor.normal_stamina_lost_per_attack * actor.current_weapon['stamina consumption']
                                 actor.current_mana_lost_per_attack = actor.normal_mana_lost_per_attack * actor.current_weapon['mana consumption']
@@ -1134,6 +1149,20 @@ class World(object):
                         else:
                             if actor.get_state() == 'protect':
                                 actor.set_state('stand still')
+                        # if hand:
+                        #     if not actor.get_state() == 'protect':
+                        #         actor.current_weapon = actor.body[hand]['weapon']['item']
+                        #         # actor.current_weapon = actor.body['right hand']['weapon']['item']
+                        #         actor.current_stamina_lost_per_attack = actor.normal_stamina_lost_per_attack * actor.current_weapon['stamina consumption']
+                        #         actor.current_mana_lost_per_attack = actor.normal_mana_lost_per_attack * actor.current_weapon['mana consumption']
+                        #         if actor.current_weapon['type'] == 'shields':
+                        #             actor.set_action('protect')
+                        #         else:
+                        #             actor.set_action('attack')
+                        # else:
+                        #     if actor.get_state() == 'protect':
+                        #         actor.set_state('stand still')
+
 
                         # if self.is_attack:
                         #     # self.is_attack = False
@@ -1169,7 +1198,6 @@ class World(object):
                         #         actor.set_state('stand still')
                         #     # actor.set_action('attack')
 
-            actor.get_time(self.time_passed, self.game_cycles_counter)
             actor.process()
 
             while actor.drop_from_inventory:
@@ -1785,22 +1813,65 @@ class World(object):
         #     self.mouse_xy = (self.mouse_xy[0] + self.offset_x) // self.wandering_screen_scale, \
         #                     (self.mouse_xy[1] + self.offset_y) // self.wandering_screen_scale
 
+        # Key #80: left arrow
+        # Key #79: right arrow
+        keys = pygame.key.get_pressed()
+        # print(type(keys))
+        # self.press_any_key()
+        # for k in keys:
+            # if k:
+            #     print(k, keys.index(k))
+        # print(f'[human input] {keys[K_RIGHT]}')
+        # print(f'[human input] {keys[79]=} {keys[80]=}')
+        if keys[K_LEFT]:
+            self.is_alternate_attack = True
+            if self.alternate_attack_time == 0:
+                self.alternate_attack_time = self.game_cycles_counter
+            # print('left arrow press')
+        else:
+            self.is_alternate_attack = False
+            self.alternate_attack_time = 0
+
+        if keys[K_RIGHT]:
+            self.is_attack = True
+            if self.attack_time == 0:
+                self.attack_time = self.game_cycles_counter
+            # print('right arrow press')
+        else:
+            self.is_attack = False
+            self.attack_time = 0
+
+        # MOD KEYS:
+        # mods = pygame.key.get_mods()
+        # if mods & KMOD_LSHIFT:  # use whatever KMOD_ constant you want;)
+        #     self.is_l_shift = True
+        # elif mods & KMOD_LCTRL:
+        #     self.is_l_ctrl = True
+        # elif mods & KMOD_LALT:
+        #     self.is_l_alt = True
+        # else:
+        #     self.l_alt_multiple_press_prevent = False
+        #     self.is_l_ctrl = False
+        #     self.is_l_shift = False
+        #     self.is_l_alt = False
+
+
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
                 raise SystemExit()
-            mods = pygame.key.get_mods()
-            if mods & KMOD_LSHIFT:  # use whatever KMOD_ constant you want;)
-                self.is_l_shift = True
-            elif mods & KMOD_LCTRL:
-                self.is_l_ctrl = True
-            elif mods & KMOD_LALT:
-                self.is_l_alt = True
-            else:
-                self.l_alt_multiple_press_prevent = False
-                self.is_l_ctrl = False
-                self.is_l_shift = False
-                self.is_l_alt = False
+            # mods = pygame.key.get_mods()
+            # if mods & KMOD_LSHIFT:  # use whatever KMOD_ constant you want;)
+            #     self.is_l_shift = True
+            # elif mods & KMOD_LCTRL:
+            #     self.is_l_ctrl = True
+            # elif mods & KMOD_LALT:
+            #     self.is_l_alt = True
+            # else:
+            #     self.l_alt_multiple_press_prevent = False
+            #     self.is_l_ctrl = False
+            #     self.is_l_shift = False
+            #     self.is_l_alt = False
             # print(self.l_shift)
             if event.type == KEYUP:
                 self.is_key_pressed = False
@@ -1824,24 +1895,25 @@ class World(object):
                 # if event.key == K_SPACE:
                     self.is_jump_button = False
                     self.jump_button_multiple_press_prevent = False
-                if event.key == K_RIGHT:
-                    self.is_attack = False
-                elif event.key == K_LEFT:
-                    self.is_alternate_attack = False
+
                 # if event.key == K_RIGHT:
                 #     self.is_attack = False
+                # if event.key == K_LEFT:
+                #     self.is_alternate_attack = False
+
             if event.type == KEYDOWN:
                 self.is_key_pressed = True
                 if event.key == K_ESCAPE:
                     pygame.quit()
                     raise SystemExit()
-                # ATTACKING CHECKS
-                if event.key == K_RIGHT:
-                    self.is_attack = True
-                    self.is_alternate_attack = False
-                elif event.key == K_LEFT:
-                    self.is_attack = False
-                    self.is_alternate_attack = True
+                # # ATTACKING CHECKS
+                # if event.key == K_RIGHT:
+                #     self.is_attack = True
+                #     self.is_alternate_attack = False
+                # if event.key == K_LEFT:
+                #     print('left pressed')
+                #     self.is_attack = False
+                #     self.is_alternate_attack = True
                 if event.key == K_1:
                     self.player_actor_hand_to_change_weapon = 'left hand'
                 elif event.key == K_2:
@@ -1869,7 +1941,7 @@ class World(object):
                         self.actors['player'].drop_item_from_inventory(self.actors['player'].inventory['weapons'][all_weapons[current_index]]['item'])
                     else:
                         print(f'[processing human input] There is only one weapon left')
-                # TABULATION
+                # TAB
                 if event.key == K_TAB:
                     all_weapons = list(self.actors['player'].inventory['weapons'].keys())
                     # print(all_weapons)
@@ -1963,33 +2035,34 @@ class World(object):
                 #     self.skip_actor()
                 # elif event.key == K_TAB:
                 #     self.need_to_show_party_inventory = True if not self.need_to_show_party_inventory else False
-            if event.type == MOUSEBUTTONDOWN:
-                buttons = pygame.mouse.get_pressed()
-                if buttons[0]:
-                    self.is_mouse_button_down = True
-                    self.is_left_mouse_button_down = True
-                if buttons[2]:
-                    self.is_mouse_button_down = True
-                    self.is_right_mouse_button_down = True
-            elif event.type == MOUSEWHEEL:
-                # print(event)
-                # print(event.x, event.y)
-                # print(event.flipped)
-                # print(event.which)
-                self.is_mouse_wheel_rolls = True
-                if event.y == 1:
-                    # Mouse wheel up:
-                    self.is_mouse_wheel_up = True
-                    # self.wandering_screen_target_scale += self.wandering_scale_amount
-                elif event.y == -1:
-                    # Mouse wheel down:
-                    self.is_mouse_wheel_down = True
-            if event.type == MOUSEBUTTONUP:
-                self.is_mouse_button_down = False
-                if self.is_right_mouse_button_down:
-                    self.is_right_mouse_button_down = False
-                if self.is_left_mouse_button_down:
-                    self.is_left_mouse_button_down = False
+
+            # if event.type == MOUSEBUTTONDOWN:
+            #     buttons = pygame.mouse.get_pressed()
+            #     if buttons[0]:
+            #         self.is_mouse_button_down = True
+            #         self.is_left_mouse_button_down = True
+            #     if buttons[2]:
+            #         self.is_mouse_button_down = True
+            #         self.is_right_mouse_button_down = True
+            # elif event.type == MOUSEWHEEL:
+            #     # print(event)
+            #     # print(event.x, event.y)
+            #     # print(event.flipped)
+            #     # print(event.which)
+            #     self.is_mouse_wheel_rolls = True
+            #     if event.y == 1:
+            #         # Mouse wheel up:
+            #         self.is_mouse_wheel_up = True
+            #         # self.wandering_screen_target_scale += self.wandering_scale_amount
+            #     elif event.y == -1:
+            #         # Mouse wheel down:
+            #         self.is_mouse_wheel_down = True
+            # if event.type == MOUSEBUTTONUP:
+            #     self.is_mouse_button_down = False
+            #     if self.is_right_mouse_button_down:
+            #         self.is_right_mouse_button_down = False
+            #     if self.is_left_mouse_button_down:
+            #         self.is_left_mouse_button_down = False
 
     def render_debug_info(self):
         stats_x = 1

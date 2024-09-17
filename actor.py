@@ -263,7 +263,7 @@ class Actor(Entity):
     #         return False
 
     def set_state(self, new_state):
-        print(f'[actor.set_state] {self.name} (#{self.id}) got new state: {new_state} at {self.cycles_passed}')
+        # print(f'[actor.set_state] {self.name} (#{self.id}) got new state: {new_state} at {self.cycles_passed}')
         self.__state = new_state
         self.set_current_animation()
 
@@ -503,9 +503,10 @@ class Actor(Entity):
                 # print(f'[state machine] NOT ENOUGH MANA')
                 return
             if self.__state not in ('free', 'stand still', 'run right', 'run left',
-                                    'stand still', 'jump', 'crawl right', 'crawl left',
+                                    'stand still', 'jump', 'crawl right', 'crawl left', 'protect',
                                     'crouch', 'fly right', 'fly left', 'turn right', 'turn left'):
                 return
+            print(f'[set action] attack')
             if self.__state in ('crawl left', 'crouch', 'crawl right'):
                 if self.look == 1:
                     self.set_state('prepare crouch attack right')
