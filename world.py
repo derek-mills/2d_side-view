@@ -1072,38 +1072,68 @@ class World(object):
                             if actor.get_state() in ('hopping back progress', 'hopping forward progress'):
                                 actor.set_action('hop action cancel')
 
+                        # if self.is_attack and not self.is_alternate_attack:
+                        #     # self.is_attack = False
+                        #     if not actor.get_state() == 'protect':
+                        #         # if self.is_alternate_attack:
+                        #         #     actor.current_weapon = actor.body['left hand']['weapon']['item']
+                        #         # elif self.is_attack:
+                        #         actor.current_weapon = actor.body['right hand']['weapon']['item']
+                        #         actor.current_stamina_lost_per_attack = actor.normal_stamina_lost_per_attack * actor.current_weapon['stamina consumption']
+                        #         actor.current_mana_lost_per_attack = actor.normal_mana_lost_per_attack * actor.current_weapon['mana consumption']
+                        #         if actor.current_weapon['type'] == 'shields':
+                        #             actor.set_action('protect')
+                        #         else:
+                        #             actor.set_action('attack')
+                        # elif not self.is_attack and self.is_alternate_attack:
+                        #     # self.is_attack = False
+                        #     if not actor.get_state() == 'protect':
+                        #         # if self.is_alternate_attack:
+                        #         actor.current_weapon = actor.body['left hand']['weapon']['item']
+                        #         # elif self.is_attack:
+                        #         # actor.current_weapon = actor.body['right hand']['weapon']['item']
+                        #         actor.current_stamina_lost_per_attack = actor.normal_stamina_lost_per_attack * actor.current_weapon['stamina consumption']
+                        #         actor.current_mana_lost_per_attack = actor.normal_mana_lost_per_attack * actor.current_weapon['mana consumption']
+                        #         if actor.current_weapon['type'] == 'shields':
+                        #             print('vvvvvvvvvvvvvvvvvvvvvv')
+                        #             actor.set_action('protect')
+                        #         else:
+                        #             actor.set_action('attack')
+                        # elif self.is_attack and self.is_alternate_attack:
+                        #     if not actor.get_state() == 'protect':
+                        #         actor.current_weapon = actor.body['right hand']['weapon']['item']
+                        #         actor.current_stamina_lost_per_attack = actor.normal_stamina_lost_per_attack * actor.current_weapon['stamina consumption']
+                        #         actor.current_mana_lost_per_attack = actor.normal_mana_lost_per_attack * actor.current_weapon['mana consumption']
+                        #         if actor.current_weapon['type'] == 'shields':
+                        #             actor.set_action('protect')
+                        #         else:
+                        #             actor.set_action('attack')
+                        #
+                        # else:
+                        #     if actor.get_state() == 'protect':
+                        #
+                        #         actor.set_state('stand still')
+
                         if self.is_attack:
-                            # self.is_attack = False
+                            hand = 'right hand'
+                        elif self.is_alternate_attack:
+                            hand = 'left hand'
+                        else:
+                            hand = None
+
+                        if hand:
                             if not actor.get_state() == 'protect':
-                                actor.current_weapon = actor.body['right hand']['weapon']['item']
+                                actor.current_weapon = actor.body[hand]['weapon']['item']
+                                # actor.current_weapon = actor.body['right hand']['weapon']['item']
                                 actor.current_stamina_lost_per_attack = actor.normal_stamina_lost_per_attack * actor.current_weapon['stamina consumption']
                                 actor.current_mana_lost_per_attack = actor.normal_mana_lost_per_attack * actor.current_weapon['mana consumption']
                                 if actor.current_weapon['type'] == 'shields':
                                     actor.set_action('protect')
                                 else:
                                     actor.set_action('attack')
-                            else:
-                                ...
                         else:
                             if actor.get_state() == 'protect':
                                 actor.set_state('stand still')
-
-                            if self.is_alternate_attack:
-                                # self.is_alternate_attack = False
-                                if not actor.get_state() == 'protect':
-                                    actor.current_weapon = actor.body['left hand']['weapon']['item']
-                                    actor.current_stamina_lost_per_attack = actor.normal_stamina_lost_per_attack * actor.current_weapon['stamina consumption']
-                                    actor.current_mana_lost_per_attack = actor.normal_mana_lost_per_attack * actor.current_weapon['mana consumption']
-                                    if actor.current_weapon['type'] == 'shields':
-                                        actor.set_action('protect')
-                                    else:
-                                        actor.set_action('attack')
-                                else:
-                                    ...
-                            else:
-                                if actor.get_state() == 'protect':
-                                    actor.set_state('stand still')
-
 
                         # if self.is_attack:
                         #     # self.is_attack = False
@@ -1120,6 +1150,7 @@ class World(object):
                         # else:
                         #     if actor.get_state() == 'protect':
                         #         actor.set_state('stand still')
+                        #
                         #
                         # if self.is_alternate_attack:
                         #     # self.is_alternate_attack = False
@@ -1807,7 +1838,9 @@ class World(object):
                 # ATTACKING CHECKS
                 if event.key == K_RIGHT:
                     self.is_attack = True
+                    self.is_alternate_attack = False
                 elif event.key == K_LEFT:
+                    self.is_attack = False
                     self.is_alternate_attack = True
                 if event.key == K_1:
                     self.player_actor_hand_to_change_weapon = 'left hand'

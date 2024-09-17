@@ -263,7 +263,7 @@ class Actor(Entity):
     #         return False
 
     def set_state(self, new_state):
-        # print(f'[actor.set_state] {self.name} (#{self.id}) got new state: {new_state} at {self.cycles_passed}')
+        print(f'[actor.set_state] {self.name} (#{self.id}) got new state: {new_state} at {self.cycles_passed}')
         self.__state = new_state
         self.set_current_animation()
 
