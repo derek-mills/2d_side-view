@@ -1591,20 +1591,23 @@ class World(object):
         dy = 0
         params = (
             ('HEALTH :' + str(int(self.actors['player'].stats['max health'])) + '/' + str(int(self.actors['player'].stats['health'])),
-             ((int(self.actors['player'].stats['target health']),YELLOW),
+             ((int(self.actors['player'].stats['max health']),BLACK),
+              (int(self.actors['player'].stats['target health']),YELLOW),
               (int(self.actors['player'].stats['health']),MAGENTA),),
              MAGENTA),
              # int(self.actors['player'].stats['health'] * self.info_panel_max_stripes_width // self.actors['player'].stats['max health']),
 
 
             ('STAMINA:' + str(int(self.actors['player'].stats['max stamina'])) + '/' + str(int(self.actors['player'].stats['stamina'])),
-             ((int(self.actors['player'].stats['target stamina']),YELLOW),
+             ((int(self.actors['player'].stats['max stamina']),BLACK),
+              (int(self.actors['player'].stats['target stamina']),YELLOW),
               (int(self.actors['player'].stats['stamina']), GREEN if self.actors['player'].stats['stamina'] >= self.actors['player'].current_stamina_lost_per_attack else RED),),
              GREEN),
             # int(self.actors['player'].stats['stamina'] * self.info_panel_max_stripes_width // self.actors['player'].stats['max stamina']),
 
             ('MANA   :' + str(int(self.actors['player'].stats['max mana'])) + '/' + str(int(self.actors['player'].stats['mana'])),
-             ((int(self.actors['player'].stats['target mana']),YELLOW),
+             ((int(self.actors['player'].stats['max mana']),BLACK),
+              (int(self.actors['player'].stats['target mana']),YELLOW),
               (int(self.actors['player'].stats['mana']),BLUE),),
 
              # int(self.actors['player'].stats['mana'] * self.info_panel_max_stripes_width // self.actors['player'].stats['max mana']),

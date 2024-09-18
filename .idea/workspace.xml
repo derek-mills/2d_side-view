@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
+    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="Fine tune of left and right hand actions system.&#10;simultaneous pressing of both attack buttons now handles correctly.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -164,13 +163,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00436" summary="Improving 'hop back' to avoid dead actors become 'stay still' if they get some damage being dropped in the air.">
-      <created>1724812991602</created>
-      <option name="number" value="00436" />
-      <option name="presentableId" value="LOCAL-00436" />
-      <option name="project" value="LOCAL" />
-      <updated>1724812991602</updated>
     </task>
     <task id="LOCAL-00437" summary="Solved problem when actor continues to get damaged even if he became dead.">
       <created>1724813594166</created>
@@ -508,7 +500,14 @@
       <option name="project" value="LOCAL" />
       <updated>1726552114017</updated>
     </task>
-    <option name="localTasksCounter" value="485" />
+    <task id="LOCAL-00485" summary="Fine tune of left and right hand actions system.&#10;simultaneous pressing of both attack buttons now handles correctly.">
+      <created>1726558230105</created>
+      <option name="number" value="00485" />
+      <option name="presentableId" value="LOCAL-00485" />
+      <option name="project" value="LOCAL" />
+      <updated>1726558230105</updated>
+    </task>
+    <option name="localTasksCounter" value="486" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -523,7 +522,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Stamina replenishes slowly (down to 30% of normal amount) while actor in defending state." />
     <MESSAGE value="AI 'chaser' think type improved." />
     <MESSAGE value="Player actor is able to hop back and forward now by pressing 'q' and 'e' buttons." />
     <MESSAGE value="Correcting errors in hopping process after get damaged." />
@@ -548,6 +546,7 @@
     <MESSAGE value="Fixed wrong demon 1 description" />
     <MESSAGE value="Reduced affection of athletic factor to the maximum possible speed." />
     <MESSAGE value="Fine tune of left and right hand actions system." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fine tune of left and right hand actions system." />
+    <MESSAGE value="Fine tune of left and right hand actions system.&#10;simultaneous pressing of both attack buttons now handles correctly." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fine tune of left and right hand actions system.&#10;simultaneous pressing of both attack buttons now handles correctly." />
   </component>
 </project>
