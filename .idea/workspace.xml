@@ -4,8 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
+    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="Added 'decapitated' state in case of actor gets damage more than 2x of his remaining health.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/animations/demon_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/animations/demon_2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -163,13 +168,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00439" summary="Added the Stash drop after death if player actor has it loaded.">
-      <created>1724892798818</created>
-      <option name="number" value="00439" />
-      <option name="presentableId" value="LOCAL-00439" />
-      <option name="project" value="LOCAL" />
-      <updated>1724892798818</updated>
     </task>
     <task id="LOCAL-00440" summary="render_text() and game_over() tiny updates.">
       <created>1724899177022</created>
@@ -507,7 +505,14 @@
       <option name="project" value="LOCAL" />
       <updated>1726713771913</updated>
     </task>
-    <option name="localTasksCounter" value="488" />
+    <task id="LOCAL-00488" summary="Tiny changes in shield thickness.&#10;Blast frags size hasted up and become bigger.">
+      <created>1726715884491</created>
+      <option name="number" value="00488" />
+      <option name="presentableId" value="LOCAL-00488" />
+      <option name="project" value="LOCAL" />
+      <updated>1726715884492</updated>
+    </task>
+    <option name="localTasksCounter" value="489" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -522,7 +527,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Correcting errors in hopping process after get damaged." />
     <MESSAGE value="AI actors do not turn to proper side if they are lying dead and being kicked up." />
     <MESSAGE value="Improved attack power modifier if actor moves or falls." />
     <MESSAGE value="Info panel overlay remake." />
@@ -547,6 +551,7 @@
     <MESSAGE value="Fine tune of left and right hand actions system.&#10;simultaneous pressing of both attack buttons now handles correctly." />
     <MESSAGE value="Added stripes, which show the 'max' amount of particular stat." />
     <MESSAGE value="Renovation of protectors revealing and keeping them alive system." />
-    <option name="LAST_COMMIT_MESSAGE" value="Renovation of protectors revealing and keeping them alive system." />
+    <MESSAGE value="Tiny changes in shield thickness.&#10;Blast frags size hasted up and become bigger." />
+    <option name="LAST_COMMIT_MESSAGE" value="Tiny changes in shield thickness.&#10;Blast frags size hasted up and become bigger." />
   </component>
 </project>

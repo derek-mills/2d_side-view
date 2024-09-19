@@ -38,6 +38,7 @@ class Entity(object):
         self.dead = False
         self.dying = False
         self.disappear_after_death = False
+        self.has_got_a_critical_hit = False
         self.is_destructible: bool = False
         self.current_weapon = dict()
         self.time_passed: int = 0
@@ -695,12 +696,12 @@ class Entity(object):
                         forces_balance = ((dem.parent_strength + dem.parent_weight) / dem.parent_penalty) / (self.strength + self.body_weight)
                         # forces_balance = ((dem.parent_strength / self.strength) + (dem.parent_weight / self.body_weight)) / dem.parent_penalty
                         self.speed = 5 + forces_balance
-                        print(f'{dem.total_damage_amount=} {forces_balance=} {dem.parent_penalty=}')
+                        print(f'[demolishers collision] {dem.total_damage_amount=} {forces_balance=} {dem.parent_penalty=}')
                     else:
                         self.movement_direction_inverter = -1 if dem.look != self.look else 1
                         forces_balance = 0.1
                         self.speed = 3
-                        print(f'{dem.total_damage_amount=} {forces_balance=} {dem.parent_penalty=}')
+                        print(f'[demolishers collision] {dem.total_damage_amount=} {forces_balance=} {dem.parent_penalty=}')
                     if 'smash' in dem.damage.keys():
                         self.speed *= 1.5
                     if self.stats['stamina'] > 0:
@@ -718,7 +719,10 @@ class Entity(object):
                     # If actor hit from behind, the damage increased by 50%:
                     total_damage_multiplier = 1.5 if dem.look == self.look and dem.snap_to_actor >= 0 else 1
                     self.get_damage(dem.damage, total_damage_multiplier)
-                    # self.invincibility_timer = 100 if self.id == 0 else 30
+                    # self.has_got_a_critical_hit = True
+                    # # if self.total_damage_has_got > self.stats['health'] * 2:
+                    # #     self.has_got_a_critical_hit = True
+
                     if self.get_state() in ('hanging on edge', 'has just grabbed edge', 'climb on', 'climb on rise'):
                         self.set_state('release edge')
                         self.state_machine()
@@ -771,7 +775,7 @@ class Entity(object):
                             #     self.set_state('hop forward')
                             # self.movement_direction_inverter = -1 if dem.look != self.look else 1
                         # if self.get_state() != 'lie dead':
-                        print(f'{self.hop_back_jump_height_modifier} {dem.damage["smash"]=}')
+                        print(f'[demolishers collision] {self.hop_back_jump_height_modifier} {dem.damage["smash"]=}')
                         # print(f'{self.hop_back_jump_height_modifier} {self.total_damage_has_got=}')
                         self.set_state('hopping prepare')
                         # self.set_state('hop back')
@@ -827,6 +831,9 @@ class Entity(object):
         if self.stats['health'] < 0:
             self.stats['health'] = 0
             self.stats['target health'] = 0
+            # # self.has_got_a_critical_hit = True
+            # if self.total_damage_has_got > self.stats['health'] * 2:
+            #     self.has_got_a_critical_hit = True
             self.set_state('dying')
             # print(f'[check condition] {self.name} (#{self.id}): change state to *DYING* | HP: {self.stats["health"]}')
             # self.dying = True
@@ -837,11 +844,17 @@ class Entity(object):
         #     return
         # print(f'[entity.get_damage] incoming damage dealt to {self.name} | {self.stats["health"]=}')
         self.total_damage_has_got = 0
+        remain_health = self.stats['health']
         for damage_type in damage:
             d = damage[damage_type] * self.resistances[damage_type] * damage_multiplier
             self.stats['health'] -= d
             # self.stats['health'] -= d
             self.total_damage_has_got += d
+
+        # self.has_got_a_critical_hit = True
+        if self.total_damage_has_got > remain_health * 2:
+        # if self.total_damage_has_got > self.stats['health'] * 2:
+            self.has_got_a_critical_hit = True
 
         # if self.stats['health'] <= 0:
         #     self.set_state('dying')

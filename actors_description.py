@@ -686,6 +686,32 @@ demon_2 = {
             },
             'repeat from frame': 0
         },
+        'decapitated left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (84,85,86,87,),
+            'speed': 9,
+            'activity at frames': {
+                0: {
+                    'sound': True,
+                    'demolishers set number': 0,
+                    'demolisher': False
+                },
+            },
+            'repeat from frame': 3
+        },
+        'decapitated right': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (73,72,71,70,),
+            'speed': 9,
+            'activity at frames': {
+                0: {
+                    'sound': True,
+                    'demolishers set number': 0,
+                    'demolisher': False
+                },
+            },
+            'repeat from frame': 3
+        },
     },
     # 'think type': '',
     'think type': 'chaser',

@@ -27,6 +27,7 @@ class Actor(Entity):
         self.jump_height: int = 22
         self.max_jump_attempts = 2
 
+
         # self.rectangle.height = 149
         # self.rectangle.width = 49
         # self.target_height = self.rectangle.h
@@ -695,7 +696,10 @@ class Actor(Entity):
 
                 if self.dead:
                     # self.heading[0] = 0
-                    self.set_state('lie dead')
+                    if self.has_got_a_critical_hit:
+                        self.set_state('decapitated')
+                    else:
+                        self.set_state('lie dead')
                 else:
                     if self.get_state() == 'hanging on edge':
                         self.set_state('release edge')
@@ -725,7 +729,10 @@ class Actor(Entity):
                     if not self.dead:
                         self.set_state('stand still')
                     else:
-                        self.set_state('lie dead')
+                        if self.has_got_a_critical_hit:
+                            self.set_state('decapitated')
+                        else:
+                            self.set_state('lie dead')
         # elif self.get_state() == 'hop forward':                        # HOP BACK
         #     self.heading[0] = 0
         #     self.speed = 0
@@ -1066,8 +1073,23 @@ class Actor(Entity):
                 self.set_state('almost explode')
             else:
                 self.dying = True
-                self.set_state('lie dead')
+                if self.has_got_a_critical_hit:
+                    self.set_state('decapitated')
+                else:
+                    self.set_state('lie dead')
         elif self.get_state() == 'lie dead':                        #
+            ...
+            self.heading = [0, 0]
+            if self.idle_counter > 0:
+                self.idle_counter -= 1
+                # self.invincibility_timer -= 1
+            else:
+                if self.speed <= 0:
+                    self.ignore_user_input = False
+                    if self.just_got_jumped:
+                        self.just_got_jumped = False
+                    self.is_abort_jump = True
+        elif self.get_state() == 'decapitated':
             ...
             self.heading = [0, 0]
             if self.idle_counter > 0:
