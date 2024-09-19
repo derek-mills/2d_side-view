@@ -4,8 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="Fine tune of left and right hand actions system.&#10;simultaneous pressing of both attack buttons now handles correctly.">
+    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphics.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/animations/demon_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/animations/demon_2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/animations/demon_2_weak_spot.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/animations/demon_female_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/animations/demon_female_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/animations/jake_8bit_snap_points.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/animations/jane_8bit.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/animations/phantom.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -163,13 +175,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00437" summary="Solved problem when actor continues to get damaged even if he became dead.">
-      <created>1724813594166</created>
-      <option name="number" value="00437" />
-      <option name="presentableId" value="LOCAL-00437" />
-      <option name="project" value="LOCAL" />
-      <updated>1724813594166</updated>
     </task>
     <task id="LOCAL-00438" summary="Added reviving after death in a place where the Stash is.">
       <created>1724835102022</created>
@@ -507,7 +512,14 @@
       <option name="project" value="LOCAL" />
       <updated>1726558230105</updated>
     </task>
-    <option name="localTasksCounter" value="486" />
+    <task id="LOCAL-00486" summary="Added stripes, which show the 'max' amount of particular stat.">
+      <created>1726624385717</created>
+      <option name="number" value="00486" />
+      <option name="presentableId" value="LOCAL-00486" />
+      <option name="project" value="LOCAL" />
+      <updated>1726624385717</updated>
+    </task>
+    <option name="localTasksCounter" value="487" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -522,7 +534,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="AI 'chaser' think type improved." />
     <MESSAGE value="Player actor is able to hop back and forward now by pressing 'q' and 'e' buttons." />
     <MESSAGE value="Correcting errors in hopping process after get damaged." />
     <MESSAGE value="AI actors do not turn to proper side if they are lying dead and being kicked up." />
@@ -547,6 +558,7 @@
     <MESSAGE value="Reduced affection of athletic factor to the maximum possible speed." />
     <MESSAGE value="Fine tune of left and right hand actions system." />
     <MESSAGE value="Fine tune of left and right hand actions system.&#10;simultaneous pressing of both attack buttons now handles correctly." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fine tune of left and right hand actions system.&#10;simultaneous pressing of both attack buttons now handles correctly." />
+    <MESSAGE value="Added stripes, which show the 'max' amount of particular stat." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added stripes, which show the 'max' amount of particular stat." />
   </component>
 </project>

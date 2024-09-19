@@ -1118,7 +1118,7 @@ class World(object):
                         #         actor.set_state('stand still')
 
                         if self.is_attack and self.is_alternate_attack:
-                            print(self.alternate_attack_time, self.attack_time)
+                            # print(self.alternate_attack_time, self.attack_time)
 
                             if self.alternate_attack_time > self.attack_time:
                                 hand = 'left hand'
@@ -1139,7 +1139,6 @@ class World(object):
                             if actor.get_state() == 'protect' and actor.current_weapon['type'] == 'shields':
                                 ...
                             else:
-                                # actor.current_weapon = actor.body['right hand']['weapon']['item']
                                 actor.current_stamina_lost_per_attack = actor.normal_stamina_lost_per_attack * actor.current_weapon['stamina consumption']
                                 actor.current_mana_lost_per_attack = actor.normal_mana_lost_per_attack * actor.current_weapon['mana consumption']
                                 if actor.current_weapon['type'] == 'shields':
@@ -1148,55 +1147,11 @@ class World(object):
                                     actor.set_action('attack')
                         else:
                             if actor.get_state() == 'protect':
+                                # actor.summon_protector = False
+                                while actor.summoned_protectors_keep_alive:
+                                    protector_id = actor.summoned_protectors_keep_alive.pop()
+                                    del self.protectors[self.location][protector_id]
                                 actor.set_state('stand still')
-                        # if hand:
-                        #     if not actor.get_state() == 'protect':
-                        #         actor.current_weapon = actor.body[hand]['weapon']['item']
-                        #         # actor.current_weapon = actor.body['right hand']['weapon']['item']
-                        #         actor.current_stamina_lost_per_attack = actor.normal_stamina_lost_per_attack * actor.current_weapon['stamina consumption']
-                        #         actor.current_mana_lost_per_attack = actor.normal_mana_lost_per_attack * actor.current_weapon['mana consumption']
-                        #         if actor.current_weapon['type'] == 'shields':
-                        #             actor.set_action('protect')
-                        #         else:
-                        #             actor.set_action('attack')
-                        # else:
-                        #     if actor.get_state() == 'protect':
-                        #         actor.set_state('stand still')
-
-
-                        # if self.is_attack:
-                        #     # self.is_attack = False
-                        #     if not actor.get_state() == 'protect':
-                        #         actor.current_weapon = actor.body['right hand']['weapon']['item']
-                        #         actor.current_stamina_lost_per_attack = actor.normal_stamina_lost_per_attack * actor.current_weapon['stamina consumption']
-                        #         actor.current_mana_lost_per_attack = actor.normal_mana_lost_per_attack * actor.current_weapon['mana consumption']
-                        #         if actor.current_weapon['type'] == 'shields':
-                        #             actor.set_action('protect')
-                        #         else:
-                        #             actor.set_action('attack')
-                        #     else:
-                        #         ...
-                        # else:
-                        #     if actor.get_state() == 'protect':
-                        #         actor.set_state('stand still')
-                        #
-                        #
-                        # if self.is_alternate_attack:
-                        #     # self.is_alternate_attack = False
-                        #     if not actor.get_state() == 'protect':
-                        #         actor.current_weapon = actor.body['left hand']['weapon']['item']
-                        #         actor.current_stamina_lost_per_attack = actor.normal_stamina_lost_per_attack * actor.current_weapon['stamina consumption']
-                        #         actor.current_mana_lost_per_attack = actor.normal_mana_lost_per_attack * actor.current_weapon['mana consumption']
-                        #         if actor.current_weapon['type'] == 'shields':
-                        #             actor.set_action('protect')
-                        #         else:
-                        #             actor.set_action('attack')
-                        #     else:
-                        #         ...
-                        # else:
-                        #     if actor.get_state() == 'protect':
-                        #         actor.set_state('stand still')
-                        #     # actor.set_action('attack')
 
             actor.process()
 
@@ -1222,11 +1177,12 @@ class World(object):
                 actor.summon_protector = False
                 while actor.summoned_protectors_description:
                     p = actor.summoned_protectors_description.pop()
-                    if p['keep alive'] and self.protectors[self.location]:
-                        for k in self.protectors[self.location].keys():
-                            self.protectors[self.location][k].ttl += 1
-                        break
+                    # if p['keep alive'] and self.protectors[self.location]:
+                    #     for k in self.protectors[self.location].keys():
+                    #         self.protectors[self.location][k].ttl += 1
+                    #     break
                     self.add_protector(p)
+                    actor.summoned_protectors_keep_alive.append(self.protector_id - 1)
 
             if actor.summon_demolisher:
                 actor.summon_demolisher = False
@@ -1347,7 +1303,8 @@ class World(object):
 
             self.screen.blit(actor.current_sprite['sprite'], (x, y))
 
-            self.screen.blit(fonts.all_fonts[10].render(actor.get_state() + ' dying: ' + str(actor.dying)+ ' dead: ' + str(actor.dead), True, WHITE, BLACK), (x, y))
+            # Misc info:
+            # self.screen.blit(fonts.all_fonts[10].render(actor.get_state() + ' dying: ' + str(actor.dying)+ ' dead: ' + str(actor.dead), True, WHITE, BLACK), (x, y))
 
             # # Weak spot
             # if actor.current_sprite['weak spot']:

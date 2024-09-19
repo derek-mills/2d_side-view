@@ -431,16 +431,17 @@ class Entity(object):
                     # IF ACTION IS TRUE:
                     if action == 'protector':
                         # print(f'[process active frames] defend at frame {self.frame_number}')
-                        if 'protectors' in self.current_weapon:
+                        if 'protectors' in self.current_weapon and not self.summon_protector:
+                        # if 'protectors' in self.current_weapon:
                             self.summon_protector = True
                             self.summoned_protectors_description = list()
-                            dem_set_num = self.animations[self.current_animation]['activity at frames'][self.frame_number]['protectors set number']
-                            for d_origin in self.current_weapon['protectors'][dem_set_num]:
-                                d = copy.deepcopy(d_origin)
-                                d['parent'] = self
-                                d['protector sprite'] = d_origin['protector sprite']
-                                d['snapping offset'] = sprites[self.name + ' ' + str(self.animation_sequence[self.frame_number])]['demolisher snap point']
-                                self.summoned_protectors_description.append(d)
+                            protector_set_num = self.animations[self.current_animation]['activity at frames'][self.frame_number]['protectors set number']
+                            for p_origin in self.current_weapon['protectors'][protector_set_num]:
+                                p = copy.deepcopy(p_origin)
+                                p['parent'] = self
+                                p['protector sprite'] = p_origin['protector sprite']
+                                p['snapping offset'] = sprites[self.name + ' ' + str(self.animation_sequence[self.frame_number])]['demolisher snap point']
+                                self.summoned_protectors_description.append(p)
                     elif action == 'demolisher':
                         # print(f'[process active frames] make attack at frame {self.frame_number}')
                         self.summon_demolisher = True

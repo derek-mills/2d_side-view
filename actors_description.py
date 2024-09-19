@@ -453,14 +453,19 @@ demon_2 = {
             # 'sequence': (74,74,74,75,76,76,76,77),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
             'speed': 4,
             'activity at frames': {
-                4: {
+                3: {
                     'sound': True,
                     'demolishers set number': 0,
                     'demolisher': True
                 },
-                5: {
+                4: {
                     'sound': True,
                     'demolishers set number': 1,
+                    'demolisher': True
+                },
+                13: {
+                    'sound': True,
+                    'demolishers set number': 2,
                     'demolisher': True
                 },
                 14: {
@@ -480,7 +485,7 @@ demon_2 = {
         },
         'whip left': {
             'repeat': False, 'interruptable': True,
-            'sequence': (91,91,91,90,89,89,89,88,90,91,
+            'sequence': (91,91,91,90,89,89,89,88,88,91,
                          94,94,94,93,92,92,92,93,93,93),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
             # 74,74,74,74,74,  # 5 - 9
             # 74,74,74,75,75,  # 10 - 14
@@ -497,14 +502,19 @@ demon_2 = {
             # 'demolisher offset': (46, 36),
             'speed': 4,
             'activity at frames': {
-                4: {
+                3: {
                     'sound': True,
                     'demolishers set number': 0,
                     'demolisher': True
                 },
-                5: {
+                4: {
                     'sound': True,
                     'demolishers set number': 1,
+                    'demolisher': True
+                },
+                13: {
+                    'sound': True,
+                    'demolishers set number': 2,
                     'demolisher': True
                 },
                 14: {
