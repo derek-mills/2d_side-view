@@ -6,18 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphics.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphics.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/animations/demon_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/animations/demon_2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/animations/demon_2_weak_spot.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/animations/demon_female_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/animations/demon_female_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/animations/jake_8bit_snap_points.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/animations/jane_8bit.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/animations/phantom.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -175,13 +163,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00438" summary="Added reviving after death in a place where the Stash is.">
-      <created>1724835102022</created>
-      <option name="number" value="00438" />
-      <option name="presentableId" value="LOCAL-00438" />
-      <option name="project" value="LOCAL" />
-      <updated>1724835102022</updated>
     </task>
     <task id="LOCAL-00439" summary="Added the Stash drop after death if player actor has it loaded.">
       <created>1724892798818</created>
@@ -519,7 +500,14 @@
       <option name="project" value="LOCAL" />
       <updated>1726624385717</updated>
     </task>
-    <option name="localTasksCounter" value="487" />
+    <task id="LOCAL-00487" summary="Renovation of protectors revealing and keeping them alive system.">
+      <created>1726713771912</created>
+      <option name="number" value="00487" />
+      <option name="presentableId" value="LOCAL-00487" />
+      <option name="project" value="LOCAL" />
+      <updated>1726713771913</updated>
+    </task>
+    <option name="localTasksCounter" value="488" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -534,7 +522,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Player actor is able to hop back and forward now by pressing 'q' and 'e' buttons." />
     <MESSAGE value="Correcting errors in hopping process after get damaged." />
     <MESSAGE value="AI actors do not turn to proper side if they are lying dead and being kicked up." />
     <MESSAGE value="Improved attack power modifier if actor moves or falls." />
@@ -559,6 +546,7 @@
     <MESSAGE value="Fine tune of left and right hand actions system." />
     <MESSAGE value="Fine tune of left and right hand actions system.&#10;simultaneous pressing of both attack buttons now handles correctly." />
     <MESSAGE value="Added stripes, which show the 'max' amount of particular stat." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added stripes, which show the 'max' amount of particular stat." />
+    <MESSAGE value="Renovation of protectors revealing and keeping them alive system." />
+    <option name="LAST_COMMIT_MESSAGE" value="Renovation of protectors revealing and keeping them alive system." />
   </component>
 </project>

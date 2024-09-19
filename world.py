@@ -803,7 +803,7 @@ class World(object):
                 'snap to actor': -1,
                 'demolisher sprite': None,
                 'demolisher TTL': randint(150, 170),
-                'rect': pygame.Rect(xy[0], xy[1], 5, 5),
+                'rect': pygame.Rect(xy[0], xy[1], 25, 25),
                 'destination': find_destination_behind_target_point(xy, (randint(xy[0] - 100, xy[0] + 100), randint(xy[1] - 100, xy[1] + 100)), MAXX),
                 'bounce': False,
                 'bounce factor': 0,
@@ -821,7 +821,7 @@ class World(object):
                 'visible': False,
                 'snapping offset': (0, 0),
                 # 'attack type': ('fire', 'smash', 'pierce', ),
-                'speed': 0.5 + randint(1, 5) / 10,
+                'speed': 1.5 + randint(1, 5) / 10,
                 'collides': True,
                 'gravity affected': False
             }
@@ -1145,6 +1145,9 @@ class World(object):
                                     actor.set_action('protect')
                                 else:
                                     actor.set_action('attack')
+                                    while actor.summoned_protectors_keep_alive:
+                                        protector_id = actor.summoned_protectors_keep_alive.pop()
+                                        del self.protectors[self.location][protector_id]
                         else:
                             if actor.get_state() == 'protect':
                                 # actor.summon_protector = False
