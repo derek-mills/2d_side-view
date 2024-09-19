@@ -697,7 +697,7 @@ class Actor(Entity):
                 if self.dead:
                     # self.heading[0] = 0
                     if self.has_got_a_critical_hit:
-                        self.set_state('decapitated')
+                        self.set_state('lie decapitated')
                     else:
                         self.set_state('lie dead')
                 else:
@@ -730,7 +730,7 @@ class Actor(Entity):
                         self.set_state('stand still')
                     else:
                         if self.has_got_a_critical_hit:
-                            self.set_state('decapitated')
+                            self.set_state('lie decapitated')
                         else:
                             self.set_state('lie dead')
         # elif self.get_state() == 'hop forward':                        # HOP BACK
@@ -1090,6 +1090,9 @@ class Actor(Entity):
                         self.just_got_jumped = False
                     self.is_abort_jump = True
         elif self.get_state() == 'decapitated':
+            if self.animation_sequence_done:
+                self.set_state('lie decapitated')
+        elif self.get_state() == 'lie decapitated':
             ...
             self.heading = [0, 0]
             if self.idle_counter > 0:
