@@ -1434,21 +1434,31 @@ class World(object):
             #                                           p.rectangle.width, p.rectangle.height))
             # self.screen.blit(p.current_sprite['sprite'], (p.rectangle.x - self.camera.offset_x, p.rectangle.y - self.camera.offset_y))
 
+    def render_items(self):
+        for key in self.obstacles[self.location].keys():
+            if key not in self.active_obstacles:
+                continue
+            obs = self.obstacles[self.location][key]
+            if obs.is_item:
+                self.screen.blit(sprites[obs.sprite]['sprite'], (obs.rectangle.x - self.camera.offset_x, obs.rectangle.y - self.camera.offset_y))
+
+
     def render_obstacles(self):
         for key in self.obstacles[self.location].keys():
             if key not in self.active_obstacles:
                 continue
             obs = self.obstacles[self.location][key]
-            if obs.invisible:
+            if obs.invisible or obs.is_item:
+            # if obs.invisible:
                 continue
             if obs.teleport:
                 if not obs.teleport_description['on touch']:
                     if obs.trigger_activated:
                         pygame.draw.rect(self.screen, CYAN, (obs.rectangle.x - self.camera.offset_x, obs.rectangle.y - self.camera.offset_y,
                                                               obs.rectangle.width, obs.rectangle.height), 1)
-            if obs.is_item:
-                self.screen.blit(sprites[obs.sprite]['sprite'], (obs.rectangle.x - self.camera.offset_x, obs.rectangle.y - self.camera.offset_y))
-                continue
+            # if obs.is_item:
+            #     self.screen.blit(sprites[obs.sprite]['sprite'], (obs.rectangle.x - self.camera.offset_x, obs.rectangle.y - self.camera.offset_y))
+            #     continue
 
             if obs.surface:
                 self.screen.blit(obs.surface, (obs.rectangle.x - self.camera.offset_x, obs.rectangle.y - self.camera.offset_y))
@@ -1534,7 +1544,7 @@ class World(object):
         self.render_demolishers()
         self.render_protectors()
         self.render_particles()
-        # self.render_player_actor()
+        self.render_items()
         self.render_info_panel_overlay()
         if self.is_i:
             self.render_debug_info()
