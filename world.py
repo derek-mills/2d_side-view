@@ -159,6 +159,8 @@ class World(object):
 
         entity.acceleration = description['acceleration']
         entity.default_acceleration = description['acceleration']
+        entity.friction = description['friction']
+        entity.default_friction = description['friction']
         entity.air_acceleration = description['air acceleration']
         entity.default_air_acceleration = description['air acceleration']
         # entity.default_max_speed = description['max speed']

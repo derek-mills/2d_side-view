@@ -147,6 +147,14 @@ locations = {
                     'name': 'demon 1',
                     'height': 150,
                     'width': 50,
+                    'health': 200.0,
+                    'max speed': 5.2,
+            	},
+
+            	(1200.0, 650.0): {
+                    'name': 'zombie',
+                    'height': 150,
+                    'width': 50,
             	},
 
               },

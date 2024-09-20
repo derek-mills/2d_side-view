@@ -3,6 +3,329 @@ from weapons import *
 from random import randint
 from graphics import sprites
 
+zombie = {
+    'name': 'zombie',
+    'blood color': (0, 200, 0),
+    'drop': ['exp' for i in range(randint(3,5))],
+    'strength': 5,
+    'body weight': 50,
+    'health': 20.,
+    'mana replenish': .0,
+    'stamina replenish': 12.,
+    'height': 150,  # For level editor use only
+    'width': 50,  # For level editor use only
+    'resistances': {
+        # Zero is total resistance, such type of damage multiples by zero.
+        # Above 1 is a weakness to particular type of damage.
+        'slash': 1.5,
+        'pierce': 0.1,
+        'smash': 1,
+        'fire': 1.5
+    },
+    'gravity affected': True,
+    # 'body': {
+    #     'head': {
+    #         'hardness': 100
+    #     },
+    # },
+    'max speed': 2 + randint(1, 10) / 10,
+    'max jump height': 5,
+    'acceleration': .1,
+    'friction': .9,
+    'air acceleration': .1,
+    'items': (demon_2_close, demon_2_mid, spikeball_staff),
+    'animations': {
+        'stand still right': {
+                'repeat': True, 'interruptable': True,
+                'sequence': (1,1,1,1,1,1,2,1,2,1,1,1,1), 'speed': 20,
+                'activity at frames': {},
+                'sound': None, 'sound at frames': (0,), 'repeat from frame': 0
+            },
+        'stand still left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (15,15,15,15,15,15,16,15,16,15,15,15,15), 'speed': 20,
+            'activity at frames': {},
+            'sound': None, 'sound at frames': (0,), 'repeat from frame': 0
+        },
+        'lie dead right': {
+            'repeat': True,
+            'sequence': (56,), 'speed': 20,
+            'activity at frames': {},
+            'repeat from frame': 0
+        },
+        'lie dead left': {
+            'repeat': True,
+            'sequence': (70,), 'speed': 20,
+            'activity at frames': {},
+            'repeat from frame': 0
+        },
+        'sliding right': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (56,), 'speed': 1,
+            'activity at frames': {
+                1: {
+                    'sound': 'step',
+                },
+            },
+            'repeat from frame': 0
+        },
+        'sliding left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (70,), 'speed': 1,
+            'activity at frames': {
+                1: {
+                    'sound': 'step',
+                },
+            },
+            'repeat from frame': 0
+        },
+        'hopping back process right': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (5,), 'speed': 1,
+            'activity at frames': {
+                1: {
+                    'sound': 'step',
+                },
+            },
+            'repeat from frame': 0
+        },
+        'hopping back process left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (20,), 'speed': 1,
+            'activity at frames': {
+                1: {
+                    'sound': 'step',
+                },
+            },
+            'repeat from frame': 0
+        },
+        'run right': {
+                'repeat': True, 'interruptable': True,
+                'sequence': (28,29,30,31,32,33,34,35,36,37,38,), 'speed': 1,
+                'activity at frames': {
+                    1: {
+                        'sound': 'step',
+                    },
+                },
+                'repeat from frame': 0
+            },
+        'run left': {
+                'repeat': True, 'interruptable': True,
+                'sequence': (52,51,50,49,48,47,46,45,44,43,42,), 'speed': 1,
+                'activity at frames': {},
+                'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
+            },
+        'jump right': {
+                'repeat': True, 'interruptable': True,
+                'sequence': (75,), 'speed': 1,
+                'activity at frames': {},
+                'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
+            },
+        'jump left': {
+                'repeat': True, 'interruptable': True,
+                'sequence': (90,90,90,90), 'speed': 1,
+                'activity at frames': {},
+                'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
+            },
+        'fly right': {
+                'repeat': True, 'interruptable': True,
+                'sequence': (75,), 'speed': 1,
+                'activity at frames': {},
+                'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
+            },
+        'fly left': {
+                'repeat': True, 'interruptable': True,
+                'sequence': (90,), 'speed': 1,
+                'activity at frames': {},
+                'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
+            },
+        'turn right': {
+                'repeat': True, 'interruptable': True,
+                'sequence': (0,), 'speed': 1,
+                'activity at frames': {},
+                'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
+            },
+        'turn left': {
+                'repeat': True, 'interruptable': True,
+                'sequence': (0,), 'speed': 1,
+                'activity at frames': {},
+                'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
+            },
+        'crouch right': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (4,4,4,4), 'speed': 1,
+            'activity at frames': {},
+            'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 0
+        },
+        'crawl right': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (5,6,7,6), 'speed': 5,
+            'activity at frames': {},
+            'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 0
+        },
+        'crouch left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (18,), 'speed': 1,
+            'activity at frames': {},
+            'sound': None, 'sound at frames': (0,), 'repeat from frame': 0
+        },
+        'crawl left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (21,20,19,20), 'speed': 5,
+            'activity at frames': {},
+            'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 0
+        },
+        'whip right': {
+            'repeat': False, 'interruptable': True,
+            'sequence': (74,74,74,75,76,76,76,77),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'speed': 3,
+            'activity at frames': {
+                4: {
+                    'sound': True,
+                    'demolishers set number': 0,
+                    'demolisher': True
+                },
+                },
+            'repeat from frame': 0
+        },
+        'whip left': {
+            'repeat': False, 'interruptable': True,
+            'sequence': (91,91,91,90,89,89,89,88),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'speed': 1,
+            'activity at frames': {
+                4: {
+                    'sound': True,
+                    'demolishers set number': 0,
+                    'demolisher': True
+                },
+            },
+            'repeat from frame': 0
+        },
+        'stab right': {
+            'repeat': False, 'interruptable': True,
+            'sequence': (74,74,74,74,75,  # 0 - 4
+                         74,74,74,74,75, 75), # 5 - 9
+            'speed': 2,
+            'activity at frames': {
+                4: {
+                    'sound': True,
+                    # 'move': 10,  # Slightly move actor forward,
+                    'demolishers set number': 0,
+                    'demolisher': True
+                },
+                9: {
+                    # 'move': 10,  # Slightly move actor forward,
+                    'demolishers set number': 0,
+                    'demolisher': True
+                },
+            },
+            'repeat from frame': 0
+        },
+        'stab left': {
+            'repeat': False, 'interruptable': True,
+            'sequence': (89, 89, 89, 89, 88,
+                         89, 89, 89, 89, 88, 88),  # 0 - 4
+            'activity at frames': {
+                4: {
+                    'sound': True,
+                    # 'move': 10, # Slightly move actor forward,
+                    'demolishers set number': 0,
+                    'demolisher': True
+                },
+                9: {
+                    # 'move': 10, # Slightly move actor forward,
+                    'demolisher': True,
+                    'demolishers set number': 0,
+                },
+            },
+            'speed': 1,
+            'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 2
+        },
+        'cast right': {
+            'repeat': False, 'interruptable': True,
+            'sequence': (60,60,60,60,60,60,61,62,62,62,62),  # 5 - 9
+            'speed': 4,
+            'activity at frames': {
+                7: {
+                    'sound': True,
+                    'demolishers set number': 0,
+                    'demolisher': True
+                },
+            },
+            'repeat from frame': 0
+        },
+        'cast left': {
+            'repeat': False, 'interruptable': True,
+            'sequence': (65,65,65,65,65,65,64,63,63,63,63),  # 5 - 9
+            'speed': 4,
+            'activity at frames': {
+                7: {
+                    'sound': True,
+                    'demolishers set number': 0,
+                    'demolisher': True
+                },
+            },
+            'repeat from frame': 0
+        },
+        'decapitated left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (84, 85, 86, 87,),
+            'speed': 9,
+            'activity at frames': {
+                0: {
+                    'sound': True,
+                    'demolishers set number': 0,
+                    'demolisher': False
+                },
+            },
+            'repeat from frame': 3
+        },
+        'decapitated right': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (73, 72, 71, 70,),
+            'speed': 9,
+            'activity at frames': {
+                0: {
+                    'sound': True,
+                    'demolishers set number': 0,
+                    'demolisher': False
+                },
+            },
+            'repeat from frame': 3
+        },
+        'lie decapitated left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (87,),
+            'speed': 9,
+            'activity at frames': {
+                0: {
+                    'sound': True,
+                    'demolishers set number': 0,
+                    'demolisher': False
+                },
+            },
+            'repeat from frame': 0
+        },
+        'lie decapitated right': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (70,),
+            'speed': 9,
+            'activity at frames': {
+                0: {
+                    'sound': True,
+                    'demolishers set number': 0,
+                    'demolisher': False
+                },
+            },
+            'repeat from frame': 0
+        },
+    },
+    # 'think type': '',
+    'think type': 'chaser',
+    'disappear after death': False,
+    'AI controlled': True
+}
+
 demon_1 = {
     'name': 'demon 1',
     'blood color': (0, 200, 0),
@@ -31,6 +354,7 @@ demon_1 = {
     'max speed': 5 + randint(1, 10) / 10,
     'max jump height': 25,
     'acceleration': .4,
+    'friction': .9,
     'air acceleration': .4,
     'items': (demon_2_close, demon_2_mid, spikeball_staff),
     'animations': {
@@ -266,6 +590,58 @@ demon_1 = {
             },
             'repeat from frame': 0
         },
+        'decapitated left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (84, 85, 86, 87,),
+            'speed': 9,
+            'activity at frames': {
+                0: {
+                    'sound': True,
+                    'demolishers set number': 0,
+                    'demolisher': False
+                },
+            },
+            'repeat from frame': 3
+        },
+        'decapitated right': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (73, 72, 71, 70,),
+            'speed': 9,
+            'activity at frames': {
+                0: {
+                    'sound': True,
+                    'demolishers set number': 0,
+                    'demolisher': False
+                },
+            },
+            'repeat from frame': 3
+        },
+        'lie decapitated left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (87,),
+            'speed': 9,
+            'activity at frames': {
+                0: {
+                    'sound': True,
+                    'demolishers set number': 0,
+                    'demolisher': False
+                },
+            },
+            'repeat from frame': 0
+        },
+        'lie decapitated right': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (70,),
+            'speed': 9,
+            'activity at frames': {
+                0: {
+                    'sound': True,
+                    'demolishers set number': 0,
+                    'demolisher': False
+                },
+            },
+            'repeat from frame': 0
+        },
     },
     'think type': '',
     # 'think type': 'chaser',
@@ -301,6 +677,7 @@ demon_2 = {
     'max speed': 5 + randint(1, 10) / 10,
     'max jump height': 27,
     'acceleration': .3,
+    'friction': .9,
     'air acceleration': .3,
 
     'items': (demon_2_close, demon_2_mid, fireball_staff),
@@ -768,6 +1145,7 @@ exploding_barrel = {
     'max speed': 1,
     'max jump height': 1,
     'acceleration': .5,
+    'friction': .9,
     'air acceleration': .4,
 
     'items': (barrel_explosion,),
@@ -847,7 +1225,8 @@ player_jake = {
     'max speed': 8,  # Base value, which will be reduced upon athletic index.
     # 'max speed': 16,  # Base value, which will be reduced upon athletic index.
     'max jump height': 28, # Base value, which will be reduced upon athletic index.
-    'acceleration': .9,
+    'acceleration': .6,
+    'friction': .9,
     'air acceleration': .4,
     # First item in list must be an undroppable weapon.
     'items': (jake_kick, small_shield, fireball_staff,pistol,axe,whip,),
@@ -1330,6 +1709,7 @@ all_hostiles = {
     demon_1['name']: demon_1,
     demon_2['name']: demon_2,
     exploding_barrel['name']: exploding_barrel,
+    zombie['name']: zombie,
 }
 
 all_players = {

@@ -133,6 +133,8 @@ class Entity(object):
         self.is_jump_performed: bool = False
         self.default_acceleration: float = .8
         self.acceleration: float = self.default_acceleration
+        self.default_friction: float = .8
+        self.friction: float = self.default_friction
         self.default_air_acceleration: float = .1
         self.air_acceleration: float = self.default_air_acceleration
         self.base_max_jump_height = 22.
@@ -784,9 +786,10 @@ class Entity(object):
                 if 'slash' in dem.damage.keys():
                 # if 'slash' in dem.attack_type:
                     # self.summon_particle = True
-                    for particle_quantity in range(randint(12, 12 + dem.damage['slash'] // 10)):
+                    critical_hit_modifier = 3 if self.has_got_a_critical_hit else 1
+                    for particle_quantity in range(randint(12 * critical_hit_modifier, 12 * critical_hit_modifier + dem.damage['slash'] // 10)):
                     # for particle_quantity in range(randint(10, 20)):
-                        size = randint(1, max(2, int(dem.damage['slash']) >> 4))
+                        size = randint(1, max(2, int(dem.damage['slash']) >> 4)) * critical_hit_modifier
                         self.summoned_particle_descriptions.append({
                             'sprite': None,
                             'particle TTL': 100,
@@ -1359,7 +1362,8 @@ class Entity(object):
         if self.heading[0] == 0:
             if self.speed > 0:
                 if self.is_stand_on_ground:
-                    self.speed -= self.acceleration
+                    self.speed -= self.friction
+                    # self.speed -= self.acceleration
                 else:
                     self.speed -= self.air_acceleration
                 self.speed = max(self.speed, 0)
