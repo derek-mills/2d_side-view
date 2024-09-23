@@ -646,17 +646,10 @@ class World(object):
     def detect_active_obstacles(self):
         self.active_obstacles = list()
         for k in self.obstacles[self.location].keys():
-            obs = self.obstacles[self.location][k]
-            if obs.rectangle.colliderect(self.camera.active_objects_rectangle):
-            # if obs.rectangle.colliderect(self.camera.rectangle):
-                self.active_obstacles.append(k)
-
-    # def detect_active_actors(self):
-    #     self.active_actors = list()
-    #     for k in self.obstacles[self.location].keys():
-    #         obs = self.obstacles[self.location][k]
-    #         if obs.rectangle.colliderect(self.camera.rectangle):
-    #             self.active_obstacles.append(k
+            self.active_obstacles.append(k)
+            # obs = self.obstacles[self.location][k]
+            # if obs.rectangle.colliderect(self.camera.active_objects_rectangle):
+            #     self.active_obstacles.append(k)
 
     def change_location(self, new_location):
         # print('Before location change:', self.actors.keys())

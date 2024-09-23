@@ -166,7 +166,7 @@ spikeball_staff = {
     'class': 'weapons',
     'type': 'melee',
     'label': 'spikeball staff',
-    'sprite': 'staff',
+    'sprite': 'fireball staff',
     'sound': 'sound_swing_2',
     'amount': 1,
     'amount threshold': 1,
@@ -329,7 +329,7 @@ axe = {
     'amount threshold': 1,
     'amount decrease speed': 0,
     'affects on': '',
-    'stamina consumption': .1,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
+    'stamina consumption': 1,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
     'mana consumption': 0.,
     'attack animation': 'axe swing',
     'ignore user input': True,  # Steal the ability to control a character for a while.
@@ -413,7 +413,7 @@ demon_2_mid = {
     'droppable': True,
     'need ammo': False,
     'ammo': 0,
-    'reach': 400,
+    'reach': 300,
     # 'reach': sprites['demon 2 mid claw demolisher 1']['mask rect'].width,
     'weight': 10,
     'demolishers': (
@@ -501,9 +501,9 @@ demon_2_close = {
             'bounce': False, 'bounce factor': 0.,
             'attack type': ('slash', 'smash', 'pierce'),
              'damage': {
-                 'smash': 100,
+                 'smash': 1,
                  'pierce': 100,
-                 'slash': 10
+                 'slash': 100
              },
             # 'aftermath': 'explode'
             'aftermath': 'disappear'
@@ -519,9 +519,9 @@ demon_2_close = {
             'bounce': False, 'bounce factor': 0.,
             'attack type': ('slash', 'smash', 'pierce'),
              'damage': {
-                 'smash': 100,
+                 'smash': 1,
                  'pierce': 100,
-                 'slash': 10
+                 'slash': 100
              },
             # 'aftermath': 'explode'
             'aftermath': 'disappear'
@@ -580,7 +580,7 @@ pistol = {
             # 'attack type': ('slash', 'smash', 'pierce'),
              'damage': {
                  'fire': 25,
-                 'smash': 1,
+                 'smash': 10,
                  'pierce': 100,
              },
             # 'aftermath': 'explode'
@@ -673,8 +673,8 @@ small_shield = {
                 # 'stamina': 0.08,  # The lesser, the better stamina saving.
                 'fire': 0.2,
                 'smash': 0.2,
-                'pierce': 0.2,
-                'slash': 0.2
+                'pierce': 0.8,
+                'slash': 0.8
             },
             'aftermath': None
             # 'aftermath': 'explode'

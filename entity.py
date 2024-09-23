@@ -705,11 +705,13 @@ class Entity(object):
                         self.speed = 3
                         print(f'[demolishers collision] {dem.total_damage_amount=} {forces_balance=} {dem.parent_penalty=}')
                     if 'smash' in dem.damage.keys():
-                        self.speed *= 1.5
-                    if self.stats['stamina'] > 0:
-                        self.stamina_reduce(dem.total_damage_amount * forces_balance * 0.08)
+                        self.speed *= (dem.damage['smash'] * 0.1)
+                        # self.speed *= 1.5
+                    stamina_taken_while_defending = dem.total_damage_amount * forces_balance * 0.08
+                    if self.stats['stamina'] >= stamina_taken_while_defending:
+                        # Actor is able to consume own stamina to protect himself:
+                        self.stamina_reduce(stamina_taken_while_defending)
                         self.invincibility_timer = 20
-                        # self.stamina_reduce(dem.total_damage_amount * forces_balance * 0.08)
                         continue
 
                 if not dem.pierce and not self.dead:

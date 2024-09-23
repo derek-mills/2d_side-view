@@ -47,6 +47,7 @@ all_items = {
         'affects on': '',
     },
     'fireball staff': fireball_staff,
+    'spikeball staff': spikeball_staff,
     'whip': whip,
     'kitchen knife': kitchen_knife,
     'short sword': sword,

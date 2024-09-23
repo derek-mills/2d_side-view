@@ -1229,7 +1229,7 @@ player_jake = {
     'friction': .9,
     'air acceleration': .4,
     # First item in list must be an undroppable weapon.
-    'items': (jake_kick, small_shield, fireball_staff,pistol,axe,whip,),
+    'items': (jake_kick, small_shield, spikeball_staff, fireball_staff,pistol,axe,whip,),
     # 'items': (whip,fireball_staff,sword,kitchen_knife,),
     'animations': {
         'stand still right': {
