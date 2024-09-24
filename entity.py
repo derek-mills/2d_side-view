@@ -354,6 +354,7 @@ class Entity(object):
             # self.invincibility_timer = 10
             self.summoned_demolishers_description = list()
             self.summoned_demolishers_description.append(demolisher)
+
         if self.is_collideable:
             if self.ai_controlled:
                 self.is_grabbers_active = False  # "Werewolves can't climb oak trees."
@@ -936,6 +937,7 @@ class Entity(object):
             return
         else:
             self.stats['stamina'] += (self.normal_stamina_replenish * self.stamina_replenish_modifier)
+            self.stamina_replenish_modifier = 1
 
 
     def detect_collisions(self):

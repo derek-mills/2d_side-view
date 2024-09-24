@@ -7,6 +7,7 @@
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,13 +164,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00446" summary="Changed acceleration handling for all actors">
-      <created>1724990651318</created>
-      <option name="number" value="00446" />
-      <option name="presentableId" value="LOCAL-00446" />
-      <option name="project" value="LOCAL" />
-      <updated>1724990651318</updated>
     </task>
     <task id="LOCAL-00447" summary="Barrels explosion made more beautiful.">
       <created>1725006901091</created>
@@ -507,7 +501,14 @@
       <option name="project" value="LOCAL" />
       <updated>1727155456364</updated>
     </task>
-    <option name="localTasksCounter" value="495" />
+    <task id="LOCAL-00495" summary="Improved becoming a bullet after reaching terminal velocity.">
+      <created>1727164338417</created>
+      <option name="number" value="00495" />
+      <option name="presentableId" value="LOCAL-00495" />
+      <option name="project" value="LOCAL" />
+      <updated>1727164338417</updated>
+    </task>
+    <option name="localTasksCounter" value="496" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -522,7 +523,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="SOme." />
     <MESSAGE value="Fixed improperly state changing during damage receiving while actor hangs the edge." />
     <MESSAGE value="Fixed improperly state changing during damage receiving while actor hangs the edge (ver 2)." />
     <MESSAGE value="Fixed improperly state changing during damage receiving while actor hangs the edge (ver 3)." />
@@ -547,6 +547,7 @@
     <MESSAGE value="Added zombie (just a re-skin of demon 1).&#10;Added friction parameter to decrement speed while actor touches the ground." />
     <MESSAGE value="several minor changes.&#10;to be honest -- I've lost the way where should to move on to make progress." />
     <MESSAGE value="Added opportunity to become a missile for actor if terminal velocity reached." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added opportunity to become a missile for actor if terminal velocity reached." />
+    <MESSAGE value="Improved becoming a bullet after reaching terminal velocity." />
+    <option name="LAST_COMMIT_MESSAGE" value="Improved becoming a bullet after reaching terminal velocity." />
   </component>
 </project>

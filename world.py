@@ -741,7 +741,8 @@ class World(object):
                                 continue
                             else:
                                 self.actors['player'].health_replenish()
-                                self.actors['player'].mana_replenish_modifier = 5
+                                self.actors['player'].mana_replenish_modifier = 10
+                                self.actors['player'].stamina_replenish_modifier = 10
                         elif all_items[obs.item_name]['class'] == 'instant consume':
                             if all_items[obs.item_name]['type'] == 'stats gainer':
                                 self.actors[self.location][0].stats[all_items[obs.item_name]['affects on']] += obs.item_amount
@@ -1155,7 +1156,7 @@ class World(object):
 
             while actor.drop_from_inventory:
                 i = actor.drop_from_inventory.pop()
-                print(all_items, i)
+                print('[processing actors]', all_items, i)
                 # self.add_item(all_items[i], (actor.rectangle.right + sprites[i]['sprite'].get_width() //2,
                 #                                 actor.rectangle.bottom - sprites[i]['sprite'].get_height()))
                 if actor.look == 1:
