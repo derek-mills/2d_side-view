@@ -332,12 +332,13 @@ class Entity(object):
         # self.check_space_around()  # Detect obstacles on the right and left sides
         # self.calculate_fall_speed()  # Discover speed and potential fall distance
         self.calculate_speed()       # Discover speed and potential move distance
-        if abs(self.speed) > 10:
+        if abs(self.speed) > 13:
             demolisher = {
                 'parent': self,
-                'rect': pygame.Rect(0, 0, self.rectangle.w, self.rectangle.h),
+                'rect': pygame.Rect(0, 0, 2, self.rectangle.h // 2),
+                # 'rect': pygame.Rect(0, 0, self.rectangle.w, self.rectangle.h // 2),
                 'flyer': False,
-                'snapping offset': (0, 0),
+                'snapping offset': (-self.sprite_rectangle.w // 2 if self.movement_direction_inverter*self.look == -1 else self.sprite_rectangle.w // 2, 0),
                 'visible': False,
                 'demolisher sprite': None,
                 'pierce': False, 'demolisher TTL': 1, 'speed': 0,
@@ -345,14 +346,12 @@ class Entity(object):
                 'collides': True, 'gravity affected': False,
                 'bounce': False, 'bounce factor': 0.,
                 'damage': {
-                    'fire': 0,
                     'smash': 100,
-                    'pierce': 1,
                 },
                 'aftermath': 'disappear'
             }
             self.summon_demolisher = True
-            self.invincibility_timer = 10
+            # self.invincibility_timer = 10
             self.summoned_demolishers_description = list()
             self.summoned_demolishers_description.append(demolisher)
         if self.is_collideable:

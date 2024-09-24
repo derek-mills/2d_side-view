@@ -164,13 +164,6 @@
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
     </task>
-    <task id="LOCAL-00445" summary="Improved revealing of weapons icons aesthetic.">
-      <created>1724988724700</created>
-      <option name="number" value="00445" />
-      <option name="presentableId" value="LOCAL-00445" />
-      <option name="project" value="LOCAL" />
-      <updated>1724988724700</updated>
-    </task>
     <task id="LOCAL-00446" summary="Changed acceleration handling for all actors">
       <created>1724990651318</created>
       <option name="number" value="00446" />
@@ -507,7 +500,14 @@
       <option name="project" value="LOCAL" />
       <updated>1727073404689</updated>
     </task>
-    <option name="localTasksCounter" value="494" />
+    <task id="LOCAL-00494" summary="Added opportunity to become a missile for actor if terminal velocity reached.">
+      <created>1727155456364</created>
+      <option name="number" value="00494" />
+      <option name="presentableId" value="LOCAL-00494" />
+      <option name="project" value="LOCAL" />
+      <updated>1727155456364</updated>
+    </task>
+    <option name="localTasksCounter" value="495" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -522,7 +522,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added pretty pistol muzzle flash as an additional demolisher." />
     <MESSAGE value="SOme." />
     <MESSAGE value="Fixed improperly state changing during damage receiving while actor hangs the edge." />
     <MESSAGE value="Fixed improperly state changing during damage receiving while actor hangs the edge (ver 2)." />
@@ -547,6 +546,7 @@
     <MESSAGE value="Items render in foreground now." />
     <MESSAGE value="Added zombie (just a re-skin of demon 1).&#10;Added friction parameter to decrement speed while actor touches the ground." />
     <MESSAGE value="several minor changes.&#10;to be honest -- I've lost the way where should to move on to make progress." />
-    <option name="LAST_COMMIT_MESSAGE" value="several minor changes.&#10;to be honest -- I've lost the way where should to move on to make progress." />
+    <MESSAGE value="Added opportunity to become a missile for actor if terminal velocity reached." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added opportunity to become a missile for actor if terminal velocity reached." />
   </component>
 </project>
