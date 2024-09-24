@@ -6,11 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/items.py" beforeDir="false" afterPath="$PROJECT_DIR$/items.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,13 +163,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00444" summary="It is now impossible to get the same weapon in both hands.">
-      <created>1724988240689</created>
-      <option name="number" value="00444" />
-      <option name="presentableId" value="LOCAL-00444" />
-      <option name="project" value="LOCAL" />
-      <updated>1724988240689</updated>
     </task>
     <task id="LOCAL-00445" summary="Improved revealing of weapons icons aesthetic.">
       <created>1724988724700</created>
@@ -511,7 +500,14 @@
       <option name="project" value="LOCAL" />
       <updated>1726821313580</updated>
     </task>
-    <option name="localTasksCounter" value="493" />
+    <task id="LOCAL-00493" summary="several minor changes.&#10;to be honest -- I've lost the way where should to move on to make progress.">
+      <created>1727073404688</created>
+      <option name="number" value="00493" />
+      <option name="presentableId" value="LOCAL-00493" />
+      <option name="project" value="LOCAL" />
+      <updated>1727073404689</updated>
+    </task>
+    <option name="localTasksCounter" value="494" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -526,7 +522,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Some improvements" />
     <MESSAGE value="Added pretty pistol muzzle flash as an additional demolisher." />
     <MESSAGE value="SOme." />
     <MESSAGE value="Fixed improperly state changing during damage receiving while actor hangs the edge." />
@@ -551,6 +546,7 @@
     <MESSAGE value="Improved 'decapitated' state." />
     <MESSAGE value="Items render in foreground now." />
     <MESSAGE value="Added zombie (just a re-skin of demon 1).&#10;Added friction parameter to decrement speed while actor touches the ground." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added zombie (just a re-skin of demon 1).&#10;Added friction parameter to decrement speed while actor touches the ground." />
+    <MESSAGE value="several minor changes.&#10;to be honest -- I've lost the way where should to move on to make progress." />
+    <option name="LAST_COMMIT_MESSAGE" value="several minor changes.&#10;to be honest -- I've lost the way where should to move on to make progress." />
   </component>
 </project>

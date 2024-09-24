@@ -332,6 +332,29 @@ class Entity(object):
         # self.check_space_around()  # Detect obstacles on the right and left sides
         # self.calculate_fall_speed()  # Discover speed and potential fall distance
         self.calculate_speed()       # Discover speed and potential move distance
+        if abs(self.speed) > 10:
+            demolisher = {
+                'parent': self,
+                'rect': pygame.Rect(0, 0, self.rectangle.w, self.rectangle.h),
+                'flyer': False,
+                'snapping offset': (0, 0),
+                'visible': False,
+                'demolisher sprite': None,
+                'pierce': False, 'demolisher TTL': 1, 'speed': 0,
+                'static': True, 'damage reduce': 0,
+                'collides': True, 'gravity affected': False,
+                'bounce': False, 'bounce factor': 0.,
+                'damage': {
+                    'fire': 0,
+                    'smash': 100,
+                    'pierce': 1,
+                },
+                'aftermath': 'disappear'
+            }
+            self.summon_demolisher = True
+            self.invincibility_timer = 10
+            self.summoned_demolishers_description = list()
+            self.summoned_demolishers_description.append(demolisher)
         if self.is_collideable:
             if self.ai_controlled:
                 self.is_grabbers_active = False  # "Werewolves can't climb oak trees."
