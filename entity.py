@@ -346,7 +346,7 @@ class Entity(object):
                 'collides': True, 'gravity affected': False,
                 'bounce': False, 'bounce factor': 0.,
                 'damage': {
-                    'smash': 100,
+                    'smash': self.body_weight * self.speed * 0.01,
                 },
                 'aftermath': 'disappear'
             }

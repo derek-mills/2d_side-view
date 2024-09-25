@@ -608,6 +608,7 @@ class World(object):
             self.actors['player'].influenced_by_obstacle = -1
             self.location_has_been_changed = False
             return
+
         self.processing_human_input()
         self.processing_protectors()
         self.processing_demolishers()

@@ -803,7 +803,7 @@ class Actor(Entity):
         #             else:
         #                 self.set_state('lie dead')
         elif self.get_state() == 'slide':                           # SLIDE PREPARING
-            self.speed = self.max_speed * 2.5
+            self.speed = self.max_speed * 4
             self.set_new_desired_height(self.rectangle_height_slide, 0)
             self.set_new_desired_width(self.rectangle_width_slide, 6)
             self.is_grabbers_active = False
@@ -811,6 +811,7 @@ class Actor(Entity):
             if (self.look == 1 and self.is_enough_space_right) or\
                     (self.look == -1 and self.is_enough_space_left):
                 self.ignore_user_input = True
+                self.rectangle.top  -= 50
                 self.set_state('sliding')
                 self.stamina_reduce(self.normal_stamina_lost_per_slide)
             else:

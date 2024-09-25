@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
@@ -164,13 +165,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00447" summary="Barrels explosion made more beautiful.">
-      <created>1725006901091</created>
-      <option name="number" value="00447" />
-      <option name="presentableId" value="LOCAL-00447" />
-      <option name="project" value="LOCAL" />
-      <updated>1725006901091</updated>
     </task>
     <task id="LOCAL-00448" summary="Added shield and foundation for protection by shields has established.&#10;Added multiple attack until attack button being released.">
       <created>1725255665233</created>
@@ -508,7 +502,14 @@
       <option name="project" value="LOCAL" />
       <updated>1727164338417</updated>
     </task>
-    <option name="localTasksCounter" value="496" />
+    <task id="LOCAL-00496" summary="Stamina replenishing speeds up while player actor sticks near the Stash">
+      <created>1727167670183</created>
+      <option name="number" value="00496" />
+      <option name="presentableId" value="LOCAL-00496" />
+      <option name="project" value="LOCAL" />
+      <updated>1727167670183</updated>
+    </task>
+    <option name="localTasksCounter" value="497" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -523,7 +524,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed improperly state changing during damage receiving while actor hangs the edge." />
     <MESSAGE value="Fixed improperly state changing during damage receiving while actor hangs the edge (ver 2)." />
     <MESSAGE value="Fixed improperly state changing during damage receiving while actor hangs the edge (ver 3)." />
     <MESSAGE value="Added parameter of athletic, which affects on moving speed and jump height." />
@@ -548,6 +548,7 @@
     <MESSAGE value="several minor changes.&#10;to be honest -- I've lost the way where should to move on to make progress." />
     <MESSAGE value="Added opportunity to become a missile for actor if terminal velocity reached." />
     <MESSAGE value="Improved becoming a bullet after reaching terminal velocity." />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved becoming a bullet after reaching terminal velocity." />
+    <MESSAGE value="Stamina replenishing speeds up while player actor sticks near the Stash" />
+    <option name="LAST_COMMIT_MESSAGE" value="Stamina replenishing speeds up while player actor sticks near the Stash" />
   </component>
 </project>
