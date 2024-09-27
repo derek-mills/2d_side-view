@@ -1310,25 +1310,25 @@ player_jake = {
             },
         'jump right': {
                 'repeat': True, 'interruptable': True,
-                'sequence': (75,), 'speed': 1,
+                'sequence': (29,), 'speed': 1,
                 'activity at frames': {},
                 'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
         'jump left': {
                 'repeat': True, 'interruptable': True,
-                'sequence': (90,90,90,90), 'speed': 1,
+                'sequence': (51,), 'speed': 1,
                 'activity at frames': {},
                 'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
         'fly right': {
                 'repeat': True, 'interruptable': True,
-                'sequence': (75,), 'speed': 1,
+                'sequence': (32,), 'speed': 1,
                 'activity at frames': {},
                 'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
         'fly left': {
                 'repeat': True, 'interruptable': True,
-                'sequence': (90,), 'speed': 1,
+                'sequence': (48,), 'speed': 1,
                 'activity at frames': {},
                 'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
