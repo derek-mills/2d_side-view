@@ -1352,7 +1352,7 @@ player_jake = {
         },
         'crawl right': {
             'repeat': True, 'interruptable': True,
-            'sequence': (5,6,7,6), 'speed': 5,
+            'sequence': (5,6,5,7,), 'speed': 15,
             'activity at frames': {},
             'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 0
         },
@@ -1364,7 +1364,7 @@ player_jake = {
         },
         'crawl left': {
             'repeat': True, 'interruptable': True,
-            'sequence': (21,20,19,20), 'speed': 5,
+            'sequence': (21,20,21,19,), 'speed': 15,
             'activity at frames': {},
             'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 0
         },
@@ -1470,8 +1470,8 @@ player_jake = {
         },
         'kick right': {
             'repeat': False, 'interruptable': True,
-            'sequence': (63,63,64,64,65,65,65,65), # 5 - 9
-            'speed': 1,
+            'sequence': (63,63,64,64,65,65,65,65,64,63), # 5 - 9
+            'speed': 2,
             'activity at frames': {
                 4: {
                     'sound': True,
@@ -1484,7 +1484,7 @@ player_jake = {
         },
         'kick left': {
             'repeat': False, 'interruptable': True,
-            'sequence': (68,68,67,67,66,66,66,66,),  # 0 - 4
+            'sequence': (68,68,67,67,66,66,66,66,67,68),  # 0 - 4
             'activity at frames': {
                 4: {
                     'sound': True,
@@ -1493,7 +1493,7 @@ player_jake = {
                     'demolisher': True
                 },
             },
-            'speed': 1,
+            'speed': 2,
             'repeat from frame': 0
         },
         'cast right': {

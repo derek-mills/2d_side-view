@@ -1307,7 +1307,7 @@ class World(object):
             self.screen.blit(actor.current_sprite['sprite'], (x, y))
 
             # Misc info:
-            self.screen.blit(fonts.all_fonts[10].render(actor.get_state() + ' dying: ' + str(actor.dying)+ ' dead: ' + str(actor.dead), True, WHITE, BLACK), (x, y))
+            # self.screen.blit(fonts.all_fonts[10].render(actor.get_state() + ' dying: ' + str(actor.dying)+ ' dead: ' + str(actor.dead), True, WHITE, BLACK), (x, y))
 
             # # Weak spot
             # if actor.current_sprite['weak spot']:

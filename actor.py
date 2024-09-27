@@ -544,8 +544,10 @@ class Actor(Entity):
                                                       self.frames_changing_threshold_penalty
             self.set_current_animation()
             self.ignore_user_input = self.current_weapon['ignore user input']
+            # self.speed = 0
             if self.is_stand_on_ground:
                 self.heading[0] = 0
+            # self.heading[0] = 0
         elif self.get_state() == 'protect':
             self.normal_stamina_replenish = 0.08
             # self.stamina_replenish_modifier = 0.3
@@ -575,6 +577,7 @@ class Actor(Entity):
                                   'kick', 'pistol shot'):                          # ATTACKING IN PROCESS...
                                   # 'kick', 'protect', 'pistol shot'):                          # ATTACKING IN PROCESS...
             if self.animation_sequence_done:
+                # print(f'[state machine] attack is done.')
                 self.ignore_user_input = False
                 # if self.force_use_previous_weapon:
                 #     self.force_use_previous_weapon = False
