@@ -1611,10 +1611,10 @@ player_jake = {
         },
         'pistol shot right': {
             'repeat': False, 'interruptable': True,
-            'sequence': (57,57,58,58,57,57,57,57),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'sequence': (57,57,57,58,58,59,59,59,59),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
             'speed': 1,
             'activity at frames': {
-                2: {
+                3: {
                     'sound': True,
                     # 'move': 10,  # Slightly move actor forward,
                     'demolishers set number': 0,
@@ -1625,10 +1625,10 @@ player_jake = {
         },
         'pistol shot left': {
             'repeat': False, 'interruptable': True,
-            'sequence': (72,72,71,71,72,72,72,72,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'sequence': (73,73,73,72,72,71,71,71,71),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
             'speed': 1,
             'activity at frames': {
-                2: {
+                3: {
                     'sound': True,
                     # 'move': 10,  # Slightly move actor forward,
                     'demolishers set number': 0,
