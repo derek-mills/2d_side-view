@@ -841,11 +841,26 @@ class Entity(object):
             # if self.get_state() != 'lie dead':
             #     self.set_state('lie dead')
             return
+        # Stamina routines:
         if int(self.stats['stamina']) < self.stats['target stamina']:
             self.stats['target stamina'] -= 1
         elif int(self.stats['stamina']) > self.stats['target stamina']:
             self.stats['target stamina'] += 1
+        # if self.stats['stamina'] < self.current_stamina_lost_per_attack \
+        #         or self.stats['stamina'] < 0:
+        #     self.frames_changing_threshold_penalty = 2
+        #     self.frames_changing_threshold_modifier = self.current_weapon['animation speed modifier'] * \
+        #                                               self.frames_changing_threshold_penalty
+        # else:
+        #     self.frames_changing_threshold_penalty = 1
+        #     self.frames_changing_threshold_modifier = 1
+        #     self.frames_changing_threshold = self.animations[self.current_animation]['speed']
 
+        # self.frames_changing_threshold_penalty = 2 if self.stats['stamina'] <= self.current_stamina_lost_per_attack \
+        #                                            else 1
+
+
+        # Mana routines:
         if int(self.stats['mana']) < self.stats['target mana']:
             self.stats['target mana'] -= 1
         elif int(self.stats['mana']) > self.stats['target mana']:

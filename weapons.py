@@ -333,7 +333,7 @@ axe = {
     'mana consumption': 0.,
     'attack animation': 'axe swing',
     'ignore user input': True,  # Steal the ability to control a character for a while.
-    'animation speed modifier': 2.,  # 0 < x < 1: speed animation up, x > 1: slow down.
+    'animation speed modifier': 3.,  # 0 < x < 1: speed animation up, x > 1: slow down.
     'leave particles': False,
     'droppable': True,
     'need ammo': False,
@@ -345,7 +345,7 @@ axe = {
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
              'visible': True,
             'demolisher sprite': 'axe 45 demolisher',
-            'pierce': False, 'demolisher TTL': 2, 'speed': 0,
+            'pierce': False, 'demolisher TTL': 4, 'speed': 0,
             'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
@@ -367,8 +367,8 @@ axe = {
             'bounce': False, 'bounce factor': 0.,
             # 'attack type': ('smash','slash'),
              'damage': {
-                 'smash': 50,
-                 'slash': 50
+                 'smash': 30,
+                 'slash': 30
              },
             # 'aftermath': 'explode'
             'aftermath': 'disappear'

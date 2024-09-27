@@ -1229,7 +1229,7 @@ player_jake = {
     'friction': .9,
     'air acceleration': .4,
     # First item in list must be an undroppable weapon.
-    'items': (jake_kick, small_shield, spikeball_staff, fireball_staff,pistol,axe,whip,),
+    'items': (axe,jake_kick, small_shield, spikeball_staff, fireball_staff,pistol,whip,),
     # 'items': (whip,fireball_staff,sword,kitchen_knife,),
     'animations': {
         'stand still right': {
@@ -1292,7 +1292,7 @@ player_jake = {
         },
         'run right': {
                 'repeat': True, 'interruptable': True,
-                'sequence': (28,29,30,31,32,33,34,35,), 'speed': 5,
+                'sequence': (28,29,30,31,32,33,34,35,), 'speed': 4,
                 # 'sequence': (28,29,30,31,32,33,34,35,36,37,38,), 'speed': 1,
                 'activity at frames': {
                     1: {
@@ -1303,7 +1303,7 @@ player_jake = {
             },
         'run left': {
                 'repeat': True, 'interruptable': True,
-                'sequence': (52,51,50,49,48,47,46,45,), 'speed': 5,
+                'sequence': (52,51,50,49,48,47,46,45,), 'speed': 4,
                 # 'sequence': (52,51,50,49,48,47,46,45,44,43,42,), 'speed': 1,
                 'activity at frames': {},
                 'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
@@ -1559,8 +1559,8 @@ player_jake = {
         },
         'axe swing right': {
             'repeat': False, 'interruptable': True,
-            'sequence': (74, 75, 76, 76, 76,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
-            'speed': 2,
+            'sequence': (74,74,74,74,75, 75, 76, 76, 76,76,76,76,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'speed': 1,
             'activity at frames': {
                 0: {
                     'sound': True,
@@ -1568,13 +1568,13 @@ player_jake = {
                     'demolishers set number': 0,
                     'demolisher': True
                 },
-                1: {
+                4: {
                     'sound': True,
                     # 'move': 10,  # Slightly move actor forward,
                     'demolishers set number': 1,
                     'demolisher': True
                 },
-                2: {
+                6: {
                     'sound': True,
                     # 'move': 10,  # Slightly move actor forward,
                     'demolishers set number': 2,
@@ -1585,8 +1585,8 @@ player_jake = {
         },
         'axe swing left': {
             'repeat': False, 'interruptable': True,
-            'sequence': (91, 90, 89, 89, 89,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
-            'speed': 2,
+            'sequence': (91,91,91,91,90, 90, 89, 89, 89,89,89,89,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'speed': 1,
             'activity at frames': {
                 0: {
                     'sound': True,
@@ -1594,13 +1594,13 @@ player_jake = {
                     'demolishers set number': 0,
                     'demolisher': True
                 },
-                1: {
+                4: {
                     'sound': True,
                     # 'move': 10,  # Slightly move actor forward,
                     'demolishers set number': 1,
                     'demolisher': True
                 },
-                2: {
+                6: {
                     'sound': True,
                     # 'move': 10, # Slightly move actor forward,
                     'demolishers set number': 2,
