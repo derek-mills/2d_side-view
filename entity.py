@@ -351,6 +351,7 @@ class Entity(object):
                 'aftermath': 'disappear'
             }
             self.summon_demolisher = True
+            self.current_stamina_lost_per_attack = 0
             # self.invincibility_timer = 10
             self.summoned_demolishers_description = list()
             self.summoned_demolishers_description.append(demolisher)
@@ -929,8 +930,8 @@ class Entity(object):
             self.mana_replenish_modifier = 1
 
     def stamina_reduce(self, amount):
-        # if self.id == 0:
-        #     print(f'[entity stamina reduce] player stamina reduced by amount: {amount}')
+        if self.id == 0:
+            print(f'[entity stamina reduce] player stamina reduced by amount: {amount}')
         if self.stats['stamina'] > 0:
             # return
             self.stats['stamina'] -= amount
