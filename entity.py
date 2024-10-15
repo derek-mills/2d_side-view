@@ -352,6 +352,7 @@ class Entity(object):
             }
             self.summon_demolisher = True
             self.current_stamina_lost_per_attack = 0
+            self.current_mana_lost_per_attack = 0
             # self.invincibility_timer = 10
             self.summoned_demolishers_description = list()
             self.summoned_demolishers_description.append(demolisher)
@@ -930,8 +931,8 @@ class Entity(object):
             self.mana_replenish_modifier = 1
 
     def stamina_reduce(self, amount):
-        if self.id == 0:
-            print(f'[entity stamina reduce] player stamina reduced by amount: {amount}')
+        # if self.id == 0:
+        #     print(f'[entity stamina reduce] player stamina reduced by amount: {amount}')
         if self.stats['stamina'] > 0:
             # return
             self.stats['stamina'] -= amount
@@ -1436,8 +1437,8 @@ class Entity(object):
 
     def calculate_max_jump_height_and_speed(self):
         # print(f'[calculate_max_jump_height_and_speed] enter...')
-        self.max_jump_height = self.base_max_jump_height - self.athletics_index
+        self.max_jump_height = self.base_max_jump_height - self.athletics_index * 0.5
         # self.max_jump_height = self.base_max_jump_height - self.base_max_jump_height * self.athletics_index
-        self.max_speed = self.base_max_speed - self.athletics_index *0.1
+        self.max_speed = self.base_max_speed - self.athletics_index * 0.1
         print(f'[calc max speed and jump] {self.name}: {self.max_jump_height=} {self.max_speed=} {self.base_max_speed=}')
         # self.max_speed = self.base_max_speed - self.base_max_speed * self.athletics_index

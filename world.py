@@ -1189,8 +1189,8 @@ class World(object):
 
             if actor.summon_demolisher:
                 actor.summon_demolisher = False
-                actor.stamina_reduce(actor.current_stamina_lost_per_attack)
-                actor.mana_reduce(actor.current_mana_lost_per_attack)
+                # actor.stamina_reduce(actor.current_stamina_lost_per_attack)
+                # actor.mana_reduce(actor.current_mana_lost_per_attack)
                 for d in actor.summoned_demolishers_description:
                     self.add_demolisher(d)
                 # self.add_demolisher(actor.summoned_demolisher_description)
