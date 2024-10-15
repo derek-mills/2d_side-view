@@ -6,12 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/animations/jake_8bit.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/animations/jake_8bit.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/backgrounds/backup/city_bay.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/img/backgrounds/backup/city_bay.xcf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/img/backgrounds/entrance_back_0.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/backgrounds/entrance_back_0.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/img/backgrounds/entrance_back_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/backgrounds/entrance_back_1.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/img/backgrounds/entrance_back_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/backgrounds/entrance_back_2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main .py" beforeDir="false" afterPath="$PROJECT_DIR$/main .py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/backgrounds/entrance_ground.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/backgrounds/entrance_ground.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,13 +169,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00456" summary=" Total damage amount is necessary to burn out stamina of a sneaky actor, protected by shield.">
-      <created>1725331067018</created>
-      <option name="number" value="00456" />
-      <option name="presentableId" value="LOCAL-00456" />
-      <option name="project" value="LOCAL" />
-      <updated>1725331067018</updated>
     </task>
     <task id="LOCAL-00457" summary="Stamina burns out if actor defend himself by a shield and getting blows.">
       <created>1725336365585</created>
@@ -512,7 +506,14 @@
       <option name="project" value="LOCAL" />
       <updated>1728887173006</updated>
     </task>
-    <option name="localTasksCounter" value="505" />
+    <task id="LOCAL-00505" summary="Removed unnecessary mana and stamina reducing.&#10;Added some new backgrounds in Entrance zone.">
+      <created>1728958811925</created>
+      <option name="number" value="00505" />
+      <option name="presentableId" value="LOCAL-00505" />
+      <option name="project" value="LOCAL" />
+      <updated>1728958811926</updated>
+    </task>
+    <option name="localTasksCounter" value="506" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -527,7 +528,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Tuning of hopping back after taking damage." />
     <MESSAGE value="Tuning of hopping back after taking damage (iteration 2)." />
     <MESSAGE value="Tuning of hopping back after taking damage (iteration 3)." />
     <MESSAGE value="Inventory load affect on actor's weight and causes speed and jump height changing." />
@@ -552,6 +552,7 @@
     <MESSAGE value="Altered frames changing speed if actor has an exhausted state." />
     <MESSAGE value="Continue to change main actor sprites appearance.&#10;I don't like fatty look of this one." />
     <MESSAGE value="Fixed stamina lost while actors sliding." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed stamina lost while actors sliding." />
+    <MESSAGE value="Removed unnecessary mana and stamina reducing.&#10;Added some new backgrounds in Entrance zone." />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed unnecessary mana and stamina reducing.&#10;Added some new backgrounds in Entrance zone." />
   </component>
 </project>
