@@ -580,36 +580,36 @@ class Entity(object):
     def state_machine(self):
         ...
 
-    def calculate_colliders_backup(self):
-        bottom_indent = 35 if self.is_stand_on_ground else 0
-        if self.look * self.movement_direction_inverter == 1:
-            self.collision_detector_right.update(self.rectangle.right, self.rectangle.top, self.speed + 1, self.rectangle.height - bottom_indent)
-            self.collision_detector_left.update(self.rectangle.left - 1, self.rectangle.top, 1, self.rectangle.height - bottom_indent)
-            if self.speed > 0 and bottom_indent > 0:
-                self.collision_detector_bottom_right.update(self.rectangle.right, self.rectangle.bottom - bottom_indent, self.speed + 1, 30)
-                self.collision_detector_bottom_left.update(self.rectangle.left - 1, self.rectangle.bottom - bottom_indent, 1, 30)
-            else:
-                self.collision_detector_bottom_right.update(0,0,0,0)
-                self.collision_detector_bottom_left.update(0,0,0,0)
-
-        elif self.look * self.movement_direction_inverter == -1:
-            self.collision_detector_right.update(self.rectangle.right, self.rectangle.top, 1, self.rectangle.height - bottom_indent)
-            self.collision_detector_left.update(self.rectangle.left - self.speed - 1, self.rectangle.top, self.speed + 1, self.rectangle.height - 35)
-            if self.speed > 0 and bottom_indent > 0:
-                self.collision_detector_bottom_right.update(self.rectangle.right, self.rectangle.bottom - bottom_indent, 1, 30)
-                self.collision_detector_bottom_left.update(self.rectangle.left - self.speed - 1, self.rectangle.bottom - bottom_indent, self.speed + 1, 30)
-            else:
-                self.collision_detector_bottom_right.update(0,0,0,0)
-                self.collision_detector_bottom_left.update(0,0,0,0)
-        # TOP and BOTTOM colliders:
-        if self.fall_speed < 0:
-            self.collision_detector_top.update(self.rectangle.left + 2, self.rectangle.top - abs(self.fall_speed) - 4, self.rectangle.width - 4, abs(self.fall_speed))
-            self.collision_detector_bottom.update(0,0,0,0)
-        elif self.fall_speed >= 0:
-            self.collision_detector_top.update(0,0,0,0)
-            # self.collision_detector_top.update(self.rectangle.left + 2, self.rectangle.top - 1, self.rectangle.width - 4, 1)
-            self.collision_detector_bottom.update(self.rectangle.left +2, self.rectangle.bottom, self.rectangle.width-4, self.fall_speed + 2)
-            # self.collision_detector_bottom.update(self.rectangle.left + 2, self.rectangle.bottom - 2, self.rectangle.width - 4, self.fall_speed + 2)
+    # def calculate_colliders_backup(self):
+    #     bottom_indent = 35 if self.is_stand_on_ground else 0
+    #     if self.look * self.movement_direction_inverter == 1:
+    #         self.collision_detector_right.update(self.rectangle.right, self.rectangle.top, self.speed + 1, self.rectangle.height - bottom_indent)
+    #         self.collision_detector_left.update(self.rectangle.left - 1, self.rectangle.top, 1, self.rectangle.height - bottom_indent)
+    #         if self.speed > 0 and bottom_indent > 0:
+    #             self.collision_detector_bottom_right.update(self.rectangle.right, self.rectangle.bottom - bottom_indent, self.speed + 1, 30)
+    #             self.collision_detector_bottom_left.update(self.rectangle.left - 1, self.rectangle.bottom - bottom_indent, 1, 30)
+    #         else:
+    #             self.collision_detector_bottom_right.update(0,0,0,0)
+    #             self.collision_detector_bottom_left.update(0,0,0,0)
+    #
+    #     elif self.look * self.movement_direction_inverter == -1:
+    #         self.collision_detector_right.update(self.rectangle.right, self.rectangle.top, 1, self.rectangle.height - bottom_indent)
+    #         self.collision_detector_left.update(self.rectangle.left - self.speed - 1, self.rectangle.top, self.speed + 1, self.rectangle.height - 35)
+    #         if self.speed > 0 and bottom_indent > 0:
+    #             self.collision_detector_bottom_right.update(self.rectangle.right, self.rectangle.bottom - bottom_indent, 1, 30)
+    #             self.collision_detector_bottom_left.update(self.rectangle.left - self.speed - 1, self.rectangle.bottom - bottom_indent, self.speed + 1, 30)
+    #         else:
+    #             self.collision_detector_bottom_right.update(0,0,0,0)
+    #             self.collision_detector_bottom_left.update(0,0,0,0)
+    #     # TOP and BOTTOM colliders:
+    #     if self.fall_speed < 0:
+    #         self.collision_detector_top.update(self.rectangle.left + 2, self.rectangle.top - abs(self.fall_speed) - 4, self.rectangle.width - 4, abs(self.fall_speed))
+    #         self.collision_detector_bottom.update(0,0,0,0)
+    #     elif self.fall_speed >= 0:
+    #         self.collision_detector_top.update(0,0,0,0)
+    #         # self.collision_detector_top.update(self.rectangle.left + 2, self.rectangle.top - 1, self.rectangle.width - 4, 1)
+    #         self.collision_detector_bottom.update(self.rectangle.left +2, self.rectangle.bottom, self.rectangle.width-4, self.fall_speed + 2)
+    #         # self.collision_detector_bottom.update(self.rectangle.left + 2, self.rectangle.bottom - 2, self.rectangle.width - 4, self.fall_speed + 2)
 
     def calculate_colliders(self):
         bottom_indent = 25 #if self.is_stand_on_ground else 0

@@ -804,8 +804,11 @@ class Actor(Entity):
         #                 self.set_state('stand still')
         #             else:
         #                 self.set_state('lie dead')
-        elif self.get_state() == 'slide':                           # SLIDE PREPARING
-            if self.stats['stamina'] < self.normal_stamina_lost_per_slide:
+        elif self.get_state() == 'slide':                           # SLIDE PREPARE
+            if self.stats['stamina'] < self.normal_stamina_lost_per_slide or\
+               self.look == 1 and not self.is_enough_space_right or\
+               self.look == -1 and not self.is_enough_space_left:
+                # self.set_state('jump cancel')
                 self.set_state('crouch')
                 return
             self.speed = self.max_speed * 4
@@ -814,23 +817,37 @@ class Actor(Entity):
             self.set_new_desired_width(self.rectangle_width_slide, 6)
             self.is_grabbers_active = False
             self.check_space_around()
-            if (self.look == 1 and self.is_enough_space_right) or\
-                    (self.look == -1 and self.is_enough_space_left):
-                self.ignore_user_input = True
-                self.rectangle.top  -= 50
-                self.set_state('sliding')
-                self.stamina_reduce(self.normal_stamina_lost_per_slide)
-            else:
-                self.speed = 0
-                # self.speed = self.max_speed // 2
-                self.set_new_desired_height(self.rectangle_height_sit)
-                self.set_new_desired_width(self.rectangle_width_sit, 4)
-                # self.set_rect_width(self.rectangle_width_sit)
-                # self.set_rect_height(self.rectangle_height_sit)
-                self.set_state('crouch')
+            self.ignore_user_input = True
+            self.rectangle.top  -= 50
+            self.set_state('sliding')
+            self.stamina_reduce(self.normal_stamina_lost_per_slide)
+
+            # if self.stats['stamina'] < self.normal_stamina_lost_per_slide:
+            #     self.set_state('crouch')
+            #     return
+            # self.speed = self.max_speed * 4
+            # self.set_new_desired_height(self.rectangle_height_slide, 0)
+            # # self.set_new_desired_width(self.sprite_rectangle.w, 6)
+            # self.set_new_desired_width(self.rectangle_width_slide, 6)
+            # self.is_grabbers_active = False
+            # self.check_space_around()
+            # if (self.look == 1 and self.is_enough_space_right) or\
+            #         (self.look == -1 and self.is_enough_space_left):
+            #     self.ignore_user_input = True
+            #     self.rectangle.top  -= 50
+            #     self.set_state('sliding')
+            #     self.stamina_reduce(self.normal_stamina_lost_per_slide)
+            # else:
+            #     self.speed = 0
+            #     # self.speed = self.max_speed // 2
+            #     self.set_new_desired_height(self.rectangle_height_sit)
+            #     self.set_new_desired_width(self.rectangle_width_sit, 4)
+            #     # self.set_rect_width(self.rectangle_width_sit)
+            #     # self.set_rect_height(self.rectangle_height_sit)
+            #     self.set_state('crouch')
         elif self.get_state() == 'sliding':                         # SLIDING PROCESS
             self.heading[0] = 0
-            self.set_new_desired_width(self.sprite_rectangle.w * 0.9, 6)
+            # self.set_new_desired_width(self.sprite_rectangle.w * 0.9, 6)
             if self.speed == 0:
                 self.set_state('slide rise')
         elif self.get_state() == 'slide rise':                      # RISING AFTER SLIDE IS OVER
