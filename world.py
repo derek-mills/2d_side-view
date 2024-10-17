@@ -1191,7 +1191,9 @@ class World(object):
                 actor.summon_demolisher = False
                 # actor.stamina_reduce(actor.current_stamina_lost_per_attack)
                 # actor.mana_reduce(actor.current_mana_lost_per_attack)
-                for d in actor.summoned_demolishers_description:
+                # for d in actor.summoned_demolishers_description:
+                while actor.summoned_demolishers_description:
+                    d = actor.summoned_demolishers_description.pop()
                     self.add_demolisher(d)
                 # self.add_demolisher(actor.summoned_demolisher_description)
 
@@ -1320,12 +1322,12 @@ class World(object):
             #     #                                       actor.current_sprite['weak spot']['width'], actor.current_sprite['weak spot']['height']))
 
 
-            # # Rectangle frame:
-            # pygame.draw.rect(self.screen, GREEN, (actor.rectangle.x - self.camera.offset_x, actor.rectangle.y - self.camera.offset_y,
-            #                                       actor.rectangle.width, actor.rectangle.height), 5)
-            # # SPRITE Rectangle frame:
-            # pygame.draw.rect(self.screen, MAGENTA, (actor.sprite_rectangle.x - self.camera.offset_x, actor.sprite_rectangle.y - self.camera.offset_y,
-            #                                       actor.sprite_rectangle.width, actor.sprite_rectangle.height), 3)
+            # Rectangle frame:
+            pygame.draw.rect(self.screen, GREEN, (actor.rectangle.x - self.camera.offset_x, actor.rectangle.y - self.camera.offset_y,
+                                                  actor.rectangle.width, actor.rectangle.height), 5)
+            # SPRITE Rectangle frame:
+            pygame.draw.rect(self.screen, MAGENTA, (actor.sprite_rectangle.x - self.camera.offset_x, actor.sprite_rectangle.y - self.camera.offset_y,
+                                                  actor.sprite_rectangle.width, actor.sprite_rectangle.height), 3)
 
             # # Colliders rects:
             # # pygame.draw.rect(self.screen, DARK_ORANGE, (actor.collision_detector_right.x - self.camera.offset_x, actor.collision_detector_right.y - self.camera.offset_y,
@@ -1706,6 +1708,7 @@ class World(object):
             # print(self.locations)
             # print(locations)
             self.locations[self.location] = locations[self.location]
+
             for obs_rect in self.locations[self.location]['obstacles']['obs rectangles']:
                 if obs_rect[-1] in self.locations[self.location]['obstacles']['settings'].keys() and 'item' in self.locations[self.location]['obstacles']['settings'][obs_rect[-1]].keys():
                     if self.locations[self.location]['obstacles']['settings'][obs_rect[-1]]['item']:
@@ -1715,6 +1718,7 @@ class World(object):
                         continue
                 # Add obstacle.
                 self.add_obstacle(obs_rect)
+
             # Apply changes to active obstacles if such action has been pended:
             if self.location in self.obstacles_changes_pending.keys():
                 for k in self.obstacles_changes_pending[self.location].keys():
@@ -1725,6 +1729,7 @@ class World(object):
                     obs_to_be_changed.actions_set_number = self.obstacles_changes_pending[self.location][k]['activate actions set']
                     obs_to_be_changed.current_action = None
                 del self.obstacles_changes_pending[self.location]
+
             for dem in self.locations[self.location]['demolishers']['dem rectangles']:
                 self.add_demolisher(dem)
 
@@ -1743,6 +1748,7 @@ class World(object):
         self.camera.apply_offset((self.actors['player'].rectangle.centerx, self.actors['player'].rectangle.top),
                                  0, 0, True)
 
+        # Background layers.
         if self.location not in self.backgrounds.keys():
             self.backgrounds[self.location] = dict()
             # layers_out = False

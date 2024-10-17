@@ -252,6 +252,12 @@ class Entity(object):
             self.rectangle.centerx = center
         self.rectangle.bottom = floor
 
+    def processing_rectangle_size(self):
+        self.set_rect_width(self.target_width)
+        # self.set_rect_width(self.sprite_rectangle.w)
+        self.set_rect_height(self.target_height)
+        # self.set_rect_height(self.sprite_rectangle.h)
+
     def set_new_desired_height(self, h, speed=0):
         self.target_height = h
         self.rectangle_height_counter = self.rectangle.height
@@ -262,8 +268,12 @@ class Entity(object):
         self.rectangle_width_counter = self.rectangle.width
         self.rectangle_width_counter_change_speed = speed
 
-    def processing_rectangle_size(self):
-
+    def processing_rectangle_size_smoothly(self):
+        """
+            This procedure changes actor's rectangle smoothly.
+            It has point if pure rectangles using instead of sprites.
+            The procedure works with set_new_desired_height() and set_new_desired_width()
+        """
         if self.target_height != self.rectangle.height:
             if self.rectangle_height_counter_change_speed == 0:
                 # If height changing speed set to 0, change it instantly:
@@ -473,7 +483,7 @@ class Entity(object):
                     elif action == 'demolisher':
                         # print(f'[process active frames] make attack at frame {self.frame_number}')
                         self.summon_demolisher = True
-                        self.summoned_demolishers_description = list()
+                        # self.summoned_demolishers_description = list()
                         dem_set_num = self.animations[self.current_animation]['activity at frames'][self.frame_number]['demolishers set number']
                         for d_origin in self.current_weapon['demolishers'][dem_set_num]:
                             d = copy.deepcopy(d_origin)

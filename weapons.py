@@ -374,7 +374,7 @@ axe = {
             'aftermath': 'disappear'
         },),
         ({
-            'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
+            'rect': pygame.Rect(0, 0, 180, 270), 'flyer': False,
              'visible': True,
             'demolisher sprite': 'axe 315 demolisher',
             'pierce': True, 'demolisher TTL': 6, 'speed': 0,
@@ -383,8 +383,8 @@ axe = {
             'bounce': False, 'bounce factor': 0.,
             # 'attack type': ('smash','slash'),
              'damage': {
-                 'smash': 70,
-                 'slash': 70
+                 'smash': 10,
+                 'slash': 90
              },
             # 'aftermath': 'explode'
             'aftermath': 'disappear'
