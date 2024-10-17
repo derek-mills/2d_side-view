@@ -1559,7 +1559,7 @@ player_jake = {
         },
         'axe swing right': {
             'repeat': False, 'interruptable': True,
-            'sequence': (74,74,74,74,75, 75, 76, 76, 76,76,76,76,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'sequence': (74,74,74,74,75, 76, 76, 76,76,76,76,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
             'speed': 1,
             'activity at frames': {
                 0: {
@@ -1574,7 +1574,7 @@ player_jake = {
                     'demolishers set number': 1,
                     'demolisher': True
                 },
-                6: {
+                5: {
                     'sound': True,
                     # 'move': 10,  # Slightly move actor forward,
                     'demolishers set number': 2,

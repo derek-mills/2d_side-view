@@ -792,7 +792,6 @@ class Entity(object):
                             # self.hop_back_jump_height_modifier = min(5, dem.damage['smash'] ** ((dem.parent_strength + dem.parent_weight) / (self.strength + self.body_weight)))
 
                             self.hop_back_jump_height_modifier = (dem.damage['smash'] * 0.05) ** ((dem.parent_strength + dem.parent_weight) / (self.strength + self.body_weight))
-
                             self.movement_direction_inverter = -1 if dem.parent.look != self.look else 1
                         else:
                             self.hop_back_jump_height_modifier = min(3, dem.damage['smash'] * 0.1)
@@ -804,10 +803,12 @@ class Entity(object):
                             #     self.set_state('hop forward')
                             # self.movement_direction_inverter = -1 if dem.look != self.look else 1
                         # if self.get_state() != 'lie dead':
-                        print(f'[demolishers collision] {self.hop_back_jump_height_modifier} {dem.damage["smash"]=}')
-                        # print(f'{self.hop_back_jump_height_modifier} {self.total_damage_has_got=}')
-                        self.set_state('hopping prepare')
-                        # self.set_state('hop back')
+                        if self.movement_direction_inverter == -1 and self.is_enough_space_left or \
+                           self.movement_direction_inverter == 1 and self.is_enough_space_right:
+                            print(f'[demolishers collision] {self.hop_back_jump_height_modifier} {dem.damage["smash"]=}')
+                            # print(f'{self.hop_back_jump_height_modifier} {self.total_damage_has_got=}')
+                            self.set_state('hopping prepare')
+                            # self.set_state('hop back')
 
                 # Blood splatters:
                 if 'slash' in dem.damage.keys():

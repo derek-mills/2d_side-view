@@ -6,13 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/animations/jake_8bit.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/animations/jake_8bit.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphics.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphics.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/img/backgrounds/backup/city_bay.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/img/backgrounds/backup/city_bay.xcf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/backgrounds/entrance_back_0.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/backgrounds/entrance_back_0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/backgrounds/entrance_back_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/backgrounds/entrance_back_1.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/img/backgrounds/entrance_back_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/backgrounds/entrance_back_2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/backgrounds/entrance_ground.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/backgrounds/entrance_ground.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -169,13 +171,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00457" summary="Stamina burns out if actor defend himself by a shield and getting blows.">
-      <created>1725336365585</created>
-      <option name="number" value="00457" />
-      <option name="presentableId" value="LOCAL-00457" />
-      <option name="project" value="LOCAL" />
-      <updated>1725336365585</updated>
     </task>
     <task id="LOCAL-00458" summary="Solved problem with multiple dying exploding barrels.">
       <created>1725340837240</created>
@@ -513,7 +508,14 @@
       <option name="project" value="LOCAL" />
       <updated>1728958811926</updated>
     </task>
-    <option name="localTasksCounter" value="506" />
+    <task id="LOCAL-00506" summary="Corrected shield holding animation.">
+      <created>1728980353779</created>
+      <option name="number" value="00506" />
+      <option name="presentableId" value="LOCAL-00506" />
+      <option name="project" value="LOCAL" />
+      <updated>1728980353779</updated>
+    </task>
+    <option name="localTasksCounter" value="507" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -528,7 +530,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Tuning of hopping back after taking damage (iteration 2)." />
     <MESSAGE value="Tuning of hopping back after taking damage (iteration 3)." />
     <MESSAGE value="Inventory load affect on actor's weight and causes speed and jump height changing." />
     <MESSAGE value="Item drop implemented (by pressing BACKSPACE)." />
@@ -553,6 +554,7 @@
     <MESSAGE value="Continue to change main actor sprites appearance.&#10;I don't like fatty look of this one." />
     <MESSAGE value="Fixed stamina lost while actors sliding." />
     <MESSAGE value="Removed unnecessary mana and stamina reducing.&#10;Added some new backgrounds in Entrance zone." />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed unnecessary mana and stamina reducing.&#10;Added some new backgrounds in Entrance zone." />
+    <MESSAGE value="Corrected shield holding animation." />
+    <option name="LAST_COMMIT_MESSAGE" value="Corrected shield holding animation." />
   </component>
 </project>

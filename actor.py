@@ -665,6 +665,10 @@ class Actor(Entity):
             self.heading[0] = 0
             self.speed = 0
             # if self.is_stand_on_ground:
+            # if self.movement_direction_inverter == -1 and not self.is_enough_space_left:
+            #     return
+            # if self.movement_direction_inverter == 1 and not self.is_enough_space_right:
+            #     return
             if self.is_enough_space_above:
                 self.ignore_user_input = True
                 self.ai_input_right_arrow = False
@@ -708,10 +712,6 @@ class Actor(Entity):
                         self.set_state('release edge')
                     else:
                         self.set_state('hopping process')
-                    # else:
-                    #     self.set_state('crouch down')
-                # return
-
 
             # else:
             #     self.set_state('release edge')
