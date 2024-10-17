@@ -252,7 +252,10 @@ class Entity(object):
             self.rectangle.centerx = center
         self.rectangle.bottom = floor
 
-    def processing_rectangle_size(self):
+    def processing_rectangle_size_in_place(self):
+        """
+            This procedure changes actor's rectangle in place.
+        """
         self.set_rect_width(self.target_width)
         # self.set_rect_width(self.sprite_rectangle.w)
         self.set_rect_height(self.target_height)
@@ -268,10 +271,10 @@ class Entity(object):
         self.rectangle_width_counter = self.rectangle.width
         self.rectangle_width_counter_change_speed = speed
 
-    def processing_rectangle_size_smoothly(self):
+    def processing_rectangle_size(self):
         """
             This procedure changes actor's rectangle smoothly.
-            It has point if pure rectangles using instead of sprites.
+            Use of this one has the point only if pure rectangles using instead of sprites.
             The procedure works with set_new_desired_height() and set_new_desired_width()
         """
         if self.target_height != self.rectangle.height:

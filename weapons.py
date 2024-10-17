@@ -367,7 +367,7 @@ axe = {
             'bounce': False, 'bounce factor': 0.,
             # 'attack type': ('smash','slash'),
              'damage': {
-                 'smash': 30,
+                 'smash': 10,
                  'slash': 30
              },
             # 'aftermath': 'explode'
@@ -383,7 +383,7 @@ axe = {
             'bounce': False, 'bounce factor': 0.,
             # 'attack type': ('smash','slash'),
              'damage': {
-                 'smash': 10,
+                 'smash': 30,
                  'slash': 90
              },
             # 'aftermath': 'explode'

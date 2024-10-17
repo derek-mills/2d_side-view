@@ -269,21 +269,20 @@ class Actor(Entity):
         self.set_current_animation()
 
     def process(self):
+        # super().process()
         if self.invincibility_timer > 0:
             self.invincibility_timer -= 1
         self.state_machine()
+        self.apply_rectangle_according_to_sprite()
+        self.processing_rectangle_size()
         self.stamina_replenish()
         self.mana_replenish()
-        self.processing_rectangle_size()
-        self.apply_rectangle_according_to_sprite()
+        # self.processing_rectangle_size()
+        # self.apply_rectangle_according_to_sprite()
+        # self.state_machine()
         self.check_space_around()
-        super().process()
-        # self.mask_update()
-        # super().process(time_passed)
-        # self.reset_self_flags()
 
-        # if (self.collided_top and self.collided_bottom) or (self.collided_right and self.collided_left):
-        #     raise sys.exit()
+        super().process()
 
     def set_action(self, new_action):
         # print(f'[actor set action] Setting new action: {new_action}')
@@ -811,6 +810,7 @@ class Actor(Entity):
                 return
             self.speed = self.max_speed * 4
             self.set_new_desired_height(self.rectangle_height_slide, 0)
+            # self.set_new_desired_width(self.sprite_rectangle.w, 6)
             self.set_new_desired_width(self.rectangle_width_slide, 6)
             self.is_grabbers_active = False
             self.check_space_around()
@@ -830,6 +830,7 @@ class Actor(Entity):
                 self.set_state('crouch')
         elif self.get_state() == 'sliding':                         # SLIDING PROCESS
             self.heading[0] = 0
+            self.set_new_desired_width(self.sprite_rectangle.w * 0.9, 6)
             if self.speed == 0:
                 self.set_state('slide rise')
         elif self.get_state() == 'slide rise':                      # RISING AFTER SLIDE IS OVER
@@ -1086,7 +1087,7 @@ class Actor(Entity):
                 else:
                     self.set_state('lie dead')
         elif self.get_state() == 'lie dead':                        #
-            ...
+            self.set_new_desired_height(self.sprite_rectangle.height)
             self.heading = [0, 0]
             if self.idle_counter > 0:
                 self.idle_counter -= 1
@@ -1101,7 +1102,7 @@ class Actor(Entity):
             if self.animation_sequence_done:
                 self.set_state('lie decapitated')
         elif self.get_state() == 'lie decapitated':
-            ...
+            self.set_new_desired_height(self.sprite_rectangle.height)
             self.heading = [0, 0]
             if self.idle_counter > 0:
                 self.idle_counter -= 1
