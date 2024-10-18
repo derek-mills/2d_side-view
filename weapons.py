@@ -1,7 +1,7 @@
 import pygame
 
 sword = {
-    'amount': 1,
+    'combo': False, 'combo steps quantity': 0, 'combo next step threshold': 0,    'amount': 1,
     'amount threshold': 1,
     'amount decrease speed': 0,
     'affects on': '',
@@ -56,7 +56,7 @@ sword = {
 }
 
 kitchen_knife = {
-    'amount': 1,
+    'combo': False, 'combo steps quantity': 0, 'combo next step threshold': 0,    'amount': 1,
     'amount threshold': 1,
     'amount decrease speed': 0,
     'affects on': '',
@@ -120,6 +120,7 @@ kitchen_knife = {
 }
 
 fireball_staff = {
+    'combo': False, 'combo steps quantity': 0, 'combo next step threshold': 0,
     'description': 'Casual kitchen fireball staff.',
     'class': 'weapons',
     'type': 'melee',
@@ -162,7 +163,7 @@ fireball_staff = {
 }
 
 spikeball_staff = {
-    'description': 'Ball of spikes.',
+    'combo': False, 'combo steps quantity': 0, 'combo next step threshold': 0,    'description': 'Ball of spikes.',
     'class': 'weapons',
     'type': 'melee',
     'label': 'spikeball staff',
@@ -204,7 +205,7 @@ spikeball_staff = {
 }
 
 whip = {
-    'description': 'A powerful whip, called Vampire Killer.',
+    'combo': False, 'combo steps quantity': 0, 'combo next step threshold': 0,    'description': 'A powerful whip, called Vampire Killer.',
     'class': 'weapons',
     'type': 'melee',
     'label': 'whip',
@@ -277,7 +278,7 @@ whip = {
 }
 
 jake_kick = {
-    'description': 'A powerful kick, called The Boot of Doom.',
+    'combo': False, 'combo steps quantity': 0, 'combo next step threshold': 0,    'description': 'A powerful kick, called The Boot of Doom.',
     'class': 'weapons',
     'type': 'melee',
     'label': 'jake kick',
@@ -319,6 +320,7 @@ jake_kick = {
 }
 
 axe = {
+    'combo': True, 'combo steps quantity': 2, 'combo next step threshold': 50,
     'description': 'Golden Axe 3',
     'class': 'weapons',
     'type': 'melee',
@@ -341,6 +343,7 @@ axe = {
     'reach': 170,
     'weight': 10,
     'demolishers': (
+        # 'demolishers set number' #0
         ({
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
              'visible': True,
@@ -357,6 +360,7 @@ axe = {
             # 'aftermath': 'explode'
             'aftermath': 'disappear'
         },),
+        # 'demolishers set number' #1
         ({
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
              'visible': True,
@@ -373,6 +377,7 @@ axe = {
             # 'aftermath': 'explode'
             'aftermath': 'disappear'
         },),
+        # 'demolishers set number' #2
         ({
             'rect': pygame.Rect(0, 0, 180, 270), 'flyer': False,
              'visible': True,
@@ -394,6 +399,7 @@ axe = {
 }
 
 demon_2_mid = {
+    'combo': False, 'combo steps quantity': 0, 'combo next step threshold': 0,
     'description': 'Demon 2 middle ranged weapon',
     'class': 'weapons',
     'type': 'melee',
@@ -468,6 +474,7 @@ demon_2_mid = {
 }
 
 demon_2_close = {
+    'combo': False, 'combo steps quantity': 0, 'combo next step threshold': 0,
     'description': 'Demon 2 close combat weapon',
     'class': 'weapons',
     'type': 'melee',
@@ -531,6 +538,7 @@ demon_2_close = {
 }
 
 pistol = {
+    'combo': False, 'combo steps quantity': 0, 'combo next step threshold': 0,
     'description': 'Handy handgun.',
     'class': 'weapons',
     'type': 'firearms',
@@ -591,6 +599,7 @@ pistol = {
 }
 
 barrel_explosion = {
+    'combo': False, 'combo steps quantity': 0, 'combo next step threshold': 0,
     'description': 'Barrel explosion.',
     'class': 'weapons',
     'type': 'firearms',
@@ -637,6 +646,7 @@ barrel_explosion = {
 }
 
 small_shield = {
+    'combo': False, 'combo steps quantity': 0, 'combo next step threshold': 0,
     'description': 'Small shield.',
     'class': 'weapons',
     'type': 'shields',

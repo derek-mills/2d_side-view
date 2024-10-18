@@ -15,6 +15,8 @@ class Entity(object):
         self.name: str = ''
         # self.health: float = 0.
         # self.max_health: float = 0.
+        self.combo_counter: int = 0
+        self.combo_set_number: int = 0
         self.got_immunity_to_demolishers = list()
         self.location: str = ''
         self.__state: str = ''
@@ -428,14 +430,25 @@ class Entity(object):
     def set_current_animation(self):
         state = self.get_state()
         # print(state)
-        current_animation = state + str(self.look)
+        # current_animation = state + str(self.look)
+        current_animation = state
+        if self.current_weapon:
+            if state == self.current_weapon['attack animation']:
+                if self.current_weapon['combo']:
+                    current_animation += ' combo ' + str(self.combo_set_number)
+
+
+        # if self.current_weapon:
+        #     if self.current_weapon['combo']:
         if 'right' not in state and 'left' not in state:
             if self.look == 1:
-                current_animation = state + ' right'
+                current_animation += ' right'
+                # current_animation = state + ' right'
             else:
-                current_animation = state + ' left'
-        else:
-            current_animation = state
+                current_animation += ' left'
+                # current_animation = state + ' left'
+        # else:
+        #     current_animation = state
 
         # If animation for current state does not exist, set default:
         if current_animation not in self.animations.keys():
@@ -446,23 +459,23 @@ class Entity(object):
             self.apply_particular_animation(self.current_animation)
         self.active_frames = list(self.animations[self.current_animation]['activity at frames'].keys())
 
-    def set_current_animation_back(self):
-        state = self.get_state()
-        # print(state)
-        self.current_animation = state + str(self.look)
-        if 'right' not in state and 'left' not in state:
-            if self.look == 1:
-                self.current_animation = state + ' right'
-            else:
-                self.current_animation = state + ' left'
-        else:
-            self.current_animation = state
-
-        # If animation for current state does not exist, set default:
-        if self.current_animation not in self.animations.keys():
-            self.current_animation = 'stand still right'
-        self.apply_particular_animation(self.current_animation)
-        self.active_frames = list(self.animations[self.current_animation]['activity at frames'].keys())
+    # def set_current_animation_back(self):
+    #     state = self.get_state()
+    #     # print(state)
+    #     self.current_animation = state + str(self.look)
+    #     if 'right' not in state and 'left' not in state:
+    #         if self.look == 1:
+    #             self.current_animation = state + ' right'
+    #         else:
+    #             self.current_animation = state + ' left'
+    #     else:
+    #         self.current_animation = state
+    #
+    #     # If animation for current state does not exist, set default:
+    #     if self.current_animation not in self.animations.keys():
+    #         self.current_animation = 'stand still right'
+    #     self.apply_particular_animation(self.current_animation)
+    #     self.active_frames = list(self.animations[self.current_animation]['activity at frames'].keys())
 
     def process_activity_at_current_animation_frame(self):
         if self.frame_number in self.active_frames:

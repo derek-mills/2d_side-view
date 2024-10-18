@@ -1557,7 +1557,7 @@ player_jake = {
             },
             'repeat from frame': 0
         },
-        'axe swing right': {
+        'axe swing combo 1 right': {
             'repeat': False, 'interruptable': True,
             'sequence': (74,74,74,74,75, 76, 76, 76,76,76,76,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
             'speed': 1,
@@ -1583,7 +1583,59 @@ player_jake = {
             },
             'repeat from frame': 0
         },
-        'axe swing left': {
+        'axe swing combo 1 left': {
+            'repeat': False, 'interruptable': True,
+            'sequence': (91,91,91,91,90, 90, 89, 89, 89,89,89,89,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'speed': 1,
+            'activity at frames': {
+                0: {
+                    'sound': True,
+                    # 'move': 10,  # Slightly move actor forward,
+                    'demolishers set number': 0,
+                    'demolisher': True
+                },
+                4: {
+                    'sound': True,
+                    # 'move': 10,  # Slightly move actor forward,
+                    'demolishers set number': 1,
+                    'demolisher': True
+                },
+                6: {
+                    'sound': True,
+                    # 'move': 10, # Slightly move actor forward,
+                    'demolishers set number': 2,
+                    'demolisher': True
+                },
+            },
+            'repeat from frame': 0
+        },
+        'axe swing combo 2 right': {
+            'repeat': False, 'interruptable': True,
+            'sequence': (74,74,75,76,76,76,76,76,76,76,76,76,76,76,76),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'speed': 2,
+            'activity at frames': {
+                0: {
+                    'sound': True,
+                    # 'move': 10,  # Slightly move actor forward,
+                    'demolishers set number': 0,
+                    'demolisher': True
+                },
+                2: {
+                    'sound': True,
+                    # 'move': 10,  # Slightly move actor forward,
+                    'demolishers set number': 1,
+                    'demolisher': True
+                },
+                3: {
+                    'sound': True,
+                    # 'move': 10,  # Slightly move actor forward,
+                    'demolishers set number': 2,
+                    'demolisher': True
+                },
+            },
+            'repeat from frame': 0
+        },
+        'axe swing combo 2 left': {
             'repeat': False, 'interruptable': True,
             'sequence': (91,91,91,91,90, 90, 89, 89, 89,89,89,89,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
             'speed': 1,

@@ -272,6 +272,12 @@ class Actor(Entity):
         # super().process()
         if self.invincibility_timer > 0:
             self.invincibility_timer -= 1
+
+        if self.combo_counter > 0:
+            self.combo_counter -= 1
+        else:
+            self.combo_set_number = 0
+
         self.state_machine()
         self.apply_rectangle_according_to_sprite()
         self.processing_rectangle_size()
@@ -503,7 +509,7 @@ class Actor(Entity):
                                     'stand still', 'jump', 'crawl right', 'crawl left', 'protect',
                                     'crouch', 'fly right', 'fly left', 'turn right', 'turn left'):
                 return
-            print(f'[set action] attack')
+            # print(f'[set action] attack')
             if self.__state in ('crawl left', 'crouch', 'crawl right'):
                 if self.look == 1:
                     self.set_state('prepare crouch attack right')
@@ -541,9 +547,15 @@ class Actor(Entity):
             self.mana_reduce(self.current_mana_lost_per_attack)
             self.frames_changing_threshold_modifier = self.current_weapon['animation speed modifier'] * \
                                                       self.frames_changing_threshold_penalty
+
+            self.combo_counter = self.current_weapon['combo next step threshold']
+            self.combo_set_number += 1
+            if self.combo_set_number > self.current_weapon['combo steps quantity']:
+                self.combo_set_number = 0
+
             self.set_current_animation()
             self.ignore_user_input = self.current_weapon['ignore user input']
-            # self.speed = 0
+
             if self.is_stand_on_ground:
                 self.heading[0] = 0
             # self.heading[0] = 0

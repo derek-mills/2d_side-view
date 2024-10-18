@@ -7,7 +7,10 @@
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,13 +167,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00461" summary="Player actor is able to hop back and forward now by pressing 'q' and 'e' buttons.">
-      <created>1725421592457</created>
-      <option name="number" value="00461" />
-      <option name="presentableId" value="LOCAL-00461" />
-      <option name="project" value="LOCAL" />
-      <updated>1725421592457</updated>
     </task>
     <task id="LOCAL-00462" summary="Correcting errors in hopping process after get damaged.">
       <created>1725425965056</created>
@@ -508,7 +504,14 @@
       <option name="project" value="LOCAL" />
       <updated>1729150052452</updated>
     </task>
-    <option name="localTasksCounter" value="510" />
+    <task id="LOCAL-00510" summary="Some.">
+      <created>1729155543663</created>
+      <option name="number" value="00510" />
+      <option name="presentableId" value="LOCAL-00510" />
+      <option name="project" value="LOCAL" />
+      <updated>1729155543663</updated>
+    </task>
+    <option name="localTasksCounter" value="511" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -523,7 +526,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed wrong demon 1 description" />
     <MESSAGE value="Reduced affection of athletic factor to the maximum possible speed." />
     <MESSAGE value="Fine tune of left and right hand actions system." />
     <MESSAGE value="Fine tune of left and right hand actions system.&#10;simultaneous pressing of both attack buttons now handles correctly." />
@@ -548,6 +550,7 @@
     <MESSAGE value="Fixed getting actor inside the wall if he has been smashed while standing up close against it." />
     <MESSAGE value="Simplified actor's rectangle processing if pose changes." />
     <MESSAGE value="Returned actor's rectangle complicate processing if pose changes." />
-    <option name="LAST_COMMIT_MESSAGE" value="Returned actor's rectangle complicate processing if pose changes." />
+    <MESSAGE value="Some." />
+    <option name="LAST_COMMIT_MESSAGE" value="Some." />
   </component>
 </project>
