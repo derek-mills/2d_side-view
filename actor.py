@@ -277,6 +277,7 @@ class Actor(Entity):
             self.combo_counter -= 1
         else:
             self.combo_set_number = 0
+            # self.set_current_animation()
 
         self.state_machine()
         self.apply_rectangle_according_to_sprite()
@@ -551,7 +552,7 @@ class Actor(Entity):
             self.combo_counter = self.current_weapon['combo next step threshold']
             self.combo_set_number += 1
             if self.combo_set_number > self.current_weapon['combo steps quantity']:
-                self.combo_set_number = 0
+                self.combo_set_number = 1
 
             self.set_current_animation()
             self.ignore_user_input = self.current_weapon['ignore user input']

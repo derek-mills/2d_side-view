@@ -1222,7 +1222,7 @@ player_jake = {
     #         'hardness': 100
     #     },
     # },
-    'max speed': 8,  # Base value, which will be reduced upon athletic index.
+    'max speed': 10,  # Base value, which will be reduced upon athletic index.
     # 'max speed': 16,  # Base value, which will be reduced upon athletic index.
     'max jump height': 28, # Base value, which will be reduced upon athletic index.
     'acceleration': .6,
@@ -1557,7 +1557,7 @@ player_jake = {
             },
             'repeat from frame': 0
         },
-        'axe swing combo 1 right': {
+        'axe swing combo 2 right': {
             'repeat': False, 'interruptable': True,
             'sequence': (74,74,74,74,75, 76, 76, 76,76,76,76,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
             'speed': 1,
@@ -1609,10 +1609,10 @@ player_jake = {
             },
             'repeat from frame': 0
         },
-        'axe swing combo 2 right': {
+        'axe swing combo 1 right': {
             'repeat': False, 'interruptable': True,
-            'sequence': (74,74,75,76,76,76,76,76,76,76,76,76,76,76,76),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
-            'speed': 2,
+            'sequence': (74,74,75,76,76,76,74,74,75,76,76,76),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'speed': 1,
             'activity at frames': {
                 0: {
                     'sound': True,
@@ -1629,7 +1629,25 @@ player_jake = {
                 3: {
                     'sound': True,
                     # 'move': 10,  # Slightly move actor forward,
-                    'demolishers set number': 2,
+                    'demolishers set number': 3,
+                    'demolisher': True
+                },
+                6: {
+                    'sound': True,
+                    # 'move': 10,  # Slightly move actor forward,
+                    'demolishers set number': 0,
+                    'demolisher': True
+                },
+                7: {
+                    'sound': True,
+                    # 'move': 10,  # Slightly move actor forward,
+                    'demolishers set number': 1,
+                    'demolisher': True
+                },
+                9: {
+                    'sound': True,
+                    # 'move': 10,  # Slightly move actor forward,
+                    'demolishers set number': 3,
                     'demolisher': True
                 },
             },
