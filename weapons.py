@@ -278,7 +278,8 @@ whip = {
 }
 
 jake_kick = {
-    'combo': False, 'combo steps quantity': 0, 'combo next step threshold': 0,    'description': 'A powerful kick, called The Boot of Doom.',
+    'combo': True, 'combo steps quantity': 3, 'combo next step threshold': 30,
+    'description': 'A powerful kick, called The Boot of Doom.',
     'class': 'weapons',
     'type': 'melee',
     'label': 'jake kick',
@@ -300,17 +301,51 @@ jake_kick = {
     'reach': 170,
     'weight': 10,
     'demolishers': (
+        # 'demolishers set number' #0
+        ({
+             'rect': pygame.Rect(0, 0, 50, 50), 'flyer': False,
+             'visible': False,
+             'demolisher sprite': 'jake kick demolisher',
+             'pierce': True, 'demolisher TTL': 3, 'speed': 0,
+             'static': True, 'damage reduce': 0,
+             'collides': False, 'gravity affected': False,
+             'bounce': False, 'bounce factor': 0.,
+             'attack type': ('smash',),
+             'damage': {
+                 'smash': 30,
+             },
+             # 'aftermath': 'explode'
+             'aftermath': 'disappear'
+         },),
+        # 'demolishers set number' #1
+        ({
+             'rect': pygame.Rect(0, 0, 50, 50), 'flyer': False,
+             'visible': False,
+             'demolisher sprite': 'jake kick demolisher',
+             'pierce': True, 'demolisher TTL': 3, 'speed': 0,
+             'static': True, 'damage reduce': 0,
+             'collides': False, 'gravity affected': False,
+             'bounce': False, 'bounce factor': 0.,
+             'attack type': ('smash',),
+             'damage': {
+                 'smash': 50,
+             },
+             # 'aftermath': 'explode'
+             'aftermath': 'disappear'
+         },),
+
+        # 'demolishers set number' #2
         ({
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
              'visible': True,
             'demolisher sprite': 'jake kick demolisher',
-            'pierce': True, 'demolisher TTL': 8, 'speed': 0,
+            'pierce': True, 'demolisher TTL': 5, 'speed': 0,
             'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
             'attack type': ('smash',),
              'damage': {
-                 'smash': 10,
+                 'smash': 150,
              },
             # 'aftermath': 'explode'
             'aftermath': 'disappear'

@@ -6,10 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/animations/jake_8bit.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/animations/jake_8bit.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -166,13 +166,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00463" summary="AI actors do not turn to proper side if they are lying dead and being kicked up.">
-      <created>1725430668484</created>
-      <option name="number" value="00463" />
-      <option name="presentableId" value="LOCAL-00463" />
-      <option name="project" value="LOCAL" />
-      <updated>1725430668484</updated>
     </task>
     <task id="LOCAL-00464" summary="Improved attack power modifier if actor moves or falls.">
       <created>1725434591213</created>
@@ -510,7 +503,14 @@
       <option name="project" value="LOCAL" />
       <updated>1729228271951</updated>
     </task>
-    <option name="localTasksCounter" value="512" />
+    <task id="LOCAL-00512" summary="One unnecessary last blow in combo sequence has been vanished.">
+      <created>1729233828366</created>
+      <option name="number" value="00512" />
+      <option name="presentableId" value="LOCAL-00512" />
+      <option name="project" value="LOCAL" />
+      <updated>1729233828366</updated>
+    </task>
+    <option name="localTasksCounter" value="513" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -525,7 +525,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fine tune of left and right hand actions system." />
     <MESSAGE value="Fine tune of left and right hand actions system.&#10;simultaneous pressing of both attack buttons now handles correctly." />
     <MESSAGE value="Added stripes, which show the 'max' amount of particular stat." />
     <MESSAGE value="Renovation of protectors revealing and keeping them alive system." />
@@ -550,6 +549,7 @@
     <MESSAGE value="Returned actor's rectangle complicate processing if pose changes." />
     <MESSAGE value="Some." />
     <MESSAGE value="First appearance of combo system." />
-    <option name="LAST_COMMIT_MESSAGE" value="First appearance of combo system." />
+    <MESSAGE value="One unnecessary last blow in combo sequence has been vanished." />
+    <option name="LAST_COMMIT_MESSAGE" value="One unnecessary last blow in combo sequence has been vanished." />
   </component>
 </project>

@@ -1468,12 +1468,12 @@ player_jake = {
             'speed': 2,
             'repeat from frame': 2
         },
-        'kick right': {
+        'kick combo 1 right': {
             'repeat': False, 'interruptable': True,
-            'sequence': (63,63,64,64,65,65,65,65,64,63), # 5 - 9
+            'sequence': (109,108,107,106,106,106,109,),  # 5 - 9
             'speed': 2,
             'activity at frames': {
-                4: {
+                3: {
                     'sound': True,
                     # 'move': 10,  # Slightly move actor forward,
                     'demolishers set number': 0,
@@ -1482,14 +1482,70 @@ player_jake = {
             },
             'repeat from frame': 0
         },
-        'kick left': {
+        'kick combo 2 right': {
+            'repeat': False, 'interruptable': True,
+            'sequence': (109,109,111,111,110,110,110,),  # 5 - 9
+            'speed': 2,
+            'activity at frames': {
+                4: {
+                    'sound': True,
+                    # 'move': 10,  # Slightly move actor forward,
+                    'demolishers set number': 1,
+                    'demolisher': True
+                },
+            },
+            'repeat from frame': 0
+        },
+        'kick combo 3 right': {
+            'repeat': False, 'interruptable': True,
+            'sequence': (63,63,64,64,65,65,65,64,63,63), # 5 - 9
+            'speed': 2,
+            'activity at frames': {
+                4: {
+                    'sound': True,
+                    # 'move': 10,  # Slightly move actor forward,
+                    'demolishers set number': 2,
+                    'demolisher': True
+                },
+            },
+            'repeat from frame': 0
+        },
+        'kick combo 1 left': {
+            'repeat': False, 'interruptable': True,
+            'sequence': (92,93,94,95,95,95,92,),  # 0 - 4
+            'activity at frames': {
+                3: {
+                    'sound': True,
+                    # 'move': 10, # Slightly move actor forward,
+                    'demolishers set number': 0,
+                    'demolisher': True
+                },
+            },
+            'speed': 2,
+            'repeat from frame': 0
+        },
+        'kick combo 2 left': {
+            'repeat': False, 'interruptable': True,
+            'sequence': (92,92,96,96,97,97,97),  # 0 - 4
+            'activity at frames': {
+                4: {
+                    'sound': True,
+                    # 'move': 10, # Slightly move actor forward,
+                    'demolishers set number': 1,
+                    'demolisher': True
+                },
+            },
+            'speed': 2,
+            'repeat from frame': 0
+        },
+        'kick combo 3 left': {
             'repeat': False, 'interruptable': True,
             'sequence': (68,68,67,67,66,66,66,66,67,68),  # 0 - 4
             'activity at frames': {
                 4: {
                     'sound': True,
                     # 'move': 10, # Slightly move actor forward,
-                    'demolishers set number': 0,
+                    'demolishers set number': 2,
                     'demolisher': True
                 },
             },
