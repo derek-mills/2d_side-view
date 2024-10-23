@@ -313,8 +313,8 @@ jake_kick = {
              'attack type': ('smash',),
              'damage': {
                  'blunt': 15,
-                 'smash': 10,
-                 'slash': 1,
+                 # 'smash': 10,
+                 # 'slash': 1,
              },
              # 'aftermath': 'explode'
              'aftermath': 'disappear'

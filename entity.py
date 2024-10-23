@@ -343,6 +343,7 @@ class Entity(object):
                 self.die()
 
         self.process_animation()
+        # if not self.is_stunned:
         self.process_activity_at_current_animation_frame()
 
         if self.is_jump:
@@ -530,7 +531,8 @@ class Entity(object):
     def process_animation(self):
         # self.set_current_animation()
         if self.animation_sequence:
-            self.frame_change_counter += 1
+            if not self.is_stunned:
+                self.frame_change_counter += 1
             if self.frame_change_counter > self.frames_changing_threshold:
                 # It is time to change a frame in sequence:
                 self.frame_change_counter = 0

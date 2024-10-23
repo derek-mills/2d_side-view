@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -165,13 +165,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00468" summary="Added pretty pistol muzzle flash as an additional demolisher.">
-      <created>1725865796873</created>
-      <option name="number" value="00468" />
-      <option name="presentableId" value="LOCAL-00468" />
-      <option name="project" value="LOCAL" />
-      <updated>1725865796874</updated>
     </task>
     <task id="LOCAL-00469" summary="SOme.">
       <created>1725870941485</created>
@@ -509,7 +502,14 @@
       <option name="project" value="LOCAL" />
       <updated>1729660851373</updated>
     </task>
-    <option name="localTasksCounter" value="517" />
+    <task id="LOCAL-00517" summary="Tuning of 'stun' state.">
+      <created>1729665023679</created>
+      <option name="number" value="00517" />
+      <option name="presentableId" value="LOCAL-00517" />
+      <option name="project" value="LOCAL" />
+      <updated>1729665023679</updated>
+    </task>
+    <option name="localTasksCounter" value="518" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -524,7 +524,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added 'decapitated' state in case of actor gets damage more than 2x of his remaining health." />
     <MESSAGE value="Improved 'decapitated' state." />
     <MESSAGE value="Items render in foreground now." />
     <MESSAGE value="Added zombie (just a re-skin of demon 1).&#10;Added friction parameter to decrement speed while actor touches the ground." />
@@ -549,6 +548,7 @@
     <MESSAGE value="Slightly modified punch attack and invisible demolishers collision detection." />
     <MESSAGE value="Added 'blunt' attack for simple impact interaction between demolisher and victim. Brings no special effect.&#10;'Smash' attack shall be used as throwing away interaction." />
     <MESSAGE value="'Stunned' state implemented.&#10;Combo will be reset if actor gets damage." />
-    <option name="LAST_COMMIT_MESSAGE" value="'Stunned' state implemented.&#10;Combo will be reset if actor gets damage." />
+    <MESSAGE value="Tuning of 'stun' state." />
+    <option name="LAST_COMMIT_MESSAGE" value="Tuning of 'stun' state." />
   </component>
 </project>
