@@ -312,7 +312,8 @@ jake_kick = {
              'bounce': False, 'bounce factor': 0.,
              'attack type': ('smash',),
              'damage': {
-                 'smash': 30,
+                 'blunt': 15,
+                 'smash': 10,
                  'slash': 1,
              },
              # 'aftermath': 'explode'
@@ -329,8 +330,9 @@ jake_kick = {
              'bounce': False, 'bounce factor': 0.,
              'attack type': ('smash',),
              'damage': {
+                 'blunt': 20,
                  'slash': 1,
-                 'smash': 30,
+                 'smash': 15,
              },
              # 'aftermath': 'explode'
              'aftermath': 'disappear'
@@ -347,7 +349,8 @@ jake_kick = {
             'bounce': False, 'bounce factor': 0.,
             'attack type': ('smash',),
              'damage': {
-                 'smash': 150,
+                 'blunt': 50,
+                 'smash': 100,
                  'slash': 1,
              },
             # 'aftermath': 'explode'
@@ -392,7 +395,7 @@ axe = {
             'bounce': False, 'bounce factor': 0.,
             # 'attack type': ('smash','slash'),
              'damage': {
-                 'smash': 10,
+                 'smash': 3,
                  'slash': 10
              },
             # 'aftermath': 'explode'
@@ -409,7 +412,7 @@ axe = {
             'bounce': False, 'bounce factor': 0.,
             # 'attack type': ('smash','slash'),
              'damage': {
-                 'smash': 10,
+                 'smash': 5,
                  'slash': 30
              },
             # 'aftermath': 'explode'
@@ -426,7 +429,7 @@ axe = {
             'bounce': False, 'bounce factor': 0.,
             # 'attack type': ('smash','slash'),
              'damage': {
-                 'smash': 30,
+                 'smash': 5,
                  'slash': 90
              },
             # 'aftermath': 'explode'
@@ -443,7 +446,7 @@ axe = {
              'bounce': False, 'bounce factor': 0.,
              # 'attack type': ('smash','slash'),
              'damage': {
-                 'smash': 30,
+                 'smash': 8,
                  'slash': 90
              },
              # 'aftermath': 'explode'

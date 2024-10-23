@@ -111,7 +111,9 @@ class World(object):
         entity = Actor()
         entity.id = self.actor_id
         entity.name = description['name']
-        entity.resistances = description['resistances']
+        for resistance in description['resistances'].keys():
+            entity.resistances[resistance] = description['resistances'][resistance]
+        # entity.resistances = description['resistances']
         entity.disappear_after_death = description['disappear after death']
         entity.blood_color = description['blood color']
 

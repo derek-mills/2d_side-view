@@ -48,7 +48,14 @@ class Entity(object):
         self.invincibility_timer: int = 0
         self.blood_color = RED
         self.has_just_stopped_demolishers = list()
-        self.resistances = dict()
+        self.resistances = {
+            'smash': 1,
+            'slash': 1,
+            'blunt': 1,
+            'fire': 1,
+            'pierce': 1,
+        }
+        # self.resistances = dict()
         self.total_damage_has_got = 0  # Variable storing a momentary amount of damage got from a single demolisher.
 
         # STATS
