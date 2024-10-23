@@ -698,7 +698,8 @@ class Entity(object):
             hit_detected = False
             if dem.invisible:
                 # Just a rectangle-based collision detector:
-                if self.rectangle.colliderect(dem.rectangle):
+                # if self.rectangle.colliderect(dem.rectangle):
+                if self.sprite_rectangle.colliderect(dem.rectangle):
                     hit_detected = True
             else:
 
@@ -758,7 +759,7 @@ class Entity(object):
                     if 'smash' in dem.damage.keys():
                         self.speed *= (dem.damage['smash'] * 0.1)
                         # self.speed *= 1.5
-                    stamina_taken_while_defending = dem.total_damage_amount * forces_balance * 0.08
+                    stamina_taken_while_defending = dem.total_damage_amount * forces_balance * 0.8
                     if self.stats['stamina'] >= stamina_taken_while_defending:
                         # Actor is able to consume own stamina to protect himself:
                         self.stamina_reduce(stamina_taken_while_defending)
@@ -769,8 +770,8 @@ class Entity(object):
                     self.has_just_stopped_demolishers.append(dem.id)
 
                 self.summon_particle = True
-                self.invincibility_timer = 30
-                if not self.dead:  # or not self.dying:
+                self.invincibility_timer = 20
+                if not self.dead:
                     # If actor hit from behind, the damage increased by 50%:
                     total_damage_multiplier = 1.5 if dem.look == self.look and dem.snap_to_actor >= 0 else 1
                     self.get_damage(dem.damage, total_damage_multiplier)

@@ -377,7 +377,7 @@ load_single_frame(tmp_sprites, ((260,150,20,18),), name + ' avatar front')
 # load_single_frame(tmp_sprites, ((1744,2194,332,205),), name + ' 98')  # Unconsciousness frame 1
 # load_single_frame(tmp_sprites, ((2076,2220,369,176),), name + ' 99')  # Unconsciousness frame 2
 # load_all_frames(tmp_sprites, 122, name, 200, 300, 1)
-load_all_frames(tmp_sprites, 122, name, 20, 30, 15)
+load_all_frames(tmp_sprites, 122, name, 20, 30, 10)
 
 
 # ___...---=== EXPLODING BARREL ===---...___

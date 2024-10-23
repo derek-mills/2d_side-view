@@ -9,7 +9,7 @@ zombie = {
     'drop': ['exp' for i in range(randint(3,5))],
     'strength': 5,
     'body weight': 50,
-    'health': 20.,
+    'health': 2000.,
     'mana replenish': .0,
     'stamina replenish': 12.,
     'height': 150,  # For level editor use only

@@ -303,7 +303,7 @@ jake_kick = {
     'demolishers': (
         # 'demolishers set number' #0
         ({
-             'rect': pygame.Rect(0, 0, 50, 50), 'flyer': False,
+             'rect': pygame.Rect(0, 0, 10, 10), 'flyer': False,
              'visible': False,
              'demolisher sprite': 'jake kick demolisher',
              'pierce': True, 'demolisher TTL': 3, 'speed': 0,
@@ -313,13 +313,14 @@ jake_kick = {
              'attack type': ('smash',),
              'damage': {
                  'smash': 30,
+                 'slash': 1,
              },
              # 'aftermath': 'explode'
              'aftermath': 'disappear'
          },),
         # 'demolishers set number' #1
         ({
-             'rect': pygame.Rect(0, 0, 50, 50), 'flyer': False,
+             'rect': pygame.Rect(0, 0, 10, 10), 'flyer': False,
              'visible': False,
              'demolisher sprite': 'jake kick demolisher',
              'pierce': True, 'demolisher TTL': 3, 'speed': 0,
@@ -328,7 +329,8 @@ jake_kick = {
              'bounce': False, 'bounce factor': 0.,
              'attack type': ('smash',),
              'damage': {
-                 'smash': 50,
+                 'slash': 1,
+                 'smash': 30,
              },
              # 'aftermath': 'explode'
              'aftermath': 'disappear'
@@ -346,6 +348,7 @@ jake_kick = {
             'attack type': ('smash',),
              'damage': {
                  'smash': 150,
+                 'slash': 1,
              },
             # 'aftermath': 'explode'
             'aftermath': 'disappear'
