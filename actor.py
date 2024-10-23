@@ -13,6 +13,8 @@ class Actor(Entity):
         self.current_weapon_demolishers_reveal_frames = list()
         self.is_collideable = True
         self.is_destructible = True
+        self.is_stunned = False
+        self.stun_counter = 0
 
         self.ai_input_right_arrow = False
         self.ai_input_left_arrow = False
@@ -272,6 +274,12 @@ class Actor(Entity):
         # super().process()
         if self.invincibility_timer > 0:
             self.invincibility_timer -= 1
+
+        if self.stun_counter > 0:
+            self.stun_counter -= 1
+            self.is_stunned = True
+        else:
+            self.is_stunned = False
 
         if self.combo_counter > 0:
             self.combo_counter -= 1

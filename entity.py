@@ -749,6 +749,8 @@ class Entity(object):
                     hit_detected = True
 
             if hit_detected:
+                self.combo_counter = 0
+                self.combo_set_number = 0
                 if dem.floppy:
                     # Most probably a demolishers has a collision with protector (player shield).
                     if dem.parent:

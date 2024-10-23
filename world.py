@@ -1009,7 +1009,7 @@ class World(object):
             # if not actor.ignore_user_input:
             #     actor.think()
 
-            if not actor.dead:  # or not actor.dying:
+            if not actor.dead and not actor.is_stunned:
                 if actor.ai_controlled:
                     # routines for AI
                     actor.get_target(self.actors['player'])

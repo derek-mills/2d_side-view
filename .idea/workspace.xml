@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -165,13 +165,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00466" summary="Fixing short hops issues.">
-      <created>1725502987969</created>
-      <option name="number" value="00466" />
-      <option name="presentableId" value="LOCAL-00466" />
-      <option name="project" value="LOCAL" />
-      <updated>1725502987969</updated>
     </task>
     <task id="LOCAL-00467" summary="Some improvements">
       <created>1725508272631</created>
@@ -509,7 +502,14 @@
       <option name="project" value="LOCAL" />
       <updated>1729649946544</updated>
     </task>
-    <option name="localTasksCounter" value="515" />
+    <task id="LOCAL-00515" summary="Added 'blunt' attack for simple impact interaction between demolisher and victim. Brings no special effect.&#10;'Smash' attack shall be used as throwing away interaction.">
+      <created>1729658053265</created>
+      <option name="number" value="00515" />
+      <option name="presentableId" value="LOCAL-00515" />
+      <option name="project" value="LOCAL" />
+      <updated>1729658053265</updated>
+    </task>
+    <option name="localTasksCounter" value="516" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -524,7 +524,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Renovation of protectors revealing and keeping them alive system." />
     <MESSAGE value="Tiny changes in shield thickness.&#10;Blast frags size hasted up and become bigger." />
     <MESSAGE value="Added 'decapitated' state in case of actor gets damage more than 2x of his remaining health." />
     <MESSAGE value="Improved 'decapitated' state." />
@@ -549,6 +548,7 @@
     <MESSAGE value="One unnecessary last blow in combo sequence has been vanished." />
     <MESSAGE value="Added 3-steps combo including two punches and one kick. Could be combined with other weapon." />
     <MESSAGE value="Slightly modified punch attack and invisible demolishers collision detection." />
-    <option name="LAST_COMMIT_MESSAGE" value="Slightly modified punch attack and invisible demolishers collision detection." />
+    <MESSAGE value="Added 'blunt' attack for simple impact interaction between demolisher and victim. Brings no special effect.&#10;'Smash' attack shall be used as throwing away interaction." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added 'blunt' attack for simple impact interaction between demolisher and victim. Brings no special effect.&#10;'Smash' attack shall be used as throwing away interaction." />
   </component>
 </project>
