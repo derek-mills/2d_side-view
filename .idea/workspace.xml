@@ -166,13 +166,6 @@
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
     </task>
-    <task id="LOCAL-00467" summary="Some improvements">
-      <created>1725508272631</created>
-      <option name="number" value="00467" />
-      <option name="presentableId" value="LOCAL-00467" />
-      <option name="project" value="LOCAL" />
-      <updated>1725508272631</updated>
-    </task>
     <task id="LOCAL-00468" summary="Added pretty pistol muzzle flash as an additional demolisher.">
       <created>1725865796873</created>
       <option name="number" value="00468" />
@@ -509,7 +502,14 @@
       <option name="project" value="LOCAL" />
       <updated>1729658053265</updated>
     </task>
-    <option name="localTasksCounter" value="516" />
+    <task id="LOCAL-00516" summary="'Stunned' state implemented.&#10;Combo will be reset if actor gets damage.">
+      <created>1729660851373</created>
+      <option name="number" value="00516" />
+      <option name="presentableId" value="LOCAL-00516" />
+      <option name="project" value="LOCAL" />
+      <updated>1729660851373</updated>
+    </task>
+    <option name="localTasksCounter" value="517" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -524,7 +524,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Tiny changes in shield thickness.&#10;Blast frags size hasted up and become bigger." />
     <MESSAGE value="Added 'decapitated' state in case of actor gets damage more than 2x of his remaining health." />
     <MESSAGE value="Improved 'decapitated' state." />
     <MESSAGE value="Items render in foreground now." />
@@ -549,6 +548,7 @@
     <MESSAGE value="Added 3-steps combo including two punches and one kick. Could be combined with other weapon." />
     <MESSAGE value="Slightly modified punch attack and invisible demolishers collision detection." />
     <MESSAGE value="Added 'blunt' attack for simple impact interaction between demolisher and victim. Brings no special effect.&#10;'Smash' attack shall be used as throwing away interaction." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added 'blunt' attack for simple impact interaction between demolisher and victim. Brings no special effect.&#10;'Smash' attack shall be used as throwing away interaction." />
+    <MESSAGE value="'Stunned' state implemented.&#10;Combo will be reset if actor gets damage." />
+    <option name="LAST_COMMIT_MESSAGE" value="'Stunned' state implemented.&#10;Combo will be reset if actor gets damage." />
   </component>
 </project>

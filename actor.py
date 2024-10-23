@@ -13,8 +13,6 @@ class Actor(Entity):
         self.current_weapon_demolishers_reveal_frames = list()
         self.is_collideable = True
         self.is_destructible = True
-        self.is_stunned = False
-        self.stun_counter = 0
 
         self.ai_input_right_arrow = False
         self.ai_input_left_arrow = False

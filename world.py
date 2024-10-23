@@ -2261,7 +2261,7 @@ class World(object):
                 if obs.is_item:
                     if obs.item_name == 'stash':
                         self.change_location({'new location': location,
-                                              'xy': obs.rectangle.topright
+                                              'xy': (obs.rectangle.x, obs.rectangle.bottom - self.actors['player'].rectangle.height - 10),
                                               }
                                              )
 

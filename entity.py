@@ -37,6 +37,8 @@ class Entity(object):
         # self.summon_demolisher_at_frame = 0
         self.summon_demolisher_counter = -1
         self.ttl = 0
+        self.is_stunned = False
+        self.stun_counter = 0
         self.dead = False
         self.dying = False
         self.disappear_after_death = False
@@ -933,17 +935,17 @@ class Entity(object):
             # self.stats['health'] -= d
             self.total_damage_has_got += d
 
-        # self.has_got_a_critical_hit = True
-        if self.total_damage_has_got > remain_health * 2:
-        # if self.total_damage_has_got > self.stats['health'] * 2:
+        self.stun_counter = self.total_damage_has_got * 100 // remain_health
+        # self.stun_counter = self.total_damage_has_got * 100 // self.stats['health']
+        # self.stun_counter = self.total_damage_has_got // self.stats['stamina']
+        # self.stun_counter = self.stats['health'] // self.total_damage_has_got
+        print(f'[get damage] {self.name} has been stunned for {self.stun_counter} frames.')
+
+        if self.total_damage_has_got >= remain_health * 2:
             self.has_got_a_critical_hit = True
 
-        # if self.stats['health'] <= 0:
-        #     self.set_state('dying')
-        #     print(f'[entity.get_damage] {self.name} {self.id} ***DYING*** | {self.stats["health"]=}')
-        #     # self.dying = True
-        #     # self.dead = True
-        #     # self.set_state('lie dead')
+        else:
+            self.has_got_a_critical_hit = False
 
     def health_replenish(self):
         if self.stats['health'] < self.stats['max health']:
