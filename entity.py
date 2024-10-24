@@ -100,6 +100,7 @@ class Entity(object):
         self.animation_sequence_done = False
         self.animation_not_interruptable = False
         self.current_animation: str = ''
+        self.animation_change_denied: bool = False
         self.frame_number: int = 0
         self.frame_change_counter: int = 0
         self.frames_changing_threshold: float = 0.
@@ -438,11 +439,19 @@ class Entity(object):
     #     # self.fly(time_passed)
     #     self.correct_position_if_influenced()
 
-    def set_current_animation(self):
+    def set_current_animation(self, particular_animation=''):
+        if self.animation_change_denied:
+            return
+
         state = self.get_state()
+        if particular_animation:
+            current_animation = particular_animation
+        else:
+            current_animation = state
+
         # print(state)
         # current_animation = state + str(self.look)
-        current_animation = state
+
         if self.current_weapon:
             if state == self.current_weapon['attack animation']:
                 if self.current_weapon['combo']:
@@ -469,6 +478,8 @@ class Entity(object):
             self.current_animation = current_animation
             self.apply_particular_animation(self.current_animation)
         self.active_frames = list(self.animations[self.current_animation]['activity at frames'].keys())
+        # self.frame_number = 0
+        # self.frame_change_counter = 0
 
     # def set_current_animation_back(self):
     #     state = self.get_state()
@@ -509,15 +520,16 @@ class Entity(object):
                                 self.summoned_protectors_description.append(p)
                     elif action == 'demolisher':
                         # print(f'[process active frames] make attack at frame {self.frame_number}')
-                        self.summon_demolisher = True
                         # self.summoned_demolishers_description = list()
                         dem_set_num = self.animations[self.current_animation]['activity at frames'][self.frame_number]['demolishers set number']
+
                         for d_origin in self.current_weapon['demolishers'][dem_set_num]:
                             d = copy.deepcopy(d_origin)
                             d['parent'] = self
                             d['demolisher sprite'] = d_origin['demolisher sprite']
                             d['snapping offset'] = sprites[self.name + ' ' + str(self.animation_sequence[self.frame_number])]['demolisher snap point']
                             self.summoned_demolishers_description.append(d)
+                        self.summon_demolisher = True
                 else:
                     # Other actions
                     if action == 'move':
@@ -795,9 +807,9 @@ class Entity(object):
 
                     if self.get_state() in ('hanging on edge', 'has just grabbed edge', 'climb on', 'climb on rise'):
                         self.set_state('release edge')
-                        self.state_machine()
-                    else:
-                        self.set_state('prepare to get hurt')
+                        # self.state_machine()
+                    # else:
+                    #     self.set_state('prepare to get hurt')
 
                     # Damage amount show:
                     txt_color = RED if self.id == 0 else WHITE
@@ -849,8 +861,13 @@ class Entity(object):
                         if self.movement_direction_inverter == -1 and self.is_enough_space_left or \
                            self.movement_direction_inverter == 1 and self.is_enough_space_right:
                             # print(f'[demolishers collision] {self.hop_back_jump_height_modifier} {dem.damage["smash"]=}')
-                            self.scheduled_state ='prepare to get hurt'
-                            self.set_state('hopping prepare')
+                            # self.scheduled_state = 'hopping prepare'
+                            # self.scheduled_state ='prepare to get hurt'
+                            self.set_state('prepare to get hurt and hopping')
+                        else:
+                            self.set_state('prepare to get hurt')
+                else:
+                    self.set_state('prepare to get hurt')
 
                 # Blood splatters:
                 if 'slash' in dem.damage.keys():
@@ -877,6 +894,8 @@ class Entity(object):
                             'collides': True,
                             'gravity affected': True
                         })
+
+
 
                 # print('[detect_demolishers_collisions] actor get damage in state:', self.__state)
 
@@ -1459,7 +1478,8 @@ class Entity(object):
             else:
                 self.speed = self.max_speed
 
-        if self.speed <= 0:
+        if self.speed == 0:
+        # if self.speed <= 0:
             self.movement_direction_inverter = 1
 
         self.potential_moving_distance = self.speed

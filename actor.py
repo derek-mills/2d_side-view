@@ -264,7 +264,7 @@ class Actor(Entity):
     #         return False
 
     def set_state(self, new_state):
-        # print(f'[actor.set_state] {self.name} (#{self.id}) got new state: {new_state} at {self.cycles_passed}')
+        print(f'[actor.set_state] {self.name} (#{self.id}) got new state: {new_state} at {self.cycles_passed}')
         self.__state = new_state
         self.set_current_animation()
 
@@ -527,6 +527,7 @@ class Actor(Entity):
                 # print(f'[set action] {self.name} prepares to attack.')
 
     def state_machine(self):
+        state = self.get_state()
         if self.get_state() == 'drop stash':                          #
             self.drop_item_from_inventory(self.inventory['burden']['stash']['item'])
             self.set_state('stand still')
@@ -742,6 +743,7 @@ class Actor(Entity):
             else:
                 if self.speed <= 0:
                     self.ignore_user_input = False
+                    self.animation_change_denied = False
                     if self.just_got_jumped:
                         self.just_got_jumped = False
                     self.is_abort_jump = True
@@ -1163,6 +1165,31 @@ class Actor(Entity):
             if self.animation_sequence_done:
                 print(f'[state machine] {self.name} state: *EXPLOSION*.')
                 self.dying = True
+        elif self.get_state() == 'prepare to get hurt and hopping':
+            self.set_current_animation('getting hurt')
+            self.animation_change_denied = True
+            self.scheduled_state = 'getting hurt'
+            self.set_state('hopping prepare')
+        # elif self.get_state() == 'hopping process while get hurt':
+        #     if not self.is_stunned:
+        #         if self.speed <= 0:
+        #             self.ignore_user_input = False
+        #             if self.just_got_jumped:
+        #                 self.just_got_jumped = False
+        #             self.is_abort_jump = True
+        #             # self.movement_direction_inverter = 1
+        #             # self.set_state('crouch')
+        #             if not self.dead:
+        #                 if self.scheduled_state:
+        #                     self.set_state(self.scheduled_state)
+        #                     self.scheduled_state = ''
+        #                 else:
+        #                     self.set_state('stand still')
+        #             else:
+        #                 if self.has_got_a_critical_hit:
+        #                     self.set_state('lie decapitated')
+        #                 else:
+        #                     self.set_state('lie dead')
         elif self.get_state() == 'prepare to get hurt':
             self.ignore_user_input = True
             self.set_state('getting hurt')
@@ -1170,6 +1197,7 @@ class Actor(Entity):
             if not self.is_stunned:
                 if self.animation_sequence_done:
                     self.ignore_user_input = False
+                    self.animation_change_denied = False
                     self.set_state('stand still')
 
     def reset_self_flags(self):

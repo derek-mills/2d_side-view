@@ -35,6 +35,18 @@ zombie = {
     'air acceleration': .1,
     'items': (demon_2_close, demon_2_mid, spikeball_staff),
     'animations': {
+        'getting hurt right': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (11, 12, 13, 13, 13, 13, 13), 'speed': 1,
+            'activity at frames': {},
+            'sound': None, 'sound at frames': (0,), 'repeat from frame': 2
+        },
+        'getting hurt left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (25, 26, 27, 27, 27, 27, 27), 'speed': 1,
+            'activity at frames': {},
+            'sound': None, 'sound at frames': (0,), 'repeat from frame': 2
+        },
         'stand still right': {
                 'repeat': True, 'interruptable': True,
                 'sequence': (1,1,1,1,1,1,2,1,2,1,1,1,1), 'speed': 20,

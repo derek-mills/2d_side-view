@@ -2069,6 +2069,7 @@ class World(object):
             (' SPEED: ' + str(self.actors['player'].speed), WHITE),
             (' MAX SPEED: ' + str(self.actors['player'].max_speed), WHITE),
             (' LOOK: ' + str(self.actors['player'].look), WHITE),
+            (' MOVE INVERTER: ' + str(self.actors['player'].movement_direction_inverter), WHITE),
             (' HEADING: ' + str(self.actors['player'].heading), WHITE),
             (' IDLE COUNT: ' + str(self.actors['player'].idle_counter), (200, 100, 50)),
             (' ACTIVE FRAMES: ' + str(self.actors['player'].active_frames), (200, 100, 50)),
