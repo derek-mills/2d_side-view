@@ -743,7 +743,7 @@ class Actor(Entity):
             else:
                 if self.speed <= 0:
                     self.ignore_user_input = False
-                    self.animation_change_denied = False
+                    # self.animation_change_denied = False
                     if self.just_got_jumped:
                         self.just_got_jumped = False
                     self.is_abort_jump = True
@@ -754,11 +754,14 @@ class Actor(Entity):
                             self.set_state(self.scheduled_state)
                             self.scheduled_state = ''
                         else:
+                            self.animation_change_denied = False
                             self.set_state('stand still')
                     else:
                         if self.has_got_a_critical_hit:
+                            self.animation_change_denied = False
                             self.set_state('lie decapitated')
                         else:
+                            self.animation_change_denied = False
                             self.set_state('lie dead')
         # elif self.get_state() == 'hop forward':                        # HOP BACK
         #     self.heading[0] = 0
