@@ -748,7 +748,11 @@ class Actor(Entity):
                     # self.movement_direction_inverter = 1
                     # self.set_state('crouch')
                     if not self.dead:
-                        self.set_state('stand still')
+                        if self.scheduled_state:
+                            self.set_state(self.scheduled_state)
+                            self.scheduled_state = ''
+                        else:
+                            self.set_state('stand still')
                     else:
                         if self.has_got_a_critical_hit:
                             self.set_state('lie decapitated')
@@ -1159,6 +1163,13 @@ class Actor(Entity):
             if self.animation_sequence_done:
                 print(f'[state machine] {self.name} state: *EXPLOSION*.')
                 self.dying = True
+        elif self.get_state() == 'prepare to get hurt':
+            self.ignore_user_input = True
+            self.set_state('getting hurt')
+        elif self.get_state() == 'getting hurt':
+            if self.animation_sequence_done:
+                self.ignore_user_input = False
+                self.set_state('stand still')
 
     def reset_self_flags(self):
         self.is_move_left = False

@@ -20,6 +20,7 @@ class Entity(object):
         self.got_immunity_to_demolishers = list()
         self.location: str = ''
         self.__state: str = ''
+        self.scheduled_state: str = ''
         self.idle_counter: int = 0
         self.ignore_user_input: bool = False
         self.look: int = 1  # 1: look right, -1: look left
@@ -531,8 +532,8 @@ class Entity(object):
     def process_animation(self):
         # self.set_current_animation()
         if self.animation_sequence:
-            if not self.is_stunned:
-                self.frame_change_counter += 1
+            # if not self.is_stunned:
+            self.frame_change_counter += 1
             if self.frame_change_counter > self.frames_changing_threshold:
                 # It is time to change a frame in sequence:
                 self.frame_change_counter = 0
@@ -795,6 +796,8 @@ class Entity(object):
                     if self.get_state() in ('hanging on edge', 'has just grabbed edge', 'climb on', 'climb on rise'):
                         self.set_state('release edge')
                         self.state_machine()
+                    else:
+                        self.set_state('prepare to get hurt')
 
                     # Damage amount show:
                     txt_color = RED if self.id == 0 else WHITE
@@ -845,10 +848,9 @@ class Entity(object):
                         # if self.get_state() != 'lie dead':
                         if self.movement_direction_inverter == -1 and self.is_enough_space_left or \
                            self.movement_direction_inverter == 1 and self.is_enough_space_right:
-                            print(f'[demolishers collision] {self.hop_back_jump_height_modifier} {dem.damage["smash"]=}')
-                            # print(f'{self.hop_back_jump_height_modifier} {self.total_damage_has_got=}')
+                            # print(f'[demolishers collision] {self.hop_back_jump_height_modifier} {dem.damage["smash"]=}')
+                            self.scheduled_state ='prepare to get hurt'
                             self.set_state('hopping prepare')
-                            # self.set_state('hop back')
 
                 # Blood splatters:
                 if 'slash' in dem.damage.keys():
@@ -937,7 +939,7 @@ class Entity(object):
             # self.stats['health'] -= d
             self.total_damage_has_got += d
 
-        self.stun_counter = self.total_damage_has_got * 100 // remain_health
+        self.stun_counter = min(200, self.total_damage_has_got * 200 // remain_health)
         # self.stun_counter = self.total_damage_has_got * 100 // self.stats['health']
         # self.stun_counter = self.total_damage_has_got // self.stats['stamina']
         # self.stun_counter = self.stats['health'] // self.total_damage_has_got

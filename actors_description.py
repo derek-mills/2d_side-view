@@ -1244,6 +1244,18 @@ player_jake = {
             'activity at frames': {},
             'sound': None, 'sound at frames': (0,), 'repeat from frame': 0
         },
+        'getting hurt right': {
+                'repeat': True, 'interruptable': True,
+                'sequence': (11,12,13,13,13,13,13), 'speed': 2,
+                'activity at frames': {},
+                'sound': None, 'sound at frames': (0,), 'repeat from frame': 0
+            },
+        'getting hurt left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (25,26,27,27,27,27,27), 'speed': 2,
+            'activity at frames': {},
+            'sound': None, 'sound at frames': (0,), 'repeat from frame': 0
+        },
         'lie dead right': {
             'repeat': True,
             'sequence': (14,), 'speed': 20,
