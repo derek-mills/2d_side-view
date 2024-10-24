@@ -1990,9 +1990,9 @@ class World(object):
                 # elif event.key == K_m:
                 #     self.need_to_show_minimap = False if self.need_to_show_minimap else True
                 elif event.key == K_n:
-                    enemy_to_add = copy(all_hostiles['zombie'])  # Create a copy of enemy
+                    # enemy_to_add = copy(all_hostiles['zombie'])  # Create a copy of enemy
                     # enemy_to_add = copy(all_hostiles['demon 1'])  # Create a copy of enemy
-                    # enemy_to_add = copy(all_hostiles['demon 2'])  # Create a copy of enemy
+                    enemy_to_add = copy(all_hostiles['demon 2'])  # Create a copy of enemy
                     self.add_actor(enemy_to_add, (MAXX_DIV_2 + self.camera.offset_x, MAXY_DIV_2 + self.camera.offset_y))
                     # self.change_mode()
                     # self.is_n = False if self.is_n else True

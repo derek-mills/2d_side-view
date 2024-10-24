@@ -1167,9 +1167,10 @@ class Actor(Entity):
             self.ignore_user_input = True
             self.set_state('getting hurt')
         elif self.get_state() == 'getting hurt':
-            if self.animation_sequence_done:
-                self.ignore_user_input = False
-                self.set_state('stand still')
+            if not self.is_stunned:
+                if self.animation_sequence_done:
+                    self.ignore_user_input = False
+                    self.set_state('stand still')
 
     def reset_self_flags(self):
         self.is_move_left = False

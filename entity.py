@@ -940,9 +940,6 @@ class Entity(object):
             self.total_damage_has_got += d
 
         self.stun_counter = min(200, self.total_damage_has_got * 200 // remain_health)
-        # self.stun_counter = self.total_damage_has_got * 100 // self.stats['health']
-        # self.stun_counter = self.total_damage_has_got // self.stats['stamina']
-        # self.stun_counter = self.stats['health'] // self.total_damage_has_got
         print(f'[get damage] {self.name} has been stunned for {self.stun_counter} frames.')
 
         if self.total_damage_has_got >= remain_health * 2:

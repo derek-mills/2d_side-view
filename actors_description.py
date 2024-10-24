@@ -652,7 +652,7 @@ demon_1 = {
 demon_2 = {
     'name': 'demon 2',
     'drop': ['exp' for i in range(randint(8,12))],
-    'health': 50.,
+    'health': 5000.,
     'mana replenish': 50.,
     'stamina replenish': 1.,
     'blood color': (150, 50, 10),
@@ -1248,13 +1248,13 @@ player_jake = {
                 'repeat': True, 'interruptable': True,
                 'sequence': (11,12,13,13,13,13,13), 'speed': 2,
                 'activity at frames': {},
-                'sound': None, 'sound at frames': (0,), 'repeat from frame': 0
+                'sound': None, 'sound at frames': (0,), 'repeat from frame': 2
             },
         'getting hurt left': {
             'repeat': True, 'interruptable': True,
             'sequence': (25,26,27,27,27,27,27), 'speed': 2,
             'activity at frames': {},
-            'sound': None, 'sound at frames': (0,), 'repeat from frame': 0
+            'sound': None, 'sound at frames': (0,), 'repeat from frame': 2
         },
         'lie dead right': {
             'repeat': True,
