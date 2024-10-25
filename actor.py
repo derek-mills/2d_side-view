@@ -718,11 +718,15 @@ class Actor(Entity):
                             self.set_state('stand still')
                     else:
                         if self.has_got_a_critical_hit:
-                            self.animation_change_denied = False
+                            # self.animation_change_denied = False
                             self.set_state('lie decapitated')
+                            self.set_current_animation()
+                            self.animation_change_denied = True
                         else:
-                            self.animation_change_denied = False
+                            # self.animation_change_denied = False
                             self.set_state('lie dead')
+                            self.set_current_animation()
+                            self.animation_change_denied = True
                     # print(f'[state_machine] "hopping process" routine ends: {self.movement_direction_inverter=}')
         # elif self.get_state() == 'hop forward':                        # HOP BACK
         #     self.heading[0] = 0
@@ -1061,10 +1065,12 @@ class Actor(Entity):
                 if self.has_got_a_critical_hit:
                     self.set_state('decapitated')
                     self.set_current_animation()
+                    self.animation_change_denied = True
                 else:
                     self.set_new_desired_height(self.sprite_rectangle.height)
                     self.set_state('lie dead')
                     self.set_current_animation()
+                    self.animation_change_denied = True
         elif state == 'lie dead':                        #
             self.heading = [0, 0]
             if self.idle_counter > 0:
@@ -1102,9 +1108,10 @@ class Actor(Entity):
                 print(f'[state machine] {self.name} state: *EXPLOSION*.')
                 self.dying = True
         elif state == 'prepare to get hurt and hopping':
-            self.set_current_animation('getting hurt')
-            self.animation_change_denied = True
-            # self.scheduled_state = 'getting hurt'
+            if not self.dead:
+                self.set_current_animation('getting hurt')
+                self.animation_change_denied = True
+                # self.scheduled_state = 'getting hurt'
             self.set_state('hopping prepare')
         # elif self.get_state() == 'hopping process while get hurt':
         #     if not self.is_stunned:
@@ -1127,9 +1134,10 @@ class Actor(Entity):
         #                 else:
         #                     self.set_state('lie dead')
         elif state == 'prepare to get hurt':
-            self.ignore_user_input = True
-            self.set_state('getting hurt')
-            self.set_current_animation()
+            if not self.dead:
+                self.ignore_user_input = True
+                self.set_state('getting hurt')
+                self.set_current_animation()
         elif state == 'getting hurt':
             # if not self.is_stunned:
             if self.animation_sequence_done:

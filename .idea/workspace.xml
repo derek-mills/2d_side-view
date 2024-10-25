@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,13 +163,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00478" summary="Tuning of hopping back after taking damage (iteration 2).">
-      <created>1726119690536</created>
-      <option name="number" value="00478" />
-      <option name="presentableId" value="LOCAL-00478" />
-      <option name="project" value="LOCAL" />
-      <updated>1726119690536</updated>
     </task>
     <task id="LOCAL-00479" summary="Tuning of hopping back after taking damage (iteration 3).">
       <created>1726121120658</created>
@@ -506,7 +500,14 @@
       <option name="project" value="LOCAL" />
       <updated>1729845082539</updated>
     </task>
-    <option name="localTasksCounter" value="527" />
+    <task id="LOCAL-00527" summary="State machine remake continues.">
+      <created>1729845363249</created>
+      <option name="number" value="00527" />
+      <option name="presentableId" value="LOCAL-00527" />
+      <option name="project" value="LOCAL" />
+      <updated>1729845363249</updated>
+    </task>
+    <option name="localTasksCounter" value="528" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -521,7 +522,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="just a messing with sprites" />
     <MESSAGE value="Altered frames changing speed if actor has an exhausted state." />
     <MESSAGE value="Continue to change main actor sprites appearance.&#10;I don't like fatty look of this one." />
     <MESSAGE value="Fixed stamina lost while actors sliding." />
@@ -546,6 +546,7 @@
     <MESSAGE value="Solved bug when AI actor changed weapon and caused crash because previous attack animation hasn't been finished yet, but he tried to use settings from the new one." />
     <MESSAGE value="Commit before I decided to remake state_machine(). I'll try to separate animations from states and apply new animation for every state in manual mode." />
     <MESSAGE value="State machine remake started." />
-    <option name="LAST_COMMIT_MESSAGE" value="State machine remake started." />
+    <MESSAGE value="State machine remake continues." />
+    <option name="LAST_COMMIT_MESSAGE" value="State machine remake continues." />
   </component>
 </project>
