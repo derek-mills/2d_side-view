@@ -2241,7 +2241,7 @@ class World(object):
         black_out(self.screen, self.screen, 10)
         render_text('YOU DIED', self.screen, 150, RED, 'AlbionicRegular.ttf', 'center_x', 'center_y')
         pygame.display.flip()
-        pygame.time.wait(1000)
+        pygame.time.wait(800)
         render_text('press a key to revive', self.screen, 50, RED, 'AlbionicRegular.ttf', 'center_x', '3/4_y')  #, (-200, 0))
         pygame.display.flip()
         pygame.event.clear()
@@ -2250,6 +2250,7 @@ class World(object):
         self.actors['player'].stats['mana'] = self.actors['player'].stats['max mana']
         self.actors['player'].dead = False
         self.actors['player'].dying = False
+        self.actors['player'].animation_change_denied = False
         self.actors['player'].set_state('stand still')
         self.actors['player'].invincibility_timer = 300
         self.actors['player'].ignore_user_input = False

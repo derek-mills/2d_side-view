@@ -1244,6 +1244,58 @@ player_jake = {
     'items': (axe,jake_kick, small_shield, spikeball_staff, fireball_staff,pistol,whip,),
     # 'items': (whip,fireball_staff,sword,kitchen_knife,),
     'animations': {
+        'decapitated left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (84, 85, 86, 87,),
+            'speed': 9,
+            'activity at frames': {
+                0: {
+                    'sound': True,
+                    'demolishers set number': 0,
+                    'demolisher': False
+                },
+            },
+            'repeat from frame': 3
+        },
+        'decapitated right': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (73, 72, 71, 70,),
+            'speed': 9,
+            'activity at frames': {
+                0: {
+                    'sound': True,
+                    'demolishers set number': 0,
+                    'demolisher': False
+                },
+            },
+            'repeat from frame': 3
+        },
+        'lie decapitated left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (17,),
+            'speed': 9,
+            'activity at frames': {
+                0: {
+                    'sound': True,
+                    'demolishers set number': 0,
+                    'demolisher': False
+                },
+            },
+            'repeat from frame': 0
+        },
+        'lie decapitated right': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (17,),
+            'speed': 9,
+            'activity at frames': {
+                0: {
+                    'sound': True,
+                    'demolishers set number': 0,
+                    'demolisher': False
+                },
+            },
+            'repeat from frame': 0
+        },
         'stand still right': {
                 'repeat': True, 'interruptable': True,
                 'sequence': (1,1,1,1,1,1,2,1,2,1,1,1,1), 'speed': 20,

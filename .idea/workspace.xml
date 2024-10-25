@@ -7,6 +7,10 @@
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphics.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main .py" beforeDir="false" afterPath="$PROJECT_DIR$/main .py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -164,13 +168,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00476" summary="The Stash helps to replenish mana and health now (correction).">
-      <created>1726027289226</created>
-      <option name="number" value="00476" />
-      <option name="presentableId" value="LOCAL-00476" />
-      <option name="project" value="LOCAL" />
-      <updated>1726027289226</updated>
     </task>
     <task id="LOCAL-00477" summary="Tuning of hopping back after taking damage.">
       <created>1726110702044</created>
@@ -508,7 +505,14 @@
       <option name="project" value="LOCAL" />
       <updated>1729823903141</updated>
     </task>
-    <option name="localTasksCounter" value="525" />
+    <task id="LOCAL-00525" summary="Commit before I decided to remake state_machine(). I'll try to separate animations from states and apply new animation for every state in manual mode.">
+      <created>1729834360141</created>
+      <option name="number" value="00525" />
+      <option name="presentableId" value="LOCAL-00525" />
+      <option name="project" value="LOCAL" />
+      <updated>1729834360141</updated>
+    </task>
+    <option name="localTasksCounter" value="526" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -523,7 +527,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Stamina replenishing speeds up while player actor sticks near the Stash" />
     <MESSAGE value="some tiny changes" />
     <MESSAGE value="just a messing with sprites" />
     <MESSAGE value="Altered frames changing speed if actor has an exhausted state." />
@@ -548,6 +551,7 @@
     <MESSAGE value="Tuning of 'hop back' and 'getting hurt' statuses. Still got an annoying bug when actor is hopping in wrong direction after being hit." />
     <MESSAGE value="Solved bug with inverted fly direction after actor has been smashed." />
     <MESSAGE value="Solved bug when AI actor changed weapon and caused crash because previous attack animation hasn't been finished yet, but he tried to use settings from the new one." />
-    <option name="LAST_COMMIT_MESSAGE" value="Solved bug when AI actor changed weapon and caused crash because previous attack animation hasn't been finished yet, but he tried to use settings from the new one." />
+    <MESSAGE value="Commit before I decided to remake state_machine(). I'll try to separate animations from states and apply new animation for every state in manual mode." />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit before I decided to remake state_machine(). I'll try to separate animations from states and apply new animation for every state in manual mode." />
   </component>
 </project>
