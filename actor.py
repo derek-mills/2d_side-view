@@ -264,7 +264,7 @@ class Actor(Entity):
     #         return False
 
     def set_state(self, new_state):
-        print(f'[actor.set_state] {self.name} (#{self.id}) got new state: {new_state} at {self.cycles_passed} ({self.movement_direction_inverter=})')
+        # print(f'[actor.set_state] {self.name} (#{self.id}) got new state: {new_state} at {self.cycles_passed} ({self.movement_direction_inverter=})')
         self.__state = new_state
         self.set_current_animation()
 
@@ -1216,6 +1216,8 @@ class Actor(Entity):
         if self.think_type == 'chaser':
             # Change weapon depends on target vicinity:
             # print('[think]', list(self.inventory['weapons'].keys()))
+            # if not self.animation_sequence_done:
+            #     return
             if self.rectangle.centerx > self.target.rectangle.centerx:
                 self.ai_input_left_arrow = True
                 self.ai_input_right_arrow = False
@@ -1231,8 +1233,6 @@ class Actor(Entity):
                 # Smash actor immediately:
                 self.activate_weapon(0)  # Activate close combat weapon (always has index 0).
                 self.ai_input_attack = True
-                # self.ai_input_left_arrow = False
-                # self.ai_input_right_arrow = False
             else:
 
                 if abs(self.rectangle.centerx - self.target.rectangle.centerx) <= self.current_weapon['reach']:
@@ -1257,7 +1257,7 @@ class Actor(Entity):
                     if self.next_ranged_weapon_usage_counter > 0:
                         self.next_ranged_weapon_usage_counter -= 1
                     else:
-                        self.next_ranged_weapon_usage_counter = randint(100, 1200)
+                        self.next_ranged_weapon_usage_counter = randint(100, 120)
                         if self.stats['mana'] >= self.current_mana_lost_per_attack:
                             self.activate_weapon(2)  # Activate ranged weapon (always has index 2).
                             self.ai_input_attack = True

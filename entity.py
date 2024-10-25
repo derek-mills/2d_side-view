@@ -522,13 +522,21 @@ class Entity(object):
                         # print(f'[process active frames] make attack at frame {self.frame_number}')
                         # self.summoned_demolishers_description = list()
                         dem_set_num = self.animations[self.current_animation]['activity at frames'][self.frame_number]['demolishers set number']
-
-                        for d_origin in self.current_weapon['demolishers'][dem_set_num]:
-                            d = copy.deepcopy(d_origin)
-                            d['parent'] = self
-                            d['demolisher sprite'] = d_origin['demolisher sprite']
-                            d['snapping offset'] = sprites[self.name + ' ' + str(self.animation_sequence[self.frame_number])]['demolisher snap point']
-                            self.summoned_demolishers_description.append(d)
+                        # if self.current_weapon['attack animation'] != self.current_animation:
+                        #     return
+                        if dem_set_num > len(self.current_weapon['demolishers']) - 1:
+                            return
+                        try:
+                            for d_origin in self.current_weapon['demolishers'][dem_set_num]:
+                                d = copy.deepcopy(d_origin)
+                                d['parent'] = self
+                                d['demolisher sprite'] = d_origin['demolisher sprite']
+                                d['snapping offset'] = sprites[self.name + ' ' + str(self.animation_sequence[self.frame_number])]['demolisher snap point']
+                                self.summoned_demolishers_description.append(d)
+                        except IndexError:
+                            print(f'[process activity at frames] ERROR! anmtn: {self.current_animation}, {self.current_weapon["label"]}')
+                            print(f'[process activity at frames] ERROR! {self.get_state()}')
+                            exit()
                         self.summon_demolisher = True
                 else:
                     # Other actions

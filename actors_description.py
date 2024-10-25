@@ -696,13 +696,13 @@ demon_2 = {
     'animations': {
         'stand still right': {
                 'repeat': True, 'interruptable': True,
-                'sequence': (1,1,1,1,1,1,2,1,2,1,1,1,1), 'speed': 20,
+                'sequence': (1,1,1,1,1,1,2,1,2,1,1,1,1), 'speed': 1,
                 'activity at frames': {},
                 'sound': None, 'sound at frames': (0,), 'repeat from frame': 0
             },
         'stand still left': {
             'repeat': True, 'interruptable': True,
-            'sequence': (15,15,15,15,15,15,16,15,16,15,15,15,15), 'speed': 20,
+            'sequence': (15,15,15,15,15,15,16,15,16,15,15,15,15), 'speed': 1,
             'activity at frames': {},
             'sound': None, 'sound at frames': (0,), 'repeat from frame': 0
         },
