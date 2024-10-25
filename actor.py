@@ -264,7 +264,7 @@ class Actor(Entity):
     #         return False
 
     def set_state(self, new_state):
-        print(f'[actor.set_state] {self.name} (#{self.id}) got new state: {new_state} at {self.cycles_passed}')
+        print(f'[actor.set_state] {self.name} (#{self.id}) got new state: {new_state} at {self.cycles_passed} ({self.movement_direction_inverter=})')
         self.__state = new_state
         self.set_current_animation()
 
@@ -682,7 +682,7 @@ class Actor(Entity):
             # self.set_state('stand still')
         elif self.get_state() == 'hopping prepare':                        # HOP BACK
             self.heading[0] = 0
-            self.speed = 0
+            # self.speed = 0
             # if self.is_stand_on_ground:
             # if self.movement_direction_inverter == -1 and not self.is_enough_space_left:
             #     return
@@ -713,9 +713,9 @@ class Actor(Entity):
                     # self.jump_height = self.max_jump_height * 0.6
                     self.speed = min(5 * self.hop_back_jump_height_modifier, 30)
                     # print(f'[state machine] hop back prepare: {self.hop_back_jump_height_modifier=} {self.jump_height=} {self.speed=}')
-                    # self.movement_direction_inverter = -1
+                    #self.movement_direction_inverter = -1
                     # self.heading[0] = 0
-                    self.idle_counter = 15
+                    self.idle_counter = 25
                     # self.invincibility_timer = 20
                     self.hop_back_jump_height_modifier = self.default_hop_back_jump_height_modifier
                 self.is_abort_jump = False
@@ -731,7 +731,7 @@ class Actor(Entity):
                         self.set_state('release edge')
                     else:
                         self.set_state('hopping process')
-
+                print(f'[state_machine] "hopping prepare" routine ends: {self.movement_direction_inverter=}')
             # else:
             #     self.set_state('release edge')
             # else:
@@ -763,6 +763,7 @@ class Actor(Entity):
                         else:
                             self.animation_change_denied = False
                             self.set_state('lie dead')
+                    print(f'[state_machine] "hopping process" routine ends: {self.movement_direction_inverter=}')
         # elif self.get_state() == 'hop forward':                        # HOP BACK
         #     self.heading[0] = 0
         #     self.speed = 0

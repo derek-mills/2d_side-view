@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,13 +164,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00473" summary="Added parameter of athletic, which affects on moving speed and jump height.">
-      <created>1725958104002</created>
-      <option name="number" value="00473" />
-      <option name="presentableId" value="LOCAL-00473" />
-      <option name="project" value="LOCAL" />
-      <updated>1725958104002</updated>
     </task>
     <task id="LOCAL-00474" summary="Added parameter of athletic, which affects on moving speed and jump height.">
       <created>1725958302463</created>
@@ -506,7 +501,14 @@
       <option name="project" value="LOCAL" />
       <updated>1729760706300</updated>
     </task>
-    <option name="localTasksCounter" value="522" />
+    <task id="LOCAL-00522" summary="Tuning of 'hop back' and 'getting hurt' statuses. Still got an annoying bug when actor is hopping in wrong direction after being hit.">
+      <created>1729761242527</created>
+      <option name="number" value="00522" />
+      <option name="presentableId" value="LOCAL-00522" />
+      <option name="project" value="LOCAL" />
+      <updated>1729761242527</updated>
+    </task>
+    <option name="localTasksCounter" value="523" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -521,7 +523,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="several minor changes.&#10;to be honest -- I've lost the way where should to move on to make progress." />
     <MESSAGE value="Added opportunity to become a missile for actor if terminal velocity reached." />
     <MESSAGE value="Improved becoming a bullet after reaching terminal velocity." />
     <MESSAGE value="Stamina replenishing speeds up while player actor sticks near the Stash" />
@@ -546,6 +547,7 @@
     <MESSAGE value="Added 'get hurt' state and corresponding animation (only for player actor for now)." />
     <MESSAGE value="Tuning of 'stun' and 'getting hurt' statuses." />
     <MESSAGE value="Tuning of 'stun' and 'getting hurt' statuses. Got annoying bug when actor is hopping in wrong direction after being hit." />
-    <option name="LAST_COMMIT_MESSAGE" value="Tuning of 'stun' and 'getting hurt' statuses. Got annoying bug when actor is hopping in wrong direction after being hit." />
+    <MESSAGE value="Tuning of 'hop back' and 'getting hurt' statuses. Still got an annoying bug when actor is hopping in wrong direction after being hit." />
+    <option name="LAST_COMMIT_MESSAGE" value="Tuning of 'hop back' and 'getting hurt' statuses. Still got an annoying bug when actor is hopping in wrong direction after being hit." />
   </component>
 </project>

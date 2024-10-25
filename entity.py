@@ -837,9 +837,9 @@ class Entity(object):
                     })
 
                 if 'smash' in dem.damage.keys():
+                    print(f'[demolishers detector] {self.name} has been smashed and thrown away.')
                     if self.get_state() not in ('hold stash', 'carry stash right', 'carry stash left'):
                         if dem.parent:
-                            # print('sdsdsadasdsadasd')
                             # self.hop_back_jump_height_modifier = ((dem.parent_strength / self.strength) + (dem.parent_weight / self.body_weight)) / dem.parent_penalty
                             # self.hop_back_jump_height_modifier = min(10, self.total_damage_has_got + ((dem.parent_strength + dem.parent_weight) / (self.strength + self.body_weight)))
                             # self.hop_back_jump_height_modifier = ((dem.parent_strength + dem.parent_weight) / (self.strength + self.body_weight))  # / dem.parent_penalty
@@ -864,6 +864,7 @@ class Entity(object):
                             # self.scheduled_state = 'hopping prepare'
                             # self.scheduled_state ='prepare to get hurt'
                             self.set_state('prepare to get hurt and hopping')
+                            self.state_machine()
                         else:
                             self.set_state('prepare to get hurt')
                 else:
