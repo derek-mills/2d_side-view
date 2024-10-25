@@ -915,6 +915,7 @@ class Actor(Entity):
             # self.set_new_desired_height(self.rectangle_height_slide, 0)
         elif self.get_state() == 'stand still':                     # STANDING STILL
             self.heading[0] = 0
+            self.animation_change_denied = False
             self.normal_stamina_replenish = self.default_normal_stamina_replenish
             # self.frames_changing_threshold_modifier = 1
             # self.just_got_jumped = False
@@ -1124,6 +1125,7 @@ class Actor(Entity):
         elif self.get_state() == 'dying':
             # print(f'[state machine] {self.name} state: *DYING*.')
             # if self.animation_sequence_done:
+            self.animation_change_denied = False
             if self.think_type == 'exploding barrel':
                 self.set_state('almost explode')
             else:
@@ -1134,6 +1136,7 @@ class Actor(Entity):
                     self.set_state('lie dead')
         elif self.get_state() == 'lie dead':                        #
             self.set_new_desired_height(self.sprite_rectangle.height)
+            self.animation_change_denied = False
             self.heading = [0, 0]
             if self.idle_counter > 0:
                 self.idle_counter -= 1
@@ -1145,10 +1148,12 @@ class Actor(Entity):
                         self.just_got_jumped = False
                     self.is_abort_jump = True
         elif self.get_state() == 'decapitated':
+            self.animation_change_denied = False
             if self.animation_sequence_done:
                 self.set_state('lie decapitated')
         elif self.get_state() == 'lie decapitated':
             self.set_new_desired_height(self.sprite_rectangle.height)
+            self.animation_change_denied = False
             self.heading = [0, 0]
             if self.idle_counter > 0:
                 self.idle_counter -= 1
@@ -1163,9 +1168,11 @@ class Actor(Entity):
             # print(f'[state machine] {self.name} is going to explode.')
             # print(f'[state machine] {self.name} state: *ALMOST EXPLODE*.')
             self.invincibility_timer = 100
+            self.animation_change_denied = False
             if self.animation_sequence_done:
                 self.set_state('explosion')
         elif self.get_state() == 'explosion':
+            self.animation_change_denied = False
             if self.animation_sequence_done:
                 print(f'[state machine] {self.name} state: *EXPLOSION*.')
                 self.dying = True

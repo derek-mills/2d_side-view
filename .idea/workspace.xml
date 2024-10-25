@@ -7,8 +7,7 @@
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,13 +164,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00475" summary="The Stash helps to replenish mana and health now.">
-      <created>1726027154291</created>
-      <option name="number" value="00475" />
-      <option name="presentableId" value="LOCAL-00475" />
-      <option name="project" value="LOCAL" />
-      <updated>1726027154291</updated>
     </task>
     <task id="LOCAL-00476" summary="The Stash helps to replenish mana and health now (correction).">
       <created>1726027289226</created>
@@ -509,7 +501,14 @@
       <option name="project" value="LOCAL" />
       <updated>1729820318633</updated>
     </task>
-    <option name="localTasksCounter" value="524" />
+    <task id="LOCAL-00524" summary="Solved bug when AI actor changed weapon and caused crash because previous attack animation hasn't been finished yet, but he tried to use settings from the new one.">
+      <created>1729823903141</created>
+      <option name="number" value="00524" />
+      <option name="presentableId" value="LOCAL-00524" />
+      <option name="project" value="LOCAL" />
+      <updated>1729823903141</updated>
+    </task>
+    <option name="localTasksCounter" value="525" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -524,7 +523,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Improved becoming a bullet after reaching terminal velocity." />
     <MESSAGE value="Stamina replenishing speeds up while player actor sticks near the Stash" />
     <MESSAGE value="some tiny changes" />
     <MESSAGE value="just a messing with sprites" />
@@ -549,6 +547,7 @@
     <MESSAGE value="Tuning of 'stun' and 'getting hurt' statuses. Got annoying bug when actor is hopping in wrong direction after being hit." />
     <MESSAGE value="Tuning of 'hop back' and 'getting hurt' statuses. Still got an annoying bug when actor is hopping in wrong direction after being hit." />
     <MESSAGE value="Solved bug with inverted fly direction after actor has been smashed." />
-    <option name="LAST_COMMIT_MESSAGE" value="Solved bug with inverted fly direction after actor has been smashed." />
+    <MESSAGE value="Solved bug when AI actor changed weapon and caused crash because previous attack animation hasn't been finished yet, but he tried to use settings from the new one." />
+    <option name="LAST_COMMIT_MESSAGE" value="Solved bug when AI actor changed weapon and caused crash because previous attack animation hasn't been finished yet, but he tried to use settings from the new one." />
   </component>
 </project>

@@ -1970,7 +1970,6 @@ class World(object):
                 #     if not self.music_on:
                 #         pygame.mixer.music.fadeout(2000)
                 elif event.key == K_z:
-                    # Cool stuff with if-then-else expression compress:
                     self.is_z = False if self.is_z else True
                 elif event.key == K_x:
                     # self.change_mode()
@@ -2001,10 +2000,8 @@ class World(object):
                     # self.add_info_window(self.calculate_info_string_xy(), [msg, ], 300, False)
 
                 elif event.key == K_p:
-                    # Cool stuff with if-then-else expression compress:
                     self.is_p = False if self.is_p else True
                 elif event.key == K_i:
-                    # Cool stuff with if-then-else expression compress:
                     self.is_i = False if self.is_i else True
                 # elif event.key == K_SPACE:
                 #     self.change_player_actors()
