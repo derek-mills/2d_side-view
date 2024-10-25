@@ -472,14 +472,14 @@ class Entity(object):
 
         # If animation for current state does not exist, set default:
         if current_animation not in self.animations.keys():
+            print(f'[set current animation] {current_animation} not exist. Exiting with animation: {self.current_animation} ')
             return
             # self.current_animation = 'stand still right'
         else:
             self.current_animation = current_animation
             self.apply_particular_animation(self.current_animation)
         self.active_frames = list(self.animations[self.current_animation]['activity at frames'].keys())
-        # self.frame_number = 0
-        # self.frame_change_counter = 0
+        # print(f'[set current animation] exiting with animation: {self.current_animation} ')
 
     # def set_current_animation_back(self):
     #     state = self.get_state()

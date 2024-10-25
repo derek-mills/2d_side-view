@@ -530,9 +530,7 @@ class Actor(Entity):
             # self.stamina_replenish_modifier = 0.3
             self.heading[0] = 0
         elif state == 'prepare attack':                          # PREPARING ATTACK
-            print(f'[state machine] {self.name} prepares attack.')
-            self.set_state(self.current_weapon['attack animation'])
-            self.set_current_animation()
+            # print(f'[state machine] {self.name} prepares attack.')
             self.stamina_reduce(self.current_stamina_lost_per_attack)
             self.mana_reduce(self.current_mana_lost_per_attack)
             self.frames_changing_threshold_modifier = self.current_weapon['animation speed modifier'] * \
@@ -544,6 +542,8 @@ class Actor(Entity):
             self.ignore_user_input = self.current_weapon['ignore user input']
             if self.is_stand_on_ground:
                 self.heading[0] = 0
+            self.set_state(self.current_weapon['attack animation'])
+            self.set_current_animation()
         elif state == 'prepare crouch attack left':                          # PREPARING ATTACK
             self.set_state(self.current_weapon['attack animation'] + ' crouch left')
             self.set_current_animation()
@@ -569,7 +569,7 @@ class Actor(Entity):
                        'kick', 'pistol shot'):                          # ATTACKING IN PROCESS...
             # print(f'[state machine] {self.name} attacking.')
             if self.animation_sequence_done:
-                print(f'[state machine] attack is done.')
+                # print(f'[state machine] attack is done.')
                 self.ignore_user_input = False
                 # if self.force_use_previous_weapon:
                 #     self.force_use_previous_weapon = False
