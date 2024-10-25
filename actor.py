@@ -1100,10 +1100,13 @@ class Actor(Entity):
         elif state == 'almost explode':
             # print(f'[state machine] {self.name} is going to explode.')
             # print(f'[state machine] {self.name} state: *ALMOST EXPLODE*.')
+            self.animation_change_denied = True
             if self.animation_sequence_done:
                 self.set_state('explosion')
+                self.animation_change_denied = False
                 self.set_current_animation()
         elif state == 'explosion':
+            self.animation_change_denied = True
             if self.animation_sequence_done:
                 print(f'[state machine] {self.name} state: *EXPLOSION*.')
                 self.dying = True
