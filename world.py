@@ -1151,13 +1151,16 @@ class World(object):
                             actor.frames_changing_threshold_modifier = 1
                             actor.frames_changing_threshold_penalty = 1
                             actor.frames_changing_threshold = actor.animations[actor.current_animation]['speed']
-                            if actor.get_state() == 'protect':
-                                # actor.summon_protector = False
-                                while actor.summoned_protectors_keep_alive:
-                                    protector_id = actor.summoned_protectors_keep_alive.pop()
-                                    del self.protectors[self.location][protector_id]
-                                actor.set_state('stand still')
 
+                            if actor.get_state() == 'protect' or actor.summon_protector:
+                                if self.protectors[self.location]:
+                                    while actor.summoned_protectors_keep_alive:
+                                        protector_id = actor.summoned_protectors_keep_alive.pop()
+                                        del self.protectors[self.location][protector_id]
+                                else:
+                                    actor.summoned_protectors_keep_alive.clear()
+                                actor.summon_protector = False
+                                actor.set_state('stand still')
             actor.process()
 
             while actor.drop_from_inventory:
@@ -1179,13 +1182,9 @@ class World(object):
                     # self.demolishers[self.location][d_id].become_mr_floppy()
 
             if actor.summon_protector:
-                actor.summon_protector = False
+                # actor.summon_protector = False
                 while actor.summoned_protectors_description:
                     p = actor.summoned_protectors_description.pop()
-                    # if p['keep alive'] and self.protectors[self.location]:
-                    #     for k in self.protectors[self.location].keys():
-                    #         self.protectors[self.location][k].ttl += 1
-                    #     break
                     self.add_protector(p)
                     actor.summoned_protectors_keep_alive.append(self.protector_id - 1)
 

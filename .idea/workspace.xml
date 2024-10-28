@@ -7,6 +7,8 @@
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,13 +165,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00483" summary="Reduced affection of athletic factor to the maximum possible speed.">
-      <created>1726468119279</created>
-      <option name="number" value="00483" />
-      <option name="presentableId" value="LOCAL-00483" />
-      <option name="project" value="LOCAL" />
-      <updated>1726468119279</updated>
     </task>
     <task id="LOCAL-00484" summary="Fine tune of left and right hand actions system.">
       <created>1726552114017</created>
@@ -507,7 +502,14 @@
       <option name="project" value="LOCAL" />
       <updated>1730093714045</updated>
     </task>
-    <option name="localTasksCounter" value="532" />
+    <task id="LOCAL-00532" summary="Fighting with endless 'getting hurt' animation after actor has been hit through the shield and runs out of stamina.">
+      <created>1730101457087</created>
+      <option name="number" value="00532" />
+      <option name="presentableId" value="LOCAL-00532" />
+      <option name="project" value="LOCAL" />
+      <updated>1730101457087</updated>
+    </task>
+    <option name="localTasksCounter" value="533" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -522,7 +524,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed stamina lost while actors sliding." />
     <MESSAGE value="Removed unnecessary mana and stamina reducing.&#10;Added some new backgrounds in Entrance zone." />
     <MESSAGE value="Corrected shield holding animation." />
     <MESSAGE value="Fixed getting actor inside the wall if he has been smashed while standing up close against it." />
@@ -547,6 +548,7 @@
     <MESSAGE value="State machine remake continues." />
     <MESSAGE value="Some stamina reduce tuning." />
     <MESSAGE value="Some tuning." />
-    <option name="LAST_COMMIT_MESSAGE" value="Some tuning." />
+    <MESSAGE value="Fighting with endless 'getting hurt' animation after actor has been hit through the shield and runs out of stamina." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fighting with endless 'getting hurt' animation after actor has been hit through the shield and runs out of stamina." />
   </component>
 </project>

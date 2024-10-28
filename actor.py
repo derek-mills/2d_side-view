@@ -463,7 +463,8 @@ class Actor(Entity):
             self.ignore_user_input = False
 
         elif new_action == 'protect':
-            self.set_state('protect')
+            if self.__state in ('free', 'stand still', 'run right', 'run left', 'turn right', 'turn left'):
+                self.set_state('protect')
 
         elif new_action == 'attack':
             if self.stats['stamina'] <= self.current_stamina_lost_per_attack:

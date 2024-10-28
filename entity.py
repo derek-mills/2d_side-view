@@ -505,10 +505,10 @@ class Entity(object):
                 # print(self.frame_number, action)
                 if self.animations[self.current_animation]['activity at frames'][self.frame_number][action]:
                     # IF ACTION IS TRUE:
-                    if action == 'protector':
+                    if action == 'protector' and not self.summon_protector:
                         # print(f'[process active frames] defend at frame {self.frame_number}')
-                        if 'protectors' in self.current_weapon and not self.summon_protector:
-                        # if 'protectors' in self.current_weapon:
+                        if 'protectors' in self.current_weapon:
+                        # if 'protectors' in self.current_weapon and not self.summon_protector:
                             self.summon_protector = True
                             self.summoned_protectors_description = list()
                             protector_set_num = self.animations[self.current_animation]['activity at frames'][self.frame_number]['protectors set number']
