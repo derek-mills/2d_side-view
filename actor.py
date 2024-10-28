@@ -468,7 +468,7 @@ class Actor(Entity):
         elif new_action == 'attack':
             if self.stats['stamina'] <= self.current_stamina_lost_per_attack:
                 # print(f'[state machine] NOT ENOUGH STAMINA.')
-                self.frames_changing_threshold_penalty = 2  # x2 times slower animation
+                self.frames_changing_threshold_penalty = 2.  # x2 times slower animation
             else:
                 self.frames_changing_threshold_penalty = 1.
 
@@ -476,15 +476,16 @@ class Actor(Entity):
                 # print(f'[state machine] NOT ENOUGH MANA')
                 return
             if self.__state not in ('free', 'stand still', 'run right', 'run left',
-                                    'stand still', 'jump', 'crawl right', 'crawl left', 'protect',
+                                    'jump', 'protect',
                                     'crouch', 'fly right', 'fly left', 'turn right', 'turn left'):
                 return
             # print(f'[set action] attack')
             if self.__state in ('crawl left', 'crouch', 'crawl right'):
-                if self.look == 1:
-                    self.set_state('prepare crouch attack right')
-                else:
-                    self.set_state('prepare crouch attack left')
+                if self.current_weapon['has crouch attack']:
+                    if self.look == 1:
+                        self.set_state('prepare crouch attack right')
+                    else:
+                        self.set_state('prepare crouch attack left')
             else:
                 self.set_state('prepare attack')
                 # print(f'[set action] {self.name} prepares to attack.')

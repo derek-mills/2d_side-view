@@ -17,7 +17,7 @@ zombie = {
     'resistances': {
         # Zero is total resistance, such type of damage multiples by zero.
         # Above 1 is a weakness to particular type of damage.
-        'slash': 1.5,
+        'slash': 1.8,
         'pierce': 0.1,
         'smash': 1,
         'fire': 1.5
@@ -190,7 +190,7 @@ zombie = {
         'whip right': {
             'repeat': False, 'interruptable': True,
             'sequence': (74,74,74,75,76,76,76,77),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
-            'speed': 3,
+            'speed': 5,
             'activity at frames': {
                 4: {
                     'sound': True,
@@ -203,7 +203,7 @@ zombie = {
         'whip left': {
             'repeat': False, 'interruptable': True,
             'sequence': (91,91,91,90,89,89,89,88),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
-            'speed': 1,
+            'speed': 5,
             'activity at frames': {
                 4: {
                     'sound': True,
@@ -346,16 +346,16 @@ demon_1 = {
     'body weight': 50,
     'health': 200.,
     'mana replenish': .5,
-    'stamina replenish': 2.,
+    'stamina replenish': .2,
     'height': 150,  # For level editor use only
     'width': 50,  # For level editor use only
     'resistances': {
         # Zero is total resistance, such type of damage multiples by zero.
         # Above 1 is a weakness to particular type of damage.
-        'slash': 0.1,
+        'slash': 1,
         'pierce': 1,
         'smash': 1,
-        'fire': 1
+        'fire': .1
     },
     'gravity affected': True,
     # 'body': {
@@ -665,27 +665,27 @@ demon_2 = {
     'name': 'demon 2',
     'drop': ['exp' for i in range(randint(8,12))],
     'health': 5000.,
-    'mana replenish': 50.,
-    'stamina replenish': 1.,
+    'mana replenish': .01,
+    'stamina replenish': .2,
     'blood color': (150, 50, 10),
     'strength': 15,
     'body weight': 140,
     'resistances': {
         # Zero is total resistance, such type of damage multiples by zero.
         # Above 1 is a weakness to particular type of damage.
-        'slash': 0,
-        'pierce': 0.5,
+        'slash': 1,
+        'pierce': 0.9,
         'smash': 0.1,
         'fire': 0.8
     },
     'height': 150,  # For level editor use only
     'width': 50,  # For level editor use only
     'gravity affected': True,
-    'body': {
-        'head': {
-            'hardness': 100
-        },
-    },
+    # 'body': {
+    #     'head': {
+    #         'hardness': 100
+    #     },
+    # },
     'max speed': 5 + randint(1, 10) / 10,
     'max jump height': 27,
     'acceleration': .3,
@@ -1492,7 +1492,7 @@ player_jake = {
         },
         'whip crouch right': {
             'repeat': False, 'interruptable': True,
-            'sequence': (60, 60, 60, 61, 62, 62, 62, 61),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'sequence': (60, 60, 60, 61, 62, 62, 62, 62,62, 61),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
             'speed': 2,
             'activity at frames': {
                 4: {
@@ -1500,18 +1500,38 @@ player_jake = {
                     'demolisher': True,
                     'demolishers set number': 0,
                 },
+                5: {
+                    'sound': True,
+                    'demolisher': True,
+                    'demolishers set number': 1,
+                },
+                6: {
+                    'sound': True,
+                    'demolisher': True,
+                    'demolishers set number': 2,
+                },
             },
             'repeat from frame': 0
         },
         'whip crouch left': {
             'repeat': False, 'interruptable': True,
-            'sequence': (80, 80, 80, 79, 78, 78, 78, 79),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'sequence': (80, 80, 80, 79, 78, 78, 78, 78,78, 79),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
             'speed': 2,
             'activity at frames': {
                 4: {
                     'sound': True,
+                    'demolisher': True,
                     'demolishers set number': 0,
-                    'demolisher': True
+                },
+                5: {
+                    'sound': True,
+                    'demolisher': True,
+                    'demolishers set number': 1,
+                },
+                6: {
+                    'sound': True,
+                    'demolisher': True,
+                    'demolishers set number': 2,
                 },
             },
             'repeat from frame': 0

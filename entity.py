@@ -797,14 +797,14 @@ class Entity(object):
                     if self.stats['stamina'] >= stamina_taken_while_defending:
                         # Actor is able to consume own stamina to protect himself:
                         self.stamina_reduce(stamina_taken_while_defending)
-                        self.invincibility_timer = 20
+                        self.invincibility_timer = 10
                         continue
 
                 if not dem.pierce and not self.dead:
                     self.has_just_stopped_demolishers.append(dem.id)
 
                 self.summon_particle = True
-                self.invincibility_timer = 20
+                self.invincibility_timer = 10
                 if not self.dead:
                     # If actor hit from behind, the damage increased by 50%:
                     total_damage_multiplier = 1.5 if dem.look == self.look and dem.snap_to_actor >= 0 else 1

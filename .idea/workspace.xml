@@ -6,8 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main .py" beforeDir="false" afterPath="$PROJECT_DIR$/main .py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -165,13 +167,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00481" summary="Item drop implemented (by pressing BACKSPACE).">
-      <created>1726207273591</created>
-      <option name="number" value="00481" />
-      <option name="presentableId" value="LOCAL-00481" />
-      <option name="project" value="LOCAL" />
-      <updated>1726207273591</updated>
     </task>
     <task id="LOCAL-00482" summary="Fixed wrong demon 1 description">
       <created>1726465381224</created>
@@ -509,7 +504,14 @@
       <option name="project" value="LOCAL" />
       <updated>1729847224523</updated>
     </task>
-    <option name="localTasksCounter" value="530" />
+    <task id="LOCAL-00530" summary="Some stamina reduce tuning.">
+      <created>1730083528828</created>
+      <option name="number" value="00530" />
+      <option name="presentableId" value="LOCAL-00530" />
+      <option name="project" value="LOCAL" />
+      <updated>1730083528829</updated>
+    </task>
+    <option name="localTasksCounter" value="531" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -524,7 +526,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Altered frames changing speed if actor has an exhausted state." />
     <MESSAGE value="Continue to change main actor sprites appearance.&#10;I don't like fatty look of this one." />
     <MESSAGE value="Fixed stamina lost while actors sliding." />
     <MESSAGE value="Removed unnecessary mana and stamina reducing.&#10;Added some new backgrounds in Entrance zone." />
@@ -549,6 +550,7 @@
     <MESSAGE value="Commit before I decided to remake state_machine(). I'll try to separate animations from states and apply new animation for every state in manual mode." />
     <MESSAGE value="State machine remake started." />
     <MESSAGE value="State machine remake continues." />
-    <option name="LAST_COMMIT_MESSAGE" value="State machine remake continues." />
+    <MESSAGE value="Some stamina reduce tuning." />
+    <option name="LAST_COMMIT_MESSAGE" value="Some stamina reduce tuning." />
   </component>
 </project>
