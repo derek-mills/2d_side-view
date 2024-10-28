@@ -1093,8 +1093,9 @@ class Actor(Entity):
                 self.idle_counter -= 1
                 # self.invincibility_timer -= 1
             else:
+                self.heading = [0, 0]
                 if self.speed <= 0:
-                    self.ignore_user_input = False
+                    # self.ignore_user_input = False
                     if self.just_got_jumped:
                         self.just_got_jumped = False
                     self.is_abort_jump = True

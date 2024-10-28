@@ -977,7 +977,7 @@ demon_2 = {
                          # 74,74,74,74,74,  # 20 - 24
                          # 74,74,74,75,75), # 25 - 29
             # 'demolisher offset': (46, 36),
-            'speed': 1,
+            'speed': 4,
             'activity at frames': {
                 0: {
                     'sound': True,
@@ -1024,7 +1024,7 @@ demon_2 = {
                     'demolisher': True
                 },
             },
-            'speed': 1,
+            'speed': 4,
             # 'demolisher offset': {
             #     -1: (sprites['demon 2 61']['demolisher snap point'][0],
             #         sprites['demon 2 88']['demolisher snap point'][1]),
@@ -1045,7 +1045,7 @@ demon_2 = {
             # 74,74,74,74,74,  # 20 - 24
             # 74,74,74,75,75), # 25 - 29
             # 'demolisher offset': (46, 36),
-            'speed': 2,
+            'speed': 3,
             'activity at frames': {
                 9: {
                     'sound': True,
@@ -1246,7 +1246,7 @@ player_jake = {
     'animations': {
         'decapitated left': {
             'repeat': True, 'interruptable': True,
-            'sequence': (84, 85, 86, 87,),
+            'sequence': (55,54,53,),
             'speed': 9,
             'activity at frames': {
                 0: {
@@ -1255,11 +1255,11 @@ player_jake = {
                     'demolisher': False
                 },
             },
-            'repeat from frame': 3
+            'repeat from frame': 2
         },
         'decapitated right': {
             'repeat': True, 'interruptable': True,
-            'sequence': (73, 72, 71, 70,),
+            'sequence': (39,40,41,),
             'speed': 9,
             'activity at frames': {
                 0: {
@@ -1268,31 +1268,21 @@ player_jake = {
                     'demolisher': False
                 },
             },
-            'repeat from frame': 3
+            'repeat from frame': 2
         },
         'lie decapitated left': {
             'repeat': True, 'interruptable': True,
-            'sequence': (17,),
+            'sequence': (53,),
             'speed': 9,
             'activity at frames': {
-                0: {
-                    'sound': True,
-                    'demolishers set number': 0,
-                    'demolisher': False
-                },
             },
             'repeat from frame': 0
         },
         'lie decapitated right': {
             'repeat': True, 'interruptable': True,
-            'sequence': (17,),
+            'sequence': (41,),
             'speed': 9,
             'activity at frames': {
-                0: {
-                    'sound': True,
-                    'demolishers set number': 0,
-                    'demolisher': False
-                },
             },
             'repeat from frame': 0
         },

@@ -597,7 +597,11 @@ class Entity(object):
             self.sprite_y = self.rectangle.bottom - size[1]
 
     def set_current_sprite(self):
-        self.current_frame = self.animation_descriptor + ' ' + str(self.animation_sequence[self.frame_number])  # For ex., 'Jane 8'
+        try:
+            self.current_frame = self.animation_descriptor + ' ' + str(self.animation_sequence[self.frame_number])  # For ex., 'Jane 8'
+        except IndexError:
+            print(f'[set current sprite] ERROR: {self.frame_number=} {self.animation_descriptor=} {self.animation_sequence=}')
+            exit()
         if self.current_frame in sprites[self.id]['sprites'][self.current_animation].keys():
             self.current_sprite = sprites[self.id]['sprites'][self.current_animation][self.current_frame]
         else:
@@ -781,23 +785,27 @@ class Entity(object):
                     if dem.parent:
                         # self.hop_back_jump_height_modifier = ((dem.parent_strength / self.strength) + (dem.parent_weight / self.body_weight)) / dem.parent_penalty
                         self.movement_direction_inverter = -1 if dem.parent.look != self.look else 1
-                        forces_balance = ((dem.parent_strength + dem.parent_weight) / dem.parent_penalty) / (self.strength + self.body_weight)
+                        forces_balance = ((dem.parent_strength + dem.parent_weight) / dem.parent_penalty) \
+                                         / (self.strength + self.body_weight)
                         # forces_balance = ((dem.parent_strength / self.strength) + (dem.parent_weight / self.body_weight)) / dem.parent_penalty
                         self.speed = 5 + forces_balance
-                        print(f'[demolishers collision] {dem.total_damage_amount=} {forces_balance=} {dem.parent_penalty=}')
+                        print(f'[demolishers collision] DEMOLISHER IS FLOPPY and got a parent: {dem.total_damage_amount=} {forces_balance=} {dem.parent_penalty=}')
                     else:
                         self.movement_direction_inverter = -1 if dem.look != self.look else 1
                         forces_balance = 0.1
                         self.speed = 3
-                        print(f'[demolishers collision] {dem.total_damage_amount=} {forces_balance=} {dem.parent_penalty=}')
+                        print(f'[demolishers collision] DEMOLISHER IS FLOPPY and got no a parent: {dem.total_damage_amount=} {forces_balance=} {dem.parent_penalty=}')
                     if 'smash' in dem.damage.keys():
                         self.speed *= (dem.damage['smash'] * 0.1)
                         # self.speed *= 1.5
-                    stamina_taken_while_defending = dem.total_damage_amount * forces_balance * 0.8
+                    stamina_taken_while_defending = dem.total_damage_amount * forces_balance * 0.2
+
+                    # stamina_taken_while_defending = dem.total_damage_amount * forces_balance * 0.8
                     if self.stats['stamina'] >= stamina_taken_while_defending:
                         # Actor is able to consume own stamina to protect himself:
                         self.stamina_reduce(stamina_taken_while_defending)
-                        self.invincibility_timer = 10
+                        self.invincibility_timer = 20
+                        print(f'[demolishers collision] DEMOLISHER IS FLOPPY and actor blocks it')
                         continue
 
                 if not dem.pierce and not self.dead:
