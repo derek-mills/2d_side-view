@@ -472,7 +472,7 @@ class Entity(object):
 
         # If animation for current state does not exist, set default:
         if current_animation not in self.animations.keys():
-            print(f'[set current animation] {current_animation} not exist. Exiting with animation: {self.current_animation} ')
+            # print(f'[set current animation] {current_animation} not exist. Exiting with animation: {self.current_animation} ')
             return
             # self.current_animation = 'stand still right'
         else:
@@ -1001,6 +1001,7 @@ class Entity(object):
     def stamina_reduce(self, amount):
         # if self.id == 0:
         #     print(f'[entity stamina reduce] player stamina reduced by amount: {amount}')
+        print(f'[entity stamina reduce] {self.name}\'s stamina reduced by amount: {amount}')
         if self.stats['stamina'] > 0:
             # return
             self.stats['stamina'] -= amount

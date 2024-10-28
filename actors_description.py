@@ -11,7 +11,7 @@ zombie = {
     'body weight': 50,
     'health': 2000.,
     'mana replenish': .0,
-    'stamina replenish': 12.,
+    'stamina replenish': .2,
     'height': 150,  # For level editor use only
     'width': 50,  # For level editor use only
     'resistances': {
