@@ -463,7 +463,7 @@ class Actor(Entity):
             self.ignore_user_input = False
 
         elif new_action == 'protect':
-            if self.__state in ('free', 'stand still', 'run right', 'run left', 'turn right', 'turn left'):
+            if self.__state in ('free', 'stand still', 'run right', 'run left', 'fly right', 'fly left','turn right', 'turn left'):
                 self.set_state('protect')
 
         elif new_action == 'attack':

@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
-    </list>
+    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -165,13 +160,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00484" summary="Fine tune of left and right hand actions system.">
-      <created>1726552114017</created>
-      <option name="number" value="00484" />
-      <option name="presentableId" value="LOCAL-00484" />
-      <option name="project" value="LOCAL" />
-      <updated>1726552114017</updated>
     </task>
     <task id="LOCAL-00485" summary="Fine tune of left and right hand actions system.&#10;simultaneous pressing of both attack buttons now handles correctly.">
       <created>1726558230105</created>
@@ -509,7 +497,14 @@
       <option name="project" value="LOCAL" />
       <updated>1730101457087</updated>
     </task>
-    <option name="localTasksCounter" value="533" />
+    <task id="LOCAL-00533" summary="Improved protectors summoning and dissolving.">
+      <created>1730103521832</created>
+      <option name="number" value="00533" />
+      <option name="presentableId" value="LOCAL-00533" />
+      <option name="project" value="LOCAL" />
+      <updated>1730103521832</updated>
+    </task>
+    <option name="localTasksCounter" value="534" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -524,7 +519,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Removed unnecessary mana and stamina reducing.&#10;Added some new backgrounds in Entrance zone." />
     <MESSAGE value="Corrected shield holding animation." />
     <MESSAGE value="Fixed getting actor inside the wall if he has been smashed while standing up close against it." />
     <MESSAGE value="Simplified actor's rectangle processing if pose changes." />
@@ -549,6 +543,7 @@
     <MESSAGE value="Some stamina reduce tuning." />
     <MESSAGE value="Some tuning." />
     <MESSAGE value="Fighting with endless 'getting hurt' animation after actor has been hit through the shield and runs out of stamina." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fighting with endless 'getting hurt' animation after actor has been hit through the shield and runs out of stamina." />
+    <MESSAGE value="Improved protectors summoning and dissolving." />
+    <option name="LAST_COMMIT_MESSAGE" value="Improved protectors summoning and dissolving." />
   </component>
 </project>
