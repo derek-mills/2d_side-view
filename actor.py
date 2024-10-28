@@ -710,12 +710,13 @@ class Actor(Entity):
                     if self.just_got_jumped:
                         self.just_got_jumped = False
                     self.is_abort_jump = True
+                    self.animation_change_denied = False
                     if not self.dead:
                         if self.scheduled_state:
                             self.set_state(self.scheduled_state)
                             self.scheduled_state = ''
                         else:
-                            self.animation_change_denied = False
+                            # self.animation_change_denied = False
                             self.set_state('stand still')
                     else:
                         if self.has_got_a_critical_hit:
@@ -1057,6 +1058,7 @@ class Actor(Entity):
         elif state == 'dying':
             # print(f'[state machine] {self.name} state: *DYING*.')
             self.animation_change_denied = False
+            self.ignore_user_input = True
             if self.think_type == 'exploding barrel':
                 self.invincibility_timer = 100
                 self.set_state('almost explode')
@@ -1115,8 +1117,9 @@ class Actor(Entity):
         elif state == 'prepare to get hurt and hopping':
             if not self.dead:
                 self.set_current_animation('getting hurt')
+                self.ignore_user_input = True
                 self.animation_change_denied = True
-                # self.scheduled_state = 'getting hurt'
+                self.scheduled_state = 'getting hurt'
             self.set_state('hopping prepare')
         # elif self.get_state() == 'hopping process while get hurt':
         #     if not self.is_stunned:
