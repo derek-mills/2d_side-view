@@ -1060,6 +1060,7 @@ class Actor(Entity):
             # print(f'[state machine] {self.name} state: *DYING*.')
             self.animation_change_denied = False
             self.ignore_user_input = True
+            self.summon_protector = False
             if self.think_type == 'exploding barrel':
                 self.invincibility_timer = 100
                 self.set_state('almost explode')
@@ -1117,6 +1118,7 @@ class Actor(Entity):
                 self.dying = True
         elif state == 'prepare to get hurt and hopping':
             if not self.dead:
+                self.summon_protector = False
                 self.set_current_animation('getting hurt')
                 self.ignore_user_input = True
                 self.animation_change_denied = True
@@ -1145,6 +1147,7 @@ class Actor(Entity):
         elif state == 'prepare to get hurt':
             if not self.dead:
                 self.ignore_user_input = True
+                self.summon_protector = False
                 self.set_state('getting hurt')
                 self.set_current_animation()
         elif state == 'getting hurt':
