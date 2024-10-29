@@ -568,7 +568,7 @@ class Actor(Entity):
                 self.heading[0] = 0
         elif state in ('stab', 'cast', 'axe swing', 'whip',
                        'whip crouch right', 'whip crouch left',
-                       'kick', 'pistol shot'):                          # ATTACKING IN PROCESS...
+                       'kick', 'pistol shot', 'punch'):                          # ATTACKING IN PROCESS...
             # print(f'[state machine] {self.name} attacking.')
             if self.animation_sequence_done:
                 # print(f'[state machine] attack is done.')

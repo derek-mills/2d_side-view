@@ -53,7 +53,8 @@ all_items = {
     'short sword': sword,
     'pistol': pistol,
     'small shield': small_shield,
-    'axe': axe
+    'axe': axe,
+    'punch': jake_punch,
 }
 # all_items = {
 #     'exp': exp,

@@ -1151,7 +1151,7 @@ class World(object):
                             actor.frames_changing_threshold_modifier = 1
                             actor.frames_changing_threshold_penalty = 1
                             actor.frames_changing_threshold = actor.animations[actor.current_animation]['speed']
-
+                            actor.summon_protector = False
                             if actor.get_state() == 'protect' or actor.summon_protector:
                                 if self.protectors[self.location]:
                                     while actor.summoned_protectors_keep_alive:
@@ -1159,8 +1159,11 @@ class World(object):
                                         del self.protectors[self.location][protector_id]
                                 else:
                                     actor.summoned_protectors_keep_alive.clear()
-                                actor.summon_protector = False
+                                # actor.summon_protector = False
                                 actor.set_state('stand still')
+            else:
+                actor.summon_protector = False
+
             actor.process()
 
             while actor.drop_from_inventory:
@@ -1186,6 +1189,7 @@ class World(object):
                 while actor.summoned_protectors_description:
                     p = actor.summoned_protectors_description.pop()
                     self.add_protector(p)
+                    print(f'[processing actors] {actor.name} summoned a protector.')
                     actor.summoned_protectors_keep_alive.append(self.protector_id - 1)
 
             if actor.summon_demolisher:

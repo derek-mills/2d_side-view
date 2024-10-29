@@ -1241,7 +1241,7 @@ player_jake = {
     'friction': .9,
     'air acceleration': .4,
     # First item in list must be an undroppable weapon.
-    'items': (small_shield,jake_kick,whip, spikeball_staff,axe, fireball_staff,pistol,),
+    'items': (small_shield,jake_punch,whip, spikeball_staff,axe, fireball_staff,pistol,),
     # 'items': (whip,fireball_staff,sword,kitchen_knife,),
     'animations': {
         'decapitated left': {
@@ -1554,12 +1554,18 @@ player_jake = {
             'speed': 2,
             'repeat from frame': 2
         },
-        'kick combo 1 right': {
+        'punch combo 1 right': {
             'repeat': False, 'interruptable': True,
-            'sequence': (109,108,107,106,106,106,109,),  # 5 - 9
+            'sequence': (109, 109, 110, 110, 109, 109, 110, 110,),  # 5 - 9
             'speed': 2,
             'activity at frames': {
-                3: {
+                2: {
+                    'sound': True,
+                    # 'move': 10,  # Slightly move actor forward,
+                    'demolishers set number': 0,
+                    'demolisher': True
+                },
+                6: {
                     'sound': True,
                     # 'move': 10,  # Slightly move actor forward,
                     'demolishers set number': 0,
@@ -1568,9 +1574,9 @@ player_jake = {
             },
             'repeat from frame': 0
         },
-        'kick combo 2 right': {
+        'punch combo 2 right': {
             'repeat': False, 'interruptable': True,
-            'sequence': (109,109,111,111,110,110,110,),  # 5 - 9
+            'sequence': (109,109,108,107,106,106,106,106,),  # 5 - 9
             'speed': 2,
             'activity at frames': {
                 4: {
@@ -1582,9 +1588,9 @@ player_jake = {
             },
             'repeat from frame': 0
         },
-        'kick combo 3 right': {
+        'punch combo 3 right': {
             'repeat': False, 'interruptable': True,
-            'sequence': (63,63,64,64,65,65,65,64,63,63), # 5 - 9
+            'sequence': (109,108,108,108,111,111,111,111), # 5 - 9
             'speed': 2,
             'activity at frames': {
                 4: {
@@ -1596,6 +1602,68 @@ player_jake = {
             },
             'repeat from frame': 0
         },
+        'punch combo 1 left': {
+            'repeat': False, 'interruptable': True,
+            'sequence': (94,94,93,93,94,94,93,93),  # 5 - 9
+            'speed': 2,
+            'activity at frames': {
+                2: {
+                    'sound': True,
+                    # 'move': 10,  # Slightly move actor forward,
+                    'demolishers set number': 0,
+                    'demolisher': True
+                },
+                6: {
+                    'sound': True,
+                    # 'move': 10,  # Slightly move actor forward,
+                    'demolishers set number': 0,
+                    'demolisher': True
+                },
+            },
+            'repeat from frame': 0
+        },
+        'punch combo 2 left': {
+            'repeat': False, 'interruptable': True,
+            'sequence': (94,94, 95, 96, 97,97,97,97,),  # 5 - 9
+            'speed': 2,
+            'activity at frames': {
+                4: {
+                    'sound': True,
+                    # 'move': 10,  # Slightly move actor forward,
+                    'demolishers set number': 1,
+                    'demolisher': True
+                },
+            },
+            'repeat from frame': 0
+        },
+        'punch combo 3 left': {
+            'repeat': False, 'interruptable': True,
+            'sequence': (94, 95,95,95, 92,92,92,92),  # 5 - 9
+            'speed': 2,
+            'activity at frames': {
+                4: {
+                    'sound': True,
+                    # 'move': 10,  # Slightly move actor forward,
+                    'demolishers set number': 2,
+                    'demolisher': True
+                },
+            },
+            'repeat from frame': 0
+        },
+        # 'kick combo 3 right': {
+        #     'repeat': False, 'interruptable': True,
+        #     'sequence': (63,63,64,64,65,65,65,64,63,63), # 5 - 9
+        #     'speed': 2,
+        #     'activity at frames': {
+        #         4: {
+        #             'sound': True,
+        #             # 'move': 10,  # Slightly move actor forward,
+        #             'demolishers set number': 2,
+        #             'demolisher': True
+        #         },
+        #     },
+        #     'repeat from frame': 0
+        # },
         'kick combo 1 left': {
             'repeat': False, 'interruptable': True,
             'sequence': (92,93,94,95,95,95,92,),  # 0 - 4

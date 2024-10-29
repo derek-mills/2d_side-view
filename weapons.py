@@ -366,6 +366,89 @@ jake_kick = {
 
 }
 
+jake_punch = {
+    'combo': True, 'combo steps quantity': 3, 'combo next step threshold': 30,
+    'description': 'A powerful punch series.',
+    'class': 'weapons',
+    'has crouch attack': False,
+    'type': 'melee',
+    'label': 'jake punch',
+    'sprite': 'boot',
+    'sound': 'sound_swing_2',
+    'amount': 1,
+    'amount threshold': 1,
+    'amount decrease speed': 0,
+    'affects on': '',
+    'stamina consumption': 1,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
+    'mana consumption': 0.,
+    'attack animation': 'punch',
+    'ignore user input': True,  # Steal the ability to control a character for a while.
+    'animation speed modifier': 1.,  # 0 < x < 1: speed animation up, x > 1: slow down.
+    'leave particles': False,
+    'droppable': False,
+    'need ammo': False,
+    'ammo': 0,
+    'reach': 170,
+    'weight': 10,
+    'demolishers': (
+        # 'demolishers set number' #0
+        ({
+             'rect': pygame.Rect(0, 0, 10, 10), 'flyer': False,
+             'visible': False,
+             'demolisher sprite': '',
+             'pierce': True, 'demolisher TTL': 3, 'speed': 0,
+             'static': True, 'damage reduce': 0,
+             'collides': False, 'gravity affected': False,
+             'bounce': False, 'bounce factor': 0.,
+             'attack type': ('smash',),
+             'damage': {
+                 'blunt': 15,
+                 # 'smash': 10,
+                 # 'slash': 1,
+             },
+             # 'aftermath': 'explode'
+             'aftermath': 'disappear'
+         },),
+        # 'demolishers set number' #1
+        ({
+             'rect': pygame.Rect(0, 0, 10, 10), 'flyer': False,
+             'visible': False,
+             'demolisher sprite': '',
+             'pierce': True, 'demolisher TTL': 3, 'speed': 0,
+             'static': True, 'damage reduce': 0,
+             'collides': False, 'gravity affected': False,
+             'bounce': False, 'bounce factor': 0.,
+             'attack type': ('smash',),
+             'damage': {
+                 'blunt': 50,
+                 'slash': 1,
+                 # 'smash': 15,
+             },
+             # 'aftermath': 'explode'
+             'aftermath': 'disappear'
+         },),
+        # 'demolishers set number' #2
+        ({
+            'rect': pygame.Rect(0, 0, 20, 40), 'flyer': False,
+             'visible': False,
+            'demolisher sprite': '',
+            'pierce': True, 'demolisher TTL': 5, 'speed': 0,
+            'static': True, 'damage reduce': 0,
+            'collides': False, 'gravity affected': False,
+            'bounce': False, 'bounce factor': 0.,
+            'attack type': ('smash',),
+             'damage': {
+                 'blunt': 50,
+                 'smash': 20,
+                 'slash': 1,
+             },
+            # 'aftermath': 'explode'
+            'aftermath': 'disappear'
+        },),
+    ),
+
+}
+
 axe = {
     'combo': True, 'combo steps quantity': 2, 'combo next step threshold': 50,
     'description': 'Golden Axe 3',

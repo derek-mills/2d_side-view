@@ -8,6 +8,13 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/animations/jake_8bit.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/animations/jake_8bit.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/items.py" beforeDir="false" afterPath="$PROJECT_DIR$/items.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main .py" beforeDir="false" afterPath="$PROJECT_DIR$/main .py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,13 +171,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00486" summary="Added stripes, which show the 'max' amount of particular stat.">
-      <created>1726624385717</created>
-      <option name="number" value="00486" />
-      <option name="presentableId" value="LOCAL-00486" />
-      <option name="project" value="LOCAL" />
-      <updated>1726624385717</updated>
     </task>
     <task id="LOCAL-00487" summary="Renovation of protectors revealing and keeping them alive system.">
       <created>1726713771912</created>
@@ -508,7 +508,14 @@
       <option name="project" value="LOCAL" />
       <updated>1730104021173</updated>
     </task>
-    <option name="localTasksCounter" value="535" />
+    <task id="LOCAL-00535" summary="Improved protectors summoning and dissolving.">
+      <created>1730104796984</created>
+      <option name="number" value="00535" />
+      <option name="presentableId" value="LOCAL-00535" />
+      <option name="project" value="LOCAL" />
+      <updated>1730104796984</updated>
+    </task>
+    <option name="localTasksCounter" value="536" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
