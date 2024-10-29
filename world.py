@@ -1134,14 +1134,19 @@ class World(object):
                                 hand = None
 
                         if hand:
+                            # One or both hands of an actor does action:
                             actor.current_weapon = actor.body[hand]['weapon']['item']
                             if actor.get_state() == 'protect' and actor.current_weapon['type'] == 'shields':
+                                # print('bbbb')
+                                if not actor.summoned_protectors_keep_alive:
+                                    actor.summon_protector = False
                                 ...
                             else:
                                 actor.current_stamina_lost_per_attack = actor.normal_stamina_lost_per_attack * actor.current_weapon['stamina consumption']
                                 actor.current_mana_lost_per_attack = actor.normal_mana_lost_per_attack * actor.current_weapon['mana consumption']
                                 if actor.current_weapon['type'] == 'shields':
                                     actor.set_action('protect')
+                                    # actor.summon_protector = True
                                 else:
                                     actor.set_action('attack')
                                     while actor.summoned_protectors_keep_alive:
@@ -1151,7 +1156,7 @@ class World(object):
                             actor.frames_changing_threshold_modifier = 1
                             actor.frames_changing_threshold_penalty = 1
                             actor.frames_changing_threshold = actor.animations[actor.current_animation]['speed']
-                            actor.summon_protector = False
+                            # actor.summon_protector = False
                             if actor.get_state() == 'protect' or actor.summon_protector:
                                 if self.protectors[self.location]:
                                     while actor.summoned_protectors_keep_alive:
@@ -1159,7 +1164,7 @@ class World(object):
                                         del self.protectors[self.location][protector_id]
                                 else:
                                     actor.summoned_protectors_keep_alive.clear()
-                                # actor.summon_protector = False
+                                actor.summon_protector = False
                                 actor.set_state('stand still')
             else:
                 actor.summon_protector = False

@@ -463,7 +463,8 @@ class Actor(Entity):
             self.ignore_user_input = False
 
         elif new_action == 'protect':
-            if self.__state in ('free', 'stand still', 'run right', 'run left', 'fly right', 'fly left','turn right', 'turn left'):
+            if self.__state in ('free', 'stand still', 'run right', 'run left', 'fly right',
+                                'fly left','turn right', 'turn left'):
                 self.set_state('protect')
 
         elif new_action == 'attack':
@@ -528,7 +529,7 @@ class Actor(Entity):
             self.look = -1
         elif state == 'protect':
             self.set_current_animation()
-            self.normal_stamina_replenish = 0.08
+            self.normal_stamina_replenish = 0.01
             # self.stamina_replenish_modifier = 0.3
             self.heading[0] = 0
         elif state == 'prepare attack':                          # PREPARING ATTACK

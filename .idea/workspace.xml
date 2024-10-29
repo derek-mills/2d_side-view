@@ -7,13 +7,8 @@
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/animations/jake_8bit.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/animations/jake_8bit.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/items.py" beforeDir="false" afterPath="$PROJECT_DIR$/items.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main .py" beforeDir="false" afterPath="$PROJECT_DIR$/main .py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -171,13 +166,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00487" summary="Renovation of protectors revealing and keeping them alive system.">
-      <created>1726713771912</created>
-      <option name="number" value="00487" />
-      <option name="presentableId" value="LOCAL-00487" />
-      <option name="project" value="LOCAL" />
-      <updated>1726713771913</updated>
     </task>
     <task id="LOCAL-00488" summary="Tiny changes in shield thickness.&#10;Blast frags size hasted up and become bigger.">
       <created>1726715884491</created>
@@ -515,7 +503,14 @@
       <option name="project" value="LOCAL" />
       <updated>1730104796984</updated>
     </task>
-    <option name="localTasksCounter" value="536" />
+    <task id="LOCAL-00536" summary="Punch added.">
+      <created>1730180822935</created>
+      <option name="number" value="00536" />
+      <option name="presentableId" value="LOCAL-00536" />
+      <option name="project" value="LOCAL" />
+      <updated>1730180822935</updated>
+    </task>
+    <option name="localTasksCounter" value="537" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -530,7 +525,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Corrected shield holding animation." />
     <MESSAGE value="Fixed getting actor inside the wall if he has been smashed while standing up close against it." />
     <MESSAGE value="Simplified actor's rectangle processing if pose changes." />
     <MESSAGE value="Returned actor's rectangle complicate processing if pose changes." />
@@ -555,6 +549,7 @@
     <MESSAGE value="Some tuning." />
     <MESSAGE value="Fighting with endless 'getting hurt' animation after actor has been hit through the shield and runs out of stamina." />
     <MESSAGE value="Improved protectors summoning and dissolving." />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved protectors summoning and dissolving." />
+    <MESSAGE value="Punch added." />
+    <option name="LAST_COMMIT_MESSAGE" value="Punch added." />
   </component>
 </project>
