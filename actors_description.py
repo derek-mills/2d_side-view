@@ -1329,13 +1329,13 @@ player_jake = {
         },
         'lie dead right': {
             'repeat': True,
-            'sequence': (14,), 'speed': 20,
+            'sequence': (41,), 'speed': 20,
             'activity at frames': {},
             'repeat from frame': 0
         },
         'lie dead left': {
             'repeat': True,
-            'sequence': (17,), 'speed': 20,
+            'sequence': (53,), 'speed': 20,
             'activity at frames': {},
             'repeat from frame': 0
         },

@@ -1044,6 +1044,9 @@ class Entity(object):
         # Check bottom
         for key in self.sorted_obs['below']:
             obs = self.obstacles_around[key]
+            if obs.invincibility_timer > 0:
+                continue
+
             # obs.trigger_activated = False
             obs.is_being_collided_now = False
             # obs.trigger_activated = False
@@ -1089,6 +1092,9 @@ class Entity(object):
         # Check RIGHT
         for key in self.sorted_obs['right']:
             obs = self.obstacles_around[key]
+            if obs.invincibility_timer > 0:
+                continue
+
             obs.is_being_collided_now = False
             # obs.trigger_activated = False
             if obs.is_ghost_platform:
@@ -1192,6 +1198,9 @@ class Entity(object):
         # Check LEFT
         for key in self.sorted_obs['left']:
             obs = self.obstacles_around[key]
+            if obs.invincibility_timer > 0:
+                continue
+
             obs.is_being_collided_now = False
             # obs.trigger_activated = False
             if obs.is_ghost_platform:
@@ -1288,6 +1297,9 @@ class Entity(object):
         # Check top
         for key in self.sorted_obs['above']:
             obs = self.obstacles_around[key]
+            if obs.invincibility_timer > 0:
+                continue
+
             obs.is_being_collided_now = False
             # obs.trigger_activated = False
             if obs.is_ghost_platform:

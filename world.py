@@ -240,6 +240,7 @@ class World(object):
         entity.item_amount = item['amount']
         entity.item_amount_threshold = item['amount threshold']
         entity.item_amount_decrease_speed = item['amount decrease speed']
+        entity.invincibility_timer = 300
         # self.items[self.location][entity.id] = entity
         self.obstacles[self.location][entity.id] = entity
 
@@ -1187,14 +1188,14 @@ class World(object):
             while actor.drop_from_inventory:
                 i = actor.drop_from_inventory.pop()
                 print('[processing actors] drop items:', all_items, i)
-                # self.add_item(all_items[i], (actor.rectangle.right + sprites[i]['sprite'].get_width() //2,
-                #                                 actor.rectangle.bottom - sprites[i]['sprite'].get_height()))
-                if actor.look == 1:
-                    self.add_item(all_items[i], (actor.rectangle.left - sprites[i]['sprite'].get_width() - 20,
-                                                 actor.rectangle.top - sprites[i]['sprite'].get_height() - 20))
-                else:
-                    self.add_item(all_items[i], (actor.rectangle.right + sprites[i]['sprite'].get_width() + 20,
-                                                 actor.rectangle.top - sprites[i]['sprite'].get_height() - 20))
+                self.add_item(all_items[i], (actor.rectangle.centerx - sprites[i]['sprite'].get_width() // 2,
+                                                actor.rectangle.bottom - sprites[i]['sprite'].get_height()))
+                # if actor.look == 1:
+                #     self.add_item(all_items[i], (actor.rectangle.left - sprites[i]['sprite'].get_width() - 20,
+                #                                  actor.rectangle.top - sprites[i]['sprite'].get_height() - 20))
+                # else:
+                #     self.add_item(all_items[i], (actor.rectangle.right + sprites[i]['sprite'].get_width() + 20,
+                #                                  actor.rectangle.top - sprites[i]['sprite'].get_height() - 20))
 
             if actor.has_just_stopped_demolishers:
                 while actor.has_just_stopped_demolishers:
@@ -1469,6 +1470,9 @@ class World(object):
             if key not in self.active_obstacles:
                 continue
             obs = self.obstacles[self.location][key]
+            if obs.invincibility_timer > 0:
+                if self.game_cycles_counter // 2 == self.game_cycles_counter / 2:
+                    continue
             if obs.is_item:
                 self.screen.blit(sprites[obs.sprite]['sprite'], (obs.rectangle.x - self.camera.offset_x, obs.rectangle.y - self.camera.offset_y))
 
@@ -2267,7 +2271,7 @@ class World(object):
         black_out(self.screen, self.screen, 10)
         render_text('YOU DIED', self.screen, 150, RED, 'AlbionicRegular.ttf', 'center_x', 'center_y')
         pygame.display.flip()
-        pygame.time.wait(800)
+        pygame.time.wait(500)
         render_text('press a key to revive', self.screen, 50, RED, 'AlbionicRegular.ttf', 'center_x', '3/4_y')  #, (-200, 0))
         pygame.display.flip()
         pygame.event.clear()
@@ -2288,7 +2292,7 @@ class World(object):
                 if obs.is_item:
                     if obs.item_name == 'stash':
                         self.change_location({'new location': location,
-                                              'xy': (obs.rectangle.x, obs.rectangle.bottom - self.actors['player'].rectangle.height - 10),
+                                              'xy': (obs.rectangle.x, obs.rectangle.bottom - self.actors['player'].rectangle.height - 50),
                                               }
                                              )
 

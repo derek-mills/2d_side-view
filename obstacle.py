@@ -35,6 +35,8 @@ class Obstacle(Entity):
         self.trigger_description = dict()
 
     def process_(self):
+        if self.invincibility_timer > 0:
+            self.invincibility_timer -= 1
         if self.active:
             # if self.id == 58:
             #     print(f'[obs process] ENTER: {self.active=} {self.need_next_action=} {self.actions_set_number=} {self.current_action=}')
