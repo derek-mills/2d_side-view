@@ -494,6 +494,7 @@ class World(object):
         protector.bounce_factor = description['bounce factor']
         protector.flyer = description['flyer']
         protector.parent = description['parent']
+        protector.mana_consumption = description['mana consumption']
         # print(f'{protector.parent=}')
 
         if description['static']:
@@ -1201,10 +1202,10 @@ class World(object):
                     self.add_protector(p)
                     print(f'[processing actors] {actor.name} summoned a protector.')
                     actor.summoned_protectors_keep_alive.append(self.protector_id - 1)
-            # else:
-            #     while actor.summoned_protectors_keep_alive:
-            #         protector_id = actor.summoned_protectors_keep_alive.pop()
-            #         del self.protectors[self.location][protector_id]
+            else:
+                while actor.summoned_protectors_keep_alive:
+                    protector_id = actor.summoned_protectors_keep_alive.pop()
+                    del self.protectors[self.location][protector_id]
 
             if actor.summon_demolisher:
                 actor.summon_demolisher = False
@@ -1215,6 +1216,7 @@ class World(object):
                     d = actor.summoned_demolishers_description.pop()
                     self.add_demolisher(d)
                 # self.add_demolisher(actor.summoned_demolisher_description)
+
 
             if actor.summon_particle:
                 actor.summon_particle = False

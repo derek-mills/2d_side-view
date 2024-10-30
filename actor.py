@@ -19,8 +19,10 @@ class Actor(Entity):
         self.ai_input_attack = False
         self.ai_input_jump = False
         self.next_ranged_weapon_usage_counter = 0
-        self.previously_used_weapon = ''
-        self.force_use_previous_weapon = False
+        # self.previously_used_weapon = ''
+        # self.force_use_previous_weapon = False
+        self.force_mana_reduce = False
+        self.force_mana_reduce_amount: int = 0
 
         # self.acceleration = .5
         # self.air_acceleration = .4
@@ -40,7 +42,6 @@ class Actor(Entity):
         # self.rectangle_width_slide = self.rectangle.height
 
         self.__state = 'stand still'
-
 
         self.body = {
             'head': {
@@ -269,7 +270,11 @@ class Actor(Entity):
         # self.set_current_animation()
 
     def process(self):
-        # super().process()
+        if self.force_mana_reduce:
+            self.mana_reduce(self.force_mana_reduce_amount)
+            self.force_mana_reduce = False
+            self.force_mana_reduce_amount = 0
+
         if self.invincibility_timer > 0:
             self.invincibility_timer -= 1
 
@@ -290,9 +295,6 @@ class Actor(Entity):
         self.processing_rectangle_size()
         self.stamina_replenish()
         self.mana_replenish()
-        # self.processing_rectangle_size()
-        # self.apply_rectangle_according_to_sprite()
-        # self.state_machine()
         self.check_space_around()
 
         super().process()
@@ -465,6 +467,7 @@ class Actor(Entity):
         elif new_action == 'protect':
             if self.__state in ('free', 'stand still', 'run right', 'run left', 'fly right',
                                 'fly left','turn right', 'turn left'):
+
                 self.set_state('protect')
 
         elif new_action == 'attack':
@@ -528,10 +531,17 @@ class Actor(Entity):
             self.speed = self.max_speed // 2
             self.look = -1
         elif state == 'protect':
-            self.set_current_animation()
-            self.normal_stamina_replenish = 0.01
-            # self.stamina_replenish_modifier = 0.3
-            self.heading[0] = 0
+            if self.stats['mana'] > 1:
+                self.set_current_animation()
+                self.normal_stamina_replenish = 0.01
+                # self.stamina_replenish_modifier = 0.3
+                self.heading[0] = 0
+            else:
+                self.summon_protector = False
+                self.summoned_protectors_description = list()
+                # self.summoned_protectors_keep_alive = list()
+                self.set_state('stand still')
+                self.set_current_animation()
         elif state == 'prepare attack':                          # PREPARING ATTACK
             # print(f'[state machine] {self.name} prepares attack.')
             self.stamina_reduce(self.current_stamina_lost_per_attack)
