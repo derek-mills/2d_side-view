@@ -821,11 +821,12 @@ class Entity(object):
                     # # if self.total_damage_has_got > self.stats['health'] * 2:
                     # #     self.has_got_a_critical_hit = True
 
-                    if self.get_state() in ('hanging on edge', 'has just grabbed edge', 'climb on', 'climb on rise'):
+                    state = self.get_state()
+                    if state in ('hanging on edge', 'has just grabbed edge', 'climb on', 'climb on rise'):
                         self.set_state('release edge')
-                        # self.state_machine()
-                    # else:
-                    #     self.set_state('prepare to get hurt')
+                    elif 'stash' in state:
+                        self.set_state('drop stash')
+                        self.state_machine()
 
                     # Damage amount show:
                     txt_color = RED if self.id == 0 else WHITE
