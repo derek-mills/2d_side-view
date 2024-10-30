@@ -1244,6 +1244,23 @@ player_jake = {
     'items': (small_shield,jake_punch,whip, spikeball_staff,axe, fireball_staff,pistol,),
     # 'items': (whip,fireball_staff,sword,kitchen_knife,),
     'animations': {
+
+        # 'stunned right': {
+        #     'repeat': True, 'interruptable': True,
+        #     'sequence': (113,114,),
+        #     'speed': 9,
+        #     'activity at frames': {
+        #     },
+        #     'repeat from frame': 0
+        # },
+        # 'stunned left': {
+        #     'repeat': True, 'interruptable': True,
+        #     'sequence': (127,128,),
+        #     'speed': 9,
+        #     'activity at frames': {
+        #     },
+        #     'repeat from frame': 0
+        # },
         'decapitated left': {
             'repeat': True, 'interruptable': True,
             'sequence': (55,54,53,),

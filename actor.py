@@ -281,6 +281,7 @@ class Actor(Entity):
         if self.stun_counter > 0:
             self.stun_counter -= 1
             self.is_stunned = True
+            # self.set_state('stunned')
         else:
             self.is_stunned = False
 
@@ -530,8 +531,16 @@ class Actor(Entity):
             # self.speed = 5
             self.speed = self.max_speed // 2
             self.look = -1
+        # elif state == 'stunned':
+        #     if self.is_stunned:
+        #         if 'stunned' not in self.current_animation:
+        #             self.set_current_animation()
+        #
+        #     else:
+        #         # 'Stunned' state has been switched off
+        #         self.set_state('stand still')
         elif state == 'protect':
-            if self.stats['mana'] > 1:
+            if self.stats['mana'] > 3:
                 self.set_current_animation()
                 self.normal_stamina_replenish = 0.01
                 # self.stamina_replenish_modifier = 0.3
@@ -541,7 +550,7 @@ class Actor(Entity):
                 self.summoned_protectors_description = list()
                 # self.summoned_protectors_keep_alive = list()
                 self.set_state('stand still')
-                self.set_current_animation()
+                # self.set_current_animation()
         elif state == 'prepare attack':                          # PREPARING ATTACK
             # print(f'[state machine] {self.name} prepares attack.')
             self.stamina_reduce(self.current_stamina_lost_per_attack)
@@ -553,8 +562,8 @@ class Actor(Entity):
             if self.combo_set_number > self.current_weapon['combo steps quantity']:
                 self.combo_set_number = 1
             self.ignore_user_input = self.current_weapon['ignore user input']
-            if self.is_stand_on_ground:
-                self.heading[0] = 0
+            # if self.is_stand_on_ground:
+            #     self.heading[0] = 0
             self.set_state(self.current_weapon['attack animation'])
             self.set_current_animation()
         elif state == 'prepare crouch attack left':                          # PREPARING ATTACK
@@ -581,6 +590,8 @@ class Actor(Entity):
                        'whip crouch right', 'whip crouch left',
                        'kick', 'pistol shot', 'punch'):                          # ATTACKING IN PROCESS...
             # print(f'[state machine] {self.name} attacking.')
+            if self.is_stand_on_ground:
+                self.heading[0] = 0
             if self.animation_sequence_done:
                 # print(f'[state machine] attack is done.')
                 self.ignore_user_input = False
@@ -1162,7 +1173,8 @@ class Actor(Entity):
                 self.set_state('getting hurt')
                 self.set_current_animation()
         elif state == 'getting hurt':
-            # if not self.is_stunned:
+            if self.is_stand_on_ground:
+                self.heading[0] = 0
             if self.animation_sequence_done:
                 self.ignore_user_input = False
                 self.animation_change_denied = False

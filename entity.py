@@ -471,7 +471,7 @@ class Entity(object):
         #     current_animation = state
 
         # If animation for current state does not exist, set default:
-        if current_animation not in self.animations.keys():
+        if current_animation not in self.animations.keys() or current_animation == self.current_animation:
             # print(f'[set current animation] {current_animation} not exist. Exiting with animation: {self.current_animation} ')
             return
             # self.current_animation = 'stand still right'

@@ -1143,12 +1143,19 @@ class World(object):
                                     actor.summon_protector = False
                                 ...
                             else:
-                                actor.current_stamina_lost_per_attack = actor.normal_stamina_lost_per_attack * actor.current_weapon['stamina consumption']
-                                actor.current_mana_lost_per_attack = actor.normal_mana_lost_per_attack * actor.current_weapon['mana consumption']
+                                # actor.current_stamina_lost_per_attack = actor.normal_stamina_lost_per_attack * actor.current_weapon['stamina consumption']
+                                # actor.current_mana_lost_per_attack = actor.normal_mana_lost_per_attack * actor.current_weapon['mana consumption']
                                 if actor.current_weapon['type'] == 'shields':
-                                    actor.set_action('protect')
-                                    # actor.summon_protector = True
+                                    if actor.stats['mana'] > 3:
+                                        actor.set_action('protect')
+                                    else:
+                                        actor.set_action('stand still')
+                                        while actor.summoned_protectors_keep_alive:
+                                            protector_id = actor.summoned_protectors_keep_alive.pop()
+                                            del self.protectors[self.location][protector_id]
                                 else:
+                                    actor.current_stamina_lost_per_attack = actor.normal_stamina_lost_per_attack * actor.current_weapon['stamina consumption']
+                                    actor.current_mana_lost_per_attack = actor.normal_mana_lost_per_attack * actor.current_weapon['mana consumption']
                                     actor.set_action('attack')
                                     while actor.summoned_protectors_keep_alive:
                                         protector_id = actor.summoned_protectors_keep_alive.pop()
@@ -1202,10 +1209,10 @@ class World(object):
                     self.add_protector(p)
                     print(f'[processing actors] {actor.name} summoned a protector.')
                     actor.summoned_protectors_keep_alive.append(self.protector_id - 1)
-            else:
-                while actor.summoned_protectors_keep_alive:
-                    protector_id = actor.summoned_protectors_keep_alive.pop()
-                    del self.protectors[self.location][protector_id]
+            # else:
+            #     while actor.summoned_protectors_keep_alive:
+            #         protector_id = actor.summoned_protectors_keep_alive.pop()
+            #         del self.protectors[self.location][protector_id]
 
             if actor.summon_demolisher:
                 actor.summon_demolisher = False
