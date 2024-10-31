@@ -66,6 +66,7 @@ class Entity(object):
         self.normal_stamina_lost_per_hop_back = 5.5
         self.normal_stamina_lost_per_slide = 15.
         self.normal_stamina_lost_per_attack = 10.
+        self.normal_stamina_lost_per_defend = 10.
         self.current_stamina_lost_per_attack = 0.  # Depends on current weapon penalty.
         self.default_normal_stamina_replenish = .1
         self.normal_stamina_replenish = self.default_normal_stamina_replenish
@@ -75,6 +76,7 @@ class Entity(object):
         self.normal_mana_replenish = .001
         self.mana_replenish_modifier = 1
         self.normal_mana_lost_per_attack = 5.
+        self.normal_mana_lost_per_defend = 2.
         self.current_mana_lost_per_attack = 0.
         self.body_weight = 0
         self.strength = 0
@@ -780,33 +782,34 @@ class Entity(object):
             if hit_detected:
                 self.combo_counter = 0
                 self.combo_set_number = 0
-                if dem.floppy:
-                    # Most probably a demolishers has a collision with protector (player shield).
-                    if dem.parent:
-                        # self.hop_back_jump_height_modifier = ((dem.parent_strength / self.strength) + (dem.parent_weight / self.body_weight)) / dem.parent_penalty
-                        self.movement_direction_inverter = -1 if dem.parent.look != self.look else 1
-                        forces_balance = ((dem.parent_strength + dem.parent_weight) / dem.parent_penalty) \
-                                         / (self.strength + self.body_weight)
-                        # forces_balance = ((dem.parent_strength / self.strength) + (dem.parent_weight / self.body_weight)) / dem.parent_penalty
-                        self.speed = 5 + forces_balance
-                        print(f'[demolishers collision] DEMOLISHER IS FLOPPY and got a parent: {dem.total_damage_amount=} {forces_balance=} {dem.parent_penalty=}')
-                    else:
-                        self.movement_direction_inverter = -1 if dem.look != self.look else 1
-                        forces_balance = 0.1
-                        self.speed = 3
-                        print(f'[demolishers collision] DEMOLISHER IS FLOPPY and got no a parent: {dem.total_damage_amount=} {forces_balance=} {dem.parent_penalty=}')
-                    if 'smash' in dem.damage.keys():
-                        self.speed *= (dem.damage['smash'] * 0.1)
-                        # self.speed *= 1.5
-                    stamina_taken_while_defending = dem.total_damage_amount * forces_balance * 0.2
-
-                    # stamina_taken_while_defending = dem.total_damage_amount * forces_balance * 0.8
-                    if self.stats['stamina'] >= stamina_taken_while_defending:
-                        # Actor is able to consume own stamina to protect himself:
-                        self.stamina_reduce(stamina_taken_while_defending)
-                        self.invincibility_timer = 20
-                        print(f'[demolishers collision] DEMOLISHER IS FLOPPY and actor blocks it')
-                        continue
+                # if dem.floppy:
+                #     # Most probably a demolishers has a collision with protector (player shield).
+                #     if dem.parent:
+                #         # self.hop_back_jump_height_modifier = ((dem.parent_strength / self.strength) + (dem.parent_weight / self.body_weight)) / dem.parent_penalty
+                #         self.movement_direction_inverter = -1 if dem.parent.look != self.look else 1
+                #         forces_balance = ((dem.parent_strength + dem.parent_weight) / dem.parent_penalty) \
+                #                          / (self.strength + self.body_weight)
+                #         # forces_balance = ((dem.parent_strength / self.strength) + (dem.parent_weight / self.body_weight)) / dem.parent_penalty
+                #         self.speed = 5 + forces_balance
+                #         print(f'[demolishers collision] DEMOLISHER IS FLOPPY and got a parent: {dem.total_damage_amount=} {forces_balance=} {dem.parent_penalty=}')
+                #     else:
+                #         self.movement_direction_inverter = -1 if dem.look != self.look else 1
+                #         forces_balance = 0.1
+                #         self.speed = 3
+                #         print(f'[demolishers collision] DEMOLISHER IS FLOPPY and got no a parent: {dem.total_damage_amount=} {forces_balance=} {dem.parent_penalty=}')
+                #     if 'smash' in dem.damage.keys():
+                #         self.speed *= (dem.damage['smash'] * 0.1)
+                #         # self.speed *= 1.5
+                #
+                #     stamina_taken_while_defending = dem.total_damage_amount * forces_balance * 0.2
+                #
+                #     # stamina_taken_while_defending = dem.total_damage_amount * forces_balance * 0.8
+                #     if self.stats['stamina'] >= stamina_taken_while_defending:
+                #         # Actor is able to consume own stamina to protect himself:
+                #         self.stamina_reduce(stamina_taken_while_defending)
+                #         self.invincibility_timer = 20
+                #         print(f'[demolishers collision] DEMOLISHER IS FLOPPY and actor blocks it')
+                #         continue
 
                 if not dem.pierce and not self.dead:
                     self.has_just_stopped_demolishers.append(dem.id)
@@ -824,6 +827,7 @@ class Entity(object):
                     state = self.get_state()
                     if state in ('hanging on edge', 'has just grabbed edge', 'climb on', 'climb on rise'):
                         self.set_state('release edge')
+                        self.state_machine()
                     elif 'stash' in state:
                         self.set_state('drop stash')
                         self.state_machine()

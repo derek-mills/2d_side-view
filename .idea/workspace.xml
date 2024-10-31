@@ -6,7 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demolisher.py" beforeDir="false" afterPath="$PROJECT_DIR$/demolisher.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/items.py" beforeDir="false" afterPath="$PROJECT_DIR$/items.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,13 +168,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00493" summary="several minor changes.&#10;to be honest -- I've lost the way where should to move on to make progress.">
-      <created>1727073404688</created>
-      <option name="number" value="00493" />
-      <option name="presentableId" value="LOCAL-00493" />
-      <option name="project" value="LOCAL" />
-      <updated>1727073404689</updated>
     </task>
     <task id="LOCAL-00494" summary="Added opportunity to become a missile for actor if terminal velocity reached.">
       <created>1727155456364</created>
@@ -507,7 +505,14 @@
       <option name="project" value="LOCAL" />
       <updated>1730270961241</updated>
     </task>
-    <option name="localTasksCounter" value="542" />
+    <task id="LOCAL-00542" summary="If actor being hurt while carrying the Stash, he drops it down.">
+      <created>1730271745333</created>
+      <option name="number" value="00542" />
+      <option name="presentableId" value="LOCAL-00542" />
+      <option name="project" value="LOCAL" />
+      <updated>1730271745333</updated>
+    </task>
+    <option name="localTasksCounter" value="543" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -522,7 +527,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="One unnecessary last blow in combo sequence has been vanished." />
     <MESSAGE value="Added 3-steps combo including two punches and one kick. Could be combined with other weapon." />
     <MESSAGE value="Slightly modified punch attack and invisible demolishers collision detection." />
     <MESSAGE value="Added 'blunt' attack for simple impact interaction between demolisher and victim. Brings no special effect.&#10;'Smash' attack shall be used as throwing away interaction." />
@@ -547,6 +551,7 @@
     <MESSAGE value="Successful shield protection consumes mana." />
     <MESSAGE value="Some tuning of shield mana use.&#10;Refused to use 'stunned' state." />
     <MESSAGE value="Items after being dropped becomes invulnerable for a while and cannot be picked up." />
-    <option name="LAST_COMMIT_MESSAGE" value="Items after being dropped becomes invulnerable for a while and cannot be picked up." />
+    <MESSAGE value="If actor being hurt while carrying the Stash, he drops it down." />
+    <option name="LAST_COMMIT_MESSAGE" value="If actor being hurt while carrying the Stash, he drops it down." />
   </component>
 </project>

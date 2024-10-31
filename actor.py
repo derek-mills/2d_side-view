@@ -23,6 +23,8 @@ class Actor(Entity):
         # self.force_use_previous_weapon = False
         self.force_mana_reduce = False
         self.force_mana_reduce_amount: int = 0
+        self.force_stamina_reduce = False
+        self.force_stamina_reduce_amount: int = 0
 
         # self.acceleration = .5
         # self.air_acceleration = .4
@@ -274,6 +276,11 @@ class Actor(Entity):
             self.mana_reduce(self.force_mana_reduce_amount)
             self.force_mana_reduce = False
             self.force_mana_reduce_amount = 0
+
+        if self.force_stamina_reduce:
+            self.stamina_reduce(self.force_stamina_reduce_amount)
+            self.force_stamina_reduce = False
+            self.force_stamina_reduce_amount = 0
 
         if self.invincibility_timer > 0:
             self.invincibility_timer -= 1

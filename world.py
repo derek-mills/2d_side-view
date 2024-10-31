@@ -496,6 +496,7 @@ class World(object):
         protector.flyer = description['flyer']
         protector.parent = description['parent']
         protector.mana_consumption = description['mana consumption']
+        protector.stamina_consumption = description['stamina consumption']
         # print(f'{protector.parent=}')
 
         if description['static']:

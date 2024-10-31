@@ -13,6 +13,8 @@ sword = {
     'animation speed modifier': 1.,  # 0 < x < 1: speed animation up, x > 1: slow down.
     'leave particles': False,
     'class': 'weapons',
+    'drop invulnerability': 100,
+    
     'has crouch attack': False,
     'type': 'melee',
     'sound': 'sound_swing_2',
@@ -70,6 +72,8 @@ kitchen_knife = {
     'animation speed modifier': 1.,  # 0 < x < 1: speed animation up, x > 1: slow down.
     'leave particles': False,
     'class': 'weapons',
+    'drop invulnerability': 100,
+    
     'has crouch attack': False,
     'type': 'melee',
     'sound': 'sound_swing_2',
@@ -125,6 +129,8 @@ fireball_staff = {
     'combo': False, 'combo steps quantity': 0, 'combo next step threshold': 0,
     'description': 'Casual kitchen fireball staff.',
     'class': 'weapons',
+    'drop invulnerability': 100,
+    
     'has crouch attack': False,
     'type': 'melee',
     'label': 'fireball staff',
@@ -168,6 +174,8 @@ fireball_staff = {
 spikeball_staff = {
     'combo': False, 'combo steps quantity': 0, 'combo next step threshold': 0,    'description': 'Ball of spikes.',
     'class': 'weapons',
+    'drop invulnerability': 100,
+    
     'has crouch attack': False,
     'type': 'melee',
     'label': 'spikeball staff',
@@ -211,6 +219,8 @@ spikeball_staff = {
 whip = {
     'combo': False, 'combo steps quantity': 0, 'combo next step threshold': 0,    'description': 'A powerful whip, called Vampire Killer.',
     'class': 'weapons',
+    'drop invulnerability': 100,
+    
     'has crouch attack': True,
     'type': 'melee',
     'label': 'whip',
@@ -286,6 +296,8 @@ jake_kick = {
     'combo': True, 'combo steps quantity': 3, 'combo next step threshold': 30,
     'description': 'A powerful kick, called The Boot of Doom.',
     'class': 'weapons',
+    'drop invulnerability': 100,
+    
     'has crouch attack': False,
     'type': 'melee',
     'label': 'jake kick',
@@ -370,6 +382,8 @@ jake_punch = {
     'combo': True, 'combo steps quantity': 3, 'combo next step threshold': 30,
     'description': 'A powerful punch series.',
     'class': 'weapons',
+    'drop invulnerability': 100,
+    
     'has crouch attack': False,
     'type': 'melee',
     'label': 'jake punch',
@@ -453,6 +467,8 @@ axe = {
     'combo': True, 'combo steps quantity': 2, 'combo next step threshold': 50,
     'description': 'Golden Axe 3',
     'class': 'weapons',
+    'drop invulnerability': 100,
+    
     'has crouch attack': False,
     'type': 'melee',
     'label': 'axe',
@@ -551,6 +567,8 @@ demon_2_mid = {
     'combo': False, 'combo steps quantity': 0, 'combo next step threshold': 0,
     'description': 'Demon 2 middle ranged weapon',
     'class': 'weapons',
+    'drop invulnerability': 100,
+    
     'has crouch attack': False,
     'type': 'melee',
     'label': 'demon 2 mid',
@@ -569,7 +587,7 @@ demon_2_mid = {
     'droppable': True,
     'need ammo': False,
     'ammo': 0,
-    'reach': 300,
+    'reach': 250,
     # 'reach': sprites['demon 2 mid claw demolisher 1']['mask rect'].width,
     'weight': 10,
     'demolishers': (
@@ -627,6 +645,8 @@ demon_2_close = {
     'combo': False, 'combo steps quantity': 0, 'combo next step threshold': 0,
     'description': 'Demon 2 close combat weapon',
     'class': 'weapons',
+    'drop invulnerability': 100,
+    
     'has crouch attack': False,
     'type': 'melee',
     'label': 'demon 2 close',
@@ -692,6 +712,8 @@ pistol = {
     'combo': False, 'combo steps quantity': 0, 'combo next step threshold': 0,
     'description': 'Handy handgun.',
     'class': 'weapons',
+    'drop invulnerability': 100,
+    
     'has crouch attack': False,
     'type': 'firearms',
     'label': 'pistol',
@@ -754,6 +776,8 @@ barrel_explosion = {
     'combo': False, 'combo steps quantity': 0, 'combo next step threshold': 0,
     'description': 'Barrel explosion.',
     'class': 'weapons',
+    'drop invulnerability': 100,
+    
     'has crouch attack': False,
     'type': 'firearms',
     'label': 'barrel explosion',
@@ -802,6 +826,8 @@ small_shield = {
     'combo': False, 'combo steps quantity': 0, 'combo next step threshold': 0,
     'description': 'Small shield.',
     'class': 'weapons',
+    'drop invulnerability': 100,
+    
     'has crouch attack': False,
     'type': 'shields',
     'label': 'small shield',
@@ -813,7 +839,7 @@ small_shield = {
     'amount decrease speed': 0,
     'affects on': '',
     'stamina consumption': 0.,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
-    'mana consumption': 2.,
+    'mana consumption': 0.,
     'ignore user input': True,  # Steal the ability to control a character for a while.
     # 'ignore user input': False,  # Steal the ability to control a character for a while.
     'animation speed modifier': 1.,  # 0 < x < 1: speed animation up, x > 1: slow down.
@@ -822,7 +848,9 @@ small_shield = {
     'protectors': (
         ({
             'rect': pygame.Rect(0, 0, 50, 50), 'flyer': False,
-            'visible': True, 'mana consumption': 5.,
+            'mana consumption': 1.,
+            'stamina consumption': 1.,
+            'visible': True,
             'keep alive': True,  # If button holding down, we must keep this particular protector alive and not allow to summon the new ones.
             'protector sprite': 'small shield protector',
             'pierce': False, 'protector TTL': 0, 'speed': 0,
@@ -837,8 +865,8 @@ small_shield = {
                 # 'stamina': 0.08,  # The lesser, the better stamina saving.
                 'fire': 0.2,
                 'smash': 0.2,
-                'pierce': 0.8,
-                'slash': 0.8
+                'pierce': 0.2,
+                'slash': 0.2
             },
             'aftermath': None
             # 'aftermath': 'explode'
