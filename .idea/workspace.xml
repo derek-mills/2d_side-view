@@ -6,8 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,13 +163,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00500" summary="Continue to change main actor sprites appearance.&#10;I don't like fatty look of this one.">
-      <created>1727416494530</created>
-      <option name="number" value="00500" />
-      <option name="presentableId" value="LOCAL-00500" />
-      <option name="project" value="LOCAL" />
-      <updated>1727416494530</updated>
     </task>
     <task id="LOCAL-00501" summary="Continue to change main actor sprites appearance.&#10;I don't like fatty look of this one.">
       <created>1727418937947</created>
@@ -508,7 +500,14 @@
       <option name="project" value="LOCAL" />
       <updated>1730445982698</updated>
     </task>
-    <option name="localTasksCounter" value="549" />
+    <task id="LOCAL-00549" summary="Repeated animations accepted.">
+      <created>1730447543790</created>
+      <option name="number" value="00549" />
+      <option name="presentableId" value="LOCAL-00549" />
+      <option name="project" value="LOCAL" />
+      <updated>1730447543790</updated>
+    </task>
+    <option name="localTasksCounter" value="550" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -523,7 +522,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Tuning of 'stun' and 'getting hurt' statuses." />
     <MESSAGE value="Tuning of 'stun' and 'getting hurt' statuses. Got annoying bug when actor is hopping in wrong direction after being hit." />
     <MESSAGE value="Tuning of 'hop back' and 'getting hurt' statuses. Still got an annoying bug when actor is hopping in wrong direction after being hit." />
     <MESSAGE value="Solved bug with inverted fly direction after actor has been smashed." />
@@ -548,6 +546,7 @@
     <MESSAGE value="The aftermath of getting hurt took place only if damage amount exceeds zero." />
     <MESSAGE value="If stamina or mana have been forced to reduce, negative amount of such statuses subtract from the health pool." />
     <MESSAGE value="If stamina or mana have been forced to reduce, negative amount of such statuses subtract from the health pool. Improvement." />
-    <option name="LAST_COMMIT_MESSAGE" value="If stamina or mana have been forced to reduce, negative amount of such statuses subtract from the health pool. Improvement." />
+    <MESSAGE value="Repeated animations accepted." />
+    <option name="LAST_COMMIT_MESSAGE" value="Repeated animations accepted." />
   </component>
 </project>

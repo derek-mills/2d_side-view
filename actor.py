@@ -834,11 +834,20 @@ class Actor(Entity):
             if self.stats['stamina'] < self.normal_stamina_lost_per_slide or\
                self.look == 1 and not self.is_enough_space_right or\
                self.look == -1 and not self.is_enough_space_left:
-                self.set_state('crouch')
-                return
+                # self.set_state('crouch')
+                self.speed = self.max_speed * 2
+                self.idle_counter = 10
+            else:
+                self.speed = self.max_speed * 4
+
+            # if self.stats['stamina'] < self.normal_stamina_lost_per_slide or\
+            #    self.look == 1 and not self.is_enough_space_right or\
+            #    self.look == -1 and not self.is_enough_space_left:
+            #     self.set_state('crouch')
+            #     return
             self.set_state('sliding')
             self.set_current_animation()
-            self.speed = self.max_speed * 4
+            # self.speed = self.max_speed * 4
             self.set_new_desired_height(self.rectangle_height_slide, 0)
             self.set_new_desired_width(self.rectangle_width_slide, 6)
             self.is_grabbers_active = False
@@ -873,7 +882,10 @@ class Actor(Entity):
         elif state == 'sliding':                         # SLIDING PROCESS
             self.heading[0] = 0
             if self.speed == 0:
-                self.set_state('slide rise')
+                if self.idle_counter > 0:
+                    self.idle_counter -= 1
+                else:
+                    self.set_state('slide rise')
         elif state == 'slide rise':                      # RISING AFTER SLIDE IS OVER
             self.ignore_user_input = False
             self.set_new_desired_height(self.rectangle_height_sit, 5)
