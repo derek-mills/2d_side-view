@@ -13,8 +13,7 @@ sword = {
     'animation speed modifier': 1.,  # 0 < x < 1: speed animation up, x > 1: slow down.
     'leave particles': False,
     'class': 'weapons',
-    'drop invulnerability': 100,
-    
+    'drop invincibility': 100,
     'has crouch attack': False,
     'type': 'melee',
     'sound': 'sound_swing_2',
@@ -72,8 +71,7 @@ kitchen_knife = {
     'animation speed modifier': 1.,  # 0 < x < 1: speed animation up, x > 1: slow down.
     'leave particles': False,
     'class': 'weapons',
-    'drop invulnerability': 100,
-    
+    'drop invincibility': 100,
     'has crouch attack': False,
     'type': 'melee',
     'sound': 'sound_swing_2',
@@ -129,8 +127,7 @@ fireball_staff = {
     'combo': False, 'combo steps quantity': 0, 'combo next step threshold': 0,
     'description': 'Casual kitchen fireball staff.',
     'class': 'weapons',
-    'drop invulnerability': 100,
-    
+    'drop invincibility': 100,
     'has crouch attack': False,
     'type': 'melee',
     'label': 'fireball staff',
@@ -174,8 +171,7 @@ fireball_staff = {
 spikeball_staff = {
     'combo': False, 'combo steps quantity': 0, 'combo next step threshold': 0,    'description': 'Ball of spikes.',
     'class': 'weapons',
-    'drop invulnerability': 100,
-    
+    'drop invincibility': 100,
     'has crouch attack': False,
     'type': 'melee',
     'label': 'spikeball staff',
@@ -219,8 +215,7 @@ spikeball_staff = {
 whip = {
     'combo': False, 'combo steps quantity': 0, 'combo next step threshold': 0,    'description': 'A powerful whip, called Vampire Killer.',
     'class': 'weapons',
-    'drop invulnerability': 100,
-    
+    'drop invincibility': 100,
     'has crouch attack': True,
     'type': 'melee',
     'label': 'whip',
@@ -296,8 +291,7 @@ jake_kick = {
     'combo': True, 'combo steps quantity': 3, 'combo next step threshold': 30,
     'description': 'A powerful kick, called The Boot of Doom.',
     'class': 'weapons',
-    'drop invulnerability': 100,
-    
+    'drop invincibility': 100,
     'has crouch attack': False,
     'type': 'melee',
     'label': 'jake kick',
@@ -382,8 +376,7 @@ jake_punch = {
     'combo': True, 'combo steps quantity': 3, 'combo next step threshold': 30,
     'description': 'A powerful punch series.',
     'class': 'weapons',
-    'drop invulnerability': 100,
-    
+    'drop invincibility': 100,
     'has crouch attack': False,
     'type': 'melee',
     'label': 'jake punch',
@@ -467,8 +460,7 @@ axe = {
     'combo': True, 'combo steps quantity': 2, 'combo next step threshold': 50,
     'description': 'Golden Axe 3',
     'class': 'weapons',
-    'drop invulnerability': 100,
-    
+    'drop invincibility': 100,
     'has crouch attack': False,
     'type': 'melee',
     'label': 'axe',
@@ -567,8 +559,7 @@ demon_2_mid = {
     'combo': False, 'combo steps quantity': 0, 'combo next step threshold': 0,
     'description': 'Demon 2 middle ranged weapon',
     'class': 'weapons',
-    'drop invulnerability': 100,
-    
+    'drop invincibility': 100,
     'has crouch attack': False,
     'type': 'melee',
     'label': 'demon 2 mid',
@@ -645,8 +636,7 @@ demon_2_close = {
     'combo': False, 'combo steps quantity': 0, 'combo next step threshold': 0,
     'description': 'Demon 2 close combat weapon',
     'class': 'weapons',
-    'drop invulnerability': 100,
-    
+    'drop invincibility': 100,
     'has crouch attack': False,
     'type': 'melee',
     'label': 'demon 2 close',
@@ -712,8 +702,7 @@ pistol = {
     'combo': False, 'combo steps quantity': 0, 'combo next step threshold': 0,
     'description': 'Handy handgun.',
     'class': 'weapons',
-    'drop invulnerability': 100,
-    
+    'drop invincibility': 100,
     'has crouch attack': False,
     'type': 'firearms',
     'label': 'pistol',
@@ -776,8 +765,7 @@ barrel_explosion = {
     'combo': False, 'combo steps quantity': 0, 'combo next step threshold': 0,
     'description': 'Barrel explosion.',
     'class': 'weapons',
-    'drop invulnerability': 100,
-    
+    'drop invincibility': 100,
     'has crouch attack': False,
     'type': 'firearms',
     'label': 'barrel explosion',
@@ -826,8 +814,7 @@ small_shield = {
     'combo': False, 'combo steps quantity': 0, 'combo next step threshold': 0,
     'description': 'Small shield.',
     'class': 'weapons',
-    'drop invulnerability': 100,
-    
+    'drop invincibility': 100,
     'has crouch attack': False,
     'type': 'shields',
     'label': 'small shield',

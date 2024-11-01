@@ -240,7 +240,7 @@ class World(object):
         entity.item_amount = item['amount']
         entity.item_amount_threshold = item['amount threshold']
         entity.item_amount_decrease_speed = item['amount decrease speed']
-        entity.invincibility_timer = 300
+        entity.invincibility_timer = item['drop invincibility']
         # self.items[self.location][entity.id] = entity
         self.obstacles[self.location][entity.id] = entity
 

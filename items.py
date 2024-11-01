@@ -17,7 +17,7 @@ all_items = {
         'amount': 200,
         'amount threshold': 100,
         'amount decrease speed': -.01,
-        'drop invulnerability': 0,
+        'drop invincibility': 0,
         'affects on': 'exp',
     },
     'health vial': {
@@ -31,7 +31,7 @@ all_items = {
         'amount': 100,
         'amount threshold': 100,
         'amount decrease speed': 0,
-        'drop invulnerability': 10,
+        'drop invincibility': 10,
         'affects on': '',
 
     },
@@ -46,7 +46,7 @@ all_items = {
         'amount': 0,
         'amount threshold': 0,
         'amount decrease speed': 0,
-        'drop invulnerability': 0,
+        'drop invincibility': 0,
         'affects on': '',
     },
     'fireball staff': fireball_staff,
