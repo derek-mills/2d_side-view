@@ -820,93 +820,119 @@ class Entity(object):
                     # If actor hit from behind, the damage increased by 50%:
                     total_damage_multiplier = 1.5 if dem.look == self.look and dem.snap_to_actor >= 0 else 1
                     self.get_damage(dem.damage, total_damage_multiplier)
-                    # self.has_got_a_critical_hit = True
-                    # # if self.total_damage_has_got > self.stats['health'] * 2:
-                    # #     self.has_got_a_critical_hit = True
+                    if int(self.total_damage_has_got) > 0:
+                        state = self.get_state()
+                        if state in ('hanging on edge', 'has just grabbed edge', 'climb on', 'climb on rise'):
+                            self.set_state('release edge')
+                            self.state_machine()
+                        elif 'stash' in state:
+                            self.set_state('drop stash')
+                            self.state_machine()
 
-                    state = self.get_state()
-                    if state in ('hanging on edge', 'has just grabbed edge', 'climb on', 'climb on rise'):
-                        self.set_state('release edge')
-                        self.state_machine()
-                    elif 'stash' in state:
-                        self.set_state('drop stash')
-                        self.state_machine()
-
-                    # Damage amount show:
-                    txt_color = RED if self.id == 0 else WHITE
-                    sprite = fonts.all_fonts[40].render(str(int(self.total_damage_has_got)), True, txt_color)
-                    # if self.total_damage_has_got > 0:
-                    #     self.invincibility_timer = 30
-                    self.summoned_particle_descriptions.append({
-                        'sprite': sprite,
-                        'fall speed correction': 0.6,
-                        'particle TTL': 100,
-                        'width': sprite.get_width(),
-                        'height': sprite.get_height(),
-                        'xy': self.rectangle.center,
-                        'bounce': False,
-                        'bounce factor': 0.,
-                        'subtype': 'text',
-                        'color': txt_color,
-                        'look': dem.parent.look if dem.parent else 1,
-                        # 'look': self.look * -1,  # Splatter always fly in the opposite direction
-                        'speed': 1 + randint(6, 8),
-                        'jump height': 15,
-                        # 'jump height': randint(15, 20),
-                        'collides': True,
-                        'gravity affected': True
-                    })
+                        # Damage amount show:
+                        txt_color = RED if self.id == 0 else WHITE
+                        sprite = fonts.all_fonts[40].render(str(int(self.total_damage_has_got)), True, txt_color)
+                        # if self.total_damage_has_got > 0:
+                        #     self.invincibility_timer = 30
+                        self.summoned_particle_descriptions.append({
+                            'sprite': sprite,
+                            'fall speed correction': 0.6,
+                            'particle TTL': 100,
+                            'width': sprite.get_width(),
+                            'height': sprite.get_height(),
+                            'xy': self.rectangle.center,
+                            'bounce': False,
+                            'bounce factor': 0.,
+                            'subtype': 'text',
+                            'color': txt_color,
+                            'look': dem.parent.look if dem.parent else 1,
+                            # 'look': self.look * -1,  # Splatter always fly in the opposite direction
+                            'speed': 1 + randint(6, 8),
+                            'jump height': 15,
+                            # 'jump height': randint(15, 20),
+                            'collides': True,
+                            'gravity affected': True
+                        })
+                        # Blood splatters:
+                        if 'slash' in dem.damage.keys():
+                            # if 'slash' in dem.attack_type:
+                            # self.summon_particle = True
+                            critical_hit_modifier = 3 if self.has_got_a_critical_hit else 1
+                            for particle_quantity in range(randint(12 * critical_hit_modifier, 12 * critical_hit_modifier + dem.damage['slash'] // 10)):
+                                # for particle_quantity in range(randint(10, 20)):
+                                size = randint(1, max(2, int(dem.damage['slash']) >> 4)) * critical_hit_modifier
+                                self.summoned_particle_descriptions.append({
+                                    'sprite': None,
+                                    'particle TTL': 100,
+                                    'width': size,
+                                    'height': size,
+                                    'xy': self.rectangle.center,
+                                    'bounce': False,
+                                    'bounce factor': 0.,
+                                    'subtype': 'splatter',
+                                    'color': self.blood_color,
+                                    'look': dem.parent.look if dem.parent else dem.look,
+                                    # 'look': self.look * -1,  # Splatter always fly in the opposite direction
+                                    'speed': 1 + randint(1, 8),
+                                    'jump height': randint(0, 20),
+                                    'collides': True,
+                                    'gravity affected': True
+                                })
+                        self.set_state('prepare to get hurt')
 
                 if dem.push:
                 # if 'push' in dem.damage.keys():
-                    print(f'[demolishers detector] {self.name} has been smashed and thrown away.')
+                #     print(f'[demolishers detector] {self.name} has been smashed and thrown away.')
                     if self.get_state() not in ('hold stash', 'carry stash right', 'carry stash left'):
                         if dem.parent:
-                            self.hop_back_jump_height_modifier = max(1, (dem.parent_strength + dem.parent_weight) - (self.strength + self.body_weight))
+                            strength_difference = (dem.parent_strength + dem.parent_weight) / (self.strength + self.body_weight)
+                            self.hop_back_jump_height_modifier = min(4, strength_difference) if strength_difference > 0.2 else 0
                             # self.hop_back_jump_height_modifier = (dem.damage['smash'] * 0.05) ** ((dem.parent_strength + dem.parent_weight) / (self.strength + self.body_weight))
                             self.movement_direction_inverter = -1 if dem.parent.look != self.look else 1
                         else:
+                            strength_difference = 0
                             self.hop_back_jump_height_modifier = self.total_damage_has_got * 0.01
                             # self.hop_back_jump_height_modifier = min(3, dem.damage['smash'] * 0.1)
                             self.movement_direction_inverter = -1 if dem.look != self.look else 1
-                        # if self.get_state() != 'lie dead':
-                        if self.movement_direction_inverter == -1 and self.is_enough_space_left or \
-                           self.movement_direction_inverter == 1 and self.is_enough_space_right:
+
+                        print(f'[demolishers detector] {self.name} has been thrown away {strength_difference=} hop: {self.hop_back_jump_height_modifier}.')
+                        if (self.movement_direction_inverter == -1 and self.is_enough_space_left or
+                            self.movement_direction_inverter == 1 and self.is_enough_space_right) and self.hop_back_jump_height_modifier > 0:
                             # print(f'[demolishers collision] {self.hop_back_jump_height_modifier} {dem.damage["smash"]=}')
                             # self.scheduled_state = 'hopping prepare'
                             # self.scheduled_state ='prepare to get hurt'
                             self.set_state('prepare to get hurt and hopping')
                             self.state_machine()
-                        else:
-                            self.set_state('prepare to get hurt')
-                else:
-                    self.set_state('prepare to get hurt')
+                #         else:
+                #             self.set_state('prepare to get hurt')
+                # else:
+                #     self.set_state('prepare to get hurt')
 
-                # Blood splatters:
-                if 'slash' in dem.damage.keys():
-                # if 'slash' in dem.attack_type:
-                    # self.summon_particle = True
-                    critical_hit_modifier = 3 if self.has_got_a_critical_hit else 1
-                    for particle_quantity in range(randint(12 * critical_hit_modifier, 12 * critical_hit_modifier + dem.damage['slash'] // 10)):
-                    # for particle_quantity in range(randint(10, 20)):
-                        size = randint(1, max(2, int(dem.damage['slash']) >> 4)) * critical_hit_modifier
-                        self.summoned_particle_descriptions.append({
-                            'sprite': None,
-                            'particle TTL': 100,
-                            'width': size,
-                            'height': size,
-                            'xy': self.rectangle.center,
-                            'bounce': False,
-                            'bounce factor': 0.,
-                            'subtype': 'splatter',
-                            'color': self.blood_color,
-                            'look': dem.parent.look if dem.parent else dem.look,
-                            # 'look': self.look * -1,  # Splatter always fly in the opposite direction
-                            'speed': 1 + randint(1, 8),
-                            'jump height': randint(0, 20),
-                            'collides': True,
-                            'gravity affected': True
-                        })
+                # # Blood splatters:
+                # if 'slash' in dem.damage.keys():
+                # # if 'slash' in dem.attack_type:
+                #     # self.summon_particle = True
+                #     critical_hit_modifier = 3 if self.has_got_a_critical_hit else 1
+                #     for particle_quantity in range(randint(12 * critical_hit_modifier, 12 * critical_hit_modifier + dem.damage['slash'] // 10)):
+                #     # for particle_quantity in range(randint(10, 20)):
+                #         size = randint(1, max(2, int(dem.damage['slash']) >> 4)) * critical_hit_modifier
+                #         self.summoned_particle_descriptions.append({
+                #             'sprite': None,
+                #             'particle TTL': 100,
+                #             'width': size,
+                #             'height': size,
+                #             'xy': self.rectangle.center,
+                #             'bounce': False,
+                #             'bounce factor': 0.,
+                #             'subtype': 'splatter',
+                #             'color': self.blood_color,
+                #             'look': dem.parent.look if dem.parent else dem.look,
+                #             # 'look': self.look * -1,  # Splatter always fly in the opposite direction
+                #             'speed': 1 + randint(1, 8),
+                #             'jump height': randint(0, 20),
+                #             'collides': True,
+                #             'gravity affected': True
+                #         })
 
 
 

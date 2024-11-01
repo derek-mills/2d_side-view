@@ -6,10 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demolisher.py" beforeDir="false" afterPath="$PROJECT_DIR$/demolisher.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -166,13 +163,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00496" summary="Stamina replenishing speeds up while player actor sticks near the Stash">
-      <created>1727167670183</created>
-      <option name="number" value="00496" />
-      <option name="presentableId" value="LOCAL-00496" />
-      <option name="project" value="LOCAL" />
-      <updated>1727167670183</updated>
     </task>
     <task id="LOCAL-00497" summary="some tiny changes">
       <created>1727243871858</created>
@@ -510,7 +500,14 @@
       <option name="project" value="LOCAL" />
       <updated>1730422552113</updated>
     </task>
-    <option name="localTasksCounter" value="545" />
+    <task id="LOCAL-00545" summary="'smash' damage type deprecated.&#10;'push' property appeared in every demolisher's description.&#10;Pushing away after taking damage calculates now upon the weight and strength of an interacting actors.">
+      <created>1730429830766</created>
+      <option name="number" value="00545" />
+      <option name="presentableId" value="LOCAL-00545" />
+      <option name="project" value="LOCAL" />
+      <updated>1730429830766</updated>
+    </task>
+    <option name="localTasksCounter" value="546" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -525,7 +522,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added 'blunt' attack for simple impact interaction between demolisher and victim. Brings no special effect.&#10;'Smash' attack shall be used as throwing away interaction." />
     <MESSAGE value="'Stunned' state implemented.&#10;Combo will be reset if actor gets damage." />
     <MESSAGE value="Tuning of 'stun' state." />
     <MESSAGE value="Added 'get hurt' state and corresponding animation (only for player actor for now)." />
@@ -550,6 +546,7 @@
     <MESSAGE value="If actor being hurt while carrying the Stash, he drops it down." />
     <MESSAGE value="Some tuning of stamina and mana reducing system" />
     <MESSAGE value="Individual drop invincibility timer added for every item." />
-    <option name="LAST_COMMIT_MESSAGE" value="Individual drop invincibility timer added for every item." />
+    <MESSAGE value="'smash' damage type deprecated.&#10;'push' property appeared in every demolisher's description.&#10;Pushing away after taking damage calculates now upon the weight and strength of an interacting actors." />
+    <option name="LAST_COMMIT_MESSAGE" value="'smash' damage type deprecated.&#10;'push' property appeared in every demolisher's description.&#10;Pushing away after taking damage calculates now upon the weight and strength of an interacting actors." />
   </component>
 </project>
