@@ -21,10 +21,10 @@ class Actor(Entity):
         self.next_ranged_weapon_usage_counter = 0
         # self.previously_used_weapon = ''
         # self.force_use_previous_weapon = False
-        self.force_mana_reduce = False
-        self.force_mana_reduce_amount: int = 0
-        self.force_stamina_reduce = False
-        self.force_stamina_reduce_amount: int = 0
+        # self.force_mana_reduce = False
+        # self.force_mana_reduce_amount: int = 0
+        # self.force_stamina_reduce = False
+        # self.force_stamina_reduce_amount: int = 0
 
         # self.acceleration = .5
         # self.air_acceleration = .4
@@ -547,17 +547,18 @@ class Actor(Entity):
         #         # 'Stunned' state has been switched off
         #         self.set_state('stand still')
         elif state == 'protect':
-            if self.stats['mana'] > 3:
-                self.set_current_animation()
-                self.normal_stamina_replenish = 0.01
-                # self.stamina_replenish_modifier = 0.3
-                self.heading[0] = 0
-            else:
-                self.summon_protector = False
-                self.summoned_protectors_description = list()
-                # self.summoned_protectors_keep_alive = list()
-                self.set_state('stand still')
-                # self.set_current_animation()
+            self.set_current_animation()
+            self.normal_stamina_replenish = 0.01
+            self.heading[0] = 0
+        # elif state == 'protect':
+        #     if self.stats['mana'] > 3:
+        #         self.set_current_animation()
+        #         self.normal_stamina_replenish = 0.01
+        #         self.heading[0] = 0
+        #     else:
+        #         self.summon_protector = False
+        #         self.summoned_protectors_description = list()
+        #         self.set_state('stand still')
         elif state == 'prepare attack':                          # PREPARING ATTACK
             # print(f'[state machine] {self.name} prepares attack.')
             self.stamina_reduce(self.current_stamina_lost_per_attack)

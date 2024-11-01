@@ -61,6 +61,11 @@ class Entity(object):
         self.total_damage_has_got = 0  # Variable storing a momentary amount of damage got from a single demolisher.
 
         # STATS
+        self.force_mana_reduce = False
+        self.force_mana_reduce_amount: int = 0
+        self.force_stamina_reduce = False
+        self.force_stamina_reduce_amount: int = 0
+
         self.normal_stamina_lost_per_second_jump = 10.
         self.normal_stamina_lost_per_hop_back = 5.5
         self.normal_stamina_lost_per_slide = 15.
@@ -853,6 +858,7 @@ class Entity(object):
                             'collides': True,
                             'gravity affected': True
                         })
+
                         # Blood splatters:
                         if 'slash' in dem.damage.keys():
                             # if 'slash' in dem.attack_type:
@@ -1011,11 +1017,17 @@ class Entity(object):
             self.stats['health'] += 1
 
     def mana_reduce(self, amount):
-        if self.stats['mana'] == 0:
+        if self.stats['mana'] < 0:
             return
         self.stats['mana'] -= amount
-        if self.stats['mana'] < 0:
-             self.stats['mana'] = 0
+        if self.stats['mana'] < 0 and self.force_mana_reduce:
+             self.stats['health'] += self.stats['mana']
+    # def mana_reduce(self, amount):
+    #     if self.stats['mana'] == 0:
+    #         return
+    #     self.stats['mana'] -= amount
+    #     if self.stats['mana'] < 0:
+    #          self.stats['mana'] = 0
 
     def mana_replenish(self):
         if self.stats['mana'] > self.stats['max mana']:
@@ -1031,12 +1043,21 @@ class Entity(object):
     def stamina_reduce(self, amount):
         # if self.id == 0:
         #     print(f'[entity stamina reduce] player stamina reduced by amount: {amount}')
-        print(f'[entity stamina reduce] {self.name}\'s stamina reduced by amount: {amount}')
-        if self.stats['stamina'] > 0:
-            # return
-            self.stats['stamina'] -= amount
-        # if self.stats['stamina'] < 0:
-        #      self.stats['stamina'] = 0
+        # print(f'[entity stamina reduce] {self.name}\'s stamina reduced by amount: {amount}')
+        if self.stats['stamina'] < 0:
+            return
+        self.stats['stamina'] -= amount
+        if self.stats['stamina'] < 0 and self.force_stamina_reduce:
+             self.stats['health'] += self.stats['stamina']
+
+    # def stamina_reduce(self, amount):
+    #     # if self.id == 0:
+    #     #     print(f'[entity stamina reduce] player stamina reduced by amount: {amount}')
+    #     # print(f'[entity stamina reduce] {self.name}\'s stamina reduced by amount: {amount}')
+    #     if self.stats['stamina'] > 0:
+    #         self.stats['stamina'] -= amount
+    #     # if self.stats['stamina'] < 0:
+    #     #      self.stats['stamina'] = 0
 
     def stamina_replenish(self):
         # if self.stats['target stamina'] > self.stats['max stamina']:
