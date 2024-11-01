@@ -188,7 +188,7 @@ zombie = {
             'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 0
         },
         'whip right': {
-            'repeat': False, 'interruptable': True,
+            'repeat': True, 'interruptable': True,
             'sequence': (74,74,74,75,76,76,76,77),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
             'speed': 5,
             'activity at frames': {
@@ -201,7 +201,7 @@ zombie = {
             'repeat from frame': 0
         },
         'whip left': {
-            'repeat': False, 'interruptable': True,
+            'repeat': True, 'interruptable': True,
             'sequence': (91,91,91,90,89,89,89,88),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
             'speed': 5,
             'activity at frames': {
@@ -214,7 +214,7 @@ zombie = {
             'repeat from frame': 0
         },
         'stab right': {
-            'repeat': False, 'interruptable': True,
+            'repeat': True, 'interruptable': True,
             'sequence': (74,74,74,74,75,  # 0 - 4
                          74,74,74,74,75, 75), # 5 - 9
             'speed': 2,
@@ -234,7 +234,7 @@ zombie = {
             'repeat from frame': 0
         },
         'stab left': {
-            'repeat': False, 'interruptable': True,
+            'repeat': True, 'interruptable': True,
             'sequence': (89, 89, 89, 89, 88,
                          89, 89, 89, 89, 88, 88),  # 0 - 4
             'activity at frames': {
@@ -254,7 +254,7 @@ zombie = {
             'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 2
         },
         'cast right': {
-            'repeat': False, 'interruptable': True,
+            'repeat': True, 'interruptable': True,
             'sequence': (60,60,60,60,60,60,61,62,62,62,62),  # 5 - 9
             'speed': 4,
             'activity at frames': {
@@ -267,7 +267,7 @@ zombie = {
             'repeat from frame': 0
         },
         'cast left': {
-            'repeat': False, 'interruptable': True,
+            'repeat': True, 'interruptable': True,
             'sequence': (65,65,65,65,65,65,64,63,63,63,63),  # 5 - 9
             'speed': 4,
             'activity at frames': {
@@ -511,7 +511,7 @@ demon_1 = {
             'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 0
         },
         'whip right': {
-            'repeat': False, 'interruptable': True,
+            'repeat': True, 'interruptable': True,
             'sequence': (74,74,74,75,76,76,76,77),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
             'speed': 3,
             'activity at frames': {
@@ -524,7 +524,7 @@ demon_1 = {
             'repeat from frame': 0
         },
         'whip left': {
-            'repeat': False, 'interruptable': True,
+            'repeat': True, 'interruptable': True,
             'sequence': (91,91,91,90,89,89,89,88),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
             'speed': 1,
             'activity at frames': {
@@ -537,7 +537,7 @@ demon_1 = {
             'repeat from frame': 0
         },
         'stab right': {
-            'repeat': False, 'interruptable': True,
+            'repeat': True, 'interruptable': True,
             'sequence': (74,74,74,74,75,  # 0 - 4
                          74,74,74,74,75, 75), # 5 - 9
             'speed': 2,
@@ -557,7 +557,7 @@ demon_1 = {
             'repeat from frame': 0
         },
         'stab left': {
-            'repeat': False, 'interruptable': True,
+            'repeat': True, 'interruptable': True,
             'sequence': (89, 89, 89, 89, 88,
                          89, 89, 89, 89, 88, 88),  # 0 - 4
             'activity at frames': {
@@ -577,7 +577,7 @@ demon_1 = {
             'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 2
         },
         'cast right': {
-            'repeat': False, 'interruptable': True,
+            'repeat': True, 'interruptable': True,
             'sequence': (60,60,60,60,60,60,61,62,62,62,62),  # 5 - 9
             'speed': 4,
             'activity at frames': {
@@ -590,7 +590,7 @@ demon_1 = {
             'repeat from frame': 0
         },
         'cast left': {
-            'repeat': False, 'interruptable': True,
+            'repeat': True, 'interruptable': True,
             'sequence': (65,65,65,65,65,65,64,63,63,63,63),  # 5 - 9
             'speed': 4,
             'activity at frames': {
@@ -835,7 +835,7 @@ demon_2 = {
             'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 0
         },
         'whip right': {
-            'repeat': False,
+            'repeat': True,
             # 'interruptable': True,
             'sequence': (74,74,74,75,76,76,76,77,75,74,
                          78,78,78,79,80,80,80,79,79,79),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
@@ -873,7 +873,7 @@ demon_2 = {
             'repeat from frame': 0
         },
         'whip left': {
-            'repeat': False, 'interruptable': True,
+            'repeat': True, 'interruptable': True,
             'sequence': (91,91,91,90,89,89,89,88,88,91,
                          94,94,94,93,92,92,92,93,93,93),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
             # 74,74,74,74,74,  # 5 - 9
@@ -920,7 +920,7 @@ demon_2 = {
             'repeat from frame': 0
         },
         'whip crouch right': {
-            'repeat': False, 'interruptable': True,
+            'repeat': True, 'interruptable': True,
             'sequence': (60,60,60,61,62,62,62,61),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
             # 'sequence': (74,74,74,75,76,76,76,77),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
             # 74,74,74,74,74,  # 5 - 9
@@ -946,7 +946,7 @@ demon_2 = {
             'repeat from frame': 0
         },
         'whip crouch left': {
-            'repeat': False, 'interruptable': True,
+            'repeat': True, 'interruptable': True,
             'sequence': (78,78,78,79,80,80,80,79),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
             # 74,74,74,74,74,  # 5 - 9
             # 74,74,74,75,75,  # 10 - 14
@@ -969,7 +969,7 @@ demon_2 = {
             'repeat from frame': 0
         },
         'stab right': {
-            'repeat': False, 'interruptable': True,
+            'repeat': True, 'interruptable': True,
             'sequence': (60,60,60,60,61,61,61,61,61,61), # 5 - 9
                          # 74,74,74,74,74,  # 5 - 9
                          # 74,74,74,75,75,  # 10 - 14
@@ -1002,7 +1002,7 @@ demon_2 = {
             'repeat from frame': 0
         },
         'stab left': {
-            'repeat': False, 'interruptable': True,
+            'repeat': True, 'interruptable': True,
             'sequence': (62,62,62,62,63,63,63,63,63,63), # 5 - 9
                          # 74,74,74,74,74,  # 5 - 9
                          # 74,74,74,75,75,  # 10 - 14
@@ -1036,7 +1036,7 @@ demon_2 = {
             'repeat from frame': 2
         },
         'cast right': {
-            'repeat': False, 'interruptable': True,
+            'repeat': True, 'interruptable': True,
             'sequence': (74, 74, 74, 74, 74,  # 0 - 4
                          74, 74, 74, 74, 75, 75),  # 5 - 9
             # 74,74,74,74,74,  # 5 - 9
@@ -1056,7 +1056,7 @@ demon_2 = {
             'repeat from frame': 0
         },
         'cast left': {
-            'repeat': False, 'interruptable': True,
+            'repeat': True, 'interruptable': True,
             'sequence': (89,89,89,89,89,89,  # 0 - 4
                          89,89,89,89,88,88),  # 5 - 9
             # 74,74,74,74,74,  # 5 - 9
@@ -1452,9 +1452,9 @@ player_jake = {
             'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 0
         },
         'whip right': {
-            'repeat': False, 'interruptable': True,
-            'sequence': (74,74,74,75,76,76,76,76,76,77),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
-            'speed': 1,
+            'repeat': True, 'interruptable': True,
+            'sequence': (74,74,74,75,76,76,76,76,76,77,77,77,77),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'speed': 2,
             'activity at frames': {
                 4: {
                     'sound': True,
@@ -1475,9 +1475,9 @@ player_jake = {
              'repeat from frame': 0
         },
         'whip left': {
-            'repeat': False, 'interruptable': True,
-            'sequence': (91,91,91,90,89,89,89,89,89,88),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
-            'speed': 1,
+            'repeat': True, 'interruptable': True,
+            'sequence': (91,91,91,90,89,89,89,89,89,88,88,88,88),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'speed': 2,
             'activity at frames': {
                 4: {
                     'sound': True,
@@ -1498,7 +1498,7 @@ player_jake = {
             'repeat from frame': 0
         },
         'whip crouch right': {
-            'repeat': False, 'interruptable': True,
+            'repeat': True, 'interruptable': True,
             'sequence': (60, 60, 60, 61, 62, 62, 62, 62,62, 61),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
             'speed': 2,
             'activity at frames': {
@@ -1521,7 +1521,7 @@ player_jake = {
             'repeat from frame': 0
         },
         'whip crouch left': {
-            'repeat': False, 'interruptable': True,
+            'repeat': True, 'interruptable': True,
             'sequence': (80, 80, 80, 79, 78, 78, 78, 78,78, 79),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
             'speed': 2,
             'activity at frames': {
@@ -1544,7 +1544,7 @@ player_jake = {
             'repeat from frame': 0
         },
         'stab right': {
-            'repeat': False, 'interruptable': True,
+            'repeat': True, 'interruptable': True,
             'sequence': (74,75,76,76,76,),  # 0 - 4
             'speed': 2,
             'activity at frames': {
@@ -1558,7 +1558,7 @@ player_jake = {
             'repeat from frame': 0
         },
         'stab left': {
-            'repeat': False, 'interruptable': True,
+            'repeat': True, 'interruptable': True,
             'sequence': (91,90,89,89,89),  # 0 - 4
             'activity at frames': {
                 2: {
@@ -1572,7 +1572,7 @@ player_jake = {
             'repeat from frame': 2
         },
         'punch combo 1 right': {
-            'repeat': False, 'interruptable': True,
+            'repeat': True, 'interruptable': True,
             'sequence': (109, 109, 110, 110, 109, 109, 110, 110,),  # 5 - 9
             'speed': 2,
             'activity at frames': {
@@ -1592,7 +1592,7 @@ player_jake = {
             'repeat from frame': 0
         },
         'punch combo 2 right': {
-            'repeat': False, 'interruptable': True,
+            'repeat': True, 'interruptable': True,
             'sequence': (109,109,108,107,106,106,106,106,),  # 5 - 9
             'speed': 2,
             'activity at frames': {
@@ -1606,7 +1606,7 @@ player_jake = {
             'repeat from frame': 0
         },
         'punch combo 3 right': {
-            'repeat': False, 'interruptable': True,
+            'repeat': True, 'interruptable': True,
             'sequence': (109,108,108,108,111,111,111,111), # 5 - 9
             'speed': 2,
             'activity at frames': {
@@ -1620,7 +1620,7 @@ player_jake = {
             'repeat from frame': 0
         },
         'punch combo 1 left': {
-            'repeat': False, 'interruptable': True,
+            'repeat': True, 'interruptable': True,
             'sequence': (94,94,93,93,94,94,93,93),  # 5 - 9
             'speed': 2,
             'activity at frames': {
@@ -1640,7 +1640,7 @@ player_jake = {
             'repeat from frame': 0
         },
         'punch combo 2 left': {
-            'repeat': False, 'interruptable': True,
+            'repeat': True, 'interruptable': True,
             'sequence': (94,94, 95, 96, 97,97,97,97,),  # 5 - 9
             'speed': 2,
             'activity at frames': {
@@ -1654,7 +1654,7 @@ player_jake = {
             'repeat from frame': 0
         },
         'punch combo 3 left': {
-            'repeat': False, 'interruptable': True,
+            'repeat': True, 'interruptable': True,
             'sequence': (94, 95,95,95, 92,92,92,92),  # 5 - 9
             'speed': 2,
             'activity at frames': {
@@ -1668,7 +1668,7 @@ player_jake = {
             'repeat from frame': 0
         },
         # 'kick combo 3 right': {
-        #     'repeat': False, 'interruptable': True,
+        #     'repeat': True, 'interruptable': True,
         #     'sequence': (63,63,64,64,65,65,65,64,63,63), # 5 - 9
         #     'speed': 2,
         #     'activity at frames': {
@@ -1682,7 +1682,7 @@ player_jake = {
         #     'repeat from frame': 0
         # },
         'kick combo 1 left': {
-            'repeat': False, 'interruptable': True,
+            'repeat': True, 'interruptable': True,
             'sequence': (92,93,94,95,95,95,92,),  # 0 - 4
             'activity at frames': {
                 3: {
@@ -1696,7 +1696,7 @@ player_jake = {
             'repeat from frame': 0
         },
         'kick combo 2 left': {
-            'repeat': False, 'interruptable': True,
+            'repeat': True, 'interruptable': True,
             'sequence': (92,92,96,96,97,97,97),  # 0 - 4
             'activity at frames': {
                 4: {
@@ -1710,7 +1710,7 @@ player_jake = {
             'repeat from frame': 0
         },
         'kick combo 3 left': {
-            'repeat': False, 'interruptable': True,
+            'repeat': True, 'interruptable': True,
             'sequence': (68,68,67,67,66,66,66,66,67,68),  # 0 - 4
             'activity at frames': {
                 4: {
@@ -1724,7 +1724,7 @@ player_jake = {
             'repeat from frame': 0
         },
         'cast right': {
-            'repeat': False, 'interruptable': True,
+            'repeat': True, 'interruptable': True,
             'sequence': (74, 74, 74, 74, 74,  # 0 - 4
                          74, 74, 74, 74, 75, 75),  # 5 - 9
               'speed': 2,
@@ -1739,7 +1739,7 @@ player_jake = {
             'repeat from frame': 0
         },
         'cast left': {
-            'repeat': False, 'interruptable': True,
+            'repeat': True, 'interruptable': True,
             'sequence': (89,89,89,89,89,89,  # 0 - 4
                          89,89,89,89,88,88),  # 5 - 9
             'speed': 3,
@@ -1785,7 +1785,7 @@ player_jake = {
             'repeat from frame': 0
         },
         'axe swing combo 2 right': {
-            'repeat': False, 'interruptable': True,
+            'repeat': True, 'interruptable': True,
             'sequence': (74,74,74,74,75, 76, 76, 76,76,76,76,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
             'speed': 1,
             'activity at frames': {
@@ -1811,7 +1811,7 @@ player_jake = {
             'repeat from frame': 0
         },
         'axe swing combo 1 left': {
-            'repeat': False, 'interruptable': True,
+            'repeat': True, 'interruptable': True,
             'sequence': (91,91,91,91,90, 90, 89, 89, 89,89,89,89,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
             'speed': 1,
             'activity at frames': {
@@ -1837,7 +1837,7 @@ player_jake = {
             'repeat from frame': 0
         },
         'axe swing combo 1 right': {
-            'repeat': False, 'interruptable': True,
+            'repeat': True, 'interruptable': True,
             'sequence': (74,74,75,76,76,76,74,74,75,76,76,76),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
             'speed': 1,
             'activity at frames': {
@@ -1881,7 +1881,7 @@ player_jake = {
             'repeat from frame': 0
         },
         'axe swing combo 2 left': {
-            'repeat': False, 'interruptable': True,
+            'repeat': True, 'interruptable': True,
             'sequence': (91,91,91,91,90, 90, 89, 89, 89,89,89,89,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
             'speed': 1,
             'activity at frames': {
@@ -1907,7 +1907,7 @@ player_jake = {
             'repeat from frame': 0
         },
         'pistol shot right': {
-            'repeat': False, 'interruptable': True,
+            'repeat': True, 'interruptable': True,
             'sequence': (57,57,57,58,58,59,59,59,59),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
             'speed': 1,
             'activity at frames': {
@@ -1921,7 +1921,7 @@ player_jake = {
             'repeat from frame': 0
         },
         'pistol shot left': {
-            'repeat': False, 'interruptable': True,
+            'repeat': True, 'interruptable': True,
             'sequence': (73,73,73,72,72,71,71,71,71),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
             'speed': 1,
             'activity at frames': {

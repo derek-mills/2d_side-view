@@ -509,7 +509,9 @@ class Entity(object):
     #     self.active_frames = list(self.animations[self.current_animation]['activity at frames'].keys())
 
     def process_activity_at_current_animation_frame(self):
+        # print(self.active_frames)
         if self.frame_number in self.active_frames:
+            # print(self.frame_number, self.active_frames)
             for action in self.animations[self.current_animation]['activity at frames'][self.frame_number]:
                 # print(self.frame_number, action)
                 if self.animations[self.current_animation]['activity at frames'][self.frame_number][action]:
@@ -838,7 +840,7 @@ class Entity(object):
 
                         # Damage amount show:
                         txt_color = RED if self.id == 0 else WHITE
-                        sprite = fonts.all_fonts[40].render(str(int(self.total_damage_has_got)), True, txt_color)
+                        sprite = fonts.all_fonts[30].render(str(int(self.total_damage_has_got)), True, txt_color)
                         # if self.total_damage_has_got > 0:
                         #     self.invincibility_timer = 30
                         self.summoned_particle_descriptions.append({
