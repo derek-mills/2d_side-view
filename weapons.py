@@ -34,7 +34,9 @@ sword = {
             'collides': True, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0,
             'attack type': ('slash',),
-             'damage': {
+            'push': False,
+            'damage': {
+
                  'slash': 80
              },
             'aftermath': 'disappear'
@@ -48,7 +50,9 @@ sword = {
             'collides': True, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0,
             'attack type': ('slash',),
+            'push': False,
             'damage': {
+
                 'slash': 100
             },
             'aftermath': 'disappear'
@@ -96,7 +100,9 @@ kitchen_knife = {
             'collides': True, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
             'attack type': ('slash',),
-             'damage': {
+             'push': False,
+            'damage': {
+
                  'slash': 100
              },
             'aftermath': None
@@ -159,7 +165,9 @@ fireball_staff = {
             'collides': True, 'gravity affected': True,
             'bounce': True, 'bounce factor': 0.3,
             'attack type': ('fire', ),
-             'damage': {
+             'push': False,
+            'damage': {
+
                  'fire': 150,
              },
             'aftermath': 'disappear'
@@ -203,7 +211,9 @@ spikeball_staff = {
             'collides': True, 'gravity affected': True,
             'bounce': True, 'bounce factor': 0.9,
             'attack type': ('pierce',),
-             'damage': {
+             'push': False,
+            'damage': {
+
                  'pierce': 100,
              },
             'aftermath': 'disappear'
@@ -247,7 +257,9 @@ whip = {
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
             # 'attack type': ('pierce',),
-             'damage': {
+             'push': False,
+            'damage': {
+
                  'pierce': 10,
              },
             # 'aftermath': 'explode'
@@ -262,7 +274,9 @@ whip = {
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
             # 'attack type': ('pierce',),
-             'damage': {
+             'push': False,
+            'damage': {
+
                  'pierce': 30,
              },
             # 'aftermath': 'explode'
@@ -277,7 +291,9 @@ whip = {
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
             # 'attack type': ('pierce',),
-             'damage': {
+             'push': False,
+            'damage': {
+
                  'pierce': 60,
              },
             # 'aftermath': 'explode'
@@ -291,7 +307,7 @@ jake_kick = {
     'combo': True, 'combo steps quantity': 3, 'combo next step threshold': 30,
     'description': 'A powerful kick, called The Boot of Doom.',
     'class': 'weapons',
-    'drop invincibility': 100,
+    'drop invincibility': 0,
     'has crouch attack': False,
     'type': 'melee',
     'label': 'jake kick',
@@ -322,10 +338,12 @@ jake_kick = {
              'static': True, 'damage reduce': 0,
              'collides': False, 'gravity affected': False,
              'bounce': False, 'bounce factor': 0.,
-             'attack type': ('smash',),
-             'damage': {
+             # 'attack type': ('smash',),
+             'push': False,
+            'damage': {
+
                  'blunt': 15,
-                 # 'smash': 10,
+                 # 
                  # 'slash': 1,
              },
              # 'aftermath': 'explode'
@@ -341,10 +359,12 @@ jake_kick = {
              'collides': False, 'gravity affected': False,
              'bounce': False, 'bounce factor': 0.,
              'attack type': ('smash',),
-             'damage': {
+             'push': False,
+            'damage': {
+
                  'blunt': 20,
                  'slash': 1,
-                 'smash': 15,
+                 
              },
              # 'aftermath': 'explode'
              'aftermath': 'disappear'
@@ -360,9 +380,11 @@ jake_kick = {
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
             'attack type': ('smash',),
-             'damage': {
+             'push': False,
+            'damage': {
+
                  'blunt': 50,
-                 'smash': 100,
+                 
                  'slash': 1,
              },
             # 'aftermath': 'explode'
@@ -408,9 +430,11 @@ jake_punch = {
              'collides': False, 'gravity affected': False,
              'bounce': False, 'bounce factor': 0.,
              'attack type': ('smash',),
+             'push': False,
              'damage': {
+
                  'blunt': 15,
-                 # 'smash': 10,
+                 # 
                  # 'slash': 1,
              },
              # 'aftermath': 'explode'
@@ -426,10 +450,12 @@ jake_punch = {
              'collides': False, 'gravity affected': False,
              'bounce': False, 'bounce factor': 0.,
              'attack type': ('smash',),
+             'push': False,
              'damage': {
+
                  'blunt': 50,
                  'slash': 1,
-                 # 'smash': 15,
+                 # 
              },
              # 'aftermath': 'explode'
              'aftermath': 'disappear'
@@ -444,9 +470,9 @@ jake_punch = {
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
             'attack type': ('smash',),
-             'damage': {
+            'push': True,
+            'damage': {
                  'blunt': 50,
-                 'smash': 20,
                  'slash': 1,
              },
             # 'aftermath': 'explode'
@@ -492,8 +518,10 @@ axe = {
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
             # 'attack type': ('smash','slash'),
-             'damage': {
-                 'smash': 3,
+             'push': False,
+            'damage': {
+
+                 
                  'slash': 10
              },
             # 'aftermath': 'explode'
@@ -509,8 +537,10 @@ axe = {
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
             # 'attack type': ('smash','slash'),
-             'damage': {
-                 'smash': 5,
+             'push': False,
+            'damage': {
+
+                 
                  'slash': 30
              },
             # 'aftermath': 'explode'
@@ -526,8 +556,10 @@ axe = {
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
             # 'attack type': ('smash','slash'),
-             'damage': {
-                 'smash': 5,
+             'push': False,
+            'damage': {
+
+                 
                  'slash': 90
              },
             # 'aftermath': 'explode'
@@ -543,8 +575,10 @@ axe = {
              'collides': False, 'gravity affected': False,
              'bounce': False, 'bounce factor': 0.,
              # 'attack type': ('smash','slash'),
-             'damage': {
-                 'smash': 8,
+             'push': False,
+            'damage': {
+
+                 
                  'slash': 90
              },
              # 'aftermath': 'explode'
@@ -591,7 +625,8 @@ demon_2_mid = {
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
             # 'attack type': ('slash', ),
-             'damage': {
+             'push': False,
+            'damage': {
                  'slash': 100
              },
             # 'aftermath': 'explode'
@@ -606,7 +641,8 @@ demon_2_mid = {
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
             # 'attack type': ('slash', 'pierce'),
-             'damage': {
+             'push': False,
+            'damage': {
                  'pierce': 100,
                  'slash': 10
              },
@@ -622,8 +658,9 @@ demon_2_mid = {
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
             # 'attack type': ('smash', ),
-             'damage': {
-                 'smash': 100,
+            'push': True,
+            'damage': {
+                 'blunt': 100,
              },
             # 'aftermath': 'explode'
             'aftermath': 'disappear'
@@ -668,8 +705,10 @@ demon_2_close = {
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
             'attack type': ('slash', 'smash', 'pierce'),
-             'damage': {
-                 'smash': 1,
+             'push': False,
+            'damage': {
+
+                 
                  'pierce': 100,
                  'slash': 100
              },
@@ -686,8 +725,10 @@ demon_2_close = {
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
             'attack type': ('slash', 'smash', 'pierce'),
-             'damage': {
-                 'smash': 1,
+             'push': False,
+            'damage': {
+
+                 
                  'pierce': 100,
                  'slash': 100
              },
@@ -733,7 +774,9 @@ pistol = {
              'collides': False, 'gravity affected': False,
              'bounce': False, 'bounce factor': 0.,
              # 'attack type': ('slash', 'smash', 'pierce'),
-             'damage': {
+             'push': False,
+            'damage': {
+
                  'fire': 225,
              },
              # 'aftermath': 'explode'
@@ -749,9 +792,11 @@ pistol = {
             'collides': True, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
             # 'attack type': ('slash', 'smash', 'pierce'),
-             'damage': {
+             'push': False,
+            'damage': {
+
                  'fire': 25,
-                 'smash': 10,
+                 
                  'pierce': 100,
              },
             # 'aftermath': 'explode'
@@ -797,9 +842,11 @@ barrel_explosion = {
             'collides': True, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
             'attack type': ('fire', 'smash', 'pierce', 'slash'),
+            'push': False,
             'damage': {
+
                 'fire': 50,
-                'smash': 100,
+                
                 'pierce': 100,
                 'slash': 10
             },
@@ -849,11 +896,10 @@ small_shield = {
             # 1: 0% protection
             # >1: protector will amplify the damage amount of such type.
             'protection': {
-                # 'stamina': 0.08,  # The lesser, the better stamina saving.
-                'fire': 0.2,
-                'smash': 0.2,
+                'blunt': 0.9,
+                'fire': 1.,
                 'pierce': 0.2,
-                'slash': 0.2
+                'slash': 0.
             },
             'aftermath': None
             # 'aftermath': 'explode'

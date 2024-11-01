@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/items.py" beforeDir="false" afterPath="$PROJECT_DIR$/items.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demolisher.py" beforeDir="false" afterPath="$PROJECT_DIR$/demolisher.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
@@ -165,13 +166,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00495" summary="Improved becoming a bullet after reaching terminal velocity.">
-      <created>1727164338417</created>
-      <option name="number" value="00495" />
-      <option name="presentableId" value="LOCAL-00495" />
-      <option name="project" value="LOCAL" />
-      <updated>1727164338417</updated>
     </task>
     <task id="LOCAL-00496" summary="Stamina replenishing speeds up while player actor sticks near the Stash">
       <created>1727167670183</created>
@@ -509,7 +503,14 @@
       <option name="project" value="LOCAL" />
       <updated>1730351154529</updated>
     </task>
-    <option name="localTasksCounter" value="544" />
+    <task id="LOCAL-00544" summary="Individual drop invincibility timer added for every item.">
+      <created>1730422552113</created>
+      <option name="number" value="00544" />
+      <option name="presentableId" value="LOCAL-00544" />
+      <option name="project" value="LOCAL" />
+      <updated>1730422552113</updated>
+    </task>
+    <option name="localTasksCounter" value="545" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -524,7 +525,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Slightly modified punch attack and invisible demolishers collision detection." />
     <MESSAGE value="Added 'blunt' attack for simple impact interaction between demolisher and victim. Brings no special effect.&#10;'Smash' attack shall be used as throwing away interaction." />
     <MESSAGE value="'Stunned' state implemented.&#10;Combo will be reset if actor gets damage." />
     <MESSAGE value="Tuning of 'stun' state." />
@@ -549,6 +549,7 @@
     <MESSAGE value="Items after being dropped becomes invulnerable for a while and cannot be picked up." />
     <MESSAGE value="If actor being hurt while carrying the Stash, he drops it down." />
     <MESSAGE value="Some tuning of stamina and mana reducing system" />
-    <option name="LAST_COMMIT_MESSAGE" value="Some tuning of stamina and mana reducing system" />
+    <MESSAGE value="Individual drop invincibility timer added for every item." />
+    <option name="LAST_COMMIT_MESSAGE" value="Individual drop invincibility timer added for every item." />
   </component>
 </project>

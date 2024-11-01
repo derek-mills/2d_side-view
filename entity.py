@@ -52,7 +52,6 @@ class Entity(object):
         self.blood_color = RED
         self.has_just_stopped_demolishers = list()
         self.resistances = {
-            'smash': 1,
             'slash': 1,
             'blunt': 1,
             'fire': 1,
@@ -374,8 +373,9 @@ class Entity(object):
                 'static': True, 'damage reduce': 0,
                 'collides': True, 'gravity affected': False,
                 'bounce': False, 'bounce factor': 0.,
+                'push': True,
                 'damage': {
-                    'smash': self.body_weight * self.speed * 0.01,
+                    'blunt': self.body_weight * self.speed * 0.01,
                 },
                 'aftermath': 'disappear'
             }
@@ -857,14 +857,17 @@ class Entity(object):
                         'gravity affected': True
                     })
 
-                if 'smash' in dem.damage.keys():
+                if dem.push:
+                # if 'push' in dem.damage.keys():
                     print(f'[demolishers detector] {self.name} has been smashed and thrown away.')
                     if self.get_state() not in ('hold stash', 'carry stash right', 'carry stash left'):
                         if dem.parent:
-                            self.hop_back_jump_height_modifier = (dem.damage['smash'] * 0.05) ** ((dem.parent_strength + dem.parent_weight) / (self.strength + self.body_weight))
+                            self.hop_back_jump_height_modifier = max(1, (dem.parent_strength + dem.parent_weight) - (self.strength + self.body_weight))
+                            # self.hop_back_jump_height_modifier = (dem.damage['smash'] * 0.05) ** ((dem.parent_strength + dem.parent_weight) / (self.strength + self.body_weight))
                             self.movement_direction_inverter = -1 if dem.parent.look != self.look else 1
                         else:
-                            self.hop_back_jump_height_modifier = min(3, dem.damage['smash'] * 0.1)
+                            self.hop_back_jump_height_modifier = self.total_damage_has_got * 0.01
+                            # self.hop_back_jump_height_modifier = min(3, dem.damage['smash'] * 0.1)
                             self.movement_direction_inverter = -1 if dem.look != self.look else 1
                         # if self.get_state() != 'lie dead':
                         if self.movement_direction_inverter == -1 and self.is_enough_space_left or \

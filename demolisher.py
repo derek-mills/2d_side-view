@@ -17,6 +17,7 @@ class Demolisher(Entity):
         # self.snapping_offset = list()
         self.protection = dict()
         self.damage = dict()
+        self.push = False
         self.mana_consumption: int = 0
         self.stamina_consumption: int = 0
 

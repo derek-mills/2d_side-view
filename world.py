@@ -378,6 +378,7 @@ class World(object):
         demol.name = 'demolisher ' + str(demol.id)
         demol.bounce = description['bounce']
         demol.bounce_factor = description['bounce factor']
+        demol.push = description['push']
         demol.flyer = description['flyer']
         demol.parent = description['parent']
 
@@ -811,9 +812,10 @@ class World(object):
                 'bounce factor': 0,
                 'flyer': True,
                 'aftermath': '',
+                'push': True,
                 'damage': {
                     'fire': 100,
-                    'smash': 10,
+                    'blunt': 10,
                     'pierce': 100,
                 },
                 'static': False,
