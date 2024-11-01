@@ -6,10 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main .py" beforeDir="false" afterPath="$PROJECT_DIR$/main .py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -166,13 +164,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00498" summary="just a messing with sprites">
-      <created>1727338111997</created>
-      <option name="number" value="00498" />
-      <option name="presentableId" value="LOCAL-00498" />
-      <option name="project" value="LOCAL" />
-      <updated>1727338111997</updated>
     </task>
     <task id="LOCAL-00499" summary="Altered frames changing speed if actor has an exhausted state.">
       <created>1727403831247</created>
@@ -510,7 +501,14 @@
       <option name="project" value="LOCAL" />
       <updated>1730439244419</updated>
     </task>
-    <option name="localTasksCounter" value="547" />
+    <task id="LOCAL-00547" summary="If stamina or mana have been forced to reduce, negative amount of such statuses subtract from the health pool.">
+      <created>1730444995896</created>
+      <option name="number" value="00547" />
+      <option name="presentableId" value="LOCAL-00547" />
+      <option name="project" value="LOCAL" />
+      <updated>1730444995896</updated>
+    </task>
+    <option name="localTasksCounter" value="548" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -525,7 +523,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Tuning of 'stun' state." />
     <MESSAGE value="Added 'get hurt' state and corresponding animation (only for player actor for now)." />
     <MESSAGE value="Tuning of 'stun' and 'getting hurt' statuses." />
     <MESSAGE value="Tuning of 'stun' and 'getting hurt' statuses. Got annoying bug when actor is hopping in wrong direction after being hit." />
@@ -550,6 +547,7 @@
     <MESSAGE value="Individual drop invincibility timer added for every item." />
     <MESSAGE value="'smash' damage type deprecated.&#10;'push' property appeared in every demolisher's description.&#10;Pushing away after taking damage calculates now upon the weight and strength of an interacting actors." />
     <MESSAGE value="The aftermath of getting hurt took place only if damage amount exceeds zero." />
-    <option name="LAST_COMMIT_MESSAGE" value="The aftermath of getting hurt took place only if damage amount exceeds zero." />
+    <MESSAGE value="If stamina or mana have been forced to reduce, negative amount of such statuses subtract from the health pool." />
+    <option name="LAST_COMMIT_MESSAGE" value="If stamina or mana have been forced to reduce, negative amount of such statuses subtract from the health pool." />
   </component>
 </project>

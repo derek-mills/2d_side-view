@@ -417,6 +417,8 @@ class Entity(object):
         # self.fly(time_passed)
         self.correct_position_if_influenced()
 
+        self.total_damage_has_got = 0
+
     # def process_backup(self, time_passed):
     #     if self.ttl > 0:
     #         self.ttl -= 1
@@ -995,7 +997,7 @@ class Entity(object):
         # if self.dead:
         #     return
         # print(f'[entity.get_damage] incoming damage dealt to {self.name} | {self.stats["health"]=}')
-        self.total_damage_has_got = 0
+        # self.total_damage_has_got = 0
         remain_health = self.stats['health']
         for damage_type in damage:
             d = damage[damage_type] * self.resistances[damage_type] * damage_multiplier
@@ -1021,7 +1023,10 @@ class Entity(object):
             return
         self.stats['mana'] -= amount
         if self.stats['mana'] < 0 and self.force_mana_reduce:
-             self.stats['health'] += self.stats['mana']
+            self.get_damage({'blunt': -self.stats['mana']}, 1)
+             # self.stats['health'] += self.stats['mana']
+             # self.total_damage_has_got -= self.stats['mana']
+
     # def mana_reduce(self, amount):
     #     if self.stats['mana'] == 0:
     #         return
@@ -1048,7 +1053,10 @@ class Entity(object):
             return
         self.stats['stamina'] -= amount
         if self.stats['stamina'] < 0 and self.force_stamina_reduce:
-             self.stats['health'] += self.stats['stamina']
+            self.get_damage({'blunt': -self.stats['stamina']}, 1)
+
+             # self.stats['health'] += self.stats['stamina']
+             # self.total_damage_has_got -= self.stats['stamina']
 
     # def stamina_reduce(self, amount):
     #     # if self.id == 0:
