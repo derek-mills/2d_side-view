@@ -164,13 +164,6 @@
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
     </task>
-    <task id="LOCAL-00501" summary="Continue to change main actor sprites appearance.&#10;I don't like fatty look of this one.">
-      <created>1727418937947</created>
-      <option name="number" value="00501" />
-      <option name="presentableId" value="LOCAL-00501" />
-      <option name="project" value="LOCAL" />
-      <updated>1727418937947</updated>
-    </task>
     <task id="LOCAL-00502" summary="Continue to change main actor sprites appearance.&#10;I don't like fatty look of this one.">
       <created>1727423693180</created>
       <option name="number" value="00502" />
@@ -507,7 +500,14 @@
       <option name="project" value="LOCAL" />
       <updated>1730447543790</updated>
     </task>
-    <option name="localTasksCounter" value="550" />
+    <task id="LOCAL-00550" summary="Sliding becomes more lazy in case of lack of stamina.">
+      <created>1730450472829</created>
+      <option name="number" value="00550" />
+      <option name="presentableId" value="LOCAL-00550" />
+      <option name="project" value="LOCAL" />
+      <updated>1730450472829</updated>
+    </task>
+    <option name="localTasksCounter" value="551" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -522,7 +522,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Tuning of 'stun' and 'getting hurt' statuses. Got annoying bug when actor is hopping in wrong direction after being hit." />
     <MESSAGE value="Tuning of 'hop back' and 'getting hurt' statuses. Still got an annoying bug when actor is hopping in wrong direction after being hit." />
     <MESSAGE value="Solved bug with inverted fly direction after actor has been smashed." />
     <MESSAGE value="Solved bug when AI actor changed weapon and caused crash because previous attack animation hasn't been finished yet, but he tried to use settings from the new one." />
@@ -547,6 +546,7 @@
     <MESSAGE value="If stamina or mana have been forced to reduce, negative amount of such statuses subtract from the health pool." />
     <MESSAGE value="If stamina or mana have been forced to reduce, negative amount of such statuses subtract from the health pool. Improvement." />
     <MESSAGE value="Repeated animations accepted." />
-    <option name="LAST_COMMIT_MESSAGE" value="Repeated animations accepted." />
+    <MESSAGE value="Sliding becomes more lazy in case of lack of stamina." />
+    <option name="LAST_COMMIT_MESSAGE" value="Sliding becomes more lazy in case of lack of stamina." />
   </component>
 </project>

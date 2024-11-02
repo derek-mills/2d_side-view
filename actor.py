@@ -288,7 +288,6 @@ class Actor(Entity):
         if self.stun_counter > 0:
             self.stun_counter -= 1
             self.is_stunned = True
-            # self.set_state('stunned')
         else:
             self.is_stunned = False
 
@@ -296,7 +295,6 @@ class Actor(Entity):
             self.combo_counter -= 1
         else:
             self.combo_set_number = 0
-            # self.set_current_animation()
 
         self.state_machine()
         self.apply_rectangle_according_to_sprite()
@@ -1104,7 +1102,7 @@ class Actor(Entity):
             self.ignore_user_input = True
             self.summon_protector = False
             if self.think_type == 'exploding barrel':
-                self.invincibility_timer = 100
+                self.invincibility_timer = 1000
                 self.set_state('almost explode')
                 self.set_current_animation()
             else:
