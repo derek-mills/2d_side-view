@@ -1228,11 +1228,15 @@ class World(object):
                     self.add_demolisher(d)
                 # self.add_demolisher(actor.summoned_demolisher_description)
 
-            if actor.summon_particle:
-                actor.summon_particle = False
-                for description in actor.summoned_particle_descriptions:
-                    self.add_particle(description)
-                actor.summoned_particle_descriptions = list()
+            while actor.summoned_particle_descriptions:
+                description = actor.summoned_particle_descriptions.pop()
+                self.add_particle(description)
+
+            # if actor.summon_particle:
+            #     actor.summon_particle = False
+                # for description in actor.summoned_particle_descriptions:
+                #     self.add_particle(description)
+                # actor.summoned_particle_descriptions = list()
 
             # actor.total_damage_has_got = 0
 

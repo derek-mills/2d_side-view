@@ -840,28 +840,29 @@ class Entity(object):
 
                         # Damage amount show:
                         txt_color = RED if self.id == 0 else WHITE
-                        sprite = fonts.all_fonts[30].render(str(int(self.total_damage_has_got)), True, txt_color)
-                        # if self.total_damage_has_got > 0:
-                        #     self.invincibility_timer = 30
-                        self.summoned_particle_descriptions.append({
-                            'sprite': sprite,
-                            'fall speed correction': 0.6,
-                            'particle TTL': 100,
-                            'width': sprite.get_width(),
-                            'height': sprite.get_height(),
-                            'xy': self.rectangle.center,
-                            'bounce': False,
-                            'bounce factor': 0.,
-                            'subtype': 'text',
-                            'color': txt_color,
-                            'look': dem.parent.look if dem.parent else 1,
-                            # 'look': self.look * -1,  # Splatter always fly in the opposite direction
-                            'speed': 1 + randint(6, 8),
-                            'jump height': 15,
-                            # 'jump height': randint(15, 20),
-                            'collides': True,
-                            'gravity affected': True
-                        })
+                        self.summon_info_blob(str(int(self.total_damage_has_got)), txt_color, dem.parent.look if dem.parent else 1)
+                        # sprite = fonts.all_fonts[30].render(str(int(self.total_damage_has_got)), True, txt_color)
+                        # # if self.total_damage_has_got > 0:
+                        # #     self.invincibility_timer = 30
+                        # self.summoned_particle_descriptions.append({
+                        #     'sprite': sprite,
+                        #     'fall speed correction': 0.6,
+                        #     'particle TTL': 100,
+                        #     'width': sprite.get_width(),
+                        #     'height': sprite.get_height(),
+                        #     'xy': self.rectangle.center,
+                        #     'bounce': False,
+                        #     'bounce factor': 0.,
+                        #     'subtype': 'text',
+                        #     'color': txt_color,
+                        #     'look': dem.parent.look if dem.parent else 1,
+                        #     # 'look': self.look * -1,  # Splatter always fly in the opposite direction
+                        #     'speed': 1 + randint(6, 8),
+                        #     'jump height': 15,
+                        #     # 'jump height': randint(15, 20),
+                        #     'collides': True,
+                        #     'gravity affected': True
+                        # })
 
                         # Blood splatters:
                         if 'slash' in dem.damage.keys():
@@ -948,6 +949,27 @@ class Entity(object):
 
                 # print('[detect_demolishers_collisions] actor get damage in state:', self.__state)
 
+    def summon_info_blob(self, txt, color, look=1):
+        sprite = fonts.all_fonts[30].render(txt, True, color)
+        self.summoned_particle_descriptions.append({
+            'sprite': sprite,
+            'fall speed correction': 0.6,
+            'particle TTL': 100,
+            'width': sprite.get_width(),
+            'height': sprite.get_height(),
+            'xy': self.rectangle.center,
+            'bounce': False,
+            'bounce factor': 0.,
+            'subtype': 'text',
+            'color': color,
+            'look': look,
+            # 'look': self.look * -1,  # Splatter always fly in the opposite direction
+            'speed': 1 + randint(6, 8),
+            'jump height': 15,
+            # 'jump height': randint(15, 20),
+            'collides': True,
+            'gravity affected': True
+        })
 
     def check_condition(self):
         if self.dead or self.dying:

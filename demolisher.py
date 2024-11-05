@@ -233,6 +233,7 @@ class Demolisher(Entity):
                     p.parent.get_damage(self.damage, 1)
                     p.parent.set_state('prepare to get hurt')
                     p.parent.state_machine()
+                    p.parent.summon_info_blob(str(int(p.parent.total_damage_has_got)), RED if p.parent.id == 0 else WHITE, self.parent.look if self.parent else 1)
 
                     if self.bounce:
                         self.is_being_collided_now = True
