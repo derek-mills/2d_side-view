@@ -272,15 +272,15 @@ class Actor(Entity):
         # self.set_current_animation()
 
     def process(self):
-        if self.force_mana_reduce:
-            self.mana_reduce(self.force_mana_reduce_amount)
-            self.force_mana_reduce = False
-            self.force_mana_reduce_amount = 0
-
-        if self.force_stamina_reduce:
-            self.stamina_reduce(self.force_stamina_reduce_amount)
-            self.force_stamina_reduce = False
-            self.force_stamina_reduce_amount = 0
+        # if self.force_mana_reduce:
+        #     self.mana_reduce(self.force_mana_reduce_amount)
+        #     self.force_mana_reduce = False
+        #     self.force_mana_reduce_amount = 0
+        #
+        # if self.force_stamina_reduce:
+        #     self.stamina_reduce(self.force_stamina_reduce_amount)
+        #     self.force_stamina_reduce = False
+        #     self.force_stamina_reduce_amount = 0
 
         if self.invincibility_timer > 0:
             self.invincibility_timer -= 1

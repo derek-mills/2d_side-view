@@ -218,14 +218,22 @@ class Demolisher(Entity):
                 p = self.protectors_around[k]
                 if self.rectangle.colliderect(p.rectangle) and self.look != p.look:
                     # print(f'[detect collision with protectors] collided with {p.name}, {p.look=}, {self.look=}')
-
-                    # Protector's parent must have an issue:
-                    p.parent.force_mana_reduce = True
-                    p.parent.force_mana_reduce_amount = p.mana_consumption * p.parent.normal_mana_lost_per_defend
-                    p.parent.force_stamina_reduce = True
-                    p.parent.force_stamina_reduce_amount = p.stamina_consumption * p.parent.normal_stamina_lost_per_defend
-
                     self.become_mr_floppy()
+                    # Reduce all damaging abilities according to protector's might:
+                    for damage_type in self.damage:
+                        self.damage[damage_type] *= p.protection[damage_type]
+
+                    # Protector's owner (parent) must have an issue:
+                    # p.parent.force_mana_reduce = True
+                    # p.parent.force_mana_reduce_amount = p.mana_consumption * p.parent.normal_mana_lost_per_defend
+                    # p.parent.force_stamina_reduce = True
+                    # p.parent.force_stamina_reduce_amount = p.stamina_consumption * p.parent.normal_stamina_lost_per_defend
+                    p.parent.mana_reduce(p.mana_consumption * p.parent.normal_mana_lost_per_defend)
+                    p.parent.stamina_reduce(p.stamina_consumption * p.parent.normal_stamina_lost_per_defend)
+                    p.parent.get_damage(self.damage, 1)
+                    p.parent.set_state('prepare to get hurt')
+                    p.parent.state_machine()
+
                     if self.bounce:
                         self.is_being_collided_now = True
                         self.parent_id = -1
@@ -234,11 +242,9 @@ class Demolisher(Entity):
                             self.collided_left = True
                         else:
                             self.collided_right = True
-                    # else:
-                    #     for damage_type in self.damage:
-                    #         self.damage[damage_type] *= p.protection[damage_type]
-                    for damage_type in self.damage:
-                        self.damage[damage_type] *= p.protection[damage_type]
+
+                    # for damage_type in self.damage:
+                    #     self.damage[damage_type] *= p.protection[damage_type]
 
                 break
 
