@@ -166,13 +166,6 @@
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
     </task>
-    <task id="LOCAL-00504" summary="Fixed stamina lost while actors sliding.">
-      <created>1728887173005</created>
-      <option name="number" value="00504" />
-      <option name="presentableId" value="LOCAL-00504" />
-      <option name="project" value="LOCAL" />
-      <updated>1728887173006</updated>
-    </task>
     <task id="LOCAL-00505" summary="Removed unnecessary mana and stamina reducing.&#10;Added some new backgrounds in Entrance zone.">
       <created>1728958811925</created>
       <option name="number" value="00505" />
@@ -509,7 +502,14 @@
       <option name="project" value="LOCAL" />
       <updated>1730786815962</updated>
     </task>
-    <option name="localTasksCounter" value="553" />
+    <task id="LOCAL-00553" summary="Actor releases damage info blobs even if he got cover behind the shield.">
+      <created>1730787469164</created>
+      <option name="number" value="00553" />
+      <option name="presentableId" value="LOCAL-00553" />
+      <option name="project" value="LOCAL" />
+      <updated>1730787469164</updated>
+    </task>
+    <option name="localTasksCounter" value="554" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -524,7 +524,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Solved bug when AI actor changed weapon and caused crash because previous attack animation hasn't been finished yet, but he tried to use settings from the new one." />
     <MESSAGE value="Commit before I decided to remake state_machine(). I'll try to separate animations from states and apply new animation for every state in manual mode." />
     <MESSAGE value="State machine remake started." />
     <MESSAGE value="State machine remake continues." />
@@ -549,6 +548,7 @@
     <MESSAGE value="Sliding becomes more lazy in case of lack of stamina." />
     <MESSAGE value="Whatever." />
     <MESSAGE value="Actor got some damage even if he covered by unproper shield" />
-    <option name="LAST_COMMIT_MESSAGE" value="Actor got some damage even if he covered by unproper shield" />
+    <MESSAGE value="Actor releases damage info blobs even if he got cover behind the shield." />
+    <option name="LAST_COMMIT_MESSAGE" value="Actor releases damage info blobs even if he got cover behind the shield." />
   </component>
 </project>

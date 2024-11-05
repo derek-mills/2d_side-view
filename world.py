@@ -616,10 +616,11 @@ class World(object):
             return
 
         self.processing_human_input()
+        self.processing_actors()
         self.processing_protectors()
         self.processing_demolishers()
 
-        self.processing_actors()
+        # self.processing_actors()
         self.processing_particles()
 
         # Applying camera offset:
@@ -1238,7 +1239,7 @@ class World(object):
                 #     self.add_particle(description)
                 # actor.summoned_particle_descriptions = list()
 
-            # actor.total_damage_has_got = 0
+            actor.total_damage_has_got = 0
 
         for dead_id in dead:
             # Erase actors which must be disappeared after death.

@@ -222,6 +222,11 @@ class Demolisher(Entity):
                     # Reduce all damaging abilities according to protector's might:
                     for damage_type in self.damage:
                         self.damage[damage_type] *= p.protection[damage_type]
+                    # damage_is_real = False
+                    # for damage_type in self.damage:
+                    #     self.damage[damage_type] *= p.protection[damage_type]
+                    #     if self.damage[damage_type] > 0:
+                    #         damage_is_real = True
 
                     # Protector's owner (parent) must have an issue:
                     # p.parent.force_mana_reduce = True
@@ -231,9 +236,17 @@ class Demolisher(Entity):
                     p.parent.mana_reduce(p.mana_consumption * p.parent.normal_mana_lost_per_defend)
                     p.parent.stamina_reduce(p.stamina_consumption * p.parent.normal_stamina_lost_per_defend)
                     p.parent.get_damage(self.damage, 1)
-                    p.parent.set_state('prepare to get hurt')
-                    p.parent.state_machine()
-                    p.parent.summon_info_blob(str(int(p.parent.total_damage_has_got)), RED if p.parent.id == 0 else WHITE, self.parent.look if self.parent else 1)
+                    if p.parent.total_damage_has_got > 0:
+                        p.parent.invincibility_timer = 20
+                        p.parent.set_state('prepare to get hurt')
+                        p.parent.state_machine()
+                        p.parent.summon_info_blob(str(int(p.parent.total_damage_has_got)), RED if p.parent.id == 0 else WHITE, self.parent.look if self.parent else 1)
+                    # if damage_is_real:
+                    #     self.invincibility_timer = 20
+                    #     p.parent.get_damage(self.damage, 1)
+                    #     p.parent.set_state('prepare to get hurt')
+                    #     p.parent.state_machine()
+                    #     p.parent.summon_info_blob(str(int(p.parent.total_damage_has_got)), RED if p.parent.id == 0 else WHITE, self.parent.look if self.parent else 1)
 
                     if self.bounce:
                         self.is_being_collided_now = True

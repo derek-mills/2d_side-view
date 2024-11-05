@@ -417,7 +417,7 @@ class Entity(object):
         # self.fly(time_passed)
         self.correct_position_if_influenced()
 
-        self.total_damage_has_got = 0
+        # self.total_damage_has_got = 0
 
     # def process_backup(self, time_passed):
     #     if self.ttl > 0:
@@ -824,7 +824,7 @@ class Entity(object):
                     self.has_just_stopped_demolishers.append(dem.id)
 
                 self.summon_particle = True
-                self.invincibility_timer = 10
+                self.invincibility_timer = 20
                 if not self.dead:
                     # If actor hit from behind, the damage increased by 50%:
                     total_damage_multiplier = 1.5 if dem.look == self.look and dem.snap_to_actor >= 0 else 1
@@ -839,8 +839,8 @@ class Entity(object):
                             self.state_machine()
 
                         # Damage amount show:
-                        txt_color = RED if self.id == 0 else WHITE
-                        self.summon_info_blob(str(int(self.total_damage_has_got)), txt_color, dem.parent.look if dem.parent else 1)
+                        # txt_color = RED if self.id == 0 else WHITE
+                        # self.summon_info_blob(str(int(self.total_damage_has_got)), txt_color, dem.parent.look if dem.parent else 1)
                         # sprite = fonts.all_fonts[30].render(str(int(self.total_damage_has_got)), True, txt_color)
                         # # if self.total_damage_has_got > 0:
                         # #     self.invincibility_timer = 30
@@ -1034,9 +1034,13 @@ class Entity(object):
 
         if self.total_damage_has_got >= remain_health * 2:
             self.has_got_a_critical_hit = True
-
         else:
             self.has_got_a_critical_hit = False
+
+        # if self.total_damage_has_got > 0:
+        #     # Damage amount show:
+        #     txt_color = RED if self.id == 0 else WHITE
+        #     self.summon_info_blob(str(int(self.total_damage_has_got)), txt_color, dem.parent.look if dem.parent else 1)
 
     def health_replenish(self):
         if self.stats['health'] < self.stats['max health']:
