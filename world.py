@@ -989,11 +989,13 @@ class World(object):
             # if actor.dead:
             #     continue
 
-            if actor.dying:
+            if actor.dying and not actor.dead:
                 actor.dead = True
                 actor.dying = False
                 actor.invincibility_timer = 0
                 # actor.set_state('lie dead')
+
+                # Remove all protectors:
                 actor.summon_protector = False
                 actor.summoned_protectors_description = list()
                 while actor.summoned_protectors_keep_alive:
@@ -1002,6 +1004,7 @@ class World(object):
 
                 if actor.disappear_after_death:
                     dead.append(actor.id)
+
                 if actor.id == 0:
                     self.player_is_dead_counter_to_game_over = 200
                     if actor.has_item_in_inventory(all_items['stash']):
