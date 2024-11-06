@@ -5,6 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demolisher.py" beforeDir="false" afterPath="$PROJECT_DIR$/demolisher.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main .py" beforeDir="false" afterPath="$PROJECT_DIR$/main .py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -162,13 +166,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00508" summary="Simplified actor's rectangle processing if pose changes.">
-      <created>1729146665151</created>
-      <option name="number" value="00508" />
-      <option name="presentableId" value="LOCAL-00508" />
-      <option name="project" value="LOCAL" />
-      <updated>1729146665151</updated>
     </task>
     <task id="LOCAL-00509" summary="Returned actor's rectangle complicate processing if pose changes.">
       <created>1729150052452</created>
@@ -506,7 +503,14 @@
       <option name="project" value="LOCAL" />
       <updated>1730874870267</updated>
     </task>
-    <option name="localTasksCounter" value="557" />
+    <task id="LOCAL-00557" summary="&#10;Some improvement">
+      <created>1730876560011</created>
+      <option name="number" value="00557" />
+      <option name="presentableId" value="LOCAL-00557" />
+      <option name="project" value="LOCAL" />
+      <updated>1730876560011</updated>
+    </task>
+    <option name="localTasksCounter" value="558" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -521,7 +525,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="State machine remake continues." />
     <MESSAGE value="Some stamina reduce tuning." />
     <MESSAGE value="Some tuning." />
     <MESSAGE value="Fighting with endless 'getting hurt' animation after actor has been hit through the shield and runs out of stamina." />
@@ -546,6 +549,7 @@
     <MESSAGE value="Actor releases damage info blobs even if he got cover behind the shield." />
     <MESSAGE value="Tuning of invincibility system/" />
     <MESSAGE value="Protectors now disappear after their owner's death." />
-    <option name="LAST_COMMIT_MESSAGE" value="Protectors now disappear after their owner's death." />
+    <MESSAGE value="&#10;Some improvement" />
+    <option name="LAST_COMMIT_MESSAGE" value="&#10;Some improvement" />
   </component>
 </project>

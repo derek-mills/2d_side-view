@@ -222,8 +222,10 @@ class Demolisher(Entity):
                     # print(f'[detect collision with protectors] collided with {p.name}, {p.look=}, {self.look=}')
                     self.become_mr_floppy()
                     # Reduce all damaging abilities according to protector's might:
+                    damage = self.damage.copy()
                     for damage_type in self.damage:
-                        self.damage[damage_type] *= p.protection[damage_type]
+                        damage[damage_type] *= p.protection[damage_type]
+                        # self.damage[damage_type] *= p.protection[damage_type]
                     # damage_is_real = False
                     # for damage_type in self.damage:
                     #     self.damage[damage_type] *= p.protection[damage_type]
@@ -237,7 +239,8 @@ class Demolisher(Entity):
                     # p.parent.force_stamina_reduce_amount = p.stamina_consumption * p.parent.normal_stamina_lost_per_defend
                     p.parent.mana_reduce(p.mana_consumption * p.parent.normal_mana_lost_per_defend)
                     p.parent.stamina_reduce(p.stamina_consumption * p.parent.normal_stamina_lost_per_defend)
-                    p.parent.get_damage(self.damage, 1)
+                    p.parent.get_damage(damage, 1)
+                    # p.parent.get_damage(self.damage, 1)
                     if p.parent.total_damage_has_got > 0:
                         p.parent.invincibility_timer = 30
                         p.parent.got_immunity_to_demolishers.append(self.id)

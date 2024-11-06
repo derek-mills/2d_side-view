@@ -989,7 +989,7 @@ class World(object):
             # if actor.dead:
             #     continue
 
-            if actor.dying and not actor.dead:
+            if actor.dying:# and not actor.dead:
                 actor.dead = True
                 actor.dying = False
                 actor.invincibility_timer = 0
