@@ -1187,7 +1187,8 @@ class Actor(Entity):
         elif state == 'prepare to get hurt':
             if not self.dead:
                 self.ignore_user_input = True
-                self.summon_protector = False
+                # self.summon_protector = False
+                # self.summoned_protectors_description = list()
                 self.set_state('getting hurt')
                 self.set_current_animation()
         elif state == 'getting hurt':

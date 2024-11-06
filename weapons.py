@@ -636,7 +636,7 @@ demon_2_mid = {
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
              'visible': True,
             'demolisher sprite': 'demon 2 mid claw demolisher 2',
-            'pierce': True, 'demolisher TTL': 5, 'speed': 0,
+            'pierce': True, 'demolisher TTL': 2, 'speed': 0,
             'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,

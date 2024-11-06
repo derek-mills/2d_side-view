@@ -994,6 +994,12 @@ class World(object):
                 actor.dying = False
                 actor.invincibility_timer = 0
                 # actor.set_state('lie dead')
+                actor.summon_protector = False
+                actor.summoned_protectors_description = list()
+                while actor.summoned_protectors_keep_alive:
+                    protector_id = actor.summoned_protectors_keep_alive.pop()
+                    del self.protectors[self.location][protector_id]
+
                 if actor.disappear_after_death:
                     dead.append(actor.id)
                 if actor.id == 0:
@@ -1212,7 +1218,7 @@ class World(object):
                 while actor.summoned_protectors_description:
                     p = actor.summoned_protectors_description.pop()
                     self.add_protector(p)
-                    print(f'[processing actors] {actor.name} summoned a protector.')
+                    # print(f'[processing actors] {actor.name} summoned a protector.')
                     actor.summoned_protectors_keep_alive.append(self.protector_id - 1)
             # else:
             #     while actor.summoned_protectors_keep_alive:

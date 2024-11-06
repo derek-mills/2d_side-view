@@ -61,7 +61,7 @@ class Entity(object):
         self.total_damage_has_got = 0  # Variable storing a momentary amount of damage got from a single demolisher.
 
         # STATS
-        self.default_invincibility_time = 20
+        self.default_invincibility_time = 10
         self.force_mana_reduce = False
         self.force_mana_reduce_amount: int = 0
         self.force_stamina_reduce = False
