@@ -61,6 +61,7 @@ class Entity(object):
         self.total_damage_has_got = 0  # Variable storing a momentary amount of damage got from a single demolisher.
 
         # STATS
+        self.default_invincibility_time = 20
         self.force_mana_reduce = False
         self.force_mana_reduce_amount: int = 0
         self.force_stamina_reduce = False
@@ -737,6 +738,8 @@ class Entity(object):
             return
         for key in self.demolishers_around.keys():
             dem = self.demolishers_around[key]
+            # if dem.floppy:
+            #     continue
             if dem.parent:
                 if dem.id in self.got_immunity_to_demolishers or \
                     dem.parent_id == self.id or dem.parent.name == self.name:  # or \
@@ -824,7 +827,7 @@ class Entity(object):
                     self.has_just_stopped_demolishers.append(dem.id)
 
                 self.summon_particle = True
-                self.invincibility_timer = 20
+                # self.invincibility_timer = 20
                 if not self.dead:
                     # If actor hit from behind, the damage increased by 50%:
                     total_damage_multiplier = 1.5 if dem.look == self.look and dem.snap_to_actor >= 0 else 1
@@ -839,8 +842,8 @@ class Entity(object):
                             self.state_machine()
 
                         # Damage amount show:
-                        # txt_color = RED if self.id == 0 else WHITE
-                        # self.summon_info_blob(str(int(self.total_damage_has_got)), txt_color, dem.parent.look if dem.parent else 1)
+                        txt_color = RED if self.id == 0 else WHITE
+                        self.summon_info_blob(str(int(self.total_damage_has_got)), txt_color, dem.parent.look if dem.parent else 1)
                         # sprite = fonts.all_fonts[30].render(str(int(self.total_damage_has_got)), True, txt_color)
                         # # if self.total_damage_has_got > 0:
                         # #     self.invincibility_timer = 30
@@ -1018,6 +1021,9 @@ class Entity(object):
             # self.dead = True
 
     def get_damage(self, damage, damage_multiplier):
+        if self.invincibility_timer > 0:
+            self.total_damage_has_got = 0
+            return
         # if self.dead:
         #     return
         # print(f'[entity.get_damage] incoming damage dealt to {self.name} | {self.stats["health"]=}')
@@ -1036,6 +1042,8 @@ class Entity(object):
             self.has_got_a_critical_hit = True
         else:
             self.has_got_a_critical_hit = False
+
+        self.invincibility_timer = self.default_invincibility_time
 
         # if self.total_damage_has_got > 0:
         #     # Damage amount show:
