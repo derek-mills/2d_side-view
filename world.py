@@ -2036,16 +2036,21 @@ class World(object):
                 #     self.lights_on = False if self.lights_on else True
                 # elif event.key == K_m:
                 #     self.need_to_show_minimap = False if self.need_to_show_minimap else True
-                elif event.key == K_n:
+                elif event.key == K_KP1:
                     # enemy_to_add = copy(all_hostiles['zombie'])  # Create a copy of enemy
                     # enemy_to_add = copy(all_hostiles['demon 1'])  # Create a copy of enemy
                     enemy_to_add = copy(all_hostiles['demon 2'])  # Create a copy of enemy
                     self.add_actor(enemy_to_add, (MAXX_DIV_2 + self.camera.offset_x, MAXY_DIV_2 + self.camera.offset_y))
-                    # self.change_mode()
-                    # self.is_n = False if self.is_n else True
-                    # msg = 'NEW EMPTY MESSAGE FOR TEST PURPOSES.'
-                    # self.info_windows[0].get_bunch_of_new_messages((msg, msg))
-                    # self.add_info_window(self.calculate_info_string_xy(), [msg, ], 300, False)
+                elif event.key == K_KP2:
+                    # enemy_to_add = copy(all_hostiles['zombie'])  # Create a copy of enemy
+                    enemy_to_add = copy(all_hostiles['demon 1'])  # Create a copy of enemy
+                    # enemy_to_add = copy(all_hostiles['demon 2'])  # Create a copy of enemy
+                    self.add_actor(enemy_to_add, (MAXX_DIV_2 + self.camera.offset_x, MAXY_DIV_2 + self.camera.offset_y))
+                elif event.key == K_KP3:
+                    enemy_to_add = copy(all_hostiles['zombie'])  # Create a copy of enemy
+                    # enemy_to_add = copy(all_hostiles['demon 1'])  # Create a copy of enemy
+                    # enemy_to_add = copy(all_hostiles['demon 2'])  # Create a copy of enemy
+                    self.add_actor(enemy_to_add, (MAXX_DIV_2 + self.camera.offset_x, MAXY_DIV_2 + self.camera.offset_y))
 
                 elif event.key == K_p:
                     self.is_p = False if self.is_p else True

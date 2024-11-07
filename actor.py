@@ -836,7 +836,7 @@ class Actor(Entity):
                 self.speed = self.max_speed * 2
                 self.idle_counter = 10
             else:
-                self.speed = self.max_speed * 4
+                self.speed = self.max_speed * 3
 
             # if self.stats['stamina'] < self.normal_stamina_lost_per_slide or\
             #    self.look == 1 and not self.is_enough_space_right or\

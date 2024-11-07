@@ -909,7 +909,7 @@ class Entity(object):
                             # self.hop_back_jump_height_modifier = min(3, dem.damage['smash'] * 0.1)
                             self.movement_direction_inverter = -1 if dem.look != self.look else 1
 
-                        print(f'[demolishers detector] {self.name} has been thrown away {strength_difference=} hop: {self.hop_back_jump_height_modifier}.')
+                        # print(f'[demolishers detector] {self.name} has been thrown away {strength_difference=} hop: {self.hop_back_jump_height_modifier}.')
                         if (self.movement_direction_inverter == -1 and self.is_enough_space_left or
                             self.movement_direction_inverter == 1 and self.is_enough_space_right) and self.hop_back_jump_height_modifier > 0:
                             # print(f'[demolishers collision] {self.hop_back_jump_height_modifier} {dem.damage["smash"]=}')
