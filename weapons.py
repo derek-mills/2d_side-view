@@ -23,7 +23,7 @@ sword = {
     'label': 'short sword',
     'sprite': 'short sword',
     'reach': 50,
-    'weight': 10,
+    'weight': 40,
     'demolishers': (
         ({
             'rect': pygame.Rect(0, 0, 70, 10), 'flyer': False,
@@ -89,7 +89,7 @@ kitchen_knife = {
     #     -1: (-46, 36),
     # },
     'reach': 50,
-    'weight': 10,
+    'weight': 20,
     'demolishers': (
         ({
             'rect': pygame.Rect(0, 0, 30, 30), 'flyer': False,
@@ -154,7 +154,7 @@ fireball_staff = {
     'need ammo': False,
     'ammo': 0,
     'reach': 1000,
-    'weight': 10,
+    'weight': 150,
     'demolishers': (
         ({
             'rect': pygame.Rect(0, 0, 70, 70), 'flyer': False,
@@ -200,7 +200,7 @@ spikeball_staff = {
     'need ammo': False,
     'ammo': 0,
     'reach': 1000,
-    'weight': 10,
+    'weight': 100,
     'demolishers': (
         ({
             'rect': pygame.Rect(0, 0, 70, 70), 'flyer': False,
@@ -246,7 +246,7 @@ whip = {
     'need ammo': False,
     'ammo': 0,
     'reach': 170,
-    'weight': 10,
+    'weight': 30,
     'demolishers': (
         ({
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
@@ -327,7 +327,7 @@ jake_kick = {
     'need ammo': False,
     'ammo': 0,
     'reach': 170,
-    'weight': 10,
+    'weight': 1,
     'demolishers': (
         # 'demolishers set number' #0
         ({
@@ -418,7 +418,7 @@ jake_punch = {
     'need ammo': False,
     'ammo': 0,
     'reach': 170,
-    'weight': 10,
+    'weight': 1,
     'demolishers': (
         # 'demolishers set number' #0
         ({
@@ -506,7 +506,7 @@ axe = {
     'need ammo': False,
     'ammo': 0,
     'reach': 170,
-    'weight': 10,
+    'weight': 70,
     'demolishers': (
         # 'demolishers set number' #0
         ({
@@ -879,6 +879,7 @@ small_shield = {
     'animation speed modifier': 1.,  # 0 < x < 1: speed animation up, x > 1: slow down.
     'leave particles': False,
     'droppable': True,
+    'weight': 40,
     'protectors': (
         ({
             'rect': pygame.Rect(0, 0, 50, 50), 'flyer': False,

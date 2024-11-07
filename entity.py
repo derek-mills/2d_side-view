@@ -84,6 +84,7 @@ class Entity(object):
         self.normal_mana_lost_per_defend = 2.
         self.current_mana_lost_per_attack = 0.
         self.body_weight = 0
+        self.body_weight_netto = 0
         self.strength = 0
         self.athletics_index = 0  # Will be calculated as strength divided by weight.
         self.stats = {

@@ -118,7 +118,7 @@ class World(object):
         entity.blood_color = description['blood color']
 
         entity.strength = description['strength']
-        entity.body_weight = description['body weight']
+        entity.body_weight_netto = description['body weight']
         entity.base_max_speed = description['max speed']
         print(f'[ADDING ACTOR] {entity.base_max_speed=} {entity.body_weight=} {entity.strength=}')
         entity.base_max_jump_height = description['max jump height']
@@ -198,6 +198,7 @@ class World(object):
 
         # entity.set_state('stand still')
         # entity.max_jump_attempts = 3
+        entity.calculate_weight()
 
         if self.location not in self.actors.keys():
             self.actors[self.location] = dict()
@@ -1935,14 +1936,7 @@ class World(object):
                 if event.key == K_ESCAPE:
                     pygame.quit()
                     raise SystemExit()
-                # # ATTACKING CHECKS
-                # if event.key == K_RIGHT:
-                #     self.is_attack = True
-                #     self.is_alternate_attack = False
-                # if event.key == K_LEFT:
-                #     print('left pressed')
-                #     self.is_attack = False
-                #     self.is_alternate_attack = True
+
                 if event.key == K_1:
                     self.player_actor_hand_to_change_weapon = 'left hand'
                 elif event.key == K_2:
@@ -1985,6 +1979,7 @@ class World(object):
                     # next_index = 0 if next_index + 1 > len(all_weapons) - 1 else next_index + 1
 
                     self.actors['player'].body[self.player_actor_hand_to_change_weapon]['weapon'] = self.actors['player'].inventory['weapons'][all_weapons[next_index]]
+                    self.actors['player'].calculate_weight()
 
                 if event.key == K_q:
                     if not self.q_multiple_press_prevent:

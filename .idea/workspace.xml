@@ -167,13 +167,6 @@
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
     </task>
-    <task id="LOCAL-00510" summary="Some.">
-      <created>1729155543663</created>
-      <option name="number" value="00510" />
-      <option name="presentableId" value="LOCAL-00510" />
-      <option name="project" value="LOCAL" />
-      <updated>1729155543663</updated>
-    </task>
     <task id="LOCAL-00511" summary="First appearance of combo system.">
       <created>1729228271950</created>
       <option name="number" value="00511" />
@@ -510,7 +503,14 @@
       <option name="project" value="LOCAL" />
       <updated>1730879316101</updated>
     </task>
-    <option name="localTasksCounter" value="559" />
+    <task id="LOCAL-00559" summary="Numpad 1,2,3 summons different monsters">
+      <created>1730961991591</created>
+      <option name="number" value="00559" />
+      <option name="presentableId" value="LOCAL-00559" />
+      <option name="project" value="LOCAL" />
+      <updated>1730961991591</updated>
+    </task>
+    <option name="localTasksCounter" value="560" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -525,7 +525,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Some tuning." />
     <MESSAGE value="Fighting with endless 'getting hurt' animation after actor has been hit through the shield and runs out of stamina." />
     <MESSAGE value="Improved protectors summoning and dissolving." />
     <MESSAGE value="Punch added." />
@@ -550,6 +549,7 @@
     <MESSAGE value="Protectors now disappear after their owner's death." />
     <MESSAGE value="&#10;Some improvement" />
     <MESSAGE value="After successful shield protection bouncing demolisher doesn't become weaker." />
-    <option name="LAST_COMMIT_MESSAGE" value="After successful shield protection bouncing demolisher doesn't become weaker." />
+    <MESSAGE value="Numpad 1,2,3 summons different monsters" />
+    <option name="LAST_COMMIT_MESSAGE" value="Numpad 1,2,3 summons different monsters" />
   </component>
 </project>
