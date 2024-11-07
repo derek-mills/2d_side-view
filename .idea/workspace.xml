@@ -7,8 +7,6 @@
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,13 +163,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00512" summary="One unnecessary last blow in combo sequence has been vanished.">
-      <created>1729233828366</created>
-      <option name="number" value="00512" />
-      <option name="presentableId" value="LOCAL-00512" />
-      <option name="project" value="LOCAL" />
-      <updated>1729233828366</updated>
     </task>
     <task id="LOCAL-00513" summary="Added 3-steps combo including two punches and one kick. Could be combined with other weapon.">
       <created>1729499588084</created>
@@ -509,7 +500,14 @@
       <option name="project" value="LOCAL" />
       <updated>1730964613389</updated>
     </task>
-    <option name="localTasksCounter" value="561" />
+    <task id="LOCAL-00561" summary="Weight of the gear brings effect on actor only if equipped. Staying in the pocket makes it feather (fixed bug of non-player actors which become weightless and super-fast).">
+      <created>1730966506652</created>
+      <option name="number" value="00561" />
+      <option name="presentableId" value="LOCAL-00561" />
+      <option name="project" value="LOCAL" />
+      <updated>1730966506652</updated>
+    </task>
+    <option name="localTasksCounter" value="562" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -524,7 +522,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Improved protectors summoning and dissolving." />
     <MESSAGE value="Punch added." />
     <MESSAGE value="Bug fixed: shield has disappeared if defending state was interrupted by attack action, but defending button has been held pressed down." />
     <MESSAGE value="Bug fixed: shield sometimes remains hanging in the air even if 'protect' button has been released." />
@@ -549,6 +546,7 @@
     <MESSAGE value="After successful shield protection bouncing demolisher doesn't become weaker." />
     <MESSAGE value="Numpad 1,2,3 summons different monsters" />
     <MESSAGE value="Weight of the gear brings effect on actor only if equipped. Staying in the pocket makes it feather." />
-    <option name="LAST_COMMIT_MESSAGE" value="Weight of the gear brings effect on actor only if equipped. Staying in the pocket makes it feather." />
+    <MESSAGE value="Weight of the gear brings effect on actor only if equipped. Staying in the pocket makes it feather (fixed bug of non-player actors which become weightless and super-fast)." />
+    <option name="LAST_COMMIT_MESSAGE" value="Weight of the gear brings effect on actor only if equipped. Staying in the pocket makes it feather (fixed bug of non-player actors which become weightless and super-fast)." />
   </component>
 </project>

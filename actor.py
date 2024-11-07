@@ -151,9 +151,15 @@ class Actor(Entity):
             #     self.calculate_speed()
 
     def calculate_weight(self):
-        # print(f'[calc weight] {self.body["right hand"]["weapon"]}')
-        self.body_weight = self.body_weight_netto + self.body['right hand']['weapon']['item']['weight'] if self.body['right hand']['weapon'] else 0 \
-                                                  + self.body['left hand']['weapon']['item']['weight'] if self.body['left hand']['weapon'] else 0
+        r_hand_weight =  self.body['right hand']['weapon']['item']['weight'] if self.body['right hand']['weapon'] else 0
+        l_hand_weight =  self.body['left hand']['weapon']['item']['weight'] if self.body['left hand']['weapon'] else 0
+
+        # print(f'[calc weight] {self.body["right hand"]["weapon"]["item"]["label"]} weight: {r_hand_weight}')
+        # print(f'[calc weight] {self.body["left hand"]["weapon"]["item"]["label"]} weight: {l_hand_weight}')
+        self.body_weight = self.body_weight_netto + r_hand_weight + l_hand_weight
+
+        # self.body_weight = self.body_weight_netto + self.body['right hand']['weapon']['item']['weight'] if self.body['right hand']['weapon'] else 0 \
+        #                                           + self.body['left hand']['weapon']['item']['weight'] if self.body['left hand']['weapon'] else 0
         self.calculate_athletics_index()
         self.calculate_max_jump_height_and_speed()
         self.calculate_speed()
