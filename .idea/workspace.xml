@@ -7,8 +7,7 @@
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -166,13 +165,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00511" summary="First appearance of combo system.">
-      <created>1729228271950</created>
-      <option name="number" value="00511" />
-      <option name="presentableId" value="LOCAL-00511" />
-      <option name="project" value="LOCAL" />
-      <updated>1729228271951</updated>
     </task>
     <task id="LOCAL-00512" summary="One unnecessary last blow in combo sequence has been vanished.">
       <created>1729233828366</created>
@@ -510,7 +502,14 @@
       <option name="project" value="LOCAL" />
       <updated>1730961991591</updated>
     </task>
-    <option name="localTasksCounter" value="560" />
+    <task id="LOCAL-00560" summary="Weight of the gear brings effect on actor only if equipped. Staying in the pocket makes it feather.">
+      <created>1730964613389</created>
+      <option name="number" value="00560" />
+      <option name="presentableId" value="LOCAL-00560" />
+      <option name="project" value="LOCAL" />
+      <updated>1730964613389</updated>
+    </task>
+    <option name="localTasksCounter" value="561" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -525,7 +524,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fighting with endless 'getting hurt' animation after actor has been hit through the shield and runs out of stamina." />
     <MESSAGE value="Improved protectors summoning and dissolving." />
     <MESSAGE value="Punch added." />
     <MESSAGE value="Bug fixed: shield has disappeared if defending state was interrupted by attack action, but defending button has been held pressed down." />
@@ -550,6 +548,7 @@
     <MESSAGE value="&#10;Some improvement" />
     <MESSAGE value="After successful shield protection bouncing demolisher doesn't become weaker." />
     <MESSAGE value="Numpad 1,2,3 summons different monsters" />
-    <option name="LAST_COMMIT_MESSAGE" value="Numpad 1,2,3 summons different monsters" />
+    <MESSAGE value="Weight of the gear brings effect on actor only if equipped. Staying in the pocket makes it feather." />
+    <option name="LAST_COMMIT_MESSAGE" value="Weight of the gear brings effect on actor only if equipped. Staying in the pocket makes it feather." />
   </component>
 </project>

@@ -119,6 +119,7 @@ class World(object):
 
         entity.strength = description['strength']
         entity.body_weight_netto = description['body weight']
+        entity.body_weight = description['body weight']
         entity.base_max_speed = description['max speed']
         print(f'[ADDING ACTOR] {entity.base_max_speed=} {entity.body_weight=} {entity.strength=}')
         entity.base_max_jump_height = description['max jump height']
@@ -190,14 +191,6 @@ class World(object):
             entity.body['right hand']['weapon'] = entity.inventory['weapons'][all_weapons[0]]
             entity.body['left hand']['weapon'] = entity.inventory['weapons'][all_weapons[1]]
             entity.current_weapon = entity.body['right hand']['weapon']['item']
-        # entity.activate_weapon('WHIP')
-        # entity.activate_weapon('SHORT SWORD')
-
-        # entity.change_animation()
-        # entity.process_animation_counter()
-
-        # entity.set_state('stand still')
-        # entity.max_jump_attempts = 3
         entity.calculate_weight()
 
         if self.location not in self.actors.keys():
@@ -1636,7 +1629,7 @@ class World(object):
              # int(self.actors['player'].stats['mana'] * self.info_panel_max_stripes_width // self.actors['player'].stats['max mana']),
              BLUE),
 
-            ('EXP:' + str(int(self.actors['player'].stats['exp'])), None, VIOLET),
+            ('W:' + str(int(self.actors['player'].body_weight)) + ' | EXP:' + str(int(self.actors['player'].stats['exp'])), None, VIOLET),
             # ('HEALTH:' + str(int(self.actors['player'].max_health)) + '/' + str(int(self.actors['player'].health)),int(self.actors['player'].health * max_stripes_width // self.actors['player'].max_health), RED),
 
         )
@@ -1646,8 +1639,8 @@ class World(object):
         # txt_width = txt.get_width() + 50
         txt_width = 250
 
-        background_width = self.info_panel_max_stripes_width + 10 + txt_width
-        background_height = len(params) * self.info_panel_font_size + 5 + (self.info_panel_gap_between_stripes * len(params))
+        # background_width = self.info_panel_max_stripes_width + 10 + txt_width
+        # background_height = len(params) * self.info_panel_font_size + 5 + (self.info_panel_gap_between_stripes * len(params))
 
         # pygame.draw.rect(self.screen, BLACK, (self.info_panel_start_x - 5, self.info_panel_start_y - 5, background_width, background_height))
 

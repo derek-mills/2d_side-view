@@ -152,8 +152,8 @@ class Actor(Entity):
 
     def calculate_weight(self):
         # print(f'[calc weight] {self.body["right hand"]["weapon"]}')
-        self.body_weight = self.body_weight_netto + self.body['right hand']['weapon']['item']['weight'] \
-                                                  + self.body['left hand']['weapon']['item']['weight']
+        self.body_weight = self.body_weight_netto + self.body['right hand']['weapon']['item']['weight'] if self.body['right hand']['weapon'] else 0 \
+                                                  + self.body['left hand']['weapon']['item']['weight'] if self.body['left hand']['weapon'] else 0
         self.calculate_athletics_index()
         self.calculate_max_jump_height_and_speed()
         self.calculate_speed()

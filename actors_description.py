@@ -669,7 +669,7 @@ demon_2 = {
     'stamina replenish': .2,
     'blood color': (150, 50, 10),
     'strength': 15,
-    'body weight': 140,
+    'body weight': 340,
     'resistances': {
         # Zero is total resistance, such type of damage multiples by zero.
         # Above 1 is a weakness to particular type of damage.
