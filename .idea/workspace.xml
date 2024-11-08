@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,13 +163,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00516" summary="'Stunned' state implemented.&#10;Combo will be reset if actor gets damage.">
-      <created>1729660851373</created>
-      <option name="number" value="00516" />
-      <option name="presentableId" value="LOCAL-00516" />
-      <option name="project" value="LOCAL" />
-      <updated>1729660851373</updated>
     </task>
     <task id="LOCAL-00517" summary="Tuning of 'stun' state.">
       <created>1729665023679</created>
@@ -506,7 +500,14 @@
       <option name="project" value="LOCAL" />
       <updated>1731047130235</updated>
     </task>
-    <option name="localTasksCounter" value="565" />
+    <task id="LOCAL-00565" summary="Slightly redesigned 'set animation' routine, one more bug solved.">
+      <created>1731047313546</created>
+      <option name="number" value="00565" />
+      <option name="presentableId" value="LOCAL-00565" />
+      <option name="project" value="LOCAL" />
+      <updated>1731047313546</updated>
+    </task>
+    <option name="localTasksCounter" value="566" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -521,7 +522,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Successful shield protection consumes mana." />
     <MESSAGE value="Some tuning of shield mana use.&#10;Refused to use 'stunned' state." />
     <MESSAGE value="Items after being dropped becomes invulnerable for a while and cannot be picked up." />
     <MESSAGE value="If actor being hurt while carrying the Stash, he drops it down." />
@@ -546,6 +546,7 @@
     <MESSAGE value="Fixing incorrect weight calculation bug." />
     <MESSAGE value="Hopping back state fixing." />
     <MESSAGE value="Particular hopping back and forward animations added.&#10;Slightly redesigned 'set animation' routine." />
-    <option name="LAST_COMMIT_MESSAGE" value="Particular hopping back and forward animations added.&#10;Slightly redesigned 'set animation' routine." />
+    <MESSAGE value="Slightly redesigned 'set animation' routine, one more bug solved." />
+    <option name="LAST_COMMIT_MESSAGE" value="Slightly redesigned 'set animation' routine, one more bug solved." />
   </component>
 </project>
