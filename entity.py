@@ -458,29 +458,30 @@ class Entity(object):
         if particular_animation:
             print(f'[set current animation] New animation: {particular_animation}')
             current_animation = particular_animation
+            if self.current_weapon:
+                if state == self.current_weapon['attack animation']:
+                    if self.current_weapon['combo']:
+                        current_animation += ' combo ' + str(self.combo_set_number)
+
+            if 'right' not in particular_animation and 'left' not in particular_animation:
+                if self.look == 1:
+                    current_animation += ' right'
+                else:
+                    current_animation += ' left'
+
         else:
             current_animation = state
 
-        # print(state)
-        # current_animation = state + str(self.look)
+            if self.current_weapon:
+                if state == self.current_weapon['attack animation']:
+                    if self.current_weapon['combo']:
+                        current_animation += ' combo ' + str(self.combo_set_number)
 
-        if self.current_weapon:
-            if state == self.current_weapon['attack animation']:
-                if self.current_weapon['combo']:
-                    current_animation += ' combo ' + str(self.combo_set_number)
-
-        if 'right' not in particular_animation and 'left' not in particular_animation:
-        # if ('right' not in state and 'left' not in state) or \
-        #    ('right' not in particular_animation and 'left' not in particular_animation):
-        # if 'right' not in state and 'left' not in state:
-            if self.look == 1:
-                current_animation += ' right'
-                # current_animation = state + ' right'
-            else:
-                current_animation += ' left'
-                # current_animation = state + ' left'
-        # else:
-        #     current_animation = state
+            if 'right' not in state and 'left' not in state:
+                if self.look == 1:
+                    current_animation += ' right'
+                else:
+                    current_animation += ' left'
 
         if current_animation == self.current_animation:
             # print(f'[set current animation] New animation equal to current_animation. Exit.')
