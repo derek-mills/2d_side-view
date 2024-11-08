@@ -468,12 +468,16 @@ class Actor(Entity):
         # HOP BACK
         elif new_action == 'hop back':
             # Apply filter of unwanted actions:
+            # if self.stats['stamina'] < self.normal_stamina_lost_per_hop_back:
+            #     return
             if not self.is_stand_on_ground:
                 return
             self.movement_direction_inverter = -1
             self.set_state('hopping prepare')
         # HOP FORWARD
         elif new_action == 'hop forward':
+            # if self.stats['stamina'] < self.normal_stamina_lost_per_hop_back:
+            #     return
             # Apply filter of unwanted actions:
             if not self.is_stand_on_ground:
                 return
@@ -712,22 +716,24 @@ class Actor(Entity):
                 self.is_abort_jump: bool = False
                 self.is_jump_performed: bool = False
                 if not self.just_got_jumped:
+                    if self.stats['stamina'] < self.normal_stamina_lost_per_hop_back:
+                        self.jump_height = 3*self.hop_back_jump_height_modifier
+                        self.speed = 3*self.hop_back_jump_height_modifier
+                    else:
+                        self.jump_height = min(5 * self.hop_back_jump_height_modifier, 15)
+                        self.speed = min(5 * self.hop_back_jump_height_modifier, 30)
+
                     self.stamina_reduce(self.normal_stamina_lost_per_hop_back)
                     self.just_got_jumped = True
                     self.jump_attempts_counter -= 1
                     self.is_jump = True
                     self.influenced_by_obstacle = -1
-                    self.jump_height = min(5 * self.hop_back_jump_height_modifier, 15)
-                    # self.jump_height = self.max_jump_height * 0.6
-                    self.speed = min(5 * self.hop_back_jump_height_modifier, 30)
+                    # self.jump_height = min(5 * self.hop_back_jump_height_modifier, 15)
+                    # self.speed = min(5 * self.hop_back_jump_height_modifier, 30)
                     # print(f'[state machine] hop back prepare: {self.hop_back_jump_height_modifier=} {self.jump_height=} {self.speed=}')
-                    #self.movement_direction_inverter = -1
-                    # self.heading[0] = 0
                     self.idle_counter = 25
-                    # self.invincibility_timer = 20
                     self.hop_back_jump_height_modifier = self.default_hop_back_jump_height_modifier
                 self.is_abort_jump = False
-
                 if self.dead:
                     # self.heading[0] = 0
                     if self.has_got_a_critical_hit:

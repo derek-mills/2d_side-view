@@ -7,6 +7,7 @@
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,13 +164,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00513" summary="Added 3-steps combo including two punches and one kick. Could be combined with other weapon.">
-      <created>1729499588084</created>
-      <option name="number" value="00513" />
-      <option name="presentableId" value="LOCAL-00513" />
-      <option name="project" value="LOCAL" />
-      <updated>1729499588085</updated>
     </task>
     <task id="LOCAL-00514" summary="Slightly modified punch attack and invisible demolishers collision detection.">
       <created>1729649946543</created>
@@ -507,7 +501,14 @@
       <option name="project" value="LOCAL" />
       <updated>1730966506652</updated>
     </task>
-    <option name="localTasksCounter" value="562" />
+    <task id="LOCAL-00562" summary="Fixing incorrect weight calculation bug.">
+      <created>1730968922608</created>
+      <option name="number" value="00562" />
+      <option name="presentableId" value="LOCAL-00562" />
+      <option name="project" value="LOCAL" />
+      <updated>1730968922608</updated>
+    </task>
+    <option name="localTasksCounter" value="563" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -522,7 +523,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Punch added." />
     <MESSAGE value="Bug fixed: shield has disappeared if defending state was interrupted by attack action, but defending button has been held pressed down." />
     <MESSAGE value="Bug fixed: shield sometimes remains hanging in the air even if 'protect' button has been released." />
     <MESSAGE value="Successful shield protection consumes mana." />
@@ -547,6 +547,7 @@
     <MESSAGE value="Numpad 1,2,3 summons different monsters" />
     <MESSAGE value="Weight of the gear brings effect on actor only if equipped. Staying in the pocket makes it feather." />
     <MESSAGE value="Weight of the gear brings effect on actor only if equipped. Staying in the pocket makes it feather (fixed bug of non-player actors which become weightless and super-fast)." />
-    <option name="LAST_COMMIT_MESSAGE" value="Weight of the gear brings effect on actor only if equipped. Staying in the pocket makes it feather (fixed bug of non-player actors which become weightless and super-fast)." />
+    <MESSAGE value="Fixing incorrect weight calculation bug." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixing incorrect weight calculation bug." />
   </component>
 </project>
