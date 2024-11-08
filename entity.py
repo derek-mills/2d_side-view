@@ -456,6 +456,7 @@ class Entity(object):
 
         state = self.get_state()
         if particular_animation:
+            print(f'[set current animation] New animation: {particular_animation}')
             current_animation = particular_animation
         else:
             current_animation = state
@@ -468,10 +469,10 @@ class Entity(object):
                 if self.current_weapon['combo']:
                     current_animation += ' combo ' + str(self.combo_set_number)
 
-
-        # if self.current_weapon:
-        #     if self.current_weapon['combo']:
-        if 'right' not in state and 'left' not in state:
+        if 'right' not in particular_animation and 'left' not in particular_animation:
+        # if ('right' not in state and 'left' not in state) or \
+        #    ('right' not in particular_animation and 'left' not in particular_animation):
+        # if 'right' not in state and 'left' not in state:
             if self.look == 1:
                 current_animation += ' right'
                 # current_animation = state + ' right'
@@ -481,9 +482,13 @@ class Entity(object):
         # else:
         #     current_animation = state
 
+        if current_animation == self.current_animation:
+            # print(f'[set current animation] New animation equal to current_animation. Exit.')
+            return
         # If animation for current state does not exist, set default:
-        if current_animation not in self.animations.keys() or current_animation == self.current_animation:
-            # print(f'[set current animation] {current_animation} not exist. Exiting with animation: {self.current_animation} ')
+        if current_animation not in self.animations.keys():
+        # if current_animation not in self.animations.keys() or current_animation == self.current_animation:
+            print(f'[set current animation] {current_animation} not exist. Exiting with animation: {self.current_animation} ')
             return
             # self.current_animation = 'stand still right'
         else:

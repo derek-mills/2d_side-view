@@ -1359,16 +1359,30 @@ player_jake = {
             },
             'repeat from frame': 0
         },
-        'hopping back process right': {
+        'hopping back process face right': {
             'repeat': True, 'interruptable': True,
-            'sequence': (5,), 'speed': 1,
+            'sequence': (81,), 'speed': 1,
             'activity at frames': {
             },
             'repeat from frame': 0
         },
-        'hopping back process left': {
+        'hopping forward process face right': {
             'repeat': True, 'interruptable': True,
-            'sequence': (20,), 'speed': 1,
+            'sequence': (82,), 'speed': 1,
+            'activity at frames': {
+            },
+            'repeat from frame': 0
+        },
+        'hopping back process face left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (85,), 'speed': 1,
+            'activity at frames': {
+            },
+            'repeat from frame': 0
+        },
+        'hopping forward process face left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (84,), 'speed': 1,
             'activity at frames': {
             },
             'repeat from frame': 0

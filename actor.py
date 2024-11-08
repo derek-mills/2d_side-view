@@ -744,6 +744,17 @@ class Actor(Entity):
                     if self.get_state() == 'hanging on edge':
                         self.set_state('release edge')
                     else:
+                        if self.movement_direction_inverter == -1:
+                            if self.look == 1:
+                                self.set_current_animation('hopping back process face right')
+                            else:
+                                self.set_current_animation('hopping back process face left')
+                        else:
+                            if self.look == 1:
+                                self.set_current_animation('hopping forward process face right')
+                            else:
+                                self.set_current_animation('hopping forward process face left')
+
                         self.set_state('hopping process')
                 # print(f'[state_machine] "hopping prepare" routine ends: {self.movement_direction_inverter=}')
             # else:
