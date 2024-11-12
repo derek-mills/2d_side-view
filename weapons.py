@@ -435,7 +435,7 @@ jake_punch = {
 
                  'blunt': 15,
                  # 
-                 # 'slash': 1,
+                 'slash': 1,
              },
              # 'aftermath': 'explode'
              'aftermath': 'disappear'
@@ -472,7 +472,7 @@ jake_punch = {
             'attack type': ('smash',),
             'push': True,
             'damage': {
-                 'blunt': 50,
+                 'blunt': 70,
                  'slash': 1,
              },
             # 'aftermath': 'explode'

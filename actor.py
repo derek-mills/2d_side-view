@@ -1075,12 +1075,6 @@ class Actor(Entity):
             self.just_got_jumped = False
             self.is_abort_jump = True
             # self.rectangle.top = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
-        # elif self.get_state() == 'hanging on ghost':                # HANGING ON THE GHOST PLATFORM
-        #     self.rectangle.top = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
-        #     if self.idle_counter > 0:
-        #         self.idle_counter -= 1
-        #     else:
-        #         self.ignore_user_input = False
         elif self.get_state() == 'hop down from ghost':             # PREPARE TO HOP DOWN FROM THE GHOST PLATFORM
             self.potential_moving_distance = 0
             # self.is_edge_grabbed = True

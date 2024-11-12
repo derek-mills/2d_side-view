@@ -1626,7 +1626,7 @@ player_jake = {
             'activity at frames': {
                 4: {
                     'sound': True,
-                    # 'move': 10,  # Slightly move actor forward,
+                    'move': 10,  # Slightly move actor forward,
                     'demolishers set number': 2,
                     'demolisher': True
                 },
@@ -1674,27 +1674,13 @@ player_jake = {
             'activity at frames': {
                 4: {
                     'sound': True,
-                    # 'move': 10,  # Slightly move actor forward,
+                    'move': 10,  # Slightly move actor forward,
                     'demolishers set number': 2,
                     'demolisher': True
                 },
             },
             'repeat from frame': 0
         },
-        # 'kick combo 3 right': {
-        #     'repeat': True, 'interruptable': True,
-        #     'sequence': (63,63,64,64,65,65,65,64,63,63), # 5 - 9
-        #     'speed': 2,
-        #     'activity at frames': {
-        #         4: {
-        #             'sound': True,
-        #             # 'move': 10,  # Slightly move actor forward,
-        #             'demolishers set number': 2,
-        #             'demolisher': True
-        #         },
-        #     },
-        #     'repeat from frame': 0
-        # },
         'kick combo 1 left': {
             'repeat': True, 'interruptable': True,
             'sequence': (92,93,94,95,95,95,92,),  # 0 - 4
