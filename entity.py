@@ -560,7 +560,7 @@ class Entity(object):
                     elif action == 'move':
                         self.speed = self.animations[self.current_animation]['activity at frames'][self.frame_number]['move']
                         self.heading[0] = self.look
-                        print(f'[process active frames] make step at frame {self.frame_number}')
+                        # print(f'[process active frames] make step at frame {self.frame_number}')
                     elif action == 'sound':
                         snd = self.animations[self.current_animation]['activity at frames'][self.frame_number]
                         # print(f'[entity.process_activity_at_current_animation_frame] make {snd} at frame {self.frame_number}')

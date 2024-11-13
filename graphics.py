@@ -359,7 +359,7 @@ load_single_frame(items, ((20,240,20,30),), 'pistol', 3)
 load_single_frame(items, ((40,240,40,30),), 'pistol muzzle flash', 3)
 
 load_single_frame(items, ((20,270,20,30),), 'small shield', 4)
-load_single_frame(items, ((40,270,20,30),), 'small shield protector', 4)
+load_single_frame(items, ((40,270,20,30),), 'small shield protector', 8)
 
 
 
@@ -377,7 +377,7 @@ load_single_frame(tmp_sprites, ((260,150,20,18),), name + ' avatar front')
 # load_single_frame(tmp_sprites, ((1744,2194,332,205),), name + ' 98')  # Unconsciousness frame 1
 # load_single_frame(tmp_sprites, ((2076,2220,369,176),), name + ' 99')  # Unconsciousness frame 2
 # load_all_frames(tmp_sprites, 122, name, 200, 300, 1)
-load_all_frames(tmp_sprites, 128, name, 20, 30, 8)
+load_all_frames(tmp_sprites, 128, name, 20, 30, 15)
 
 
 # ___...---=== EXPLODING BARREL ===---...___
@@ -399,7 +399,7 @@ except FileNotFoundError:
 load_single_frame(tmp_sprites, ((260,150,20,18),), name + ' avatar')
 load_single_frame(tmp_sprites, ((260,150,20,18),), name + ' avatar front')
 load_all_frames(tmp_sprites, 97, name, 20, 30, 18)
-# load_all_frames(tmp_sprites, 97, name, 20, 30, 14, weak_spots)
+
 
 # ___...---=== DEMON MALE 1 ===---...___
 name = 'demon 1'

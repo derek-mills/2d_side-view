@@ -1318,7 +1318,11 @@ player_jake = {
         'getting hurt right': {
                 'repeat': True, 'interruptable': True,
                 'sequence': (11,12,13,13,13,13,13), 'speed': 2,
-                'activity at frames': {},
+                'activity at frames': {
+                    # 0: {
+                    #     'move': -10,
+                    # },
+                },
                 'sound': None, 'sound at frames': (0,), 'repeat from frame': 2
             },
         'getting hurt left': {
@@ -1786,7 +1790,7 @@ player_jake = {
         },
         'axe swing combo 2 right': {
             'repeat': True, 'interruptable': True,
-            'sequence': (74,74,74,74,75, 76, 76, 76,76,76,76,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'sequence': (74,74,74,74,75, 75,76,76, 76,76,76,76,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
             'speed': 1,
             'activity at frames': {
                 0: {
@@ -1801,9 +1805,9 @@ player_jake = {
                     'demolishers set number': 1,
                     'demolisher': True
                 },
-                5: {
+                6: {
                     'sound': True,
-                    # 'move': 10,  # Slightly move actor forward,
+                    'move': 10,  # Slightly move actor forward,
                     'demolishers set number': 2,
                     'demolisher': True
                 },
@@ -1865,7 +1869,7 @@ player_jake = {
                     'demolishers set number': 0,
                     'demolisher': True
                 },
-                7: {
+                8: {
                     'sound': True,
                     # 'move': 10,  # Slightly move actor forward,
                     'demolishers set number': 1,
@@ -1899,7 +1903,7 @@ player_jake = {
                 },
                 6: {
                     'sound': True,
-                    # 'move': 10, # Slightly move actor forward,
+                    'move': 10, # Slightly move actor forward,
                     'demolishers set number': 2,
                     'demolisher': True
                 },

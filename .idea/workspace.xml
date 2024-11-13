@@ -6,9 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphics.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphics.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -166,13 +166,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00518" summary="Tuning of 'stun' state.">
-      <created>1729669901692</created>
-      <option name="number" value="00518" />
-      <option name="presentableId" value="LOCAL-00518" />
-      <option name="project" value="LOCAL" />
-      <updated>1729669901692</updated>
     </task>
     <task id="LOCAL-00519" summary="Added 'get hurt' state and corresponding animation (only for player actor for now).">
       <created>1729751649174</created>
@@ -510,7 +503,14 @@
       <option name="project" value="LOCAL" />
       <updated>1731054122351</updated>
     </task>
-    <option name="localTasksCounter" value="567" />
+    <task id="LOCAL-00567" summary="Added 'move' action if animation reaches active frame.">
+      <created>1731395969031</created>
+      <option name="number" value="00567" />
+      <option name="presentableId" value="LOCAL-00567" />
+      <option name="project" value="LOCAL" />
+      <updated>1731395969032</updated>
+    </task>
+    <option name="localTasksCounter" value="568" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -525,7 +525,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Items after being dropped becomes invulnerable for a while and cannot be picked up." />
     <MESSAGE value="If actor being hurt while carrying the Stash, he drops it down." />
     <MESSAGE value="Some tuning of stamina and mana reducing system" />
     <MESSAGE value="Individual drop invincibility timer added for every item." />
@@ -550,6 +549,7 @@
     <MESSAGE value="Particular hopping back and forward animations added.&#10;Slightly redesigned 'set animation' routine." />
     <MESSAGE value="Slightly redesigned 'set animation' routine, one more bug solved." />
     <MESSAGE value="Slightly increased speed of stamina replenishing  while crouch." />
-    <option name="LAST_COMMIT_MESSAGE" value="Slightly increased speed of stamina replenishing  while crouch." />
+    <MESSAGE value="Added 'move' action if animation reaches active frame." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added 'move' action if animation reaches active frame." />
   </component>
 </project>

@@ -513,15 +513,13 @@ axe = {
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
              'visible': True,
             'demolisher sprite': 'axe 45 demolisher',
-            'pierce': False, 'demolisher TTL': 4, 'speed': 0,
+            'pierce': False, 'demolisher TTL': 1, 'speed': 0,
             'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
             # 'attack type': ('smash','slash'),
              'push': False,
             'damage': {
-
-                 
                  'slash': 10
              },
             # 'aftermath': 'explode'
@@ -539,8 +537,6 @@ axe = {
             # 'attack type': ('smash','slash'),
              'push': False,
             'damage': {
-
-                 
                  'slash': 30
              },
             # 'aftermath': 'explode'
@@ -558,9 +554,7 @@ axe = {
             # 'attack type': ('smash','slash'),
              'push': False,
             'damage': {
-
-                 
-                 'slash': 90
+                 'slash': 190
              },
             # 'aftermath': 'explode'
             'aftermath': 'disappear'
@@ -570,15 +564,13 @@ axe = {
              'rect': pygame.Rect(0, 0, 180, 270), 'flyer': False,
              'visible': True,
              'demolisher sprite': 'axe 315 demolisher',
-             'pierce': True, 'demolisher TTL': 3, 'speed': 0,
+             'pierce': True, 'demolisher TTL': 2, 'speed': 0,
              'static': True, 'damage reduce': 0,
              'collides': False, 'gravity affected': False,
              'bounce': False, 'bounce factor': 0.,
              # 'attack type': ('smash','slash'),
              'push': False,
             'damage': {
-
-                 
                  'slash': 90
              },
              # 'aftermath': 'explode'
