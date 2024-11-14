@@ -874,9 +874,10 @@ small_shield = {
     'weight': 40,
     'protectors': (
         ({
-            'rect': pygame.Rect(0, 0, 50, 50), 'flyer': False,
+            'rect': pygame.Rect(10, 0, 20, 250), 'flyer': False,
             'mana consumption': 4.,
             'stamina consumption': 1.,
+            # 'visible': False,
             'visible': True,
             'keep alive': True,  # If button holding down, we must keep this particular protector alive and not allow to summon the new ones.
             'protector sprite': 'small shield protector',

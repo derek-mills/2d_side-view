@@ -885,6 +885,7 @@ class Actor(Entity):
             self.ignore_user_input = True
             self.rectangle.top  -= 50
             self.stamina_reduce(self.normal_stamina_lost_per_slide)
+            self.invincibility_timer = 20
 
             # if self.stats['stamina'] < self.normal_stamina_lost_per_slide:
             #     self.set_state('crouch')
