@@ -687,6 +687,7 @@ demon_2_close = {
     'reach': 200,
     'weight': 10,
     'demolishers': (
+        # Set 0
         ({
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
             'visible': True,
@@ -696,17 +697,16 @@ demon_2_close = {
             # 'damage': 250, 'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
-            'attack type': ('slash', 'smash', 'pierce'),
+            # 'attack type': ('slash', 'smash', 'pierce'),
              'push': False,
             'damage': {
-
-                 
                  'pierce': 100,
                  'slash': 100
              },
             # 'aftermath': 'explode'
             'aftermath': 'disappear'
         },),
+        # Set 1
         ({
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
              'visible': True,
@@ -716,11 +716,9 @@ demon_2_close = {
             # 'damage': 250, 'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
-            'attack type': ('slash', 'smash', 'pierce'),
+            # 'attack type': ('slash', 'smash', 'pierce'),
              'push': False,
             'damage': {
-
-                 
                  'pierce': 100,
                  'slash': 100
              },

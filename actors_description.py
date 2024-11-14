@@ -982,6 +982,7 @@ demon_2 = {
                 0: {
                     'sound': True,
                     # 'move': 10,  # Slightly move actor forward,
+                    'jump': 20,
                     'demolishers set number': 0,
                     'demolisher': True
                 },
@@ -1014,6 +1015,7 @@ demon_2 = {
                 0: {
                     'sound': True,
                     # 'move': 10,  # Slightly move actor forward,
+                    'jump': 20,
                     'demolishers set number': 0,
                     'demolisher': True
                 },

@@ -242,7 +242,8 @@ class Demolisher(Entity):
                     p.parent.get_damage(damage, 1)
                     # p.parent.get_damage(self.damage, 1)
                     if p.parent.total_damage_has_got > 0:
-                        p.parent.invincibility_timer = 30
+                        p.parent.invincibility_timer = self.default_invincibility_timer
+                        # p.parent.invincibility_timer = 30
                         p.parent.got_immunity_to_demolishers.append(self.id)
                         print(f'[detect demolishers] {p.parent.got_immunity_to_demolishers}')
                         p.parent.set_state('prepare to get hurt')

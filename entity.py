@@ -49,6 +49,8 @@ class Entity(object):
         self.time_passed: int = 0
         self.cycles_passed: int = 0
         self.invincibility_timer: int = 0
+        self.default_invincibility_timer: int = 20
+        self.current_invincibility_timer: int = self.default_invincibility_timer
         self.blood_color = RED
         self.has_just_stopped_demolishers = list()
         self.resistances = {
@@ -61,7 +63,7 @@ class Entity(object):
         self.total_damage_has_got = 0  # Variable storing a momentary amount of damage got from a single demolisher.
 
         # STATS
-        self.default_invincibility_time = 10
+        # self.default_invincibility_time = 10
         self.force_mana_reduce = False
         self.force_mana_reduce_amount: int = 0
         self.force_stamina_reduce = False
@@ -557,6 +559,10 @@ class Entity(object):
                             print(f'[process activity at frames] ERROR! {self.get_state()}')
                             exit()
                         self.summon_demolisher = True
+                    elif action == 'jump':
+                        # self.set_action('jump')
+                        if self.is_stand_on_ground:
+                            self.fall_speed = -self.animations[self.current_animation]['activity at frames'][self.frame_number]['jump']
                     elif action == 'move':
                         self.speed = self.animations[self.current_animation]['activity at frames'][self.frame_number]['move']
                         self.heading[0] = self.look
@@ -1049,7 +1055,7 @@ class Entity(object):
         else:
             self.has_got_a_critical_hit = False
 
-        self.invincibility_timer = self.default_invincibility_time
+        self.invincibility_timer = self.default_invincibility_timer
 
         # if self.total_damage_has_got > 0:
         #     # Damage amount show:

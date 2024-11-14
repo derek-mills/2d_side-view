@@ -885,7 +885,7 @@ class Actor(Entity):
             self.ignore_user_input = True
             self.rectangle.top  -= 50
             self.stamina_reduce(self.normal_stamina_lost_per_slide)
-            self.invincibility_timer = 20
+            self.invincibility_timer = self.current_invincibility_timer
 
             # if self.stats['stamina'] < self.normal_stamina_lost_per_slide:
             #     self.set_state('crouch')
@@ -1129,7 +1129,7 @@ class Actor(Entity):
             self.ignore_user_input = True
             self.summon_protector = False
             if self.think_type == 'exploding barrel':
-                self.invincibility_timer = 1000
+                self.invincibility_timer = 10000
                 self.set_state('almost explode')
                 self.set_current_animation()
             else:
