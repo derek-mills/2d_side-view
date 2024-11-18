@@ -1231,6 +1231,10 @@ player_jake = {
         'smash': .1,
         'fire': 1
     },
+    # 'sounds': {
+    #     'pain': 'sound_jake_pain',
+    #     'footstep': 'sound_step_2',
+    # },
     # 'body': {
     #     'head': {
     #         'hardness': 100
@@ -1321,16 +1325,20 @@ player_jake = {
                 'repeat': True, 'interruptable': True,
                 'sequence': (11,12,13,13,13,13,13), 'speed': 2,
                 'activity at frames': {
-                    # 0: {
-                    #     'move': -10,
-                    # },
+                    1: {
+                    'sound': 'sound_jake_pain',
+                    },
                 },
                 'sound': None, 'sound at frames': (0,), 'repeat from frame': 2
             },
         'getting hurt left': {
             'repeat': True, 'interruptable': True,
             'sequence': (25,26,27,27,27,27,27), 'speed': 2,
-            'activity at frames': {},
+            'activity at frames': {
+                1: {
+                    'sound': 'sound_jake_pain',
+                },
+            },
             'sound': None, 'sound at frames': (0,), 'repeat from frame': 2
         },
         'lie dead right': {

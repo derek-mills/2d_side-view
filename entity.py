@@ -33,6 +33,7 @@ class Entity(object):
         self.summoned_protectors_description = list()
         self.summoned_protectors_keep_alive = list()
         self.summoned_sounds = list()
+        self.sounds = dict()
         # self.summoned_demolisher_description = dict()
         self.summon_particle = False
         self.summoned_particle_descriptions = list()
