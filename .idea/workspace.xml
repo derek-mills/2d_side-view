@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="Added 'jump' action among the others possible during active frames. Actor may jump for a given amount during attack now, for example.">
-      <change afterPath="$PROJECT_DIR$/sounds.py" afterDir="false" />
+    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sounds.py" beforeDir="false" afterPath="$PROJECT_DIR$/sounds.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -166,13 +165,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00522" summary="Tuning of 'hop back' and 'getting hurt' statuses. Still got an annoying bug when actor is hopping in wrong direction after being hit.">
-      <created>1729761242527</created>
-      <option name="number" value="00522" />
-      <option name="presentableId" value="LOCAL-00522" />
-      <option name="project" value="LOCAL" />
-      <updated>1729761242527</updated>
     </task>
     <task id="LOCAL-00523" summary="Solved bug with inverted fly direction after actor has been smashed.">
       <created>1729820318633</created>
@@ -510,7 +502,14 @@
       <option name="project" value="LOCAL" />
       <updated>1731557268647</updated>
     </task>
-    <option name="localTasksCounter" value="571" />
+    <task id="LOCAL-00571" summary="Added sounds, only just for right-side punch combo now.">
+      <created>1731913426070</created>
+      <option name="number" value="00571" />
+      <option name="presentableId" value="LOCAL-00571" />
+      <option name="project" value="LOCAL" />
+      <updated>1731913426070</updated>
+    </task>
+    <option name="localTasksCounter" value="572" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -525,7 +524,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Individual drop invincibility timer added for every item." />
     <MESSAGE value="'smash' damage type deprecated.&#10;'push' property appeared in every demolisher's description.&#10;Pushing away after taking damage calculates now upon the weight and strength of an interacting actors." />
     <MESSAGE value="The aftermath of getting hurt took place only if damage amount exceeds zero." />
     <MESSAGE value="If stamina or mana have been forced to reduce, negative amount of such statuses subtract from the health pool." />
@@ -550,6 +548,7 @@
     <MESSAGE value="Added 'move' action if animation reaches active frame." />
     <MESSAGE value="Some tuning" />
     <MESSAGE value="Added 'jump' action among the others possible during active frames. Actor may jump for a given amount during attack now, for example." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added 'jump' action among the others possible during active frames. Actor may jump for a given amount during attack now, for example." />
+    <MESSAGE value="Added sounds, only just for right-side punch combo now." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added sounds, only just for right-side punch combo now." />
   </component>
 </project>

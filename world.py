@@ -127,6 +127,19 @@ class World(object):
             sounds_all[sound].play()
             # sound.play()
 
+    def processing_music(self):
+        if not self.music_on:
+            return
+        if not self.next_music:
+            pygame.mixer.music.fadeout(2000)
+            # pygame.mixer.music.stop()
+            self.current_music = None
+        elif self.next_music != self.current_music:
+            pygame.mixer.music.fadeout(600)
+            pygame.mixer.music.load(self.next_music)
+            pygame.mixer.music.play(-1, 0, 0)
+            self.current_music = copy(self.next_music)
+
     def add_actor(self, description, start_xy):
         print(f'[ADDING ACTOR] ----------------------------------------------------------')
         entity = Actor()
@@ -2154,6 +2167,7 @@ class World(object):
             (' IS GRABBING: ' + str(self.actors['player'].is_edge_grabbed), WHITE),
             (' INFLUENCED BY PLATFORM #: ' + str(self.actors['player'].influenced_by_obstacle), WHITE),
             (' WEAPON: ' + str(self.actors['player'].current_weapon['label']) + ' | ALL WEAPONS: ' + str(self.actors['player'].inventory['weapons'].keys()), PINK),
+            (' SOUNDS: ' + str(self.sounds_to_make) , PINK),
             ('', WHITE),
             (' ACTORS: ' + str(self.actors[self.location].keys()), WHITE),
             # (str([str(self.demolishers[self.location][k].id) + str(self.demolishers[self.location][k].rectangle.topleft) for k in self.demolishers[self.location].keys()]),GRAY),

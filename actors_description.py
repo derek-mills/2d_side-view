@@ -76,7 +76,7 @@ zombie = {
             'sequence': (56,), 'speed': 1,
             'activity at frames': {
                 1: {
-                    'sound': 'step',
+                    'sound': 'sound_step_1',
                 },
             },
             'repeat from frame': 0
@@ -86,7 +86,7 @@ zombie = {
             'sequence': (70,), 'speed': 1,
             'activity at frames': {
                 1: {
-                    'sound': 'step',
+                    'sound': 'sound_step_1',
                 },
             },
             'repeat from frame': 0
@@ -96,7 +96,7 @@ zombie = {
             'sequence': (5,), 'speed': 1,
             'activity at frames': {
                 1: {
-                    'sound': 'step',
+                    'sound': 'sound_step_1',
                 },
             },
             'repeat from frame': 0
@@ -106,7 +106,7 @@ zombie = {
             'sequence': (20,), 'speed': 1,
             'activity at frames': {
                 1: {
-                    'sound': 'step',
+                    'sound': 'sound_step_1',
                 },
             },
             'repeat from frame': 0
@@ -116,7 +116,7 @@ zombie = {
                 'sequence': (28,29,30,31,32,33,34,35,36,37,38,), 'speed': 1,
                 'activity at frames': {
                     1: {
-                        'sound': 'step',
+                        'sound': 'sound_step_1',
                     },
                 },
                 'repeat from frame': 0
@@ -125,43 +125,43 @@ zombie = {
                 'repeat': True, 'interruptable': True,
                 'sequence': (52,51,50,49,48,47,46,45,44,43,42,), 'speed': 1,
                 'activity at frames': {},
-                'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
+                'sound': 'sound_step_1', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
         'jump right': {
                 'repeat': True, 'interruptable': True,
                 'sequence': (75,), 'speed': 1,
                 'activity at frames': {},
-                'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
+                'sound': 'sound_step_1', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
         'jump left': {
                 'repeat': True, 'interruptable': True,
                 'sequence': (90,90,90,90), 'speed': 1,
                 'activity at frames': {},
-                'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
+                'sound': 'sound_step_1', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
         'fly right': {
                 'repeat': True, 'interruptable': True,
                 'sequence': (75,), 'speed': 1,
                 'activity at frames': {},
-                'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
+                'sound': 'sound_step_1', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
         'fly left': {
                 'repeat': True, 'interruptable': True,
                 'sequence': (90,), 'speed': 1,
                 'activity at frames': {},
-                'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
+                'sound': 'sound_step_1', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
         'turn right': {
                 'repeat': True, 'interruptable': True,
                 'sequence': (0,), 'speed': 1,
                 'activity at frames': {},
-                'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
+                'sound': 'sound_step_1', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
         'turn left': {
                 'repeat': True, 'interruptable': True,
                 'sequence': (0,), 'speed': 1,
                 'activity at frames': {},
-                'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
+                'sound': 'sound_step_1', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
         'crouch right': {
             'repeat': True, 'interruptable': True,
@@ -399,7 +399,7 @@ demon_1 = {
             'sequence': (56,), 'speed': 1,
             'activity at frames': {
                 1: {
-                    'sound': 'step',
+                    'sound': 'sound_step_1',
                 },
             },
             'repeat from frame': 0
@@ -409,7 +409,7 @@ demon_1 = {
             'sequence': (70,), 'speed': 1,
             'activity at frames': {
                 1: {
-                    'sound': 'step',
+                    'sound': 'sound_step_1',
                 },
             },
             'repeat from frame': 0
@@ -419,7 +419,7 @@ demon_1 = {
             'sequence': (5,), 'speed': 1,
             'activity at frames': {
                 1: {
-                    'sound': 'step',
+                    'sound': 'sound_step_1',
                 },
             },
             'repeat from frame': 0
@@ -429,7 +429,7 @@ demon_1 = {
             'sequence': (20,), 'speed': 1,
             'activity at frames': {
                 1: {
-                    'sound': 'step',
+                    'sound': 'sound_step_1',
                 },
             },
             'repeat from frame': 0
@@ -439,7 +439,7 @@ demon_1 = {
                 'sequence': (28,29,30,31,32,33,34,35,36,37,38,), 'speed': 1,
                 'activity at frames': {
                     1: {
-                        'sound': 'step',
+                        'sound': 'sound_step_1',
                     },
                 },
                 'repeat from frame': 0
@@ -448,43 +448,43 @@ demon_1 = {
                 'repeat': True, 'interruptable': True,
                 'sequence': (52,51,50,49,48,47,46,45,44,43,42,), 'speed': 1,
                 'activity at frames': {},
-                'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
+                'sound': 'sound_step_1', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
         'jump right': {
                 'repeat': True, 'interruptable': True,
                 'sequence': (75,), 'speed': 1,
                 'activity at frames': {},
-                'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
+                'sound': 'sound_step_1', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
         'jump left': {
                 'repeat': True, 'interruptable': True,
                 'sequence': (90,90,90,90), 'speed': 1,
                 'activity at frames': {},
-                'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
+                'sound': 'sound_step_1', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
         'fly right': {
                 'repeat': True, 'interruptable': True,
                 'sequence': (75,), 'speed': 1,
                 'activity at frames': {},
-                'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
+                'sound': 'sound_step_1', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
         'fly left': {
                 'repeat': True, 'interruptable': True,
                 'sequence': (90,), 'speed': 1,
                 'activity at frames': {},
-                'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
+                'sound': 'sound_step_1', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
         'turn right': {
                 'repeat': True, 'interruptable': True,
                 'sequence': (0,), 'speed': 1,
                 'activity at frames': {},
-                'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
+                'sound': 'sound_step_1', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
         'turn left': {
                 'repeat': True, 'interruptable': True,
                 'sequence': (0,), 'speed': 1,
                 'activity at frames': {},
-                'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
+                'sound': 'sound_step_1', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
         'crouch right': {
             'repeat': True, 'interruptable': True,
@@ -723,7 +723,7 @@ demon_2 = {
             'sequence': (56,), 'speed': 1,
             'activity at frames': {
                 1: {
-                    'sound': 'step',
+                    'sound': 'sound_step_1',
                 },
             },
             'repeat from frame': 0
@@ -733,7 +733,7 @@ demon_2 = {
             'sequence': (70,), 'speed': 1,
             'activity at frames': {
                 1: {
-                    'sound': 'step',
+                    'sound': 'sound_step_1',
                 },
             },
             'repeat from frame': 0
@@ -743,7 +743,7 @@ demon_2 = {
             'sequence': (5,), 'speed': 1,
             'activity at frames': {
                 1: {
-                    'sound': 'step',
+                    'sound': 'sound_step_1',
                 },
             },
             'repeat from frame': 0
@@ -753,7 +753,7 @@ demon_2 = {
             'sequence': (20,), 'speed': 1,
             'activity at frames': {
                 1: {
-                    'sound': 'step',
+                    'sound': 'sound_step_1',
                 },
             },
             'repeat from frame': 0
@@ -763,7 +763,7 @@ demon_2 = {
                 'sequence': (28,29,30,31,32,33,34,35,36,37,38,), 'speed': 4,
                 'activity at frames': {
                     1: {
-                        'sound': 'step',
+                        'sound': 'sound_step_1',
                     },
                 },
                 'repeat from frame': 0
@@ -772,43 +772,43 @@ demon_2 = {
                 'repeat': True, 'interruptable': True,
                 'sequence': (52,51,50,49,48,47,46,45,44,43,42,), 'speed': 4,
                 'activity at frames': {},
-                'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
+                'sound': 'sound_step_1', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
         'jump right': {
                 'repeat': True, 'interruptable': True,
                 'sequence': (75,), 'speed': 1,
                 'activity at frames': {},
-                'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
+                'sound': 'sound_step_1', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
         'jump left': {
                 'repeat': True, 'interruptable': True,
                 'sequence': (90,90,90,90), 'speed': 1,
                 'activity at frames': {},
-                'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
+                'sound': 'sound_step_1', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
         'fly right': {
                 'repeat': True, 'interruptable': True,
                 'sequence': (75,), 'speed': 1,
                 'activity at frames': {},
-                'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
+                'sound': 'sound_step_1', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
         'fly left': {
                 'repeat': True, 'interruptable': True,
                 'sequence': (90,), 'speed': 1,
                 'activity at frames': {},
-                'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
+                'sound': 'sound_step_1', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
         'turn right': {
                 'repeat': True, 'interruptable': True,
                 'sequence': (0,), 'speed': 1,
                 'activity at frames': {},
-                'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
+                'sound': 'sound_step_1', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
         'turn left': {
                 'repeat': True, 'interruptable': True,
                 'sequence': (0,), 'speed': 1,
                 'activity at frames': {},
-                'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
+                'sound': 'sound_step_1', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
         'crouch right': {
             'repeat': True, 'interruptable': True,
@@ -1350,7 +1350,7 @@ player_jake = {
             'sequence': (56,), 'speed': 1,
             'activity at frames': {
                 1: {
-                    'sound': 'step',
+                    'sound': 'sound_step_1',
                 },
             },
             'repeat from frame': 0
@@ -1360,7 +1360,7 @@ player_jake = {
             'sequence': (70,), 'speed': 1,
             'activity at frames': {
                 1: {
-                    'sound': 'step',
+                    'sound': 'sound_step_1',
                 },
             },
             'repeat from frame': 0
@@ -1398,8 +1398,11 @@ player_jake = {
                 'sequence': (28,29,30,31,32,33,34,35,), 'speed': 4,
                 # 'sequence': (28,29,30,31,32,33,34,35,36,37,38,), 'speed': 1,
                 'activity at frames': {
-                    1: {
-                        'sound': 'step',
+                    0: {
+                        'sound': 'sound_step_2',
+                    },
+                    4: {
+                        'sound': 'sound_step_2',
                     },
                 },
                 'repeat from frame': 0
@@ -1408,44 +1411,51 @@ player_jake = {
                 'repeat': True, 'interruptable': True,
                 'sequence': (52,51,50,49,48,47,46,45,), 'speed': 4,
                 # 'sequence': (52,51,50,49,48,47,46,45,44,43,42,), 'speed': 1,
-                'activity at frames': {},
-                'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
+                'activity at frames': {
+                    0: {
+                        'sound': 'sound_step_2',
+                    },
+                    4: {
+                        'sound': 'sound_step_2',
+                    },
+                },
+                'sound': 'sound_step_1', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
         'jump right': {
                 'repeat': True, 'interruptable': True,
                 'sequence': (29,), 'speed': 1,
                 'activity at frames': {},
-                'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
+                'sound': 'sound_step_1', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
         'jump left': {
                 'repeat': True, 'interruptable': True,
                 'sequence': (51,), 'speed': 1,
                 'activity at frames': {},
-                'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
+                'sound': 'sound_step_1', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
         'fly right': {
                 'repeat': True, 'interruptable': True,
                 'sequence': (32,), 'speed': 1,
                 'activity at frames': {},
-                'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
+                'sound': 'sound_step_1', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
         'fly left': {
                 'repeat': True, 'interruptable': True,
                 'sequence': (48,), 'speed': 1,
                 'activity at frames': {},
-                'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
+                'sound': 'sound_step_1', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
         'turn right': {
                 'repeat': True, 'interruptable': True,
                 'sequence': (0,), 'speed': 1,
                 'activity at frames': {},
-                'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
+                'sound': 'sound_step_1', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
         'turn left': {
                 'repeat': True, 'interruptable': True,
                 'sequence': (0,), 'speed': 1,
                 'activity at frames': {},
-                'sound': 'step', 'sound at frames': (1, 4), 'repeat from frame': 0
+                'sound': 'sound_step_1', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
         'crouch right': {
             'repeat': True, 'interruptable': True,
