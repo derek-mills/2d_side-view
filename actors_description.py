@@ -193,7 +193,7 @@ zombie = {
             'speed': 5,
             'activity at frames': {
                 4: {
-                    'sound': True,
+                    #'sound': True,
                     'demolishers set number': 0,
                     'demolisher': True
                 },
@@ -206,7 +206,7 @@ zombie = {
             'speed': 5,
             'activity at frames': {
                 4: {
-                    'sound': True,
+                    #'sound': True,
                     'demolishers set number': 0,
                     'demolisher': True
                 },
@@ -220,7 +220,7 @@ zombie = {
             'speed': 2,
             'activity at frames': {
                 4: {
-                    'sound': True,
+                    #'sound': True,
                     # 'move': 10,  # Slightly move actor forward,
                     'demolishers set number': 0,
                     'demolisher': True
@@ -239,7 +239,7 @@ zombie = {
                          89, 89, 89, 89, 88, 88),  # 0 - 4
             'activity at frames': {
                 4: {
-                    'sound': True,
+                    #'sound': True,
                     # 'move': 10, # Slightly move actor forward,
                     'demolishers set number': 0,
                     'demolisher': True
@@ -259,7 +259,7 @@ zombie = {
             'speed': 4,
             'activity at frames': {
                 7: {
-                    'sound': True,
+                    #'sound': True,
                     'demolishers set number': 0,
                     'demolisher': True
                 },
@@ -272,7 +272,7 @@ zombie = {
             'speed': 4,
             'activity at frames': {
                 7: {
-                    'sound': True,
+                    #'sound': True,
                     'demolishers set number': 0,
                     'demolisher': True
                 },
@@ -285,7 +285,7 @@ zombie = {
             'speed': 9,
             'activity at frames': {
                 0: {
-                    'sound': True,
+                    #'sound': True,
                     'demolishers set number': 0,
                     'demolisher': False
                 },
@@ -298,7 +298,7 @@ zombie = {
             'speed': 9,
             'activity at frames': {
                 0: {
-                    'sound': True,
+                    #'sound': True,
                     'demolishers set number': 0,
                     'demolisher': False
                 },
@@ -311,7 +311,7 @@ zombie = {
             'speed': 9,
             'activity at frames': {
                 0: {
-                    'sound': True,
+                    #'sound': True,
                     'demolishers set number': 0,
                     'demolisher': False
                 },
@@ -324,7 +324,7 @@ zombie = {
             'speed': 9,
             'activity at frames': {
                 0: {
-                    'sound': True,
+                    #'sound': True,
                     'demolishers set number': 0,
                     'demolisher': False
                 },
@@ -516,7 +516,7 @@ demon_1 = {
             'speed': 3,
             'activity at frames': {
                 4: {
-                    'sound': True,
+                    #'sound': True,
                     'demolishers set number': 0,
                     'demolisher': True
                 },
@@ -529,7 +529,7 @@ demon_1 = {
             'speed': 1,
             'activity at frames': {
                 4: {
-                    'sound': True,
+                    #'sound': True,
                     'demolishers set number': 0,
                     'demolisher': True
                 },
@@ -543,7 +543,7 @@ demon_1 = {
             'speed': 2,
             'activity at frames': {
                 4: {
-                    'sound': True,
+                    #'sound': True,
                     # 'move': 10,  # Slightly move actor forward,
                     'demolishers set number': 0,
                     'demolisher': True
@@ -562,7 +562,7 @@ demon_1 = {
                          89, 89, 89, 89, 88, 88),  # 0 - 4
             'activity at frames': {
                 4: {
-                    'sound': True,
+                    #'sound': True,
                     # 'move': 10, # Slightly move actor forward,
                     'demolishers set number': 0,
                     'demolisher': True
@@ -582,7 +582,7 @@ demon_1 = {
             'speed': 4,
             'activity at frames': {
                 7: {
-                    'sound': True,
+                    #'sound': True,
                     'demolishers set number': 0,
                     'demolisher': True
                 },
@@ -595,7 +595,7 @@ demon_1 = {
             'speed': 4,
             'activity at frames': {
                 7: {
-                    'sound': True,
+                    #'sound': True,
                     'demolishers set number': 0,
                     'demolisher': True
                 },
@@ -608,7 +608,7 @@ demon_1 = {
             'speed': 9,
             'activity at frames': {
                 0: {
-                    'sound': True,
+                    #'sound': True,
                     'demolishers set number': 0,
                     'demolisher': False
                 },
@@ -621,7 +621,7 @@ demon_1 = {
             'speed': 9,
             'activity at frames': {
                 0: {
-                    'sound': True,
+                    #'sound': True,
                     'demolishers set number': 0,
                     'demolisher': False
                 },
@@ -634,7 +634,7 @@ demon_1 = {
             'speed': 9,
             'activity at frames': {
                 0: {
-                    'sound': True,
+                    #'sound': True,
                     'demolishers set number': 0,
                     'demolisher': False
                 },
@@ -647,7 +647,7 @@ demon_1 = {
             'speed': 9,
             'activity at frames': {
                 0: {
-                    'sound': True,
+                    #'sound': True,
                     'demolishers set number': 0,
                     'demolisher': False
                 },
@@ -843,22 +843,22 @@ demon_2 = {
             'speed': 4,
             'activity at frames': {
                 3: {
-                    'sound': True,
+                    #'sound': True,
                     'demolishers set number': 0,
                     'demolisher': True
                 },
                 4: {
-                    'sound': True,
+                    #'sound': True,
                     'demolishers set number': 1,
                     'demolisher': True
                 },
                 13: {
-                    'sound': True,
+                    #'sound': True,
                     'demolishers set number': 2,
                     'demolisher': True
                 },
                 14: {
-                    'sound': True,
+                    #'sound': True,
                     'demolishers set number': 2,
                     'demolisher': True
                 },
@@ -892,22 +892,22 @@ demon_2 = {
             'speed': 4,
             'activity at frames': {
                 3: {
-                    'sound': True,
+                    #'sound': True,
                     'demolishers set number': 0,
                     'demolisher': True
                 },
                 4: {
-                    'sound': True,
+                    #'sound': True,
                     'demolishers set number': 1,
                     'demolisher': True
                 },
                 13: {
-                    'sound': True,
+                    #'sound': True,
                     'demolishers set number': 2,
                     'demolisher': True
                 },
                 14: {
-                    'sound': True,
+                    #'sound': True,
                     'demolishers set number': 2,
                     'demolisher': True
                 },
@@ -932,7 +932,7 @@ demon_2 = {
             'speed': 8,
             'activity at frames': {
                 4: {
-                    'sound': True,
+                    #'sound': True,
                     'demolisher': True
                 },
                 },
@@ -957,7 +957,7 @@ demon_2 = {
             'speed': 8,
             'activity at frames': {
                 4: {
-                    'sound': True,
+                    #'sound': True,
                     'demolisher': True
                 },
             },
@@ -980,14 +980,14 @@ demon_2 = {
             'speed': 4,
             'activity at frames': {
                 0: {
-                    'sound': True,
+                    #'sound': True,
                     # 'move': 10,  # Slightly move actor forward,
                     'jump': 20,
                     'demolishers set number': 0,
                     'demolisher': True
                 },
                 4: {
-                    'sound': True,
+                    #'sound': True,
                     # 'move': 10,  # Slightly move actor forward,
                     'demolishers set number': 1,
                     'demolisher': True
@@ -1013,14 +1013,14 @@ demon_2 = {
             # 'demolisher offset': (46, 36),
             'activity at frames': {
                 0: {
-                    'sound': True,
+                    #'sound': True,
                     # 'move': 10,  # Slightly move actor forward,
                     'jump': 20,
                     'demolishers set number': 0,
                     'demolisher': True
                 },
                 4: {
-                    'sound': True,
+                    #'sound': True,
                     # 'move': 10,  # Slightly move actor forward,
                     'demolishers set number': 1,
                     'demolisher': True
@@ -1050,7 +1050,7 @@ demon_2 = {
             'speed': 3,
             'activity at frames': {
                 9: {
-                    'sound': True,
+                    #'sound': True,
                     'demolishers set number': 0,
                     'demolisher': True
                 },
@@ -1070,7 +1070,7 @@ demon_2 = {
             'speed': 3,
             'activity at frames': {
                 9: {
-                    'sound': True,
+                    #'sound': True,
                     'demolishers set number': 0,
                     'demolisher': True
                 },
@@ -1083,7 +1083,7 @@ demon_2 = {
             'speed': 9,
             'activity at frames': {
                 0: {
-                    'sound': True,
+                    #'sound': True,
                     'demolishers set number': 0,
                     'demolisher': False
                 },
@@ -1096,7 +1096,7 @@ demon_2 = {
             'speed': 9,
             'activity at frames': {
                 0: {
-                    'sound': True,
+                    #'sound': True,
                     'demolishers set number': 0,
                     'demolisher': False
                 },
@@ -1109,7 +1109,7 @@ demon_2 = {
             'speed': 9,
             'activity at frames': {
                 0: {
-                    'sound': True,
+                    #'sound': True,
                     'demolishers set number': 0,
                     'demolisher': False
                 },
@@ -1122,7 +1122,7 @@ demon_2 = {
             'speed': 9,
             'activity at frames': {
                 0: {
-                    'sound': True,
+                    #'sound': True,
                     'demolishers set number': 0,
                     'demolisher': False
                 },
@@ -1187,7 +1187,7 @@ exploding_barrel = {
                 'sequence': (3,4,5,3,4,5,3,4,5,3,4,5), 'speed': 1,
                 'activity at frames': {
                     11: {
-                        'sound': True,
+                        #'sound': True,
                         'demolishers set number': 0,
                         'demolisher': True
                     },
@@ -1199,7 +1199,7 @@ exploding_barrel = {
                 'sequence': (3,4,5,3,4,5,3,4,5,3,4,5), 'speed': 1,
                 'activity at frames': {
                     11: {
-                        'sound': True,
+                        #'sound': True,
                         'demolishers set number': 0,
                         'demolisher': True
                     },
@@ -1269,7 +1269,7 @@ player_jake = {
             'speed': 9,
             'activity at frames': {
                 0: {
-                    'sound': True,
+                    #'sound': True,
                     'demolishers set number': 0,
                     'demolisher': False
                 },
@@ -1282,7 +1282,7 @@ player_jake = {
             'speed': 9,
             'activity at frames': {
                 0: {
-                    'sound': True,
+                    #'sound': True,
                     'demolishers set number': 0,
                     'demolisher': False
                 },
@@ -1477,17 +1477,17 @@ player_jake = {
             'speed': 2,
             'activity at frames': {
                 4: {
-                    'sound': True,
+                    #'sound': True,
                     'demolishers set number': 0,
                     'demolisher': True
                 },
                 5: {
-                    'sound': True,
+                    #'sound': True,
                     'demolishers set number': 1,
                     'demolisher': True
                 },
                 6: {
-                    'sound': True,
+                    #'sound': True,
                     'demolishers set number': 2,
                     'demolisher': True
                 },
@@ -1500,17 +1500,17 @@ player_jake = {
             'speed': 2,
             'activity at frames': {
                 4: {
-                    'sound': True,
+                    #'sound': True,
                     'demolishers set number': 0,
                     'demolisher': True
                 },
                 5: {
-                    'sound': True,
+                    #'sound': True,
                     'demolishers set number': 1,
                     'demolisher': True
                 },
                 6: {
-                    'sound': True,
+                    #'sound': True,
                     'demolishers set number': 2,
                     'demolisher': True
                 },
@@ -1523,17 +1523,17 @@ player_jake = {
             'speed': 2,
             'activity at frames': {
                 4: {
-                    'sound': True,
+                    #'sound': True,
                     'demolisher': True,
                     'demolishers set number': 0,
                 },
                 5: {
-                    'sound': True,
+                    #'sound': True,
                     'demolisher': True,
                     'demolishers set number': 1,
                 },
                 6: {
-                    'sound': True,
+                    #'sound': True,
                     'demolisher': True,
                     'demolishers set number': 2,
                 },
@@ -1546,17 +1546,17 @@ player_jake = {
             'speed': 2,
             'activity at frames': {
                 4: {
-                    'sound': True,
+                    #'sound': True,
                     'demolisher': True,
                     'demolishers set number': 0,
                 },
                 5: {
-                    'sound': True,
+                    #'sound': True,
                     'demolisher': True,
                     'demolishers set number': 1,
                 },
                 6: {
-                    'sound': True,
+                    #'sound': True,
                     'demolisher': True,
                     'demolishers set number': 2,
                 },
@@ -1569,7 +1569,7 @@ player_jake = {
             'speed': 2,
             'activity at frames': {
                 2: {
-                    'sound': True,
+                    #'sound': True,
                     # 'move': 10,  # Slightly move actor forward,
                     'demolishers set number': 0,
                     'demolisher': True
@@ -1582,7 +1582,7 @@ player_jake = {
             'sequence': (91,90,89,89,89),  # 0 - 4
             'activity at frames': {
                 2: {
-                    'sound': True,
+                    #'sound': True,
                     # 'move': 10, # Slightly move actor forward,
                     'demolishers set number': 0,
                     'demolisher': True
@@ -1597,14 +1597,15 @@ player_jake = {
             'speed': 2,
             'activity at frames': {
                 2: {
-                    'sound': True,
+                    'sound': 'sound_swing_2',
                     # 'move': 10,  # Slightly move actor forward,
                     'demolishers set number': 0,
                     'demolisher': True
                 },
                 6: {
-                    'sound': True,
+                    #'sound': True,
                     # 'move': 10,  # Slightly move actor forward,
+                    'sound': 'sound_swing_2',
                     'demolishers set number': 0,
                     'demolisher': True
                 },
@@ -1617,8 +1618,7 @@ player_jake = {
             'speed': 2,
             'activity at frames': {
                 4: {
-                    'sound': True,
-                    # 'move': 10,  # Slightly move actor forward,
+                    'sound': 'sound_swing_2',
                     'demolishers set number': 1,
                     'demolisher': True
                 },
@@ -1631,7 +1631,7 @@ player_jake = {
             'speed': 2,
             'activity at frames': {
                 4: {
-                    'sound': True,
+                    'sound': 'sound_swing_2',
                     'move': 10,  # Slightly move actor forward,
                     'demolishers set number': 2,
                     'demolisher': True
@@ -1645,13 +1645,13 @@ player_jake = {
             'speed': 2,
             'activity at frames': {
                 2: {
-                    'sound': True,
+                    #'sound': True,
                     # 'move': 10,  # Slightly move actor forward,
                     'demolishers set number': 0,
                     'demolisher': True
                 },
                 6: {
-                    'sound': True,
+                    #'sound': True,
                     # 'move': 10,  # Slightly move actor forward,
                     'demolishers set number': 0,
                     'demolisher': True
@@ -1665,7 +1665,7 @@ player_jake = {
             'speed': 2,
             'activity at frames': {
                 4: {
-                    'sound': True,
+                    #'sound': True,
                     # 'move': 10,  # Slightly move actor forward,
                     'demolishers set number': 1,
                     'demolisher': True
@@ -1679,7 +1679,7 @@ player_jake = {
             'speed': 2,
             'activity at frames': {
                 4: {
-                    'sound': True,
+                    #'sound': True,
                     'move': 10,  # Slightly move actor forward,
                     'demolishers set number': 2,
                     'demolisher': True
@@ -1692,7 +1692,7 @@ player_jake = {
             'sequence': (92,93,94,95,95,95,92,),  # 0 - 4
             'activity at frames': {
                 3: {
-                    'sound': True,
+                    #'sound': True,
                     # 'move': 10, # Slightly move actor forward,
                     'demolishers set number': 0,
                     'demolisher': True
@@ -1706,7 +1706,7 @@ player_jake = {
             'sequence': (92,92,96,96,97,97,97),  # 0 - 4
             'activity at frames': {
                 4: {
-                    'sound': True,
+                    #'sound': True,
                     # 'move': 10, # Slightly move actor forward,
                     'demolishers set number': 1,
                     'demolisher': True
@@ -1720,7 +1720,7 @@ player_jake = {
             'sequence': (68,68,67,67,66,66,66,66,67,68),  # 0 - 4
             'activity at frames': {
                 4: {
-                    'sound': True,
+                    #'sound': True,
                     # 'move': 10, # Slightly move actor forward,
                     'demolishers set number': 2,
                     'demolisher': True
@@ -1736,7 +1736,7 @@ player_jake = {
               'speed': 2,
             'activity at frames': {
                 9: {
-                    'sound': True,
+                    #'sound': True,
                     'demolishers set number': 0,
                     'demolisher': True
                 },
@@ -1751,7 +1751,7 @@ player_jake = {
             'speed': 3,
             'activity at frames': {
                 9: {
-                    'sound': True,
+                    #'sound': True,
                     'demolishers set number': 0,
                     'demolisher': True
                 },
@@ -1796,20 +1796,21 @@ player_jake = {
             'speed': 1,
             'activity at frames': {
                 0: {
-                    'sound': True,
+                    #'sound': True,
                     # 'move': 10,  # Slightly move actor forward,
                     'demolishers set number': 0,
                     'demolisher': True
                 },
                 4: {
-                    'sound': True,
+                    #'sound': True,
                     # 'move': 10,  # Slightly move actor forward,
+                    'jump': 15,
                     'demolishers set number': 1,
                     'demolisher': True
                 },
                 6: {
-                    'sound': True,
-                    'move': 10,  # Slightly move actor forward,
+                    #'sound': True,
+                    'move': 30,  # Slightly move actor forward,
                     'demolishers set number': 2,
                     'demolisher': True
                 },
@@ -1822,19 +1823,19 @@ player_jake = {
             'speed': 1,
             'activity at frames': {
                 0: {
-                    'sound': True,
+                    #'sound': True,
                     # 'move': 10,  # Slightly move actor forward,
                     'demolishers set number': 0,
                     'demolisher': True
                 },
                 4: {
-                    'sound': True,
+                    #'sound': True,
                     # 'move': 10,  # Slightly move actor forward,
                     'demolishers set number': 1,
                     'demolisher': True
                 },
                 6: {
-                    'sound': True,
+                    #'sound': True,
                     # 'move': 10, # Slightly move actor forward,
                     'demolishers set number': 2,
                     'demolisher': True
@@ -1848,37 +1849,37 @@ player_jake = {
             'speed': 1,
             'activity at frames': {
                 0: {
-                    'sound': True,
+                    #'sound': True,
                     # 'move': 10,  # Slightly move actor forward,
                     'demolishers set number': 0,
                     'demolisher': True
                 },
                 2: {
-                    'sound': True,
+                    #'sound': True,
                     # 'move': 10,  # Slightly move actor forward,
                     'demolishers set number': 1,
                     'demolisher': True
                 },
                 3: {
-                    'sound': True,
+                    #'sound': True,
                     # 'move': 10,  # Slightly move actor forward,
                     'demolishers set number': 3,
                     'demolisher': True
                 },
                 6: {
-                    'sound': True,
+                    #'sound': True,
                     # 'move': 10,  # Slightly move actor forward,
                     'demolishers set number': 0,
                     'demolisher': True
                 },
                 8: {
-                    'sound': True,
+                    #'sound': True,
                     # 'move': 10,  # Slightly move actor forward,
                     'demolishers set number': 1,
                     'demolisher': True
                 },
                 9: {
-                    'sound': True,
+                    #'sound': True,
                     # 'move': 10,  # Slightly move actor forward,
                     'demolishers set number': 3,
                     'demolisher': True
@@ -1892,19 +1893,19 @@ player_jake = {
             'speed': 1,
             'activity at frames': {
                 0: {
-                    'sound': True,
+                    #'sound': True,
                     # 'move': 10,  # Slightly move actor forward,
                     'demolishers set number': 0,
                     'demolisher': True
                 },
                 4: {
-                    'sound': True,
+                    #'sound': True,
                     # 'move': 10,  # Slightly move actor forward,
                     'demolishers set number': 1,
                     'demolisher': True
                 },
                 6: {
-                    'sound': True,
+                    #'sound': True,
                     'move': 10, # Slightly move actor forward,
                     'demolishers set number': 2,
                     'demolisher': True
@@ -1918,7 +1919,7 @@ player_jake = {
             'speed': 1,
             'activity at frames': {
                 3: {
-                    'sound': True,
+                    #'sound': True,
                     # 'move': 10,  # Slightly move actor forward,
                     'demolishers set number': 0,
                     'demolisher': True
@@ -1932,7 +1933,7 @@ player_jake = {
             'speed': 1,
             'activity at frames': {
                 3: {
-                    'sound': True,
+                    #'sound': True,
                     # 'move': 10,  # Slightly move actor forward,
                     'demolishers set number': 0,
                     'demolisher': True

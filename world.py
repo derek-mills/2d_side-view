@@ -1,6 +1,6 @@
 # import pygame
 import pygame.draw
-
+from sounds import *
 from actors_description import *
 from actor import *
 from obstacle import *
@@ -33,6 +33,8 @@ class World(object):
         self.item_id: int = 0
         self.particles = dict()
         self.particle_id: int = 0
+
+        self.sounds_to_make = list()
 
         self.locations = dict()
         self.location: str = ''
@@ -105,6 +107,25 @@ class World(object):
     def set_screen(self, surface):
         self.screen = surface
 
+    def put_sound_to_queue(self, sound):
+        self.sounds_to_make.append(sound)
+
+    def processing_sounds(self):
+        # channels_count = 0
+        # while self.sounds_to_make:
+        #     # print(f'[world.processing_sounds] {self.sounds_to_make}')
+        #     channels_count += 1
+        #     if channels_count > 8:
+        #         return
+        #     sound = self.sounds_to_make.pop()
+        #     # print(sound_properties)
+        #     # sound = sound_properties[0]
+        #     sound.play()
+
+        if self.sounds_to_make:
+            sound = self.sounds_to_make.pop()
+            sounds_all[sound].play()
+            # sound.play()
 
     def add_actor(self, description, start_xy):
         print(f'[ADDING ACTOR] ----------------------------------------------------------')
@@ -643,6 +664,7 @@ class World(object):
 
         self.detect_active_obstacles()
 
+        self.processing_sounds()
         self.render_all()
 
     def detect_active_obstacles(self):
@@ -1235,6 +1257,9 @@ class World(object):
             while actor.summoned_particle_descriptions:
                 description = actor.summoned_particle_descriptions.pop()
                 self.add_particle(description)
+
+            while actor.summoned_sounds:
+                self.put_sound_to_queue(actor.summoned_sounds.pop())
 
             # if actor.summon_particle:
             #     actor.summon_particle = False

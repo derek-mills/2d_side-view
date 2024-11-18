@@ -32,6 +32,7 @@ class Entity(object):
         self.summon_protector = False
         self.summoned_protectors_description = list()
         self.summoned_protectors_keep_alive = list()
+        self.summoned_sounds = list()
         # self.summoned_demolisher_description = dict()
         self.summon_particle = False
         self.summoned_particle_descriptions = list()
@@ -568,7 +569,8 @@ class Entity(object):
                         self.heading[0] = self.look
                         # print(f'[process active frames] make step at frame {self.frame_number}')
                     elif action == 'sound':
-                        snd = self.animations[self.current_animation]['activity at frames'][self.frame_number]
+                        snd = self.animations[self.current_animation]['activity at frames'][self.frame_number]['sound']
+                        self.summoned_sounds.append(snd)
                         # print(f'[entity.process_activity_at_current_animation_frame] make {snd} at frame {self.frame_number}')
             self.active_frames = self.active_frames[1:]
 
