@@ -352,6 +352,7 @@ class Demolisher(Entity):
                         self.fall_speed *= -self.bounce_factor  # Bounce up from the floor.
                         self.is_stand_on_ground = False
                 else:
+                    self.summoned_sounds.append(self.sounds['obstacle hit'])
                     self.die()
                     return
         if not self.static:

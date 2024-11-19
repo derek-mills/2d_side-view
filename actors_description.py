@@ -1274,30 +1274,30 @@ player_jake = {
         #     'repeat from frame': 0
         # },
         'decapitated left': {
-            'repeat': True, 'interruptable': True,
+            'repeat': False, 'interruptable': True,
             'sequence': (55,54,53,),
             'speed': 9,
             'activity at frames': {
                 0: {
-                    #'sound': True,
-                    'demolishers set number': 0,
-                    'demolisher': False
+                    'sound': 'sound_groan_1',
+                    # 'demolishers set number': 0,
+                    # 'demolisher': False
                 },
             },
             'repeat from frame': 2
         },
         'decapitated right': {
-            'repeat': True, 'interruptable': True,
+            'repeat': False, 'interruptable': True,
             'sequence': (39,40,41,),
             'speed': 9,
             'activity at frames': {
                 0: {
-                    #'sound': True,
-                    'demolishers set number': 0,
-                    'demolisher': False
+                    'sound': 'sound_groan_1',
+                    # 'demolishers set number': 0,
+                    # 'demolisher': False
                 },
             },
-            'repeat from frame': 2
+            'repeat from frame': 0
         },
         'lie decapitated left': {
             'repeat': True, 'interruptable': True,
@@ -1349,15 +1349,23 @@ player_jake = {
         },
         'lie dead right': {
             'repeat': True,
-            'sequence': (41,), 'speed': 20,
-            'activity at frames': {},
-            'repeat from frame': 0
+            'sequence': (41,41,), 'speed': 20,
+            'activity at frames': {
+                0: {
+                    'sound': 'sound_groan_1'
+                },
+            },
+            'repeat from frame': 1
         },
         'lie dead left': {
             'repeat': True,
-            'sequence': (53,), 'speed': 20,
-            'activity at frames': {},
-            'repeat from frame': 0
+            'sequence': (53,53,), 'speed': 20,
+            'activity at frames': {
+                0: {
+                    'sound': 'sound_groan_1'
+                },
+            },
+            'repeat from frame': 1
         },
         'sliding right': {
             'repeat': True, 'interruptable': True,

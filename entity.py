@@ -847,8 +847,10 @@ class Entity(object):
                     self.has_just_stopped_demolishers.append(dem.id)
 
                 self.summon_particle = True
-                # self.invincibility_timer = 20
+                # if dem.sounds['body hit'] not in self.summoned_sounds:
+
                 if not self.dead:
+                    self.summoned_sounds.append(dem.sounds['body hit'])
                     # If actor hit from behind, the damage increased by 50%:
                     total_damage_multiplier = 1.5 if dem.look == self.look and dem.snap_to_actor >= 0 else 1
                     self.get_damage(dem.damage, total_damage_multiplier)
