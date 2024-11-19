@@ -38,6 +38,8 @@ pygame.mixer.init()
 # pygame.mixer.music.load('music/ambient_1.mp3')
 pygame.mixer.music.set_volume(MUSIC_VOLUME)
 
+sound_glass_blast_1 = pygame.mixer.Sound('SFX/blast_glass.mp3')
+sound_glass_blast_1.set_volume(SOUND_VOLUME)
 sound_step_1 = pygame.mixer.Sound('SFX/steps/tihiy-gluhoy-shag.wav')
 sound_step_1.set_volume(SOUND_VOLUME)
 sound_step_2 = pygame.mixer.Sound('SFX/steps/tihiy-gluhoy-shag_2.wav')
@@ -66,6 +68,7 @@ sound_man_taunt_1 = pygame.mixer.Sound('SFX/shouts/man_taunt.mp3')
 sound_man_taunt_1.set_volume(SOUND_VOLUME)
 
 sounds_all = {
+    'sound_glass_blast_1': sound_glass_blast_1,
     'sound_man_taunt_1': sound_man_taunt_1,
     'sound_step_1': sound_step_1,
     'sound_step_2': sound_step_2,

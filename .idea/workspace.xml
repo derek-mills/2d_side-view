@@ -7,7 +7,8 @@
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main .py" beforeDir="false" afterPath="$PROJECT_DIR$/main .py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sounds.py" beforeDir="false" afterPath="$PROJECT_DIR$/sounds.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,13 +165,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00524" summary="Solved bug when AI actor changed weapon and caused crash because previous attack animation hasn't been finished yet, but he tried to use settings from the new one.">
-      <created>1729823903141</created>
-      <option name="number" value="00524" />
-      <option name="presentableId" value="LOCAL-00524" />
-      <option name="project" value="LOCAL" />
-      <updated>1729823903141</updated>
     </task>
     <task id="LOCAL-00525" summary="Commit before I decided to remake state_machine(). I'll try to separate animations from states and apply new animation for every state in manual mode.">
       <created>1729834360141</created>
@@ -508,7 +502,14 @@
       <option name="project" value="LOCAL" />
       <updated>1731914442067</updated>
     </task>
-    <option name="localTasksCounter" value="573" />
+    <task id="LOCAL-00573" summary="Player's actor getting hurt sound added.">
+      <created>1731915140111</created>
+      <option name="number" value="00573" />
+      <option name="presentableId" value="LOCAL-00573" />
+      <option name="project" value="LOCAL" />
+      <updated>1731915140111</updated>
+    </task>
+    <option name="localTasksCounter" value="574" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -523,7 +524,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="The aftermath of getting hurt took place only if damage amount exceeds zero." />
     <MESSAGE value="If stamina or mana have been forced to reduce, negative amount of such statuses subtract from the health pool." />
     <MESSAGE value="If stamina or mana have been forced to reduce, negative amount of such statuses subtract from the health pool. Improvement." />
     <MESSAGE value="Repeated animations accepted." />
@@ -548,6 +548,7 @@
     <MESSAGE value="Added 'jump' action among the others possible during active frames. Actor may jump for a given amount during attack now, for example." />
     <MESSAGE value="Added sounds, only just for right-side punch combo now." />
     <MESSAGE value="Player's actor footsteps sound added." />
-    <option name="LAST_COMMIT_MESSAGE" value="Player's actor footsteps sound added." />
+    <MESSAGE value="Player's actor getting hurt sound added." />
+    <option name="LAST_COMMIT_MESSAGE" value="Player's actor getting hurt sound added." />
   </component>
 </project>

@@ -1183,11 +1183,14 @@ exploding_barrel = {
                 'repeat from frame': 0
             },
         'explosion right': {
-                'repeat': True,
+                'repeat': False,
                 'sequence': (3,4,5,3,4,5,3,4,5,3,4,5), 'speed': 1,
                 'activity at frames': {
+                    1: {
+                        'sound': 'sound_glass_blast_1',
+                    },
                     11: {
-                        #'sound': True,
+                        # 'sound': 'sound_glass_blast_1',
                         'demolishers set number': 0,
                         'demolisher': True
                     },
@@ -1195,11 +1198,14 @@ exploding_barrel = {
                 'repeat from frame': 0
             },
         'explosion left': {
-                'repeat': True,
+                'repeat': False,
                 'sequence': (3,4,5,3,4,5,3,4,5,3,4,5), 'speed': 1,
                 'activity at frames': {
+                    1: {
+                        'sound': 'sound_glass_blast_1',
+                    },
                     11: {
-                        #'sound': True,
+                        # 'sound': 'sound_glass_blast_1',
                         'demolishers set number': 0,
                         'demolisher': True
                     },
@@ -1663,14 +1669,12 @@ player_jake = {
             'speed': 2,
             'activity at frames': {
                 2: {
-                    #'sound': True,
-                    # 'move': 10,  # Slightly move actor forward,
+                    'sound': 'sound_swing_2',
                     'demolishers set number': 0,
                     'demolisher': True
                 },
                 6: {
-                    #'sound': True,
-                    # 'move': 10,  # Slightly move actor forward,
+                    'sound': 'sound_swing_2',
                     'demolishers set number': 0,
                     'demolisher': True
                 },
@@ -1683,8 +1687,7 @@ player_jake = {
             'speed': 2,
             'activity at frames': {
                 4: {
-                    #'sound': True,
-                    # 'move': 10,  # Slightly move actor forward,
+                    'sound': 'sound_swing_2',
                     'demolishers set number': 1,
                     'demolisher': True
                 },
@@ -1697,7 +1700,7 @@ player_jake = {
             'speed': 2,
             'activity at frames': {
                 4: {
-                    #'sound': True,
+                    'sound': 'sound_swing_2',
                     'move': 10,  # Slightly move actor forward,
                     'demolishers set number': 2,
                     'demolisher': True
