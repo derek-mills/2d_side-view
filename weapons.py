@@ -35,7 +35,12 @@ sword = {
             'bounce': False, 'bounce factor': 0,
             'attack type': ('slash',),
             'push': False,
-            'damage': {
+             'sounds': {
+                 'obstacle hit': 'sound_bullet_wall_hit_1',
+                 'body hit': 'sound_meat_blow_1',
+                 'protector hit': 'sound_bucket_hit_1',
+             },
+             'damage': {
 
                  'slash': 80
              },
@@ -51,7 +56,12 @@ sword = {
             'bounce': False, 'bounce factor': 0,
             'attack type': ('slash',),
             'push': False,
-            'damage': {
+             'sounds': {
+                 'obstacle hit': 'sound_bullet_wall_hit_1',
+                 'body hit': 'sound_meat_blow_1',
+                 'protector hit': 'sound_bucket_hit_1',
+             },
+             'damage': {
 
                 'slash': 100
             },
@@ -101,7 +111,12 @@ kitchen_knife = {
             'bounce': False, 'bounce factor': 0.,
             'attack type': ('slash',),
              'push': False,
-            'damage': {
+             'sounds': {
+                 'obstacle hit': 'sound_bullet_wall_hit_1',
+                 'body hit': 'sound_meat_blow_1',
+                 'protector hit': 'sound_bucket_hit_1',
+             },
+             'damage': {
 
                  'slash': 100
              },
@@ -166,7 +181,12 @@ fireball_staff = {
             'bounce': True, 'bounce factor': 0.3,
             'attack type': ('fire', ),
              'push': False,
-            'damage': {
+             'sounds': {
+                 'obstacle hit': 'sound_bullet_wall_hit_1',
+                 'body hit': 'sound_meat_blow_1',
+                 'protector hit': 'sound_bucket_hit_1',
+             },
+             'damage': {
 
                  'fire': 150,
              },
@@ -212,7 +232,12 @@ spikeball_staff = {
             'bounce': True, 'bounce factor': 0.9,
             'attack type': ('pierce',),
              'push': False,
-            'damage': {
+             'sounds': {
+                 'obstacle hit': 'sound_bullet_wall_hit_1',
+                 'body hit': 'sound_meat_blow_1',
+                 'protector hit': 'sound_bucket_hit_1',
+             },
+             'damage': {
 
                  'pierce': 100,
              },
@@ -258,7 +283,12 @@ whip = {
             'bounce': False, 'bounce factor': 0.,
             # 'attack type': ('pierce',),
              'push': False,
-            'damage': {
+             'sounds': {
+                 'obstacle hit': 'sound_bullet_wall_hit_1',
+                 'body hit': 'sound_meat_blow_1',
+                 'protector hit': 'sound_bucket_hit_1',
+             },
+             'damage': {
 
                  'pierce': 10,
              },
@@ -275,7 +305,12 @@ whip = {
             'bounce': False, 'bounce factor': 0.,
             # 'attack type': ('pierce',),
              'push': False,
-            'damage': {
+             'sounds': {
+                 'obstacle hit': 'sound_bullet_wall_hit_1',
+                 'body hit': 'sound_meat_blow_1',
+                 'protector hit': 'sound_bucket_hit_1',
+             },
+             'damage': {
 
                  'pierce': 30,
              },
@@ -292,7 +327,12 @@ whip = {
             'bounce': False, 'bounce factor': 0.,
             # 'attack type': ('pierce',),
              'push': False,
-            'damage': {
+             'sounds': {
+                 'obstacle hit': 'sound_bullet_wall_hit_1',
+                 'body hit': 'sound_meat_blow_1',
+                 'protector hit': 'sound_bucket_hit_1',
+             },
+             'damage': {
 
                  'pierce': 60,
              },
@@ -340,7 +380,12 @@ jake_kick = {
              'bounce': False, 'bounce factor': 0.,
              # 'attack type': ('smash',),
              'push': False,
-            'damage': {
+             'sounds': {
+                 'obstacle hit': 'sound_bullet_wall_hit_1',
+                 'body hit': 'sound_meat_blow_1',
+                 'protector hit': 'sound_bucket_hit_1',
+             },
+             'damage': {
 
                  'blunt': 15,
                  # 
@@ -360,7 +405,12 @@ jake_kick = {
              'bounce': False, 'bounce factor': 0.,
              'attack type': ('smash',),
              'push': False,
-            'damage': {
+             'sounds': {
+                 'obstacle hit': 'sound_bullet_wall_hit_1',
+                 'body hit': 'sound_meat_blow_1',
+                 'protector hit': 'sound_bucket_hit_1',
+             },
+             'damage': {
 
                  'blunt': 20,
                  'slash': 1,
@@ -381,7 +431,12 @@ jake_kick = {
             'bounce': False, 'bounce factor': 0.,
             'attack type': ('smash',),
              'push': False,
-            'damage': {
+             'sounds': {
+                 'obstacle hit': 'sound_bullet_wall_hit_1',
+                 'body hit': 'sound_meat_blow_1',
+                 'protector hit': 'sound_bucket_hit_1',
+             },
+             'damage': {
 
                  'blunt': 50,
                  
@@ -431,6 +486,11 @@ jake_punch = {
              'bounce': False, 'bounce factor': 0.,
              'attack type': ('smash',),
              'push': False,
+              'sounds': {
+                 'obstacle hit': 'sound_bullet_wall_hit_1',
+                 'body hit': 'sound_meat_blow_1',
+                 'protector hit': 'sound_bucket_hit_1',
+             },
              'damage': {
 
                  'blunt': 15,
@@ -451,6 +511,11 @@ jake_punch = {
              'bounce': False, 'bounce factor': 0.,
              'attack type': ('smash',),
              'push': False,
+              'sounds': {
+                 'obstacle hit': 'sound_bullet_wall_hit_1',
+                 'body hit': 'sound_meat_blow_1',
+                 'protector hit': 'sound_bucket_hit_1',
+             },
              'damage': {
 
                  'blunt': 50,
@@ -471,7 +536,12 @@ jake_punch = {
             'bounce': False, 'bounce factor': 0.,
             'attack type': ('smash',),
             'push': True,
-            'damage': {
+             'sounds': {
+                 'obstacle hit': 'sound_bullet_wall_hit_1',
+                 'body hit': 'sound_meat_blow_1',
+                 'protector hit': 'sound_bucket_hit_1',
+             },
+             'damage': {
                  'blunt': 70,
                  'slash': 1,
              },
@@ -519,7 +589,12 @@ axe = {
             'bounce': False, 'bounce factor': 0.,
             # 'attack type': ('smash','slash'),
              'push': False,
-            'damage': {
+             'sounds': {
+                 'obstacle hit': 'sound_bullet_wall_hit_1',
+                 'body hit': 'sound_meat_blow_1',
+                 'protector hit': 'sound_bucket_hit_1',
+             },
+             'damage': {
                  'slash': 10
              },
             # 'aftermath': 'explode'
@@ -536,7 +611,12 @@ axe = {
             'bounce': False, 'bounce factor': 0.,
             # 'attack type': ('smash','slash'),
              'push': False,
-            'damage': {
+             'sounds': {
+                 'obstacle hit': 'sound_bullet_wall_hit_1',
+                 'body hit': 'sound_meat_blow_1',
+                 'protector hit': 'sound_bucket_hit_1',
+             },
+             'damage': {
                  'slash': 30
              },
             # 'aftermath': 'explode'
@@ -553,7 +633,12 @@ axe = {
             'bounce': False, 'bounce factor': 0.,
             # 'attack type': ('smash','slash'),
              'push': False,
-            'damage': {
+             'sounds': {
+                 'obstacle hit': 'sound_bullet_wall_hit_1',
+                 'body hit': 'sound_meat_blow_1',
+                 'protector hit': 'sound_bucket_hit_1',
+             },
+             'damage': {
                  'slash': 190
              },
             # 'aftermath': 'explode'
@@ -570,7 +655,12 @@ axe = {
              'bounce': False, 'bounce factor': 0.,
              # 'attack type': ('smash','slash'),
              'push': False,
-            'damage': {
+             'sounds': {
+                 'obstacle hit': 'sound_bullet_wall_hit_1',
+                 'body hit': 'sound_meat_blow_1',
+                 'protector hit': 'sound_bucket_hit_1',
+             },
+             'damage': {
                  'slash': 90
              },
              # 'aftermath': 'explode'
@@ -618,7 +708,12 @@ demon_2_mid = {
             'bounce': False, 'bounce factor': 0.,
             # 'attack type': ('slash', ),
              'push': False,
-            'damage': {
+             'sounds': {
+                 'obstacle hit': 'sound_bullet_wall_hit_1',
+                 'body hit': 'sound_meat_blow_1',
+                 'protector hit': 'sound_bucket_hit_1',
+             },
+             'damage': {
                  'slash': 100
              },
             # 'aftermath': 'explode'
@@ -634,7 +729,12 @@ demon_2_mid = {
             'bounce': False, 'bounce factor': 0.,
             # 'attack type': ('slash', 'pierce'),
              'push': False,
-            'damage': {
+             'sounds': {
+                 'obstacle hit': 'sound_bullet_wall_hit_1',
+                 'body hit': 'sound_meat_blow_1',
+                 'protector hit': 'sound_bucket_hit_1',
+             },
+             'damage': {
                  'pierce': 100,
                  'slash': 10
              },
@@ -651,7 +751,12 @@ demon_2_mid = {
             'bounce': False, 'bounce factor': 0.,
             # 'attack type': ('smash', ),
             'push': True,
-            'damage': {
+             'sounds': {
+                 'obstacle hit': 'sound_bullet_wall_hit_1',
+                 'body hit': 'sound_meat_blow_1',
+                 'protector hit': 'sound_bucket_hit_1',
+             },
+             'damage': {
                  'blunt': 100,
              },
             # 'aftermath': 'explode'
@@ -699,7 +804,12 @@ demon_2_close = {
             'bounce': False, 'bounce factor': 0.,
             # 'attack type': ('slash', 'smash', 'pierce'),
              'push': False,
-            'damage': {
+             'sounds': {
+                 'obstacle hit': 'sound_bullet_wall_hit_1',
+                 'body hit': 'sound_meat_blow_1',
+                 'protector hit': 'sound_bucket_hit_1',
+             },
+             'damage': {
                  'pierce': 100,
                  'slash': 100
              },
@@ -718,7 +828,12 @@ demon_2_close = {
             'bounce': False, 'bounce factor': 0.,
             # 'attack type': ('slash', 'smash', 'pierce'),
              'push': False,
-            'damage': {
+             'sounds': {
+                 'obstacle hit': 'sound_bullet_wall_hit_1',
+                 'body hit': 'sound_meat_blow_1',
+                 'protector hit': 'sound_bucket_hit_1',
+             },
+             'damage': {
                  'pierce': 100,
                  'slash': 100
              },
@@ -765,7 +880,12 @@ pistol = {
              'bounce': False, 'bounce factor': 0.,
              # 'attack type': ('slash', 'smash', 'pierce'),
              'push': False,
-            'damage': {
+             'sounds': {
+                 'obstacle hit': 'sound_bullet_wall_hit_1',
+                 'body hit': 'sound_meat_blow_1',
+                 'protector hit': 'sound_bucket_hit_1',
+             },
+             'damage': {
 
                  'fire': 225,
              },
@@ -783,7 +903,12 @@ pistol = {
             'bounce': False, 'bounce factor': 0.,
             # 'attack type': ('slash', 'smash', 'pierce'),
              'push': False,
-            'damage': {
+             'sounds': {
+                 'obstacle hit': 'sound_bullet_wall_hit_1',
+                 'body hit': 'sound_meat_blow_1',
+                 'protector hit': 'sound_bucket_hit_1',
+             },
+             'damage': {
 
                  'fire': 25,
                  
@@ -833,7 +958,12 @@ barrel_explosion = {
             'bounce': False, 'bounce factor': 0.,
             'attack type': ('fire', 'smash', 'pierce', 'slash'),
             'push': False,
-            'damage': {
+             'sounds': {
+                 'obstacle hit': 'sound_bullet_wall_hit_1',
+                 'body hit': 'sound_meat_blow_1',
+                 'protector hit': 'sound_bucket_hit_1',
+             },
+             'damage': {
 
                 'fire': 50,
                 

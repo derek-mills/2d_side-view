@@ -409,7 +409,7 @@ class World(object):
         demol.push = description['push']
         demol.flyer = description['flyer']
         demol.parent = description['parent']
-
+        demol.sounds = description['sounds']
         if description['static']:
             demol.snap_to_actor = demol.parent.id
         else:
@@ -843,6 +843,11 @@ class World(object):
                 'flyer': True,
                 'aftermath': '',
                 'push': True,
+                'sounds': {
+                    'obstacle hit': 'sound_bullet_wall_hit_1',
+                    'body hit': 'sound_meat_blow_1',
+                    'protector hit': 'sound_bucket_hit_1',
+                },
                 'damage': {
                     'fire': 100,
                     'blunt': 10,
@@ -887,6 +892,9 @@ class World(object):
             p.get_time(self.time_passed, self.game_cycles_counter)
             p.process_particle()
 
+            while p.summoned_sounds:
+                self.put_sound_to_queue(p.summoned_sounds.pop())
+
         for dead_id in dead:
             del self.particles[self.location][dead_id]
         # for expl in explosions:
@@ -920,6 +928,9 @@ class World(object):
             dem.process_demolisher()
             # dem.process_demolisher(self.time_passed)
 
+            while dem.summoned_sounds:
+                self.put_sound_to_queue(dem.summoned_sounds.pop())
+
         for dead_id in dead:
             del self.demolishers[self.location][dead_id]
         for expl in explosions:
@@ -946,6 +957,9 @@ class World(object):
             protector.get_time(self.time_passed, self.game_cycles_counter)
             protector.process_protector()
             # protector.process_demolisher(self.time_passed)
+
+            while protector.summoned_sounds:
+                self.put_sound_to_queue(protector.summoned_sounds.pop())
 
         for dead_id in dead:
             del self.protectors[self.location][dead_id]

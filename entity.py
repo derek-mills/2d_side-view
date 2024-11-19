@@ -385,6 +385,11 @@ class Entity(object):
                 'collides': True, 'gravity affected': False,
                 'bounce': False, 'bounce factor': 0.,
                 'push': True,
+                'sounds': {
+                    'obstacle hit': 'sound_bullet_wall_hit_1',
+                    'body hit': 'sound_meat_blow_1',
+                    'protector hit': 'sound_bucket_hit_1',
+                },
                 'damage': {
                     'blunt': self.body_weight * self.speed * 0.01,
                 },
