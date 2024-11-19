@@ -182,7 +182,7 @@ fireball_staff = {
             'attack type': ('fire', ),
              'push': False,
              'sounds': {
-                 'obstacle hit': 'sound_bullet_wall_hit_1',
+                 'obstacle hit': 'sound_bounce_1',
                  'body hit': 'sound_meat_blow_1',
                  'protector hit': 'sound_bucket_hit_1',
              },
@@ -233,7 +233,7 @@ spikeball_staff = {
             'attack type': ('pierce',),
              'push': False,
              'sounds': {
-                 'obstacle hit': 'sound_bullet_wall_hit_1',
+                 'obstacle hit': 'sound_bounce_1',
                  'body hit': 'sound_meat_blow_1',
                  'protector hit': 'sound_bucket_hit_1',
              },

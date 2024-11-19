@@ -121,7 +121,8 @@ class Demolisher(Entity):
                 # obs.is_being_collided_now = True
                 self.is_being_collided_now = True
                 self.collided_right = True
-                self.summoned_sounds.append(self.sounds['obstacle hit'])
+                # # self.summoned_sounds.append(self.sounds['obstacle hit'])
+
                 # if self.look == 1: # Obstacle is on the right, and actor also looks to the right, and hangs on the edge.
                 #     if self.get_state() == 'hanging on edge' and self.influenced_by_obstacle != obs.id:
                 #         self.rectangle.right = obs.rectangle.left - 2  # Drop down the actor
@@ -146,7 +147,8 @@ class Demolisher(Entity):
             if obs.rectangle.colliderect(self.collision_detector_left):
                 self.collided_left = True
                 self.is_being_collided_now = True
-                self.summoned_sounds.append(self.sounds['obstacle hit'])
+                # self.summoned_sounds.append(self.sounds['obstacle hit'])
+
                 # if self.look == -1: # Obstacle is on the left, and actor also looks to the left, and hangs on the edge.
                 #     if self.get_state() == 'hanging on edge' and self.influenced_by_obstacle != obs.id:
                 #         self.rectangle.left = obs.rectangle.right + 2  # Drop down the actor
@@ -179,7 +181,8 @@ class Demolisher(Entity):
                 self.influenced_by_obstacle = obs.id
                 self.jump_attempts_counter = self.max_jump_attempts
                 bottom_already_changed = True
-                self.summoned_sounds.append(self.sounds['obstacle hit'])
+                # self.summoned_sounds.append(self.sounds['obstacle hit'])
+
                 # break
                     # continue
         # -----------------------------------
@@ -191,7 +194,8 @@ class Demolisher(Entity):
             if obs.rectangle.colliderect(self.collision_detector_top):
                 self.is_being_collided_now = True
                 self.collided_top = True
-                self.summoned_sounds.append(self.sounds['obstacle hit'])
+                # self.summoned_sounds.append(self.sounds['obstacle hit'])
+
                 if self.fall_speed < 0:
                     self.potential_falling_distance = obs.rectangle.bottom - self.collision_detector_top.bottom
                     self.is_stand_on_ground = False
@@ -209,7 +213,8 @@ class Demolisher(Entity):
                 continue
             if obs.rectangle.colliderect(self.rectangle):
                 self.is_being_collided_now = True
-                self.summoned_sounds.append(self.sounds['obstacle hit'])
+                # self.summoned_sounds.append(self.sounds['obstacle hit'])
+
                 return
 
     def become_mr_floppy(self):
@@ -335,6 +340,8 @@ class Demolisher(Entity):
 
             if self.is_being_collided_now:
                 if self.bounce:
+                    if self.fall_speed > 1:
+                        self.summoned_sounds.append(self.sounds['obstacle hit'])
                     self.floppy = False
                     self.speed *= self.bounce_factor
                     if self.collided_left:

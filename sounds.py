@@ -70,8 +70,11 @@ sound_bucket_hit_1 = pygame.mixer.Sound('SFX/bucket_hit.mp3')
 sound_bucket_hit_1.set_volume(SOUND_VOLUME)
 sound_bullet_wall_hit_1 = pygame.mixer.Sound('SFX/bullet_wall_hit.mp3')
 sound_bullet_wall_hit_1.set_volume(SOUND_VOLUME)
+sound_bounce_1 = pygame.mixer.Sound('SFX/bounce_1.mp3')
+sound_bounce_1.set_volume(SOUND_VOLUME*2)
 
 sounds_all = {
+    'sound_bounce_1': sound_bounce_1,
     'sound_bullet_wall_hit_1': sound_bullet_wall_hit_1,
     'sound_bucket_hit_1': sound_bucket_hit_1,
     'sound_glass_blast_1': sound_glass_blast_1,
