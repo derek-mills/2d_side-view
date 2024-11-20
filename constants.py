@@ -66,7 +66,7 @@ GOLDEN_RATIO_X_BIG = int(MAXX / 100 * 62)
 GOLDEN_RATIO_Y_SMALL = int(MAXY / 100 * 38)
 GOLDEN_RATIO_Y_BIG = int(MAXY / 100 * 62)
 
-SOUND_VOLUME = 0.5
+SOUND_VOLUME = 0.2
 MUSIC_VOLUME = 0.3
 music_ambient_1 = 'music/ambient_1.mp3'
 music_fight_1 = 'music/fight_1.mp3'

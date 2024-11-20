@@ -78,8 +78,11 @@ sound_sword_hits_shield_1 = pygame.mixer.Sound('SFX/sword_strikes_shield.mp3')
 sound_sword_hits_shield_1.set_volume(SOUND_VOLUME*.5)
 sound_bullet_hits_shield_1 = pygame.mixer.Sound('SFX/metal_things_strike.mp3')
 sound_bullet_hits_shield_1.set_volume(SOUND_VOLUME*.5)
+sound_punch_1 = pygame.mixer.Sound('SFX/punch_1.mp3')
+sound_punch_1.set_volume(SOUND_VOLUME)
 
 sounds_all = {
+    'sound_punch_1': sound_punch_1,
     'sound_bullet_hits_shield_1': sound_bullet_hits_shield_1,
     'sound_sword_hits_shield_1': sound_sword_hits_shield_1,
     'sound_groan_1': sound_groan_1,

@@ -33,7 +33,8 @@ zombie = {
     'acceleration': .1,
     'friction': .9,
     'air acceleration': .1,
-    'items': (demon_2_close, demon_2_mid, spikeball_staff),
+    'items': (sword, whip, spikeball_staff),
+    # 'items': (demon_2_close, demon_2_mid, spikeball_staff),
     'animations': {
         'getting hurt right': {
             'repeat': True, 'interruptable': True,
@@ -332,8 +333,8 @@ zombie = {
             'repeat from frame': 0
         },
     },
-    # 'think type': '',
-    'think type': 'chaser',
+    'think type': '',
+    # 'think type': 'chaser',
     'disappear after death': False,
     'AI controlled': True
 }
@@ -368,7 +369,8 @@ demon_1 = {
     'acceleration': .4,
     'friction': .9,
     'air acceleration': .4,
-    'items': (demon_2_close, demon_2_mid, spikeball_staff),
+    'items': (sword, whip, spikeball_staff),
+    # 'items': (demon_2_close, demon_2_mid, spikeball_staff),
     'animations': {
         'stand still right': {
                 'repeat': True, 'interruptable': True,
@@ -655,8 +657,8 @@ demon_1 = {
             'repeat from frame': 0
         },
     },
-    'think type': '',
-    # 'think type': 'chaser',
+    # 'think type': '',
+    'think type': 'chaser',
     'disappear after death': False,
     'AI controlled': True
 }
@@ -664,7 +666,7 @@ demon_1 = {
 demon_2 = {
     'name': 'demon 2',
     'drop': ['exp' for i in range(randint(8,12))],
-    'health': 5000.,
+    'health': 500.,
     'mana replenish': .01,
     'stamina replenish': .2,
     'blood color': (150, 50, 10),
@@ -692,6 +694,7 @@ demon_2 = {
     'friction': .9,
     'air acceleration': .3,
 
+    # 'items': (sword, whip, fireball_staff),
     'items': (demon_2_close, demon_2_mid, fireball_staff),
     'animations': {
         'stand still right': {
@@ -1221,7 +1224,7 @@ exploding_barrel = {
 
 player_jake = {
     'name': 'Jake',
-    'health': 1000.,
+    'health': 200.,
     'blood color': (255, 0, 0),
     'gravity affected': True,
     'mana replenish': .01,

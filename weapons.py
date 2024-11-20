@@ -256,7 +256,6 @@ whip = {
     'type': 'melee',
     'label': 'whip',
     'sprite': 'whip',
-
     'sound': 'sound_swing_2',
     'amount': 1,
     'amount threshold': 1,
@@ -271,7 +270,7 @@ whip = {
     'droppable': True,
     'need ammo': False,
     'ammo': 0,
-    'reach': 170,
+    'reach': 370,
     'weight': 30,
     'demolishers': (
         ({
@@ -493,7 +492,7 @@ jake_punch = {
              'push': False,
               'sounds': {
                  'obstacle hit': 'sound_bullet_wall_hit_1',
-                 'body hit': 'sound_meat_blow_1',
+                 'body hit': 'sound_punch_1',
                  'protector hit': 'sound_bucket_hit_1',
              },
              'damage': {
@@ -519,7 +518,7 @@ jake_punch = {
              'push': False,
               'sounds': {
                  'obstacle hit': 'sound_bullet_wall_hit_1',
-                 'body hit': 'sound_meat_blow_1',
+                 'body hit': 'sound_punch_1',
                  'protector hit': 'sound_bucket_hit_1',
              },
              'damage': {
@@ -545,7 +544,7 @@ jake_punch = {
             'push': True,
              'sounds': {
                  'obstacle hit': 'sound_bullet_wall_hit_1',
-                 'body hit': 'sound_meat_blow_1',
+                 'body hit': 'sound_punch_1',
                  'protector hit': 'sound_bucket_hit_1',
              },
              'damage': {
@@ -582,7 +581,7 @@ axe = {
     'droppable': True,
     'need ammo': False,
     'ammo': 0,
-    'reach': 170,
+    'reach': 300,
     'weight': 70,
     'demolishers': (
         # 'demolishers set number' #0

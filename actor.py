@@ -1944,8 +1944,7 @@ class Actor(Entity):
 
                 if abs(self.rectangle.centerx - self.target.rectangle.centerx) <= self.current_weapon['reach']:
 
-                    if self.rectangle.centery >= self.target.rectangle.centery:
-                        # self.activate_weapon(0)  # Activate close combat weapon (always has index 0).
+                    if self.rectangle.centery >= self.target.rectangle.bottom:
                         if self.get_state() != 'jump':
                             self.ai_input_jump = True
                             # print('wanna jump')
@@ -1956,9 +1955,21 @@ class Actor(Entity):
                     else:
                         self.activate_weapon(1)  # Activate middle-ranged weapon (always has index 1).
                         self.ai_input_attack = True
-                        # print('wanna attack')
-                    # if self.get_state() == 'jump':
+                        # print('wanna middle-ranged attack')
+                    #
+                    # if self.rectangle.centery >= self.target.rectangle.centery:
+                    #     if self.get_state() != 'jump':
+                    #         self.ai_input_jump = True
+                    #         # print('wanna jump')
+                    #     else:
+                    #         self.activate_weapon(0)  # Activate close combat weapon (always has index 0).
+                    #         self.ai_input_attack = True
+                    #         # print('wanna attack in the air')
+                    # else:
+                    #     self.activate_weapon(1)  # Activate middle-ranged weapon (always has index 1).
                     #     self.ai_input_attack = True
+                    #     # print('wanna middle-ranged attack')
+
                 else:
                     # if randint(0, 50) == 1:
                     if self.next_ranged_weapon_usage_counter > 0:

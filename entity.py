@@ -51,7 +51,7 @@ class Entity(object):
         self.time_passed: int = 0
         self.cycles_passed: int = 0
         self.invincibility_timer: int = 0
-        self.default_invincibility_timer: int = 20
+        self.default_invincibility_timer: int = 10
         self.current_invincibility_timer: int = self.default_invincibility_timer
         self.blood_color = RED
         self.has_just_stopped_demolishers = list()
