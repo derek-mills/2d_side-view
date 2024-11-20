@@ -6,12 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demolisher.py" beforeDir="false" afterPath="$PROJECT_DIR$/demolisher.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphics.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphics.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sounds.py" beforeDir="false" afterPath="$PROJECT_DIR$/sounds.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,13 +163,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00529" summary="State machine remake continues.">
-      <created>1729847224523</created>
-      <option name="number" value="00529" />
-      <option name="presentableId" value="LOCAL-00529" />
-      <option name="project" value="LOCAL" />
-      <updated>1729847224523</updated>
     </task>
     <task id="LOCAL-00530" summary="Some stamina reduce tuning.">
       <created>1730083528828</created>
@@ -512,7 +500,14 @@
       <option name="project" value="LOCAL" />
       <updated>1731999605414</updated>
     </task>
-    <option name="localTasksCounter" value="578" />
+    <task id="LOCAL-00578" summary="Added protectors separate sounds for different types of demolishers.">
+      <created>1732068214438</created>
+      <option name="number" value="00578" />
+      <option name="presentableId" value="LOCAL-00578" />
+      <option name="project" value="LOCAL" />
+      <updated>1732068214438</updated>
+    </task>
+    <option name="localTasksCounter" value="579" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -527,7 +522,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Whatever." />
     <MESSAGE value="Actor got some damage even if he covered by unproper shield" />
     <MESSAGE value="Actor releases damage info blobs even if he got cover behind the shield." />
     <MESSAGE value="Tuning of invincibility system/" />
@@ -552,6 +546,7 @@
     <MESSAGE value="Added individual sound sets for every damager." />
     <MESSAGE value="Added correct bouncing sound handling." />
     <MESSAGE value="Added some other sounds." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added some other sounds." />
+    <MESSAGE value="Added protectors separate sounds for different types of demolishers." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added protectors separate sounds for different types of demolishers." />
   </component>
 </project>
