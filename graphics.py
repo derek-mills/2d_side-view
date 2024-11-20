@@ -408,7 +408,7 @@ tmp_sprites = pygame.image.load('img/animations/demon_male_1.png').convert_alpha
 load_single_frame(tmp_sprites, ((260,150,20,18),), name + ' avatar')
 load_single_frame(tmp_sprites, ((260,150,20,18),), name + ' avatar front')
 # load_single_frame(tmp_sprites, ((2660,1720,90,50),), name + 'floor shadow mask')
-load_all_frames(tmp_sprites, 97, name, 20, 30, 12)
+load_all_frames(tmp_sprites, 97, name, 20, 30, 18)
 
 # ___...---=== ZOMBIE ===---...___
 name = 'zombie'
@@ -417,7 +417,7 @@ tmp_sprites = pygame.image.load('img/animations/zombie.png').convert_alpha()
 load_single_frame(tmp_sprites, ((260,150,20,18),), name + ' avatar')
 load_single_frame(tmp_sprites, ((260,150,20,18),), name + ' avatar front')
 # load_single_frame(tmp_sprites, ((2660,1720,90,50),), name + 'floor shadow mask')
-load_all_frames(tmp_sprites, 97, name, 20, 30, 12)
+load_all_frames(tmp_sprites, 97, name, 20, 30, 18)
 # tmp_sprites = pygame.image.load('img/animations/demon_female_1.png').convert_alpha()
 # load_single_frame(tmp_sprites, ((0, 1000, 300, 500),), name + ' avatar')
 # load_single_frame(tmp_sprites, ((0, 1000, 300, 500),), name + ' avatar front')

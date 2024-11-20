@@ -67,15 +67,21 @@ sound_meat_blow_1.set_volume(SOUND_VOLUME)
 sound_man_taunt_1 = pygame.mixer.Sound('SFX/shouts/man_taunt.mp3')
 sound_man_taunt_1.set_volume(SOUND_VOLUME)
 sound_bucket_hit_1 = pygame.mixer.Sound('SFX/bucket_hit.mp3')
-sound_bucket_hit_1.set_volume(SOUND_VOLUME)
+sound_bucket_hit_1.set_volume(SOUND_VOLUME*0.3)
 sound_bullet_wall_hit_1 = pygame.mixer.Sound('SFX/bullet_wall_hit.mp3')
 sound_bullet_wall_hit_1.set_volume(SOUND_VOLUME)
 sound_bounce_1 = pygame.mixer.Sound('SFX/bounce_1.mp3')
 sound_bounce_1.set_volume(SOUND_VOLUME*2)
 sound_groan_1 = pygame.mixer.Sound('SFX/shouts/man_groan_pain.mp3')
 sound_groan_1.set_volume(SOUND_VOLUME*2)
+sound_sword_hits_shield_1 = pygame.mixer.Sound('SFX/sword_strikes_shield.mp3')
+sound_sword_hits_shield_1.set_volume(SOUND_VOLUME*.5)
+sound_bullet_hits_shield_1 = pygame.mixer.Sound('SFX/metal_things_strike.mp3')
+sound_bullet_hits_shield_1.set_volume(SOUND_VOLUME*.5)
 
 sounds_all = {
+    'sound_bullet_hits_shield_1': sound_bullet_hits_shield_1,
+    'sound_sword_hits_shield_1': sound_sword_hits_shield_1,
     'sound_groan_1': sound_groan_1,
     'sound_bounce_1': sound_bounce_1,
     'sound_bullet_wall_hit_1': sound_bullet_wall_hit_1,

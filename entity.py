@@ -380,6 +380,7 @@ class Entity(object):
                 'snapping offset': (-self.sprite_rectangle.w // 2 if self.movement_direction_inverter*self.look == -1 else self.sprite_rectangle.w // 2, 0),
                 'visible': False,
                 'demolisher sprite': None,
+                'type': 'blunt',
                 'pierce': False, 'demolisher TTL': 1, 'speed': 0,
                 'static': True, 'damage reduce': 0,
                 'collides': True, 'gravity affected': False,

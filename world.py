@@ -410,6 +410,7 @@ class World(object):
         demol.flyer = description['flyer']
         demol.parent = description['parent']
         demol.sounds = description['sounds']
+        demol.type = description['type']
         if description['static']:
             demol.snap_to_actor = demol.parent.id
         else:
@@ -526,6 +527,7 @@ class World(object):
         protector.parent = description['parent']
         protector.mana_consumption = description['mana consumption']
         protector.stamina_consumption = description['stamina consumption']
+        protector.sounds = description['sounds']
         # print(f'{protector.parent=}')
 
         if description['static']:

@@ -227,8 +227,9 @@ class Demolisher(Entity):
                 if self.rectangle.colliderect(p.rectangle) and self.look != p.look:
                     if self.floppy:
                         continue
-                    self.summoned_sounds.append(self.sounds['protector hit'])
-                    # p.summoned_sounds.append('sound_bucket_hit_1')
+                    self.summoned_sounds.append(p.sounds[self.type])
+                    # self.summoned_sounds.append(self.sounds['protector hit'])
+
                     # print(f'[detect collision with protectors] collided with {p.name}, {p.look=}, {self.look=}')
                     self.become_mr_floppy()
                     # Reduce all damaging abilities according to protector's might:

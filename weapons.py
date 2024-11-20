@@ -29,6 +29,7 @@ sword = {
             'rect': pygame.Rect(0, 0, 70, 10), 'flyer': False,
              'visible': True,
             'demolisher sprite': 'short sword demolisher',
+            'type': 'blunt',
             'pierce': False, 'demolisher TTL': 6, 'speed': 0,
             'static': True, 'damage reduce': 0,
             'collides': True, 'gravity affected': False,
@@ -50,6 +51,7 @@ sword = {
             'rect': pygame.Rect(0, 0, 75, 10), 'flyer': False,
             'visible': True,
             'demolisher sprite': 'short sword demolisher',
+            'type': 'blunt',
             'pierce': False, 'demolisher TTL': 8, 'speed': 0,
             'static': True, 'damage reduce': 0,
             'collides': True, 'gravity affected': False,
@@ -105,6 +107,7 @@ kitchen_knife = {
             'rect': pygame.Rect(0, 0, 30, 30), 'flyer': False,
              'visible': True,
             'demolisher sprite': 'kitchen knife demolisher',
+            'type': 'blunt',
             'pierce': False, 'demolisher TTL': 10, 'speed': 12,
             'static': True, 'damage reduce': .1,
             'collides': True, 'gravity affected': False,
@@ -117,7 +120,6 @@ kitchen_knife = {
                  'protector hit': 'sound_bucket_hit_1',
              },
              'damage': {
-
                  'slash': 100
              },
             'aftermath': None
@@ -175,6 +177,7 @@ fireball_staff = {
             'rect': pygame.Rect(0, 0, 70, 70), 'flyer': False,
              'visible': True,
             'demolisher sprite': 'fireball demolisher',
+            'type': 'blunt',
             'pierce': True, 'demolisher TTL': 150, 'speed': 30,
             'static': False, 'damage reduce': 0,
             'collides': True, 'gravity affected': True,
@@ -187,7 +190,6 @@ fireball_staff = {
                  'protector hit': 'sound_bucket_hit_1',
              },
              'damage': {
-
                  'fire': 150,
              },
             'aftermath': 'disappear'
@@ -226,19 +228,18 @@ spikeball_staff = {
             'rect': pygame.Rect(0, 0, 70, 70), 'flyer': False,
              'visible': True,
             'demolisher sprite': 'spikeball staff demolisher',
+            'type': 'sharp',
             'pierce': False, 'demolisher TTL': 250, 'speed': 30,
             'static': False, 'damage reduce': 0,
             'collides': True, 'gravity affected': True,
             'bounce': True, 'bounce factor': 0.9,
-            'attack type': ('pierce',),
-             'push': False,
-             'sounds': {
+            'push': False,
+            'sounds': {
                  'obstacle hit': 'sound_bounce_1',
                  'body hit': 'sound_meat_blow_1',
                  'protector hit': 'sound_bucket_hit_1',
              },
-             'damage': {
-
+            'damage': {
                  'pierce': 100,
              },
             'aftermath': 'disappear'
@@ -277,6 +278,7 @@ whip = {
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
              'visible': True,
             'demolisher sprite': 'whip demolisher short',
+            'type': 'blunt',
             'pierce': False, 'demolisher TTL': 1, 'speed': 0,
             'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
@@ -289,7 +291,6 @@ whip = {
                  'protector hit': 'sound_bucket_hit_1',
              },
              'damage': {
-
                  'pierce': 10,
              },
             # 'aftermath': 'explode'
@@ -299,6 +300,7 @@ whip = {
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
              'visible': True,
             'demolisher sprite': 'whip demolisher medium',
+            'type': 'blunt',
             'pierce': False, 'demolisher TTL': 1, 'speed': 0,
             'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
@@ -311,8 +313,7 @@ whip = {
                  'protector hit': 'sound_bucket_hit_1',
              },
              'damage': {
-
-                 'pierce': 30,
+                'pierce': 30,
              },
             # 'aftermath': 'explode'
             'aftermath': 'disappear'
@@ -321,6 +322,7 @@ whip = {
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
              'visible': True,
             'demolisher sprite': 'whip demolisher long',
+            'type': 'blunt',
             'pierce': True, 'demolisher TTL': 5, 'speed': 0,
             'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
@@ -333,8 +335,7 @@ whip = {
                  'protector hit': 'sound_bucket_hit_1',
              },
              'damage': {
-
-                 'pierce': 60,
+                'pierce': 60,
              },
             # 'aftermath': 'explode'
             'aftermath': 'disappear'
@@ -374,7 +375,8 @@ jake_kick = {
              'rect': pygame.Rect(0, 0, 10, 10), 'flyer': False,
              'visible': False,
              'demolisher sprite': 'jake kick demolisher',
-             'pierce': True, 'demolisher TTL': 3, 'speed': 0,
+             'type': 'blunt',
+            'pierce': True, 'demolisher TTL': 3, 'speed': 0,
              'static': True, 'damage reduce': 0,
              'collides': False, 'gravity affected': False,
              'bounce': False, 'bounce factor': 0.,
@@ -399,7 +401,8 @@ jake_kick = {
              'rect': pygame.Rect(0, 0, 10, 10), 'flyer': False,
              'visible': False,
              'demolisher sprite': 'jake kick demolisher',
-             'pierce': True, 'demolisher TTL': 3, 'speed': 0,
+             'type': 'blunt',
+            'pierce': True, 'demolisher TTL': 3, 'speed': 0,
              'static': True, 'damage reduce': 0,
              'collides': False, 'gravity affected': False,
              'bounce': False, 'bounce factor': 0.,
@@ -425,6 +428,7 @@ jake_kick = {
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
              'visible': True,
             'demolisher sprite': 'jake kick demolisher',
+            'type': 'blunt',
             'pierce': True, 'demolisher TTL': 5, 'speed': 0,
             'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
@@ -480,7 +484,8 @@ jake_punch = {
              'rect': pygame.Rect(0, 0, 10, 10), 'flyer': False,
              'visible': False,
              'demolisher sprite': '',
-             'pierce': True, 'demolisher TTL': 3, 'speed': 0,
+             'type': 'blunt',
+            'pierce': True, 'demolisher TTL': 3, 'speed': 0,
              'static': True, 'damage reduce': 0,
              'collides': False, 'gravity affected': False,
              'bounce': False, 'bounce factor': 0.,
@@ -505,7 +510,8 @@ jake_punch = {
              'rect': pygame.Rect(0, 0, 10, 10), 'flyer': False,
              'visible': False,
              'demolisher sprite': '',
-             'pierce': True, 'demolisher TTL': 3, 'speed': 0,
+             'type': 'blunt',
+            'pierce': True, 'demolisher TTL': 3, 'speed': 0,
              'static': True, 'damage reduce': 0,
              'collides': False, 'gravity affected': False,
              'bounce': False, 'bounce factor': 0.,
@@ -530,6 +536,7 @@ jake_punch = {
             'rect': pygame.Rect(0, 0, 20, 40), 'flyer': False,
              'visible': False,
             'demolisher sprite': '',
+            'type': 'blunt',
             'pierce': True, 'demolisher TTL': 5, 'speed': 0,
             'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
@@ -583,6 +590,7 @@ axe = {
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
              'visible': True,
             'demolisher sprite': 'axe 45 demolisher',
+            'type': 'blunt',
             'pierce': False, 'demolisher TTL': 1, 'speed': 0,
             'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
@@ -605,6 +613,7 @@ axe = {
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
              'visible': True,
             'demolisher sprite': 'axe 0 demolisher',
+            'type': 'blunt',
             'pierce': False, 'demolisher TTL': 1, 'speed': 0,
             'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
@@ -627,6 +636,7 @@ axe = {
             'rect': pygame.Rect(0, 0, 180, 270), 'flyer': False,
              'visible': True,
             'demolisher sprite': 'axe 315 demolisher',
+            'type': 'blunt',
             'pierce': True, 'demolisher TTL': 6, 'speed': 0,
             'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
@@ -649,7 +659,8 @@ axe = {
              'rect': pygame.Rect(0, 0, 180, 270), 'flyer': False,
              'visible': True,
              'demolisher sprite': 'axe 315 demolisher',
-             'pierce': True, 'demolisher TTL': 2, 'speed': 0,
+             'type': 'blunt',
+            'pierce': True, 'demolisher TTL': 2, 'speed': 0,
              'static': True, 'damage reduce': 0,
              'collides': False, 'gravity affected': False,
              'bounce': False, 'bounce factor': 0.,
@@ -702,6 +713,7 @@ demon_2_mid = {
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
              'visible': True,
             'demolisher sprite': 'demon 2 mid claw demolisher 1',
+            'type': 'sharp',
             'pierce': True, 'demolisher TTL': 2, 'speed': 0,
             'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
@@ -723,6 +735,7 @@ demon_2_mid = {
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
              'visible': True,
             'demolisher sprite': 'demon 2 mid claw demolisher 2',
+            'type': 'sharp',
             'pierce': True, 'demolisher TTL': 2, 'speed': 0,
             'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
@@ -745,6 +758,7 @@ demon_2_mid = {
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
              'visible': True,
             'demolisher sprite': 'demon 2 mid claw demolisher 3',
+            'type': 'blunt',
             'pierce': True, 'demolisher TTL': 5, 'speed': 0,
             'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
@@ -797,6 +811,7 @@ demon_2_close = {
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
             'visible': True,
             'demolisher sprite': 'demon 2 claw demolisher 2',
+            'type': 'sharp',
             'pierce': False, 'demolisher TTL': 8, 'speed': 0,
             'static': True, 'damage reduce': 0,
             # 'damage': 250, 'static': True, 'damage reduce': 0,
@@ -810,8 +825,8 @@ demon_2_close = {
                  'protector hit': 'sound_bucket_hit_1',
              },
              'damage': {
-                 'pierce': 100,
-                 'slash': 100
+                'pierce': 100,
+                'slash': 100
              },
             # 'aftermath': 'explode'
             'aftermath': 'disappear'
@@ -821,6 +836,7 @@ demon_2_close = {
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
              'visible': True,
             'demolisher sprite': 'demon 2 claw demolisher',
+            'type': 'sharp',
             'pierce': False, 'demolisher TTL': 10, 'speed': 0,
             'static': True, 'damage reduce': 0,
             # 'damage': 250, 'static': True, 'damage reduce': 0,
@@ -834,7 +850,7 @@ demon_2_close = {
                  'protector hit': 'sound_bucket_hit_1',
              },
              'damage': {
-                 'pierce': 100,
+                'pierce': 100,
                  'slash': 100
              },
             # 'aftermath': 'explode'
@@ -874,6 +890,7 @@ pistol = {
              'rect': pygame.Rect(0, 0, 2, 2), 'flyer': False,
              'visible': True,
              'demolisher sprite': 'pistol muzzle flash',
+             'type': 'missile',
              'pierce': True, 'demolisher TTL': 2, 'speed': 1,
              'static': True, 'damage reduce': 0,
              'collides': False, 'gravity affected': False,
@@ -886,7 +903,6 @@ pistol = {
                  'protector hit': 'sound_bucket_hit_1',
              },
              'damage': {
-
                  'fire': 225,
              },
              # 'aftermath': 'explode'
@@ -896,6 +912,7 @@ pistol = {
             'rect': pygame.Rect(0, 0, 5, 2), 'flyer': True,
             'visible': False,
             'demolisher sprite': None,
+            'type': 'missile',
             'pierce': False, 'demolisher TTL': 120, 'speed': 3,
             'static': False, 'damage reduce': 0,
             # 'damage': 50, 'static': False, 'damage reduce': 0,
@@ -912,6 +929,7 @@ pistol = {
 
                  'fire': 25,
                  
+                 'type': 'blunt',
                  'pierce': 100,
              },
             # 'aftermath': 'explode'
@@ -951,6 +969,7 @@ barrel_explosion = {
             'rect': pygame.Rect(0, 0, 50, 50), 'flyer': False,
             'visible': False,
             'demolisher sprite': None,
+            'type': 'missile',
             'pierce': False, 'demolisher TTL': 2, 'speed': 0,
             'static': True, 'damage reduce': 0,
             # 'damage': 500, 'static': True, 'damage reduce': 0,
@@ -967,7 +986,8 @@ barrel_explosion = {
 
                 'fire': 50,
                 
-                'pierce': 100,
+                'type': 'blunt',
+            'pierce': 100,
                 'slash': 10
             },
             'aftermath': 'explode'
@@ -1009,18 +1029,23 @@ small_shield = {
             'visible': True,
             'keep alive': True,  # If button holding down, we must keep this particular protector alive and not allow to summon the new ones.
             'protector sprite': 'small shield protector',
+            'type': 'blunt',
             'pierce': False, 'protector TTL': 0, 'speed': 0,
             'static': True, 'damage reduce': 0,
             'collides': True, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
             'attack type': None,
-            # 0: 100% protection (because damage will be multiplied by the amount of protection)
-            # 1: 0% protection
-            # >1: protector will amplify the damage amount of such type.
+            'sounds': {
+                'default': 'sound_bucket_hit_1',
+                'sharp': 'sound_sword_hits_shield_1',
+                'blunt': 'sound_bucket_hit_1',
+                'missile': 'sound_bullet_hits_shield_1',
+            },
             'protection': {
                 'blunt': 0.3,
                 'fire': 0.,
-                'pierce': 0.5,
+                'type': 'blunt',
+                'pierce': 0.,
                 'slash': 0.
             },
             'aftermath': None
