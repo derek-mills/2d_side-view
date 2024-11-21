@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demolisher.py" beforeDir="false" afterPath="$PROJECT_DIR$/demolisher.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
-    </list>
+    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -167,13 +160,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00537" summary="Bug fixed: shield has disappeared if defending state was interrupted by attack action, but defending button has been held pressed down.">
-      <created>1730185601043</created>
-      <option name="number" value="00537" />
-      <option name="presentableId" value="LOCAL-00537" />
-      <option name="project" value="LOCAL" />
-      <updated>1730185601043</updated>
     </task>
     <task id="LOCAL-00538" summary="Bug fixed: shield sometimes remains hanging in the air even if 'protect' button has been released.">
       <created>1730187231421</created>
@@ -511,7 +497,14 @@
       <option name="project" value="LOCAL" />
       <updated>1732166409474</updated>
     </task>
-    <option name="localTasksCounter" value="586" />
+    <task id="LOCAL-00586" summary="Fixed some trouble in protectors and demolishers interaction.">
+      <created>1732176801430</created>
+      <option name="number" value="00586" />
+      <option name="presentableId" value="LOCAL-00586" />
+      <option name="project" value="LOCAL" />
+      <updated>1732176801430</updated>
+    </task>
+    <option name="localTasksCounter" value="587" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -526,7 +519,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Weight of the gear brings effect on actor only if equipped. Staying in the pocket makes it feather." />
     <MESSAGE value="Weight of the gear brings effect on actor only if equipped. Staying in the pocket makes it feather (fixed bug of non-player actors which become weightless and super-fast)." />
     <MESSAGE value="Fixing incorrect weight calculation bug." />
     <MESSAGE value="Hopping back state fixing." />
@@ -551,6 +543,7 @@
     <MESSAGE value="Working on demolishers and actors interaction." />
     <MESSAGE value="Fixed bug with incorrect 'lie decapitated' animation setting." />
     <MESSAGE value="Corrected demolisher appearing while actor is on the sliding process." />
-    <option name="LAST_COMMIT_MESSAGE" value="Corrected demolisher appearing while actor is on the sliding process." />
+    <MESSAGE value="Fixed some trouble in protectors and demolishers interaction." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed some trouble in protectors and demolishers interaction." />
   </component>
 </project>

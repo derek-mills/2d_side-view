@@ -19,7 +19,7 @@ class Entity(object):
         self.combo_set_number: int = 0
         # self.got_immunity_to_demolishers = set()
         self.got_immunity_to_demolishers = list()
-        self.demolisher_immunity_remove_counter_default = 20
+        self.demolisher_immunity_remove_counter_default = 50
         self.demolisher_immunity_remove_counter = 0
         self.location: str = ''
         self.__state: str = ''
