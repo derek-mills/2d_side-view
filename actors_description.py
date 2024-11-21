@@ -845,21 +845,21 @@ demon_2 = {
             # 'sequence': (74,74,74,75,76,76,76,77),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
             'speed': 4,
             'activity at frames': {
-                3: {
-                    #'sound': True,
-                    'demolishers set number': 0,
-                    'demolisher': True
-                },
+                # 3: {
+                #     #'sound': True,
+                #     'demolishers set number': 0,
+                #     'demolisher': True
+                # },
                 4: {
                     #'sound': True,
                     'demolishers set number': 1,
                     'demolisher': True
                 },
-                13: {
-                    #'sound': True,
-                    'demolishers set number': 2,
-                    'demolisher': True
-                },
+                # 13: {
+                #     #'sound': True,
+                #     'demolishers set number': 2,
+                #     'demolisher': True
+                # },
                 14: {
                     #'sound': True,
                     'demolishers set number': 2,
@@ -894,21 +894,21 @@ demon_2 = {
             # 'demolisher offset': (46, 36),
             'speed': 4,
             'activity at frames': {
-                3: {
-                    #'sound': True,
-                    'demolishers set number': 0,
-                    'demolisher': True
-                },
+                # 3: {
+                #     #'sound': True,
+                #     'demolishers set number': 0,
+                #     'demolisher': True
+                # },
                 4: {
                     #'sound': True,
                     'demolishers set number': 1,
                     'demolisher': True
                 },
-                13: {
-                    #'sound': True,
-                    'demolishers set number': 2,
-                    'demolisher': True
-                },
+                # 13: {
+                #     #'sound': True,
+                #     'demolishers set number': 2,
+                #     'demolisher': True
+                # },
                 14: {
                     #'sound': True,
                     'demolishers set number': 2,
@@ -1224,7 +1224,7 @@ exploding_barrel = {
 
 player_jake = {
     'name': 'Jake',
-    'health': 200.,
+    'health': 2000.,
     'blood color': (255, 0, 0),
     'gravity affected': True,
     'mana replenish': .01,

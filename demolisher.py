@@ -230,35 +230,33 @@ class Demolisher(Entity):
                     self.summoned_sounds.append(p.sounds[self.type])
                     # self.summoned_sounds.append(self.sounds['protector hit'])
 
-                    # print(f'[detect collision with protectors] collided with {p.name}, {p.look=}, {self.look=}')
+                    print(f'[detect collision with protectors] collided with {p.name}, {p.look=}, {self.look=}')
                     self.become_mr_floppy()
                     # Reduce all damaging abilities according to protector's might:
                     damage = self.damage.copy()
                     for damage_type in self.damage:
                         damage[damage_type] *= p.protection[damage_type]
-                        # self.damage[damage_type] *= p.protection[damage_type]
-                    # damage_is_real = False
-                    # for damage_type in self.damage:
-                    #     self.damage[damage_type] *= p.protection[damage_type]
-                    #     if self.damage[damage_type] > 0:
-                    #         damage_is_real = True
 
-                    # Protector's owner (parent) must have an issue:
-                    # p.parent.force_mana_reduce = True
-                    # p.parent.force_mana_reduce_amount = p.mana_consumption * p.parent.normal_mana_lost_per_defend
-                    # p.parent.force_stamina_reduce = True
-                    # p.parent.force_stamina_reduce_amount = p.stamina_consumption * p.parent.normal_stamina_lost_per_defend
+                    # if self.parent:
+                    #     self.parent.animation_sequence_done = True
+                        # self.parent.idle_counter = 10
+                        # self.parent.set_state('stand_still')
+                        # self.parent.animation_change_denied = False
+                        # self.parent.set_current_animation()
+                    if self.id not in p.parent.got_immunity_to_demolishers:
+                        p.parent.got_immunity_to_demolishers.append(self.id)
                     p.parent.mana_reduce(p.mana_consumption * p.parent.normal_mana_lost_per_defend)
                     p.parent.stamina_reduce(p.stamina_consumption * p.parent.normal_stamina_lost_per_defend)
                     p.parent.get_damage(damage, 1)
                     # p.parent.got_immunity_to_demolishers.append(self.id)
                     # p.parent.get_damage(self.damage, 1)
                     if p.parent.total_damage_has_got > 0:
-                        # p.parent.invincibility_timer = self.default_invincibility_timer
+                        if p.parent.stats['stamina'] > 0 and p.parent.stats['mana'] > 0:
+                            p.parent.invincibility_timer = self.default_invincibility_timer
                         # p.parent.invincibility_timer = 30
                         if self.id not in p.parent.got_immunity_to_demolishers:
                             p.parent.got_immunity_to_demolishers.append(self.id)
-                        print(f'[detect demolishers] {p.parent.got_immunity_to_demolishers}')
+                        # print(f'[detect demolishers] {p.parent.got_immunity_to_demolishers}')
                         p.parent.set_state('prepare to get hurt')
                         p.parent.state_machine()
                         p.parent.summon_info_blob(str(int(p.parent.total_damage_has_got)), YELLOW if p.parent.id == 0 else WHITE, self.parent.look if self.parent else 1)

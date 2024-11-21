@@ -525,6 +525,7 @@ class Actor(Entity):
             self.set_current_animation()
             self.heading[0] = 0
             self.normal_stamina_replenish = self.default_normal_stamina_replenish
+            self.normal_mana_replenish = self.default_normal_mana_replenish
             self.is_grabbers_active = False
             if self.rectangle.height != self.rectangle_height_default:
                 self.set_new_desired_height(self.rectangle_height_default,10)
@@ -637,7 +638,8 @@ class Actor(Entity):
             self.set_current_animation()
             self.speed = 0
             self.heading[0] = 0
-            self.normal_stamina_replenish = self.default_normal_stamina_replenish * 2
+            self.normal_stamina_replenish = self.default_normal_stamina_replenish * 12
+            self.normal_mana_replenish = self.default_normal_mana_replenish * 12
         elif state == 'crouch turn left':                # CROUCH TURN RIGHT
             self.look = -1
             self.set_state('crouch')
