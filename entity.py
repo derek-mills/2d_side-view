@@ -855,6 +855,7 @@ class Entity(object):
                     # If actor hit from behind, the damage increased by 50%:
                     total_damage_multiplier = 1.5 if dem.look == self.look and dem.snap_to_actor >= 0 else 1
                     self.get_damage(dem.damage, total_damage_multiplier)
+                    self.got_immunity_to_demolishers.append(dem.id)
                     if int(self.total_damage_has_got) > 0:
                         state = self.get_state()
                         if state in ('hanging on edge', 'has just grabbed edge', 'climb on', 'climb on rise'):
@@ -1066,12 +1067,7 @@ class Entity(object):
         else:
             self.has_got_a_critical_hit = False
 
-        self.invincibility_timer = self.default_invincibility_timer
-
-        # if self.total_damage_has_got > 0:
-        #     # Damage amount show:
-        #     txt_color = RED if self.id == 0 else WHITE
-        #     self.summon_info_blob(str(int(self.total_damage_has_got)), txt_color, dem.parent.look if dem.parent else 1)
+        # self.invincibility_timer = self.default_invincibility_timer
 
     def health_replenish(self):
         if self.stats['health'] < self.stats['max health']:

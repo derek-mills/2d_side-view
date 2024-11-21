@@ -925,10 +925,7 @@ pistol = {
                  'protector hit': 'sound_bucket_hit_1',
              },
              'damage': {
-
                  'fire': 25,
-                 
-                 'type': 'blunt',
                  'pierce': 100,
              },
             # 'aftermath': 'explode'

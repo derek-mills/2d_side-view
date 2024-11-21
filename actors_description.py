@@ -1372,20 +1372,20 @@ player_jake = {
         },
         'sliding right': {
             'repeat': True, 'interruptable': True,
-            'sequence': (56,), 'speed': 1,
+            'sequence': (56,), 'speed': 60,
             'activity at frames': {
-                1: {
-                    'sound': 'sound_step_1',
+                0: {
+                    'sound': 'sound_outwear_woosh_1',
                 },
             },
             'repeat from frame': 0
         },
         'sliding left': {
             'repeat': True, 'interruptable': True,
-            'sequence': (70,), 'speed': 1,
+            'sequence': (70,), 'speed': 60,
             'activity at frames': {
-                1: {
-                    'sound': 'sound_step_1',
+                0: {
+                    'sound': 'sound_outwear_woosh_1',
                 },
             },
             'repeat from frame': 0
@@ -1951,8 +1951,7 @@ player_jake = {
             'speed': 1,
             'activity at frames': {
                 3: {
-                    #'sound': True,
-                    # 'move': 10,  # Slightly move actor forward,
+                    'sound': 'sound_pistol_shot',
                     'demolishers set number': 0,
                     'demolisher': True
                 },
@@ -1965,8 +1964,7 @@ player_jake = {
             'speed': 1,
             'activity at frames': {
                 3: {
-                    #'sound': True,
-                    # 'move': 10,  # Slightly move actor forward,
+                    'sound': 'sound_pistol_shot',
                     'demolishers set number': 0,
                     'demolisher': True
                 },
