@@ -1405,6 +1405,7 @@ class World(object):
 
             # Misc info:
             # self.screen.blit(fonts.all_fonts[10].render(actor.get_state() + ' dying: ' + str(actor.dying)+ ' dead: ' + str(actor.dead), True, WHITE, BLACK), (x, y))
+            self.screen.blit(fonts.all_fonts[10].render(str(actor.got_immunity_to_demolishers), True, WHITE, BLACK), (x, y))
 
             # # Weak spot
             # if actor.current_sprite['weak spot']:
@@ -1473,6 +1474,8 @@ class World(object):
 
             # self.screen.blit(fonts.all_fonts[20].render(str(dem.id) + ' ' + str(dem.speed) + ' ' + str(dem.rectangle.y), True, CYAN),
             #                  (dem.rectangle.x - self.camera.offset_x, dem.rectangle.bottom - self.camera.offset_y + dem.id * 20))
+            self.screen.blit(fonts.all_fonts[20].render(str(dem.id), True, CYAN),
+                             (dem.rectangle.x - self.camera.offset_x, dem.rectangle.bottom - self.camera.offset_y))
 
             # if dem.current_sprite:
             #     if dem.look == 1:

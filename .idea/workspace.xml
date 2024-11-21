@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demolisher.py" beforeDir="false" afterPath="$PROJECT_DIR$/demolisher.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,13 +166,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00533" summary="Improved protectors summoning and dissolving.">
-      <created>1730103521832</created>
-      <option name="number" value="00533" />
-      <option name="presentableId" value="LOCAL-00533" />
-      <option name="project" value="LOCAL" />
-      <updated>1730103521832</updated>
     </task>
     <task id="LOCAL-00534" summary="Improved protectors summoning and dissolving.">
       <created>1730104021173</created>
@@ -507,7 +503,14 @@
       <option name="project" value="LOCAL" />
       <updated>1732155753905</updated>
     </task>
-    <option name="localTasksCounter" value="582" />
+    <task id="LOCAL-00582" summary="Total invincibility after getting any damage switched off. Implemented the immunity to the particular already affected demolisher instead.&#10;Opportunity to switch on the invincibility during active animation frames added.">
+      <created>1732156374657</created>
+      <option name="number" value="00582" />
+      <option name="presentableId" value="LOCAL-00582" />
+      <option name="project" value="LOCAL" />
+      <updated>1732156374657</updated>
+    </task>
+    <option name="localTasksCounter" value="583" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -522,7 +525,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Protectors now disappear after their owner's death." />
     <MESSAGE value="&#10;Some improvement" />
     <MESSAGE value="After successful shield protection bouncing demolisher doesn't become weaker." />
     <MESSAGE value="Numpad 1,2,3 summons different monsters" />
@@ -547,6 +549,7 @@
     <MESSAGE value="Actor's description tiny change" />
     <MESSAGE value="Added cool punch sound" />
     <MESSAGE value="Sounds work continues." />
-    <option name="LAST_COMMIT_MESSAGE" value="Sounds work continues." />
+    <MESSAGE value="Total invincibility after getting any damage switched off. Implemented the immunity to the particular already affected demolisher instead.&#10;Opportunity to switch on the invincibility during active animation frames added." />
+    <option name="LAST_COMMIT_MESSAGE" value="Total invincibility after getting any damage switched off. Implemented the immunity to the particular already affected demolisher instead.&#10;Opportunity to switch on the invincibility during active animation frames added." />
   </component>
 </project>

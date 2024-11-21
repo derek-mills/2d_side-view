@@ -17,7 +17,10 @@ class Entity(object):
         # self.max_health: float = 0.
         self.combo_counter: int = 0
         self.combo_set_number: int = 0
+        # self.got_immunity_to_demolishers = set()
         self.got_immunity_to_demolishers = list()
+        self.demolisher_immunity_remove_counter_default = 20
+        self.demolisher_immunity_remove_counter = 0
         self.location: str = ''
         self.__state: str = ''
         self.scheduled_state: str = ''
@@ -355,6 +358,13 @@ class Entity(object):
             self.ttl -= 1
             if self.ttl == 0:
                 self.die()
+
+        if self.demolisher_immunity_remove_counter > 0:
+            self.demolisher_immunity_remove_counter -= 1
+        else:
+            self.demolisher_immunity_remove_counter = self.demolisher_immunity_remove_counter_default
+            if self.got_immunity_to_demolishers:
+                self.got_immunity_to_demolishers.remove(self.got_immunity_to_demolishers[0])
 
         self.process_animation()
         # if not self.is_stunned:
@@ -768,6 +778,9 @@ class Entity(object):
                     dem.parent_id == self.id or dem.parent.name == self.name:  # or \
                      # dem.floppy:
                     continue
+            else:
+                if dem.id in self.got_immunity_to_demolishers:
+                    continue
             hit_detected = False
             if dem.invisible:
                 # Just a rectangle-based collision detector:
@@ -817,47 +830,19 @@ class Entity(object):
             if hit_detected:
                 self.combo_counter = 0
                 self.combo_set_number = 0
-                # if dem.floppy:
-                #     # Most probably a demolishers has a collision with protector (player shield).
-                #     if dem.parent:
-                #         # self.hop_back_jump_height_modifier = ((dem.parent_strength / self.strength) + (dem.parent_weight / self.body_weight)) / dem.parent_penalty
-                #         self.movement_direction_inverter = -1 if dem.parent.look != self.look else 1
-                #         forces_balance = ((dem.parent_strength + dem.parent_weight) / dem.parent_penalty) \
-                #                          / (self.strength + self.body_weight)
-                #         # forces_balance = ((dem.parent_strength / self.strength) + (dem.parent_weight / self.body_weight)) / dem.parent_penalty
-                #         self.speed = 5 + forces_balance
-                #         print(f'[demolishers collision] DEMOLISHER IS FLOPPY and got a parent: {dem.total_damage_amount=} {forces_balance=} {dem.parent_penalty=}')
-                #     else:
-                #         self.movement_direction_inverter = -1 if dem.look != self.look else 1
-                #         forces_balance = 0.1
-                #         self.speed = 3
-                #         print(f'[demolishers collision] DEMOLISHER IS FLOPPY and got no a parent: {dem.total_damage_amount=} {forces_balance=} {dem.parent_penalty=}')
-                #     if 'smash' in dem.damage.keys():
-                #         self.speed *= (dem.damage['smash'] * 0.1)
-                #         # self.speed *= 1.5
-                #
-                #     stamina_taken_while_defending = dem.total_damage_amount * forces_balance * 0.2
-                #
-                #     # stamina_taken_while_defending = dem.total_damage_amount * forces_balance * 0.8
-                #     if self.stats['stamina'] >= stamina_taken_while_defending:
-                #         # Actor is able to consume own stamina to protect himself:
-                #         self.stamina_reduce(stamina_taken_while_defending)
-                #         self.invincibility_timer = 20
-                #         print(f'[demolishers collision] DEMOLISHER IS FLOPPY and actor blocks it')
-                #         continue
-
                 if not dem.pierce and not self.dead:
                     self.has_just_stopped_demolishers.append(dem.id)
 
                 self.summon_particle = True
                 # if dem.sounds['body hit'] not in self.summoned_sounds:
-
+                # self.got_immunity_to_demolishers.add(dem.id)
+                if dem.id not in self.got_immunity_to_demolishers:
+                    self.got_immunity_to_demolishers.append(dem.id)
                 if not self.dead:
                     self.summoned_sounds.append(dem.sounds['body hit'])
                     # If actor hit from behind, the damage increased by 50%:
                     total_damage_multiplier = 1.5 if dem.look == self.look and dem.snap_to_actor >= 0 else 1
                     self.get_damage(dem.damage, total_damage_multiplier)
-                    self.got_immunity_to_demolishers.append(dem.id)
                     if int(self.total_damage_has_got) > 0:
                         state = self.get_state()
                         if state in ('hanging on edge', 'has just grabbed edge', 'climb on', 'climb on rise'):

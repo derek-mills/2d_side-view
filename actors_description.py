@@ -1372,7 +1372,7 @@ player_jake = {
         },
         'sliding right': {
             'repeat': True, 'interruptable': True,
-            'sequence': (56,), 'speed': 60,
+            'sequence': (56,), 'speed': 600,
             'activity at frames': {
                 0: {
                     'sound': 'sound_outwear_woosh_1',
@@ -1383,7 +1383,7 @@ player_jake = {
         },
         'sliding left': {
             'repeat': True, 'interruptable': True,
-            'sequence': (70,), 'speed': 60,
+            'sequence': (70,), 'speed': 600,
             'activity at frames': {
                 0: {
                     'sound': 'sound_outwear_woosh_1',
