@@ -381,7 +381,7 @@ class Entity(object):
         # self.check_space_around()  # Detect obstacles on the right and left sides
         # self.calculate_fall_speed()  # Discover speed and potential fall distance
         self.calculate_speed()       # Discover speed and potential move distance
-        if abs(self.speed) > 13:
+        if abs(self.speed) > 23:
             demolisher = {
                 'parent': self,
                 'rect': pygame.Rect(0, 0, 2, self.rectangle.h // 2),

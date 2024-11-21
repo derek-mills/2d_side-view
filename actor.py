@@ -1155,10 +1155,12 @@ class Actor(Entity):
                     self.is_abort_jump = True
         elif state == 'decapitated':
             if self.animation_sequence_done:
+                self.animation_change_denied = False
                 self.heading = [0, 0]
                 self.set_new_desired_height(self.sprite_rectangle.height)
                 self.set_state('lie decapitated')
                 self.set_current_animation()
+                self.animation_change_denied = True
         elif state == 'lie decapitated':
             if self.idle_counter > 0:
                 self.idle_counter -= 1
