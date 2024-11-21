@@ -579,6 +579,8 @@ class Entity(object):
                         snd = self.animations[self.current_animation]['activity at frames'][self.frame_number]['sound']
                         self.summoned_sounds.append(snd)
                         # print(f'[entity.process_activity_at_current_animation_frame] make {snd} at frame {self.frame_number}')
+                    elif action == 'invincibility':
+                        self.invincibility_timer = self.animations[self.current_animation]['activity at frames'][self.frame_number]['invincibility']
             self.active_frames = self.active_frames[1:]
 
 

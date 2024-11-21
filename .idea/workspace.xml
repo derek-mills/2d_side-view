@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sounds.py" beforeDir="false" afterPath="$PROJECT_DIR$/sounds.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -166,13 +163,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00532" summary="Fighting with endless 'getting hurt' animation after actor has been hit through the shield and runs out of stamina.">
-      <created>1730101457087</created>
-      <option name="number" value="00532" />
-      <option name="presentableId" value="LOCAL-00532" />
-      <option name="project" value="LOCAL" />
-      <updated>1730101457087</updated>
     </task>
     <task id="LOCAL-00533" summary="Improved protectors summoning and dissolving.">
       <created>1730103521832</created>
@@ -510,7 +500,14 @@
       <option name="project" value="LOCAL" />
       <updated>1732088743081</updated>
     </task>
-    <option name="localTasksCounter" value="581" />
+    <task id="LOCAL-00581" summary="Sounds work continues.">
+      <created>1732155753905</created>
+      <option name="number" value="00581" />
+      <option name="presentableId" value="LOCAL-00581" />
+      <option name="project" value="LOCAL" />
+      <updated>1732155753905</updated>
+    </task>
+    <option name="localTasksCounter" value="582" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -525,7 +522,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Tuning of invincibility system/" />
     <MESSAGE value="Protectors now disappear after their owner's death." />
     <MESSAGE value="&#10;Some improvement" />
     <MESSAGE value="After successful shield protection bouncing demolisher doesn't become weaker." />
@@ -550,6 +546,7 @@
     <MESSAGE value="Added protectors separate sounds for different types of demolishers." />
     <MESSAGE value="Actor's description tiny change" />
     <MESSAGE value="Added cool punch sound" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added cool punch sound" />
+    <MESSAGE value="Sounds work continues." />
+    <option name="LAST_COMMIT_MESSAGE" value="Sounds work continues." />
   </component>
 </project>

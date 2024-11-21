@@ -1376,6 +1376,7 @@ player_jake = {
             'activity at frames': {
                 0: {
                     'sound': 'sound_outwear_woosh_1',
+                    'invincibility': 10,
                 },
             },
             'repeat from frame': 0
@@ -1386,6 +1387,7 @@ player_jake = {
             'activity at frames': {
                 0: {
                     'sound': 'sound_outwear_woosh_1',
+                    'invincibility': 10,
                 },
             },
             'repeat from frame': 0
