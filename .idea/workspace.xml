@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demolisher.py" beforeDir="false" afterPath="$PROJECT_DIR$/demolisher.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
@@ -166,20 +164,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00534" summary="Improved protectors summoning and dissolving.">
-      <created>1730104021173</created>
-      <option name="number" value="00534" />
-      <option name="presentableId" value="LOCAL-00534" />
-      <option name="project" value="LOCAL" />
-      <updated>1730104021173</updated>
-    </task>
-    <task id="LOCAL-00535" summary="Improved protectors summoning and dissolving.">
-      <created>1730104796984</created>
-      <option name="number" value="00535" />
-      <option name="presentableId" value="LOCAL-00535" />
-      <option name="project" value="LOCAL" />
-      <updated>1730104796984</updated>
     </task>
     <task id="LOCAL-00536" summary="Punch added.">
       <created>1730180822935</created>
@@ -510,7 +494,21 @@
       <option name="project" value="LOCAL" />
       <updated>1732156374657</updated>
     </task>
-    <option name="localTasksCounter" value="583" />
+    <task id="LOCAL-00583" summary="Working on demolishers and actors interaction.">
+      <created>1732160601431</created>
+      <option name="number" value="00583" />
+      <option name="presentableId" value="LOCAL-00583" />
+      <option name="project" value="LOCAL" />
+      <updated>1732160601431</updated>
+    </task>
+    <task id="LOCAL-00584" summary="Fixed bug with incorrect 'lie decapitated' animation setting.">
+      <created>1732160874110</created>
+      <option name="number" value="00584" />
+      <option name="presentableId" value="LOCAL-00584" />
+      <option name="project" value="LOCAL" />
+      <updated>1732160874111</updated>
+    </task>
+    <option name="localTasksCounter" value="585" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -525,8 +523,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="&#10;Some improvement" />
-    <MESSAGE value="After successful shield protection bouncing demolisher doesn't become weaker." />
     <MESSAGE value="Numpad 1,2,3 summons different monsters" />
     <MESSAGE value="Weight of the gear brings effect on actor only if equipped. Staying in the pocket makes it feather." />
     <MESSAGE value="Weight of the gear brings effect on actor only if equipped. Staying in the pocket makes it feather (fixed bug of non-player actors which become weightless and super-fast)." />
@@ -550,6 +546,8 @@
     <MESSAGE value="Added cool punch sound" />
     <MESSAGE value="Sounds work continues." />
     <MESSAGE value="Total invincibility after getting any damage switched off. Implemented the immunity to the particular already affected demolisher instead.&#10;Opportunity to switch on the invincibility during active animation frames added." />
-    <option name="LAST_COMMIT_MESSAGE" value="Total invincibility after getting any damage switched off. Implemented the immunity to the particular already affected demolisher instead.&#10;Opportunity to switch on the invincibility during active animation frames added." />
+    <MESSAGE value="Working on demolishers and actors interaction." />
+    <MESSAGE value="Fixed bug with incorrect 'lie decapitated' animation setting." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug with incorrect 'lie decapitated' animation setting." />
   </component>
 </project>

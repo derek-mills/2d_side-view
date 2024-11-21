@@ -907,6 +907,9 @@ class World(object):
         explosions = list()
         for key in self.demolishers[self.location].keys():
             dem = self.demolishers[self.location][key]
+            if dem.parent:
+                if dem.parent.is_summoned_demolishers_keep_alive:
+                    dem.ttl += 1
             if dem.dead:
                 if dem.aftermath == 'explode':
                     # print(f'[process demolishers] KA-BOOM!')
@@ -1236,10 +1239,6 @@ class World(object):
                                 #     actor.summoned_protectors_keep_alive.clear()
                                 # actor.summon_protector = False
                                 # actor.set_state('stand still')
-            #         else:
-            #             actor.summon_protector = False
-            # else:
-            #     actor.summon_protector = False
 
             actor.process()
 

@@ -31,7 +31,10 @@ class Entity(object):
         self.performing_an_interruptable_deed: bool = False
         self.think_type: str = ''
         self.summon_demolisher = False
+        self.summon_kicker_demolisher = False
         self.summoned_demolishers_description = list()
+        self.is_summoned_demolishers_keep_alive: bool = False
+        # self.summoned_demolishers_keep_alive = list()
         self.summon_protector = False
         self.summoned_protectors_description = list()
         self.summoned_protectors_keep_alive = list()
@@ -381,37 +384,47 @@ class Entity(object):
         # self.check_space_around()  # Detect obstacles on the right and left sides
         # self.calculate_fall_speed()  # Discover speed and potential fall distance
         self.calculate_speed()       # Discover speed and potential move distance
+
         if abs(self.speed) > 23:
-            demolisher = {
-                'parent': self,
-                'rect': pygame.Rect(0, 0, 2, self.rectangle.h // 2),
-                # 'rect': pygame.Rect(0, 0, self.rectangle.w, self.rectangle.h // 2),
-                'flyer': False,
-                'snapping offset': (-self.sprite_rectangle.w // 2 if self.movement_direction_inverter*self.look == -1 else self.sprite_rectangle.w // 2, 0),
-                'visible': False,
-                'demolisher sprite': None,
-                'type': 'blunt',
-                'pierce': False, 'demolisher TTL': 1, 'speed': 0,
-                'static': True, 'damage reduce': 0,
-                'collides': True, 'gravity affected': False,
-                'bounce': False, 'bounce factor': 0.,
-                'push': True,
-                'sounds': {
-                    'obstacle hit': 'sound_bullet_wall_hit_1',
-                    'body hit': 'sound_meat_blow_1',
-                    'protector hit': 'sound_bucket_hit_1',
-                },
-                'damage': {
-                    'blunt': self.body_weight * self.speed * 0.01,
-                },
-                'aftermath': 'disappear'
-            }
-            self.summon_demolisher = True
-            self.current_stamina_lost_per_attack = 0
-            self.current_mana_lost_per_attack = 0
-            # self.invincibility_timer = 10
-            self.summoned_demolishers_description = list()
-            self.summoned_demolishers_description.append(demolisher)
+            if not self.summon_kicker_demolisher:
+                demolisher = {
+                    'parent': self,
+                    'rect': pygame.Rect(0, 0, 2, self.rectangle.h // 2),
+                    # 'rect': pygame.Rect(0, 0, self.rectangle.w, self.rectangle.h // 2),
+                    'flyer': False,
+                    'snapping offset': (-self.sprite_rectangle.w // 2 if self.movement_direction_inverter*self.look == -1 else self.sprite_rectangle.w // 2, 0),
+                    'visible': False,
+                    'demolisher sprite': None,
+                    'type': 'blunt',
+                    'pierce': False, 'demolisher TTL': 1, 'speed': 0,
+                    'static': True, 'damage reduce': 0,
+                    'collides': True, 'gravity affected': False,
+                    'bounce': False, 'bounce factor': 0.,
+                    'push': True,
+                    'sounds': {
+                        'obstacle hit': 'sound_bullet_wall_hit_1',
+                        'body hit': 'sound_meat_blow_1',
+                        'protector hit': 'sound_bucket_hit_1',
+                    },
+                    'damage': {
+                        'blunt': self.body_weight * self.speed * 0.01,
+                    },
+                    'aftermath': 'disappear'
+                }
+                self.summon_demolisher = True
+                self.current_stamina_lost_per_attack = 0
+                self.current_mana_lost_per_attack = 0
+                # self.invincibility_timer = 10
+                self.summoned_demolishers_description = list()
+                self.summoned_demolishers_description.append(demolisher)
+                self.summon_kicker_demolisher = True
+                self.is_summoned_demolishers_keep_alive = True
+                # self.summoned_demolishers_keep_alive.append(demolisher)
+        else:
+            if self.summon_kicker_demolisher:
+                self.summon_kicker_demolisher = False
+                self.is_summoned_demolishers_keep_alive = False
+            # self.summoned_demolishers_keep_alive.clear()
 
         if self.is_collideable:
             if self.ai_controlled:
