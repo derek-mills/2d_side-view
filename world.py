@@ -124,8 +124,8 @@ class World(object):
 
         if self.sounds_to_make:
             sound = self.sounds_to_make.pop()
-            sounds_all[sound].play()
-            # sound.play()
+            if sound:
+                sounds_all[sound].play()
 
     def processing_music(self):
         if not self.music_on:
@@ -1274,13 +1274,15 @@ class World(object):
 
             if actor.summon_demolisher:
                 actor.summon_demolisher = False
-                # actor.stamina_reduce(actor.current_stamina_lost_per_attack)
-                # actor.mana_reduce(actor.current_mana_lost_per_attack)
-                # for d in actor.summoned_demolishers_description:
                 while actor.summoned_demolishers_description:
                     d = actor.summoned_demolishers_description.pop()
                     self.add_demolisher(d)
-                # self.add_demolisher(actor.summoned_demolisher_description)
+                # if not actor.is_summoned_demolishers_keep_alive:
+                #     while actor.summoned_demolishers_description:
+                #         d = actor.summoned_demolishers_description.pop()
+                #         self.add_demolisher(d)
+                # else:
+                #     actor.summoned_demolishers_description.clear()
 
             while actor.summoned_particle_descriptions:
                 description = actor.summoned_particle_descriptions.pop()

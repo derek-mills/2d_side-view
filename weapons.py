@@ -285,8 +285,10 @@ whip = {
             # 'attack type': ('pierce',),
              'push': False,
              'sounds': {
-                 'obstacle hit': 'sound_bullet_wall_hit_1',
-                 'body hit': 'sound_meat_blow_1',
+                 'obstacle hit': '',
+                 # 'obstacle hit': 'sound_bullet_wall_hit_1',
+                 'body hit': '',
+                 # 'body hit': 'sound_meat_blow_1',
                  'protector hit': 'sound_bucket_hit_1',
              },
              'damage': {
@@ -307,8 +309,10 @@ whip = {
             # 'attack type': ('pierce',),
              'push': False,
              'sounds': {
-                 'obstacle hit': 'sound_bullet_wall_hit_1',
-                 'body hit': 'sound_meat_blow_1',
+                 'obstacle hit': '',
+                 # 'obstacle hit': 'sound_bullet_wall_hit_1',
+                 'body hit': '',
+                 # 'body hit': 'sound_meat_blow_1',
                  'protector hit': 'sound_bucket_hit_1',
              },
              'damage': {
@@ -329,8 +333,10 @@ whip = {
             # 'attack type': ('pierce',),
              'push': False,
              'sounds': {
-                 'obstacle hit': 'sound_bullet_wall_hit_1',
-                 'body hit': 'sound_meat_blow_1',
+                 'obstacle hit': '',
+                 # 'obstacle hit': 'sound_bullet_wall_hit_1',
+                 'body hit': '',
+                 # 'body hit': 'sound_meat_blow_1',
                  'protector hit': 'sound_bucket_hit_1',
              },
              'damage': {

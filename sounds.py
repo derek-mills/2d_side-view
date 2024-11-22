@@ -82,8 +82,11 @@ sound_punch_1 = pygame.mixer.Sound('SFX/punch_1.mp3')
 sound_punch_1.set_volume(SOUND_VOLUME)
 sound_outwear_woosh_1 = pygame.mixer.Sound('SFX/outwear_woosh.mp3')
 sound_outwear_woosh_1.set_volume(SOUND_VOLUME)
+sound_whip_1 = pygame.mixer.Sound('SFX/whip.mp3')
+sound_whip_1.set_volume(SOUND_VOLUME)
 
 sounds_all = {
+    'sound_whip_1': sound_whip_1,
     'sound_outwear_woosh_1': sound_outwear_woosh_1,
     'sound_punch_1': sound_punch_1,
     'sound_bullet_hits_shield_1': sound_bullet_hits_shield_1,
