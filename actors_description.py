@@ -851,7 +851,7 @@ demon_2 = {
                 #     'demolisher': True
                 # },
                 4: {
-                    'sound': 'sound_whip_1',
+                    'sound': 'sound_swing_2',
                     'demolishers set number': 1,
                     'demolisher': True
                 },
@@ -900,7 +900,7 @@ demon_2 = {
                 #     'demolisher': True
                 # },
                 4: {
-                    'sound': 'sound_whip_1',
+                    'sound': 'sound_swing_2',
                     'demolishers set number': 1,
                     'demolisher': True
                 },
@@ -1513,9 +1513,9 @@ player_jake = {
             'sequence': (74,74,74,74,74,75,76,76,76,76,76,77,77,77,77),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
             'speed': 3,
             'activity at frames': {
-                1: {
-                    'sound': 'sound_whip_1',
-                },
+                # 1: {
+                #     'sound': 'sound_whip_1',
+                # },
                 6: {
                     # 'sound': 'sound_whip_1',
                     'demolishers set number': 0,
@@ -1526,7 +1526,7 @@ player_jake = {
                     'demolisher': True
                 },
                 8: {
-                    #'sound': True,
+                    'sound': 'sound_whip_1',
                     'demolishers set number': 2,
                     'demolisher': True
                 },
@@ -1538,9 +1538,9 @@ player_jake = {
             'sequence': (91,91,91,91,91,90,89,89,89,89,89,88,88,88,88),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
             'speed': 3,
             'activity at frames': {
-                1: {
-                    'sound': 'sound_whip_1',
-                },
+                # 1: {
+                #     'sound': 'sound_whip_1',
+                # },
                 6: {
                     #'sound': True,
                     'demolishers set number': 0,
@@ -1551,7 +1551,7 @@ player_jake = {
                     'demolisher': True
                 },
                 8: {
-                    #'sound': True,
+                    'sound': 'sound_whip_1',
                     'demolishers set number': 2,
                     'demolisher': True
                 },
