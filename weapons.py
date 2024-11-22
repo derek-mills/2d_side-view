@@ -292,7 +292,7 @@ whip = {
                  'protector hit': 'sound_bucket_hit_1',
              },
              'damage': {
-                 'pierce': 10,
+                 'pierce': 1,
              },
             # 'aftermath': 'explode'
             'aftermath': 'disappear'
@@ -316,7 +316,7 @@ whip = {
                  'protector hit': 'sound_bucket_hit_1',
              },
              'damage': {
-                'pierce': 30,
+                'pierce': 10,
              },
             # 'aftermath': 'explode'
             'aftermath': 'disappear'
@@ -494,7 +494,7 @@ jake_punch = {
              'static': True, 'damage reduce': 0,
              'collides': False, 'gravity affected': False,
              'bounce': False, 'bounce factor': 0.,
-             'attack type': ('smash',),
+             # 'attack type': ('smash',),
              'push': False,
               'sounds': {
                  'obstacle hit': 'sound_bullet_wall_hit_1',
@@ -502,10 +502,9 @@ jake_punch = {
                  'protector hit': 'sound_bucket_hit_1',
              },
              'damage': {
-
-                 'blunt': 15,
+                 'blunt': 5,
                  # 
-                 'slash': 1,
+                 # 'slash': 1,
              },
              # 'aftermath': 'explode'
              'aftermath': 'disappear'
@@ -520,7 +519,7 @@ jake_punch = {
              'static': True, 'damage reduce': 0,
              'collides': False, 'gravity affected': False,
              'bounce': False, 'bounce factor': 0.,
-             'attack type': ('smash',),
+             # 'attack type': ('smash',),
              'push': False,
               'sounds': {
                  'obstacle hit': 'sound_bullet_wall_hit_1',
@@ -528,9 +527,8 @@ jake_punch = {
                  'protector hit': 'sound_bucket_hit_1',
              },
              'damage': {
-
-                 'blunt': 50,
-                 'slash': 1,
+                 'blunt': 15,
+                 # 'slash': 1,
                  # 
              },
              # 'aftermath': 'explode'
@@ -546,7 +544,7 @@ jake_punch = {
             'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
-            'attack type': ('smash',),
+            # 'attack type': ('smash',),
             'push': True,
              'sounds': {
                  'obstacle hit': 'sound_bullet_wall_hit_1',
@@ -554,7 +552,7 @@ jake_punch = {
                  'protector hit': 'sound_bucket_hit_1',
              },
              'damage': {
-                 'blunt': 70,
+                 'blunt': 40,
                  'slash': 1,
              },
             # 'aftermath': 'explode'

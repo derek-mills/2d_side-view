@@ -6,8 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SFX/whip.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/SFX/whip.mp3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,13 +163,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00540" summary="Some tuning of shield mana use.&#10;Refused to use 'stunned' state.">
-      <created>1730265902691</created>
-      <option name="number" value="00540" />
-      <option name="presentableId" value="LOCAL-00540" />
-      <option name="project" value="LOCAL" />
-      <updated>1730265902691</updated>
     </task>
     <task id="LOCAL-00541" summary="Items after being dropped becomes invulnerable for a while and cannot be picked up.">
       <created>1730270961241</created>
@@ -508,7 +500,14 @@
       <option name="project" value="LOCAL" />
       <updated>1732247062122</updated>
     </task>
-    <option name="localTasksCounter" value="589" />
+    <task id="LOCAL-00589" summary="Whip improved once again">
+      <created>1732254677771</created>
+      <option name="number" value="00589" />
+      <option name="presentableId" value="LOCAL-00589" />
+      <option name="project" value="LOCAL" />
+      <updated>1732254677771</updated>
+    </task>
+    <option name="localTasksCounter" value="590" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -523,7 +522,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixing incorrect weight calculation bug." />
     <MESSAGE value="Hopping back state fixing." />
     <MESSAGE value="Particular hopping back and forward animations added.&#10;Slightly redesigned 'set animation' routine." />
     <MESSAGE value="Slightly redesigned 'set animation' routine, one more bug solved." />
@@ -548,6 +546,7 @@
     <MESSAGE value="Corrected demolisher appearing while actor is on the sliding process." />
     <MESSAGE value="Fixed some trouble in protectors and demolishers interaction." />
     <MESSAGE value="Whip improved." />
-    <option name="LAST_COMMIT_MESSAGE" value="Whip improved." />
+    <MESSAGE value="Whip improved once again" />
+    <option name="LAST_COMMIT_MESSAGE" value="Whip improved once again" />
   </component>
 </project>
