@@ -418,6 +418,8 @@ class World(object):
 
         # print(f'{demol.parent=}')
         if demol.parent:
+            # if demol.parent.make_all_following_demolishers_floppy:
+            #     demol.become_mr_floppy()
             demol.parent_id = demol.parent.id
             demol.look = demol.parent.look
             demol.ttl = description['demolisher TTL'] * demol.parent.frames_changing_threshold_modifier
@@ -510,13 +512,11 @@ class World(object):
         demol.speed = description['speed']
         demol.is_collideable = description['collides']
         demol.is_gravity_affected = description['gravity affected']
-        # demol.attack_type = description['attack type']
-        # demol.parent_strength = demol.parent.strength
-        # demol.parent_weight = demol.parent.body_weight
-        # demol.parent_penalty = demol.parent.frames_changing_threshold_penalty
+
         self.demolishers[self.location][demol.id] = demol
+        print(f'[add_demolisher] Added: {demol.id=} {demol.name}')
         # print(f'[add_demolisher] Added: {demol.id=} {demol.name} {demol.rectangle} {demol.max_speed=} {demol.destination=}')
-    
+
     def add_protector(self, description):
         protector = Demolisher()
         protector.id = self.protector_id

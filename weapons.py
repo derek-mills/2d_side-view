@@ -270,7 +270,7 @@ whip = {
     'droppable': True,
     'need ammo': False,
     'ammo': 0,
-    'reach': 370,
+    'reach': 470,
     'weight': 30,
     'demolishers': (
         ({
@@ -278,7 +278,7 @@ whip = {
              'visible': True,
             'demolisher sprite': 'whip demolisher short',
             'type': 'blunt',
-            'pierce': False, 'demolisher TTL': 1, 'speed': 0,
+            'pierce': False, 'demolisher TTL': 2, 'speed': 0,
             'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
@@ -292,7 +292,8 @@ whip = {
                  'protector hit': 'sound_bucket_hit_1',
              },
              'damage': {
-                 'pierce': 1,
+                 # 'pierce': 1,
+                 'whip': 10,
              },
             # 'aftermath': 'explode'
             'aftermath': 'disappear'
@@ -302,7 +303,7 @@ whip = {
              'visible': True,
             'demolisher sprite': 'whip demolisher medium',
             'type': 'blunt',
-            'pierce': False, 'demolisher TTL': 1, 'speed': 0,
+            'pierce': False, 'demolisher TTL': 2, 'speed': 0,
             'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
@@ -316,7 +317,8 @@ whip = {
                  'protector hit': 'sound_bucket_hit_1',
              },
              'damage': {
-                'pierce': 10,
+                # 'pierce': 10,
+                 'whip': 20,
              },
             # 'aftermath': 'explode'
             'aftermath': 'disappear'
@@ -340,7 +342,8 @@ whip = {
                  'protector hit': 'sound_bucket_hit_1',
              },
              'damage': {
-                'pierce': 60,
+                # 'pierce': 60,
+                 'whip': 60,
              },
             # 'aftermath': 'explode'
             'aftermath': 'disappear'
@@ -1046,7 +1049,8 @@ small_shield = {
                 'fire': 0.,
                 'type': 'blunt',
                 'pierce': 0.,
-                'slash': 0.
+                'slash': 0.,
+                'whip': 0.
             },
             'aftermath': None
             # 'aftermath': 'explode'

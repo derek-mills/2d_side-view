@@ -1,6 +1,6 @@
 from weapons import *
 # from game_objects import *
-from random import randint
+from random import randint, choice
 from graphics import sprites
 
 zombie = {
@@ -2086,7 +2086,7 @@ sober_knight = {
     # Second item: middle-range weapon
     # Third item: ranged weapon.
     # Fourth item: a protector.
-    'items': (jake_punch, whip, pistol, small_shield,),
+    'items': (choice((jake_punch, sword, )), whip, pistol, small_shield,),
     # 'items': (whip,fireball_staff,sword,kitchen_knife,),
     'animations': {
 

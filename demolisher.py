@@ -221,21 +221,28 @@ class Demolisher(Entity):
         self.floppy = True
 
     def detect_collisions_with_protectors(self):
+        if self.floppy:
+            print(f'[detect collision with protectors] {self.id} IS FLOPPY...')
+            return
         if self.protectors_around:
+            print(f'[detect collision with protectors] {self.id} collision check starting...')
             for k in self.protectors_around.keys():
                 p = self.protectors_around[k]
                 if self.rectangle.colliderect(p.rectangle) and self.look != p.look:
-                    if self.floppy:
-                        continue
+                    # if self.floppy:
+                    #     continue
                     self.summoned_sounds.append(p.sounds[self.type])
                     # self.summoned_sounds.append(self.sounds['protector hit'])
 
-                    print(f'[detect collision with protectors] collided with {p.name}, {p.look=}, {self.look=}')
+                    print(f'[detect collision with protectors] {self.id} collided with {p.name}, {p.look=}, {self.look=}')
                     self.become_mr_floppy()
+                    # self.parent.make_all_following_demolishers_floppy = True
+
                     # Reduce all damaging abilities according to protector's might:
-                    damage = self.damage.copy()
+                    # damage = self.damage.copy()
                     for damage_type in self.damage:
-                        damage[damage_type] *= p.protection[damage_type]
+                        self.damage[damage_type] *= p.protection[damage_type]
+                        # damage[damage_type] *= p.protection[damage_type]
 
                     # if self.parent:
                     #     self.parent.animation_sequence_done = True
@@ -247,7 +254,9 @@ class Demolisher(Entity):
                         p.parent.got_immunity_to_demolishers.append(self.id)
                     p.parent.mana_reduce(p.mana_consumption * p.parent.normal_mana_lost_per_defend)
                     p.parent.stamina_reduce(p.stamina_consumption * p.parent.normal_stamina_lost_per_defend)
-                    p.parent.get_damage(damage, 1)
+                    p.parent.get_damage(self.damage, 1)
+                    # p.parent.get_damage(damage, 1)
+
                     # p.parent.got_immunity_to_demolishers.append(self.id)
                     # p.parent.get_damage(self.damage, 1)
                     if p.parent.total_damage_has_got > 0:
@@ -279,7 +288,7 @@ class Demolisher(Entity):
                     # for damage_type in self.damage:
                     #     self.damage[damage_type] *= p.protection[damage_type]
 
-                # break
+                    break
 
     def process_protector(self):
     # def process_demolisher(self, time_passed):

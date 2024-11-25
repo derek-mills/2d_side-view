@@ -34,6 +34,7 @@ class Entity(object):
         self.summon_kicker_demolisher = False
         self.summoned_demolishers_description = list()
         self.is_summoned_demolishers_keep_alive: bool = False
+        # self.make_all_following_demolishers_floppy: bool = False
         # self.summoned_demolishers_keep_alive = list()
         self.summon_protector = False
         self.summoned_protectors_description = list()
@@ -66,6 +67,7 @@ class Entity(object):
             'blunt': 1,
             'fire': 1,
             'pierce': 1,
+            'whip': 2
         }
         # self.resistances = dict()
         self.total_damage_has_got = 0  # Variable storing a momentary amount of damage got from a single demolisher.
@@ -260,7 +262,8 @@ class Entity(object):
         self.demolishers_around = demolishers
         self.protectors_around = protectors
         # print(self.obstacles_around)
-        # print(self.demolishers_around)
+        # if not self.protectors_around:
+        #     print(f'[percept] {self.name} {self.id} doesn\'t see any protectors..')
         # exit()
 
     def set_rect_height(self, height):
@@ -370,7 +373,6 @@ class Entity(object):
                 self.got_immunity_to_demolishers.remove(self.got_immunity_to_demolishers[0])
 
         self.process_animation()
-        # if not self.is_stunned:
         self.process_activity_at_current_animation_frame()
 
         if self.is_jump:
@@ -451,7 +453,8 @@ class Entity(object):
         # self.move(time_passed)
         # self.fly(time_passed)
         self.correct_position_if_influenced()
-
+        # if self.animation_sequence_done:
+        #     self.make_all_following_demolishers_floppy = False
         # self.total_damage_has_got = 0
 
     # def process_backup(self, time_passed):
@@ -560,7 +563,7 @@ class Entity(object):
                     if action == 'protector' and not self.summon_protector:
                         # print(f'[process active frames] defend at frame {self.frame_number}')
                         if 'protectors' in self.current_weapon:
-                            print(f'[process active frames] defend at frame {self.frame_number}')
+                            # print(f'[process active frames] defend at frame {self.frame_number}')
                             self.summon_protector = True
                             self.summoned_protectors_description = list()
                             protector_set_num = self.animations[self.current_animation]['activity at frames'][self.frame_number]['protectors set number']
@@ -784,8 +787,8 @@ class Entity(object):
             return
         for key in self.demolishers_around.keys():
             dem = self.demolishers_around[key]
-            # if dem.floppy:
-            #     continue
+            if dem.floppy:
+                continue
             if dem.parent:
                 if dem.id in self.got_immunity_to_demolishers or \
                     dem.parent_id == self.id or dem.parent.name == self.name:  # or \
@@ -841,6 +844,7 @@ class Entity(object):
                     hit_detected = True
 
             if hit_detected:
+                print(f'[detect demolishers collision] Dem #{dem.id} hit {self.name}')
                 self.combo_counter = 0
                 self.combo_set_number = 0
                 if not dem.pierce and not self.dead:
@@ -1060,7 +1064,7 @@ class Entity(object):
             self.total_damage_has_got += d
 
         self.stun_counter = min(200, self.total_damage_has_got * 200 // (remain_health + 1))
-        print(f'[get damage] {self.name} has been stunned for {self.stun_counter} frames.')
+        # print(f'[get damage] {self.name} has been stunned for {self.stun_counter} frames.')
 
         if self.total_damage_has_got >= remain_health * 2:
             self.has_got_a_critical_hit = True
