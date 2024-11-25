@@ -514,7 +514,7 @@ class World(object):
         demol.is_gravity_affected = description['gravity affected']
 
         self.demolishers[self.location][demol.id] = demol
-        print(f'[add_demolisher] Added: {demol.id=} {demol.name}')
+        # print(f'[add_demolisher] Added: {demol.id=} {demol.name}')
         # print(f'[add_demolisher] Added: {demol.id=} {demol.name} {demol.rectangle} {demol.max_speed=} {demol.destination=}')
 
     def add_protector(self, description):

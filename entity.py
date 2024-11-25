@@ -844,7 +844,7 @@ class Entity(object):
                     hit_detected = True
 
             if hit_detected:
-                print(f'[detect demolishers collision] Dem #{dem.id} hit {self.name}')
+                # print(f'[detect demolishers collision] Dem #{dem.id} hit {self.name}')
                 self.combo_counter = 0
                 self.combo_set_number = 0
                 if not dem.pierce and not self.dead:

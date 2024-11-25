@@ -6,10 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demolisher.py" beforeDir="false" afterPath="$PROJECT_DIR$/demolisher.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -167,13 +164,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00543" summary="Some tuning of stamina and mana reducing system">
-      <created>1730351154529</created>
-      <option name="number" value="00543" />
-      <option name="presentableId" value="LOCAL-00543" />
-      <option name="project" value="LOCAL" />
-      <updated>1730351154529</updated>
     </task>
     <task id="LOCAL-00544" summary="Individual drop invincibility timer added for every item.">
       <created>1730422552113</created>
@@ -511,7 +501,14 @@
       <option name="project" value="LOCAL" />
       <updated>1732512472572</updated>
     </task>
-    <option name="localTasksCounter" value="592" />
+    <task id="LOCAL-00592" summary="Some demolishers cause no collision with protector if their initial TTL is 1.">
+      <created>1732521753812</created>
+      <option name="number" value="00592" />
+      <option name="presentableId" value="LOCAL-00592" />
+      <option name="project" value="LOCAL" />
+      <updated>1732521753812</updated>
+    </task>
+    <option name="localTasksCounter" value="593" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -526,7 +523,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Slightly redesigned 'set animation' routine, one more bug solved." />
     <MESSAGE value="Slightly increased speed of stamina replenishing  while crouch." />
     <MESSAGE value="Added 'move' action if animation reaches active frame." />
     <MESSAGE value="Some tuning" />
@@ -551,6 +547,7 @@
     <MESSAGE value="Whip improved once again" />
     <MESSAGE value="Some weapon improvements" />
     <MESSAGE value="Added new monster: a clone of player actor." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added new monster: a clone of player actor." />
+    <MESSAGE value="Some demolishers cause no collision with protector if their initial TTL is 1." />
+    <option name="LAST_COMMIT_MESSAGE" value="Some demolishers cause no collision with protector if their initial TTL is 1." />
   </component>
 </project>
