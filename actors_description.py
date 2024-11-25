@@ -2047,7 +2047,838 @@ player_jake = {
     'AI controlled': False
 }
 
+sober_knight = {
+    #
+    'name': 'James P. Sullivan',
+    'drop': ['exp' for i in range(randint(8,12))],
+    'health': 2000.,
+    'blood color': (255, 0, 0),
+    'gravity affected': True,
+    'mana replenish': .01,
+    'stamina replenish': .2,
+    'strength': 10,  # The more the strength, the less the inner athletic index, the more max speed and jump height.
+    'body weight': 60,  # The more the weight, the more the inner athletic index, the less max speed and jump height.
+    'resistances': {
+        # Zero is total resistance, such type of damage multiples by zero.
+        # Above 1 is a weakness to particular type of damage.
+        # In the other terms, this is a just incoming damage multiplier.
+        'slash': .1,
+        'pierce': .1,
+        'smash': .1,
+        'fire': 1
+    },
+    # 'sounds': {
+    #     'pain': 'sound_jake_pain',
+    #     'footstep': 'sound_step_2',
+    # },
+    # 'body': {
+    #     'head': {
+    #         'hardness': 100
+    #     },
+    # },
+    'max speed': 10,  # Base value, which will be reduced upon athletic index.
+    # 'max speed': 16,  # Base value, which will be reduced upon athletic index.
+    'max jump height': 28, # Base value, which will be reduced upon athletic index.
+    'acceleration': .6,
+    'friction': .9,
+    'air acceleration': .4,
+    # First item: close combat weapon
+    # Second item: middle-range weapon
+    # Third item: ranged weapon.
+    # Fourth item: a protector.
+    'items': (jake_punch, whip, pistol, small_shield,),
+    # 'items': (whip,fireball_staff,sword,kitchen_knife,),
+    'animations': {
+
+        # 'stunned right': {
+        #     'repeat': True, 'interruptable': True,
+        #     'sequence': (113,114,),
+        #     'speed': 9,
+        #     'activity at frames': {
+        #     },
+        #     'repeat from frame': 0
+        # },
+        # 'stunned left': {
+        #     'repeat': True, 'interruptable': True,
+        #     'sequence': (127,128,),
+        #     'speed': 9,
+        #     'activity at frames': {
+        #     },
+        #     'repeat from frame': 0
+        # },
+        'decapitated left': {
+            'repeat': False, 'interruptable': True,
+            'sequence': (55,54,53,),
+            'speed': 9,
+            'activity at frames': {
+                0: {
+                    'sound': 'sound_groan_1',
+                    # 'demolishers set number': 0,
+                    # 'demolisher': False
+                },
+            },
+            'repeat from frame': 2
+        },
+        'decapitated right': {
+            'repeat': False, 'interruptable': True,
+            'sequence': (39,40,41,),
+            'speed': 9,
+            'activity at frames': {
+                0: {
+                    'sound': 'sound_groan_1',
+                    # 'demolishers set number': 0,
+                    # 'demolisher': False
+                },
+            },
+            'repeat from frame': 0
+        },
+        'lie decapitated left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (53,),
+            'speed': 9,
+            'activity at frames': {
+            },
+            'repeat from frame': 0
+        },
+        'lie decapitated right': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (41,),
+            'speed': 9,
+            'activity at frames': {
+            },
+            'repeat from frame': 0
+        },
+        'stand still right': {
+                'repeat': True, 'interruptable': True,
+                'sequence': (1,1,1,1,1,1,2,1,2,1,1,1,1), 'speed': 20,
+                'activity at frames': {},
+                'sound': None, 'sound at frames': (0,), 'repeat from frame': 0
+            },
+        'stand still left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (15,15,15,15,15,15,16,15,16,15,15,15,15), 'speed': 20,
+            'activity at frames': {},
+            'sound': None, 'sound at frames': (0,), 'repeat from frame': 0
+        },
+        'getting hurt right': {
+                'repeat': True, 'interruptable': True,
+                'sequence': (11,12,13,13,13,13,13), 'speed': 2,
+                'activity at frames': {
+                    1: {
+                    'sound': 'sound_jake_pain',
+                    },
+                },
+                'sound': None, 'sound at frames': (0,), 'repeat from frame': 2
+            },
+        'getting hurt left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (25,26,27,27,27,27,27), 'speed': 2,
+            'activity at frames': {
+                1: {
+                    'sound': 'sound_jake_pain',
+                },
+            },
+            'sound': None, 'sound at frames': (0,), 'repeat from frame': 2
+        },
+        'lie dead right': {
+            'repeat': True,
+            'sequence': (41,41,), 'speed': 20,
+            'activity at frames': {
+                0: {
+                    'sound': 'sound_groan_1'
+                },
+            },
+            'repeat from frame': 1
+        },
+        'lie dead left': {
+            'repeat': True,
+            'sequence': (53,53,), 'speed': 20,
+            'activity at frames': {
+                0: {
+                    'sound': 'sound_groan_1'
+                },
+            },
+            'repeat from frame': 1
+        },
+        'sliding right': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (56,), 'speed': 600,
+            'activity at frames': {
+                0: {
+                    'sound': 'sound_outwear_woosh_1',
+                    'invincibility': 10,
+                },
+            },
+            'repeat from frame': 0
+        },
+        'sliding left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (70,), 'speed': 600,
+            'activity at frames': {
+                0: {
+                    'sound': 'sound_outwear_woosh_1',
+                    'invincibility': 10,
+                },
+            },
+            'repeat from frame': 0
+        },
+        'hopping back process face right': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (81,), 'speed': 1,
+            'activity at frames': {
+            },
+            'repeat from frame': 0
+        },
+        'hopping forward process face right': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (82,), 'speed': 1,
+            'activity at frames': {
+            },
+            'repeat from frame': 0
+        },
+        'hopping back process face left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (85,), 'speed': 1,
+            'activity at frames': {
+            },
+            'repeat from frame': 0
+        },
+        'hopping forward process face left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (84,), 'speed': 1,
+            'activity at frames': {
+            },
+            'repeat from frame': 0
+        },
+        'run right': {
+                'repeat': True, 'interruptable': True,
+                'sequence': (28,29,30,31,32,33,34,35,), 'speed': 4,
+                # 'sequence': (28,29,30,31,32,33,34,35,36,37,38,), 'speed': 1,
+                'activity at frames': {
+                    2: {
+                        'sound': 'sound_step_2',
+                    },
+                    6: {
+                        'sound': 'sound_step_2',
+                    },
+                },
+                'repeat from frame': 0
+            },
+        'run left': {
+                'repeat': True, 'interruptable': True,
+                'sequence': (52,51,50,49,48,47,46,45,), 'speed': 4,
+                # 'sequence': (52,51,50,49,48,47,46,45,44,43,42,), 'speed': 1,
+                'activity at frames': {
+                    2: {
+                        'sound': 'sound_step_2',
+                    },
+                    6: {
+                        'sound': 'sound_step_2',
+                    },
+                },
+                'repeat from frame': 0
+            },
+        'jump right': {
+                'repeat': True, 'interruptable': True,
+                'sequence': (29,), 'speed': 1,
+                'activity at frames': {},
+                'sound': 'sound_step_1', 'sound at frames': (1, 4), 'repeat from frame': 0
+            },
+        'jump left': {
+                'repeat': True, 'interruptable': True,
+                'sequence': (51,), 'speed': 1,
+                'activity at frames': {},
+                'sound': 'sound_step_1', 'sound at frames': (1, 4), 'repeat from frame': 0
+            },
+        'fly right': {
+                'repeat': True, 'interruptable': True,
+                'sequence': (32,), 'speed': 1,
+                'activity at frames': {},
+                'sound': 'sound_step_1', 'sound at frames': (1, 4), 'repeat from frame': 0
+            },
+        'fly left': {
+                'repeat': True, 'interruptable': True,
+                'sequence': (48,), 'speed': 1,
+                'activity at frames': {},
+                'sound': 'sound_step_1', 'sound at frames': (1, 4), 'repeat from frame': 0
+            },
+        'turn right': {
+                'repeat': True, 'interruptable': True,
+                'sequence': (0,), 'speed': 1,
+                'activity at frames': {},
+                'sound': 'sound_step_1', 'sound at frames': (1, 4), 'repeat from frame': 0
+            },
+        'turn left': {
+                'repeat': True, 'interruptable': True,
+                'sequence': (0,), 'speed': 1,
+                'activity at frames': {},
+                'sound': 'sound_step_1', 'sound at frames': (1, 4), 'repeat from frame': 0
+            },
+        'crouch right': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (4,4,4,4), 'speed': 1,
+            'activity at frames': {},
+            'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 0
+        },
+        'crawl right': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (5,6,5,7,), 'speed': 15,
+            'activity at frames': {},
+            'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 0
+        },
+        'crouch left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (18,), 'speed': 1,
+            'activity at frames': {},
+            'sound': None, 'sound at frames': (0,), 'repeat from frame': 0
+        },
+        'crawl left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (21,20,21,19,), 'speed': 15,
+            'activity at frames': {},
+            'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 0
+        },
+        'whip right': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (74,74,74,74,74,75,76,76,76,76,76,77,77,77,77),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'speed': 3,
+            'activity at frames': {
+                # 1: {
+                #     'sound': 'sound_whip_1',
+                # },
+                6: {
+                    # 'sound': 'sound_whip_1',
+                    'demolishers set number': 0,
+                    'demolisher': True
+                },
+                7: {
+                    'demolishers set number': 1,
+                    'demolisher': True
+                },
+                8: {
+                    'sound': 'sound_whip_1',
+                    'demolishers set number': 2,
+                    'demolisher': True
+                },
+                },
+             'repeat from frame': 0
+        },
+        'whip left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (91,91,91,91,91,90,89,89,89,89,89,88,88,88,88),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'speed': 3,
+            'activity at frames': {
+                # 1: {
+                #     'sound': 'sound_whip_1',
+                # },
+                6: {
+                    #'sound': True,
+                    'demolishers set number': 0,
+                    'demolisher': True
+                },
+                7: {
+                    'demolishers set number': 1,
+                    'demolisher': True
+                },
+                8: {
+                    'sound': 'sound_whip_1',
+                    'demolishers set number': 2,
+                    'demolisher': True
+                },
+            },
+            'repeat from frame': 0
+        },
+        'whip crouch right': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (60, 60, 60, 61, 62, 62, 62, 62,62, 61),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'speed': 2,
+            'activity at frames': {
+                4: {
+                    #'sound': True,
+                    'demolisher': True,
+                    'demolishers set number': 0,
+                },
+                5: {
+                    #'sound': True,
+                    'demolisher': True,
+                    'demolishers set number': 1,
+                },
+                6: {
+                    #'sound': True,
+                    'demolisher': True,
+                    'demolishers set number': 2,
+                },
+            },
+            'repeat from frame': 0
+        },
+        'whip crouch left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (80, 80, 80, 79, 78, 78, 78, 78,78, 79),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'speed': 2,
+            'activity at frames': {
+                4: {
+                    #'sound': True,
+                    'demolisher': True,
+                    'demolishers set number': 0,
+                },
+                5: {
+                    #'sound': True,
+                    'demolisher': True,
+                    'demolishers set number': 1,
+                },
+                6: {
+                    #'sound': True,
+                    'demolisher': True,
+                    'demolishers set number': 2,
+                },
+            },
+            'repeat from frame': 0
+        },
+        'stab right': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (74,75,76,76,76,),  # 0 - 4
+            'speed': 2,
+            'activity at frames': {
+                2: {
+                    #'sound': True,
+                    # 'move': 10,  # Slightly move actor forward,
+                    'demolishers set number': 0,
+                    'demolisher': True
+                },
+            },
+            'repeat from frame': 0
+        },
+        'stab left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (91,90,89,89,89),  # 0 - 4
+            'activity at frames': {
+                2: {
+                    #'sound': True,
+                    # 'move': 10, # Slightly move actor forward,
+                    'demolishers set number': 0,
+                    'demolisher': True
+                },
+            },
+            'speed': 2,
+            'repeat from frame': 2
+        },
+        'punch combo 1 right': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (109, 109, 110, 110, 109, 109, 110, 110,),  # 5 - 9
+            'speed': 2,
+            'activity at frames': {
+                2: {
+                    'sound': 'sound_swing_2',
+                    # 'move': 10,  # Slightly move actor forward,
+                    'demolishers set number': 0,
+                    'demolisher': True
+                },
+                6: {
+                    #'sound': True,
+                    # 'move': 10,  # Slightly move actor forward,
+                    'sound': 'sound_swing_2',
+                    'demolishers set number': 0,
+                    'demolisher': True
+                },
+            },
+            'repeat from frame': 0
+        },
+        'punch combo 2 right': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (109,109,108,107,106,106,106,106,),  # 5 - 9
+            'speed': 2,
+            'activity at frames': {
+                4: {
+                    'sound': 'sound_swing_2',
+                    'demolishers set number': 1,
+                    'demolisher': True
+                },
+            },
+            'repeat from frame': 0
+        },
+        'punch combo 3 right': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (109,108,108,108,111,111,111,111), # 5 - 9
+            'speed': 2,
+            'activity at frames': {
+                4: {
+                    'sound': 'sound_swing_2',
+                    'move': 10,  # Slightly move actor forward,
+                    'demolishers set number': 2,
+                    'demolisher': True
+                },
+            },
+            'repeat from frame': 0
+        },
+        'punch combo 1 left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (94,94,93,93,94,94,93,93),  # 5 - 9
+            'speed': 2,
+            'activity at frames': {
+                2: {
+                    'sound': 'sound_swing_2',
+                    'demolishers set number': 0,
+                    'demolisher': True
+                },
+                6: {
+                    'sound': 'sound_swing_2',
+                    'demolishers set number': 0,
+                    'demolisher': True
+                },
+            },
+            'repeat from frame': 0
+        },
+        'punch combo 2 left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (94,94, 95, 96, 97,97,97,97,),  # 5 - 9
+            'speed': 2,
+            'activity at frames': {
+                4: {
+                    'sound': 'sound_swing_2',
+                    'demolishers set number': 1,
+                    'demolisher': True
+                },
+            },
+            'repeat from frame': 0
+        },
+        'punch combo 3 left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (94, 95,95,95, 92,92,92,92),  # 5 - 9
+            'speed': 2,
+            'activity at frames': {
+                4: {
+                    'sound': 'sound_swing_2',
+                    'move': 10,  # Slightly move actor forward,
+                    'demolishers set number': 2,
+                    'demolisher': True
+                },
+            },
+            'repeat from frame': 0
+        },
+        'kick combo 1 left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (92,93,94,95,95,95,92,),  # 0 - 4
+            'activity at frames': {
+                3: {
+                    #'sound': True,
+                    # 'move': 10, # Slightly move actor forward,
+                    'demolishers set number': 0,
+                    'demolisher': True
+                },
+            },
+            'speed': 2,
+            'repeat from frame': 0
+        },
+        'kick combo 2 left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (92,92,96,96,97,97,97),  # 0 - 4
+            'activity at frames': {
+                4: {
+                    #'sound': True,
+                    # 'move': 10, # Slightly move actor forward,
+                    'demolishers set number': 1,
+                    'demolisher': True
+                },
+            },
+            'speed': 2,
+            'repeat from frame': 0
+        },
+        'kick combo 3 left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (68,68,67,67,66,66,66,66,67,68),  # 0 - 4
+            'activity at frames': {
+                4: {
+                    #'sound': True,
+                    # 'move': 10, # Slightly move actor forward,
+                    'demolishers set number': 2,
+                    'demolisher': True
+                },
+            },
+            'speed': 2,
+            'repeat from frame': 0
+        },
+        'cast right': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (74, 74, 74, 74, 74,  # 0 - 4
+                         74, 74, 74, 74, 75, 75),  # 5 - 9
+              'speed': 2,
+            'activity at frames': {
+                9: {
+                    #'sound': True,
+                    'demolishers set number': 0,
+                    'demolisher': True
+                },
+            },
+
+            'repeat from frame': 0
+        },
+        'cast left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (89,89,89,89,89,89,  # 0 - 4
+                         89,89,89,89,88,88),  # 5 - 9
+            'speed': 3,
+            'activity at frames': {
+                9: {
+                    #'sound': True,
+                    'demolishers set number': 0,
+                    'demolisher': True
+                },
+            },
+            'repeat from frame': 0
+        },
+        'hold stash left': {
+            'repeat': True,
+            'sequence': (10,),  # 0 - 5
+            'speed': 3,
+            'activity at frames': {
+            },
+            'repeat from frame': 0
+        },
+        'hold stash right': {
+            'repeat': True,
+            'sequence': (22,),  # 0 - 5
+            'speed': 3,
+            'activity at frames': {
+            },
+            'repeat from frame': 0
+        },
+        'carry stash left': {
+            'repeat': True,
+            'sequence': (8,9,10,9,),  # 0 - 5
+            'speed': 3,
+            'activity at frames': {
+            },
+            'repeat from frame': 0
+        },
+        'carry stash right': {
+            'repeat': True,
+            'sequence': (22,23,24,23,),  # 0 - 5
+            'speed': 3,
+            'activity at frames': {
+            },
+            'repeat from frame': 0
+        },
+        'axe swing combo 2 right': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (74,74,74,74,75, 75,76,76, 76,76,76,76,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'speed': 1,
+            'activity at frames': {
+                0: {
+                    #'sound': True,
+                    # 'move': 10,  # Slightly move actor forward,
+                    'demolishers set number': 0,
+                    'demolisher': True
+                },
+                4: {
+                    #'sound': True,
+                    # 'move': 10,  # Slightly move actor forward,
+                    'jump': 15,
+                    'demolishers set number': 1,
+                    'demolisher': True
+                },
+                6: {
+                    #'sound': True,
+                    'move': 30,  # Slightly move actor forward,
+                    'demolishers set number': 2,
+                    'demolisher': True
+                },
+            },
+            'repeat from frame': 0
+        },
+        'axe swing combo 1 left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (91,91,91,91,90, 90, 89, 89, 89,89,89,89,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'speed': 1,
+            'activity at frames': {
+                0: {
+                    #'sound': True,
+                    # 'move': 10,  # Slightly move actor forward,
+                    'demolishers set number': 0,
+                    'demolisher': True
+                },
+                4: {
+                    #'sound': True,
+                    # 'move': 10,  # Slightly move actor forward,
+                    'demolishers set number': 1,
+                    'demolisher': True
+                },
+                6: {
+                    #'sound': True,
+                    # 'move': 10, # Slightly move actor forward,
+                    'demolishers set number': 2,
+                    'demolisher': True
+                },
+            },
+            'repeat from frame': 0
+        },
+        'axe swing combo 1 right': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (74,74,75,76,76,76,74,74,75,76,76,76),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'speed': 1,
+            'activity at frames': {
+                0: {
+                    #'sound': True,
+                    # 'move': 10,  # Slightly move actor forward,
+                    'demolishers set number': 0,
+                    'demolisher': True
+                },
+                2: {
+                    #'sound': True,
+                    # 'move': 10,  # Slightly move actor forward,
+                    'demolishers set number': 1,
+                    'demolisher': True
+                },
+                3: {
+                    #'sound': True,
+                    # 'move': 10,  # Slightly move actor forward,
+                    'demolishers set number': 3,
+                    'demolisher': True
+                },
+                6: {
+                    #'sound': True,
+                    # 'move': 10,  # Slightly move actor forward,
+                    'demolishers set number': 0,
+                    'demolisher': True
+                },
+                8: {
+                    #'sound': True,
+                    # 'move': 10,  # Slightly move actor forward,
+                    'demolishers set number': 1,
+                    'demolisher': True
+                },
+                9: {
+                    #'sound': True,
+                    # 'move': 10,  # Slightly move actor forward,
+                    'demolishers set number': 3,
+                    'demolisher': True
+                },
+            },
+            'repeat from frame': 0
+        },
+        'axe swing combo 2 left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (91,91,91,91,90, 90, 89, 89, 89,89,89,89,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'speed': 1,
+            'activity at frames': {
+                0: {
+                    #'sound': True,
+                    # 'move': 10,  # Slightly move actor forward,
+                    'demolishers set number': 0,
+                    'demolisher': True
+                },
+                4: {
+                    #'sound': True,
+                    # 'move': 10,  # Slightly move actor forward,
+                    'demolishers set number': 1,
+                    'demolisher': True
+                },
+                6: {
+                    #'sound': True,
+                    'move': 10, # Slightly move actor forward,
+                    'demolishers set number': 2,
+                    'demolisher': True
+                },
+            },
+            'repeat from frame': 0
+        },
+        'pistol shot right': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (57,57,57,58,58,59,59,59,59),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'speed': 1,
+            'activity at frames': {
+                3: {
+                    'sound': 'sound_pistol_shot',
+                    'demolishers set number': 0,
+                    'demolisher': True
+                },
+            },
+            'repeat from frame': 0
+        },
+        'pistol shot left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (73,73,73,72,72,71,71,71,71),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'speed': 1,
+            'activity at frames': {
+                3: {
+                    'sound': 'sound_pistol_shot',
+                    'demolishers set number': 0,
+                    'demolisher': True
+                },
+            },
+            'repeat from frame': 0
+        },
+        'protect right': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (98,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'speed': 1,
+            'activity at frames': {
+                0: {
+                    'sound': None,
+                    # 'move': 10,  # Slightly move actor forward,
+                    'protectors set number': 0,
+                    'demolishers set number': 0,
+                    'protector': True,
+                    'demolisher': False
+                },
+            },
+            'repeat from frame': 0
+        },
+        'protect left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (122,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'speed': 1,
+            'activity at frames': {
+                0: {
+                    'sound': None,
+                    # 'move': 10,  # Slightly move actor forward,
+                    'protectors set number': 0,
+                    'demolishers set number': 0,
+                    'protector': True,
+                    'demolisher': False
+                },
+            },
+            'repeat from frame': 0
+        },
+        'protect walk right': {
+            'repeat': True,
+            'sequence': (98,99,100,101,102,103,104,105,106,107,108,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'speed': 1,
+            'activity at frames': {
+                0: {
+                    'sound': None,
+                    # 'move': 10,  # Slightly move actor forward,
+                    'protectors set number': 0,
+                    'demolishers set number': 0,
+                    'protector': True,
+                    'demolisher': False
+                },
+            },
+            'repeat from frame': 0
+        },
+        'protect walk left': {
+            'repeat': True,
+            'sequence': (122,121,120,119,118,117,116,115,114,113,112,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'speed': 1,
+            'activity at frames': {
+                0: {
+                    'sound': None,
+                    # 'move': 10,  # Slightly move actor forward,
+                    'protectors set number': 0,
+                    'demolishers set number': 0,
+                    'protector': True,
+                    'demolisher': False
+                },
+            },
+            'repeat from frame': 0
+        },
+    },
+    'think type': 'chaser',
+    'disappear after death': False,
+    'AI controlled': True
+}
+
 all_hostiles = {
+    sober_knight['name']: sober_knight,
     demon_1['name']: demon_1,
     demon_2['name']: demon_2,
     exploding_barrel['name']: exploding_barrel,

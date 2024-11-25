@@ -487,7 +487,9 @@ class World(object):
             demol.invisible = True
             demol.snapping_offset = {
                 'offset inside actor': description['snapping offset'],
-                'offset inside demolisher': (-demol.rectangle.width//2,0)  # if demol.look == 1 else (demol.rectangle.width, 0)
+                'offset inside demolisher': (demol.rectangle.width//2,-demol.rectangle.height)
+                # 'offset inside demolisher': (-demol.rectangle.width//2,-demol.rectangle.height//2)
+                # 'offset inside demolisher': (-demol.rectangle.width//2,0)
             }
 
         # Geometry and coordinates:
@@ -2097,7 +2099,8 @@ class World(object):
                     # enemy_to_add = copy(all_hostiles['demon 2'])  # Create a copy of enemy
                     self.add_actor(enemy_to_add, (MAXX_DIV_2 + self.camera.offset_x, MAXY_DIV_2 + self.camera.offset_y))
                 elif event.key == K_KP3:
-                    enemy_to_add = copy(all_hostiles['zombie'])  # Create a copy of enemy
+                    enemy_to_add = copy(all_hostiles['James P. Sullivan'])  # Create a copy of enemy
+                    # enemy_to_add = copy(all_hostiles['zombie'])  # Create a copy of enemy
                     # enemy_to_add = copy(all_hostiles['demon 1'])  # Create a copy of enemy
                     # enemy_to_add = copy(all_hostiles['demon 2'])  # Create a copy of enemy
                     self.add_actor(enemy_to_add, (MAXX_DIV_2 + self.camera.offset_x, MAXY_DIV_2 + self.camera.offset_y))

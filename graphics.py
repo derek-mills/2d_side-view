@@ -400,6 +400,19 @@ load_single_frame(tmp_sprites, ((260,150,20,18),), name + ' avatar')
 load_single_frame(tmp_sprites, ((260,150,20,18),), name + ' avatar front')
 load_all_frames(tmp_sprites, 97, name, 20, 30, 22)
 
+# ___...---=== SOBER KNIGHT ===---...___
+name = 'James P. Sullivan'
+tmp_sprites = pygame.image.load('img/animations/jake_8bit.png').convert_alpha()
+# tmp_sprites = pygame.image.load('img/animations/demon_2.png').convert_alpha()
+# try:
+#     weak_spots = pygame.image.load('img/animations/demon_2_weak_spot.png').convert_alpha()
+# except FileNotFoundError:
+# weak_spots = None
+screen.convert_alpha(tmp_sprites)
+load_single_frame(tmp_sprites, ((260,150,20,18),), name + ' avatar')
+load_single_frame(tmp_sprites, ((260,150,20,18),), name + ' avatar front')
+load_all_frames(tmp_sprites, 128, name, 20, 30, 15)
+
 
 # ___...---=== DEMON MALE 1 ===---...___
 name = 'demon 1'
