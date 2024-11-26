@@ -403,6 +403,7 @@ class Entity(object):
                     'collides': True, 'gravity affected': False,
                     'bounce': False, 'bounce factor': 0.,
                     'push': True,
+                    'impact recoil': True,
                     'sounds': {
                         'obstacle hit': 'sound_bullet_wall_hit_1',
                         'body hit': 'sound_meat_blow_1',

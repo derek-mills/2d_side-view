@@ -4,6 +4,8 @@ sword = {
     'combo': False, 'combo steps quantity': 0, 'combo next step threshold': 0,    'amount': 1,
     'amount threshold': 1,
     'amount decrease speed': 0,
+
+
     'affects on': '',
     'attack animation': 'stab',
     'stamina consumption': 1.2,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
@@ -22,7 +24,7 @@ sword = {
     'ammo': 0,
     'label': 'short sword',
     'sprite': 'short sword',
-    'reach': 50,
+    'reach': 400,
     'weight': 40,
     'demolishers': (
         ({
@@ -41,8 +43,8 @@ sword = {
                  'body hit': 'sound_meat_blow_1',
                  'protector hit': 'sound_bucket_hit_1',
              },
-             'damage': {
-
+            'impact recoil': True, 
+            'damage': {
                  'slash': 80
              },
             'aftermath': 'disappear'
@@ -63,7 +65,8 @@ sword = {
                  'body hit': 'sound_meat_blow_1',
                  'protector hit': 'sound_bucket_hit_1',
              },
-             'damage': {
+            'impact recoil': True, 
+            'damage': {
 
                 'slash': 100
             },
@@ -77,6 +80,7 @@ kitchen_knife = {
     'combo': False, 'combo steps quantity': 0, 'combo next step threshold': 0,    'amount': 1,
     'amount threshold': 1,
     'amount decrease speed': 0,
+
     'affects on': '',
     'stamina consumption': 0.4,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
     'mana consumption': 0.,
@@ -100,7 +104,7 @@ kitchen_knife = {
     #     1:  (46, 36),
     #     -1: (-46, 36),
     # },
-    'reach': 50,
+    'reach': 350,
     'weight': 20,
     'demolishers': (
         ({
@@ -119,7 +123,8 @@ kitchen_knife = {
                  'body hit': 'sound_meat_blow_1',
                  'protector hit': 'sound_bucket_hit_1',
              },
-             'damage': {
+            'impact recoil': True, 
+            'damage': {
                  'slash': 100
              },
             'aftermath': None
@@ -159,6 +164,8 @@ fireball_staff = {
     'amount': 1,
     'amount threshold': 1,
     'amount decrease speed': 0,
+
+
     'affects on': '',
     'stamina consumption': .5,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
     'mana consumption': 2.,
@@ -189,7 +196,8 @@ fireball_staff = {
                  'body hit': 'sound_meat_blow_1',
                  'protector hit': 'sound_bucket_hit_1',
              },
-             'damage': {
+            'impact recoil': False,
+            'damage': {
                  'fire': 150,
              },
             'aftermath': 'disappear'
@@ -210,6 +218,8 @@ spikeball_staff = {
     'amount': 1,
     'amount threshold': 1,
     'amount decrease speed': 0,
+
+
     'affects on': '',
     'stamina consumption': .5,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
     'mana consumption': 2.,
@@ -239,6 +249,7 @@ spikeball_staff = {
                  'body hit': 'sound_meat_blow_1',
                  'protector hit': 'sound_bucket_hit_1',
              },
+            'impact recoil': False,
             'damage': {
                  'pierce': 100,
              },
@@ -260,6 +271,8 @@ whip = {
     'amount': 1,
     'amount threshold': 1,
     'amount decrease speed': 0,
+
+
     'affects on': '',
     'stamina consumption': .1,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
     'mana consumption': 0.,
@@ -291,7 +304,8 @@ whip = {
                  # 'body hit': 'sound_meat_blow_1',
                  'protector hit': 'sound_bucket_hit_1',
              },
-             'damage': {
+            'impact recoil': False,
+            'damage': {
                  # 'pierce': 1,
                  'whip': 10,
              },
@@ -316,7 +330,8 @@ whip = {
                  # 'body hit': 'sound_meat_blow_1',
                  'protector hit': 'sound_bucket_hit_1',
              },
-             'damage': {
+            'impact recoil': False,
+            'damage': {
                 # 'pierce': 10,
                  'whip': 20,
              },
@@ -341,7 +356,8 @@ whip = {
                  # 'body hit': 'sound_meat_blow_1',
                  'protector hit': 'sound_bucket_hit_1',
              },
-             'damage': {
+            'impact recoil': False,
+            'damage': {
                 # 'pierce': 60,
                  'whip': 60,
              },
@@ -365,6 +381,8 @@ jake_kick = {
     'amount': 1,
     'amount threshold': 1,
     'amount decrease speed': 0,
+
+
     'affects on': '',
     'stamina consumption': 1,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
     'mana consumption': 0.,
@@ -375,7 +393,7 @@ jake_kick = {
     'droppable': False,
     'need ammo': False,
     'ammo': 0,
-    'reach': 170,
+    'reach': 270,
     'weight': 1,
     'demolishers': (
         # 'demolishers set number' #0
@@ -395,7 +413,8 @@ jake_kick = {
                  'body hit': 'sound_meat_blow_1',
                  'protector hit': 'sound_bucket_hit_1',
              },
-             'damage': {
+            'impact recoil': True, 
+            'damage': {
 
                  'blunt': 15,
                  # 
@@ -421,7 +440,8 @@ jake_kick = {
                  'body hit': 'sound_meat_blow_1',
                  'protector hit': 'sound_bucket_hit_1',
              },
-             'damage': {
+            'impact recoil': True, 
+            'damage': {
 
                  'blunt': 20,
                  'slash': 1,
@@ -442,13 +462,14 @@ jake_kick = {
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
             'attack type': ('smash',),
-             'push': False,
+             'push': True,
              'sounds': {
                  'obstacle hit': 'sound_bullet_wall_hit_1',
                  'body hit': 'sound_meat_blow_1',
                  'protector hit': 'sound_bucket_hit_1',
              },
-             'damage': {
+            'impact recoil': True, 
+            'damage': {
 
                  'blunt': 50,
                  
@@ -474,6 +495,8 @@ jake_punch = {
     'amount': 1,
     'amount threshold': 1,
     'amount decrease speed': 0,
+
+
     'affects on': '',
     'stamina consumption': 1,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
     'mana consumption': 0.,
@@ -504,7 +527,8 @@ jake_punch = {
                  'body hit': 'sound_punch_1',
                  'protector hit': 'sound_bucket_hit_1',
              },
-             'damage': {
+            'impact recoil': True, 
+            'damage': {
                  'blunt': 5,
                  # 
                  # 'slash': 1,
@@ -529,7 +553,8 @@ jake_punch = {
                  'body hit': 'sound_punch_1',
                  'protector hit': 'sound_bucket_hit_1',
              },
-             'damage': {
+            'impact recoil': True, 
+            'damage': {
                  'blunt': 15,
                  # 'slash': 1,
                  # 
@@ -554,7 +579,8 @@ jake_punch = {
                  'body hit': 'sound_punch_1',
                  'protector hit': 'sound_bucket_hit_1',
              },
-             'damage': {
+            'impact recoil': True, 
+            'damage': {
                  'blunt': 40,
                  'slash': 1,
              },
@@ -578,6 +604,8 @@ axe = {
     'amount': 1,
     'amount threshold': 1,
     'amount decrease speed': 0,
+
+
     'affects on': '',
     'stamina consumption': 1,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
     'mana consumption': 0.,
@@ -608,7 +636,8 @@ axe = {
                  'body hit': 'sound_meat_blow_1',
                  'protector hit': 'sound_bucket_hit_1',
              },
-             'damage': {
+            'impact recoil': True, 
+            'damage': {
                  'slash': 10
              },
             # 'aftermath': 'explode'
@@ -631,7 +660,8 @@ axe = {
                  'body hit': 'sound_meat_blow_1',
                  'protector hit': 'sound_bucket_hit_1',
              },
-             'damage': {
+            'impact recoil': True, 
+            'damage': {
                  'slash': 30
              },
             # 'aftermath': 'explode'
@@ -654,7 +684,8 @@ axe = {
                  'body hit': 'sound_meat_blow_1',
                  'protector hit': 'sound_bucket_hit_1',
              },
-             'damage': {
+            'impact recoil': True, 
+            'damage': {
                  'slash': 190
              },
             # 'aftermath': 'explode'
@@ -677,7 +708,8 @@ axe = {
                  'body hit': 'sound_meat_blow_1',
                  'protector hit': 'sound_bucket_hit_1',
              },
-             'damage': {
+            'impact recoil': True, 
+            'damage': {
                  'slash': 90
              },
              # 'aftermath': 'explode'
@@ -702,6 +734,8 @@ demon_2_mid = {
     'amount': 1,
     'amount threshold': 1,
     'amount decrease speed': 0,
+
+
     'affects on': '',
     'stamina consumption': 1.5,  # Stamina reduce multiplier. The greater, the more stamina will be lost per one weapon use.
     'mana consumption': 0.,
@@ -731,7 +765,8 @@ demon_2_mid = {
                  'body hit': 'sound_meat_blow_1',
                  'protector hit': 'sound_bucket_hit_1',
              },
-             'damage': {
+            'impact recoil': True, 
+            'damage': {
                  'slash': 100
              },
             # 'aftermath': 'explode'
@@ -753,7 +788,8 @@ demon_2_mid = {
                  'body hit': 'sound_meat_blow_1',
                  'protector hit': 'sound_bucket_hit_1',
              },
-             'damage': {
+            'impact recoil': True, 
+            'damage': {
                  'pierce': 100,
                  'slash': 10
              },
@@ -776,7 +812,8 @@ demon_2_mid = {
                  'body hit': 'sound_meat_blow_1',
                  'protector hit': 'sound_bucket_hit_1',
              },
-             'damage': {
+            'impact recoil': True, 
+            'damage': {
                  'blunt': 100,
              },
             # 'aftermath': 'explode'
@@ -800,6 +837,8 @@ demon_2_close = {
     'amount': 1,
     'amount threshold': 1,
     'amount decrease speed': 0,
+
+
     'affects on': '',
     'stamina consumption': 1.5,  # Stamina reduce multiplier. The greater, the more stamina will be lost per one weapon use.
     'mana consumption': 0.,
@@ -830,7 +869,8 @@ demon_2_close = {
                  'body hit': 'sound_meat_blow_1',
                  'protector hit': 'sound_bucket_hit_1',
              },
-             'damage': {
+            'impact recoil': True, 
+            'damage': {
                 'pierce': 100,
                 'slash': 100
              },
@@ -855,7 +895,8 @@ demon_2_close = {
                  'body hit': 'sound_meat_blow_1',
                  'protector hit': 'sound_bucket_hit_1',
              },
-             'damage': {
+            'impact recoil': True, 
+            'damage': {
                 'pierce': 100,
                  'slash': 100
              },
@@ -880,6 +921,8 @@ pistol = {
     'amount': 1,
     'amount threshold': 1,
     'amount decrease speed': 0,
+
+
     'affects on': '',
     'stamina consumption': 0.1,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
     'mana consumption': 0.4,
@@ -908,7 +951,8 @@ pistol = {
                  'body hit': 'sound_meat_blow_1',
                  'protector hit': 'sound_bucket_hit_1',
              },
-             'damage': {
+            'impact recoil': False,
+            'damage': {
                  'fire': 225,
              },
              # 'aftermath': 'explode'
@@ -931,7 +975,8 @@ pistol = {
                  'body hit': 'sound_meat_blow_1',
                  'protector hit': 'sound_bucket_hit_1',
              },
-             'damage': {
+            'impact recoil': False,
+            'damage': {
                  'fire': 25,
                  'pierce': 100,
              },
@@ -956,6 +1001,8 @@ barrel_explosion = {
     'amount': 1,
     'amount threshold': 1,
     'amount decrease speed': 0,
+
+
     'affects on': '',
     'stamina consumption': 0.,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
     'mana consumption': 0.,
@@ -979,18 +1026,17 @@ barrel_explosion = {
             'collides': True, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
             'attack type': ('fire', 'smash', 'pierce', 'slash'),
-            'push': False,
+            'push': True,
              'sounds': {
                  'obstacle hit': 'sound_bullet_wall_hit_1',
                  'body hit': 'sound_meat_blow_1',
                  'protector hit': 'sound_bucket_hit_1',
              },
-             'damage': {
-
+             'impact recoil': False,
+            'damage': {
                 'fire': 50,
-                
                 'type': 'blunt',
-            'pierce': 100,
+                'pierce': 100,
                 'slash': 10
             },
             'aftermath': 'explode'

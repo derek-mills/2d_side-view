@@ -20,6 +20,7 @@ class Demolisher(Entity):
         self.push = False
         self.mana_consumption: int = 0
         self.stamina_consumption: int = 0
+        self.impact_recoil: bool = True    # This demolisher causes stunning of own parent if it hits a protector.
 
         # Total damage amount is necessary to burn out stamina of a sneaky actor, protected by shield.
         self.total_damage_amount: float = 0.
@@ -222,21 +223,21 @@ class Demolisher(Entity):
 
     def detect_collisions_with_protectors(self):
         if self.floppy:
-            print(f'[detect collision with protectors] {self.id} IS FLOPPY...')
+            # print(f'[detect collision with protectors] {self.id} IS FLOPPY...')
             return
         if self.protectors_around:
-            print(f'[detect collision with protectors] {self.id} collision check starting...')
+            # print(f'[detect collision with protectors] {self.id} collision check starting...')
             for k in self.protectors_around.keys():
                 p = self.protectors_around[k]
                 if self.rectangle.colliderect(p.rectangle) and self.look != p.look:
-                    # if self.floppy:
-                    #     continue
                     self.summoned_sounds.append(p.sounds[self.type])
-                    # self.summoned_sounds.append(self.sounds['protector hit'])
 
-                    print(f'[detect collision with protectors] {self.id} collided with {p.name}, {p.look=}, {self.look=}')
+                    # print(f'[detect collision with protectors] {self.id} collided with {p.name}, {p.look=}, {self.look=}')
                     self.become_mr_floppy()
                     # self.parent.make_all_following_demolishers_floppy = True
+                    if self.impact_recoil:
+                        if self.parent:
+                            self.parent.set_state('prepare to get hurt')
 
                     # Reduce all damaging abilities according to protector's might:
                     # damage = self.damage.copy()
@@ -244,37 +245,20 @@ class Demolisher(Entity):
                         self.damage[damage_type] *= p.protection[damage_type]
                         # damage[damage_type] *= p.protection[damage_type]
 
-                    # if self.parent:
-                    #     self.parent.animation_sequence_done = True
-                        # self.parent.idle_counter = 10
-                        # self.parent.set_state('stand_still')
-                        # self.parent.animation_change_denied = False
-                        # self.parent.set_current_animation()
                     if self.id not in p.parent.got_immunity_to_demolishers:
                         p.parent.got_immunity_to_demolishers.append(self.id)
                     p.parent.mana_reduce(p.mana_consumption * p.parent.normal_mana_lost_per_defend)
                     p.parent.stamina_reduce(p.stamina_consumption * p.parent.normal_stamina_lost_per_defend)
                     p.parent.get_damage(self.damage, 1)
-                    # p.parent.get_damage(damage, 1)
-
-                    # p.parent.got_immunity_to_demolishers.append(self.id)
-                    # p.parent.get_damage(self.damage, 1)
                     if p.parent.total_damage_has_got > 0:
                         if p.parent.stats['stamina'] > 0 and p.parent.stats['mana'] > 0:
                             p.parent.invincibility_timer = self.default_invincibility_timer
-                        # p.parent.invincibility_timer = 30
                         if self.id not in p.parent.got_immunity_to_demolishers:
                             p.parent.got_immunity_to_demolishers.append(self.id)
                         # print(f'[detect demolishers] {p.parent.got_immunity_to_demolishers}')
                         p.parent.set_state('prepare to get hurt')
                         p.parent.state_machine()
                         p.parent.summon_info_blob(str(int(p.parent.total_damage_has_got)), YELLOW if p.parent.id == 0 else WHITE, self.parent.look if self.parent else 1)
-                    # if damage_is_real:
-                    #     self.invincibility_timer = 20
-                    #     p.parent.get_damage(self.damage, 1)
-                    #     p.parent.set_state('prepare to get hurt')
-                    #     p.parent.state_machine()
-                    #     p.parent.summon_info_blob(str(int(p.parent.total_damage_has_got)), RED if p.parent.id == 0 else WHITE, self.parent.look if self.parent else 1)
 
                     if self.bounce:
                         self.is_being_collided_now = True
@@ -284,9 +268,6 @@ class Demolisher(Entity):
                             self.collided_left = True
                         else:
                             self.collided_right = True
-
-                    # for damage_type in self.damage:
-                    #     self.damage[damage_type] *= p.protection[damage_type]
 
                     break
 

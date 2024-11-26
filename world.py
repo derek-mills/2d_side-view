@@ -411,6 +411,7 @@ class World(object):
         demol.parent = description['parent']
         demol.sounds = description['sounds']
         demol.type = description['type']
+        demol.impact_recoil = description['impact recoil']
         if description['static']:
             demol.snap_to_actor = demol.parent.id
         else:
@@ -1210,7 +1211,8 @@ class World(object):
                                 # actor.current_stamina_lost_per_attack = actor.normal_stamina_lost_per_attack * actor.current_weapon['stamina consumption']
                                 # actor.current_mana_lost_per_attack = actor.normal_mana_lost_per_attack * actor.current_weapon['mana consumption']
                                 if actor.current_weapon['type'] == 'shields':
-                                    if actor.stats['mana'] > 3:
+                                    if actor.stats['stamina'] > 0:
+                                    # if actor.stats['mana'] > 3:
                                         actor.set_action('protect')
                                     else:
                                         actor.set_action('stand still')
