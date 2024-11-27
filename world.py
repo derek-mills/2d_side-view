@@ -606,7 +606,7 @@ class World(object):
                 'offset inside demolisher': (-protector.rectangle.width//2,0)  # if protector.look == 1 else (protector.rectangle.width, 0)
             }
         if protector.parent:
-            protector.update(protector.parent.look, protector.parent.rectangle)
+            protector.update(protector.parent.look, protector.parent.sprite_rectangle, protector.parent.current_sprite['demolisher snap point'])
             if protector.flyer:
                 protector.destination_point = (self.camera.max_offset_x + MAXX, protector.rectangle.y) if protector.parent.look == 1 else (-100, protector.rectangle.y)
         else:
@@ -959,7 +959,8 @@ class World(object):
                     continue
                 actor = self.actors[self.location][protector.snap_to_actor]
                 # protector.update(actor.vec_to_destination)
-                protector.update(actor.look, actor.rectangle)
+                protector.update(actor.look, actor.sprite_rectangle, actor.current_sprite['demolisher snap point'])
+                # protector.update(actor.look, actor.rectangle)
                 # protector.update(actor.look, actor.sprite_rectangle)
 
             protector.get_time(self.time_passed, self.game_cycles_counter)
