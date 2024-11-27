@@ -611,7 +611,7 @@ class Actor(Entity):
             self.ignore_user_input = self.current_weapon['ignore user input']
             if self.is_stand_on_ground:
                 self.heading[0] = 0
-        elif state in ('stab', 'cast', 'axe swing', 'whip',
+        elif state in ('stab', 'stab close', 'cast', 'axe swing', 'whip',
                        'whip crouch right', 'whip crouch left',
                        'kick', 'pistol shot', 'punch'):                          # ATTACKING IN PROCESS...
             # print(f'[state machine] {self.name} attacking.')

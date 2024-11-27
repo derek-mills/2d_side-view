@@ -1256,7 +1256,7 @@ player_jake = {
     'friction': .9,
     'air acceleration': .4,
     # First item in list must be an undroppable weapon.
-    'items': (small_shield,jake_punch,whip, spikeball_staff,axe, fireball_staff,pistol,),
+    'items': (small_shield, kitchen_knife, jake_punch,whip, spikeball_staff,axe, fireball_staff,pistol,),
     # 'items': (whip,fireball_staff,sword,kitchen_knife,),
     'animations': {
 
@@ -1630,6 +1630,59 @@ player_jake = {
                 },
             },
             'speed': 2,
+            'repeat from frame': 2
+        },
+        'stab close right': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (108, 108, 108, 75, 75, 75, 102, 102, 102, 62, 62, 62, 62),  # 0 - 4
+            'speed': 3,
+            'activity at frames': {
+                3: {
+                    # 'sound': True,
+                    # 'move': 10, # Slightly move actor forward,
+                    'demolishers set number': 1,
+                    'demolisher': True
+                },
+                # 6: {
+                #     # 'sound': True,
+                #     # 'move': 10, # Slightly move actor forward,
+                #     'demolishers set number': 0,
+                #     'demolisher': True
+                # },
+                # 9: {
+                #     # 'sound': True,
+                #     # 'move': 10, # Slightly move actor forward,
+                #     'demolishers set number': 0,
+                #     'demolisher': True
+                # },
+            },
+            'repeat from frame': 0
+        },
+        'stab close left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (95, 95, 95, 90, 90, 90, 122, 122, 122, 78, 78, 78, 78),  # 0 - 4
+            'activity at frames': {
+                3: {
+                    # 'sound': True,
+                    # 'move': 10, # Slightly move actor forward,
+                    'demolishers set number': 1,
+                    'demolisher': True
+                },
+                # 6: {
+                #     # 'sound': True,
+                #     # 'move': 10, # Slightly move actor forward,
+                #     'demolishers set number': 1,
+                #     'demolisher': True
+                # },
+                # 9: {
+                #     # 'sound': True,
+                #     # 'move': 10, # Slightly move actor forward,
+                #     'demolishers set number': 0,
+                #     'demolisher': True
+                # },
+
+            },
+            'speed': 3,
             'repeat from frame': 2
         },
         'punch combo 1 right': {
@@ -2086,7 +2139,8 @@ sober_knight = {
     # Second item: middle-range weapon
     # Third item: ranged weapon.
     # Fourth item: a protector.
-    'items': (jake_kick, choice((whip, sword, kitchen_knife)), pistol, small_shield,),
+    'items': (kitchen_knife, whip, pistol, small_shield,),
+    # 'items': (jake_kick, choice((whip, sword, kitchen_knife)), pistol, small_shield,),
     # 'items': (choice((jake_punch, sword, )), whip, pistol, small_shield,),
     # 'items': (whip,fireball_staff,sword,kitchen_knife,),
     'animations': {
@@ -2461,6 +2515,59 @@ sober_knight = {
                 },
             },
             'speed': 2,
+            'repeat from frame': 2
+        },
+        'stab close right': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (108,108,108,75,75,75,102,102,102,62,62,62,62),  # 0 - 4
+            'speed': 5,
+            'activity at frames': {
+                3: {
+                    #'sound': True,
+                    # 'move': 10, # Slightly move actor forward,
+                    'demolishers set number': 0,
+                    'demolisher': True
+                },
+                6: {
+                    #'sound': True,
+                    # 'move': 10, # Slightly move actor forward,
+                    'demolishers set number': 1,
+                    'demolisher': True
+                },
+                9: {
+                    #'sound': True,
+                    # 'move': 10, # Slightly move actor forward,
+                    'demolishers set number': 1,
+                    'demolisher': True
+                },
+            },
+            'repeat from frame': 0
+        },
+        'stab close left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (95,95,95,90,90,90,122,122,122,78,78,78,78),  # 0 - 4
+            'activity at frames': {
+                3: {
+                    #'sound': True,
+                    # 'move': 10, # Slightly move actor forward,
+                    'demolishers set number': 0,
+                    'demolisher': True
+                },
+                6: {
+                    #'sound': True,
+                    # 'move': 10, # Slightly move actor forward,
+                    'demolishers set number': 1,
+                    'demolisher': True
+                },
+                9: {
+                    # 'sound': True,
+                    # 'move': 10, # Slightly move actor forward,
+                    'demolishers set number': 0,
+                    'demolisher': True
+                },
+
+            },
+            'speed': 5,
             'repeat from frame': 2
         },
         'punch combo 1 right': {

@@ -497,7 +497,8 @@ class World(object):
 
         # Geometry and coordinates:
         if demol.parent:
-            demol.update(demol.parent.look, demol.parent.rectangle)
+            demol.update(demol.parent.look, demol.parent.rectangle, demol.parent.current_sprite['demolisher snap point'])
+            # demol.update(demol.parent.look, demol.parent.rectangle)
             if demol.flyer:
                 demol.destination_point = (self.camera.max_offset_x + MAXX, demol.rectangle.y) if demol.parent.look == 1 else (-100, demol.rectangle.y)
         else:
@@ -928,8 +929,7 @@ class World(object):
                     dead.append(dem.id)
                     continue
                 actor = self.actors[self.location][dem.snap_to_actor]
-                # dem.update(actor.vec_to_destination)
-                dem.update(actor.look, actor.rectangle)
+                dem.update(actor.look, actor.sprite_rectangle, actor.current_sprite['demolisher snap point'])
                 # dem.update(actor.look, actor.sprite_rectangle)
 
             dem.get_time(self.time_passed, self.game_cycles_counter)

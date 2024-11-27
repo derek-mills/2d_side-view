@@ -54,8 +54,25 @@ class Demolisher(Entity):
     #     # print(f"[demolisher update] Exit with: {self.rectangle=}")
     #     # print(f"[demolisher update] ---------------------------")
 
+    def update(self, snap_side, snap_rect, offset_inside_rect):
+        # print(f'[demolisher update] {self.snapping_offset["offset inside actor"]=} {offset_inside_rect=}')
+        if snap_side == 1:  # Snapping to the actor's right side
+            self.rectangle.centerx = snap_rect.centerx + offset_inside_rect[0] \
+                                     - self.snapping_offset['offset inside demolisher'][0]
+            self.rectangle.centery = snap_rect.centery + offset_inside_rect[1] \
+                                     - self.snapping_offset['offset inside demolisher'][1]
+            # self.rectangle.centerx = snap_rect.centerx + self.snapping_offset['offset inside actor'][0] \
+            #                          - self.snapping_offset['offset inside demolisher'][0]
+            # self.rectangle.centery = snap_rect.centery + self.snapping_offset['offset inside actor'][1] \
+            #                          - self.snapping_offset['offset inside demolisher'][1]
 
-    def update(self, snap_side, snap_rect):
+        else:
+            self.rectangle.centerx = snap_rect.centerx + offset_inside_rect[0] \
+                                     - self.snapping_offset['offset inside demolisher'][0] * -1
+            self.rectangle.centery = snap_rect.centery + offset_inside_rect[1] \
+                                     - self.snapping_offset['offset inside demolisher'][1]
+
+    def update_old(self, snap_side, snap_rect):
         # self.rectangle.centerx = snap_rect.centerx + self.snapping_offset[snap_side][0]
         # self.rectangle.centery = snap_rect.centery + self.snapping_offset[snap_side][1]
 

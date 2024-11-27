@@ -85,7 +85,7 @@ kitchen_knife = {
     'stamina consumption': 0.4,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
     'mana consumption': 0.,
     'aimed fire': True,
-    'attack animation': 'stab',
+    'attack animation': 'stab close',
     'ignore user input': True,  # Steal the ability to control a character for a while.
     # 'actor forward moving speed': 0.3,  # During attack an actor may uncontrollably move forward (min 0.5).
     'animation speed modifier': 1.,  # 0 < x < 1: speed animation up, x > 1: slow down.
@@ -94,7 +94,7 @@ kitchen_knife = {
     'drop invincibility': 100,
     'has crouch attack': False,
     'type': 'melee',
-    'sound': 'sound_swing_2',
+    # 'sound': 'sound_swing_2',
     'droppable': True,
     'need ammo': False,
     'ammo': 0,
@@ -129,6 +129,28 @@ kitchen_knife = {
              },
             'aftermath': None
         },),
+        ({
+             'rect': pygame.Rect(0, 0, 30, 30), 'flyer': False,
+             'visible': True,
+             'demolisher sprite': 'kitchen knife demolisher',
+             'type': 'blunt',
+             'pierce': False, 'demolisher TTL': 100, 'speed': 12,
+             'static': True, 'damage reduce': .1,
+             'collides': True, 'gravity affected': False,
+             'bounce': False, 'bounce factor': 0.,
+             'attack type': ('slash',),
+             'push': False,
+             'sounds': {
+                 'obstacle hit': 'sound_bullet_wall_hit_1',
+                 'body hit': 'sound_meat_blow_1',
+                 'protector hit': 'sound_bucket_hit_1',
+             },
+             'impact recoil': True,
+             'damage': {
+                 'slash': 100
+             },
+             'aftermath': None
+         },),
         # {
         #     'rect': pygame.Rect(0, 0, 10, 10), 'flyer': False,
         #     'demolisher sprite': None,
