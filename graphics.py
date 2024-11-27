@@ -377,7 +377,22 @@ load_single_frame(tmp_sprites, ((260,150,20,18),), name + ' avatar front')
 # load_single_frame(tmp_sprites, ((1744,2194,332,205),), name + ' 98')  # Unconsciousness frame 1
 # load_single_frame(tmp_sprites, ((2076,2220,369,176),), name + ' 99')  # Unconsciousness frame 2
 # load_all_frames(tmp_sprites, 122, name, 200, 300, 1)
-load_all_frames(tmp_sprites, 128, name, 20, 30, 15)
+load_all_frames(tmp_sprites, 128, name, 91, 136, 3)
+# # ___...---=== JAKE ===---...___
+# name = 'Jake'
+# tmp_sprites = pygame.image.load('img/animations/jake_8bit.png').convert_alpha()
+# # try:
+# #     weak_spots = pygame.image.load('img/animations/jake_8bit_weak_spot.png').convert_alpha()
+# # except FileNotFoundError:
+# #     weak_spots = None
+# screen.convert_alpha(tmp_sprites)
+# load_single_frame(tmp_sprites, ((260,150,20,18),), name + ' avatar')
+# load_single_frame(tmp_sprites, ((260,150,20,18),), name + ' avatar front')
+# # load_single_frame(tmp_sprites, ((2660,1720,90,50),), name + 'floor shadow mask')
+# # load_single_frame(tmp_sprites, ((1744,2194,332,205),), name + ' 98')  # Unconsciousness frame 1
+# # load_single_frame(tmp_sprites, ((2076,2220,369,176),), name + ' 99')  # Unconsciousness frame 2
+# # load_all_frames(tmp_sprites, 122, name, 200, 300, 1)
+# load_all_frames(tmp_sprites, 128, name, 20, 30, 15)
 
 
 # ___...---=== EXPLODING BARREL ===---...___
@@ -411,7 +426,19 @@ tmp_sprites = pygame.image.load('img/animations/jake_8bit.png').convert_alpha()
 screen.convert_alpha(tmp_sprites)
 load_single_frame(tmp_sprites, ((260,150,20,18),), name + ' avatar')
 load_single_frame(tmp_sprites, ((260,150,20,18),), name + ' avatar front')
-load_all_frames(tmp_sprites, 128, name, 20, 30, 15)
+load_all_frames(tmp_sprites, 128, name, 91, 136, 3)
+# # ___...---=== SOBER KNIGHT ===---...___
+# name = 'James P. Sullivan'
+# tmp_sprites = pygame.image.load('img/animations/jake_8bit.png').convert_alpha()
+# # tmp_sprites = pygame.image.load('img/animations/demon_2.png').convert_alpha()
+# # try:
+# #     weak_spots = pygame.image.load('img/animations/demon_2_weak_spot.png').convert_alpha()
+# # except FileNotFoundError:
+# # weak_spots = None
+# screen.convert_alpha(tmp_sprites)
+# load_single_frame(tmp_sprites, ((260,150,20,18),), name + ' avatar')
+# load_single_frame(tmp_sprites, ((260,150,20,18),), name + ' avatar front')
+# load_all_frames(tmp_sprites, 128, name, 20, 30, 15)
 
 
 # ___...---=== DEMON MALE 1 ===---...___

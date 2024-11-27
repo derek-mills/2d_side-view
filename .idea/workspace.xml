@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
+    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="Fixed new update system for protectors.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphics.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphics.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/img/animations/jake_8bit.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/animations/jake_8bit.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/img/gimp_originals/jake_8bit.xcf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,13 +164,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00547" summary="If stamina or mana have been forced to reduce, negative amount of such statuses subtract from the health pool.">
-      <created>1730444995896</created>
-      <option name="number" value="00547" />
-      <option name="presentableId" value="LOCAL-00547" />
-      <option name="project" value="LOCAL" />
-      <updated>1730444995896</updated>
     </task>
     <task id="LOCAL-00548" summary="If stamina or mana have been forced to reduce, negative amount of such statuses subtract from the health pool. Improvement.">
       <created>1730445982698</created>
@@ -509,7 +501,14 @@
       <option name="project" value="LOCAL" />
       <updated>1732674964336</updated>
     </task>
-    <option name="localTasksCounter" value="596" />
+    <task id="LOCAL-00596" summary="Fixed new update system for protectors.">
+      <created>1732675471373</created>
+      <option name="number" value="00596" />
+      <option name="presentableId" value="LOCAL-00596" />
+      <option name="project" value="LOCAL" />
+      <updated>1732675471373</updated>
+    </task>
+    <option name="localTasksCounter" value="597" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -524,7 +523,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Some tuning" />
     <MESSAGE value="Added 'jump' action among the others possible during active frames. Actor may jump for a given amount during attack now, for example." />
     <MESSAGE value="Added sounds, only just for right-side punch combo now." />
     <MESSAGE value="Player's actor footsteps sound added." />
@@ -549,6 +547,7 @@
     <MESSAGE value="Some demolishers cause no collision with protector if their initial TTL is 1." />
     <MESSAGE value="Added 'impact recoil' demolisher property, which causes parent to be in stunned state if such demolisher hits a protector." />
     <MESSAGE value="Demolishers snapping and position updating system has changed." />
-    <option name="LAST_COMMIT_MESSAGE" value="Demolishers snapping and position updating system has changed." />
+    <MESSAGE value="Fixed new update system for protectors." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed new update system for protectors." />
   </component>
 </project>
