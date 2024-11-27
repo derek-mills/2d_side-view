@@ -377,7 +377,7 @@ load_single_frame(tmp_sprites, ((260,150,20,18),), name + ' avatar front')
 # load_single_frame(tmp_sprites, ((1744,2194,332,205),), name + ' 98')  # Unconsciousness frame 1
 # load_single_frame(tmp_sprites, ((2076,2220,369,176),), name + ' 99')  # Unconsciousness frame 2
 # load_all_frames(tmp_sprites, 122, name, 200, 300, 1)
-load_all_frames(tmp_sprites, 128, name, 91, 136, 3)
+load_all_frames(tmp_sprites, 128, name, 80, 120, 4)
 # # ___...---=== JAKE ===---...___
 # name = 'Jake'
 # tmp_sprites = pygame.image.load('img/animations/jake_8bit.png').convert_alpha()
@@ -426,7 +426,7 @@ tmp_sprites = pygame.image.load('img/animations/jake_8bit.png').convert_alpha()
 screen.convert_alpha(tmp_sprites)
 load_single_frame(tmp_sprites, ((260,150,20,18),), name + ' avatar')
 load_single_frame(tmp_sprites, ((260,150,20,18),), name + ' avatar front')
-load_all_frames(tmp_sprites, 128, name, 91, 136, 3)
+load_all_frames(tmp_sprites, 128, name, 80, 120, 4)
 # # ___...---=== SOBER KNIGHT ===---...___
 # name = 'James P. Sullivan'
 # tmp_sprites = pygame.image.load('img/animations/jake_8bit.png').convert_alpha()
