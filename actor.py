@@ -1928,11 +1928,16 @@ class Actor(Entity):
         # self.is_edge_grabbed = False
 
     def think(self):
-        if self.think_type == 'chaser':
+        if self.think_type == 'patrol':
+            self.target = self.living_entities['player']
+            self.think_type = 'chaser'
+        elif self.think_type == 'chaser':
             # Change weapon depends on target vicinity:
             # print('[think]', list(self.inventory['weapons'].keys()))
             # if not self.animation_sequence_done:
             #     return
+            if not self.target or self.target.dead:
+                self.think_type = 'patrol'
             if self.rectangle.centerx > self.target.rectangle.centerx:
                 self.ai_input_left_arrow = True
                 self.ai_input_right_arrow = False

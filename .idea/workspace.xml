@@ -6,6 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphics.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,13 +167,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00553" summary="Actor releases damage info blobs even if he got cover behind the shield.">
-      <created>1730787469164</created>
-      <option name="number" value="00553" />
-      <option name="presentableId" value="LOCAL-00553" />
-      <option name="project" value="LOCAL" />
-      <updated>1730787469164</updated>
     </task>
     <task id="LOCAL-00554" summary="Actor releases damage info blobs even if he got cover behind the shield.">
       <created>1730797628351</created>
@@ -506,7 +504,14 @@
       <option name="project" value="LOCAL" />
       <updated>1732774757441</updated>
     </task>
-    <option name="localTasksCounter" value="602" />
+    <task id="LOCAL-00602" summary="AI-actor gets his target during initiation, not every game tick.">
+      <created>1732775480678</created>
+      <option name="number" value="00602" />
+      <option name="presentableId" value="LOCAL-00602" />
+      <option name="project" value="LOCAL" />
+      <updated>1732775480678</updated>
+    </task>
+    <option name="localTasksCounter" value="603" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -521,7 +526,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Barrel explosion sound added" />
     <MESSAGE value="Added individual sound sets for every damager." />
     <MESSAGE value="Added correct bouncing sound handling." />
     <MESSAGE value="Added some other sounds." />
@@ -546,6 +550,7 @@
     <MESSAGE value="Added bigger initial sprite sheet for player actor, ver 2" />
     <MESSAGE value="Shield disappears if actor has stamina less than zero." />
     <MESSAGE value="Some minor bug fixes." />
-    <option name="LAST_COMMIT_MESSAGE" value="Some minor bug fixes." />
+    <MESSAGE value="AI-actor gets his target during initiation, not every game tick." />
+    <option name="LAST_COMMIT_MESSAGE" value="AI-actor gets his target during initiation, not every game tick." />
   </component>
 </project>

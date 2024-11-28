@@ -2980,7 +2980,8 @@ sober_knight = {
             'repeat from frame': 0
         },
     },
-    'think type': 'chaser',
+    'think type': 'patrol',
+    # 'think type': 'chaser',
     'disappear after death': False,
     'AI controlled': True
 }

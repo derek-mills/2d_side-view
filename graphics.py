@@ -262,8 +262,8 @@ def load_all_frames(source, max_frames, name, width, height, scale_factor=1):
             # 'weak spot': weak_spot
         }
 
-        if sprites[name + ' ' + str(frame_count)]["demolisher snap point"] != [0, 0]:
-            print(f'[load all frames] added frm. # {frame_count} {name} {sprites[name + " " + str(frame_count)]["demolisher snap point"]}')
+        # if sprites[name + ' ' + str(frame_count)]["demolisher snap point"] != [0, 0]:
+        #     print(f'[load all frames] added frm. # {frame_count} {name} {sprites[name + " " + str(frame_count)]["demolisher snap point"]}')
 
         x = x + width
         if x + width > max_x:

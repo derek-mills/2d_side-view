@@ -1072,6 +1072,7 @@ class World(object):
                             self.add_item(all_items[drop], (randint(actor.rectangle.left - 50, actor.rectangle.right + 50), actor.rectangle.top))
                     # continue
 
+            actor.percept_living_entities(self.actors)
             actor.percept({k: self.obstacles[self.location][k] for k in self.active_obstacles}, self.demolishers[self.location], self.protectors[self.location])
             actor.get_time(self.time_passed, self.game_cycles_counter)
 

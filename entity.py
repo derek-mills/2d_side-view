@@ -239,6 +239,10 @@ class Entity(object):
         self.is_enough_space_left = True
         self.is_being_collided_now = False
 
+        self.living_entities = None
+
+    def percept_living_entities(self, entities):
+        self.living_entities = entities
 
     def percept(self, obstacles, demolishers, protectors):
         self.obstacles_around = obstacles
@@ -771,12 +775,6 @@ class Entity(object):
             # self.collision_detector_bottom.update(self.rectangle.left, self.rectangle.bottom, self.rectangle.width, self.fall_speed + 2)
             self.collision_detector_bottom.update(self.rectangle.left +3, self.rectangle.bottom, self.rectangle.width-6, self.fall_speed + 2)
 
-    # @staticmethod
-    # def get_damage(self, amount):
-    #     print('AUCH!')
-    #     self.health -= amount
-    #     if self.health <= 0:
-    #         self.dead = True
 
     def get_time(self, time_passed, cycles_passed):
         self.time_passed = time_passed
@@ -792,8 +790,8 @@ class Entity(object):
                 continue
             if dem.parent:
                 if dem.id in self.got_immunity_to_demolishers or \
-                    dem.parent_id == self.id or dem.parent.name == self.name:  # or \
-                     # dem.floppy:
+                    dem.parent_id == self.id:
+                    # dem.parent_id == self.id or dem.parent.name == self.name:
                     continue
             else:
                 if dem.id in self.got_immunity_to_demolishers:
@@ -850,6 +848,9 @@ class Entity(object):
                 self.combo_set_number = 0
                 if not dem.pierce and not self.dead:
                     self.has_just_stopped_demolishers.append(dem.id)
+
+                if dem.parent:
+                    self.get_target(dem.parent)
 
                 self.summon_particle = True
                 # if dem.sounds['body hit'] not in self.summoned_sounds:
