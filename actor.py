@@ -696,6 +696,7 @@ class Actor(Entity):
             self.is_jump_performed = False
             if self.is_stand_on_ground:
                 self.set_state('stand still')
+                self.ignore_user_input = False
             else:
                 if self.look == 1:
                     self.set_state('fly right')
@@ -1094,6 +1095,8 @@ class Actor(Entity):
             self.reset_self_flags()
             self.jump_attempts_counter = 0
             self.influenced_by_obstacle = -1
+            self.is_edge_grabbed = False
+            self.is_grabbers_active = False
             self.set_state('jump cancel')
             # self.set_state('hanging on ghost')
         elif self.get_state() == 'release edge':                    # RELEASE
@@ -1103,9 +1106,10 @@ class Actor(Entity):
             # self.rectangle.y += self.obstacles_around[self.influenced_by_obstacle].vec_to_destination[1] * -4
             self.influenced_by_obstacle = -1
             self.speed = 0
-            self.ignore_user_input = False
+            self.ignore_user_input = True
+            # self.ignore_user_input = False
             # if self.is_stand_on_ground:
-            self.set_state('stand still')
+            self.set_state('jump cancel')
         elif self.get_state() == 'climb on':                        # START CLIMBING ON AN OBSTACLE
             self.ignore_user_input = True
             self.is_jump_performed = False

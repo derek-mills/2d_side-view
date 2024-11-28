@@ -43,9 +43,9 @@ fades_speed = 100
 # world.location = 'luxuryhall'
 world.location = 'lux'
 # world.location = 'hall'
-# world.add_actor(player_jake, (200, 500))
-world.location = 'entrance'
-world.add_actor(player_jake, (200, 1500))
+world.add_actor(player_jake, (200, 500))
+# world.location = 'entrance'
+# world.add_actor(player_jake, (200, 1500))
 
 world.load()
 

@@ -424,7 +424,7 @@ jake_kick = {
              'visible': False,
              'demolisher sprite': 'jake kick demolisher',
              'type': 'blunt',
-            'pierce': True, 'demolisher TTL': 3, 'speed': 0,
+             'pierce': True, 'demolisher TTL': 3, 'speed': 0,
              'static': True, 'damage reduce': 0,
              'collides': False, 'gravity affected': False,
              'bounce': False, 'bounce factor': 0.,
@@ -435,8 +435,8 @@ jake_kick = {
                  'body hit': 'sound_meat_blow_1',
                  'protector hit': 'sound_bucket_hit_1',
              },
-            'impact recoil': True, 
-            'damage': {
+             'impact recoil': True,
+             'damage': {
 
                  'blunt': 15,
                  # 
@@ -1049,15 +1049,14 @@ barrel_explosion = {
             'bounce': False, 'bounce factor': 0.,
             'attack type': ('fire', 'smash', 'pierce', 'slash'),
             'push': True,
-             'sounds': {
+            'sounds': {
                  'obstacle hit': 'sound_bullet_wall_hit_1',
                  'body hit': 'sound_meat_blow_1',
                  'protector hit': 'sound_bucket_hit_1',
              },
-             'impact recoil': False,
+            'impact recoil': False,
             'damage': {
                 'fire': 50,
-                'type': 'blunt',
                 'pierce': 100,
                 'slash': 10
             },
