@@ -1169,7 +1169,8 @@ class World(object):
                                     actor.attack_time = 0
                                     actor.is_alternate_attack = False
                                     actor.alternate_attack_time = 0
-                                    actor.set_state('stand still')
+                                    actor.set_state('prepare to get hurt')
+                                    # actor.set_state('stand still')
                                     actor.summon_protector = False
                                     while actor.summoned_protectors_keep_alive:
                                         protector_id = actor.summoned_protectors_keep_alive.pop()

@@ -5,10 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demolisher.py" beforeDir="false" afterPath="$PROJECT_DIR$/demolisher.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/animations/jake_8bit.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/animations/jake_8bit.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/gimp_originals/jake_8bit_big.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/img/gimp_originals/jake_8bit_big.xcf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -166,13 +162,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00550" summary="Sliding becomes more lazy in case of lack of stamina.">
-      <created>1730450472829</created>
-      <option name="number" value="00550" />
-      <option name="presentableId" value="LOCAL-00550" />
-      <option name="project" value="LOCAL" />
-      <updated>1730450472829</updated>
     </task>
     <task id="LOCAL-00551" summary="Whatever.">
       <created>1730529823804</created>
@@ -510,7 +499,14 @@
       <option name="project" value="LOCAL" />
       <updated>1732693107763</updated>
     </task>
-    <option name="localTasksCounter" value="599" />
+    <task id="LOCAL-00599" summary="Shield disappears if actor has stamina less than zero.">
+      <created>1732761771073</created>
+      <option name="number" value="00599" />
+      <option name="presentableId" value="LOCAL-00599" />
+      <option name="project" value="LOCAL" />
+      <updated>1732761771073</updated>
+    </task>
+    <option name="localTasksCounter" value="600" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -525,7 +521,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Player's actor footsteps sound added." />
     <MESSAGE value="Player's actor getting hurt sound added." />
     <MESSAGE value="Barrel explosion sound added" />
     <MESSAGE value="Added individual sound sets for every damager." />
@@ -550,6 +545,7 @@
     <MESSAGE value="Fixed new update system for protectors." />
     <MESSAGE value="Added more bigger initial sprite sheet for player actor." />
     <MESSAGE value="Added bigger initial sprite sheet for player actor, ver 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added bigger initial sprite sheet for player actor, ver 2" />
+    <MESSAGE value="Shield disappears if actor has stamina less than zero." />
+    <option name="LAST_COMMIT_MESSAGE" value="Shield disappears if actor has stamina less than zero." />
   </component>
 </project>
