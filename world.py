@@ -220,6 +220,7 @@ class World(object):
         entity.add_items_to_inventory(description['items'])
         if entity.id != 0:
             entity.activate_weapon(0)
+            entity.get_target(self.actors['player'])
         else:
             all_weapons = list(entity.inventory['weapons'].keys())
             entity.body['right hand']['weapon'] = entity.inventory['weapons'][all_weapons[0]]
@@ -1081,7 +1082,7 @@ class World(object):
             if not actor.dead and not actor.is_stunned:
                 if actor.ai_controlled:
                     # routines for AI
-                    actor.get_target(self.actors['player'])
+                    # actor.get_target(self.actors['player'])
                     if not actor.ignore_user_input:
                         actor.think()
                 else:
