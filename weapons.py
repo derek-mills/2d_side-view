@@ -296,7 +296,7 @@ whip = {
 
 
     'affects on': '',
-    'stamina consumption': .1,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
+    'stamina consumption': 1.2,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
     'mana consumption': 0.,
     'attack animation': 'whip',
     'ignore user input': True,  # Steal the ability to control a character for a while.
@@ -306,7 +306,7 @@ whip = {
     'need ammo': False,
     'ammo': 0,
     'reach': 470,
-    'weight': 30,
+    'weight': 20,
     'demolishers': (
         ({
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
@@ -639,7 +639,7 @@ axe = {
     'need ammo': False,
     'ammo': 0,
     'reach': 300,
-    'weight': 70,
+    'weight': 300,
     'demolishers': (
         # 'demolishers set number' #0
         ({
@@ -955,7 +955,7 @@ pistol = {
     # 'need ammo': True,
     # 'ammo': 20,
     'reach': 2000,
-    'weight': 10,
+    'weight': 50,
     'demolishers': (
         ({
              'rect': pygame.Rect(0, 0, 2, 2), 'flyer': False,
