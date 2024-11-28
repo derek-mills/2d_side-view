@@ -253,6 +253,7 @@ class Demolisher(Entity):
                     self.become_mr_floppy()
                     # self.parent.make_all_following_demolishers_floppy = True
                     if self.impact_recoil:
+                        # Strike back own parent, because demolisher get hit to the shield.
                         if self.parent:
                             self.parent.set_state('prepare to get hurt')
 
@@ -264,11 +265,12 @@ class Demolisher(Entity):
 
                     if self.id not in p.parent.got_immunity_to_demolishers:
                         p.parent.got_immunity_to_demolishers.append(self.id)
-                    p.parent.mana_reduce(p.mana_consumption * p.parent.normal_mana_lost_per_defend)
+                    # p.parent.mana_reduce(p.mana_consumption * p.parent.normal_mana_lost_per_defend)
                     p.parent.stamina_reduce(p.stamina_consumption * p.parent.normal_stamina_lost_per_defend)
                     p.parent.get_damage(self.damage, 1)
                     if p.parent.total_damage_has_got > 0:
-                        if p.parent.stats['stamina'] > 0 and p.parent.stats['mana'] > 0:
+                        if p.parent.stats['stamina'] > 0:
+                        # if p.parent.stats['stamina'] > 0 and p.parent.stats['mana'] > 0:
                             p.parent.invincibility_timer = self.default_invincibility_timer
                         if self.id not in p.parent.got_immunity_to_demolishers:
                             p.parent.got_immunity_to_demolishers.append(self.id)

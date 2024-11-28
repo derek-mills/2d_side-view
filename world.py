@@ -1083,7 +1083,7 @@ class World(object):
                     if not actor.ignore_user_input:
                         actor.think()
                 else:
-                    # routines for Player actor
+                    # ROUTINES FOR HUMAN PLAYER ACTOR
                     if not actor.ignore_user_input:
                     # if key == 0 and not actor.ignore_user_input:  # routines for Player actor
                         if self.is_input_up_arrow:
@@ -1141,48 +1141,7 @@ class World(object):
                             if actor.get_state() in ('hopping back progress', 'hopping forward progress'):
                                 actor.set_action('hop action cancel')
 
-                        # if self.is_attack and not self.is_alternate_attack:
-                        #     # self.is_attack = False
-                        #     if not actor.get_state() == 'protect':
-                        #         # if self.is_alternate_attack:
-                        #         #     actor.current_weapon = actor.body['left hand']['weapon']['item']
-                        #         # elif self.is_attack:
-                        #         actor.current_weapon = actor.body['right hand']['weapon']['item']
-                        #         actor.current_stamina_lost_per_attack = actor.normal_stamina_lost_per_attack * actor.current_weapon['stamina consumption']
-                        #         actor.current_mana_lost_per_attack = actor.normal_mana_lost_per_attack * actor.current_weapon['mana consumption']
-                        #         if actor.current_weapon['type'] == 'shields':
-                        #             actor.set_action('protect')
-                        #         else:
-                        #             actor.set_action('attack')
-                        # elif not self.is_attack and self.is_alternate_attack:
-                        #     # self.is_attack = False
-                        #     if not actor.get_state() == 'protect':
-                        #         # if self.is_alternate_attack:
-                        #         actor.current_weapon = actor.body['left hand']['weapon']['item']
-                        #         # elif self.is_attack:
-                        #         # actor.current_weapon = actor.body['right hand']['weapon']['item']
-                        #         actor.current_stamina_lost_per_attack = actor.normal_stamina_lost_per_attack * actor.current_weapon['stamina consumption']
-                        #         actor.current_mana_lost_per_attack = actor.normal_mana_lost_per_attack * actor.current_weapon['mana consumption']
-                        #         if actor.current_weapon['type'] == 'shields':
-                        #             print('vvvvvvvvvvvvvvvvvvvvvv')
-                        #             actor.set_action('protect')
-                        #         else:
-                        #             actor.set_action('attack')
-                        # elif self.is_attack and self.is_alternate_attack:
-                        #     if not actor.get_state() == 'protect':
-                        #         actor.current_weapon = actor.body['right hand']['weapon']['item']
-                        #         actor.current_stamina_lost_per_attack = actor.normal_stamina_lost_per_attack * actor.current_weapon['stamina consumption']
-                        #         actor.current_mana_lost_per_attack = actor.normal_mana_lost_per_attack * actor.current_weapon['mana consumption']
-                        #         if actor.current_weapon['type'] == 'shields':
-                        #             actor.set_action('protect')
-                        #         else:
-                        #             actor.set_action('attack')
-                        #
-                        # else:
-                        #     if actor.get_state() == 'protect':
-                        #
-                        #         actor.set_state('stand still')
-
+                        # ACTION BUTTONS HANDLING:
                         if self.is_attack and self.is_alternate_attack:
                             # print(self.alternate_attack_time, self.attack_time)
 
@@ -1205,9 +1164,19 @@ class World(object):
                             actor.current_weapon = actor.body[hand]['weapon']['item']
                             if actor.get_state() == 'protect' and actor.current_weapon['type'] == 'shields':
                                 # print('bbbb')
-                                if not actor.summoned_protectors_keep_alive:
+                                if actor.stats['stamina'] <= 0:
+                                    actor.is_attack = False
+                                    actor.attack_time = 0
+                                    actor.is_alternate_attack = False
+                                    actor.alternate_attack_time = 0
+                                    actor.set_state('stand still')
                                     actor.summon_protector = False
-                                ...
+                                    while actor.summoned_protectors_keep_alive:
+                                        protector_id = actor.summoned_protectors_keep_alive.pop()
+                                        del self.protectors[self.location][protector_id]
+                                else:
+                                    if not actor.summoned_protectors_keep_alive:
+                                        actor.summon_protector = False
                             else:
                                 # actor.current_stamina_lost_per_attack = actor.normal_stamina_lost_per_attack * actor.current_weapon['stamina consumption']
                                 # actor.current_mana_lost_per_attack = actor.normal_mana_lost_per_attack * actor.current_weapon['mana consumption']
@@ -1216,7 +1185,7 @@ class World(object):
                                     # if actor.stats['mana'] > 3:
                                         actor.set_action('protect')
                                     else:
-                                        actor.set_action('stand still')
+                                        actor.set_state('stand still')
                                         while actor.summoned_protectors_keep_alive:
                                             protector_id = actor.summoned_protectors_keep_alive.pop()
                                             del self.protectors[self.location][protector_id]
