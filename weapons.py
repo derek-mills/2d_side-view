@@ -212,15 +212,16 @@ fireball_staff = {
             'collides': True, 'gravity affected': True,
             'bounce': True, 'bounce factor': 0.3,
             'attack type': ('fire', ),
-             'push': False,
-             'sounds': {
+            'push': True,
+            'sounds': {
                  'obstacle hit': 'sound_bounce_1',
                  'body hit': 'sound_meat_blow_1',
                  'protector hit': 'sound_bucket_hit_1',
              },
             'impact recoil': False,
             'damage': {
-                 'fire': 150,
+                'fire': 150,
+                'blunt': 100
              },
             'aftermath': 'disappear'
         },),
@@ -1114,11 +1115,11 @@ small_shield = {
             'protection': {
                 'blunt': 0.3,
                 'fire': 0.,
-                'type': 'blunt',
                 'pierce': 0.,
                 'slash': 0.,
                 'whip': 0.
             },
+
             'aftermath': None
             # 'aftermath': 'explode'
             # 'aftermath': 'disappear'

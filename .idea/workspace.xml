@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
+    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="Some weaponry tuning.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphics.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphics.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demolisher.py" beforeDir="false" afterPath="$PROJECT_DIR$/demolisher.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main .py" beforeDir="false" afterPath="$PROJECT_DIR$/main .py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,20 +165,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00554" summary="Actor releases damage info blobs even if he got cover behind the shield.">
-      <created>1730797628351</created>
-      <option name="number" value="00554" />
-      <option name="presentableId" value="LOCAL-00554" />
-      <option name="project" value="LOCAL" />
-      <updated>1730797628352</updated>
-    </task>
-    <task id="LOCAL-00555" summary="Tuning of invincibility system/">
-      <created>1730857790773</created>
-      <option name="number" value="00555" />
-      <option name="presentableId" value="LOCAL-00555" />
-      <option name="project" value="LOCAL" />
-      <updated>1730857790773</updated>
     </task>
     <task id="LOCAL-00556" summary="Protectors now disappear after their owner's death.">
       <created>1730874870267</created>
@@ -511,7 +495,21 @@
       <option name="project" value="LOCAL" />
       <updated>1732775480678</updated>
     </task>
-    <option name="localTasksCounter" value="603" />
+    <task id="LOCAL-00603" summary="Added 'patrol' AI think type.&#10;Added 'percept the other living beings' routine.">
+      <created>1732776894100</created>
+      <option name="number" value="00603" />
+      <option name="presentableId" value="LOCAL-00603" />
+      <option name="project" value="LOCAL" />
+      <updated>1732776894101</updated>
+    </task>
+    <task id="LOCAL-00604" summary="Some weaponry tuning.">
+      <created>1732777272390</created>
+      <option name="number" value="00604" />
+      <option name="presentableId" value="LOCAL-00604" />
+      <option name="project" value="LOCAL" />
+      <updated>1732777272390</updated>
+    </task>
+    <option name="localTasksCounter" value="605" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -526,8 +524,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added individual sound sets for every damager." />
-    <MESSAGE value="Added correct bouncing sound handling." />
     <MESSAGE value="Added some other sounds." />
     <MESSAGE value="Added protectors separate sounds for different types of demolishers." />
     <MESSAGE value="Actor's description tiny change" />
@@ -551,6 +547,8 @@
     <MESSAGE value="Shield disappears if actor has stamina less than zero." />
     <MESSAGE value="Some minor bug fixes." />
     <MESSAGE value="AI-actor gets his target during initiation, not every game tick." />
-    <option name="LAST_COMMIT_MESSAGE" value="AI-actor gets his target during initiation, not every game tick." />
+    <MESSAGE value="Added 'patrol' AI think type.&#10;Added 'percept the other living beings' routine." />
+    <MESSAGE value="Some weaponry tuning." />
+    <option name="LAST_COMMIT_MESSAGE" value="Some weaponry tuning." />
   </component>
 </project>
