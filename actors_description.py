@@ -36,6 +36,22 @@ zombie = {
     'items': (sword, whip, spikeball_staff),
     # 'items': (demon_2_close, demon_2_mid, spikeball_staff),
     'animations': {
+        'dizzy right': {
+            'repeat': False, 'interruptable': True,
+            'sequence': (2,),
+            'speed': 9,
+            'activity at frames': {
+            },
+            'repeat from frame': 0
+        },
+        'dizzy left': {
+            'repeat': False, 'interruptable': True,
+            'sequence': (16,),
+            'speed': 9,
+            'activity at frames': {
+            },
+            'repeat from frame': 0
+        },
         'getting hurt right': {
             'repeat': True, 'interruptable': True,
             'sequence': (11, 12, 13, 13, 13, 13, 13), 'speed': 1,
@@ -372,6 +388,22 @@ demon_1 = {
     'items': (sword, whip, spikeball_staff),
     # 'items': (demon_2_close, demon_2_mid, spikeball_staff),
     'animations': {
+        'dizzy right': {
+            'repeat': False, 'interruptable': True,
+            'sequence': (2,),
+            'speed': 9,
+            'activity at frames': {
+            },
+            'repeat from frame': 0
+        },
+        'dizzy left': {
+            'repeat': False, 'interruptable': True,
+            'sequence': (16,),
+            'speed': 9,
+            'activity at frames': {
+            },
+            'repeat from frame': 0
+        },
         'stand still right': {
                 'repeat': True, 'interruptable': True,
                 'sequence': (1,1,1,1,1,1,2,1,2,1,1,1,1), 'speed': 20,
@@ -697,6 +729,22 @@ demon_2 = {
     # 'items': (sword, whip, fireball_staff),
     'items': (demon_2_close, demon_2_mid, fireball_staff),
     'animations': {
+        'dizzy right': {
+            'repeat': False, 'interruptable': True,
+            'sequence': (2,),
+            'speed': 9,
+            'activity at frames': {
+            },
+            'repeat from frame': 0
+        },
+        'dizzy left': {
+            'repeat': False, 'interruptable': True,
+            'sequence': (16,),
+            'speed': 9,
+            'activity at frames': {
+            },
+            'repeat from frame': 0
+        },
         'stand still right': {
                 'repeat': True, 'interruptable': True,
                 'sequence': (1,1,1,1,1,1,2,1,2,1,1,1,1), 'speed': 1,
@@ -1276,6 +1324,22 @@ player_jake = {
         #     },
         #     'repeat from frame': 0
         # },
+        'dizzy right': {
+            'repeat': False, 'interruptable': True,
+            'sequence': (113,),
+            'speed': 9,
+            'activity at frames': {
+            },
+            'repeat from frame': 0
+        },
+        'dizzy left': {
+            'repeat': False, 'interruptable': True,
+            'sequence': (113,),
+            'speed': 9,
+            'activity at frames': {
+            },
+            'repeat from frame': 0
+        },
         'decapitated left': {
             'repeat': False, 'interruptable': True,
             'sequence': (55,54,53,),
@@ -2145,22 +2209,22 @@ sober_knight = {
     # 'items': (whip,fireball_staff,sword,kitchen_knife,),
     'animations': {
 
-        # 'stunned right': {
-        #     'repeat': True, 'interruptable': True,
-        #     'sequence': (113,114,),
-        #     'speed': 9,
-        #     'activity at frames': {
-        #     },
-        #     'repeat from frame': 0
-        # },
-        # 'stunned left': {
-        #     'repeat': True, 'interruptable': True,
-        #     'sequence': (127,128,),
-        #     'speed': 9,
-        #     'activity at frames': {
-        #     },
-        #     'repeat from frame': 0
-        # },
+        'dizzy right': {
+            'repeat': False, 'interruptable': True,
+            'sequence': (113,),
+            'speed': 9,
+            'activity at frames': {
+            },
+            'repeat from frame': 0
+        },
+        'dizzy left': {
+            'repeat': False, 'interruptable': True,
+            'sequence': (113,),
+            'speed': 9,
+            'activity at frames': {
+            },
+            'repeat from frame': 0
+        },
         'decapitated left': {
             'repeat': False, 'interruptable': True,
             'sequence': (55,54,53,),

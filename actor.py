@@ -302,6 +302,7 @@ class Actor(Entity):
         if self.stun_counter > 0:
             self.stun_counter -= 1
             self.is_stunned = True
+            # self.set_state('dizzy prepare')
         else:
             self.is_stunned = False
 
@@ -1230,10 +1231,25 @@ class Actor(Entity):
             if self.is_stand_on_ground:
                 self.heading[0] = 0
             if self.animation_sequence_done:
+                if self.is_stunned:
+                    self.set_state('dizzy prepare')
+                else:
+                    self.ignore_user_input = False
+                    self.animation_change_denied = False
+                    self.set_state('stand still')
+                # self.ignore_user_input = False
+                # self.animation_change_denied = False
+                # self.set_state('stand still')
+        elif state == 'dizzy prepare':
+            self.ignore_user_input = True
+            self.set_state("dizzy")
+            self.set_current_animation()
+            self.speed = 0
+            self.heading[0] = 0
+        elif state == 'dizzy':
+            if not self.is_stunned:
                 self.ignore_user_input = False
-                self.animation_change_denied = False
                 self.set_state('stand still')
-
     # def state_machine(self):
     #     state = self.get_state()
     #     if self.get_state() == 'drop stash':                          #
