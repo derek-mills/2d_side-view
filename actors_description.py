@@ -5,6 +5,13 @@ from graphics import sprites
 
 zombie = {
     'name': 'zombie',
+    'graphics': {
+        'sprite sheet filename': 'img/animations/zombie.png',
+        'frames quantity': 97,
+        'frame width': 20,
+        'frame height': 30,
+        'frame scale': 18,
+    },
     'blood color': (0, 200, 0),
     'drop': ['exp' for i in range(randint(3,5))],
     'strength': 5,
@@ -357,6 +364,13 @@ zombie = {
 
 demon_1 = {
     'name': 'demon 1',
+    'graphics': {
+        'sprite sheet filename': 'img/animations/demon_male_1.png',
+        'frames quantity': 97,
+        'frame width': 20,
+        'frame height': 30,
+        'frame scale': 18,
+    },
     'blood color': (0, 200, 0),
     'drop': ['exp' for i in range(randint(3,5))],
     'strength': 10,
@@ -697,6 +711,13 @@ demon_1 = {
 
 demon_2 = {
     'name': 'demon 2',
+    'graphics': {
+        'sprite sheet filename': 'img/animations/demon_2.png',
+        'frames quantity': 97,
+        'frame width': 20,
+        'frame height': 30,
+        'frame scale': 22,
+    },
     'drop': ['exp' for i in range(randint(8,12))],
     'health': 500.,
     'mana replenish': .01,
@@ -987,13 +1008,13 @@ demon_2 = {
                     'demolisher': True
                 },
                 },
-            'demolisher offset': {
-                1: (sprites['demon 2 76']['demolisher snap point'][0],
-                    sprites['demon 2 76']['demolisher snap point'][1]),
-                # -1: (-65, 60),
-                # 1: (65, 60),
-                # -1: (-65, 60),
-            },
+            # 'demolisher offset': {
+            #     1: (sprites['demon 2 76']['demolisher snap point'][0],
+            #         sprites['demon 2 76']['demolisher snap point'][1]),
+            #     # -1: (-65, 60),
+            #     # 1: (65, 60),
+            #     # -1: (-65, 60),
+            # },
             'repeat from frame': 0
         },
         'whip crouch left': {
@@ -1012,11 +1033,11 @@ demon_2 = {
                     'demolisher': True
                 },
             },
-            'demolisher offset': {
-                # 1: (65,60),
-                -1: (sprites['demon 2 89']['demolisher snap point'][0],
-                     sprites['demon 2 89']['demolisher snap point'][1]),
-            },
+            # 'demolisher offset': {
+            #     # 1: (65,60),
+            #     -1: (sprites['demon 2 89']['demolisher snap point'][0],
+            #          sprites['demon 2 89']['demolisher snap point'][1]),
+            # },
             'repeat from frame': 0
         },
         'stab right': {
@@ -1189,6 +1210,13 @@ demon_2 = {
 
 exploding_barrel = {
     'name': 'exploding barrel',
+    'graphics': {
+        'sprite sheet filename': 'img/animations/exploding_barrel.png',
+        'frames quantity': 5,
+        'frame width': 20,
+        'frame height': 30,
+        'frame scale': 8,
+    },
     'drop': [],
     'health': 500.,
     'mana replenish': 0.,
@@ -1270,8 +1298,20 @@ exploding_barrel = {
     'AI controlled': True
 }
 
+# load_actor_graphics(entity.name, description['graphics']['sprite sheet filename'],
+#                     description['graphics']['frames quantity'],
+#                     description['graphics']['frame width'], description['graphics']['frame height'],
+#                     description['graphics']['frame scale'], )
+
 player_jake = {
     'name': 'Jake',
+    'graphics': {
+        'sprite sheet filename': 'img/animations/jake_8bit.png',
+        'frames quantity': 128,
+        'frame width': 80,
+        'frame height': 120,
+        'frame scale': 4,
+    },
     'health': 2000.,
     'blood color': (255, 0, 0),
     'gravity affected': True,
@@ -2167,6 +2207,13 @@ player_jake = {
 sober_knight = {
     #
     'name': 'James P. Sullivan',
+    'graphics': {
+        'sprite sheet filename': 'img/animations/jake_8bit.png',
+        'frames quantity': 128,
+        'frame width': 80,
+        'frame height': 120,
+        'frame scale': 4,
+    },
     'drop': ['exp' for i in range(randint(8,12))],
     'health': 2000.,
     'blood color': (255, 0, 0),

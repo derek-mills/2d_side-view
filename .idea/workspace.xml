@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
+    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="Added 'dizzy' state">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphics.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/load_content.py" beforeDir="false" afterPath="$PROJECT_DIR$/load_content.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,13 +166,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00557" summary="&#10;Some improvement">
-      <created>1730876560011</created>
-      <option name="number" value="00557" />
-      <option name="presentableId" value="LOCAL-00557" />
-      <option name="project" value="LOCAL" />
-      <updated>1730876560011</updated>
     </task>
     <task id="LOCAL-00558" summary="After successful shield protection bouncing demolisher doesn't become weaker.">
       <created>1730879316101</created>
@@ -508,7 +503,14 @@
       <option name="project" value="LOCAL" />
       <updated>1732857589508</updated>
     </task>
-    <option name="localTasksCounter" value="606" />
+    <task id="LOCAL-00606" summary="Added 'dizzy' state">
+      <created>1732858648352</created>
+      <option name="number" value="00606" />
+      <option name="presentableId" value="LOCAL-00606" />
+      <option name="project" value="LOCAL" />
+      <updated>1732858648352</updated>
+    </task>
+    <option name="localTasksCounter" value="607" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -523,7 +525,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added protectors separate sounds for different types of demolishers." />
     <MESSAGE value="Actor's description tiny change" />
     <MESSAGE value="Added cool punch sound" />
     <MESSAGE value="Sounds work continues." />
@@ -548,6 +549,7 @@
     <MESSAGE value="Added 'patrol' AI think type.&#10;Added 'percept the other living beings' routine." />
     <MESSAGE value="Some weaponry tuning." />
     <MESSAGE value="Some changes in demolishers and protectors interaction." />
-    <option name="LAST_COMMIT_MESSAGE" value="Some changes in demolishers and protectors interaction." />
+    <MESSAGE value="Added 'dizzy' state" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added 'dizzy' state" />
   </component>
 </project>

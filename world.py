@@ -1,5 +1,5 @@
 # import pygame
-import pygame.draw
+# import pygame.draw
 from sounds import *
 from actors_description import *
 from actor import *
@@ -175,6 +175,12 @@ class World(object):
         # for k in description:
         #     print(f'[add_actor] {k} :{description[k]}')
         entity.is_gravity_affected = description['gravity affected']
+
+        if entity.name + ' 0' not in sprites.keys():
+            load_actor_graphics(entity.name, description['graphics']['sprite sheet filename'],
+                                description['graphics']['frames quantity'],
+                                description['graphics']['frame width'], description['graphics']['frame height'],
+                                description['graphics']['frame scale'],)
 
         entity.rectangle.height = sprites[entity.name + ' 0']['sprite'].get_height()
         entity.rectangle.width = int(sprites[entity.name + ' 0']['sprite'].get_width() * 0.7)  # Width of rectangle is 70% of sprite width.
