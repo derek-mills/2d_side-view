@@ -1539,13 +1539,13 @@ player_jake = {
             },
         'run left': {
                 'repeat': True, 'interruptable': True,
-                'sequence': (52,51,50,49,48,47,46,45,), 'speed': 4,
+                'sequence': (52,51,50,49,48,47,46,45,44,43), 'speed': 4,
                 # 'sequence': (52,51,50,49,48,47,46,45,44,43,42,), 'speed': 1,
                 'activity at frames': {
                     2: {
                         'sound': 'sound_step_2',
                     },
-                    6: {
+                    7: {
                         'sound': 'sound_step_2',
                     },
                 },
