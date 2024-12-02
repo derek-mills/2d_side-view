@@ -5,10 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/graphics.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main .py" beforeDir="false" afterPath="$PROJECT_DIR$/main .py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,13 +165,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00559" summary="Numpad 1,2,3 summons different monsters">
-      <created>1730961991591</created>
-      <option name="number" value="00559" />
-      <option name="presentableId" value="LOCAL-00559" />
-      <option name="project" value="LOCAL" />
-      <updated>1730961991591</updated>
     </task>
     <task id="LOCAL-00560" summary="Weight of the gear brings effect on actor only if equipped. Staying in the pocket makes it feather.">
       <created>1730964613389</created>
@@ -509,7 +502,14 @@
       <option name="project" value="LOCAL" />
       <updated>1732870543005</updated>
     </task>
-    <option name="localTasksCounter" value="608" />
+    <task id="LOCAL-00608" summary="Items load their graphics only if they are summoned by something.&#10;Graphics description inserted into every particular weapon settings file.">
+      <created>1733111470407</created>
+      <option name="number" value="00608" />
+      <option name="presentableId" value="LOCAL-00608" />
+      <option name="project" value="LOCAL" />
+      <updated>1733111470408</updated>
+    </task>
+    <option name="localTasksCounter" value="609" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -524,7 +524,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added cool punch sound" />
     <MESSAGE value="Sounds work continues." />
     <MESSAGE value="Total invincibility after getting any damage switched off. Implemented the immunity to the particular already affected demolisher instead.&#10;Opportunity to switch on the invincibility during active animation frames added." />
     <MESSAGE value="Working on demolishers and actors interaction." />
@@ -549,6 +548,7 @@
     <MESSAGE value="Some changes in demolishers and protectors interaction." />
     <MESSAGE value="Added 'dizzy' state" />
     <MESSAGE value="Graphics load system remade.&#10;Sprites for actors now load only if they needed." />
-    <option name="LAST_COMMIT_MESSAGE" value="Graphics load system remade.&#10;Sprites for actors now load only if they needed." />
+    <MESSAGE value="Items load their graphics only if they are summoned by something.&#10;Graphics description inserted into every particular weapon settings file." />
+    <option name="LAST_COMMIT_MESSAGE" value="Items load their graphics only if they are summoned by something.&#10;Graphics description inserted into every particular weapon settings file." />
   </component>
 </project>

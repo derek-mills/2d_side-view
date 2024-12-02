@@ -1240,7 +1240,6 @@ exploding_barrel = {
     'acceleration': .5,
     'friction': .9,
     'air acceleration': .4,
-
     'items': (barrel_explosion,),
     'animations': {
         'stand still right': {

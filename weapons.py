@@ -1124,7 +1124,11 @@ barrel_explosion = {
     'amount': 1,
     'amount threshold': 1,
     'amount decrease speed': 0,
-
+    'graphics': (
+        {'sprite frame': (0, 0, 1, 1),
+         'sprite name': 'explosion frag',
+         'sprite scale': 1},
+    ),
 
     'affects on': '',
     'stamina consumption': 0.,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.

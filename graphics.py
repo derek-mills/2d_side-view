@@ -329,6 +329,7 @@ items = pygame.image.load('img/items.png').convert_alpha()
 # sprites['light cone 315'] = pygame.transform.rotate(sprites['light cone 45'], 270)
 # sprites['question sign'] = avatars.subsurface((573, 1053, 145, 240))
 # sprites['void'] = items.subsurface((0,0,10,10))
+
 load_single_frame(items, ((0,0,20,30),), 'exp', 2)
 load_single_frame(items, ((0,30,20,30),), 'health vial', 5)
 load_single_frame(items, ((0,60,20,30),), 'stash', 8)
