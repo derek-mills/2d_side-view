@@ -1215,7 +1215,7 @@ exploding_barrel = {
         'frames quantity': 5,
         'frame width': 20,
         'frame height': 30,
-        'frame scale': 8,
+        'frame scale': 11,
     },
     'drop': [],
     'health': 500.,
@@ -1525,13 +1525,13 @@ player_jake = {
         },
         'run right': {
                 'repeat': True, 'interruptable': True,
-                'sequence': (28,29,30,31,32,33,34,35,), 'speed': 4,
+                'sequence': (28,29,30,31,32,33,34,35,36,37,), 'speed': 4,
                 # 'sequence': (28,29,30,31,32,33,34,35,36,37,38,), 'speed': 1,
                 'activity at frames': {
                     2: {
                         'sound': 'sound_step_2',
                     },
-                    6: {
+                    7: {
                         'sound': 'sound_step_2',
                     },
                 },

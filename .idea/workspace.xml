@@ -5,10 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphics.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/animations/jake_8bit.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/animations/jake_8bit.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/gimp_originals/jake_8bit_big.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/img/gimp_originals/jake_8bit_big.xcf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main .py" beforeDir="false" afterPath="$PROJECT_DIR$/main .py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,13 +166,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00560" summary="Weight of the gear brings effect on actor only if equipped. Staying in the pocket makes it feather.">
-      <created>1730964613389</created>
-      <option name="number" value="00560" />
-      <option name="presentableId" value="LOCAL-00560" />
-      <option name="project" value="LOCAL" />
-      <updated>1730964613389</updated>
     </task>
     <task id="LOCAL-00561" summary="Weight of the gear brings effect on actor only if equipped. Staying in the pocket makes it feather (fixed bug of non-player actors which become weightless and super-fast).">
       <created>1730966506652</created>
@@ -509,7 +503,14 @@
       <option name="project" value="LOCAL" />
       <updated>1733111470408</updated>
     </task>
-    <option name="localTasksCounter" value="609" />
+    <task id="LOCAL-00609" summary="Barrel explosion tuned">
+      <created>1733111736405</created>
+      <option name="number" value="00609" />
+      <option name="presentableId" value="LOCAL-00609" />
+      <option name="project" value="LOCAL" />
+      <updated>1733111736405</updated>
+    </task>
+    <option name="localTasksCounter" value="610" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -524,7 +525,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Sounds work continues." />
     <MESSAGE value="Total invincibility after getting any damage switched off. Implemented the immunity to the particular already affected demolisher instead.&#10;Opportunity to switch on the invincibility during active animation frames added." />
     <MESSAGE value="Working on demolishers and actors interaction." />
     <MESSAGE value="Fixed bug with incorrect 'lie decapitated' animation setting." />
@@ -549,6 +549,7 @@
     <MESSAGE value="Added 'dizzy' state" />
     <MESSAGE value="Graphics load system remade.&#10;Sprites for actors now load only if they needed." />
     <MESSAGE value="Items load their graphics only if they are summoned by something.&#10;Graphics description inserted into every particular weapon settings file." />
-    <option name="LAST_COMMIT_MESSAGE" value="Items load their graphics only if they are summoned by something.&#10;Graphics description inserted into every particular weapon settings file." />
+    <MESSAGE value="Barrel explosion tuned" />
+    <option name="LAST_COMMIT_MESSAGE" value="Barrel explosion tuned" />
   </component>
 </project>
