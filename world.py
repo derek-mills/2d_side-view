@@ -223,7 +223,14 @@ class World(object):
 
         entity.ai_controlled = description['AI controlled']
         entity.think_type = description['think type']
+
+        for i in description['items']:
+            print(i)
+            if i['sprite'] not in sprites.keys():
+                for spr in i['graphics']:
+                    load_single_frame(items, spr['sprite frame'], spr['sprite name'], spr['sprite scale'])
         entity.add_items_to_inventory(description['items'])
+
         if entity.id != 0:
             entity.activate_weapon(0)
             entity.get_target(self.actors['player'])
@@ -263,6 +270,9 @@ class World(object):
         # entity.is_jump = True
         entity.is_force_render = True
         entity.sprite = item['sprite']
+        if entity.sprite not in sprites.keys():
+            for spr in item['graphics']:
+                load_single_frame(items, spr['sprite frame'], spr['sprite name'], spr['sprite scale'])
         entity.rectangle.width = sprites[entity.sprite]['sprite'].get_size()[0]
         entity.rectangle.height = sprites[entity.sprite]['sprite'].get_size()[1]
         entity.invisible = False

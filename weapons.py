@@ -4,7 +4,14 @@ sword = {
     'combo': False, 'combo steps quantity': 0, 'combo next step threshold': 0,    'amount': 1,
     'amount threshold': 1,
     'amount decrease speed': 0,
-
+    'graphics': (
+        {'sprite frame': (20,60,20,30),
+         'sprite name': 'short sword',
+         'sprite scale': 3},
+        {'sprite frame': (40,60,29,30),
+         'sprite name': 'short sword demolisher',
+         'sprite scale': 5},
+    ),
 
     'affects on': '',
     'attack animation': 'stab',
@@ -80,7 +87,16 @@ kitchen_knife = {
     'combo': False, 'combo steps quantity': 0, 'combo next step threshold': 0,    'amount': 1,
     'amount threshold': 1,
     'amount decrease speed': 0,
-
+    # load_single_frame(items, ((20,30,20,30),), 'kitchen knife', 3)
+    # load_single_frame(items, ((40,30,20,30),), 'kitchen knife demolisher', 3)
+    'graphics': (
+        {'sprite frame': (20,30,20,30),
+         'sprite name': 'kitchen knife',
+         'sprite scale': 3},
+        {'sprite frame': (40,30,20,30),
+         'sprite name': 'kitchen knife demolisher',
+         'sprite scale': 3},
+    ),
     'affects on': '',
     'stamina consumption': 0.4,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
     'mana consumption': 0.,
@@ -186,7 +202,14 @@ fireball_staff = {
     'amount': 1,
     'amount threshold': 1,
     'amount decrease speed': 0,
-
+    'graphics': (
+        {'sprite frame': (20, 0, 20, 30),
+         'sprite name': 'fireball staff',
+         'sprite scale': 3},
+        {'sprite frame': (40, 0, 20, 30),
+         'sprite name': 'fireball demolisher',
+         'sprite scale': 8},
+    ),
 
     'affects on': '',
     'stamina consumption': .5,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
@@ -241,7 +264,14 @@ spikeball_staff = {
     'amount': 1,
     'amount threshold': 1,
     'amount decrease speed': 0,
-
+    'graphics': (
+        {'sprite frame': (20, 180, 20, 30),
+         'sprite name': 'spikeball staff',
+         'sprite scale': 3},
+        {'sprite frame': (40, 180, 80, 30),
+         'sprite name': 'spikeball staff demolisher',
+         'sprite scale': 5},
+    ),
 
     'affects on': '',
     'stamina consumption': .5,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
@@ -294,7 +324,20 @@ whip = {
     'amount': 1,
     'amount threshold': 1,
     'amount decrease speed': 0,
-
+    'graphics': (
+        {'sprite frame': (20, 90, 20, 30),
+         'sprite name': 'whip',
+         'sprite scale': 3},
+        {'sprite frame': (40, 90, 80, 30),
+         'sprite name': 'whip demolisher long',
+         'sprite scale': 4},
+        {'sprite frame': (120, 90, 60, 30),
+         'sprite name': 'whip demolisher medium',
+         'sprite scale': 4},
+        {'sprite frame': (180, 90, 40, 30),
+         'sprite name': 'whip demolisher short',
+         'sprite scale': 4},
+    ),
 
     'affects on': '',
     'stamina consumption': 1.2,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
@@ -404,7 +447,14 @@ jake_kick = {
     'amount': 1,
     'amount threshold': 1,
     'amount decrease speed': 0,
-
+    'graphics': (
+        {'sprite frame': (20, 150, 20, 30),
+         'sprite name': 'boot',
+         'sprite scale': 4},
+        {'sprite frame': (40, 150, 20, 30),
+         'sprite name': 'jake kick demolisher',
+         'sprite scale': 5},
+    ),
 
     'affects on': '',
     'stamina consumption': 1,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
@@ -518,7 +568,14 @@ jake_punch = {
     'amount': 1,
     'amount threshold': 1,
     'amount decrease speed': 0,
-
+    'graphics': (
+        {'sprite frame': (20, 150, 20, 30),
+         'sprite name': 'boot',
+         'sprite scale': 4},
+        {'sprite frame': (40, 150, 20, 30),
+         'sprite name': 'jake kick demolisher',
+         'sprite scale': 5},
+    ),
 
     'affects on': '',
     'stamina consumption': 1,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
@@ -627,7 +684,20 @@ axe = {
     'amount': 1,
     'amount threshold': 1,
     'amount decrease speed': 0,
-
+    'graphics': (
+        {'sprite frame': (20, 210, 20, 30),
+         'sprite name': 'axe',
+         'sprite scale': 3},
+        {'sprite frame': (40, 210, 20, 30),
+         'sprite name': 'axe 45 demolisher',
+         'sprite scale': 9},
+        {'sprite frame': (60, 210, 20, 30),
+         'sprite name': 'axe 0 demolisher',
+         'sprite scale': 9},
+        {'sprite frame': (80, 210, 20, 30),
+         'sprite name': 'axe 315 demolisher',
+         'sprite scale': 9},
+    ),
 
     'affects on': '',
     'stamina consumption': 1,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
@@ -757,7 +827,23 @@ demon_2_mid = {
     'amount': 1,
     'amount threshold': 1,
     'amount decrease speed': 0,
-
+    'graphics': (
+        {'sprite frame': (80, 120, 40, 30),
+         'sprite name': 'demon 2 mid claw demolisher 1',
+         'sprite scale': 5},
+        {'sprite frame': (120, 120, 40, 30),
+         'sprite name': 'demon 2 mid claw demolisher 2',
+         'sprite scale': 5},
+        {'sprite frame': (160, 120, 40, 30),
+         'sprite name': 'demon 2 mid claw demolisher 3',
+         'sprite scale': 5},
+        {'sprite frame': (40, 120, 40, 30),
+         'sprite name': 'demon 2 claw demolisher',
+         'sprite scale': 5},
+        {'sprite frame': (200, 120, 60, 30),
+         'sprite name': 'demon 2 claw demolisher 2',
+         'sprite scale': 5},
+    ),
 
     'affects on': '',
     'stamina consumption': 1.5,  # Stamina reduce multiplier. The greater, the more stamina will be lost per one weapon use.
@@ -860,7 +946,14 @@ demon_2_close = {
     'amount': 1,
     'amount threshold': 1,
     'amount decrease speed': 0,
-
+    'graphics': (
+        {'sprite frame': (40, 120, 40, 30),
+         'sprite name': 'demon 2 claw demolisher',
+         'sprite scale': 5},
+        {'sprite frame': (200, 120, 60, 30),
+         'sprite name': 'demon 2 claw demolisher 2',
+         'sprite scale': 5},
+    ),
 
     'affects on': '',
     'stamina consumption': 1.5,  # Stamina reduce multiplier. The greater, the more stamina will be lost per one weapon use.
@@ -944,7 +1037,14 @@ pistol = {
     'amount': 1,
     'amount threshold': 1,
     'amount decrease speed': 0,
-
+    'graphics': (
+        {'sprite frame': (20, 240, 20, 30),
+         'sprite name': 'pistol',
+         'sprite scale': 3},
+        {'sprite frame': (40, 240, 40, 30),
+         'sprite name': 'pistol muzzle flash',
+         'sprite scale': 3},
+    ),
 
     'affects on': '',
     'stamina consumption': 0.1,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
@@ -1082,6 +1182,14 @@ small_shield = {
     'amount': 1,
     'amount threshold': 1,
     'amount decrease speed': 0,
+    'graphics': (
+        {'sprite frame': (20, 270, 20, 30),
+         'sprite name': 'small shield',
+         'sprite scale': 4},
+        {'sprite frame': (40, 270, 20, 30),
+         'sprite name': 'small shield protector',
+         'sprite scale': 8},
+    ),
     'affects on': '',
     'stamina consumption': 0.,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
     'mana consumption': 0.,
