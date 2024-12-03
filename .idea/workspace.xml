@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/img/animations/jake_8bit.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/animations/jake_8bit.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/img/gimp_originals/jake_8bit_big.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/img/gimp_originals/jake_8bit_big.xcf" afterDir="false" />
     </list>
@@ -165,13 +164,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00562" summary="Fixing incorrect weight calculation bug.">
-      <created>1730968922608</created>
-      <option name="number" value="00562" />
-      <option name="presentableId" value="LOCAL-00562" />
-      <option name="project" value="LOCAL" />
-      <updated>1730968922608</updated>
     </task>
     <task id="LOCAL-00563" summary="Hopping back state fixing.">
       <created>1731037462162</created>
@@ -509,7 +501,14 @@
       <option name="project" value="LOCAL" />
       <updated>1733125701229</updated>
     </task>
-    <option name="localTasksCounter" value="611" />
+    <task id="LOCAL-00611" summary="Master chief sprites improved.">
+      <created>1733126566613</created>
+      <option name="number" value="00611" />
+      <option name="presentableId" value="LOCAL-00611" />
+      <option name="project" value="LOCAL" />
+      <updated>1733126566613</updated>
+    </task>
+    <option name="localTasksCounter" value="612" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -524,7 +523,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Working on demolishers and actors interaction." />
     <MESSAGE value="Fixed bug with incorrect 'lie decapitated' animation setting." />
     <MESSAGE value="Corrected demolisher appearing while actor is on the sliding process." />
     <MESSAGE value="Fixed some trouble in protectors and demolishers interaction." />
@@ -549,6 +547,7 @@
     <MESSAGE value="Items load their graphics only if they are summoned by something.&#10;Graphics description inserted into every particular weapon settings file." />
     <MESSAGE value="Barrel explosion tuned" />
     <MESSAGE value="Master chief walk sprites added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Master chief walk sprites added" />
+    <MESSAGE value="Master chief sprites improved." />
+    <option name="LAST_COMMIT_MESSAGE" value="Master chief sprites improved." />
   </component>
 </project>
