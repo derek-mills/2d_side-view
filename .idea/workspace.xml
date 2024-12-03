@@ -165,13 +165,6 @@
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
     </task>
-    <task id="LOCAL-00564" summary="Particular hopping back and forward animations added.&#10;Slightly redesigned 'set animation' routine.">
-      <created>1731047130235</created>
-      <option name="number" value="00564" />
-      <option name="presentableId" value="LOCAL-00564" />
-      <option name="project" value="LOCAL" />
-      <updated>1731047130235</updated>
-    </task>
     <task id="LOCAL-00565" summary="Slightly redesigned 'set animation' routine, one more bug solved.">
       <created>1731047313546</created>
       <option name="number" value="00565" />
@@ -508,7 +501,14 @@
       <option name="project" value="LOCAL" />
       <updated>1733207271074</updated>
     </task>
-    <option name="localTasksCounter" value="613" />
+    <task id="LOCAL-00613" summary="Master chief sprites improved.">
+      <created>1733211001815</created>
+      <option name="number" value="00613" />
+      <option name="presentableId" value="LOCAL-00613" />
+      <option name="project" value="LOCAL" />
+      <updated>1733211001815</updated>
+    </task>
+    <option name="localTasksCounter" value="614" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
