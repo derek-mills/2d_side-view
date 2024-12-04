@@ -2,10 +2,10 @@
 from fonts import *
 
 pygame.init()
-maxx = 280
-maxy = 360
-cell_w = 20
-cell_h = 30
+maxx = 1680
+maxy = 1680
+cell_w = 120
+cell_h = 120
 
 surface = pygame.display.set_mode((maxx, maxy)).convert_alpha()
 

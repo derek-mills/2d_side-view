@@ -1307,7 +1307,7 @@ player_jake = {
     'graphics': {
         'sprite sheet filename': 'img/animations/jake_8bit.png',
         'frames quantity': 128,
-        'frame width': 80,
+        'frame width': 120,
         'frame height': 120,
         'frame scale': 4,
     },
@@ -1925,11 +1925,13 @@ player_jake = {
         },
         'cast right': {
             'repeat': True, 'interruptable': True,
-            'sequence': (74, 74, 74, 74, 74,  # 0 - 4
-                         74, 74, 74, 74, 75, 75),  # 5 - 9
+            'sequence': (74, 74, 74, 74, 74, # 0 - 4
+                         74, 74, 74, 74, 75, # 5 - 9
+                         75, 76, 76, 76, 76, # 10 - 14
+                         76),  # 5 - 9
               'speed': 2,
             'activity at frames': {
-                9: {
+                11: {
                     #'sound': True,
                     'demolishers set number': 0,
                     'demolisher': True
@@ -1940,11 +1942,13 @@ player_jake = {
         },
         'cast left': {
             'repeat': True, 'interruptable': True,
-            'sequence': (89,89,89,89,89,89,  # 0 - 4
-                         89,89,89,89,88,88),  # 5 - 9
+            'sequence': (90,90,90,90,90,
+                         90,90,90,90,89,
+                         89,88,88,88,88,
+                         88),  # 5 - 9
             'speed': 3,
             'activity at frames': {
-                9: {
+                11: {
                     #'sound': True,
                     'demolishers set number': 0,
                     'demolisher': True
