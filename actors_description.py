@@ -1790,28 +1790,28 @@ player_jake = {
         },
         'punch combo 1 right': {
             'repeat': True, 'interruptable': True,
-            'sequence': (109, 109, 110, 110, 109, 109, 110, 110,),  # 5 - 9
+            'sequence': (105,105,106,106,107,107,107),  # 5 - 9
             'speed': 2,
             'activity at frames': {
-                2: {
+                4: {
                     'sound': 'sound_swing_2',
                     # 'move': 10,  # Slightly move actor forward,
                     'demolishers set number': 0,
                     'demolisher': True
                 },
-                6: {
-                    #'sound': True,
-                    # 'move': 10,  # Slightly move actor forward,
-                    'sound': 'sound_swing_2',
-                    'demolishers set number': 0,
-                    'demolisher': True
-                },
+                # 6: {
+                #     #'sound': True,
+                #     # 'move': 10,  # Slightly move actor forward,
+                #     'sound': 'sound_swing_2',
+                #     'demolishers set number': 0,
+                #     'demolisher': True
+                # },
             },
             'repeat from frame': 0
         },
         'punch combo 2 right': {
             'repeat': True, 'interruptable': True,
-            'sequence': (109,109,108,107,106,106,106,106,),  # 5 - 9
+            'sequence': (105,105,106,106,107,107,107),  # 5 - 9
             'speed': 2,
             'activity at frames': {
                 4: {
@@ -1824,10 +1824,10 @@ player_jake = {
         },
         'punch combo 3 right': {
             'repeat': True, 'interruptable': True,
-            'sequence': (109,108,108,108,111,111,111,111), # 5 - 9
+            'sequence': (105,105,74,74,74,74,74,107,107,107,107,107), # 5 - 9
             'speed': 2,
             'activity at frames': {
-                4: {
+                7: {
                     'sound': 'sound_swing_2',
                     'move': 10,  # Slightly move actor forward,
                     'demolishers set number': 2,
@@ -1838,25 +1838,25 @@ player_jake = {
         },
         'punch combo 1 left': {
             'repeat': True, 'interruptable': True,
-            'sequence': (94,94,93,93,94,94,93,93),  # 5 - 9
+            'sequence': (94,94,93,93,92,92,92),  # 5 - 9
             'speed': 2,
             'activity at frames': {
-                2: {
+                4: {
                     'sound': 'sound_swing_2',
                     'demolishers set number': 0,
                     'demolisher': True
                 },
-                6: {
-                    'sound': 'sound_swing_2',
-                    'demolishers set number': 0,
-                    'demolisher': True
-                },
+                # 6: {
+                #     'sound': 'sound_swing_2',
+                #     'demolishers set number': 0,
+                #     'demolisher': True
+                # },
             },
             'repeat from frame': 0
         },
         'punch combo 2 left': {
             'repeat': True, 'interruptable': True,
-            'sequence': (94,94, 95, 96, 97,97,97,97,),  # 5 - 9
+            'sequence': (94,94,93,93,92,92,92),  # 5 - 9
             'speed': 2,
             'activity at frames': {
                 4: {
@@ -1869,10 +1869,10 @@ player_jake = {
         },
         'punch combo 3 left': {
             'repeat': True, 'interruptable': True,
-            'sequence': (94, 95,95,95, 92,92,92,92),  # 5 - 9
+            'sequence': (94,94,90,90,90,90,90,92,92,92,92,92),  # 5 - 9
             'speed': 2,
             'activity at frames': {
-                4: {
+                7: {
                     'sound': 'sound_swing_2',
                     'move': 10,  # Slightly move actor forward,
                     'demolishers set number': 2,
@@ -2139,7 +2139,7 @@ player_jake = {
         },
         'protect right': {
             'repeat': True, 'interruptable': True,
-            'sequence': (98,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'sequence': (105,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
             'speed': 1,
             'activity at frames': {
                 0: {
@@ -2155,7 +2155,7 @@ player_jake = {
         },
         'protect left': {
             'repeat': True, 'interruptable': True,
-            'sequence': (122,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'sequence': (95,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
             'speed': 1,
             'activity at frames': {
                 0: {
