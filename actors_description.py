@@ -1927,9 +1927,9 @@ player_jake = {
             'repeat': True, 'interruptable': True,
             'sequence': (74, 74, 74, 74, 74, # 0 - 4
                          74, 74, 74, 74, 75, # 5 - 9
-                         75, 76, 76, 76, 76, # 10 - 14
-                         76),  # 5 - 9
-              'speed': 2,
+                         75, 76, 76, 77, 77, # 10 - 14
+                         77, 77),  # 5 - 9
+              'speed': 3,
             'activity at frames': {
                 11: {
                     #'sound': True,
@@ -1944,8 +1944,8 @@ player_jake = {
             'repeat': True, 'interruptable': True,
             'sequence': (90,90,90,90,90,
                          90,90,90,90,89,
-                         89,88,88,88,88,
-                         88),  # 5 - 9
+                         89,88,88,87,87,
+                         87, 87),  # 5 - 9
             'speed': 3,
             'activity at frames': {
                 11: {
