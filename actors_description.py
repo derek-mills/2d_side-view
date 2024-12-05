@@ -1346,23 +1346,6 @@ player_jake = {
     'items': (small_shield,jake_punch, kitchen_knife, whip, spikeball_staff,axe, fireball_staff,pistol,),
     # 'items': (whip,fireball_staff,sword,kitchen_knife,),
     'animations': {
-
-        # 'stunned right': {
-        #     'repeat': True, 'interruptable': True,
-        #     'sequence': (113,114,),
-        #     'speed': 9,
-        #     'activity at frames': {
-        #     },
-        #     'repeat from frame': 0
-        # },
-        # 'stunned left': {
-        #     'repeat': True, 'interruptable': True,
-        #     'sequence': (127,128,),
-        #     'speed': 9,
-        #     'activity at frames': {
-        #     },
-        #     'repeat from frame': 0
-        # },
         'dizzy right': {
             'repeat': False, 'interruptable': True,
             'sequence': (113,),
@@ -2139,7 +2122,7 @@ player_jake = {
         },
         'protect right': {
             'repeat': True, 'interruptable': True,
-            'sequence': (105,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'sequence': (98,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
             'speed': 1,
             'activity at frames': {
                 0: {
@@ -2155,7 +2138,7 @@ player_jake = {
         },
         'protect left': {
             'repeat': True, 'interruptable': True,
-            'sequence': (95,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'sequence': (99,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
             'speed': 1,
             'activity at frames': {
                 0: {
