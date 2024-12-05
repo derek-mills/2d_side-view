@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
+    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="Player's actor 'get hurt' animation added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/animations/jake_8bit.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/animations/jake_8bit.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/gimp_originals/jake_8bit_big.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/img/gimp_originals/jake_8bit_big.xcf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,13 +166,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00570" summary="Added 'jump' action among the others possible during active frames. Actor may jump for a given amount during attack now, for example.">
-      <created>1731557268647</created>
-      <option name="number" value="00570" />
-      <option name="presentableId" value="LOCAL-00570" />
-      <option name="project" value="LOCAL" />
-      <updated>1731557268647</updated>
     </task>
     <task id="LOCAL-00571" summary="Added sounds, only just for right-side punch combo now.">
       <created>1731913426070</created>
@@ -509,7 +503,14 @@
       <option name="project" value="LOCAL" />
       <updated>1733296093557</updated>
     </task>
-    <option name="localTasksCounter" value="619" />
+    <task id="LOCAL-00619" summary="Player's actor 'get hurt' animation added">
+      <created>1733364887702</created>
+      <option name="number" value="00619" />
+      <option name="presentableId" value="LOCAL-00619" />
+      <option name="project" value="LOCAL" />
+      <updated>1733364887702</updated>
+    </task>
+    <option name="localTasksCounter" value="620" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -524,7 +525,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed some trouble in protectors and demolishers interaction." />
     <MESSAGE value="Whip improved." />
     <MESSAGE value="Whip improved once again" />
     <MESSAGE value="Some weapon improvements" />
@@ -549,6 +549,7 @@
     <MESSAGE value="Master chief sprites improved." />
     <MESSAGE value="Master chief sprites improved. Still going on." />
     <MESSAGE value="Sprite sheet net generator updated slightly." />
-    <option name="LAST_COMMIT_MESSAGE" value="Sprite sheet net generator updated slightly." />
+    <MESSAGE value="Player's actor 'get hurt' animation added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Player's actor 'get hurt' animation added" />
   </component>
 </project>

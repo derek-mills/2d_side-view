@@ -796,6 +796,7 @@ class Entity(object):
             else:
                 if dem.id in self.got_immunity_to_demolishers:
                     continue
+
             hit_detected = False
             if dem.invisible:
                 # Just a rectangle-based collision detector:
@@ -808,7 +809,10 @@ class Entity(object):
                 # current_mask = self.current_sprite['mask'] if self.look == 1 else self.current_sprite['mask flipped']
                 # # print(self.current_sprite)
                 current_mask_rect = self.current_sprite['mask rect']
-                current_mask_rect.center = self.sprite_rectangle.center
+                current_mask_rect.topleft = (self.sprite_x, self.sprite_y)
+                # current_mask_rect.topleft = self.rectangle.topleft
+                # current_mask_rect.topleft = self.sprite_rectangle.topleft
+                # current_mask_rect.center = self.sprite_rectangle.center
                 # self.current_sprite['current mask rect'] = current_mask_rect
 
                 # print(self.rectangle, current_mask_rect)
@@ -817,15 +821,16 @@ class Entity(object):
                 # print(dem.current_sprite)
                 current_demolisher_mask = dem.current_sprite['mask'] if dem.look == 1 else dem.current_sprite['mask flipped']
                 current_demolisher_mask_rect = dem.current_sprite['mask rect']
-                current_demolisher_mask_rect.center = dem.rectangle.center
+                current_demolisher_mask_rect.topleft = dem.rectangle.topleft
+                # current_demolisher_mask_rect.center = dem.rectangle.center
                 # current_demolisher_mask_rect = dem.current_sprite['mask rect'].move(dem.rectangle.topleft)
                 # current_demolisher_mask_rect = current_demolisher_mask.get_rect(center=dem.rectangle.center)
                 # if self.current_sprite['current mask rect'].colliderect(current_demolisher_mask_rect):
                 if current_mask_rect.colliderect(current_demolisher_mask_rect):
-                #     x = dem.rectangle.x - self.current_sprite['current mask rect'].x  # x coordinate relative to inner mask space
-                    x = dem.rectangle.x - current_mask_rect.x  # x coordinate relative to inner mask space
-                    # y = dem.rectangle.y - self.current_sprite['current mask rect'].y  # y coordinate relative to inner mask space
-                    y = dem.rectangle.y - current_mask_rect.y  # y coordinate relative to inner mask space
+                    x = current_demolisher_mask_rect.x - current_mask_rect.x  # x coordinate relative to inner mask space
+                    y = current_demolisher_mask_rect.y - current_mask_rect.y  # y coordinate relative to inner mask space
+                    # x = dem.rectangle.x - current_mask_rect.x  # x coordinate relative to inner mask space
+                    # y = dem.rectangle.y - current_mask_rect.y  # y coordinate relative to inner mask space
                 else:
                     continue
 

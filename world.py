@@ -1397,11 +1397,17 @@ class World(object):
             # tmp_mask_sprite = actor.current_sprite['mask'].to_surface()
             # self.screen.blit(tmp_mask_sprite, (x, y))
 
+            # SPRITE:
             self.screen.blit(actor.current_sprite['sprite'], (x, y))
+
+            # MASK:
+            # self.screen.blit(actor.current_sprite['mask'].to_surface(), (x,y))
+            # self.screen.blit(actor.current_sprite['mask'].to_surface(), (actor.sprite_rectangle.x - self.camera.offset_x,
+            #                                                              actor.sprite_rectangle.y - self.camera.offset_y))
 
             # Misc info:
             # self.screen.blit(fonts.all_fonts[10].render(actor.get_state() + ' dying: ' + str(actor.dying)+ ' dead: ' + str(actor.dead), True, WHITE, BLACK), (x, y))
-            self.screen.blit(fonts.all_fonts[10].render(str(actor.got_immunity_to_demolishers), True, WHITE, BLACK), (x, y))
+            # self.screen.blit(fonts.all_fonts[10].render(str(actor.got_immunity_to_demolishers), True, WHITE, BLACK), (x, y))
 
             # # Weak spot
             # if actor.current_sprite['weak spot']:
@@ -1462,7 +1468,6 @@ class World(object):
             dem = self.demolishers[self.location][key]
 
             if self.is_i:
-            # if dem.invisible:
                 pygame.draw.rect(self.screen, MAGENTA, (dem.rectangle.x - self.camera.offset_x, dem.rectangle.y - self.camera.offset_y,
                                                       dem.rectangle.width, dem.rectangle.height),1)
             if dem.invisible:
@@ -1474,8 +1479,10 @@ class World(object):
 
             # self.screen.blit(fonts.all_fonts[20].render(str(dem.id) + ' ' + str(dem.speed) + ' ' + str(dem.rectangle.y), True, CYAN),
             #                  (dem.rectangle.x - self.camera.offset_x, dem.rectangle.bottom - self.camera.offset_y + dem.id * 20))
-            self.screen.blit(fonts.all_fonts[20].render(str(dem.id), True, CYAN),
-                             (dem.rectangle.x - self.camera.offset_x, dem.rectangle.bottom - self.camera.offset_y))
+
+            # Demolisher ID:
+            # self.screen.blit(fonts.all_fonts[20].render(str(dem.id), True, CYAN),
+            #                  (dem.rectangle.x - self.camera.offset_x, dem.rectangle.bottom - self.camera.offset_y))
 
             # if dem.current_sprite:
             #     if dem.look == 1:
@@ -1486,11 +1493,19 @@ class World(object):
             #     color = (max(0, 255 - dem.ttl*4), 10,0) if dem.ttl < 50 else PINK
             #     pygame.draw.rect(self.screen, color, (dem.rectangle.x - self.camera.offset_x, dem.rectangle.y - self.camera.offset_y,
             #                                           dem.rectangle.width, dem.rectangle.height))
+
+            # Demolisher MASK:
+            # if dem.look == 1:
+            #     self.screen.blit(dem.current_sprite['mask'].to_surface(), (dem.rectangle.x - self.camera.offset_x, dem.rectangle.y - self.camera.offset_y))
+            # else:
+            #     self.screen.blit(dem.current_sprite['mask flipped'].to_surface(), (dem.rectangle.x - self.camera.offset_x, dem.rectangle.y - self.camera.offset_y))
+
+            # Demoliasher SPRITE:
             if dem.look == 1:
                 self.screen.blit(dem.current_sprite['sprite'], (dem.rectangle.x - self.camera.offset_x, dem.rectangle.y - self.camera.offset_y))
             else:
                 self.screen.blit(pygame.transform.flip(dem.current_sprite['sprite'], True, False), (dem.rectangle.x - self.camera.offset_x, dem.rectangle.y - self.camera.offset_y))
-    
+
     def render_protectors(self):
         for key in self.protectors[self.location].keys():
             # if key not in self.active_obstacles:

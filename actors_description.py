@@ -1202,8 +1202,8 @@ demon_2 = {
             'repeat from frame': 0
         },
     },
-    # 'think type': '',
-    'think type': 'chaser',
+    'think type': '',
+    # 'think type': 'chaser',
     'disappear after death': False,
     'AI controlled': True
 }
