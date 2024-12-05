@@ -6,10 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/animations/jake_8bit.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/animations/jake_8bit.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/gimp_originals/jake_8bit_big.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/img/gimp_originals/jake_8bit_big.xcf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -166,13 +164,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00575" summary="Added individual sound sets for every damager.">
-      <created>1731988068653</created>
-      <option name="number" value="00575" />
-      <option name="presentableId" value="LOCAL-00575" />
-      <option name="project" value="LOCAL" />
-      <updated>1731988068653</updated>
     </task>
     <task id="LOCAL-00576" summary="Added correct bouncing sound handling.">
       <created>1731993548527</created>
@@ -510,7 +501,14 @@
       <option name="project" value="LOCAL" />
       <updated>1733380648971</updated>
     </task>
-    <option name="localTasksCounter" value="624" />
+    <task id="LOCAL-00624" summary="Some animation improvement with shield being raised.">
+      <created>1733383073132</created>
+      <option name="number" value="00624" />
+      <option name="presentableId" value="LOCAL-00624" />
+      <option name="project" value="LOCAL" />
+      <updated>1733383073132</updated>
+    </task>
+    <option name="localTasksCounter" value="625" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -525,7 +523,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Some demolishers cause no collision with protector if their initial TTL is 1." />
     <MESSAGE value="Added 'impact recoil' demolisher property, which causes parent to be in stunned state if such demolisher hits a protector." />
     <MESSAGE value="Demolishers snapping and position updating system has changed." />
     <MESSAGE value="Fixed new update system for protectors." />
@@ -550,6 +547,7 @@
     <MESSAGE value="Corrected 'get hurt' animation." />
     <MESSAGE value="Added 'dizzy' player actor animation" />
     <MESSAGE value="Added roll\slide animation." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added roll\slide animation." />
+    <MESSAGE value="Some animation improvement with shield being raised." />
+    <option name="LAST_COMMIT_MESSAGE" value="Some animation improvement with shield being raised." />
   </component>
 </project>

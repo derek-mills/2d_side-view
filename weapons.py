@@ -150,7 +150,7 @@ kitchen_knife = {
              'visible': True,
              'demolisher sprite': 'kitchen knife demolisher',
              'type': 'blunt',
-             'pierce': False, 'demolisher TTL': 100, 'speed': 12,
+             'pierce': False, 'demolisher TTL': 39, 'speed': 12,
              'static': True, 'damage reduce': .1,
              'collides': True, 'gravity affected': False,
              'bounce': False, 'bounce factor': 0.,

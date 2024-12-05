@@ -1720,19 +1720,19 @@ player_jake = {
         },
         'stab close right': {
             'repeat': True, 'interruptable': True,
-            'sequence': (108, 108, 108, 75, 75, 75, 102, 102, 102, 62, 62, 62, 62),  # 0 - 4
+            'sequence': (75,75,75,75,75,106,106,106,106,106,106,106),  # 0 - 4
             'speed': 3,
             'activity at frames': {
-                3: {
+                1: {
                     # 'sound': True,
                     # 'move': 10, # Slightly move actor forward,
                     'demolishers set number': 1,
                     'demolisher': True
                 },
-                # 6: {
+                # 10: {
                 #     # 'sound': True,
                 #     # 'move': 10, # Slightly move actor forward,
-                #     'demolishers set number': 0,
+                #     'demolishers set number': 1,
                 #     'demolisher': True
                 # },
                 # 9: {
@@ -1746,9 +1746,10 @@ player_jake = {
         },
         'stab close left': {
             'repeat': True, 'interruptable': True,
-            'sequence': (95, 95, 95, 90, 90, 90, 122, 122, 122, 78, 78, 78, 78),  # 0 - 4
+            'sequence': (90,90,90,90,90,93,93,93,93,93,93,93),  # 0 - 4
+            'speed': 3,
             'activity at frames': {
-                3: {
+                1: {
                     # 'sound': True,
                     # 'move': 10, # Slightly move actor forward,
                     'demolishers set number': 1,
@@ -1768,8 +1769,7 @@ player_jake = {
                 # },
 
             },
-            'speed': 3,
-            'repeat from frame': 2
+            'repeat from frame': 0
         },
         'punch combo 1 right': {
             'repeat': True, 'interruptable': True,
@@ -2615,19 +2615,19 @@ sober_knight = {
         },
         'stab close right': {
             'repeat': True, 'interruptable': True,
-            'sequence': (108, 108, 108, 75, 75, 75, 102, 102, 102, 62, 62, 62, 62),  # 0 - 4
+            'sequence': (75,75,75,75,75,106,106,106,106,106,106,106),  # 0 - 4
             'speed': 3,
             'activity at frames': {
-                3: {
+                1: {
                     # 'sound': True,
                     # 'move': 10, # Slightly move actor forward,
                     'demolishers set number': 1,
                     'demolisher': True
                 },
-                # 6: {
+                # 10: {
                 #     # 'sound': True,
                 #     # 'move': 10, # Slightly move actor forward,
-                #     'demolishers set number': 0,
+                #     'demolishers set number': 1,
                 #     'demolisher': True
                 # },
                 # 9: {
@@ -2641,9 +2641,10 @@ sober_knight = {
         },
         'stab close left': {
             'repeat': True, 'interruptable': True,
-            'sequence': (95, 95, 95, 90, 90, 90, 122, 122, 122, 78, 78, 78, 78),  # 0 - 4
+            'sequence': (90,90,90,90,90,93,93,93,93,93,93,93),  # 0 - 4
+            'speed': 3,
             'activity at frames': {
-                3: {
+                1: {
                     # 'sound': True,
                     # 'move': 10, # Slightly move actor forward,
                     'demolishers set number': 1,
@@ -2663,8 +2664,7 @@ sober_knight = {
                 # },
 
             },
-            'speed': 3,
-            'repeat from frame': 2
+            'repeat from frame': 0
         },
         'punch combo 1 right': {
             'repeat': True, 'interruptable': True,
