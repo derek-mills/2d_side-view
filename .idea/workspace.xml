@@ -167,13 +167,6 @@
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
     </task>
-    <task id="LOCAL-00574" summary="Barrel explosion sound added">
-      <created>1731979440470</created>
-      <option name="number" value="00574" />
-      <option name="presentableId" value="LOCAL-00574" />
-      <option name="project" value="LOCAL" />
-      <updated>1731979440470</updated>
-    </task>
     <task id="LOCAL-00575" summary="Added individual sound sets for every damager.">
       <created>1731988068653</created>
       <option name="number" value="00575" />
@@ -510,7 +503,14 @@
       <option name="project" value="LOCAL" />
       <updated>1733376911048</updated>
     </task>
-    <option name="localTasksCounter" value="623" />
+    <task id="LOCAL-00623" summary="Added roll\slide animation.">
+      <created>1733380648971</created>
+      <option name="number" value="00623" />
+      <option name="presentableId" value="LOCAL-00623" />
+      <option name="project" value="LOCAL" />
+      <updated>1733380648971</updated>
+    </task>
+    <option name="localTasksCounter" value="624" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -525,7 +525,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added new monster: a clone of player actor." />
     <MESSAGE value="Some demolishers cause no collision with protector if their initial TTL is 1." />
     <MESSAGE value="Added 'impact recoil' demolisher property, which causes parent to be in stunned state if such demolisher hits a protector." />
     <MESSAGE value="Demolishers snapping and position updating system has changed." />
@@ -550,6 +549,7 @@
     <MESSAGE value="Fixed incorrect masks collision check." />
     <MESSAGE value="Corrected 'get hurt' animation." />
     <MESSAGE value="Added 'dizzy' player actor animation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added 'dizzy' player actor animation" />
+    <MESSAGE value="Added roll\slide animation." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added roll\slide animation." />
   </component>
 </project>

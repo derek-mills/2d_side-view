@@ -881,6 +881,7 @@ class Actor(Entity):
             #     return
             self.set_state('sliding')
             self.set_current_animation()
+            self.animation_change_denied = True
             # self.speed = self.max_speed * 4
             self.set_new_desired_height(self.rectangle_height_slide, 0)
             self.set_new_desired_width(self.rectangle_width_slide, 6)
@@ -922,6 +923,7 @@ class Actor(Entity):
                 else:
                     self.set_state('slide rise')
         elif state == 'slide rise':                      # RISING AFTER SLIDE IS OVER
+            self.animation_change_denied = False
             self.ignore_user_input = False
             self.set_new_desired_height(self.rectangle_height_sit, 5)
             self.check_space_around()
