@@ -1458,25 +1458,25 @@ player_jake = {
         },
         'sliding right': {
             'repeat': True, 'interruptable': True,
-            'sequence': (56,), 'speed': 600,
+            'sequence': (60,60,60,61,62,63,63,63,63,63,63), 'speed': 3,
             'activity at frames': {
                 0: {
                     'sound': 'sound_outwear_woosh_1',
-                    'invincibility': 10,
+                    # 'invincibility': 10,
                 },
             },
-            'repeat from frame': 0
+            'repeat from frame': 6
         },
         'sliding left': {
             'repeat': True, 'interruptable': True,
-            'sequence': (70,), 'speed': 600,
+            'sequence': (67,67,67,66,65,64,64,64,64,64,64), 'speed': 3,
             'activity at frames': {
                 0: {
                     'sound': 'sound_outwear_woosh_1',
-                    'invincibility': 10,
+                    # 'invincibility': 10,
                 },
             },
-            'repeat from frame': 0
+            'repeat from frame': 6
         },
         'hopping back process face right': {
             'repeat': True, 'interruptable': True,
