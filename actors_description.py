@@ -1348,7 +1348,7 @@ player_jake = {
     'animations': {
         'dizzy right': {
             'repeat': False, 'interruptable': True,
-            'sequence': (113,),
+            'sequence': (113,114),
             'speed': 9,
             'activity at frames': {
             },
@@ -1356,7 +1356,7 @@ player_jake = {
         },
         'dizzy left': {
             'repeat': False, 'interruptable': True,
-            'sequence': (113,),
+            'sequence': (127,128),
             'speed': 9,
             'activity at frames': {
             },
@@ -2196,7 +2196,7 @@ sober_knight = {
     'graphics': {
         'sprite sheet filename': 'img/animations/jake_8bit.png',
         'frames quantity': 128,
-        'frame width': 80,
+        'frame width': 120,
         'frame height': 120,
         'frame scale': 4,
     },
