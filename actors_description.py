@@ -1418,7 +1418,7 @@ player_jake = {
         },
         'getting hurt right': {
                 'repeat': True, 'interruptable': True,
-                'sequence': (11,12,13,13,13,13,13), 'speed': 2,
+                'sequence': (11,11,12,12,13,13,13,13,13), 'speed': 3,
                 'activity at frames': {
                     1: {
                     'sound': 'sound_jake_pain',
@@ -1428,7 +1428,7 @@ player_jake = {
             },
         'getting hurt left': {
             'repeat': True, 'interruptable': True,
-            'sequence': (25,26,27,27,27,27,27), 'speed': 2,
+            'sequence': (25,25,26,26,27,27,27,27,27), 'speed': 3,
             'activity at frames': {
                 1: {
                     'sound': 'sound_jake_pain',
@@ -1621,7 +1621,7 @@ player_jake = {
         },
         'whip left': {
             'repeat': True, 'interruptable': True,
-            'sequence': (91,91,91,91,91,90,89,89,89,89,89,88,88,88,88),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'sequence': (90,90,90,90,90,89,88,88,88,88,88,87,87,87,87),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
             'speed': 3,
             'activity at frames': {
                 # 1: {
