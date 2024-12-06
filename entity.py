@@ -780,6 +780,9 @@ class Entity(object):
         self.time_passed = time_passed
         self.cycles_passed = cycles_passed
 
+    def get_target(self, target):
+        ...
+
     def detect_demolishers_collisions(self):
         # print(self.demolishers_around)
         if self.invincibility_timer > 0:
@@ -790,8 +793,8 @@ class Entity(object):
                 continue
             if dem.parent:
                 if dem.id in self.got_immunity_to_demolishers or \
-                    dem.parent_id == self.id:
-                    # dem.parent_id == self.id or dem.parent.name == self.name:
+                   dem.parent_id == self.id or dem.parent.name == self.name:
+                    # dem.parent_id == self.id:
                     continue
             else:
                 if dem.id in self.got_immunity_to_demolishers:
@@ -856,6 +859,8 @@ class Entity(object):
 
                 if dem.parent:
                     self.get_target(dem.parent)
+
+                dem.become_mr_floppy()
 
                 self.summon_particle = True
                 # if dem.sounds['body hit'] not in self.summoned_sounds:
