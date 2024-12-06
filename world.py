@@ -730,7 +730,7 @@ class World(object):
         else:
             y = new_location['xy'][1]
         self.actors['player'].rectangle.centerx = x
-        self.actors['player'].rectangle.y = y
+        self.actors['player'].rectangle.bottom = y - 10
         # self.actors['player'].rectangle.topleft = (x, y)
         # if self.actors['player'].get_state() in ('slide', 'sliding'):
         #     self.actors['player'].set_state('slide rise')
@@ -2356,7 +2356,7 @@ class World(object):
         black_out(self.screen, self.screen, 10)
         render_text('YOU DIED', self.screen, 150, RED, 'AlbionicRegular.ttf', 'center_x', 'center_y')
         pygame.display.flip()
-        pygame.time.wait(500)
+        pygame.time.wait(200)
         render_text('press a key to revive', self.screen, 50, RED, 'AlbionicRegular.ttf', 'center_x', '3/4_y')  #, (-200, 0))
         pygame.display.flip()
         pygame.event.clear()
@@ -2384,7 +2384,8 @@ class World(object):
                         return
 
         self.change_location({'new location': 'entrance',
-                              'xy': (100, locations['entrance']['size'][1] - self.actors['player'].rectangle.height * 1.5)
+                              'xy': (200, locations['entrance']['size'][1] - self.actors['player'].rectangle_height_default * 2)
+                              # 'xy': (200, locations['entrance']['size'][1] - self.actors['player'].rectangle.height * 2)
                               # 'xy': (100, 100)
                               }
                              )

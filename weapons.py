@@ -1051,7 +1051,7 @@ pistol = {
     'stamina consumption': 0.1,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
     'mana consumption': 0.4,
     'ignore user input': True,  # Steal the ability to control a character for a while.
-    'animation speed modifier': 1.,  # 0 < x < 1: speed animation up, x > 1: slow down.
+    'animation speed modifier': .5,  # 0 < x < 1: speed animation up, x > 1: slow down.
     'leave particles': False,
     'droppable': True,
     # 'need ammo': True,

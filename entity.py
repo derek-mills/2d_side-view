@@ -859,8 +859,7 @@ class Entity(object):
 
                 if dem.parent:
                     self.get_target(dem.parent)
-
-                dem.become_mr_floppy()
+                    dem.become_mr_floppy()
 
                 self.summon_particle = True
                 # if dem.sounds['body hit'] not in self.summoned_sounds:
