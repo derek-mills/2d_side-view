@@ -1336,9 +1336,10 @@ player_jake = {
     #         'hardness': 100
     #     },
     # },
-    'max speed': 10,  # Base value, which will be reduced upon athletic index.
+    'max speed': 15,  # Base value, which will be reduced upon athletic index.
     # 'max speed': 16,  # Base value, which will be reduced upon athletic index.
-    'max jump height': 28, # Base value, which will be reduced upon athletic index.
+    'max jump height': 34, # Base value, which will be reduced upon athletic index.
+    # 'max jump height': 28, # Base value, which will be reduced upon athletic index.
     'acceleration': .6,
     'friction': .9,
     'air acceleration': .4,
@@ -2217,20 +2218,11 @@ sober_knight = {
         'smash': .1,
         'fire': 1
     },
-    # 'sounds': {
-    #     'pain': 'sound_jake_pain',
-    #     'footstep': 'sound_step_2',
-    # },
-    # 'body': {
-    #     'head': {
-    #         'hardness': 100
-    #     },
-    # },
-    'max speed': 10,  # Base value, which will be reduced upon athletic index.
+    'max speed': 6 + randint(0, 4),  # Base value, which will be reduced upon athletic index.
     # 'max speed': 16,  # Base value, which will be reduced upon athletic index.
     'max jump height': 28, # Base value, which will be reduced upon athletic index.
-    'acceleration': .6,
-    'friction': .9,
+    'acceleration': .2,
+    'friction': .6,
     'air acceleration': .4,
     # First item: close combat weapon
     # Second item: middle-range weapon

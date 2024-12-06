@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demolisher.py" beforeDir="false" afterPath="$PROJECT_DIR$/demolisher.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main .py" beforeDir="false" afterPath="$PROJECT_DIR$/main .py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,13 +164,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00579" summary="Actor's description tiny change">
-      <created>1732074004556</created>
-      <option name="number" value="00579" />
-      <option name="presentableId" value="LOCAL-00579" />
-      <option name="project" value="LOCAL" />
-      <updated>1732074004557</updated>
     </task>
     <task id="LOCAL-00580" summary="Added cool punch sound">
       <created>1732088743081</created>
@@ -508,7 +501,14 @@
       <option name="project" value="LOCAL" />
       <updated>1733467116022</updated>
     </task>
-    <option name="localTasksCounter" value="628" />
+    <task id="LOCAL-00628" summary="Some.">
+      <created>1733471627208</created>
+      <option name="number" value="00628" />
+      <option name="presentableId" value="LOCAL-00628" />
+      <option name="project" value="LOCAL" />
+      <updated>1733471627208</updated>
+    </task>
+    <option name="localTasksCounter" value="629" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -523,7 +523,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added more bigger initial sprite sheet for player actor." />
     <MESSAGE value="Added bigger initial sprite sheet for player actor, ver 2" />
     <MESSAGE value="Shield disappears if actor has stamina less than zero." />
     <MESSAGE value="Some minor bug fixes." />
@@ -548,6 +547,7 @@
     <MESSAGE value="Some animation improvement." />
     <MESSAGE value="Actor is lack of availability to hit several targets by one single strike now." />
     <MESSAGE value="Changed bullet hits wall sound" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed bullet hits wall sound" />
+    <MESSAGE value="Some." />
+    <option name="LAST_COMMIT_MESSAGE" value="Some." />
   </component>
 </project>
