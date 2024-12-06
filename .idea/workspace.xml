@@ -6,9 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demolisher.py" beforeDir="false" afterPath="$PROJECT_DIR$/demolisher.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,13 +164,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00578" summary="Added protectors separate sounds for different types of demolishers.">
-      <created>1732068214438</created>
-      <option name="number" value="00578" />
-      <option name="presentableId" value="LOCAL-00578" />
-      <option name="project" value="LOCAL" />
-      <updated>1732068214438</updated>
     </task>
     <task id="LOCAL-00579" summary="Actor's description tiny change">
       <created>1732074004556</created>
@@ -509,7 +501,14 @@
       <option name="project" value="LOCAL" />
       <updated>1733465764041</updated>
     </task>
-    <option name="localTasksCounter" value="627" />
+    <task id="LOCAL-00627" summary="Changed bullet hits wall sound">
+      <created>1733467116021</created>
+      <option name="number" value="00627" />
+      <option name="presentableId" value="LOCAL-00627" />
+      <option name="project" value="LOCAL" />
+      <updated>1733467116022</updated>
+    </task>
+    <option name="localTasksCounter" value="628" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -524,7 +523,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed new update system for protectors." />
     <MESSAGE value="Added more bigger initial sprite sheet for player actor." />
     <MESSAGE value="Added bigger initial sprite sheet for player actor, ver 2" />
     <MESSAGE value="Shield disappears if actor has stamina less than zero." />
@@ -549,6 +547,7 @@
     <MESSAGE value="Some animation improvement with shield being raised." />
     <MESSAGE value="Some animation improvement." />
     <MESSAGE value="Actor is lack of availability to hit several targets by one single strike now." />
-    <option name="LAST_COMMIT_MESSAGE" value="Actor is lack of availability to hit several targets by one single strike now." />
+    <MESSAGE value="Changed bullet hits wall sound" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed bullet hits wall sound" />
   </component>
 </project>

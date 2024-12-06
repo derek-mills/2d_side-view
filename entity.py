@@ -173,8 +173,8 @@ class Entity(object):
         self.base_max_jump_height = 22.
         self.max_jump_height = 22.
         self.jump_height = 0.
-        self.default_hop_back_jump_height_modifier: float = 2.6  # Rarely used, mostly while hopping back.
-        self.hop_back_jump_height_modifier = 2.6  # Rarely used, mostly while hopping back.
+        self.default_hop_back_jump_height_modifier: float = 3.6  # Rarely used, mostly while hopping back.
+        self.hop_back_jump_height_modifier = 3.6  # Rarely used, mostly while hopping back.
         self.default_max_jump_attempts: int = 1  #
         self.max_jump_attempts: int = 1  #
         self.jump_attempts_counter: int = 0
