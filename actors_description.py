@@ -1486,7 +1486,7 @@ player_jake = {
                     # 'invincibility': 10,
                 },
             },
-            'repeat from frame': 0
+            'repeat from frame': 5
         },
         'sliding left': {
             'repeat': True, 'interruptable': True,
@@ -1497,7 +1497,7 @@ player_jake = {
                     # 'invincibility': 10,
                 },
             },
-            'repeat from frame': 0
+            'repeat from frame': 5
         },
         'hopping back process face right': {
             'repeat': True, 'interruptable': True,

@@ -690,6 +690,7 @@ class Entity(object):
         ...
 
     def set_state(self, new_state):
+        # if new_state != self.__state and self.__state not in ('slide', 'sliding'):
         self.__state = new_state
 
     def state_machine(self):

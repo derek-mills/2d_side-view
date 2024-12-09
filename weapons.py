@@ -1093,7 +1093,7 @@ pistol = {
             'collides': True, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
             # 'attack type': ('slash', 'smash', 'pierce'),
-             'push': False,
+            'push': False,
              'sounds': {
                  'obstacle hit': 'sound_bullet_wall_hit_1',
                  'body hit': 'sound_meat_blow_1',
@@ -1103,6 +1103,7 @@ pistol = {
             'damage': {
                  'fire': 25,
                  'pierce': 100,
+                'slash': 1
              },
             # 'aftermath': 'explode'
             'aftermath': 'disappear'

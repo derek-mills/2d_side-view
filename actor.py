@@ -282,8 +282,10 @@ class Actor(Entity):
 
     def set_state(self, new_state):
         # print(f'[actor.set_state] {self.name} (#{self.id}) got new state: {new_state} at {self.cycles_passed} ({self.movement_direction_inverter=})')
+        # self.__state = new_state
+        if 'get hurt' in new_state and self.__state in ('slide', 'sliding'):
+            return
         self.__state = new_state
-        # self.set_current_animation()
 
     def process(self):
         # if self.force_mana_reduce:
@@ -1224,6 +1226,7 @@ class Actor(Entity):
         #                     self.set_state('lie dead')
         elif state == 'prepare to get hurt':
             if not self.dead:
+                # if self.get_state() not in ('slide', 'sliding'):
                 self.ignore_user_input = True
                 self.animation_change_denied = False
                 # self.summon_protector = False
