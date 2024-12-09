@@ -497,7 +497,7 @@ class Entity(object):
 
         state = self.get_state()
         if particular_animation:
-            print(f'[set current animation] New animation: {particular_animation}')
+            print(f'[set current animation ({self.name} {self.id})] New animation: {particular_animation}')
             current_animation = particular_animation
             if self.current_weapon:
                 if state == self.current_weapon['attack animation']:
@@ -530,7 +530,7 @@ class Entity(object):
         # If animation for current state does not exist, set default:
         if current_animation not in self.animations.keys():
         # if current_animation not in self.animations.keys() or current_animation == self.current_animation:
-            print(f'[set current animation] {current_animation} not exist. Exiting with animation: {self.current_animation} ')
+            print(f'[set current animation ({self.name} {self.id})] {current_animation} not exist. Exiting with animation: {self.current_animation} ')
             return
             # self.current_animation = 'stand still right'
         else:
@@ -594,8 +594,8 @@ class Entity(object):
                                 d['snapping offset'] = sprites[self.name + ' ' + str(self.animation_sequence[self.frame_number])]['demolisher snap point']
                                 self.summoned_demolishers_description.append(d)
                         except IndexError:
-                            print(f'[process activity at frames] ERROR! anmtn: {self.current_animation}, {self.current_weapon["label"]}')
-                            print(f'[process activity at frames] ERROR! {self.get_state()}')
+                            print(f'[process activity at frames ({self.name} {self.id})] ERROR! anmtn: {self.current_animation}, {self.current_weapon["label"]}')
+                            print(f'[process activity at frames ({self.name} {self.id})] ERROR! {self.get_state()}')
                             exit()
                         self.summon_demolisher = True
                     elif action == 'jump':
@@ -666,7 +666,7 @@ class Entity(object):
         try:
             self.current_frame = self.animation_descriptor + ' ' + str(self.animation_sequence[self.frame_number])  # For ex., 'Jane 8'
         except IndexError:
-            print(f'[set current sprite] ERROR: {self.frame_number=} {self.animation_descriptor=} {self.animation_sequence=}')
+            print(f'[set current sprite ({self.name} {self.id})] ERROR: {self.frame_number=} {self.animation_descriptor=} {self.animation_sequence=}')
             exit()
         if self.current_frame in sprites[self.id]['sprites'][self.current_animation].keys():
             self.current_sprite = sprites[self.id]['sprites'][self.current_animation][self.current_frame]

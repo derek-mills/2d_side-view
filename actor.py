@@ -1225,19 +1225,22 @@ class Actor(Entity):
         elif state == 'prepare to get hurt':
             if not self.dead:
                 self.ignore_user_input = True
+                self.animation_change_denied = False
                 # self.summon_protector = False
                 # self.summoned_protectors_description = list()
                 self.set_state('getting hurt')
                 self.set_current_animation()
+                self.animation_change_denied = True
         elif state == 'getting hurt':
             if self.is_stand_on_ground:
                 self.heading[0] = 0
             if self.animation_sequence_done:
+                self.animation_change_denied = False
                 if self.is_stunned:
                     self.set_state('dizzy prepare')
                 else:
                     self.ignore_user_input = False
-                    self.animation_change_denied = False
+                    # self.animation_change_denied = False
                     self.set_state('stand still')
                 # self.ignore_user_input = False
                 # self.animation_change_denied = False

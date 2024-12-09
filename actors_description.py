@@ -750,6 +750,26 @@ demon_2 = {
     # 'items': (sword, whip, fireball_staff),
     'items': (demon_2_close, demon_2_mid, fireball_staff),
     'animations': {
+        'getting hurt right': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (2,), 'speed': 3,
+            'activity at frames': {
+                1: {
+                    'sound': 'sound_demon_pain',
+                },
+            },
+            'repeat from frame': 0
+        },
+        'getting hurt left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (16,), 'speed': 3,
+            'activity at frames': {
+                1: {
+                    'sound': 'sound_demon_pain',
+                },
+            },
+            'repeat from frame': 0
+        },
         'dizzy right': {
             'repeat': False, 'interruptable': True,
             'sequence': (2,),
@@ -1202,8 +1222,8 @@ demon_2 = {
             'repeat from frame': 0
         },
     },
-    'think type': '',
-    # 'think type': 'chaser',
+    # 'think type': '',
+    'think type': 'chaser',
     'disappear after death': False,
     'AI controlled': True
 }
@@ -1461,7 +1481,7 @@ player_jake = {
             'repeat': True, 'interruptable': True,
             'sequence': (60,60,60,61,62,63,63,63,63,63,63), 'speed': 3,
             'activity at frames': {
-                0: {
+                4: {
                     'sound': 'sound_outwear_woosh_1',
                     # 'invincibility': 10,
                 },
@@ -1472,7 +1492,7 @@ player_jake = {
             'repeat': True, 'interruptable': True,
             'sequence': (67,67,67,66,65,64,64,64,64,64,64), 'speed': 3,
             'activity at frames': {
-                0: {
+                4: {
                     'sound': 'sound_outwear_woosh_1',
                     # 'invincibility': 10,
                 },
