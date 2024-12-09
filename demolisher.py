@@ -349,30 +349,47 @@ class Demolisher(Entity):
         if self.damage_reduce > 0:
             for damage_type in self.damage.keys():
                 self.damage[damage_type] -= self.damage_reduce
-        self.detect_collisions_with_protectors()
+        # self.detect_collisions_with_protectors()
         if self.is_collideable:
             # print('Demolisher check collisions with ', self.obstacles_around.keys())
             # if not self.floppy:
             self.calculate_colliders()
             self.detect_collisions_with_obstacles()
-
-            if self.is_being_collided_now:
-                if self.bounce:
-                    if self.fall_speed > 1:
-                        self.summoned_sounds.append(self.sounds['obstacle hit'])
-                    self.floppy = False
-                    self.speed *= self.bounce_factor
-                    if self.collided_left:
-                        self.look = 1
-                    elif self.collided_right:
-                        self.look = -1
-                    elif self.collided_bottom:
-                        self.fall_speed *= -self.bounce_factor  # Bounce up from the floor.
-                        self.is_stand_on_ground = False
-                else:
+        self.detect_collisions_with_protectors()
+        if self.is_being_collided_now:
+            if self.bounce:
+                if self.fall_speed > 1:
                     self.summoned_sounds.append(self.sounds['obstacle hit'])
-                    self.die()
-                    return
+                self.floppy = False
+                self.speed *= self.bounce_factor
+                if self.collided_left:
+                    self.look = 1
+                elif self.collided_right:
+                    self.look = -1
+                elif self.collided_bottom:
+                    self.fall_speed *= -self.bounce_factor  # Bounce up from the floor.
+                    self.is_stand_on_ground = False
+            else:
+                self.summoned_sounds.append(self.sounds['obstacle hit'])
+                self.die()
+                return
+            # if self.is_being_collided_now:
+            #     if self.bounce:
+            #         if self.fall_speed > 1:
+            #             self.summoned_sounds.append(self.sounds['obstacle hit'])
+            #         self.floppy = False
+            #         self.speed *= self.bounce_factor
+            #         if self.collided_left:
+            #             self.look = 1
+            #         elif self.collided_right:
+            #             self.look = -1
+            #         elif self.collided_bottom:
+            #             self.fall_speed *= -self.bounce_factor  # Bounce up from the floor.
+            #             self.is_stand_on_ground = False
+            #     else:
+            #         self.summoned_sounds.append(self.sounds['obstacle hit'])
+            #         self.die()
+            #         return
         if not self.static:
             self.calculate_speed()
             if self.flyer:
