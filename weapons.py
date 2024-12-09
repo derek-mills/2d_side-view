@@ -234,8 +234,8 @@ fireball_staff = {
             'static': False, 'damage reduce': 0,
             'collides': True, 'gravity affected': True,
             'bounce': True, 'bounce factor': 0.3,
-            'attack type': ('fire', ),
-            'push': True,
+            # 'attack type': ('fire', ),
+            'push': False,
             'sounds': {
                  'obstacle hit': 'sound_bounce_1',
                  'body hit': 'sound_meat_blow_1',

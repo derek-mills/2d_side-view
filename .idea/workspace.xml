@@ -6,9 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/animations/jake_8bit.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/animations/jake_8bit.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/gimp_originals/jake_8bit_big.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/img/gimp_originals/jake_8bit_big.xcf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,13 +165,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00584" summary="Fixed bug with incorrect 'lie decapitated' animation setting.">
-      <created>1732160874110</created>
-      <option name="number" value="00584" />
-      <option name="presentableId" value="LOCAL-00584" />
-      <option name="project" value="LOCAL" />
-      <updated>1732160874111</updated>
     </task>
     <task id="LOCAL-00585" summary="Corrected demolisher appearing while actor is on the sliding process.">
       <created>1732166409473</created>
@@ -509,7 +502,14 @@
       <option name="project" value="LOCAL" />
       <updated>1733731116448</updated>
     </task>
-    <option name="localTasksCounter" value="633" />
+    <task id="LOCAL-00633" summary="Getting hurt state do not interrupt sliding animation now. Fixed.">
+      <created>1733733133285</created>
+      <option name="number" value="00633" />
+      <option name="presentableId" value="LOCAL-00633" />
+      <option name="project" value="LOCAL" />
+      <updated>1733733133285</updated>
+    </task>
+    <option name="localTasksCounter" value="634" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -524,7 +524,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="AI-actor gets his target during initiation, not every game tick." />
     <MESSAGE value="Added 'patrol' AI think type.&#10;Added 'percept the other living beings' routine." />
     <MESSAGE value="Some weaponry tuning." />
     <MESSAGE value="Some changes in demolishers and protectors interaction." />
@@ -549,6 +548,7 @@
     <MESSAGE value="Fixed Demon 2 recoil from avoiding his attack by shield. Added 'getting hurt' animation." />
     <MESSAGE value="Fixed incorrect bouncing demolisher behavior." />
     <MESSAGE value="Getting hurt state do not interrupt sliding animation now." />
-    <option name="LAST_COMMIT_MESSAGE" value="Getting hurt state do not interrupt sliding animation now." />
+    <MESSAGE value="Getting hurt state do not interrupt sliding animation now. Fixed." />
+    <option name="LAST_COMMIT_MESSAGE" value="Getting hurt state do not interrupt sliding animation now. Fixed." />
   </component>
 </project>
