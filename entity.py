@@ -23,6 +23,7 @@ class Entity(object):
         self.demolisher_immunity_remove_counter = 0
         self.location: str = ''
         self.__state: str = ''
+        self.__previous_state: str = ''
         self.scheduled_state: str = ''
         self.idle_counter: int = 0
         self.ignore_user_input: bool = False
@@ -686,11 +687,15 @@ class Entity(object):
     def get_state(self):
         return self.__state
 
+    def get_previous_state(self):
+        return self.__previous_state
+
     def set_action(self, new_action):
         ...
 
     def set_state(self, new_state):
         # if new_state != self.__state and self.__state not in ('slide', 'sliding'):
+        self.__previous_state = self.__state[:]
         self.__state = new_state
 
     def state_machine(self):

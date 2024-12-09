@@ -274,6 +274,9 @@ class Actor(Entity):
     def get_state(self):
         return self.__state
 
+    def get_previous_state(self):
+        return self.__previous_state
+
     # def got_enough_mana(self):
     #     if self.current_weapon['mana consumption'] <= self.stats['mana']:
     #         return True
@@ -283,8 +286,9 @@ class Actor(Entity):
     def set_state(self, new_state):
         # print(f'[actor.set_state] {self.name} (#{self.id}) got new state: {new_state} at {self.cycles_passed} ({self.movement_direction_inverter=})')
         # self.__state = new_state
-        if 'get hurt' in new_state and self.__state in ('slide', 'sliding'):
-            return
+        # if 'get hurt' in new_state and self.__state in ('slide', 'sliding'):
+        #     return
+        self.__previous_state = self.__state[:]
         self.__state = new_state
 
     def process(self):
@@ -1226,17 +1230,21 @@ class Actor(Entity):
         #                     self.set_state('lie dead')
         elif state == 'prepare to get hurt':
             if not self.dead:
-                # if self.get_state() not in ('slide', 'sliding'):
+                #
                 self.ignore_user_input = True
-                self.animation_change_denied = False
                 # self.summon_protector = False
                 # self.summoned_protectors_description = list()
-                self.set_state('getting hurt')
-                self.set_current_animation()
+                if self.get_previous_state() not in ('slide', 'sliding'):
+                    self.set_state('getting hurt')
+                    self.animation_change_denied = False
+                    self.set_current_animation()
+                else:
+                    self.set_state('getting hurt')
                 self.animation_change_denied = True
         elif state == 'getting hurt':
             if self.is_stand_on_ground:
                 self.heading[0] = 0
+            # self.heading[0] = 0
             if self.animation_sequence_done:
                 self.animation_change_denied = False
                 if self.is_stunned:

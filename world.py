@@ -1406,6 +1406,7 @@ class World(object):
             #                                                              actor.sprite_rectangle.y - self.camera.offset_y))
 
             # Misc info:
+            self.screen.blit(fonts.all_fonts[15].render(actor.get_state() + '___' + actor.current_animation, True, WHITE, BLACK), (actor.rectangle.centerx - self.camera.offset_x, actor.rectangle.centery - self.camera.offset_y))
             # self.screen.blit(fonts.all_fonts[10].render(actor.get_state() + ' dying: ' + str(actor.dying)+ ' dead: ' + str(actor.dead), True, WHITE, BLACK), (x, y))
             # self.screen.blit(fonts.all_fonts[10].render(str(actor.got_immunity_to_demolishers), True, WHITE, BLACK), (x, y))
 
