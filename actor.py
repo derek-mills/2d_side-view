@@ -335,7 +335,11 @@ class Actor(Entity):
         if new_action == 'right action':
             # Apply filter of unwanted actions:
             if self.__state not in ('jump', 'free', 'crouch', 'stand still', 'prone',
+                                    'protect',
                                     'run left', 'fly left', 'run right', 'hold stash',):
+            # if self.__state not in ('jump', 'free', 'crouch', 'stand still', 'prone',
+            #                         'protect right', 'protect left', 'protected run right', 'protected run left',
+            #                         'run left', 'fly left', 'run right', 'hold stash',):
                 return
             if not self.is_stand_on_ground:
                 if self.__state == 'jump':
@@ -352,7 +356,13 @@ class Actor(Entity):
                         self.set_state('crouch turn right')
                 #     else:
                 #         self.set_state('crawl right')
-                elif self.__state in ('free', 'stand still'):
+                # elif 'protect' in self.__state:
+                #     if self.look == 1:
+                #         self.set_state('prepare run right')
+                #     else:
+                #         self.set_state('turn right')
+                # elif self.__state in ('free', 'stand still') or 'protect' in self.__state:
+                elif self.__state in ('free', 'stand still', 'protect'):
                 # elif self.__state == 'stand still':
                     if self.look == 1:
                         self.set_state('prepare run right')
@@ -368,7 +378,7 @@ class Actor(Entity):
                 self.set_state('hold stash')
             # elif self.__state == 'crawl right':
             #     self.set_state('crouch')
-            elif self.__state in ('run right', 'fly right'):
+            elif self.__state in ('run right', 'fly right', 'protected run right',):
                 self.set_state('stand still')
             # elif self.__state == 'crawl prone right':
             #     self.set_state('prone')
@@ -377,6 +387,7 @@ class Actor(Entity):
         elif new_action == 'left action':
             # Apply filter of unwanted actions:
             if self.__state not in ('jump', 'free', 'crouch', 'stand still', 'prone',
+                                    'protect',
                                     'run right', 'fly right', 'run left', 'hold stash',):
                 return
             if not self.is_stand_on_ground:
@@ -394,7 +405,7 @@ class Actor(Entity):
                         self.set_state('crouch turn left')
                 #     else:
                 #         self.set_state('crawl left')
-                elif self.__state in ('free', 'stand still'):
+                elif self.__state in ('free', 'stand still', 'protect'):
                     if self.look == -1:
                         self.set_state('prepare run left')
                     else:
@@ -496,10 +507,20 @@ class Actor(Entity):
             self.ignore_user_input = False
 
         elif new_action == 'protect':
-            if self.__state in ('free', 'stand still', 'run right', 'run left', 'fly right',
+            # self.set_state('protect')
+            # self.set_state('protect prepare')
+            if self.__state in ('free', 'stand still', 'run', 'run right', 'run left', 'fly right',
                                 'fly left','turn right', 'turn left'):
-
-                self.set_state('protect')
+                if 'run' in self.get_state():
+                # if 'run' in self.get_previous_state():
+                    self.set_current_animation('protected run')
+                else:
+                    # self.set_current_animation('protect')
+                    self.set_state('protect')
+                    # self.heading[0] = 0
+                self.normal_stamina_replenish = 0.01
+                # self.set_state('protect')
+            #     self.set_state('protect prepare')
 
         elif new_action == 'attack':
             if self.stats['stamina'] <= self.current_stamina_lost_per_attack:
@@ -570,19 +591,30 @@ class Actor(Entity):
         #     else:
         #         # 'Stunned' state has been switched off
         #         self.set_state('stand still')
+        # elif state == 'protect prepare':
+        #     if 'run' in self.get_previous_state():
+        #         self.set_current_animation('protected run')
+        #     else:
+        #         self.set_current_animation('protect')
+        #         self.heading[0] = 0
+        #     self.normal_stamina_replenish = 0.01
+        #
+        #     self.set_state('protect')
+        #     # self.set_state(self.__previous_state)
         elif state == 'protect':
             self.set_current_animation()
-            self.normal_stamina_replenish = 0.01
             self.heading[0] = 0
-        # elif state == 'protect':
-        #     if self.stats['mana'] > 3:
-        #         self.set_current_animation()
-        #         self.normal_stamina_replenish = 0.01
-        #         self.heading[0] = 0
+            self.normal_stamina_replenish = 0.01
+        #     if 'run' in self.get_previous_state():
+        #         self.set_current_animation('protected run')
         #     else:
-        #         self.summon_protector = False
-        #         self.summoned_protectors_description = list()
-        #         self.set_state('stand still')
+        #         self.set_current_animation()
+        #         # self.set_current_animation('protect')
+        #         self.heading[0] = 0
+        #     self.normal_stamina_replenish = 0.01
+        #
+        #     # self.set_state('protect')
+        #     # self.set_state(self.__previous_state)
         elif state == 'prepare attack':                          # PREPARING ATTACK
             # print(f'[state machine] {self.name} prepares attack.')
             self.stamina_reduce(self.current_stamina_lost_per_attack)

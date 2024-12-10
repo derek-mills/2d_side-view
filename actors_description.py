@@ -1795,7 +1795,7 @@ player_jake = {
         'punch combo 1 right': {
             'repeat': True, 'interruptable': True,
             'sequence': (105,105,106,106,107,107,107),  # 5 - 9
-            'speed': 2,
+            'speed': 1,
             'activity at frames': {
                 4: {
                     'sound': 'sound_swing_2',
@@ -1833,7 +1833,7 @@ player_jake = {
             'activity at frames': {
                 7: {
                     'sound': 'sound_swing_2',
-                    'move': 10,  # Slightly move actor forward,
+                    'move': 5,  # Slightly move actor forward,
                     'demolishers set number': 2,
                     'demolisher': True
                 },
@@ -1843,7 +1843,7 @@ player_jake = {
         'punch combo 1 left': {
             'repeat': True, 'interruptable': True,
             'sequence': (94,94,93,93,92,92,92),  # 5 - 9
-            'speed': 2,
+            'speed': 1,
             'activity at frames': {
                 4: {
                     'sound': 'sound_swing_2',
@@ -1878,7 +1878,7 @@ player_jake = {
             'activity at frames': {
                 7: {
                     'sound': 'sound_swing_2',
-                    'move': 10,  # Slightly move actor forward,
+                    'move': 5,  # Slightly move actor forward,
                     'demolishers set number': 2,
                     'demolisher': True
                 },
@@ -2173,38 +2173,74 @@ player_jake = {
             },
             'repeat from frame': 0
         },
-        'protect walk right': {
-            'repeat': True,
-            'sequence': (98,99,100,101,102,103,104,105,106,107,108,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
-            'speed': 1,
+        'protected run right': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (28, 29, 30, 31, 32, 33, 34, 35, 36, 37,), 'speed': 4,
+            # 'sequence': (28,29,30,31,32,33,34,35,36,37,38,), 'speed': 1,
             'activity at frames': {
-                0: {
-                    'sound': None,
-                    # 'move': 10,  # Slightly move actor forward,
+                2: {
+                    'sound': 'sound_step_2',
                     'protectors set number': 0,
                     'demolishers set number': 0,
                     'protector': True,
                     'demolisher': False
                 },
+                7: {
+                    'sound': 'sound_step_2',
+                },
             },
             'repeat from frame': 0
         },
-        'protect walk left': {
-            'repeat': True,
-            'sequence': (122,121,120,119,118,117,116,115,114,113,112,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
-            'speed': 1,
+        # 'protect walk right': {
+        #     'repeat': True,
+        #     'sequence': (98,99,100,101,102,103,104,105,106,107,108,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+        #     'speed': 1,
+        #     'activity at frames': {
+        #         0: {
+        #             'sound': None,
+        #             # 'move': 10,  # Slightly move actor forward,
+        #             'protectors set number': 0,
+        #             'demolishers set number': 0,
+        #             'protector': True,
+        #             'demolisher': False
+        #         },
+        #     },
+        #     'repeat from frame': 0
+        # },
+        'protected run left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (52, 51, 50, 49, 48, 47, 46, 45, 44, 43), 'speed': 4,
+            # 'sequence': (52,51,50,49,48,47,46,45,44,43,42,), 'speed': 1,
             'activity at frames': {
-                0: {
-                    'sound': None,
-                    # 'move': 10,  # Slightly move actor forward,
+                2: {
+                    'sound': 'sound_step_2',
                     'protectors set number': 0,
                     'demolishers set number': 0,
                     'protector': True,
                     'demolisher': False
                 },
+                7: {
+                    'sound': 'sound_step_2',
+                },
             },
             'repeat from frame': 0
         },
+        # 'protect walk left': {
+        #     'repeat': True,
+        #     'sequence': (122,121,120,119,118,117,116,115,114,113,112,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+        #     'speed': 1,
+        #     'activity at frames': {
+        #         0: {
+        #             'sound': None,
+        #             # 'move': 10,  # Slightly move actor forward,
+        #             'protectors set number': 0,
+        #             'demolishers set number': 0,
+        #             'protector': True,
+        #             'demolisher': False
+        #         },
+        #     },
+        #     'repeat from frame': 0
+        # },
     },
     'think type': '',
     'disappear after death': False,

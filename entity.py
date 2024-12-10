@@ -498,7 +498,7 @@ class Entity(object):
 
         state = self.get_state()
         if particular_animation:
-            print(f'[set current animation ({self.name} {self.id})] New animation: {particular_animation}')
+            # print(f'[set current animation ({self.name} {self.id})] New animation: {particular_animation}')
             current_animation = particular_animation
             if self.current_weapon:
                 if state == self.current_weapon['attack animation']:

@@ -592,7 +592,7 @@ jake_punch = {
     'demolishers': (
         # 'demolishers set number' #0
         ({
-             'rect': pygame.Rect(0, 0, 10, 10), 'flyer': False,
+             'rect': pygame.Rect(0, 0, 20, 20), 'flyer': False,
              'visible': False,
              'demolisher sprite': '',
              'type': 'blunt',
@@ -618,7 +618,7 @@ jake_punch = {
          },),
         # 'demolishers set number' #1
         ({
-             'rect': pygame.Rect(0, 0, 10, 10), 'flyer': False,
+             'rect': pygame.Rect(0, 0, 20, 20), 'flyer': False,
              'visible': False,
              'demolisher sprite': '',
              'type': 'blunt',
