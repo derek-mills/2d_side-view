@@ -8,11 +8,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/animations/jake_8bit.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/animations/jake_8bit.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/gimp_originals/jake_8bit_big.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/img/gimp_originals/jake_8bit_big.xcf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -169,13 +164,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00586" summary="Fixed some trouble in protectors and demolishers interaction.">
-      <created>1732176801430</created>
-      <option name="number" value="00586" />
-      <option name="presentableId" value="LOCAL-00586" />
-      <option name="project" value="LOCAL" />
-      <updated>1732176801430</updated>
     </task>
     <task id="LOCAL-00587" summary="Fixed some trouble in protectors and demolishers interaction.">
       <created>1732179497784</created>
@@ -513,7 +501,14 @@
       <option name="project" value="LOCAL" />
       <updated>1733734606503</updated>
     </task>
-    <option name="localTasksCounter" value="635" />
+    <task id="LOCAL-00635" summary="Added ability to move forward covered by shield.">
+      <created>1733811546269</created>
+      <option name="number" value="00635" />
+      <option name="presentableId" value="LOCAL-00635" />
+      <option name="project" value="LOCAL" />
+      <updated>1733811546270</updated>
+    </task>
+    <option name="localTasksCounter" value="636" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -528,7 +523,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Some weaponry tuning." />
     <MESSAGE value="Some changes in demolishers and protectors interaction." />
     <MESSAGE value="Added 'dizzy' state" />
     <MESSAGE value="Graphics load system remade.&#10;Sprites for actors now load only if they needed." />
@@ -553,6 +547,7 @@
     <MESSAGE value="Getting hurt state do not interrupt sliding animation now." />
     <MESSAGE value="Getting hurt state do not interrupt sliding animation now. Fixed." />
     <MESSAGE value="Slightly improved sliding animation." />
-    <option name="LAST_COMMIT_MESSAGE" value="Slightly improved sliding animation." />
+    <MESSAGE value="Added ability to move forward covered by shield." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added ability to move forward covered by shield." />
   </component>
 </project>

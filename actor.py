@@ -349,6 +349,7 @@ class Actor(Entity):
 
                 self.set_state('fly right')
             else:
+                # print('ksjdksjdkjsk')
                 if self.__state == 'hold stash':
                     self.set_state('carry stash right')
                 elif self.__state == 'crouch':
@@ -378,8 +379,14 @@ class Actor(Entity):
                 self.set_state('hold stash')
             # elif self.__state == 'crawl right':
             #     self.set_state('crouch')
-            elif self.__state in ('run right', 'fly right', 'protected run right',):
-                self.set_state('stand still')
+            elif self.__state in ('run right', 'fly right', 'protected run right', 'protected run backwards right'):
+                if self.__state == 'protected run backwards right':
+                    self.look = -1
+                    self.heading[0] = 0
+                    self.speed = 0
+                    self.set_state('protect')
+                else:
+                    self.set_state('stand still')
             # elif self.__state == 'crawl prone right':
             #     self.set_state('prone')
 
@@ -420,8 +427,14 @@ class Actor(Entity):
                 self.set_state('hold stash')
             # elif self.__state == 'crawl left':
             #     self.set_state('crouch')
-            elif self.__state in ('run left', 'fly left'):
-                self.set_state('stand still')
+            elif self.__state in ('run left', 'fly left', 'protected run backwards left'):
+                if self.__state == 'protected run backwards left':
+                    self.look = 1
+                    self.heading[0] = 0
+                    self.speed = 0
+                    self.set_state('protect')
+                else:
+                    self.set_state('stand still')
             # elif self.__state == 'crawl prone left':
             #     self.set_state('prone')
 
@@ -512,8 +525,11 @@ class Actor(Entity):
             if self.__state in ('free', 'stand still', 'run', 'run right', 'run left', 'fly right',
                                 'fly left','turn right', 'turn left'):
                 if 'run' in self.get_state():
-                # if 'run' in self.get_previous_state():
+                    # if self.look == 1 and 'left' in self.__state:
+                    #     self.set_current_animation('protected run backwards')
+                    # else:
                     self.set_current_animation('protected run')
+                    self.max_speed = self.base_max_speed // 3
                 else:
                     # self.set_current_animation('protect')
                     self.set_state('protect')
@@ -552,6 +568,7 @@ class Actor(Entity):
         if state == 'stand still':                     # STANDING STILL
             self.set_current_animation()
             self.heading[0] = 0
+            self.max_speed = self.base_max_speed
             self.normal_stamina_replenish = self.default_normal_stamina_replenish
             self.normal_mana_replenish = self.default_normal_mana_replenish
             self.is_grabbers_active = False
@@ -583,38 +600,18 @@ class Actor(Entity):
             # self.speed = 5
             self.speed = self.max_speed // 2
             self.look = -1
-        # elif state == 'stunned':
-        #     if self.is_stunned:
-        #         if 'stunned' not in self.current_animation:
-        #             self.set_current_animation()
-        #
-        #     else:
-        #         # 'Stunned' state has been switched off
-        #         self.set_state('stand still')
-        # elif state == 'protect prepare':
-        #     if 'run' in self.get_previous_state():
-        #         self.set_current_animation('protected run')
-        #     else:
-        #         self.set_current_animation('protect')
-        #         self.heading[0] = 0
-        #     self.normal_stamina_replenish = 0.01
-        #
-        #     self.set_state('protect')
-        #     # self.set_state(self.__previous_state)
         elif state == 'protect':
+            if self.get_previous_state() == 'turn right':
+                self.set_state('protected run backwards right')
+                self.set_current_animation()
+                return
+            if self.get_previous_state() == 'turn left':
+                self.set_state('protected run backwards left')
+                self.set_current_animation()
+                return
             self.set_current_animation()
             self.heading[0] = 0
             self.normal_stamina_replenish = 0.01
-        #     if 'run' in self.get_previous_state():
-        #         self.set_current_animation('protected run')
-        #     else:
-        #         self.set_current_animation()
-        #         # self.set_current_animation('protect')
-        #         self.heading[0] = 0
-        #     self.normal_stamina_replenish = 0.01
-        #
-        #     # self.set_state('protect')
-        #     # self.set_state(self.__previous_state)
         elif state == 'prepare attack':                          # PREPARING ATTACK
             # print(f'[state machine] {self.name} prepares attack.')
             self.stamina_reduce(self.current_stamina_lost_per_attack)
@@ -1058,6 +1055,16 @@ class Actor(Entity):
                 self.set_new_desired_height(self.rectangle_height_default,5)
             if self.rectangle.width != self.rectangle_width_default:
                 self.set_new_desired_width(self.rectangle_width_default,5)
+        elif state == 'protected run backwards left':                        # RUN LEFT
+            self.look = -1
+            self.heading[0] = -1
+            self.max_speed = self.base_max_speed // 4
+            # self.movement_direction_inverter = -1
+            # self.is_grabbers_active = True
+            if self.rectangle.height != self.rectangle_height_default:
+                self.set_new_desired_height(self.rectangle_height_default,5)
+            if self.rectangle.width != self.rectangle_width_default:
+                self.set_new_desired_width(self.rectangle_width_default,5)
         elif state == 'fly right':                        # IN MID-AIR MOVE RIGHT
             if self.is_stand_on_ground:
                 self.set_state('stand still')
@@ -1089,6 +1096,15 @@ class Actor(Entity):
         elif state == 'run right':                        # RUN RIGHT
             self.look = 1
             self.heading[0] = 1
+            # self.is_grabbers_active = True
+            if self.rectangle.height != self.rectangle_height_default:
+                self.set_new_desired_height(self.rectangle_height_default,5)
+            if self.rectangle.width != self.rectangle_width_default:
+                self.set_new_desired_width(self.rectangle_width_default,5)
+        elif state == 'protected run backwards right':                        # RUN RIGHT
+            self.look = 1
+            self.heading[0] = 1
+            self.max_speed = self.base_max_speed // 4
             # self.is_grabbers_active = True
             if self.rectangle.height != self.rectangle_height_default:
                 self.set_new_desired_height(self.rectangle_height_default,5)

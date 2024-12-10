@@ -1555,6 +1555,34 @@ player_jake = {
                 },
                 'repeat from frame': 0
             },
+        'run backwards right': {
+                'repeat': True, 'interruptable': True,
+                'sequence': (37,36,35,34,33,32,31,30,29,28), 'speed': 6,
+                # 'sequence': (28,29,30,31,32,33,34,35,36,37,), 'speed': 4,
+                'activity at frames': {
+                    2: {
+                        'sound': 'sound_step_2',
+                    },
+                    7: {
+                        'sound': 'sound_step_2',
+                    },
+                },
+                'repeat from frame': 0
+            },
+        'run backwards left': {
+                'repeat': True, 'interruptable': True,
+                'sequence': (43,44,45,46,47,48,49,50,51,52), 'speed': 6,
+                # 'sequence': (52,51,50,49,48,47,46,45,44,43), 'speed': 4,
+                'activity at frames': {
+                    2: {
+                        'sound': 'sound_step_2',
+                    },
+                    7: {
+                        'sound': 'sound_step_2',
+                    },
+                },
+                'repeat from frame': 0
+            },
         'jump right': {
                 'repeat': True, 'interruptable': True,
                 'sequence': (29,), 'speed': 1,
@@ -2191,22 +2219,6 @@ player_jake = {
             },
             'repeat from frame': 0
         },
-        # 'protect walk right': {
-        #     'repeat': True,
-        #     'sequence': (98,99,100,101,102,103,104,105,106,107,108,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
-        #     'speed': 1,
-        #     'activity at frames': {
-        #         0: {
-        #             'sound': None,
-        #             # 'move': 10,  # Slightly move actor forward,
-        #             'protectors set number': 0,
-        #             'demolishers set number': 0,
-        #             'protector': True,
-        #             'demolisher': False
-        #         },
-        #     },
-        #     'repeat from frame': 0
-        # },
         'protected run left': {
             'repeat': True, 'interruptable': True,
             'sequence': (52, 51, 50, 49, 48, 47, 46, 45, 44, 43), 'speed': 4,
@@ -2225,22 +2237,42 @@ player_jake = {
             },
             'repeat from frame': 0
         },
-        # 'protect walk left': {
-        #     'repeat': True,
-        #     'sequence': (122,121,120,119,118,117,116,115,114,113,112,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
-        #     'speed': 1,
-        #     'activity at frames': {
-        #         0: {
-        #             'sound': None,
-        #             # 'move': 10,  # Slightly move actor forward,
-        #             'protectors set number': 0,
-        #             'demolishers set number': 0,
-        #             'protector': True,
-        #             'demolisher': False
-        #         },
-        #     },
-        #     'repeat from frame': 0
-        # },
+        'protected run backwards left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (37, 36, 35, 34, 33, 32, 31, 30, 29, 28), 'speed': 6,
+            # 'sequence': (28,29,30,31,32,33,34,35,36,37,), 'speed': 4,
+            'activity at frames': {
+                2: {
+                    'sound': 'sound_step_2',
+                    'protectors set number': 0,
+                    'demolishers set number': 0,
+                    'protector': True,
+                    'demolisher': False
+                },
+                7: {
+                    'sound': 'sound_step_2',
+                },
+            },
+            'repeat from frame': 0
+        },
+        'protected run backwards right': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (43, 44, 45, 46, 47, 48, 49, 50, 51, 52), 'speed': 6,
+            # 'sequence': (52,51,50,49,48,47,46,45,44,43), 'speed': 4,
+            'activity at frames': {
+                2: {
+                    'sound': 'sound_step_2',
+                    'protectors set number': 0,
+                    'demolishers set number': 0,
+                    'protector': True,
+                    'demolisher': False
+                },
+                7: {
+                    'sound': 'sound_step_2',
+                },
+            },
+            'repeat from frame': 0
+        },
     },
     'think type': '',
     'disappear after death': False,
