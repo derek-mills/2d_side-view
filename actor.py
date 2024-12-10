@@ -1056,10 +1056,10 @@ class Actor(Entity):
             if self.rectangle.width != self.rectangle_width_default:
                 self.set_new_desired_width(self.rectangle_width_default,5)
         elif state == 'protected run backwards left':                        # RUN LEFT
-            self.look = -1
+            # self.look = -1
             self.heading[0] = -1
             self.max_speed = self.base_max_speed // 4
-            # self.movement_direction_inverter = -1
+            self.movement_direction_inverter = -1
             # self.is_grabbers_active = True
             if self.rectangle.height != self.rectangle_height_default:
                 self.set_new_desired_height(self.rectangle_height_default,5)
@@ -1102,9 +1102,10 @@ class Actor(Entity):
             if self.rectangle.width != self.rectangle_width_default:
                 self.set_new_desired_width(self.rectangle_width_default,5)
         elif state == 'protected run backwards right':                        # RUN RIGHT
-            self.look = 1
+            # self.look = 1
             self.heading[0] = 1
             self.max_speed = self.base_max_speed // 4
+            self.movement_direction_inverter = -1
             # self.is_grabbers_active = True
             if self.rectangle.height != self.rectangle_height_default:
                 self.set_new_desired_height(self.rectangle_height_default,5)

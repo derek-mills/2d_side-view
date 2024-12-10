@@ -7,7 +7,6 @@
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,13 +163,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00587" summary="Fixed some trouble in protectors and demolishers interaction.">
-      <created>1732179497784</created>
-      <option name="number" value="00587" />
-      <option name="presentableId" value="LOCAL-00587" />
-      <option name="project" value="LOCAL" />
-      <updated>1732179497784</updated>
     </task>
     <task id="LOCAL-00588" summary="Whip improved.">
       <created>1732247062122</created>
@@ -508,7 +500,14 @@
       <option name="project" value="LOCAL" />
       <updated>1733811546270</updated>
     </task>
-    <option name="localTasksCounter" value="636" />
+    <task id="LOCAL-00636" summary="Added opportunity to move backwards while covered by shield.">
+      <created>1733816883892</created>
+      <option name="number" value="00636" />
+      <option name="presentableId" value="LOCAL-00636" />
+      <option name="project" value="LOCAL" />
+      <updated>1733816883892</updated>
+    </task>
+    <option name="localTasksCounter" value="637" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -523,7 +522,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Some changes in demolishers and protectors interaction." />
     <MESSAGE value="Added 'dizzy' state" />
     <MESSAGE value="Graphics load system remade.&#10;Sprites for actors now load only if they needed." />
     <MESSAGE value="Items load their graphics only if they are summoned by something.&#10;Graphics description inserted into every particular weapon settings file." />
@@ -548,6 +546,7 @@
     <MESSAGE value="Getting hurt state do not interrupt sliding animation now. Fixed." />
     <MESSAGE value="Slightly improved sliding animation." />
     <MESSAGE value="Added ability to move forward covered by shield." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added ability to move forward covered by shield." />
+    <MESSAGE value="Added opportunity to move backwards while covered by shield." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added opportunity to move backwards while covered by shield." />
   </component>
 </project>
