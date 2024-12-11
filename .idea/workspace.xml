@@ -7,6 +7,7 @@
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,13 +164,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00591" summary="Added new monster: a clone of player actor.">
-      <created>1732512472571</created>
-      <option name="number" value="00591" />
-      <option name="presentableId" value="LOCAL-00591" />
-      <option name="project" value="LOCAL" />
-      <updated>1732512472572</updated>
     </task>
     <task id="LOCAL-00592" summary="Some demolishers cause no collision with protector if their initial TTL is 1.">
       <created>1732521753812</created>
@@ -507,7 +501,14 @@
       <option name="project" value="LOCAL" />
       <updated>1733883366546</updated>
     </task>
-    <option name="localTasksCounter" value="640" />
+    <task id="LOCAL-00640" summary="'Protected run' has a particular section in the State machine now.">
+      <created>1733887177486</created>
+      <option name="number" value="00640" />
+      <option name="presentableId" value="LOCAL-00640" />
+      <option name="project" value="LOCAL" />
+      <updated>1733887177486</updated>
+    </task>
+    <option name="localTasksCounter" value="641" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -522,7 +523,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Barrel explosion tuned" />
     <MESSAGE value="Master chief walk sprites added" />
     <MESSAGE value="Master chief sprites improved." />
     <MESSAGE value="Master chief sprites improved. Still going on." />
@@ -547,6 +547,7 @@
     <MESSAGE value="Added opportunity to move backwards while covered by shield, improved." />
     <MESSAGE value="Making some code more accurate and beautiful.&#10;Restoring actor's speed to default state." />
     <MESSAGE value="Changed animation of actor walking with protector raised up." />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed animation of actor walking with protector raised up." />
+    <MESSAGE value="'Protected run' has a particular section in the State machine now." />
+    <option name="LAST_COMMIT_MESSAGE" value="'Protected run' has a particular section in the State machine now." />
   </component>
 </project>

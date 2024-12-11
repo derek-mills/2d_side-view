@@ -529,12 +529,13 @@ class Actor(Entity):
             # self.set_state('protect prepare')
             if self.__state in ('free', 'stand still', 'run', 'run right', 'run left', 'fly right',
                                 'fly left','turn right', 'turn left'):
-                if 'run' in self.get_state():
-                    # self.set_current_animation('protected run')
-                    # self.max_speed = self.base_max_speed // 3
-                    ...
-                else:
-                    self.set_state('protect')
+                # if 'run' in self.get_state():
+                #     # self.set_current_animation('protected run')
+                #     # self.max_speed = self.base_max_speed // 3
+                #     ...
+                # else:
+                #     self.set_state('protect')
+                self.set_state('protect')
                 self.normal_stamina_replenish = 0.01
 
         elif new_action == 'attack':
@@ -547,8 +548,12 @@ class Actor(Entity):
             if self.stats['mana'] <= self.current_mana_lost_per_attack:
                 # print(f'[state machine] NOT ENOUGH MANA')
                 return
+            # if 'protect' not in self.__state or self.__state not in ('free', 'stand still', 'run right', 'run left',
+            #                                                      'jump',
+            #                                                      'crouch', 'fly right', 'fly left', 'turn right', 'turn left'):
             if self.__state not in ('free', 'stand still', 'run right', 'run left',
-                                    'jump', 'protect',
+                                    'jump', 'protect', 'protected run left', 'protected run right',
+                                    'protected run backwards left', 'protected run backwards right',
                                     'crouch', 'fly right', 'fly left', 'turn right', 'turn left'):
                 return
             # print(f'[set action] attack')

@@ -1182,7 +1182,9 @@ class World(object):
                         if hand:
                             # One or both hands of an actor does action:
                             actor.current_weapon = actor.body[hand]['weapon']['item']
-                            if actor.get_state() == 'protect' and actor.current_weapon['type'] == 'shields':
+
+                            if 'protect' in actor.get_state() and actor.current_weapon['type'] == 'shields':
+                            # if actor.get_state() == 'protect' and actor.current_weapon['type'] == 'shields':
                                 # print('bbbb')
                                 if actor.stats['stamina'] <= 0:
                                     actor.is_attack = False
