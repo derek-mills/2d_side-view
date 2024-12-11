@@ -1326,7 +1326,7 @@ player_jake = {
     'name': 'Jake',
     'graphics': {
         'sprite sheet filename': 'img/animations/jake_8bit.png',
-        'frames quantity': 128,
+        'frames quantity': 139,
         'frame width': 120,
         'frame height': 120,
         'frame scale': 4,
@@ -2203,7 +2203,8 @@ player_jake = {
         },
         'protected run right': {
             'repeat': True, 'interruptable': True,
-            'sequence': (28, 29, 30, 31, 32, 33, 34, 35, 36, 37,), 'speed': 4,
+            'sequence': (115,116,117,118,119,120,121,122,123,124,), 'speed': 4,
+            # 'sequence': (28, 29, 30, 31, 32, 33, 34, 35, 36, 37,), 'speed': 4,
             # 'sequence': (28,29,30,31,32,33,34,35,36,37,38,), 'speed': 1,
             'activity at frames': {
                 2: {
@@ -2221,7 +2222,8 @@ player_jake = {
         },
         'protected run left': {
             'repeat': True, 'interruptable': True,
-            'sequence': (52, 51, 50, 49, 48, 47, 46, 45, 44, 43), 'speed': 4,
+            'sequence': (139,138,137,136,135,134,133,132,131,130), 'speed': 4,
+            # 'sequence': (52, 51, 50, 49, 48, 47, 46, 45, 44, 43), 'speed': 4,
             # 'sequence': (52,51,50,49,48,47,46,45,44,43,42,), 'speed': 1,
             'activity at frames': {
                 2: {
@@ -2239,7 +2241,8 @@ player_jake = {
         },
         'protected run backwards left': {
             'repeat': True, 'interruptable': True,
-            'sequence': (37, 36, 35, 34, 33, 32, 31, 30, 29, 28), 'speed': 6,
+            'sequence': (124,123,122,121,120,119,118,117,116,115), 'speed': 6,
+            # 'sequence': (37, 36, 35, 34, 33, 32, 31, 30, 29, 28), 'speed': 6,
             # 'sequence': (28,29,30,31,32,33,34,35,36,37,), 'speed': 4,
             'activity at frames': {
                 2: {
@@ -2257,7 +2260,8 @@ player_jake = {
         },
         'protected run backwards right': {
             'repeat': True, 'interruptable': True,
-            'sequence': (43, 44, 45, 46, 47, 48, 49, 50, 51, 52), 'speed': 6,
+            'sequence': (130,131,132,133,134,135,136,137,138,139), 'speed': 6,
+            # 'sequence': (43, 44, 45, 46, 47, 48, 49, 50, 51, 52), 'speed': 6,
             # 'sequence': (52,51,50,49,48,47,46,45,44,43), 'speed': 4,
             'activity at frames': {
                 2: {
