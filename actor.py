@@ -129,6 +129,7 @@ class Actor(Entity):
         self.rectangle_width_slide = self.rectangle.height
 
     def detect_collisions_with_protectors(self):
+        self.pushed_by_protector = False
         if self.protectors_around:
             # print(f'[detect collision with protectors] {self.id} collision check starting...')
             for k in self.protectors_around.keys():
@@ -142,7 +143,7 @@ class Actor(Entity):
                     #     self.set_state('dizzy prepare')
                     self.pushed_by_protector = True
                     return
-            self.pushed_by_protector = False
+
 
     def get_target(self, target):
         self.target = target
@@ -673,8 +674,9 @@ class Actor(Entity):
                        'kick', 'pistol shot', 'punch'):                          # ATTACKING IN PROCESS...
             # print(f'[state machine] {self.name} attacking.')
             if self.pushed_by_protector:
-                self.set_state('dizzy prepare')
-                print('1')
+                self.set_state('stand still')
+                self.ignore_user_input = False
+                # print('1')
                 return
             if self.is_stand_on_ground:
                 self.heading[0] = 0
