@@ -326,6 +326,11 @@ class Actor(Entity):
 
         super().process()
 
+    # def discard_protectors(self):
+    #     while self.summoned_protectors_keep_alive:
+    #         protector_id = self.summoned_protectors_keep_alive.pop()
+    #         del self.protectors[self.location][protector_id]
+
     def set_action(self, new_action):
         # print(f'[actor set action] Setting new action: {new_action}')
         # if self.ignore_user_input:
@@ -530,6 +535,7 @@ class Actor(Entity):
                     # else:
                     self.set_current_animation('protected run')
                     self.max_speed = self.base_max_speed // 3
+                    # self.max_speed_penalty = 0.5
                 else:
                     # self.set_current_animation('protect')
                     self.set_state('protect')
@@ -568,7 +574,7 @@ class Actor(Entity):
         if state == 'stand still':                     # STANDING STILL
             self.set_current_animation()
             self.heading[0] = 0
-            self.max_speed = self.base_max_speed
+            # self.max_speed = self.base_max_speed
             self.normal_stamina_replenish = self.default_normal_stamina_replenish
             self.normal_mana_replenish = self.default_normal_mana_replenish
             self.is_grabbers_active = False
@@ -1059,6 +1065,7 @@ class Actor(Entity):
             # self.look = -1
             self.heading[0] = -1
             self.max_speed = self.base_max_speed // 4
+            # self.max_speed_penalty = 0.25
             self.movement_direction_inverter = -1
             # self.is_grabbers_active = True
             if self.rectangle.height != self.rectangle_height_default:
@@ -1105,6 +1112,7 @@ class Actor(Entity):
             # self.look = 1
             self.heading[0] = 1
             self.max_speed = self.base_max_speed // 4
+            # self.max_speed_penalty = 0.25
             self.movement_direction_inverter = -1
             # self.is_grabbers_active = True
             if self.rectangle.height != self.rectangle_height_default:
@@ -2007,6 +2015,9 @@ class Actor(Entity):
         self.is_move_down = False
         self.is_jump = False
         # self.is_edge_grabbed = False
+
+    def restore_default_states(self):
+        self.max_speed = self.base_max_speed
 
     def think(self):
         if self.think_type == 'patrol':

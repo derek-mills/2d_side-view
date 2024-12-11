@@ -1635,6 +1635,8 @@ class Entity(object):
             else:
                 self.speed = self.max_speed
 
+        # self.speed *= self.max_speed_penalty
+
         if self.speed == 0:
         # if self.speed <= 0:
             self.movement_direction_inverter = 1

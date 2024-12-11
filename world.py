@@ -1189,12 +1189,14 @@ class World(object):
                                     actor.attack_time = 0
                                     actor.is_alternate_attack = False
                                     actor.alternate_attack_time = 0
-                                    actor.set_state('prepare to get hurt')
-                                    # actor.set_state('stand still')
+                                    actor.set_state('dizzy prepare')
+                                    # actor.set_state('prepare to get hurt')
                                     actor.summon_protector = False
-                                    while actor.summoned_protectors_keep_alive:
-                                        protector_id = actor.summoned_protectors_keep_alive.pop()
-                                        del self.protectors[self.location][protector_id]
+                                    self.discard_protectors(key)  # Dismiss all protectors, summoned by current actor.
+                                    actor.restore_default_states()
+                                    # while actor.summoned_protectors_keep_alive:
+                                    #     protector_id = actor.summoned_protectors_keep_alive.pop()
+                                    #     del self.protectors[self.location][protector_id]
                                 else:
                                     if not actor.summoned_protectors_keep_alive:
                                         actor.summon_protector = False
@@ -1207,16 +1209,20 @@ class World(object):
                                         actor.set_action('protect')
                                     else:
                                         actor.set_state('stand still')
-                                        while actor.summoned_protectors_keep_alive:
-                                            protector_id = actor.summoned_protectors_keep_alive.pop()
-                                            del self.protectors[self.location][protector_id]
+                                        self.discard_protectors(key)  # Dismiss all protectors, summoned by current actor.
+                                        actor.restore_default_states()
+                                        # while actor.summoned_protectors_keep_alive:
+                                        #     protector_id = actor.summoned_protectors_keep_alive.pop()
+                                        #     del self.protectors[self.location][protector_id]
                                 else:
                                     actor.current_stamina_lost_per_attack = actor.normal_stamina_lost_per_attack * actor.current_weapon['stamina consumption']
                                     actor.current_mana_lost_per_attack = actor.normal_mana_lost_per_attack * actor.current_weapon['mana consumption']
                                     actor.set_action('attack')
-                                    while actor.summoned_protectors_keep_alive:
-                                        protector_id = actor.summoned_protectors_keep_alive.pop()
-                                        del self.protectors[self.location][protector_id]
+                                    self.discard_protectors(key)  # Dismiss all protectors, summoned by current actor.
+                                    actor.restore_default_states()
+                                    # while actor.summoned_protectors_keep_alive:
+                                    #     protector_id = actor.summoned_protectors_keep_alive.pop()
+                                    #     del self.protectors[self.location][protector_id]
                         else:
                             actor.frames_changing_threshold_modifier = 1
                             actor.frames_changing_threshold_penalty = 1
@@ -1227,9 +1233,11 @@ class World(object):
                                 if actor.summoned_protectors_keep_alive:
                                     actor.summon_protector = False
                                     actor.set_state('stand still')
-                                    while actor.summoned_protectors_keep_alive:
-                                        protector_id = actor.summoned_protectors_keep_alive.pop()
-                                        del self.protectors[self.location][protector_id]
+                                    self.discard_protectors(key)  # Dismiss all protectors, summoned by current actor.
+                                    actor.restore_default_states()
+                                    # while actor.summoned_protectors_keep_alive:
+                                    #     protector_id = actor.summoned_protectors_keep_alive.pop()
+                                    #     del self.protectors[self.location][protector_id]
                                 # else:
                                 #     actor.summoned_protectors_keep_alive.clear()
                                 # actor.summon_protector = False
@@ -1812,6 +1820,12 @@ class World(object):
                                  self.info_panel_start_y + frame_sz[1] // 2 - sz[1] // 2))
             weapon_sprite_start_x += frame_sz[0]
         # self.screen.blit(sprites[self.actors['player'].current_weapon['sprite']]['sprite'], (self.info_panel_start_x, self.info_panel_start_y))
+
+    def discard_protectors(self, actor_id):
+        actor = self.actors[self.location][actor_id]
+        while actor.summoned_protectors_keep_alive:
+            protector_id = actor.summoned_protectors_keep_alive.pop()
+            del self.protectors[self.location][protector_id]
 
     def load(self):
         if self.location not in self.locations.keys():
