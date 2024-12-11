@@ -343,7 +343,7 @@ class Actor(Entity):
                                     'protect',
                                     'run left', 'fly left', 'run right', 'hold stash',):
             # if self.__state not in ('jump', 'free', 'crouch', 'stand still', 'prone',
-            #                         'protect right', 'protect left', 'protected run right', 'protected run left',
+            #                         'protect', 'protected run right', 'protected run left',
             #                         'run left', 'fly left', 'run right', 'hold stash',):
                 return
             if not self.is_stand_on_ground:
@@ -432,7 +432,7 @@ class Actor(Entity):
                 self.set_state('hold stash')
             # elif self.__state == 'crawl left':
             #     self.set_state('crouch')
-            elif self.__state in ('run left', 'fly left', 'protected run backwards left'):
+            elif self.__state in ('run left', 'fly left', 'protected run left', 'protected run backwards left'):
                 if self.__state == 'protected run backwards left':
                     self.look = 1
                     self.heading[0] = 0
@@ -530,19 +530,12 @@ class Actor(Entity):
             if self.__state in ('free', 'stand still', 'run', 'run right', 'run left', 'fly right',
                                 'fly left','turn right', 'turn left'):
                 if 'run' in self.get_state():
-                    # if self.look == 1 and 'left' in self.__state:
-                    #     self.set_current_animation('protected run backwards')
-                    # else:
-                    self.set_current_animation('protected run')
-                    self.max_speed = self.base_max_speed // 3
-                    # self.max_speed_penalty = 0.5
+                    # self.set_current_animation('protected run')
+                    # self.max_speed = self.base_max_speed // 3
+                    ...
                 else:
-                    # self.set_current_animation('protect')
                     self.set_state('protect')
-                    # self.heading[0] = 0
                 self.normal_stamina_replenish = 0.01
-                # self.set_state('protect')
-            #     self.set_state('protect prepare')
 
         elif new_action == 'attack':
             if self.stats['stamina'] <= self.current_stamina_lost_per_attack:
@@ -1050,9 +1043,17 @@ class Actor(Entity):
             #     self.set_new_desired_height(self.rectangle_height_default,5)
             # if self.rectangle.width != self.rectangle_width_default:
             #     self.set_new_desired_width(self.rectangle_width_default,5)
+        elif state == 'protected run left':          # RUN LEFT WITH SHIELD RAISED
+            self.look = -1
+            self.heading[0] = -1
         elif state == 'prepare run left':                        # RUN LEFT
-            self.set_state('run left')
-            self.set_current_animation()
+            if self.get_previous_state() == 'protect':
+                self.set_current_animation('protected run')
+                self.set_state('protected run left')
+                self.max_speed = self.base_max_speed // 3
+            else:
+                self.set_state('run left')
+                self.set_current_animation()
         elif state == 'run left':                        # RUN LEFT
             self.look = -1
             self.heading[0] = -1
@@ -1097,9 +1098,17 @@ class Actor(Entity):
             #     self.set_new_desired_height(self.rectangle_height_default,5)
             # if self.rectangle.width != self.rectangle_width_default:
             #     self.set_new_desired_width(self.rectangle_width_default,5)
+        elif state == 'protected run right':          # RUN RIGHT WITH SHIELD RAISED
+            self.look = 1
+            self.heading[0] = 1
         elif state == 'prepare run right':                        # RUN RIGHT
-            self.set_state('run right')
-            self.set_current_animation()
+            if self.get_previous_state() == 'protect':
+                self.set_current_animation('protected run')
+                self.set_state('protected run right')
+                self.max_speed = self.base_max_speed // 3
+            else:
+                self.set_state('run right')
+                self.set_current_animation()
         elif state == 'run right':                        # RUN RIGHT
             self.look = 1
             self.heading[0] = 1

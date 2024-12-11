@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/animations/jake_8bit.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/animations/jake_8bit.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/gimp_originals/jake_8bit_big.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/img/gimp_originals/jake_8bit_big.xcf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,13 +163,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00590" summary="Some weapon improvements">
-      <created>1732256752544</created>
-      <option name="number" value="00590" />
-      <option name="presentableId" value="LOCAL-00590" />
-      <option name="project" value="LOCAL" />
-      <updated>1732256752544</updated>
     </task>
     <task id="LOCAL-00591" summary="Added new monster: a clone of player actor.">
       <created>1732512472571</created>
@@ -509,7 +500,14 @@
       <option name="project" value="LOCAL" />
       <updated>1733882148167</updated>
     </task>
-    <option name="localTasksCounter" value="639" />
+    <task id="LOCAL-00639" summary="Changed animation of actor walking with protector raised up.">
+      <created>1733883366546</created>
+      <option name="number" value="00639" />
+      <option name="presentableId" value="LOCAL-00639" />
+      <option name="project" value="LOCAL" />
+      <updated>1733883366546</updated>
+    </task>
+    <option name="localTasksCounter" value="640" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -524,7 +522,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Items load their graphics only if they are summoned by something.&#10;Graphics description inserted into every particular weapon settings file." />
     <MESSAGE value="Barrel explosion tuned" />
     <MESSAGE value="Master chief walk sprites added" />
     <MESSAGE value="Master chief sprites improved." />
@@ -549,6 +546,7 @@
     <MESSAGE value="Added opportunity to move backwards while covered by shield." />
     <MESSAGE value="Added opportunity to move backwards while covered by shield, improved." />
     <MESSAGE value="Making some code more accurate and beautiful.&#10;Restoring actor's speed to default state." />
-    <option name="LAST_COMMIT_MESSAGE" value="Making some code more accurate and beautiful.&#10;Restoring actor's speed to default state." />
+    <MESSAGE value="Changed animation of actor walking with protector raised up." />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed animation of actor walking with protector raised up." />
   </component>
 </project>
