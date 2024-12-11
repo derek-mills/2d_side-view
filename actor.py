@@ -13,6 +13,7 @@ class Actor(Entity):
         self.current_weapon_demolishers_reveal_frames = list()
         self.is_collideable = True
         self.is_destructible = True
+        self.pushed_by_protector: bool = False
 
         self.ai_input_right_arrow = False
         self.ai_input_left_arrow = False
@@ -127,6 +128,21 @@ class Actor(Entity):
         self.rectangle_height_slide = self.rectangle.width
         self.rectangle_width_slide = self.rectangle.height
 
+    def detect_collisions_with_protectors(self):
+        if self.protectors_around:
+            # print(f'[detect collision with protectors] {self.id} collision check starting...')
+            for k in self.protectors_around.keys():
+                p = self.protectors_around[k]
+                if p.parent.id == self.id:
+                    continue
+                if self.sprite_rectangle.colliderect(p.rectangle) and self.look != p.look:
+                    # print(f'[detect collision with protectors {self.name} {self.id}] collided with protecor.')
+                    # self.summoned_sounds.append(p.sounds[self.type])
+                    # if 'attack' in self.get_state():
+                    #     self.set_state('dizzy prepare')
+                    self.pushed_by_protector = True
+                    return
+            self.pushed_by_protector = False
 
     def get_target(self, target):
         self.target = target
@@ -317,6 +333,7 @@ class Actor(Entity):
         else:
             self.combo_set_number = 0
 
+        self.detect_collisions_with_protectors()
         self.state_machine()
         self.apply_rectangle_according_to_sprite()
         self.processing_rectangle_size()
@@ -655,6 +672,10 @@ class Actor(Entity):
                        'whip crouch right', 'whip crouch left',
                        'kick', 'pistol shot', 'punch'):                          # ATTACKING IN PROCESS...
             # print(f'[state machine] {self.name} attacking.')
+            if self.pushed_by_protector:
+                self.set_state('dizzy prepare')
+                print('1')
+                return
             if self.is_stand_on_ground:
                 self.heading[0] = 0
             if self.animation_sequence_done:

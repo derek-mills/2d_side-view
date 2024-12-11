@@ -7,7 +7,12 @@
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demolisher.py" beforeDir="false" afterPath="$PROJECT_DIR$/demolisher.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphics.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/animations/jake_8bit.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/animations/jake_8bit.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/gimp_originals/jake_8bit_big.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/img/gimp_originals/jake_8bit_big.xcf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/items.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/items.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,13 +169,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00592" summary="Some demolishers cause no collision with protector if their initial TTL is 1.">
-      <created>1732521753812</created>
-      <option name="number" value="00592" />
-      <option name="presentableId" value="LOCAL-00592" />
-      <option name="project" value="LOCAL" />
-      <updated>1732521753812</updated>
     </task>
     <task id="LOCAL-00593" summary="Some demolishers cause no collision with protector if their initial TTL is 1.">
       <created>1732524008657</created>
@@ -508,7 +506,14 @@
       <option name="project" value="LOCAL" />
       <updated>1733887177486</updated>
     </task>
-    <option name="localTasksCounter" value="641" />
+    <task id="LOCAL-00641" summary="Fixed some bugs with 'running' and 'defending' states in their different combinations.">
+      <created>1733889436193</created>
+      <option name="number" value="00641" />
+      <option name="presentableId" value="LOCAL-00641" />
+      <option name="project" value="LOCAL" />
+      <updated>1733889436193</updated>
+    </task>
+    <option name="localTasksCounter" value="642" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -523,7 +528,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Master chief walk sprites added" />
     <MESSAGE value="Master chief sprites improved." />
     <MESSAGE value="Master chief sprites improved. Still going on." />
     <MESSAGE value="Sprite sheet net generator updated slightly." />
@@ -548,6 +552,7 @@
     <MESSAGE value="Making some code more accurate and beautiful.&#10;Restoring actor's speed to default state." />
     <MESSAGE value="Changed animation of actor walking with protector raised up." />
     <MESSAGE value="'Protected run' has a particular section in the State machine now." />
-    <option name="LAST_COMMIT_MESSAGE" value="'Protected run' has a particular section in the State machine now." />
+    <MESSAGE value="Fixed some bugs with 'running' and 'defending' states in their different combinations." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed some bugs with 'running' and 'defending' states in their different combinations." />
   </component>
 </project>

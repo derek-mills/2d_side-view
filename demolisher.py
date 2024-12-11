@@ -261,10 +261,10 @@ class Demolisher(Entity):
                             self.parent.state_machine()
 
                     # Reduce all damaging abilities according to protector's might:
-                    damage_to_protector_bringer = dict()
+                    damage_to_owner_of_protector = dict()
                     # damage = self.damage.copy()
                     for damage_type in self.damage:
-                        damage_to_protector_bringer[damage_type] = self.damage[damage_type] * p.protection[damage_type]
+                        damage_to_owner_of_protector[damage_type] = self.damage[damage_type] * p.protection[damage_type]
                         self.damage[damage_type] = self.damage[damage_type] * p.protection[damage_type] if damage_type != "fire" else self.damage[damage_type]
                         # self.damage[damage_type] *= p.protection[damage_type]
 
@@ -273,7 +273,7 @@ class Demolisher(Entity):
                         p.parent.got_immunity_to_demolishers.append(self.id)
                     # p.parent.mana_reduce(p.mana_consumption * p.parent.normal_mana_lost_per_defend)
                     p.parent.stamina_reduce(p.stamina_consumption * p.parent.normal_stamina_lost_per_defend)
-                    p.parent.get_damage(damage_to_protector_bringer, 1)
+                    p.parent.get_damage(damage_to_owner_of_protector, 1)
                     # p.parent.get_damage(self.damage, 1)
                     if p.parent.total_damage_has_got > 0:
                         if p.parent.stats['stamina'] > 0:
