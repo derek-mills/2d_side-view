@@ -17,6 +17,7 @@ class Actor(Entity):
 
         self.ai_input_right_arrow = False
         self.ai_input_left_arrow = False
+        self.ai_input_down_arrow = False
         self.ai_input_attack = False
         self.ai_input_jump = False
         self.next_ranged_weapon_usage_counter = 0
@@ -2067,6 +2068,9 @@ class Actor(Entity):
             #     return
             if not self.target or self.target.dead:
                 self.think_type = 'patrol'
+            self.ai_input_down_arrow = False
+            self.ai_input_jump = False
+
             if self.rectangle.centerx > self.target.rectangle.centerx:
                 self.ai_input_left_arrow = True
                 self.ai_input_right_arrow = False
@@ -2077,6 +2081,11 @@ class Actor(Entity):
                 self.ai_input_right_arrow = True
                 self.ai_input_attack = False
                 self.look = 1
+
+            if self.pushed_by_protector:
+                self.ai_input_down_arrow = True
+                self.ai_input_jump = True
+                return
 
             if self.sprite_rectangle.colliderect(self.target.sprite_rectangle):
                 # Smash actor immediately:
@@ -2137,6 +2146,12 @@ class Actor(Entity):
             #     self.set_state('almost explode')
             #     # self.ai_input_attack = True
             #     self.think_type = ''
+
+    def perform_ai_deed_after_thinking(self):
+        if self.ai_input_down_arrow:
+            self.set_action('down action')
+        else:
+            self.set_action('down action cancel')
 
         if self.ai_input_jump:
             # self.ai_input_jump = False

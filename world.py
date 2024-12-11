@@ -1102,6 +1102,7 @@ class World(object):
                     # actor.get_target(self.actors['player'])
                     if not actor.ignore_user_input:
                         actor.think()
+                        actor.perform_ai_deed_after_thinking()
                 else:
                     # ROUTINES FOR HUMAN PLAYER ACTOR
                     if not actor.ignore_user_input:
