@@ -18,8 +18,13 @@ class Actor(Entity):
         self.ai_input_right_arrow = False
         self.ai_input_left_arrow = False
         self.ai_input_down_arrow = False
+        self.ai_input_up_arrow = False
         self.ai_input_attack = False
         self.ai_input_jump = False
+        self.ai_input_hop_back = False
+        self.ai_input_multiple_hop_back_prevent = False
+        self.ai_input_hop_forward = False
+        self.ai_input__multiple_hop_forward_prevent = False
         self.next_ranged_weapon_usage_counter = 0
         # self.previously_used_weapon = ''
         # self.force_use_previous_weapon = False
@@ -2082,9 +2087,17 @@ class Actor(Entity):
                 self.ai_input_attack = False
                 self.look = 1
 
+            # AI actor collided with someone's shield:
             if self.pushed_by_protector:
-                self.ai_input_down_arrow = True
-                self.ai_input_jump = True
+                possible_actions = ('hop back', 'hop forward', 'slide')
+                next_deed = choice(possible_actions)
+                if next_deed == 'hop back':
+                    self.ai_input_hop_back = True
+                elif next_deed == 'slide':
+                    self.ai_input_down_arrow = True
+                    self.ai_input_jump = True
+                elif next_deed == 'hop forward':
+                    self.ai_input_hop_forward = True
                 return
 
             if self.sprite_rectangle.colliderect(self.target.sprite_rectangle):
@@ -2175,3 +2188,19 @@ class Actor(Entity):
         if self.ai_input_attack:
             self.ai_input_attack = False
             self.set_action('attack')
+
+        if self.ai_input_hop_forward:
+            self.ai_input__multiple_hop_forward_prevent = True
+            self.ai_input_hop_forward = False
+            self.set_action('hop forward')
+        else:
+            if self.get_state() in ('hopping back progress', 'hopping forward progress'):
+                self.set_action('hop action cancel')
+
+        if self.ai_input_hop_back:
+            self.ai_input_multiple_hop_back_prevent = True
+            self.ai_input_hop_back = False
+            self.set_action('hop back')
+        else:
+            if self.get_state() in ('hopping back progress', 'hopping forward progress'):
+                self.set_action('hop action cancel')

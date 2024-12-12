@@ -201,6 +201,7 @@ class Entity(object):
         self.destination_area = pygame.Rect(0,0,0,0)
         self.vec_to_destination: list = [0, 0]
         self.exotic_movement = ''
+        self.previous_location = [0, 0]
 
 
         # Collisions
@@ -809,8 +810,8 @@ class Entity(object):
             hit_detected = False
             if dem.invisible:
                 # Just a rectangle-based collision detector:
-                # if self.rectangle.colliderect(dem.rectangle):
-                if self.sprite_rectangle.colliderect(dem.rectangle):
+                if self.rectangle.colliderect(dem.rectangle):
+                # if self.sprite_rectangle.colliderect(dem.rectangle):
                     hit_detected = True
             else:
 
@@ -857,7 +858,8 @@ class Entity(object):
                     hit_detected = True
 
             if hit_detected:
-                # print(f'[detect demolishers collision] Dem #{dem.id} hit {self.name}')
+                print(f'[detect demolishers collision] Dem #{dem.id} hit {self.name}')
+                print(f'[detect demolishers collision] Dem rect {dem.rectangle} self rect {self.rectangle}')
                 self.combo_counter = 0
                 self.combo_set_number = 0
                 if not dem.pierce and not self.dead:
@@ -1566,6 +1568,8 @@ class Entity(object):
 
             # print(f'BEFORe: {self.rectangle.center=} {self.vec_to_destination=}')
             # self.rectangle.x += round(self.vec_to_destination[0])
+            self.previous_location[0] = self.rectangle.x
+            self.previous_location[1] = self.rectangle.y
             self.rectangle.x += self.vec_to_destination[0]
             # self.rectangle.y += round(self.vec_to_destination[1])
             if self.exotic_movement == 'sin':

@@ -1,5 +1,8 @@
 # from obstacle import *
+# import pygame
+
 from entity import *
+from misc_tools import check_lines_intersection
 from pygame import Rect
 
 class Demolisher(Entity):
@@ -244,9 +247,35 @@ class Demolisher(Entity):
             return
         if self.protectors_around:
             # print(f'[detect collision with protectors] {self.id} collision check starting...')
+            hit_detected = False
             for k in self.protectors_around.keys():
                 p = self.protectors_around[k]
-                if self.rectangle.colliderect(p.rectangle) and self.look != p.look:
+
+                if self.flyer:
+                    protector_diagonals = (
+                        (p.rectangle.topleft, p.rectangle.bottomleft),
+                        (p.rectangle.topright, p.rectangle.bottomright)
+                    )
+                    # protector_diagonals = (
+                    #     (p.rectangle.topleft, p.rectangle.bottomright),
+                    #     (p.rectangle.bottomleft, p.rectangle.topright)
+                    # )
+                    self_trace_has_been_passed = (self.previous_location,
+                                                  self.rectangle.topleft)
+                    print(f'[detect collision with protectors {self.id}] trace={self_trace_has_been_passed}')
+                    print(f'[detect collision with protectors {self.id}] protector={protector_diagonals}')
+                    print()
+                    for diagonal in protector_diagonals:
+                        if check_lines_intersection(self_trace_has_been_passed, diagonal):
+                            hit_detected = True
+                            print('HIT')
+                            print(f'[detect collision with protectors {self.id}] trace={self_trace_has_been_passed} protector={protector_diagonals}')
+                            break
+                else:
+                    if self.rectangle.colliderect(p.rectangle) and self.look != p.look:
+                        hit_detected = True
+
+                if hit_detected:
                     self.summoned_sounds.append(p.sounds[self.type])
 
                     # print(f'[detect collision with protectors] {self.id} collided with {p.name}, {p.look=}, {self.look=}')
@@ -349,13 +378,49 @@ class Demolisher(Entity):
         if self.damage_reduce > 0:
             for damage_type in self.damage.keys():
                 self.damage[damage_type] -= self.damage_reduce
+
+        # if self.is_collideable:
+        #     # print('Demolisher check collisions with ', self.obstacles_around.keys())
+        #     self.calculate_colliders()
+        #     self.detect_collisions_with_obstacles()
         # self.detect_collisions_with_protectors()
+        #
+        # if self.is_being_collided_now:
+        #     if self.bounce:
+        #         if self.fall_speed > 1:
+        #             self.summoned_sounds.append(self.sounds['obstacle hit'])
+        #         self.floppy = False
+        #         self.speed *= self.bounce_factor
+        #         if self.collided_left:
+        #             self.look = 1
+        #         elif self.collided_right:
+        #             self.look = -1
+        #         elif self.collided_bottom:
+        #             self.fall_speed *= -self.bounce_factor  # Bounce up from the floor.
+        #             self.is_stand_on_ground = False
+        #     else:
+        #         self.summoned_sounds.append(self.sounds['obstacle hit'])
+        #         self.die()
+        #         return
+
+        if not self.static:
+            self.calculate_speed()
+            if self.flyer:
+                self.fly()
+                # self.fly(time_passed)
+            else:
+                self.move()
+                # self.move(time_passed)
+            if self.is_gravity_affected:
+                self.calculate_fall_speed()  # Discover speed and potential fall distance
+                self.fall()
+
         if self.is_collideable:
             # print('Demolisher check collisions with ', self.obstacles_around.keys())
-            # if not self.floppy:
             self.calculate_colliders()
             self.detect_collisions_with_obstacles()
         self.detect_collisions_with_protectors()
+
         if self.is_being_collided_now:
             if self.bounce:
                 if self.fall_speed > 1:
@@ -373,31 +438,3 @@ class Demolisher(Entity):
                 self.summoned_sounds.append(self.sounds['obstacle hit'])
                 self.die()
                 return
-            # if self.is_being_collided_now:
-            #     if self.bounce:
-            #         if self.fall_speed > 1:
-            #             self.summoned_sounds.append(self.sounds['obstacle hit'])
-            #         self.floppy = False
-            #         self.speed *= self.bounce_factor
-            #         if self.collided_left:
-            #             self.look = 1
-            #         elif self.collided_right:
-            #             self.look = -1
-            #         elif self.collided_bottom:
-            #             self.fall_speed *= -self.bounce_factor  # Bounce up from the floor.
-            #             self.is_stand_on_ground = False
-            #     else:
-            #         self.summoned_sounds.append(self.sounds['obstacle hit'])
-            #         self.die()
-            #         return
-        if not self.static:
-            self.calculate_speed()
-            if self.flyer:
-                self.fly()
-                # self.fly(time_passed)
-            else:
-                self.move()
-                # self.move(time_passed)
-            if self.is_gravity_affected:
-                self.calculate_fall_speed()  # Discover speed and potential fall distance
-                self.fall()

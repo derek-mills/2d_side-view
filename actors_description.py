@@ -2310,7 +2310,7 @@ sober_knight = {
         'smash': .1,
         'fire': 1
     },
-    'max speed': 6 + randint(0, 4),  # Base value, which will be reduced upon athletic index.
+    'max speed': 1 + randint(0, 4),  # Base value, which will be reduced upon athletic index.
     # 'max speed': 16,  # Base value, which will be reduced upon athletic index.
     'max jump height': 28, # Base value, which will be reduced upon athletic index.
     'acceleration': .2,

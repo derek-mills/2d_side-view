@@ -523,6 +523,7 @@ class World(object):
             demol.destination_point = description['destination']
             demol.look = 1 if demol.rectangle.center < demol.destination_point else -1
 
+        demol.previous_location = [demol.rectangle.x, demol.rectangle.y]
         demol.aftermath = description['aftermath']
         # print(f'[add damager] {demol.damage=}')
         demol.static = description['static']
@@ -660,6 +661,7 @@ class World(object):
             # print(self.player_is_dead_counter_to_game_over)
             if self.player_is_dead_counter_to_game_over == 0:
                 self.game_over()
+
         self.processing_obstacles()
         if self.location_has_been_changed:
             self.actors['player'].influenced_by_obstacle = -1
@@ -667,11 +669,9 @@ class World(object):
             return
 
         self.processing_human_input()
-        self.processing_actors()
         self.processing_protectors()
         self.processing_demolishers()
-
-        # self.processing_actors()
+        self.processing_actors()
         self.processing_particles()
 
         # Applying camera offset:

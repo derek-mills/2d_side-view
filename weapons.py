@@ -1083,16 +1083,14 @@ pistol = {
              'aftermath': 'disappear'
          },
         {
-            'rect': pygame.Rect(0, 0, 5, 2), 'flyer': True,
+            'rect': pygame.Rect(0, 0, 20, 20), 'flyer': True,
             'visible': False,
             'demolisher sprite': None,
             'type': 'missile',
-            'pierce': False, 'demolisher TTL': 120, 'speed': 3,
+            'pierce': False, 'demolisher TTL': 120, 'speed': 13,
             'static': False, 'damage reduce': 0,
-            # 'damage': 50, 'static': False, 'damage reduce': 0,
             'collides': True, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
-            # 'attack type': ('slash', 'smash', 'pierce'),
             'push': False,
              'sounds': {
                  'obstacle hit': 'sound_bullet_wall_hit_1',
@@ -1103,7 +1101,7 @@ pistol = {
             'damage': {
                  'fire': 25,
                  'pierce': 100,
-                'slash': 1
+                 'slash': 1
              },
             # 'aftermath': 'explode'
             'aftermath': 'disappear'
