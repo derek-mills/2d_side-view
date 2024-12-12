@@ -330,13 +330,13 @@ whip = {
          'sprite scale': 3},
         {'sprite frame': (80, 180, 160, 60),
          'sprite name': 'whip demolisher long',
-         'sprite scale': 4},
+         'sprite scale': 2},
         {'sprite frame': (240, 180, 120, 60),
          'sprite name': 'whip demolisher medium',
-         'sprite scale': 4},
+         'sprite scale': 2},
         {'sprite frame': (360, 180, 80, 60),
          'sprite name': 'whip demolisher short',
-         'sprite scale': 4},
+         'sprite scale': 2},
     ),
 
     'affects on': '',
@@ -1048,10 +1048,10 @@ pistol = {
     ),
 
     'affects on': '',
-    'stamina consumption': 0.1,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
-    'mana consumption': 0.4,
+    'stamina consumption': 0.4,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
+    'mana consumption': 2.4,
     'ignore user input': True,  # Steal the ability to control a character for a while.
-    'animation speed modifier': .5,  # 0 < x < 1: speed animation up, x > 1: slow down.
+    'animation speed modifier': 1.,  # 0 < x < 1: speed animation up, x > 1: slow down.
     'leave particles': False,
     'droppable': True,
     # 'need ammo': True,
@@ -1100,7 +1100,7 @@ pistol = {
             'impact recoil': False,
             'damage': {
                  'fire': 25,
-                 'pierce': 100,
+                 'pierce': 500,
                  'slash': 1
              },
             # 'aftermath': 'explode'

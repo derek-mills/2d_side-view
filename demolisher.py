@@ -252,7 +252,7 @@ class Demolisher(Entity):
                 p = self.protectors_around[k]
 
                 if self.flyer:
-                    protector_diagonals = (
+                    protector_lines = (
                         (p.rectangle.topleft, p.rectangle.bottomleft),
                         (p.rectangle.topright, p.rectangle.bottomright)
                     )
@@ -262,14 +262,15 @@ class Demolisher(Entity):
                     # )
                     self_trace_has_been_passed = (self.previous_location,
                                                   self.rectangle.topleft)
-                    print(f'[detect collision with protectors {self.id}] trace={self_trace_has_been_passed}')
-                    print(f'[detect collision with protectors {self.id}] protector={protector_diagonals}')
-                    print()
-                    for diagonal in protector_diagonals:
+                    # print(f'[detect collision with protectors {self.id}] trace={self_trace_has_been_passed}')
+                    # print(f'[detect collision with protectors {self.id}] protector={protector_diagonals}')
+                    # print()
+                    for diagonal in protector_lines:
+                    # for diagonal in protector_diagonals:
                         if check_lines_intersection(self_trace_has_been_passed, diagonal):
                             hit_detected = True
-                            print('HIT')
-                            print(f'[detect collision with protectors {self.id}] trace={self_trace_has_been_passed} protector={protector_diagonals}')
+                            # print('HIT')
+                            # print(f'[detect collision with protectors {self.id}] trace={self_trace_has_been_passed} protector={protector_diagonals}')
                             break
                 else:
                     if self.rectangle.colliderect(p.rectangle) and self.look != p.look:

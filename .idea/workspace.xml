@@ -6,12 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demolisher.py" beforeDir="false" afterPath="$PROJECT_DIR$/demolisher.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,13 +165,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00596" summary="Fixed new update system for protectors.">
-      <created>1732675471373</created>
-      <option name="number" value="00596" />
-      <option name="presentableId" value="LOCAL-00596" />
-      <option name="project" value="LOCAL" />
-      <updated>1732675471373</updated>
     </task>
     <task id="LOCAL-00597" summary="Added more bigger initial sprite sheet for player actor.">
       <created>1732689734300</created>
@@ -512,7 +502,14 @@
       <option name="project" value="LOCAL" />
       <updated>1733901870476</updated>
     </task>
-    <option name="localTasksCounter" value="645" />
+    <task id="LOCAL-00645" summary="New system of collisions checking between demolisher anf flying protector, based on a trace of passed bullet path.">
+      <created>1733975475825</created>
+      <option name="number" value="00645" />
+      <option name="presentableId" value="LOCAL-00645" />
+      <option name="project" value="LOCAL" />
+      <updated>1733975475825</updated>
+    </task>
+    <option name="localTasksCounter" value="646" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -527,7 +524,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Sprite sheet net generator updated slightly." />
     <MESSAGE value="Player's actor 'get hurt' animation added" />
     <MESSAGE value="Fixed incorrect masks collision check." />
     <MESSAGE value="Corrected 'get hurt' animation." />
@@ -552,6 +548,7 @@
     <MESSAGE value="Fixed some bugs with 'running' and 'defending' states in their different combinations." />
     <MESSAGE value="Added actors and protectors collision checking system." />
     <MESSAGE value="AI actor can slide behind player's back and attack from behind." />
-    <option name="LAST_COMMIT_MESSAGE" value="AI actor can slide behind player's back and attack from behind." />
+    <MESSAGE value="New system of collisions checking between demolisher anf flying protector, based on a trace of passed bullet path." />
+    <option name="LAST_COMMIT_MESSAGE" value="New system of collisions checking between demolisher anf flying protector, based on a trace of passed bullet path." />
   </component>
 </project>
