@@ -1162,6 +1162,11 @@ class World(object):
                             if actor.get_state() in ('hopping back progress', 'hopping forward progress'):
                                 actor.set_action('hop action cancel')
 
+                        if self.is_l_shift:
+                            actor.move_backwards = True
+                        else:
+                            actor.move_backwards = False
+
                         # ACTION BUTTONS HANDLING:
                         if self.is_attack and self.is_alternate_attack:
                             # print(self.alternate_attack_time, self.attack_time)
@@ -1955,17 +1960,17 @@ class World(object):
             self.attack_time = 0
 
         # MOD KEYS:
-        # mods = pygame.key.get_mods()
-        # if mods & KMOD_LSHIFT:  # use whatever KMOD_ constant you want;)
-        #     self.is_l_shift = True
+        mods = pygame.key.get_mods()
+        if mods & KMOD_LSHIFT:  # use whatever KMOD_ constant you want;)
+            self.is_l_shift = True
         # elif mods & KMOD_LCTRL:
         #     self.is_l_ctrl = True
         # elif mods & KMOD_LALT:
         #     self.is_l_alt = True
-        # else:
+        else:
         #     self.l_alt_multiple_press_prevent = False
         #     self.is_l_ctrl = False
-        #     self.is_l_shift = False
+            self.is_l_shift = False
         #     self.is_l_alt = False
 
 

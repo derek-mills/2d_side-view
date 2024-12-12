@@ -1555,7 +1555,7 @@ player_jake = {
                 },
                 'repeat from frame': 0
             },
-        'run backwards right': {
+        'run backwards left': {
                 'repeat': True, 'interruptable': True,
                 'sequence': (37,36,35,34,33,32,31,30,29,28), 'speed': 6,
                 # 'sequence': (28,29,30,31,32,33,34,35,36,37,), 'speed': 4,
@@ -1569,7 +1569,7 @@ player_jake = {
                 },
                 'repeat from frame': 0
             },
-        'run backwards left': {
+        'run backwards right': {
                 'repeat': True, 'interruptable': True,
                 'sequence': (43,44,45,46,47,48,49,50,51,52), 'speed': 6,
                 # 'sequence': (52,51,50,49,48,47,46,45,44,43), 'speed': 4,
