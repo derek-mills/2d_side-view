@@ -557,6 +557,7 @@ class Actor(Entity):
             # self.set_state('protect')
             # self.set_state('protect prepare')
             if self.__state in ('free', 'stand still', 'run', 'run right', 'run left', 'fly right',
+                                'run backwards right','run backwards left',
                                 'fly left','turn right', 'turn left'):
                 # if 'run' in self.get_state():
                 #     # self.set_current_animation('protected run')
@@ -1228,7 +1229,7 @@ class Actor(Entity):
                 self.set_new_desired_height(self.rectangle_height_default,5)
             if self.rectangle.width != self.rectangle_width_default:
                 self.set_new_desired_width(self.rectangle_width_default,5)
-        elif self.get_state() == 'has just grabbed edge':            # GRAB THE EDGE
+        elif state == 'has just grabbed edge':            # GRAB THE EDGE
             self.potential_moving_distance = 0
             self.is_grabbers_active = False
             self.is_edge_grabbed = True
@@ -1250,11 +1251,11 @@ class Actor(Entity):
             self.jump_attempts_counter = 0
             # self.jump_attempts_counter = self.max_jump_attempts
             self.set_state('hanging on edge')
-        elif self.get_state() == 'hanging on edge':                 # HANGING ON THE EDGE
+        elif state == 'hanging on edge':                 # HANGING ON THE EDGE
             self.just_got_jumped = False
             self.is_abort_jump = True
             # self.rectangle.top = self.obstacles_around[self.influenced_by_obstacle].rectangle.top
-        elif self.get_state() == 'hop down from ghost':             # PREPARE TO HOP DOWN FROM THE GHOST PLATFORM
+        elif state == 'hop down from ghost':             # PREPARE TO HOP DOWN FROM THE GHOST PLATFORM
             self.potential_moving_distance = 0
             # self.is_edge_grabbed = True
             # self.ignore_user_input = True
@@ -1274,7 +1275,7 @@ class Actor(Entity):
             self.is_grabbers_active = False
             self.set_state('jump cancel')
             # self.set_state('hanging on ghost')
-        elif self.get_state() == 'release edge':                    # RELEASE
+        elif state == 'release edge':                    # RELEASE
             self.is_edge_grabbed = False
             self.is_grabbers_active = False
             self.rectangle.y += self.look * -10
@@ -1285,12 +1286,12 @@ class Actor(Entity):
             # self.ignore_user_input = False
             # if self.is_stand_on_ground:
             self.set_state('jump cancel')
-        elif self.get_state() == 'climb on':                        # START CLIMBING ON AN OBSTACLE
+        elif state == 'climb on':                        # START CLIMBING ON AN OBSTACLE
             self.ignore_user_input = True
             self.is_jump_performed = False
             self.set_new_desired_height(self.rectangle_height_sit // 2, 6)
             self.set_state('climb on raise')
-        elif self.get_state() == 'climb on raise':                        # START CLIMBING ON AN OBSTACLE
+        elif state == 'climb on raise':                        # START CLIMBING ON AN OBSTACLE
             if self.rectangle.height <= self.rectangle_height_sit // 2:
                 self.check_space_around()
                 if self.is_enough_height:
