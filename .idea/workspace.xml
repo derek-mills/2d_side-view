@@ -165,13 +165,6 @@
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
     </task>
-    <task id="LOCAL-00599" summary="Shield disappears if actor has stamina less than zero.">
-      <created>1732761771073</created>
-      <option name="number" value="00599" />
-      <option name="presentableId" value="LOCAL-00599" />
-      <option name="project" value="LOCAL" />
-      <updated>1732761771073</updated>
-    </task>
     <task id="LOCAL-00600" summary="Shield disappears if actor has stamina less than zero.">
       <created>1732763644472</created>
       <option name="number" value="00600" />
@@ -508,7 +501,14 @@
       <option name="project" value="LOCAL" />
       <updated>1733985816841</updated>
     </task>
-    <option name="localTasksCounter" value="648" />
+    <task id="LOCAL-00648" summary="Backward movement added by pressing SHIFT button. This system has been greatly modified.">
+      <created>1733987739613</created>
+      <option name="number" value="00648" />
+      <option name="presentableId" value="LOCAL-00648" />
+      <option name="project" value="LOCAL" />
+      <updated>1733987739613</updated>
+    </task>
+    <option name="localTasksCounter" value="649" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -523,7 +523,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed incorrect masks collision check." />
     <MESSAGE value="Corrected 'get hurt' animation." />
     <MESSAGE value="Added 'dizzy' player actor animation" />
     <MESSAGE value="Added roll\slide animation." />
@@ -548,6 +547,7 @@
     <MESSAGE value="AI actor can slide behind player's back and attack from behind." />
     <MESSAGE value="New system of collisions checking between demolisher anf flying protector, based on a trace of passed bullet path." />
     <MESSAGE value="Backward movement added by pressing SHIFT button." />
-    <option name="LAST_COMMIT_MESSAGE" value="Backward movement added by pressing SHIFT button." />
+    <MESSAGE value="Backward movement added by pressing SHIFT button. This system has been greatly modified." />
+    <option name="LAST_COMMIT_MESSAGE" value="Backward movement added by pressing SHIFT button. This system has been greatly modified." />
   </component>
 </project>

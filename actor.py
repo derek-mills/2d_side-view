@@ -583,6 +583,7 @@ class Actor(Entity):
             if self.__state not in ('free', 'stand still', 'run right', 'run left',
                                     'jump', 'protect', 'protected run left', 'protected run right',
                                     'protected run backwards left', 'protected run backwards right',
+                                    'run backwards left', 'run backwards right',
                                     'crouch', 'fly right', 'fly left', 'turn right', 'turn left'):
                 return
             # print(f'[set action] attack')
@@ -1094,6 +1095,9 @@ class Actor(Entity):
             # if self.rectangle.width != self.rectangle_width_default:
             #     self.set_new_desired_width(self.rectangle_width_default,5)
         elif state == 'run backwards left':
+            if not self.move_backwards:
+                self.set_action('left action cancel')
+                return
             self.look = 1
             self.heading[0] = -1
             self.movement_direction_inverter = -1
@@ -1167,6 +1171,9 @@ class Actor(Entity):
             # if self.rectangle.width != self.rectangle_width_default:
             #     self.set_new_desired_width(self.rectangle_width_default,5)
         elif state == 'run backwards right':
+            if not self.move_backwards:
+                self.set_action('right action cancel')
+                return
             self.look = -1
             self.heading[0] = 1
             self.movement_direction_inverter = -1

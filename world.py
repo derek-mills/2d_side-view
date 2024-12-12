@@ -1227,7 +1227,7 @@ class World(object):
                                     actor.current_mana_lost_per_attack = actor.normal_mana_lost_per_attack * actor.current_weapon['mana consumption']
                                     actor.set_action('attack')
                                     self.discard_protectors(key)  # Dismiss all protectors, summoned by current actor.
-                                    actor.restore_default_states()
+                                    # actor.restore_default_states()
                                     # while actor.summoned_protectors_keep_alive:
                                     #     protector_id = actor.summoned_protectors_keep_alive.pop()
                                     #     del self.protectors[self.location][protector_id]
