@@ -409,7 +409,8 @@ class Actor(Entity):
                 self.set_state('hold stash')
             # elif self.__state == 'crawl right':
             #     self.set_state('crouch')
-            elif self.__state in ('run right', 'fly right', 'protected run right', 'protected run backwards right'):
+            elif self.__state in ('run right', 'fly right', 'protected run right',
+                                  'run backwards right', 'protected run backwards right'):
                 if self.__state == 'protected run backwards right':
                     self.look = -1
                     self.heading[0] = 0
@@ -417,6 +418,7 @@ class Actor(Entity):
                     self.set_state('protect')
                 else:
                     self.set_state('stand still')
+                self.restore_default_states()
             # elif self.__state == 'crawl prone right':
             #     self.set_state('prone')
 
@@ -457,7 +459,8 @@ class Actor(Entity):
                 self.set_state('hold stash')
             # elif self.__state == 'crawl left':
             #     self.set_state('crouch')
-            elif self.__state in ('run left', 'fly left', 'protected run left', 'protected run backwards left'):
+            elif self.__state in ('run left', 'fly left', 'protected run left',
+                                  'run backwards left', 'protected run backwards left'):
                 if self.__state == 'protected run backwards left':
                     self.look = 1
                     self.heading[0] = 0
@@ -465,6 +468,7 @@ class Actor(Entity):
                     self.set_state('protect')
                 else:
                     self.set_state('stand still')
+                self.restore_default_states()
             # elif self.__state == 'crawl prone left':
             #     self.set_state('prone')
 
@@ -597,6 +601,7 @@ class Actor(Entity):
         if state == 'stand still':                     # STANDING STILL
             self.set_current_animation()
             self.heading[0] = 0
+            # self.movement_direction_inverter = 1
             # self.max_speed = self.base_max_speed
             self.normal_stamina_replenish = self.default_normal_stamina_replenish
             self.normal_mana_replenish = self.default_normal_mana_replenish
@@ -1027,27 +1032,37 @@ class Actor(Entity):
                 self.set_new_desired_height(self.rectangle_height_slide, 0)
             # self.set_new_desired_height(self.rectangle_height_slide, 0)
         elif state == 'turn left':                       # TURN LEFT
-            self.set_current_animation()
-            if self.look == 1 and self.speed > 0:  # Actor looks to the other side and runs.
-                # Switch off heading to force actor start reducing his speed and slow it down to zero.
-                # After that self is going to be able to start acceleration to proper direction.
-                self.heading[0] = 0
-                # self.look = -1
+            if self.move_backwards:
+                self.set_state('run backwards left')
+                self.set_current_animation()
+                self.max_speed = self.base_max_speed // 2
             else:
-                self.look = -1
-                self.heading[0] = -1
-                self.set_state('stand still')
+                self.set_current_animation()
+                if self.look == 1 and self.speed > 0:  # Actor looks to the other side and runs.
+                    # Switch off heading to force actor start reducing his speed and slow it down to zero.
+                    # After that self is going to be able to start acceleration to proper direction.
+                    self.heading[0] = 0
+                    # self.look = -1
+                else:
+                    self.look = -1
+                    self.heading[0] = -1
+                    self.set_state('stand still')
         elif state == 'turn right':                      # TURN RIGHT
-            self.set_current_animation()
-            if self.look == -1 and self.speed > 0:  # Actor looks to the other side and runs.
-                # Switch off heading to force actor start reducing his speed and slow it down to zero.
-                # After that self is going to be able to start acceleration to proper direction.
-                self.heading[0] = 0
-                # self.look = 1
+            if self.move_backwards:
+                self.set_state('run backwards right')
+                self.set_current_animation()
+                self.max_speed = self.base_max_speed // 2
             else:
-                self.look = 1
-                self.heading[0] = 1
-                self.set_state('stand still')
+                self.set_current_animation()
+                if self.look == -1 and self.speed > 0:  # Actor looks to the other side and runs.
+                    # Switch off heading to force actor start reducing his speed and slow it down to zero.
+                    # After that self is going to be able to start acceleration to proper direction.
+                    self.heading[0] = 0
+                    # self.look = 1
+                else:
+                    self.look = 1
+                    self.heading[0] = 1
+                    self.set_state('stand still')
 
         elif state == 'fly left':                        # IN MID-AIR FLY LEFT
             if self.is_stand_on_ground:
@@ -1078,6 +1093,10 @@ class Actor(Entity):
             #     self.set_new_desired_height(self.rectangle_height_default,5)
             # if self.rectangle.width != self.rectangle_width_default:
             #     self.set_new_desired_width(self.rectangle_width_default,5)
+        elif state == 'run backwards left':
+            self.look = 1
+            self.heading[0] = -1
+            self.movement_direction_inverter = -1
         elif state == 'protected run left':          # RUN LEFT WITH SHIELD RAISED
             self.look = -1
             self.heading[0] = -1
@@ -1087,20 +1106,24 @@ class Actor(Entity):
                 self.set_state('protected run left')
                 self.max_speed = self.base_max_speed // 3
             else:
-                if self.move_backwards:
-                    self.set_state('run left')
-                    self.set_current_animation('run backwards left')
-                    self.max_speed = self.base_max_speed // 2
-                else:
-                    self.set_state('run left')
-                    self.set_current_animation()
+                # if self.move_backwards:
+                #     self.set_state('run left')
+                #     self.set_current_animation('run backwards left')
+                #     self.max_speed = self.base_max_speed // 2
+                # else:
+                #     self.set_state('run left')
+                #     self.set_current_animation()
+                self.movement_direction_inverter = 1
+                self.set_state('run left')
+                self.set_current_animation()
         elif state == 'run left':                        # RUN LEFT
-            if self.move_backwards:
-                self.look = 1
-                # self.heading[0] = -1
-                self.movement_direction_inverter = -1
-            else:
-                self.look = -1
+            # if self.move_backwards:
+            #     self.look = 1
+            #     # self.heading[0] = -1
+            #     self.movement_direction_inverter = -1
+            # else:
+            #     self.look = -1
+            self.look = -1
             self.heading[0] = -1
             # self.is_grabbers_active = True
             if self.rectangle.height != self.rectangle_height_default:
@@ -1143,6 +1166,10 @@ class Actor(Entity):
             #     self.set_new_desired_height(self.rectangle_height_default,5)
             # if self.rectangle.width != self.rectangle_width_default:
             #     self.set_new_desired_width(self.rectangle_width_default,5)
+        elif state == 'run backwards right':
+            self.look = -1
+            self.heading[0] = 1
+            self.movement_direction_inverter = -1
         elif state == 'protected run right':          # RUN RIGHT WITH SHIELD RAISED
             self.look = 1
             self.heading[0] = 1
@@ -1152,30 +1179,31 @@ class Actor(Entity):
                 self.set_state('protected run right')
                 self.max_speed = self.base_max_speed // 3
             else:
-                if self.move_backwards:
+                # # if self.move_backwards:
                 # if self.move_backwards and self.look == -1:
-                #     self.look = -1
-                #     self.heading[0] = 1
-                #     self.movement_direction_inverter = -1
-                    self.set_state('run right')
-                    self.set_current_animation('run backwards right')
-                    self.max_speed = self.base_max_speed // 3
-                else:
-                    # self.look = 1
-                    # self.heading[0] = 1
-                    self.set_state('run right')
-                    self.set_current_animation()
-                    # self.move_backwards = False
-                # self.set_state('run right')
-                # self.set_current_animation()
+                # #     self.look = -1
+                # #     self.heading[0] = 1
+                # #     self.movement_direction_inverter = -1
+                #     self.set_state('run right')
+                #     self.set_current_animation('run backwards right')
+                #     self.max_speed = self.base_max_speed // 3
+                # else:
+                #     # self.look = 1
+                #     # self.heading[0] = 1
+                #     self.set_state('run right')
+                #     self.set_current_animation()
+                #     # self.move_backwards = False
+                self.movement_direction_inverter = 1
+                self.set_state('run right')
+                self.set_current_animation()
         elif state == 'run right':                        # RUN RIGHT
-            if self.move_backwards:
-                self.look = -1
-                # self.heading[0] = -1
-                self.movement_direction_inverter = -1
-            else:
-                self.look = 1
-            # self.look = 1
+            # if self.move_backwards and self.look == -1:
+            #     self.look = -1
+            #     # self.heading[0] = -1
+            #     self.movement_direction_inverter = -1
+            # else:
+            #     self.look = 1
+            self.look = 1
             self.heading[0] = 1
             # self.is_grabbers_active = True
             if self.rectangle.height != self.rectangle_height_default:

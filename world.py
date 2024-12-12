@@ -1309,6 +1309,7 @@ class World(object):
                 # actor.summoned_particle_descriptions = list()
 
             actor.total_damage_has_got = 0
+            # actor.restore_default_states()
 
         for dead_id in dead:
             # Erase actors which must be disappeared after death.

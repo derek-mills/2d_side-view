@@ -7,7 +7,6 @@
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -165,13 +164,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00598" summary="Added bigger initial sprite sheet for player actor, ver 2">
-      <created>1732693107763</created>
-      <option name="number" value="00598" />
-      <option name="presentableId" value="LOCAL-00598" />
-      <option name="project" value="LOCAL" />
-      <updated>1732693107763</updated>
     </task>
     <task id="LOCAL-00599" summary="Shield disappears if actor has stamina less than zero.">
       <created>1732761771073</created>
@@ -509,7 +501,14 @@
       <option name="project" value="LOCAL" />
       <updated>1733981722021</updated>
     </task>
-    <option name="localTasksCounter" value="647" />
+    <task id="LOCAL-00647" summary="Backward movement added by pressing SHIFT button.">
+      <created>1733985816841</created>
+      <option name="number" value="00647" />
+      <option name="presentableId" value="LOCAL-00647" />
+      <option name="project" value="LOCAL" />
+      <updated>1733985816841</updated>
+    </task>
+    <option name="localTasksCounter" value="648" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -524,7 +523,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Player's actor 'get hurt' animation added" />
     <MESSAGE value="Fixed incorrect masks collision check." />
     <MESSAGE value="Corrected 'get hurt' animation." />
     <MESSAGE value="Added 'dizzy' player actor animation" />
@@ -549,6 +547,7 @@
     <MESSAGE value="Added actors and protectors collision checking system." />
     <MESSAGE value="AI actor can slide behind player's back and attack from behind." />
     <MESSAGE value="New system of collisions checking between demolisher anf flying protector, based on a trace of passed bullet path." />
-    <option name="LAST_COMMIT_MESSAGE" value="New system of collisions checking between demolisher anf flying protector, based on a trace of passed bullet path." />
+    <MESSAGE value="Backward movement added by pressing SHIFT button." />
+    <option name="LAST_COMMIT_MESSAGE" value="Backward movement added by pressing SHIFT button." />
   </component>
 </project>
