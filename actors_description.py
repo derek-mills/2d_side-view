@@ -1619,11 +1619,31 @@ player_jake = {
                 'activity at frames': {},
                 'sound': 'sound_step_1', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
+        'protected crouch right': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (4, 4, 4, 4), 'speed': 1,
+            'activity at frames': {
+                0: {
+                    'protectors set number': 0,
+                    'demolishers set number': 0,
+                    'protector': True,
+                    'demolisher': False
+                },
+            },
+            'repeat from frame': 0
+        },
         'crouch right': {
             'repeat': True, 'interruptable': True,
             'sequence': (4,4,4,4), 'speed': 1,
-            'activity at frames': {},
-            'sound': None, 'sound at frames': (1, 4), 'repeat from frame': 0
+            'activity at frames': {
+                # 1: {
+                #     'protectors set number': 0,
+                #     'demolishers set number': 0,
+                #     'protector': True,
+                #     'demolisher': False
+                # },
+            },
+            'repeat from frame': 0
         },
         'crawl right': {
             'repeat': True, 'interruptable': True,
@@ -1636,6 +1656,19 @@ player_jake = {
             'sequence': (18,), 'speed': 1,
             'activity at frames': {},
             'sound': None, 'sound at frames': (0,), 'repeat from frame': 0
+        },
+        'protected crouch left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (18,), 'speed': 1,
+            'activity at frames': {
+                0: {
+                    'protectors set number': 0,
+                    'demolishers set number': 0,
+                    'protector': True,
+                    'demolisher': False
+                },
+            },
+            'repeat from frame': 0
         },
         'crawl left': {
             'repeat': True, 'interruptable': True,

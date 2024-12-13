@@ -478,7 +478,7 @@ class Actor(Entity):
         elif new_action == 'down action':
             # Apply filter of unwanted actions:
             if self.__state not in ('free', 'stand still', 'run right', 'run left',
-                                    'hanging on edge', 'hanging on ghost',
+                                    'hanging on edge', 'hanging on ghost', 'protect',
                                     'carry stash left', 'carry stash right', 'hold stash'):
                 return
 
@@ -491,13 +491,15 @@ class Actor(Entity):
             if self.is_stand_on_ground:
                 if self.__state in ('stand still', 'run right', 'run left' ):
                     self.set_state('crouch down')
+                elif 'protect' in self.__state:
+                    self.set_state('crouch down')
         elif new_action == 'down action cancel':
-            if self.__state == 'crouch':
+            if self.__state == 'crouch' or 'protected crouch' in self.__state:
                 if self.is_enough_height:
                     self.set_state('crouch rise')
-            elif self.__state in ('crawl right', 'crawl left'):
-                if self.is_enough_height:
-                    self.set_state('crouch rise')
+            # elif self.__state in ('crawl right', 'crawl left'):
+            #     if self.is_enough_height:
+            #         self.set_state('crouch rise')
 
         # UP action
         elif new_action == 'up action':
@@ -516,7 +518,7 @@ class Actor(Entity):
                                     'run right', 'run left', 'stand still', 'fly left', 'fly right'):
                 return
 
-            if self.__state in ('crouch down', 'crouch rise', 'crouch', 'crawl right', 'crawl left') and self.is_stand_on_ground:
+            if self.__state in ('crouch', 'crouch down', 'crouch rise', 'crawl right', 'crawl left') and self.is_stand_on_ground:
                 if self.influenced_by_obstacle >= 0:
                     # Jump off a ghost platform:
                     if self.obstacles_around[self.influenced_by_obstacle].is_ghost_platform:
@@ -560,7 +562,7 @@ class Actor(Entity):
             # self.set_state('protect')
             # self.set_state('protect prepare')
             if self.__state in ('free', 'stand still', 'run', 'run right', 'run left', 'fly right',
-                                'run backwards right','run backwards left',
+                                'run backwards right','run backwards left', 'crouch', 'crouch down',
                                 'fly left','turn right', 'turn left'):
                 # if 'run' in self.get_state():
                 #     # self.set_current_animation('protected run')
@@ -644,11 +646,18 @@ class Actor(Entity):
                 self.set_state('protected run backwards right')
                 self.set_current_animation()
                 return
-            if self.get_previous_state() == 'turn left':
+            elif self.get_previous_state() == 'turn left':
                 self.set_state('protected run backwards left')
                 self.set_current_animation()
                 return
-            self.set_current_animation()
+            elif 'crouch' in self.get_previous_state():
+                if self.look == 1:
+                    self.set_state('protected crouch right')
+                else:
+                    self.set_state('protected crouch left')
+                self.set_current_animation()
+            else:
+                self.set_current_animation()
             self.heading[0] = 0
             self.normal_stamina_replenish = 0.01
         elif state == 'prepare attack':                          # PREPARING ATTACK
