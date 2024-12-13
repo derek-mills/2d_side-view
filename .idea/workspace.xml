@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
+    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="Backward movement added by pressing SHIFT button. &#10;This system has been slightly modified one more time.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/backgrounds/penthouse_back_0.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/backgrounds/penthouse_back_0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,13 +166,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00601" summary="Some minor bug fixes.">
-      <created>1732774757441</created>
-      <option name="number" value="00601" />
-      <option name="presentableId" value="LOCAL-00601" />
-      <option name="project" value="LOCAL" />
-      <updated>1732774757441</updated>
     </task>
     <task id="LOCAL-00602" summary="AI-actor gets his target during initiation, not every game tick.">
       <created>1732775480678</created>
@@ -507,7 +503,14 @@
       <option name="project" value="LOCAL" />
       <updated>1733989034692</updated>
     </task>
-    <option name="localTasksCounter" value="650" />
+    <task id="LOCAL-00650" summary="Backward movement added by pressing SHIFT button. &#10;This system has been slightly modified one more time.">
+      <created>1733991693448</created>
+      <option name="number" value="00650" />
+      <option name="presentableId" value="LOCAL-00650" />
+      <option name="project" value="LOCAL" />
+      <updated>1733991693448</updated>
+    </task>
+    <option name="localTasksCounter" value="651" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -522,7 +525,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added 'dizzy' player actor animation" />
     <MESSAGE value="Added roll\slide animation." />
     <MESSAGE value="Some animation improvement with shield being raised." />
     <MESSAGE value="Some animation improvement." />
@@ -547,6 +549,7 @@
     <MESSAGE value="Backward movement added by pressing SHIFT button." />
     <MESSAGE value="Backward movement added by pressing SHIFT button. This system has been greatly modified." />
     <MESSAGE value="Backward movement added by pressing SHIFT button. &#10;This system has been slightly modified." />
-    <option name="LAST_COMMIT_MESSAGE" value="Backward movement added by pressing SHIFT button. &#10;This system has been slightly modified." />
+    <MESSAGE value="Backward movement added by pressing SHIFT button. &#10;This system has been slightly modified one more time." />
+    <option name="LAST_COMMIT_MESSAGE" value="Backward movement added by pressing SHIFT button. &#10;This system has been slightly modified one more time." />
   </component>
 </project>

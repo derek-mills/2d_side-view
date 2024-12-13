@@ -56,6 +56,7 @@ class World(object):
         self.is_input_left_arrow = False
         self.is_input_confirm = False
         self.is_input_cancel = False
+        self.is_alt_moving_mode = False
         self.is_z = False
         self.is_q = False
         self.q_multiple_press_prevent = False
@@ -1162,7 +1163,8 @@ class World(object):
                             if actor.get_state() in ('hopping back progress', 'hopping forward progress'):
                                 actor.set_action('hop action cancel')
 
-                        if self.is_l_shift:
+                        if self.is_alt_moving_mode:
+                        # if self.is_l_shift:
                             actor.move_backwards = True
                         else:
                             actor.move_backwards = False
@@ -1950,6 +1952,11 @@ class World(object):
         else:
             self.is_alternate_attack = False
             self.alternate_attack_time = 0
+
+        if keys[K_DOWN]:
+            self.is_alt_moving_mode = True
+        else:
+            self.is_alt_moving_mode = False
 
         if keys[K_RIGHT]:
             self.is_attack = True

@@ -552,6 +552,7 @@ class Actor(Entity):
                 self.just_got_jumped = False
             self.is_abort_jump = True
             self.ignore_user_input = False
+            self.restore_default_states()
 
         elif new_action == 'protect':
             # self.set_state('protect')

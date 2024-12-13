@@ -1,7 +1,7 @@
 from weapons import *
 # from game_objects import *
 from random import randint, choice
-from graphics import sprites
+# from graphics import sprites
 
 zombie = {
     'name': 'zombie',
