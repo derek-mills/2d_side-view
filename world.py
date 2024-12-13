@@ -655,6 +655,11 @@ class World(object):
         # self.obstacle_id += 1
         # print(f'[add_demolisher] Added: {protector.id=} {protector.name} {protector.rectangle} {protector.max_speed=} {protector.destination=}')
 
+    def restore_actors_default_states(self):
+        for key in self.actors[self.location].keys():
+            actor = self.actors[self.location][key]
+            actor.restore_default_states()
+
     def process(self, time_passed):
         self.time_passed = time_passed
         if self.player_is_dead_counter_to_game_over > 0:
@@ -703,6 +708,7 @@ class World(object):
 
         self.processing_sounds()
         self.render_all()
+        self.restore_actors_default_states()
 
     def detect_active_obstacles(self):
         self.active_obstacles = list()
@@ -1768,6 +1774,9 @@ class World(object):
             self.screen.blit(s, (weapon_sprite_start_x + frame_sz[0] // 2 - sz[0] // 2,
                                  weapon_sprite_start_y + frame_sz[1] // 2 - sz[1] // 2))
             weapon_sprite_start_x += frame_sz[0]
+
+        # weapon_sprite_start_x += frame_sz[0]
+        self.screen.blit(sprites['kettlebell']['sprite'], (weapon_sprite_start_x, weapon_sprite_start_y))
         # self.screen.blit(sprites[self.actors['player'].current_weapon['sprite']]['sprite'], (self.info_panel_start_x, self.info_panel_start_y))
 
     def render_info_panel_overlay_OLD(self):

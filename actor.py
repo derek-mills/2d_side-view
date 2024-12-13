@@ -325,6 +325,7 @@ class Actor(Entity):
         #     self.stamina_reduce(self.force_stamina_reduce_amount)
         #     self.force_stamina_reduce = False
         #     self.force_stamina_reduce_amount = 0
+        # self.restore_default_states()
 
         if self.invincibility_timer > 0:
             self.invincibility_timer -= 1
@@ -351,6 +352,7 @@ class Actor(Entity):
 
         super().process()
 
+        # self.restore_default_states()
     # def discard_protectors(self):
     #     while self.summoned_protectors_keep_alive:
     #         protector_id = self.summoned_protectors_keep_alive.pop()
@@ -418,7 +420,7 @@ class Actor(Entity):
                     self.set_state('protect')
                 else:
                     self.set_state('stand still')
-                self.restore_default_states()
+                # self.restore_default_states()
             # elif self.__state == 'crawl prone right':
             #     self.set_state('prone')
 
@@ -468,7 +470,7 @@ class Actor(Entity):
                     self.set_state('protect')
                 else:
                     self.set_state('stand still')
-                self.restore_default_states()
+                # self.restore_default_states()
             # elif self.__state == 'crawl prone left':
             #     self.set_state('prone')
 
@@ -552,7 +554,7 @@ class Actor(Entity):
                 self.just_got_jumped = False
             self.is_abort_jump = True
             self.ignore_user_input = False
-            self.restore_default_states()
+            # self.restore_default_states()
 
         elif new_action == 'protect':
             # self.set_state('protect')
@@ -1038,7 +1040,7 @@ class Actor(Entity):
             if self.move_backwards:
                 self.set_state('run backwards left')
                 self.set_current_animation()
-                self.max_speed = self.base_max_speed // 2
+                # self.max_speed = self.base_max_speed // 2
             else:
                 self.set_current_animation()
                 if self.look == 1 and self.speed > 0:  # Actor looks to the other side and runs.
@@ -1054,7 +1056,7 @@ class Actor(Entity):
             if self.move_backwards:
                 self.set_state('run backwards right')
                 self.set_current_animation()
-                self.max_speed = self.base_max_speed // 2
+                # self.max_speed = self.base_max_speed // 2
             else:
                 self.set_current_animation()
                 if self.look == -1 and self.speed > 0:  # Actor looks to the other side and runs.
@@ -1103,14 +1105,16 @@ class Actor(Entity):
             self.look = 1
             self.heading[0] = -1
             self.movement_direction_inverter = -1
+            self.max_speed = self.base_max_speed // 2
         elif state == 'protected run left':          # RUN LEFT WITH SHIELD RAISED
             self.look = -1
             self.heading[0] = -1
+            self.max_speed = self.base_max_speed // 3
         elif state == 'prepare run left':                        # RUN LEFT
             if self.get_previous_state() == 'protect':
                 self.set_current_animation('protected run')
                 self.set_state('protected run left')
-                self.max_speed = self.base_max_speed // 3
+                # self.max_speed = self.base_max_speed // 3
             else:
                 # if self.move_backwards:
                 #     self.set_state('run left')
@@ -1179,14 +1183,16 @@ class Actor(Entity):
             self.look = -1
             self.heading[0] = 1
             self.movement_direction_inverter = -1
+            self.max_speed = self.base_max_speed // 2
         elif state == 'protected run right':          # RUN RIGHT WITH SHIELD RAISED
             self.look = 1
             self.heading[0] = 1
+            self.max_speed = self.base_max_speed // 3
         elif state == 'prepare run right':                        # RUN RIGHT
             if self.get_previous_state() == 'protect':
                 self.set_current_animation('protected run')
                 self.set_state('protected run right')
-                self.max_speed = self.base_max_speed // 3
+                # self.max_speed = self.base_max_speed // 3
             else:
                 # # if self.move_backwards:
                 # if self.move_backwards and self.look == -1:
