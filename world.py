@@ -1240,11 +1240,11 @@ class World(object):
                                     #     protector_id = actor.summoned_protectors_keep_alive.pop()
                                     #     del self.protectors[self.location][protector_id]
                         else:
-                            actor.frames_changing_threshold_modifier = 1
-                            actor.frames_changing_threshold_penalty = 1
-                            actor.frames_changing_threshold = actor.animations[actor.current_animation]['speed']
-                            # actor.summon_protector = False
-                            # if actor.get_state() == 'protect' or actor.summon_protector:
+                            # print('xoxoxo')
+                            # actor.frames_changing_threshold_modifier = 1
+                            # actor.frames_changing_threshold_penalty = 1
+                            # actor.frames_changing_threshold = actor.animations[actor.current_animation]['speed']
+
                             if self.protectors[self.location]:
                                 if actor.summoned_protectors_keep_alive:
                                     actor.summon_protector = False
@@ -2232,6 +2232,9 @@ class World(object):
             (' __PREVIOUS STATE: ' + str(self.actors['player'].get_previous_state()), CYAN),
             (' __STATE         : ' + str(self.actors['player'].get_state()), CYAN),
             (' __ANIMATION: ' + str(self.actors['player'].current_animation), CYAN),
+            (' __ANIMATION PENALTY: ' + str(self.actors['player'].frames_changing_threshold_penalty), CYAN),
+            (' __ANIMATION MODIFIER: ' + str(self.actors['player'].frames_changing_threshold_modifier), CYAN),
+            (' __ANIMATION THRESHOLD: ' + str(self.actors['player'].frames_changing_threshold), CYAN),
             (' COMBO NUMBER : ' + str(self.actors['player'].combo_set_number), YELLOW),
             (' COMBO COUNTER: ' + str(self.actors['player'].combo_counter), YELLOW),
             (' STAND ON GROUND: ' + str(self.actors['player'].is_stand_on_ground), WHITE),

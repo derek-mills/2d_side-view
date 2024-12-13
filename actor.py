@@ -326,6 +326,17 @@ class Actor(Entity):
         #     self.force_stamina_reduce = False
         #     self.force_stamina_reduce_amount = 0
         # self.restore_default_states()
+        # if self.stats['stamina'] < self.current_stamina_lost_per_attack:
+        #     # print(f'[state machine] NOT ENOUGH STAMINA.')
+        #     # self.frames_changing_threshold = self.animations[anim]['speed'] * self.frames_changing_threshold_modifier
+        #     # self.frames_changing_threshold_modifier = self.current_weapon['animation speed modifier'] * \
+        #     #                                           self.frames_changing_threshold_penalty
+        #
+        #     self.frames_changing_threshold_penalty = 2.  # x2 times slower animation
+        # else:
+        #     # self.frames_changing_threshold_modifier = self.current_weapon['animation speed modifier']
+        #     self.frames_changing_threshold_penalty = 1.
+
 
         if self.invincibility_timer > 0:
             self.invincibility_timer -= 1
@@ -577,11 +588,12 @@ class Actor(Entity):
             # if self.stats['stamina'] < 0:
             #     self.set_state('dizzy prepare')
             # elif self.stats['stamina'] < self.current_stamina_lost_per_attack:
-            if self.stats['stamina'] < self.current_stamina_lost_per_attack:
-                # print(f'[state machine] NOT ENOUGH STAMINA.')
-                self.frames_changing_threshold_penalty = 2.  # x2 times slower animation
-            else:
-                self.frames_changing_threshold_penalty = 1.
+
+            # if self.stats['stamina'] < self.current_stamina_lost_per_attack:
+            #     # print(f'[state machine] NOT ENOUGH STAMINA.')
+            #     self.frames_changing_threshold_penalty = 2.  # x2 times slower animation
+            # else:
+            #     self.frames_changing_threshold_penalty = 1.
 
             if self.stats['mana'] <= self.current_mana_lost_per_attack:
                 # print(f'[state machine] NOT ENOUGH MANA')
@@ -667,8 +679,8 @@ class Actor(Entity):
             # print(f'[state machine] {self.name} prepares attack.')
             self.stamina_reduce(self.current_stamina_lost_per_attack)
             self.mana_reduce(self.current_mana_lost_per_attack)
-            self.frames_changing_threshold_modifier = self.current_weapon['animation speed modifier'] * \
-                                                      self.frames_changing_threshold_penalty
+            # self.frames_changing_threshold_modifier = self.current_weapon['animation speed modifier'] * \
+            #                                           self.frames_changing_threshold_penalty
             self.combo_counter = self.current_weapon['combo next step threshold']
             self.combo_set_number += 1
             if self.combo_set_number > self.current_weapon['combo steps quantity']:
@@ -683,8 +695,8 @@ class Actor(Entity):
             self.set_current_animation()
             self.stamina_reduce(self.current_stamina_lost_per_attack)
             self.mana_reduce(self.current_mana_lost_per_attack)
-            self.frames_changing_threshold_modifier = self.current_weapon['animation speed modifier'] * \
-                                                      self.frames_changing_threshold_penalty
+            # self.frames_changing_threshold_modifier = self.current_weapon['animation speed modifier'] * \
+            #                                           self.frames_changing_threshold_penalty
             self.ignore_user_input = self.current_weapon['ignore user input']
             if self.is_stand_on_ground:
                 self.heading[0] = 0
@@ -693,8 +705,8 @@ class Actor(Entity):
             self.set_current_animation()
             self.stamina_reduce(self.current_stamina_lost_per_attack)
             self.mana_reduce(self.current_mana_lost_per_attack)
-            self.frames_changing_threshold_modifier = self.current_weapon['animation speed modifier'] * \
-                                                      self.frames_changing_threshold_penalty
+            # self.frames_changing_threshold_modifier = self.current_weapon['animation speed modifier'] * \
+            #                                           self.frames_changing_threshold_penalty
             self.ignore_user_input = self.current_weapon['ignore user input']
             if self.is_stand_on_ground:
                 self.heading[0] = 0
@@ -1463,6 +1475,9 @@ class Actor(Entity):
 
     def restore_default_states(self):
         self.max_speed = self.base_max_speed
+        self.frames_changing_threshold_modifier = 1
+        self.frames_changing_threshold_penalty = 1
+        self.frames_changing_threshold = self.animations[self.current_animation]['speed']
 
     def think(self):
         # AI actor collided with someone's shield:

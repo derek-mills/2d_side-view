@@ -8,6 +8,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,13 +165,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00605" summary="Some changes in demolishers and protectors interaction.">
-      <created>1732857589508</created>
-      <option name="number" value="00605" />
-      <option name="presentableId" value="LOCAL-00605" />
-      <option name="project" value="LOCAL" />
-      <updated>1732857589508</updated>
     </task>
     <task id="LOCAL-00606" summary="Added 'dizzy' state">
       <created>1732858648352</created>
@@ -508,7 +502,14 @@
       <option name="project" value="LOCAL" />
       <updated>1734067229545</updated>
     </task>
-    <option name="localTasksCounter" value="654" />
+    <task id="LOCAL-00654" summary="Stamina replenishes two times slowly if it's below zero.">
+      <created>1734069827795</created>
+      <option name="number" value="00654" />
+      <option name="presentableId" value="LOCAL-00654" />
+      <option name="project" value="LOCAL" />
+      <updated>1734069827795</updated>
+    </task>
+    <option name="localTasksCounter" value="655" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -523,7 +524,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Actor is lack of availability to hit several targets by one single strike now." />
     <MESSAGE value="Changed bullet hits wall sound" />
     <MESSAGE value="Some." />
     <MESSAGE value="Fixed Demon 2 recoil from avoiding his attack by shield. Added 'getting hurt' animation." />
@@ -548,6 +548,7 @@
     <MESSAGE value="Backward movement switch moved to down cursor arrow button instead of SHIFT button." />
     <MESSAGE value="Actors' states restore in the end of every game cycle." />
     <MESSAGE value="Actor receives the ability to cover self by shield while crouching." />
-    <option name="LAST_COMMIT_MESSAGE" value="Actor receives the ability to cover self by shield while crouching." />
+    <MESSAGE value="Stamina replenishes two times slowly if it's below zero." />
+    <option name="LAST_COMMIT_MESSAGE" value="Stamina replenishes two times slowly if it's below zero." />
   </component>
 </project>

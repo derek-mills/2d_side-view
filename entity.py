@@ -366,6 +366,17 @@ class Entity(object):
         self.sprite_rectangle.centerx = self.rectangle.centerx
 
     def process(self):
+        if self.stats['stamina'] < self.current_stamina_lost_per_attack:
+            # print(f'[state machine] NOT ENOUGH STAMINA.')
+            # self.frames_changing_threshold = self.animations[anim]['speed'] * self.frames_changing_threshold_modifier
+            # self.frames_changing_threshold_modifier = self.current_weapon['animation speed modifier'] * \
+            #                                           self.frames_changing_threshold_penalty
+
+            self.frames_changing_threshold_penalty = 2.  # x2 times slower animation
+        else:
+            # self.frames_changing_threshold_modifier = self.current_weapon['animation speed modifier']
+            self.frames_changing_threshold_penalty = 1.
+
         if self.ttl > 0:
             self.ttl -= 1
             if self.ttl == 0:
@@ -619,10 +630,12 @@ class Entity(object):
 
     def process_animation(self):
         # self.set_current_animation()
+        threshold = self.frames_changing_threshold * self.frames_changing_threshold_penalty * self.frames_changing_threshold_modifier
         if self.animation_sequence:
             # if not self.is_stunned:
             self.frame_change_counter += 1
-            if self.frame_change_counter > self.frames_changing_threshold:
+            if self.frame_change_counter > threshold:
+            # if self.frame_change_counter > self.frames_changing_threshold:
                 # It is time to change a frame in sequence:
                 self.frame_change_counter = 0
                 self.frame_number += 1
@@ -677,7 +690,9 @@ class Entity(object):
         self.frame_number = 0
         self.frame_change_counter = 0
         self.animation_sequence_done = False
-        self.frames_changing_threshold = self.animations[anim]['speed'] * self.frames_changing_threshold_modifier
+        # self.frames_changing_threshold = self.animations[anim]['speed'] * self.current_weapon['animation speed modifier']
+        self.frames_changing_threshold = self.animations[anim]['speed']
+        # self.frames_changing_threshold = self.animations[anim]['speed'] * self.frames_changing_threshold_modifier
         self.animation_sequence = self.animations[anim]['sequence']
         self.set_current_sprite()
 
