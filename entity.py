@@ -1,11 +1,12 @@
 import copy
 
-import pygame
+# import pygame
 from math import sqrt, sin
 
 import fonts
-from constants import *
+# from constants import *
 from graphics import *
+from misc_tools import check_lines_intersection
 
 class Entity(object):
 
@@ -819,11 +820,25 @@ class Entity(object):
                     continue
 
             hit_detected = False
+
             if dem.invisible:
-                # Just a rectangle-based collision detector:
-                if self.rectangle.colliderect(dem.rectangle):
-                # if self.sprite_rectangle.colliderect(dem.rectangle):
-                    hit_detected = True
+                if dem.flyer:
+                    demolisher_trace_has_been_passed = (dem.previous_location,
+                                                        dem.rectangle.topleft)
+                    for line in ((self.rectangle.topleft, self.rectangle.bottomleft),
+                                 (self.rectangle.bottomleft, self.rectangle.bottomright),
+                                 (self.rectangle.bottomright, self.rectangle.topright),
+                                 (self.rectangle.topright, self.rectangle.topleft)):
+                        if check_lines_intersection(demolisher_trace_has_been_passed, line):
+                            hit_detected = True
+                            # print('HIT')
+                            # print(f'[detect collision with protectors {self.id}] trace={self_trace_has_been_passed} protector={protector_diagonals}')
+                            break
+                else:
+                    # Just a rectangle-based collision detector:
+                    if self.rectangle.colliderect(dem.rectangle):
+                    # if self.sprite_rectangle.colliderect(dem.rectangle):
+                        hit_detected = True
             else:
 
                 current_mask = self.current_sprite['mask']
