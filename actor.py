@@ -574,7 +574,10 @@ class Actor(Entity):
                 self.normal_stamina_replenish = 0.01
 
         elif new_action == 'attack':
-            if self.stats['stamina'] <= self.current_stamina_lost_per_attack:
+            # if self.stats['stamina'] < 0:
+            #     self.set_state('dizzy prepare')
+            # elif self.stats['stamina'] < self.current_stamina_lost_per_attack:
+            if self.stats['stamina'] < self.current_stamina_lost_per_attack:
                 # print(f'[state machine] NOT ENOUGH STAMINA.')
                 self.frames_changing_threshold_penalty = 2.  # x2 times slower animation
             else:

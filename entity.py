@@ -647,10 +647,6 @@ class Entity(object):
                     self.active_frames = list(self.animations[self.current_animation]['activity at frames'].keys())
                 else:
                     self.animation_sequence_done = False
-                    # SOUND !!
-                    # if self.animations[self.current_animation][self.look]['sound']:
-                    #     if self.frame_number in self.animations[self.current_animation][self.look]['sound at frames']:
-                    #         self.consider_which_sound_to_make()
                 self.set_current_sprite()
 
             size = self.current_sprite['sprite'].get_size()
@@ -1159,7 +1155,10 @@ class Entity(object):
         elif self.stats['stamina'] == self.stats['max stamina']:
             return
         else:
-            self.stats['stamina'] += (self.normal_stamina_replenish * self.stamina_replenish_modifier)
+            if self.stats['stamina'] < 0:
+                self.stats['stamina'] += (self.normal_stamina_replenish * self.stamina_replenish_modifier) / 2
+            else:
+                self.stats['stamina'] += (self.normal_stamina_replenish * self.stamina_replenish_modifier)
             self.stamina_replenish_modifier = 1
 
 
