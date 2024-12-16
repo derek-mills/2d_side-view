@@ -334,6 +334,7 @@ load_single_frame(items, ((0,0,40,60),), 'exp', 2)
 load_single_frame(items, ((0,60,40,60),), 'health vial', 5)
 load_single_frame(items, ((0,120,40,60),), 'stash', 8)
 load_single_frame(items, ((0,190,33,45),), 'kettlebell', 1)
+load_single_frame(items, ((0,242,21,22),), 'sparkles', 1)
 
 # load_single_frame(items, ((20,0,20,30),), 'fireball staff', 3)
 # load_single_frame(items, ((40,0,20,30),), 'fireball demolisher', 8)

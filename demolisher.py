@@ -279,6 +279,24 @@ class Demolisher(Entity):
                 if hit_detected:
                     self.summoned_sounds.append(p.sounds[self.type])
 
+                    self.summoned_particle_descriptions.append({
+                        'sprite': 'sparkles',
+                        'particle TTL': 3,
+                        'width': 21,
+                        'height': 22,
+                        'xy': (p.rectangle.centerx, self.rectangle.y),
+                        'bounce': False,
+                        'bounce factor': 0.,
+                        'subtype': 'sprite',
+                        'color': self.blood_color,
+                        'look': self.look,
+                        # 'look': self.look * -1,  # Splatter always fly in the opposite direction
+                        'speed': 1,
+                        'jump height': 0,
+                        'collides': False,
+                        'gravity affected': False
+                    })
+
                     # print(f'[detect collision with protectors] {self.id} collided with {p.name}, {p.look=}, {self.look=}')
                     self.become_mr_floppy()
                     # self.parent.make_all_following_demolishers_floppy = True

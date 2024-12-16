@@ -965,6 +965,10 @@ class World(object):
             while dem.summoned_sounds:
                 self.put_sound_to_queue(dem.summoned_sounds.pop())
 
+            while dem.summoned_particle_descriptions:
+                description = dem.summoned_particle_descriptions.pop()
+                self.add_particle(description)
+
         for dead_id in dead:
             del self.demolishers[self.location][dead_id]
         for expl in explosions:
@@ -1555,6 +1559,8 @@ class World(object):
 
             if p.subtype == 'splatter':
                 pygame.draw.circle(self.screen, p.color, (p.rectangle.centerx - self.camera.offset_x, p.rectangle.centery - self.camera.offset_y), p.rectangle.width)
+            elif p.subtype == 'sprite':
+                self.screen.blit(sprites[p.current_sprite]['sprite'], (p.rectangle.centerx - self.camera.offset_x, p.rectangle.centery - self.camera.offset_y))
             elif p.subtype == 'text':
                 self.screen.blit(p.current_sprite, (p.rectangle.centerx - self.camera.offset_x, p.rectangle.centery - self.camera.offset_y))
             else:
