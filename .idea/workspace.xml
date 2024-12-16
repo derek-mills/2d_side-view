@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="Frames changing threshold is improved.">
+    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="Hit detection of actors and fast flying missiles performs now based on trace passed.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -163,13 +165,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00607" summary="Graphics load system remade.&#10;Sprites for actors now load only if they needed.">
-      <created>1732870543005</created>
-      <option name="number" value="00607" />
-      <option name="presentableId" value="LOCAL-00607" />
-      <option name="project" value="LOCAL" />
-      <updated>1732870543005</updated>
     </task>
     <task id="LOCAL-00608" summary="Items load their graphics only if they are summoned by something.&#10;Graphics description inserted into every particular weapon settings file.">
       <created>1733111470407</created>
@@ -507,7 +502,14 @@
       <option name="project" value="LOCAL" />
       <updated>1734072008775</updated>
     </task>
-    <option name="localTasksCounter" value="656" />
+    <task id="LOCAL-00656" summary="Hit detection of actors and fast flying missiles performs now based on trace passed.">
+      <created>1734077395184</created>
+      <option name="number" value="00656" />
+      <option name="presentableId" value="LOCAL-00656" />
+      <option name="project" value="LOCAL" />
+      <updated>1734077395184</updated>
+    </task>
+    <option name="localTasksCounter" value="657" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -522,7 +524,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Some." />
     <MESSAGE value="Fixed Demon 2 recoil from avoiding his attack by shield. Added 'getting hurt' animation." />
     <MESSAGE value="Fixed incorrect bouncing demolisher behavior." />
     <MESSAGE value="Getting hurt state do not interrupt sliding animation now." />
@@ -547,6 +548,7 @@
     <MESSAGE value="Actor receives the ability to cover self by shield while crouching." />
     <MESSAGE value="Stamina replenishes two times slowly if it's below zero." />
     <MESSAGE value="Frames changing threshold is improved." />
-    <option name="LAST_COMMIT_MESSAGE" value="Frames changing threshold is improved." />
+    <MESSAGE value="Hit detection of actors and fast flying missiles performs now based on trace passed." />
+    <option name="LAST_COMMIT_MESSAGE" value="Hit detection of actors and fast flying missiles performs now based on trace passed." />
   </component>
 </project>

@@ -359,12 +359,19 @@ class Entity(object):
         self.rectangle_width_slide = self.rectangle.height // 4 * 3
 
     def apply_rectangle_according_to_sprite(self):
-        # floor = self.rectangle.bottom
-        # center = self.rectangle.centerx
+        floor = self.rectangle.bottom
+        center = self.rectangle.centerx
         self.sprite_rectangle.width = self.current_sprite['sprite'].get_width()
         self.sprite_rectangle.height = self.current_sprite['sprite'].get_height()
-        self.sprite_rectangle.bottom = self.rectangle.bottom
-        self.sprite_rectangle.centerx = self.rectangle.centerx
+        self.sprite_rectangle.bottom = floor
+        self.sprite_rectangle.centerx = center
+        # self.sprite_rectangle.bottom = self.rectangle.bottom
+        # self.sprite_rectangle.centerx = self.rectangle.centerx
+
+        self.rectangle.height = self.sprite_rectangle.h
+        self.rectangle.width = self.sprite_rectangle.w // 1.5
+        self.rectangle.bottom = floor
+        self.rectangle.centerx = center
 
     def process(self):
         if self.stats['stamina'] < self.current_stamina_lost_per_attack:
@@ -903,7 +910,8 @@ class Entity(object):
                 if not self.dead:
                     self.summoned_sounds.append(dem.sounds['body hit'])
                     # If actor hit from behind, the damage increased by 50%:
-                    total_damage_multiplier = 1.5 if dem.look == self.look and dem.snap_to_actor >= 0 else 1
+                    total_damage_multiplier = 1.5 if dem.look == self.look else 1
+                    # total_damage_multiplier = 1.5 if dem.look == self.look and dem.snap_to_actor >= 0 else 1
                     self.get_damage(dem.damage, total_damage_multiplier)
                     if int(self.total_damage_has_got) > 0:
                         state = self.get_state()

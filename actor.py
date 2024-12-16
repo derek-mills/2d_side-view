@@ -356,7 +356,8 @@ class Actor(Entity):
         self.detect_collisions_with_protectors()
         self.state_machine()
         self.apply_rectangle_according_to_sprite()
-        self.processing_rectangle_size()
+        # self.processing_rectangle_size_in_place()
+        # self.processing_rectangle_size()
         self.stamina_replenish()
         self.mana_replenish()
         self.check_space_around()
@@ -700,6 +701,8 @@ class Actor(Entity):
             self.ignore_user_input = self.current_weapon['ignore user input']
             if self.is_stand_on_ground:
                 self.heading[0] = 0
+            self.set_new_desired_height(self.rectangle_height_sit, 5)
+            self.set_new_desired_width(self.rectangle_width_sit, 3)
         elif state == 'prepare crouch attack right':                          # PREPARING ATTACK
             self.set_state(self.current_weapon['attack animation'] + ' crouch right')
             self.set_current_animation()
@@ -710,6 +713,8 @@ class Actor(Entity):
             self.ignore_user_input = self.current_weapon['ignore user input']
             if self.is_stand_on_ground:
                 self.heading[0] = 0
+            self.set_new_desired_height(self.rectangle_height_sit, 5)
+            self.set_new_desired_width(self.rectangle_width_sit, 3)
         elif state in ('stab', 'stab close', 'cast', 'axe swing', 'whip',
                        'whip crouch right', 'whip crouch left',
                        'kick', 'pistol shot', 'punch'):                          # ATTACKING IN PROCESS...
@@ -1481,21 +1486,36 @@ class Actor(Entity):
 
     def think(self):
         # AI actor collided with someone's shield:
-        if self.pushed_by_protector:
-            possible_actions = ('hop back', 'hop forward', 'slide')
-            next_deed = choice(possible_actions)
-            if next_deed == 'hop back':
-                self.ai_input_hop_back = True
-            elif next_deed == 'slide':
-                self.ai_input_down_arrow = True
-                self.ai_input_jump = True
-            elif next_deed == 'hop forward':
-                self.ai_input_hop_forward = True
-            return
+        # if self.pushed_by_protector:
+        #     possible_actions = ('hop back', 'hop forward', 'slide')
+        #     next_deed = choice(possible_actions)
+        #     if next_deed == 'hop back':
+        #         self.ai_input_hop_back = True
+        #     elif next_deed == 'slide':
+        #         self.ai_input_down_arrow = True
+        #         self.ai_input_jump = True
+        #     elif next_deed == 'hop forward':
+        #         self.ai_input_hop_forward = True
+        #     return
 
         if self.think_type == 'patrol':
             self.target = self.living_entities['player']
             self.think_type = 'chaser'
+        elif self.think_type == 'turret':
+            if self.rectangle.centerx > self.target.rectangle.centerx:
+                self.ai_input_left_arrow = True
+                self.ai_input_right_arrow = False
+                self.ai_input_attack = False
+                self.look = -1
+            else:
+                self.ai_input_left_arrow = False
+                self.ai_input_right_arrow = True
+                self.ai_input_attack = False
+                self.look = 1
+            self.activate_weapon(2)  # Activate ranged weapon (always has index 2).
+            self.ai_input_attack = True
+            self.ai_input_left_arrow = False
+            self.ai_input_right_arrow = False
         elif self.think_type == 'chaser':
             # Change weapon depends on target vicinity:
             # print('[think]', list(self.inventory['weapons'].keys()))
@@ -1517,18 +1537,18 @@ class Actor(Entity):
                 self.ai_input_attack = False
                 self.look = 1
 
-            # # AI actor collided with someone's shield:
-            # if self.pushed_by_protector:
-            #     possible_actions = ('hop back', 'hop forward', 'slide')
-            #     next_deed = choice(possible_actions)
-            #     if next_deed == 'hop back':
-            #         self.ai_input_hop_back = True
-            #     elif next_deed == 'slide':
-            #         self.ai_input_down_arrow = True
-            #         self.ai_input_jump = True
-            #     elif next_deed == 'hop forward':
-            #         self.ai_input_hop_forward = True
-            #     return
+            # AI actor collided with someone's shield:
+            if self.pushed_by_protector:
+                possible_actions = ('hop back', 'hop forward', 'slide')
+                next_deed = choice(possible_actions)
+                if next_deed == 'hop back':
+                    self.ai_input_hop_back = True
+                elif next_deed == 'slide':
+                    self.ai_input_down_arrow = True
+                    self.ai_input_jump = True
+                elif next_deed == 'hop forward':
+                    self.ai_input_hop_forward = True
+                return
 
             if self.sprite_rectangle.colliderect(self.target.sprite_rectangle):
                 # Smash actor immediately:
