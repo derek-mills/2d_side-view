@@ -1362,6 +1362,24 @@ class Actor(Entity):
                     self.animation_change_denied = True
         elif state == 'lie dead':                        #
             self.heading = [0, 0]
+            if self.decay_counter > 0:
+                self.decay_counter -= 1
+                if self.decay_counter < self.decay_counter_default >> 4:  # 6.25% of decaying time left.
+                    self.animation_change_denied = False
+                    self.set_current_animation('decay 6.25')
+                    self.animation_change_denied = True
+                elif self.decay_counter < self.decay_counter_default >> 3:  # 12.5% of decaying time left.
+                    self.animation_change_denied = False
+                    self.set_current_animation('decay 12.5')
+                    self.animation_change_denied = True
+                elif self.decay_counter < self.decay_counter_default >> 2:  # 25% of decaying time left.
+                    self.animation_change_denied = False
+                    self.set_current_animation('decay 25')
+                    self.animation_change_denied = True
+                elif self.decay_counter < self.decay_counter_default >> 1:  # 50% of decaying time left.
+                    self.animation_change_denied = False
+                    self.set_current_animation('decay 50')
+                    self.animation_change_denied = True
             if self.idle_counter > 0:
                 self.idle_counter -= 1
             else:
@@ -1379,6 +1397,24 @@ class Actor(Entity):
                 self.set_current_animation()
                 self.animation_change_denied = True
         elif state == 'lie decapitated':
+            if self.decay_counter > 0:
+                self.decay_counter -= 1
+                if self.decay_counter < self.decay_counter_default >> 4:  # 6.25% of decaying time left.
+                    self.animation_change_denied = False
+                    self.set_current_animation('decay 6.25')
+                    self.animation_change_denied = True
+                elif self.decay_counter < self.decay_counter_default >> 3:  # 12.5% of decaying time left.
+                    self.animation_change_denied = False
+                    self.set_current_animation('decay 12.5')
+                    self.animation_change_denied = True
+                elif self.decay_counter < self.decay_counter_default >> 2:  # 25% of decaying time left.
+                    self.animation_change_denied = False
+                    self.set_current_animation('decay 25')
+                    self.animation_change_denied = True
+                elif self.decay_counter < self.decay_counter_default >> 1:  # 50% of decaying time left.
+                    self.animation_change_denied = False
+                    self.set_current_animation('decay 50')
+                    self.animation_change_denied = True
             if self.idle_counter > 0:
                 self.idle_counter -= 1
                 # self.invincibility_timer -= 1
@@ -1468,6 +1504,16 @@ class Actor(Entity):
             if not self.is_stunned:
                 self.ignore_user_input = False
                 self.set_state('stand still')
+        # elif state == 'decay':
+        #     if self.decay_counter < self.decay_counter_default >> 4:  # 6.25% of decaying time left.
+        #         self.set_current_animation('decay 6.25')
+        #     elif self.decay_counter < self.decay_counter_default >> 3:  # 12.5% of decaying time left.
+        #         self.set_current_animation('decay 12.5')
+        #     elif self.decay_counter < self.decay_counter_default >> 2:  # 25% of decaying time left.
+        #         self.set_current_animation('decay 25')
+        #     elif self.decay_counter < self.decay_counter_default >> 1:  # 50% of decaying time left.
+        #         self.set_current_animation('decay 50')
+
 
     def reset_self_flags(self):
         self.is_move_left = False

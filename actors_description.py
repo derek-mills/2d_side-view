@@ -713,7 +713,7 @@ demon_2 = {
     'name': 'demon 2',
     'graphics': {
         'sprite sheet filename': 'img/animations/demon_2.png',
-        'frames quantity': 97,
+        'frames quantity': 105,
         'frame width': 20,
         'frame height': 30,
         'frame scale': 22,
@@ -1219,6 +1219,70 @@ demon_2 = {
                     'demolishers set number': 0,
                     'demolisher': False
                 },
+            },
+            'repeat from frame': 0
+        },
+        'decay 50 right': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (98,),
+            'speed': 9,
+            'activity at frames': {
+            },
+            'repeat from frame': 0
+        },
+        'decay 25 right': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (99,),
+            'speed': 9,
+            'activity at frames': {
+            },
+            'repeat from frame': 0
+        },
+        'decay 12.5 right': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (100,),
+            'speed': 9,
+            'activity at frames': {
+            },
+            'repeat from frame': 0
+        },
+        'decay 6.25 right': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (101,),
+            'speed': 9,
+            'activity at frames': {
+            },
+            'repeat from frame': 0
+        },
+        'decay 50 left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (102,),
+            'speed': 9,
+            'activity at frames': {
+            },
+            'repeat from frame': 0
+        },
+        'decay 25 left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (103,),
+            'speed': 9,
+            'activity at frames': {
+            },
+            'repeat from frame': 0
+        },
+        'decay 12.5 left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (104,),
+            'speed': 9,
+            'activity at frames': {
+            },
+            'repeat from frame': 0
+        },
+        'decay 6.25 left': {
+            'repeat': True, 'interruptable': True,
+            'sequence': (105,),
+            'speed': 9,
+            'activity at frames': {
             },
             'repeat from frame': 0
         },

@@ -9,6 +9,7 @@
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/animations/demon_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/animations/demon_2.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -166,13 +167,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00610" summary="Master chief walk sprites added">
-      <created>1733125701229</created>
-      <option name="number" value="00610" />
-      <option name="presentableId" value="LOCAL-00610" />
-      <option name="project" value="LOCAL" />
-      <updated>1733125701229</updated>
     </task>
     <task id="LOCAL-00611" summary="Master chief sprites improved.">
       <created>1733126566613</created>
@@ -510,7 +504,14 @@
       <option name="project" value="LOCAL" />
       <updated>1734338803309</updated>
     </task>
-    <option name="localTasksCounter" value="659" />
+    <task id="LOCAL-00659" summary="Added 'decay' state for actors after death. It will be a bunch of different states for a corpse depends on a decay counter left.">
+      <created>1734413802460</created>
+      <option name="number" value="00659" />
+      <option name="presentableId" value="LOCAL-00659" />
+      <option name="project" value="LOCAL" />
+      <updated>1734413802460</updated>
+    </task>
+    <option name="localTasksCounter" value="660" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -525,7 +526,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Getting hurt state do not interrupt sliding animation now." />
     <MESSAGE value="Getting hurt state do not interrupt sliding animation now. Fixed." />
     <MESSAGE value="Slightly improved sliding animation." />
     <MESSAGE value="Added ability to move forward covered by shield." />
@@ -550,6 +550,7 @@
     <MESSAGE value="Hit detection of actors and fast flying missiles performs now based on trace passed." />
     <MESSAGE value="Processing of actor's rectangle depends on current animation sprite size now." />
     <MESSAGE value="When demolisher hits protector it causes sparkles." />
-    <option name="LAST_COMMIT_MESSAGE" value="When demolisher hits protector it causes sparkles." />
+    <MESSAGE value="Added 'decay' state for actors after death. It will be a bunch of different states for a corpse depends on a decay counter left." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added 'decay' state for actors after death. It will be a bunch of different states for a corpse depends on a decay counter left." />
   </component>
 </project>

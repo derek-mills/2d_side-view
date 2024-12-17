@@ -387,16 +387,17 @@ class Entity(object):
             # self.frames_changing_threshold_modifier = self.current_weapon['animation speed modifier']
             self.frames_changing_threshold_penalty = 1.
 
-        if self.decay_counter > 0:
-            self.decay_counter -= 1
-            if self.decay_counter < self.decay_counter_default >> 4:  # 6.25% of decaying time left.
-                ...
-            elif self.decay_counter < self.decay_counter_default >> 3:  # 12.5% of decaying time left.
-                ...
-            elif self.decay_counter < self.decay_counter_default >> 2:  # 25% of decaying time left.
-                ...
-            elif self.decay_counter < self.decay_counter_default >> 1:  # 50% of decaying time left.
-                ...
+        # if self.decay_counter > 0:
+        #     self.decay_counter -= 1
+            # self.set_state('decay')
+            # if self.decay_counter < self.decay_counter_default >> 4:  # 6.25% of decaying time left.
+            #     ...
+            # elif self.decay_counter < self.decay_counter_default >> 3:  # 12.5% of decaying time left.
+            #     ...
+            # elif self.decay_counter < self.decay_counter_default >> 2:  # 25% of decaying time left.
+            #     ...
+            # elif self.decay_counter < self.decay_counter_default >> 1:  # 50% of decaying time left.
+            #     ...
 
         if self.ttl > 0:
             self.ttl -= 1

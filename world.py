@@ -1080,6 +1080,7 @@ class World(object):
                 actor.invincibility_timer = 0
                 # actor.set_state('lie dead')
                 actor.decay_counter = actor.decay_counter_default
+                # actor.set_state('decay')
                 # Remove all protectors:
                 actor.summon_protector = False
                 actor.summoned_protectors_description = list()
