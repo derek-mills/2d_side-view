@@ -1,7 +1,7 @@
-import pygame
+# import pygame
 
 from constants import *
-
+from random import randint
 
 class Camera(object):
     def __init__(self):
@@ -19,6 +19,8 @@ class Camera(object):
         self.offset_scroll_velocity_y = 0
         self.rectangle = pygame.Rect(0, 0, 0, 0)
         self.active_objects_rectangle = pygame.Rect(0, 0, 0, 0)
+        self.shake_x_amount: int = 0
+        self.shake_y_amount: int = 0
 
 
     def setup(self, max_x, max_y):
@@ -36,13 +38,20 @@ class Camera(object):
         # self.max_offset_y = max_y - MAXY
         # print(f'[camera setup] {self.max_x=} {self.max_y=} {self.max_offset_x=} {self.max_offset_y=}')
 
+    def shake(self, shake_x_amount, shake_y_amount):
+        self.shake_x_amount = shake_x_amount
+        self.shake_y_amount = shake_y_amount
+
     def apply_offset(self, xy, velocity_x, velocity_y, instant_follow=False):
 
         x = xy[0]
         y = xy[1]
         self.offset_scroll_velocity_x = velocity_x
         self.offset_scroll_velocity_y = velocity_y
-        self.instant_follow = instant_follow
+        if self.shake_x_amount > 0 or self.shake_y_amount > 0:
+            self.instant_follow = True
+        else:
+            self.instant_follow = instant_follow
 
         if self.max_x < MAXX:
             # self.target_offset_x = -100
@@ -67,8 +76,10 @@ class Camera(object):
     
         if self.instant_follow:
             self.instant_follow = False
-            self.offset_x = int(self.target_offset_x)
-            self.offset_y = int(self.target_offset_y)
+            self.offset_x = int(self.target_offset_x) + self.shake_x_amount
+            self.offset_y = int(self.target_offset_y) + self.shake_y_amount
+            self.shake_x_amount = 0
+            self.shake_y_amount = 0
         else:
             if self.offset_x <= self.target_offset_x - self.offset_scroll_velocity_x:
                 self.offset_x += int(self.offset_scroll_velocity_x)

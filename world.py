@@ -703,9 +703,9 @@ class World(object):
             if self.actors['player'].rectangle.top < self.camera.rectangle.top:
                 y_offset_speed *= 2
 
+        self.camera.shake(randint(1, 50), 0)
         self.camera.apply_offset((self.actors['player'].rectangle.centerx, self.actors['player'].rectangle.top),
                                  x_offset_speed, y_offset_speed)
-                                 # self.actors['player'].speed * 0.9, self.actors['player'].fall_speed)
 
         self.detect_active_obstacles()
 
