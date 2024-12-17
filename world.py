@@ -151,6 +151,9 @@ class World(object):
         # entity.resistances = description['resistances']
         entity.disappear_after_death = description['disappear after death']
         entity.blood_color = description['blood color']
+        if 'decay counter' in description:
+            entity.decay_counter_default = description['decay counter']
+            # entity.decay_counter = description['decay counter']
 
         entity.strength = description['strength']
         entity.body_weight_netto = description['body weight']
@@ -1076,7 +1079,7 @@ class World(object):
                 actor.dying = False
                 actor.invincibility_timer = 0
                 # actor.set_state('lie dead')
-
+                actor.decay_counter = actor.decay_counter_default
                 # Remove all protectors:
                 actor.summon_protector = False
                 actor.summoned_protectors_description = list()
@@ -1107,161 +1110,165 @@ class World(object):
             # if not actor.ignore_user_input:
             #     actor.think()
 
-            if not actor.dead and not actor.is_stunned:
-                if actor.ai_controlled:
-                    # routines for AI
-                    # actor.get_target(self.actors['player'])
-                    if not actor.ignore_user_input:
-                        actor.think()
-                        actor.perform_ai_deed_after_thinking()
-                else:
-                    # ROUTINES FOR HUMAN PLAYER ACTOR
-                    if not actor.ignore_user_input:
-                    # if key == 0 and not actor.ignore_user_input:  # routines for Player actor
-                        if self.is_input_up_arrow:
-                            actor.set_action('up action')
-                        else:
-                            # if actor.get_state() == 'up action':
-                            actor.set_action('up action cancel')
-
-                        if self.is_input_down_arrow:
-                            actor.set_action('down action')
-                        else:
-                            # if actor.get_state() == 'down action':
-                            actor.set_action('down action cancel')
-
-                        if self.is_input_right_arrow:
-                            actor.set_action('right action')
-                        else:
-                            # if actor.get_state() == 'right action':
-                            actor.set_action('right action cancel')
-
-                        if self.is_input_left_arrow:
-                            actor.set_action('left action')
-                        else:
-                            # if actor.get_state() == 'left action':
-                            actor.set_action('left action cancel')
-
-                        if self.is_jump_button:
-                            actor.set_action('jump action')
-                        else:
-                            actor.set_action('jump action cancel')
-
-                        if self.is_q:
-                        # if self.is_l_alt and not self.l_alt_multiple_press_prevent:
-                        #     self.l_alt_multiple_press_prevent = True
-                            self.q_multiple_press_prevent = True
-                            self.is_q = False
-                            if actor.look == 1:
-                                actor.set_action('hop back')
+            if not actor.dead:
+                if not actor.is_stunned:
+                    if actor.ai_controlled:
+                        # routines for AI
+                        # actor.get_target(self.actors['player'])
+                        if not actor.ignore_user_input:
+                            actor.think()
+                            actor.perform_ai_deed_after_thinking()
+                    else:
+                        # ROUTINES FOR HUMAN PLAYER ACTOR
+                        if not actor.ignore_user_input:
+                        # if key == 0 and not actor.ignore_user_input:  # routines for Player actor
+                            if self.is_input_up_arrow:
+                                actor.set_action('up action')
                             else:
-                                actor.set_action('hop forward')
-                        else:
-                            if actor.get_state() in ('hopping back progress', 'hopping forward progress'):
-                                actor.set_action('hop action cancel')
+                                # if actor.get_state() == 'up action':
+                                actor.set_action('up action cancel')
 
-                        if self.is_e:
-                        # if self.is_l_alt and not self.l_alt_multiple_press_prevent:
-                        #     self.l_alt_multiple_press_prevent = True
-                            self.e_multiple_press_prevent = True
-                            self.is_e = False
-                            if actor.look == -1:
-                                actor.set_action('hop back')
+                            if self.is_input_down_arrow:
+                                actor.set_action('down action')
                             else:
-                                actor.set_action('hop forward')
-                        else:
-                            if actor.get_state() in ('hopping back progress', 'hopping forward progress'):
-                                actor.set_action('hop action cancel')
+                                # if actor.get_state() == 'down action':
+                                actor.set_action('down action cancel')
 
-                        if self.is_alt_moving_mode:
-                        # if self.is_l_shift:
-                            actor.move_backwards = True
-                        else:
-                            actor.move_backwards = False
-
-                        # ACTION BUTTONS HANDLING:
-                        if self.is_attack and self.is_alternate_attack:
-                            # print(self.alternate_attack_time, self.attack_time)
-
-                            if self.alternate_attack_time > self.attack_time:
-                                hand = 'left hand'
-                                self.alternate_attack_time = 0
+                            if self.is_input_right_arrow:
+                                actor.set_action('right action')
                             else:
-                                hand = 'right hand'
-                                self.attack_time = 0
-                        else:
-                            if self.is_alternate_attack:
-                                hand = 'left hand'
-                            elif self.is_attack:
-                                hand = 'right hand'
+                                # if actor.get_state() == 'right action':
+                                actor.set_action('right action cancel')
+
+                            if self.is_input_left_arrow:
+                                actor.set_action('left action')
                             else:
-                                hand = None
+                                # if actor.get_state() == 'left action':
+                                actor.set_action('left action cancel')
 
-                        if hand:
-                            # One or both hands of an actor does action:
-                            actor.current_weapon = actor.body[hand]['weapon']['item']
+                            if self.is_jump_button:
+                                actor.set_action('jump action')
+                            else:
+                                actor.set_action('jump action cancel')
 
-                            if 'protect' in actor.get_state() and actor.current_weapon['type'] == 'shields':
-                            # if actor.get_state() == 'protect' and actor.current_weapon['type'] == 'shields':
-                                # print('bbbb')
-                                if actor.stats['stamina'] <= 0:
-                                    actor.is_attack = False
-                                    actor.attack_time = 0
-                                    actor.is_alternate_attack = False
-                                    actor.alternate_attack_time = 0
-                                    actor.set_state('dizzy prepare')
-                                    # actor.set_state('prepare to get hurt')
-                                    actor.summon_protector = False
-                                    self.discard_protectors(key)  # Dismiss all protectors, summoned by current actor.
-                                    actor.restore_default_states()
-                                    # while actor.summoned_protectors_keep_alive:
-                                    #     protector_id = actor.summoned_protectors_keep_alive.pop()
-                                    #     del self.protectors[self.location][protector_id]
+                            if self.is_q:
+                            # if self.is_l_alt and not self.l_alt_multiple_press_prevent:
+                            #     self.l_alt_multiple_press_prevent = True
+                                self.q_multiple_press_prevent = True
+                                self.is_q = False
+                                if actor.look == 1:
+                                    actor.set_action('hop back')
                                 else:
-                                    if not actor.summoned_protectors_keep_alive:
-                                        actor.summon_protector = False
+                                    actor.set_action('hop forward')
                             else:
-                                # actor.current_stamina_lost_per_attack = actor.normal_stamina_lost_per_attack * actor.current_weapon['stamina consumption']
-                                # actor.current_mana_lost_per_attack = actor.normal_mana_lost_per_attack * actor.current_weapon['mana consumption']
-                                if actor.current_weapon['type'] == 'shields':
-                                    if actor.stats['stamina'] > 0:
-                                    # if actor.stats['mana'] > 3:
-                                        actor.set_action('protect')
+                                if actor.get_state() in ('hopping back progress', 'hopping forward progress'):
+                                    actor.set_action('hop action cancel')
+
+                            if self.is_e:
+                            # if self.is_l_alt and not self.l_alt_multiple_press_prevent:
+                            #     self.l_alt_multiple_press_prevent = True
+                                self.e_multiple_press_prevent = True
+                                self.is_e = False
+                                if actor.look == -1:
+                                    actor.set_action('hop back')
+                                else:
+                                    actor.set_action('hop forward')
+                            else:
+                                if actor.get_state() in ('hopping back progress', 'hopping forward progress'):
+                                    actor.set_action('hop action cancel')
+
+                            if self.is_alt_moving_mode:
+                            # if self.is_l_shift:
+                                actor.move_backwards = True
+                            else:
+                                actor.move_backwards = False
+
+                            # ACTION BUTTONS HANDLING:
+                            if self.is_attack and self.is_alternate_attack:
+                                # print(self.alternate_attack_time, self.attack_time)
+
+                                if self.alternate_attack_time > self.attack_time:
+                                    hand = 'left hand'
+                                    self.alternate_attack_time = 0
+                                else:
+                                    hand = 'right hand'
+                                    self.attack_time = 0
+                            else:
+                                if self.is_alternate_attack:
+                                    hand = 'left hand'
+                                elif self.is_attack:
+                                    hand = 'right hand'
+                                else:
+                                    hand = None
+
+                            if hand:
+                                # One or both hands of an actor does action:
+                                actor.current_weapon = actor.body[hand]['weapon']['item']
+
+                                if 'protect' in actor.get_state() and actor.current_weapon['type'] == 'shields':
+                                # if actor.get_state() == 'protect' and actor.current_weapon['type'] == 'shields':
+                                    # print('bbbb')
+                                    if actor.stats['stamina'] <= 0:
+                                        actor.is_attack = False
+                                        actor.attack_time = 0
+                                        actor.is_alternate_attack = False
+                                        actor.alternate_attack_time = 0
+                                        actor.set_state('dizzy prepare')
+                                        # actor.set_state('prepare to get hurt')
+                                        actor.summon_protector = False
+                                        self.discard_protectors(key)  # Dismiss all protectors, summoned by current actor.
+                                        actor.restore_default_states()
+                                        # while actor.summoned_protectors_keep_alive:
+                                        #     protector_id = actor.summoned_protectors_keep_alive.pop()
+                                        #     del self.protectors[self.location][protector_id]
                                     else:
+                                        if not actor.summoned_protectors_keep_alive:
+                                            actor.summon_protector = False
+                                else:
+                                    # actor.current_stamina_lost_per_attack = actor.normal_stamina_lost_per_attack * actor.current_weapon['stamina consumption']
+                                    # actor.current_mana_lost_per_attack = actor.normal_mana_lost_per_attack * actor.current_weapon['mana consumption']
+                                    if actor.current_weapon['type'] == 'shields':
+                                        if actor.stats['stamina'] > 0:
+                                        # if actor.stats['mana'] > 3:
+                                            actor.set_action('protect')
+                                        else:
+                                            actor.set_state('stand still')
+                                            self.discard_protectors(key)  # Dismiss all protectors, summoned by current actor.
+                                            actor.restore_default_states()
+                                            # while actor.summoned_protectors_keep_alive:
+                                            #     protector_id = actor.summoned_protectors_keep_alive.pop()
+                                            #     del self.protectors[self.location][protector_id]
+                                    else:
+                                        actor.current_stamina_lost_per_attack = actor.normal_stamina_lost_per_attack * actor.current_weapon['stamina consumption']
+                                        actor.current_mana_lost_per_attack = actor.normal_mana_lost_per_attack * actor.current_weapon['mana consumption']
+                                        actor.set_action('attack')
+                                        self.discard_protectors(key)  # Dismiss all protectors, summoned by current actor.
+                                        # actor.restore_default_states()
+                                        # while actor.summoned_protectors_keep_alive:
+                                        #     protector_id = actor.summoned_protectors_keep_alive.pop()
+                                        #     del self.protectors[self.location][protector_id]
+                            else:
+                                # print('xoxoxo')
+                                # actor.frames_changing_threshold_modifier = 1
+                                # actor.frames_changing_threshold_penalty = 1
+                                # actor.frames_changing_threshold = actor.animations[actor.current_animation]['speed']
+
+                                if self.protectors[self.location]:
+                                    if actor.summoned_protectors_keep_alive:
+                                        actor.summon_protector = False
                                         actor.set_state('stand still')
                                         self.discard_protectors(key)  # Dismiss all protectors, summoned by current actor.
                                         actor.restore_default_states()
                                         # while actor.summoned_protectors_keep_alive:
                                         #     protector_id = actor.summoned_protectors_keep_alive.pop()
                                         #     del self.protectors[self.location][protector_id]
-                                else:
-                                    actor.current_stamina_lost_per_attack = actor.normal_stamina_lost_per_attack * actor.current_weapon['stamina consumption']
-                                    actor.current_mana_lost_per_attack = actor.normal_mana_lost_per_attack * actor.current_weapon['mana consumption']
-                                    actor.set_action('attack')
-                                    self.discard_protectors(key)  # Dismiss all protectors, summoned by current actor.
-                                    # actor.restore_default_states()
-                                    # while actor.summoned_protectors_keep_alive:
-                                    #     protector_id = actor.summoned_protectors_keep_alive.pop()
-                                    #     del self.protectors[self.location][protector_id]
-                        else:
-                            # print('xoxoxo')
-                            # actor.frames_changing_threshold_modifier = 1
-                            # actor.frames_changing_threshold_penalty = 1
-                            # actor.frames_changing_threshold = actor.animations[actor.current_animation]['speed']
-
-                            if self.protectors[self.location]:
-                                if actor.summoned_protectors_keep_alive:
-                                    actor.summon_protector = False
-                                    actor.set_state('stand still')
-                                    self.discard_protectors(key)  # Dismiss all protectors, summoned by current actor.
-                                    actor.restore_default_states()
-                                    # while actor.summoned_protectors_keep_alive:
-                                    #     protector_id = actor.summoned_protectors_keep_alive.pop()
-                                    #     del self.protectors[self.location][protector_id]
-                                # else:
-                                #     actor.summoned_protectors_keep_alive.clear()
-                                # actor.summon_protector = False
-                                # actor.set_state('stand still')
+                                    # else:
+                                    #     actor.summoned_protectors_keep_alive.clear()
+                                    # actor.summon_protector = False
+                                    # actor.set_state('stand still')
+            else:
+                if actor.decay_counter == 0:
+                    dead.append(actor.id)
 
             actor.process()
 

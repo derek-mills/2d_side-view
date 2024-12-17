@@ -27,6 +27,8 @@ class Entity(object):
         self.__previous_state: str = ''
         self.scheduled_state: str = ''
         self.idle_counter: int = 0
+        self.decay_counter_default: int = 500  # After death counter to make dead body slowly disappear.
+        self.decay_counter: int = 0  # After death counter to make dead body slowly disappear.
         self.ignore_user_input: bool = False
         self.look: int = 1  # 1: look right, -1: look left
         self.ai_controlled: bool = False
@@ -384,6 +386,17 @@ class Entity(object):
         else:
             # self.frames_changing_threshold_modifier = self.current_weapon['animation speed modifier']
             self.frames_changing_threshold_penalty = 1.
+
+        if self.decay_counter > 0:
+            self.decay_counter -= 1
+            if self.decay_counter < self.decay_counter_default >> 4:  # 6.25% of decaying time left.
+                ...
+            elif self.decay_counter < self.decay_counter_default >> 3:  # 12.5% of decaying time left.
+                ...
+            elif self.decay_counter < self.decay_counter_default >> 2:  # 25% of decaying time left.
+                ...
+            elif self.decay_counter < self.decay_counter_default >> 1:  # 50% of decaying time left.
+                ...
 
         if self.ttl > 0:
             self.ttl -= 1

@@ -337,7 +337,6 @@ class Actor(Entity):
         #     # self.frames_changing_threshold_modifier = self.current_weapon['animation speed modifier']
         #     self.frames_changing_threshold_penalty = 1.
 
-
         if self.invincibility_timer > 0:
             self.invincibility_timer -= 1
 
