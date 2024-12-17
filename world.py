@@ -89,6 +89,8 @@ class World(object):
 
         self.screen = None
         self.camera = camera.Camera()
+        self.camera_shake_x_amount: int = 0
+        self.camera_shake_y_amount: int = 0
         # self.camera.setup(MAXX*2, MAXY)
         self.time_passed: int = 0
         self.game_cycles_counter: int = 0
@@ -703,7 +705,25 @@ class World(object):
             if self.actors['player'].rectangle.top < self.camera.rectangle.top:
                 y_offset_speed *= 2
 
-        self.camera.shake(randint(1, 50), 0)
+        if self.camera_shake_x_amount != 0:
+            self.camera_shake_x_amount *= -1
+            if self.camera_shake_x_amount > 0:
+                self.camera_shake_x_amount -= 1
+            else:
+                self.camera_shake_x_amount += 1
+            # if self.camera_shake_x_amount // 2 == self.camera_shake_x_amount / 2:
+
+        if self.camera_shake_y_amount != 0:
+            self.camera_shake_y_amount *= -1
+            if self.camera_shake_y_amount > 0:
+                self.camera_shake_y_amount -= 1
+            else:
+                self.camera_shake_y_amount += 1
+            # if self.camera_shake_y_amount // 2 == self.camera_shake_y_amount / 2:
+            #     print('r')
+
+
+        self.camera.shake(self.camera_shake_x_amount, self.camera_shake_y_amount)
         self.camera.apply_offset((self.actors['player'].rectangle.centerx, self.actors['player'].rectangle.top),
                                  x_offset_speed, y_offset_speed)
 
@@ -1321,6 +1341,10 @@ class World(object):
 
             while actor.summoned_sounds:
                 self.put_sound_to_queue(actor.summoned_sounds.pop())
+
+            if actor.shake_earth:
+                actor.shake_earth = False
+                self.camera_shake_y_amount = 10
 
             # if actor.summon_particle:
             #     actor.summon_particle = False

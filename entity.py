@@ -205,7 +205,7 @@ class Entity(object):
         self.vec_to_destination: list = [0, 0]
         self.exotic_movement = ''
         self.previous_location = [0, 0]
-
+        self.shake_earth = False
 
         # Collisions
         self.is_collideable = False
@@ -641,6 +641,8 @@ class Entity(object):
                         self.speed = self.animations[self.current_animation]['activity at frames'][self.frame_number]['move']
                         self.heading[0] = self.look
                         # print(f'[process active frames] make step at frame {self.frame_number}')
+                    elif action == 'shake earth':
+                        self.shake_earth = True
                     elif action == 'sound':
                         snd = self.animations[self.current_animation]['activity at frames'][self.frame_number]['sound']
                         self.summoned_sounds.append(snd)

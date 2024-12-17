@@ -48,7 +48,7 @@ class Camera(object):
         y = xy[1]
         self.offset_scroll_velocity_x = velocity_x
         self.offset_scroll_velocity_y = velocity_y
-        if self.shake_x_amount > 0 or self.shake_y_amount > 0:
+        if self.shake_x_amount != 0 or self.shake_y_amount != 0:
             self.instant_follow = True
         else:
             self.instant_follow = instant_follow

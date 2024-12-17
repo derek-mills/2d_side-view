@@ -857,6 +857,7 @@ demon_2 = {
                 'activity at frames': {
                     1: {
                         'sound': 'sound_step_1',
+                        'shake earth': True,
                     },
                 },
                 'repeat from frame': 0
@@ -864,7 +865,12 @@ demon_2 = {
         'run left': {
                 'repeat': True, 'interruptable': True,
                 'sequence': (52,51,50,49,48,47,46,45,44,43,42,), 'speed': 4,
-                'activity at frames': {},
+                'activity at frames': {
+                    1: {
+                        'sound': 'sound_step_1',
+                        'shake earth': True,
+                    },
+                },
                 'sound': 'sound_step_1', 'sound at frames': (1, 4), 'repeat from frame': 0
             },
         'jump right': {
@@ -1599,9 +1605,11 @@ player_jake = {
                 'activity at frames': {
                     2: {
                         'sound': 'sound_step_2',
+                        # 'shake earth': True,
                     },
                     7: {
                         'sound': 'sound_step_2',
+                        # 'shake earth': True,
                     },
                 },
                 'repeat from frame': 0
@@ -2592,9 +2600,11 @@ sober_knight = {
                 'activity at frames': {
                     2: {
                         'sound': 'sound_step_2',
+                        # 'shake earth': True,
                     },
                     7: {
                         'sound': 'sound_step_2',
+                        # 'shake earth': True,
                     },
                 },
                 'repeat from frame': 0
