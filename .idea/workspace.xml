@@ -7,6 +7,7 @@
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demolisher.py" beforeDir="false" afterPath="$PROJECT_DIR$/demolisher.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
@@ -165,13 +166,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00614" summary="Master chief sprites improved.">
-      <created>1733213715532</created>
-      <option name="number" value="00614" />
-      <option name="presentableId" value="LOCAL-00614" />
-      <option name="project" value="LOCAL" />
-      <updated>1733213715532</updated>
     </task>
     <task id="LOCAL-00615" summary="Master chief sprites improved. Still going on.">
       <created>1733286992794</created>
@@ -509,7 +503,14 @@
       <option name="project" value="LOCAL" />
       <updated>1734425286598</updated>
     </task>
-    <option name="localTasksCounter" value="663" />
+    <task id="LOCAL-00663" summary="Actor shakes earth only if he fell from a particular height, and he has a huge weight.">
+      <created>1734484492416</created>
+      <option name="number" value="00663" />
+      <option name="presentableId" value="LOCAL-00663" />
+      <option name="project" value="LOCAL" />
+      <updated>1734484492416</updated>
+    </task>
+    <option name="localTasksCounter" value="664" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -524,7 +525,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added opportunity to move backwards while covered by shield." />
     <MESSAGE value="Added opportunity to move backwards while covered by shield, improved." />
     <MESSAGE value="Making some code more accurate and beautiful.&#10;Restoring actor's speed to default state." />
     <MESSAGE value="Changed animation of actor walking with protector raised up." />
@@ -549,6 +549,7 @@
     <MESSAGE value="Added 'decay' state for actors after death. &#10;Processing of this state moved to state_machine totally." />
     <MESSAGE value="Camera shake ability added." />
     <MESSAGE value="Actors get an ability to cause earthquakes." />
-    <option name="LAST_COMMIT_MESSAGE" value="Actors get an ability to cause earthquakes." />
+    <MESSAGE value="Actor shakes earth only if he fell from a particular height, and he has a huge weight." />
+    <option name="LAST_COMMIT_MESSAGE" value="Actor shakes earth only if he fell from a particular height, and he has a huge weight." />
   </component>
 </project>

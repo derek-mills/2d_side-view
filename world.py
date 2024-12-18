@@ -513,15 +513,16 @@ class World(object):
             demol.invisible = True
             demol.snapping_offset = {
                 'offset inside actor': description['snapping offset'],
-                'offset inside demolisher': (demol.rectangle.width//2,-demol.rectangle.height)
+                'offset inside demolisher': (demol.rectangle.width // 2, 0)
+                # 'offset inside demolisher': (demol.rectangle.width // 2, -demol.rectangle.height)
                 # 'offset inside demolisher': (-demol.rectangle.width//2,-demol.rectangle.height//2)
                 # 'offset inside demolisher': (-demol.rectangle.width//2,0)
             }
 
         # Geometry and coordinates:
         if demol.parent:
-            demol.update(demol.parent.look, demol.parent.rectangle, demol.parent.current_sprite['demolisher snap point'])
-            # demol.update(demol.parent.look, demol.parent.rectangle)
+            demol.update()
+            # demol.update(demol.parent.look, demol.parent.rectangle, demol.parent.current_sprite['demolisher snap point'])
             if demol.flyer:
                 demol.destination_point = (self.camera.max_offset_x + MAXX, demol.rectangle.y) if demol.parent.look == 1 else (-100, demol.rectangle.y)
         else:
@@ -630,7 +631,8 @@ class World(object):
                 'offset inside demolisher': (-protector.rectangle.width//2,0)  # if protector.look == 1 else (protector.rectangle.width, 0)
             }
         if protector.parent:
-            protector.update(protector.parent.look, protector.parent.sprite_rectangle, protector.parent.current_sprite['demolisher snap point'])
+            protector.update()
+            # protector.update(protector.parent.look, protector.parent.sprite_rectangle, protector.parent.current_sprite['demolisher snap point'])
             if protector.flyer:
                 protector.destination_point = (self.camera.max_offset_x + MAXX, protector.rectangle.y) if protector.parent.look == 1 else (-100, protector.rectangle.y)
         else:
@@ -978,7 +980,8 @@ class World(object):
                     dead.append(dem.id)
                     continue
                 actor = self.actors[self.location][dem.snap_to_actor]
-                dem.update(actor.look, actor.sprite_rectangle, actor.current_sprite['demolisher snap point'])
+                dem.update()
+                # dem.update(actor.look, actor.sprite_rectangle, actor.current_sprite['demolisher snap point'])
                 # dem.update(actor.look, actor.sprite_rectangle)
 
             dem.get_time(self.time_passed, self.game_cycles_counter)
@@ -1010,9 +1013,10 @@ class World(object):
                 if protector.snap_to_actor not in self.actors[self.location].keys():
                     dead.append(protector.id)
                     continue
-                actor = self.actors[self.location][protector.snap_to_actor]
+                # actor = self.actors[self.location][protector.snap_to_actor]
                 # protector.update(actor.vec_to_destination)
-                protector.update(actor.look, actor.sprite_rectangle, actor.current_sprite['demolisher snap point'])
+                protector.update()
+                # protector.update(actor.look, actor.sprite_rectangle, actor.current_sprite['demolisher snap point'])
                 # protector.update(actor.look, actor.rectangle)
                 # protector.update(actor.look, actor.sprite_rectangle)
 
@@ -1531,8 +1535,8 @@ class World(object):
             dem = self.demolishers[self.location][key]
 
             if self.is_i:
-                pygame.draw.rect(self.screen, MAGENTA, (dem.rectangle.x - self.camera.offset_x, dem.rectangle.y - self.camera.offset_y,
-                                                      dem.rectangle.width, dem.rectangle.height),1)
+                pygame.draw.rect(self.screen, YELLOW, (dem.rectangle.x - self.camera.offset_x, dem.rectangle.y - self.camera.offset_y,
+                                                      dem.rectangle.width, dem.rectangle.height), 1)
             if dem.invisible:
                 continue
 

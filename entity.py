@@ -426,20 +426,24 @@ class Entity(object):
         # self.calculate_fall_speed()  # Discover speed and potential fall distance
         self.calculate_speed()       # Discover speed and potential move distance
 
-        if abs(self.speed) > 23:
+        if abs(self.speed) > 10:
             if not self.summon_kicker_demolisher:
                 demolisher = {
                     'parent': self,
-                    'rect': pygame.Rect(0, 0, 2, self.rectangle.h // 2),
-                    # 'rect': pygame.Rect(0, 0, self.rectangle.w, self.rectangle.h // 2),
+                    # 'rect': pygame.Rect(0, 0, 5, self.sprite_rectangle.h),
+                    'rect': pygame.Rect(0, 0, self.rectangle.w, self.rectangle.h // 2),
                     'flyer': False,
-                    'snapping offset': (-self.sprite_rectangle.w // 2 if self.movement_direction_inverter*self.look == -1 else self.sprite_rectangle.w // 2, 0),
+                    'snapping offset': (0,0),#self.rectangle.h),
+                    # 'snapping offset': (-self.sprite_rectangle.w if self.movement_direction_inverter*self.look == -1 else self.sprite_rectangle.w, 5000),#self.rectangle.h),
+                    # 'snapping offset': (-self.sprite_rectangle.w // 2 if self.movement_direction_inverter*self.look == -1 else self.sprite_rectangle.w // 2, 0),
                     'visible': False,
                     'demolisher sprite': None,
                     'type': 'blunt',
-                    'pierce': False, 'demolisher TTL': 1, 'speed': 0,
+                    'pierce': False, 'demolisher TTL': 11, 'speed': 0,
                     'static': True, 'damage reduce': 0,
-                    'collides': True, 'gravity affected': False,
+                    'collides': False,
+                    # 'collides': True,
+                    'gravity affected': False,
                     'bounce': False, 'bounce factor': 0.,
                     'push': True,
                     'impact recoil': True,
@@ -1267,7 +1271,8 @@ class Entity(object):
 
                 if not self.collided_bottom:
                     if self.fall_speed > 15 and self.body_weight > 100:
-                        self.shake_earth = min(10, int(self.fall_speed * self.body_weight))
+                        self.shake_earth = 10
+                        # self.shake_earth = min(10, int(self.fall_speed * self.body_weight))
                         # print(self.shake_earth, self.fall_speed, self.body_weight)
 
                 self.collided_bottom = True
