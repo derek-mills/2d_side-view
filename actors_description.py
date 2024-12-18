@@ -725,7 +725,7 @@ demon_2 = {
     'stamina replenish': .2,
     'blood color': (150, 50, 10),
     'strength': 15,
-    'body weight': 340,
+    'body weight': 840,
     'resistances': {
         # Zero is total resistance, such type of damage multiples by zero.
         # Above 1 is a weakness to particular type of damage.
@@ -857,7 +857,7 @@ demon_2 = {
                 'activity at frames': {
                     1: {
                         'sound': 'sound_step_1',
-                        'shake earth': True,
+                        # 'shake earth': True,
                     },
                 },
                 'repeat from frame': 0
@@ -868,7 +868,7 @@ demon_2 = {
                 'activity at frames': {
                     1: {
                         'sound': 'sound_step_1',
-                        'shake earth': True,
+                        # 'shake earth': True,
                     },
                 },
                 'sound': 'sound_step_1', 'sound at frames': (1, 4), 'repeat from frame': 0
@@ -1089,7 +1089,8 @@ demon_2 = {
                     #'sound': True,
                     # 'move': 10,  # Slightly move actor forward,
                     'demolishers set number': 1,
-                    'demolisher': True
+                    'demolisher': True,
+                    # 'shake earth': True,
                 },
             },
             # 'demolisher offset': {

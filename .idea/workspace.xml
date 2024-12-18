@@ -7,7 +7,6 @@
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/camera.py" beforeDir="false" afterPath="$PROJECT_DIR$/camera.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
@@ -166,13 +165,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00613" summary="Master chief sprites improved.">
-      <created>1733211001815</created>
-      <option name="number" value="00613" />
-      <option name="presentableId" value="LOCAL-00613" />
-      <option name="project" value="LOCAL" />
-      <updated>1733211001815</updated>
     </task>
     <task id="LOCAL-00614" summary="Master chief sprites improved.">
       <created>1733213715532</created>
@@ -510,7 +502,14 @@
       <option name="project" value="LOCAL" />
       <updated>1734423416616</updated>
     </task>
-    <option name="localTasksCounter" value="662" />
+    <task id="LOCAL-00662" summary="Actors get an ability to cause earthquakes.">
+      <created>1734425286597</created>
+      <option name="number" value="00662" />
+      <option name="presentableId" value="LOCAL-00662" />
+      <option name="project" value="LOCAL" />
+      <updated>1734425286598</updated>
+    </task>
+    <option name="localTasksCounter" value="663" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -525,7 +524,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added ability to move forward covered by shield." />
     <MESSAGE value="Added opportunity to move backwards while covered by shield." />
     <MESSAGE value="Added opportunity to move backwards while covered by shield, improved." />
     <MESSAGE value="Making some code more accurate and beautiful.&#10;Restoring actor's speed to default state." />
@@ -550,6 +548,7 @@
     <MESSAGE value="Added 'decay' state for actors after death. It will be a bunch of different states for a corpse depends on a decay counter left." />
     <MESSAGE value="Added 'decay' state for actors after death. &#10;Processing of this state moved to state_machine totally." />
     <MESSAGE value="Camera shake ability added." />
-    <option name="LAST_COMMIT_MESSAGE" value="Camera shake ability added." />
+    <MESSAGE value="Actors get an ability to cause earthquakes." />
+    <option name="LAST_COMMIT_MESSAGE" value="Actors get an ability to cause earthquakes." />
   </component>
 </project>

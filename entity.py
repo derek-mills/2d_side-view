@@ -1241,9 +1241,8 @@ class Entity(object):
             if obs.invincibility_timer > 0:
                 continue
 
-            # obs.trigger_activated = False
             obs.is_being_collided_now = False
-            # obs.trigger_activated = False
+
             # Check if obstacle is just a passable trigger for some event:
             if obs.let_actors_pass_through:
                 if obs.trigger or obs.teleport:
@@ -1265,12 +1264,23 @@ class Entity(object):
                 if self.id == 0:
                     # obs.trigger_activated = True
                     self.activated_triggers_list.append(key)
+
+                if not self.collided_bottom:
+                    if self.fall_speed > 15 and self.body_weight > 100:
+                        self.shake_earth = min(10, int(self.fall_speed * self.body_weight))
+                        # print(self.shake_earth, self.fall_speed, self.body_weight)
+
                 self.collided_bottom = True
                 # if self.collided_top:
                 #     self.ignore_user_input = True
 
                 if self.get_state() == 'hanging on edge' and self.influenced_by_obstacle != obs.id and obs.active:
                     self.set_state('release edge')
+
+                # if not obs.is_being_collided_now:
+                #     if self.fall_speed > 15 and self.body_weight > 100:
+                #         self.shake_earth = min(10, self.fall_speed * self.body_weight)
+                #         print(self.shake_earth, self.fall_speed, self.body_weight)
                 obs.is_being_collided_now = True
                 self.is_being_collided_now = True
                 # if self.fall_speed >= 0:
@@ -1281,6 +1291,8 @@ class Entity(object):
                 bottom_already_changed = True
                 # break
                     # continue
+            # else:
+            #     obs.is_being_collided_now = False
 
         #-----------------------------------
         # Check RIGHT

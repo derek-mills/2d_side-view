@@ -1342,9 +1342,10 @@ class World(object):
             while actor.summoned_sounds:
                 self.put_sound_to_queue(actor.summoned_sounds.pop())
 
-            if actor.shake_earth:
-                actor.shake_earth = False
-                self.camera_shake_y_amount = 10
+            if actor.shake_earth > 0:
+                self.camera_shake_y_amount = actor.shake_earth
+                actor.shake_earth = 0
+
 
             # if actor.summon_particle:
             #     actor.summon_particle = False
