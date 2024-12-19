@@ -3384,7 +3384,8 @@ sober_knight = {
     },
     # 'think type': 'turret',
     # 'think type': 'patrol',
-    'think type': 'sober',
+    'think type': 'protect',
+    # 'think type': 'sober',
     # 'think type': 'chaser',
     'disappear after death': False,
     'AI controlled': True

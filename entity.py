@@ -40,9 +40,13 @@ class Entity(object):
         self.is_summoned_demolishers_keep_alive: bool = False
         # self.make_all_following_demolishers_floppy: bool = False
         # self.summoned_demolishers_keep_alive = list()
+
         self.summon_protector = False
         self.summoned_protectors_description = list()
         self.summoned_protectors_keep_alive = list()
+        self.pushed_by_protector: bool = False
+        self.pushing_protector_id = 0
+
         self.summoned_sounds = list()
         self.sounds = dict()
         # self.summoned_demolisher_description = dict()
@@ -361,19 +365,20 @@ class Entity(object):
         self.rectangle_width_slide = self.rectangle.height // 4 * 3
 
     def apply_rectangle_according_to_sprite(self):
-        floor = self.rectangle.bottom
-        center = self.rectangle.centerx
-        self.sprite_rectangle.width = self.current_sprite['sprite'].get_width()
-        self.sprite_rectangle.height = self.current_sprite['sprite'].get_height()
-        self.sprite_rectangle.bottom = floor
-        self.sprite_rectangle.centerx = center
-        # self.sprite_rectangle.bottom = self.rectangle.bottom
-        # self.sprite_rectangle.centerx = self.rectangle.centerx
+        if self.current_sprite:
+            floor = self.rectangle.bottom
+            center = self.rectangle.centerx
+            self.sprite_rectangle.width = self.current_sprite['sprite'].get_width()
+            self.sprite_rectangle.height = self.current_sprite['sprite'].get_height()
+            self.sprite_rectangle.bottom = floor
+            self.sprite_rectangle.centerx = center
+            # self.sprite_rectangle.bottom = self.rectangle.bottom
+            # self.sprite_rectangle.centerx = self.rectangle.centerx
 
-        self.rectangle.height = self.sprite_rectangle.h
-        self.rectangle.width = self.sprite_rectangle.w // 1.5
-        self.rectangle.bottom = floor
-        self.rectangle.centerx = center
+            self.rectangle.height = self.sprite_rectangle.h
+            self.rectangle.width = self.sprite_rectangle.w // 1.5
+            self.rectangle.bottom = floor
+            self.rectangle.centerx = center
 
     def process(self):
         if self.stats['stamina'] < self.current_stamina_lost_per_attack:
@@ -387,18 +392,6 @@ class Entity(object):
             # self.frames_changing_threshold_modifier = self.current_weapon['animation speed modifier']
             self.frames_changing_threshold_penalty = 1.
 
-        # if self.decay_counter > 0:
-        #     self.decay_counter -= 1
-            # self.set_state('decay')
-            # if self.decay_counter < self.decay_counter_default >> 4:  # 6.25% of decaying time left.
-            #     ...
-            # elif self.decay_counter < self.decay_counter_default >> 3:  # 12.5% of decaying time left.
-            #     ...
-            # elif self.decay_counter < self.decay_counter_default >> 2:  # 25% of decaying time left.
-            #     ...
-            # elif self.decay_counter < self.decay_counter_default >> 1:  # 50% of decaying time left.
-            #     ...
-
         if self.ttl > 0:
             self.ttl -= 1
             if self.ttl == 0:
@@ -411,8 +404,9 @@ class Entity(object):
             if self.got_immunity_to_demolishers:
                 self.got_immunity_to_demolishers.remove(self.got_immunity_to_demolishers[0])
 
-        self.process_animation()
-        self.process_activity_at_current_animation_frame()
+        # self.process_animation()
+        # self.detect_collisions_with_protectors()
+        # self.process_activity_at_current_animation_frame()
 
         if self.is_jump:
             # Jump
@@ -497,6 +491,12 @@ class Entity(object):
         # self.move(time_passed)
         # self.fly(time_passed)
         self.correct_position_if_influenced()
+
+        self.process_animation()
+        self.apply_rectangle_according_to_sprite()
+        self.detect_collisions_with_protectors()
+        self.process_activity_at_current_animation_frame()
+
         # if self.animation_sequence_done:
         #     self.make_all_following_demolishers_floppy = False
         # self.total_damage_has_got = 0
@@ -619,6 +619,8 @@ class Entity(object):
                                 self.summoned_protectors_description.append(p)
                     elif action == 'demolisher':
                         # print(f'[process active frames] make attack at frame {self.frame_number}')
+                        # if self.pushed_by_protector:
+                        #     continue
                         # self.summoned_demolishers_description = list()
                         dem_set_num = self.animations[self.current_animation]['activity at frames'][self.frame_number]['demolishers set number']
                         # if self.current_weapon['attack animation'] != self.current_animation:
@@ -828,6 +830,26 @@ class Entity(object):
 
     def get_target(self, target):
         ...
+
+    def detect_collisions_with_protectors(self):
+        self.pushed_by_protector = False
+        if self.protectors_around:
+            # print(f'[detect collision with protectors] {self.id} collision check starting...')
+            for k in self.protectors_around.keys():
+                p = self.protectors_around[k]
+                if p.parent.id == self.id:  # or self.look != p.look:
+                    continue
+                actor_sprite_rect = pygame.Rect(self.sprite_x, self.sprite_y,
+                                                self.sprite_rectangle.width, self.sprite_rectangle.height)
+                if actor_sprite_rect.colliderect(p.rectangle):
+                # if self.sprite_rectangle.colliderect(p.rectangle) and self.look != p.look:
+                #     print(f'[detect collision with protectors {self.name} {self.id}] collided with protecor.')
+                    # self.summoned_sounds.append(p.sounds[self.type])
+                    # if 'attack' in self.get_state():
+                    #     self.set_state('dizzy prepare')
+                    self.pushed_by_protector = True
+                    self.pushing_protector_id = k
+                    return
 
     def detect_demolishers_collisions(self):
         # print(self.demolishers_around)

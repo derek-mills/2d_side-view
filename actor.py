@@ -14,7 +14,7 @@ class Actor(Entity):
         self.current_weapon_demolishers_reveal_frames = list()
         self.is_collideable = True
         self.is_destructible = True
-        self.pushed_by_protector: bool = False
+        # self.pushed_by_protector: bool = False
 
         self.move_backwards = False  # Flag to force actor move backwards.
         self.ai_input_right_arrow = False
@@ -44,10 +44,15 @@ class Actor(Entity):
         self.reflex_counter: int = 0
         self.reflex_range = (10, 20)
         self.tendencies = {
-            'idle': (0, 10),
-            'defending': (11, 40),
-            'aggression': (41, 100),
+            'idle': (103, 104),
+            'defending': (0, 100),
+            'aggression': (101, 102),
         }
+        # self.tendencies = {
+        #     'idle': (0, 10),
+        #     'defending': (11, 40),
+        #     'aggression': (41, 100),
+        # }
         # self.idle_tendency = (0, 10)
         # self.defending_tendency = (11, 40)
         # self.aggressiveness_tendency = (41, 100)
@@ -149,21 +154,24 @@ class Actor(Entity):
         self.rectangle_height_slide = self.rectangle.width
         self.rectangle_width_slide = self.rectangle.height
 
-    def detect_collisions_with_protectors(self):
-        self.pushed_by_protector = False
-        if self.protectors_around:
-            # print(f'[detect collision with protectors] {self.id} collision check starting...')
-            for k in self.protectors_around.keys():
-                p = self.protectors_around[k]
-                if p.parent.id == self.id:
-                    continue
-                if self.sprite_rectangle.colliderect(p.rectangle) and self.look != p.look:
-                    # print(f'[detect collision with protectors {self.name} {self.id}] collided with protecor.')
-                    # self.summoned_sounds.append(p.sounds[self.type])
-                    # if 'attack' in self.get_state():
-                    #     self.set_state('dizzy prepare')
-                    self.pushed_by_protector = True
-                    return
+    # def detect_collisions_with_protectors(self):
+    #     self.pushed_by_protector = False
+    #     if self.protectors_around:
+    #         # print(f'[detect collision with protectors] {self.id} collision check starting...')
+    #         for k in self.protectors_around.keys():
+    #             p = self.protectors_around[k]
+    #             if p.parent.id == self.id:  # or self.look != p.look:
+    #                 continue
+    #             actor_sprite_rect = pygame.Rect(self.sprite_x, self.sprite_y,
+    #                                             self.sprite_rectangle.width, self.sprite_rectangle.height)
+    #             if actor_sprite_rect.colliderect(p.rectangle):
+    #             # if self.sprite_rectangle.colliderect(p.rectangle) and self.look != p.look:
+    #             #     print(f'[detect collision with protectors {self.name} {self.id}] collided with protecor.')
+    #                 # self.summoned_sounds.append(p.sounds[self.type])
+    #                 # if 'attack' in self.get_state():
+    #                 #     self.set_state('dizzy prepare')
+    #                 self.pushed_by_protector = True
+    #                 return
 
 
     def get_target(self, target):
@@ -330,27 +338,6 @@ class Actor(Entity):
         self.__state = new_state
 
     def process(self):
-        # if self.force_mana_reduce:
-        #     self.mana_reduce(self.force_mana_reduce_amount)
-        #     self.force_mana_reduce = False
-        #     self.force_mana_reduce_amount = 0
-        #
-        # if self.force_stamina_reduce:
-        #     self.stamina_reduce(self.force_stamina_reduce_amount)
-        #     self.force_stamina_reduce = False
-        #     self.force_stamina_reduce_amount = 0
-        # self.restore_default_states()
-        # if self.stats['stamina'] < self.current_stamina_lost_per_attack:
-        #     # print(f'[state machine] NOT ENOUGH STAMINA.')
-        #     # self.frames_changing_threshold = self.animations[anim]['speed'] * self.frames_changing_threshold_modifier
-        #     # self.frames_changing_threshold_modifier = self.current_weapon['animation speed modifier'] * \
-        #     #                                           self.frames_changing_threshold_penalty
-        #
-        #     self.frames_changing_threshold_penalty = 2.  # x2 times slower animation
-        # else:
-        #     # self.frames_changing_threshold_modifier = self.current_weapon['animation speed modifier']
-        #     self.frames_changing_threshold_penalty = 1.
-
         if self.invincibility_timer > 0:
             self.invincibility_timer -= 1
 
@@ -366,16 +353,15 @@ class Actor(Entity):
         else:
             self.combo_set_number = 0
 
-        self.detect_collisions_with_protectors()
+        # self.detect_collisions_with_protectors()
         self.state_machine()
-        self.apply_rectangle_according_to_sprite()
-        # self.processing_rectangle_size_in_place()
-        # self.processing_rectangle_size()
+        # self.apply_rectangle_according_to_sprite()
         self.stamina_replenish()
         self.mana_replenish()
         self.check_space_around()
 
         super().process()
+        # self.detect_collisions_with_protectors()
 
         # self.restore_default_states()
     # def discard_protectors(self):
@@ -599,15 +585,13 @@ class Actor(Entity):
                 self.normal_stamina_replenish = 0.01
 
         elif new_action == 'attack':
-            # if self.stats['stamina'] < 0:
-            #     self.set_state('dizzy prepare')
-            # elif self.stats['stamina'] < self.current_stamina_lost_per_attack:
-
-            # if self.stats['stamina'] < self.current_stamina_lost_per_attack:
-            #     # print(f'[state machine] NOT ENOUGH STAMINA.')
-            #     self.frames_changing_threshold_penalty = 2.  # x2 times slower animation
-            # else:
-            #     self.frames_changing_threshold_penalty = 1.
+            if self.pushed_by_protector:
+                self.set_state('dizzy prepare')
+                # self.set_state('stand still')
+                # self.ignore_user_input = False
+                self.stun_counter = 5
+                # print('1')
+                return
 
             if self.stats['mana'] <= self.current_mana_lost_per_attack:
                 # print(f'[state machine] NOT ENOUGH MANA')
@@ -1655,6 +1639,17 @@ class Actor(Entity):
                         #     self.ai_input_attack = True
                         #     self.ai_input_left_arrow = False
                         #     self.ai_input_right_arrow = False
+        elif self.think_type == 'protect':
+            # Consider where the target is and turn head to the proper direction.
+            if self.stats['stamina'] < 0:
+                self.summon_protector = False
+                return
+            if self.rectangle.centerx > self.target.rectangle.centerx:
+                self.look = -1
+            else:
+                self.look = 1
+            self.activate_weapon(3)  # Defending stuff (always has index 3 in AI actor inventory).
+            self.set_action('protect')
         elif self.think_type == 'sober':
             # Change weapon depends on target vicinity:
             # print('[think]', list(self.inventory['weapons'].keys()))

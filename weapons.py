@@ -1225,7 +1225,7 @@ small_shield = {
                 'missile': 'sound_bullet_hits_shield_1',
             },
             'protection': {
-                'blunt': 0.3,
+                'blunt': 0.,
                 'fire': 0.,
                 'pierce': 0.,
                 'slash': 0.,

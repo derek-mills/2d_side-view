@@ -442,8 +442,8 @@ class World(object):
 
         # print(f'{demol.parent=}')
         if demol.parent:
-            # if demol.parent.make_all_following_demolishers_floppy:
-            #     demol.become_mr_floppy()
+            if demol.parent.pushed_by_protector:
+                 demol.become_mr_floppy()
             demol.parent_id = demol.parent.id
             demol.look = demol.parent.look
             demol.ttl = description['demolisher TTL'] * demol.parent.frames_changing_threshold_modifier
@@ -1298,6 +1298,9 @@ class World(object):
                     dead.append(actor.id)
 
             actor.process()
+            # if actor.pushed_by_protector:
+            #     self.press_any_key()
+            #     self.render_all()
 
             while actor.drop_from_inventory:
                 i = actor.drop_from_inventory.pop()
@@ -1493,8 +1496,10 @@ class World(object):
                 pygame.draw.rect(self.screen, GREEN, (actor.rectangle.x - self.camera.offset_x, actor.rectangle.y - self.camera.offset_y,
                                                       actor.rectangle.width, actor.rectangle.height), 5)
                 # SPRITE Rectangle frame:
-                pygame.draw.rect(self.screen, MAGENTA, (actor.sprite_rectangle.x - self.camera.offset_x, actor.sprite_rectangle.y - self.camera.offset_y,
+                pygame.draw.rect(self.screen, MAGENTA, (actor.sprite_x - self.camera.offset_x, actor.sprite_y - self.camera.offset_y,
                                                       actor.sprite_rectangle.width, actor.sprite_rectangle.height), 3)
+                # pygame.draw.rect(self.screen, MAGENTA, (actor.sprite_rectangle.x - self.camera.offset_x, actor.sprite_rectangle.y - self.camera.offset_y,
+                #                                       actor.sprite_rectangle.width, actor.sprite_rectangle.height), 3)
 
             # # Colliders rects:
             # # pygame.draw.rect(self.screen, DARK_ORANGE, (actor.collision_detector_right.x - self.camera.offset_x, actor.collision_detector_right.y - self.camera.offset_y,
@@ -1580,7 +1585,8 @@ class World(object):
             # if key not in self.active_obstacles:
             #     continue
             protector = self.protectors[self.location][key]
-            if protector.invisible:
+
+            if protector.invisible or self.is_i:
                 pygame.draw.rect(self.screen, MAGENTA, (protector.rectangle.x - self.camera.offset_x, protector.rectangle.y - self.camera.offset_y,
                                                       protector.rectangle.width, protector.rectangle.height),1)
                 continue
@@ -1588,7 +1594,10 @@ class World(object):
                 self.screen.blit(protector.current_sprite['sprite'], (protector.rectangle.x - self.camera.offset_x, protector.rectangle.y - self.camera.offset_y))
             else:
                 self.screen.blit(pygame.transform.flip(protector.current_sprite['sprite'], True, False), (protector.rectangle.x - self.camera.offset_x, protector.rectangle.y - self.camera.offset_y))
-    
+            # ID:
+            self.screen.blit(fonts.all_fonts[20].render(str(protector.id), True, CYAN),
+                             (protector.rectangle.x - self.camera.offset_x, protector.rectangle.bottom - self.camera.offset_y))
+
     def render_particles(self):
         for key in self.particles[self.location].keys():
             # if key not in self.active_obstacles:
@@ -2289,6 +2298,7 @@ class World(object):
             (' RIGHT SPACE: ' + str(self.actors['player'].is_enough_space_right), GREEN),
             (' LEFT SPACE: ' + str(self.actors['player'].is_enough_space_left), GREEN),
             (' IS GRABBING: ' + str(self.actors['player'].is_edge_grabbed), WHITE),
+            (' PROTECTOR PUSHED: ' + str(self.actors['player'].pushed_by_protector), CYAN),
             (' INFLUENCED BY PLATFORM #: ' + str(self.actors['player'].influenced_by_obstacle), WHITE),
             (' WEAPON: ' + str(self.actors['player'].current_weapon['label']) + ' | ALL WEAPONS: ' + str(self.actors['player'].inventory['weapons'].keys()), PINK),
             (' SOUNDS: ' + str(self.sounds_to_make) , PINK),
