@@ -1213,6 +1213,7 @@ small_shield = {
     'leave particles': False,
     'droppable': True,
     'weight': 40,
+    'reach': 10,
     'protectors': (
         ({
             'rect': pygame.Rect(10, 0, 20, 250), 'flyer': False,

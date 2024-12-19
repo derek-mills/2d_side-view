@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="" />
+    <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -160,13 +166,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00620" summary="Fixed incorrect masks collision check.">
-      <created>1733374382255</created>
-      <option name="number" value="00620" />
-      <option name="presentableId" value="LOCAL-00620" />
-      <option name="project" value="LOCAL" />
-      <updated>1733374382255</updated>
     </task>
     <task id="LOCAL-00621" summary="Corrected 'get hurt' animation.">
       <created>1733376398750</created>
@@ -504,7 +503,14 @@
       <option name="project" value="LOCAL" />
       <updated>1734597425311</updated>
     </task>
-    <option name="localTasksCounter" value="669" />
+    <task id="LOCAL-00669" summary="Tiny bug fixed.">
+      <created>1734598091109</created>
+      <option name="number" value="00669" />
+      <option name="presentableId" value="LOCAL-00669" />
+      <option name="project" value="LOCAL" />
+      <updated>1734598091109</updated>
+    </task>
+    <option name="localTasksCounter" value="670" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -519,7 +525,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added actors and protectors collision checking system." />
     <MESSAGE value="AI actor can slide behind player's back and attack from behind." />
     <MESSAGE value="New system of collisions checking between demolisher anf flying protector, based on a trace of passed bullet path." />
     <MESSAGE value="Backward movement added by pressing SHIFT button." />
@@ -544,6 +549,7 @@
     <MESSAGE value="Collision of demolishers and protectors system remake." />
     <MESSAGE value="Collision of demolishers and protectors system improved." />
     <MESSAGE value="Demolishers have to be summoned separately, after  all actors, protectors, particles processing to avoid actors hit detection before protectors make sense." />
-    <option name="LAST_COMMIT_MESSAGE" value="Demolishers have to be summoned separately, after  all actors, protectors, particles processing to avoid actors hit detection before protectors make sense." />
+    <MESSAGE value="Tiny bug fixed." />
+    <option name="LAST_COMMIT_MESSAGE" value="Tiny bug fixed." />
   </component>
 </project>

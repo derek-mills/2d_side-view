@@ -148,6 +148,8 @@ class World(object):
         entity = Actor()
         entity.id = self.actor_id
         entity.name = description['name']
+        if 'tendencies' in description.keys():
+            entity.tendencies = description['tendencies']
         for resistance in description['resistances'].keys():
             entity.resistances[resistance] = description['resistances'][resistance]
         # entity.resistances = description['resistances']

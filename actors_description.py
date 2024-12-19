@@ -703,8 +703,8 @@ demon_1 = {
             'repeat from frame': 0
         },
     },
-    'think type': '',
-    # 'think type': 'chaser',
+    # 'think type': '',
+    'think type': 'chaser',
     'disappear after death': False,
     'AI controlled': True
 }
@@ -724,7 +724,7 @@ demon_2 = {
     'mana replenish': .01,
     'stamina replenish': .2,
     'blood color': (150, 50, 10),
-    'strength': 15,
+    'strength': 55,
     'body weight': 840,
     'resistances': {
         # Zero is total resistance, such type of damage multiples by zero.
@@ -1408,8 +1408,8 @@ player_jake = {
     'gravity affected': True,
     'mana replenish': .01,
     'stamina replenish': .2,
-    'strength': 40,  # The more the strength, the less the inner athletic index, the more max speed and jump height.
-    'body weight': 80,  # The more the weight, the more the inner athletic index, the less max speed and jump height.
+    'strength': 10,  # The more the strength, the less the inner athletic index, the more max speed and jump height.
+    'body weight': 40,  # The more the weight, the more the inner athletic index, the less max speed and jump height.
     'resistances': {
         # Zero is total resistance, such type of damage multiples by zero.
         # Above 1 is a weakness to particular type of damage.
@@ -2400,6 +2400,11 @@ sober_knight = {
         'frame height': 120,
         'frame scale': 4,
     },
+    'tendencies': {
+        'idle': (0, 10),
+        'defending': (11, 40),
+        'aggression': (41, 100),
+    },
     'decay counter': 100,
     'drop': ['exp' for i in range(randint(8,12))],
     'health': 2000.,
@@ -3384,8 +3389,8 @@ sober_knight = {
     },
     # 'think type': 'turret',
     # 'think type': 'patrol',
-    'think type': 'protect',
-    # 'think type': 'sober',
+    # 'think type': 'protect',
+    'think type': 'sober',
     # 'think type': 'chaser',
     'disappear after death': False,
     'AI controlled': True

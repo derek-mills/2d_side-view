@@ -44,16 +44,16 @@ class Actor(Entity):
         # AI mind special features:
         self.reflex_counter: int = 0
         self.reflex_range = (10, 20)
-        self.tendencies = {
-            'idle': (103, 104),
-            'defending': (0, 100),
-            'aggression': (101, 102),
-        }
         # self.tendencies = {
-        #     'idle': (0, 10),
-        #     'defending': (11, 40),
-        #     'aggression': (41, 100),
+        #     'idle': (103, 104),
+        #     'defending': (0, 100),
+        #     'aggression': (101, 102),
         # }
+        self.tendencies = {
+            'idle': (0, 10),
+            'defending': (11, 40),
+            'aggression': (41, 100),
+        }
         # self.idle_tendency = (0, 10)
         # self.defending_tendency = (11, 40)
         # self.aggressiveness_tendency = (41, 100)
@@ -1597,9 +1597,7 @@ class Actor(Entity):
                 self.activate_weapon(0)  # Activate close combat weapon (always has index 0).
                 self.ai_input_attack = True
             else:
-
                 if abs(self.rectangle.centerx - self.target.rectangle.centerx) <= self.current_weapon['reach']:
-
                     if self.rectangle.centery >= self.target.rectangle.bottom:
                         if self.get_state() != 'jump':
                             self.ai_input_jump = True
