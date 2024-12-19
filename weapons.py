@@ -54,7 +54,8 @@ sword = {
             'damage': {
                  'slash': 80
              },
-            'aftermath': 'disappear'
+             'aftermath': 'disappear',
+             'subsequent demolishers become floppy': True,
         },
         {
             'rect': pygame.Rect(0, 0, 75, 10), 'flyer': False,
@@ -77,7 +78,8 @@ sword = {
 
                 'slash': 100
             },
-            'aftermath': 'disappear'
+             'aftermath': 'disappear',
+             'subsequent demolishers become floppy': True,
         },),
     ),
     'description': 'Casual kitchen knife.',
@@ -143,7 +145,8 @@ kitchen_knife = {
             'damage': {
                  'slash': 100
              },
-            'aftermath': None
+            'aftermath': None,
+             'subsequent demolishers become floppy': True,
         },),
         ({
              'rect': pygame.Rect(0, 0, 30, 30), 'flyer': False,
@@ -165,26 +168,9 @@ kitchen_knife = {
              'damage': {
                  'slash': 100
              },
-             'aftermath': None
+             'aftermath': None,
+             'subsequent demolishers become floppy': True,
          },),
-        # {
-        #     'rect': pygame.Rect(0, 0, 10, 10), 'flyer': False,
-        #     'demolisher sprite': None,
-        #     'pierce': False, 'demolisher TTL': 50, 'speed': 22,
-        #     'damage': 10, 'static': False, 'damage reduce': .1,
-        #     'collides': True, 'gravity affected': True,
-        #     'bounce': True, 'bounce factor': .9,
-        #     'aftermath': 'disappear'
-        # },
-        # {
-        #     'rect': pygame.Rect(0, 0, 30, 30), 'flyer': False,
-        #     'demolisher sprite': 'kitchen knife demolisher',
-        #     'pierce': False, 'demolisher TTL': 100, 'speed': 12,
-        #     'damage': 10, 'static': False, 'damage reduce': .1,
-        #     'collides': True, 'gravity affected': True,
-        #     'bounce': True, 'bounce factor': 1.,
-        #     'aftermath': 'explode'
-        # },
     ),
     'description': 'Casual kitchen knife.',
 }
@@ -246,7 +232,8 @@ fireball_staff = {
                 'fire': 150,
                 'blunt': 100
              },
-            'aftermath': 'disappear'
+             'aftermath': 'disappear',
+             'subsequent demolishers become floppy': True,
         },),
     ),
 
@@ -306,14 +293,16 @@ spikeball_staff = {
             'damage': {
                  'pierce': 100,
              },
-            'aftermath': 'disappear'
+             'aftermath': 'disappear',
+             'subsequent demolishers become floppy': True,
         },),
     ),
 
 }
 
 whip = {
-    'combo': False, 'combo steps quantity': 0, 'combo next step threshold': 0,    'description': 'A powerful whip, called Vampire Killer.',
+    'combo': False, 'combo steps quantity': 0, 'combo next step threshold': 0,
+    'description': 'A powerful whip, called Vampire Killer.',
     'class': 'weapons',
     'drop invincibility': 100,
     'has crouch attack': True,
@@ -340,11 +329,11 @@ whip = {
     ),
 
     'affects on': '',
-    'stamina consumption': 1.2,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
+    'stamina consumption': 1.,  # Stamina reduce multiplier. The greater, the more stamina will be lost by one weapon use.
     'mana consumption': 0.,
     'attack animation': 'whip',
     'ignore user input': True,  # Steal the ability to control a character for a while.
-    'animation speed modifier': 1.,  # 0 < x < 1: speed animation up, x > 1: slow down.
+    'animation speed modifier': 4.,  # 0 < x < 1: speed animation up, x > 1: slow down.
     'leave particles': False,
     'droppable': True,
     'need ammo': False,
@@ -353,7 +342,7 @@ whip = {
     'weight': 20,
     'demolishers': (
         ({
-            'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
+            'rect': pygame.Rect(0, 0, 1, 1), 'flyer': False,
              'visible': True,
             'demolisher sprite': 'whip demolisher short',
             'type': 'blunt',
@@ -376,10 +365,11 @@ whip = {
                  'whip': 10,
              },
             # 'aftermath': 'explode'
-            'aftermath': 'disappear'
+             'aftermath': 'disappear',
+             'subsequent demolishers become floppy': True,
         },),
         ({
-            'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
+            'rect': pygame.Rect(0, 0, 1, 1), 'flyer': False,
              'visible': True,
             'demolisher sprite': 'whip demolisher medium',
             'type': 'blunt',
@@ -402,20 +392,21 @@ whip = {
                  'whip': 20,
              },
             # 'aftermath': 'explode'
-            'aftermath': 'disappear'
+             'aftermath': 'disappear',
+             'subsequent demolishers become floppy': True,
         },),
         ({
-            'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
-             'visible': True,
+            'rect': pygame.Rect(0, 0, 1, 1), 'flyer': False,
+            'visible': True,
             'demolisher sprite': 'whip demolisher long',
             'type': 'blunt',
-            'pierce': True, 'demolisher TTL': 5, 'speed': 0,
+            'pierce': False, 'demolisher TTL': 5, 'speed': 0,
             'static': True, 'damage reduce': 0,
             'collides': False, 'gravity affected': False,
             'bounce': False, 'bounce factor': 0.,
             # 'attack type': ('pierce',),
-             'push': False,
-             'sounds': {
+            'push': False,
+            'sounds': {
                  'obstacle hit': '',
                  # 'obstacle hit': 'sound_bullet_wall_hit_1',
                  'body hit': '',
@@ -428,7 +419,8 @@ whip = {
                  'whip': 60,
              },
             # 'aftermath': 'explode'
-            'aftermath': 'disappear'
+             'aftermath': 'disappear',
+             'subsequent demolishers become floppy': True,
         },),
     ),
 
@@ -494,7 +486,8 @@ jake_kick = {
                  # 'slash': 1,
              },
              # 'aftermath': 'explode'
-             'aftermath': 'disappear'
+             'aftermath': 'disappear',
+             'subsequent demolishers become floppy': True,
          },),
         # 'demolishers set number' #1
         ({
@@ -521,7 +514,8 @@ jake_kick = {
                  
              },
              # 'aftermath': 'explode'
-             'aftermath': 'disappear'
+             'aftermath': 'disappear',
+             'subsequent demolishers become floppy': True,
          },),
 
         # 'demolishers set number' #2
@@ -549,7 +543,8 @@ jake_kick = {
                  'slash': 1,
              },
             # 'aftermath': 'explode'
-            'aftermath': 'disappear'
+             'aftermath': 'disappear',
+             'subsequent demolishers become floppy': True,
         },),
     ),
 
@@ -614,7 +609,8 @@ jake_punch = {
                  # 'slash': 1,
              },
              # 'aftermath': 'explode'
-             'aftermath': 'disappear'
+             'aftermath': 'disappear',
+             'subsequent demolishers become floppy': True,
          },),
         # 'demolishers set number' #1
         ({
@@ -640,7 +636,8 @@ jake_punch = {
                  # 
              },
              # 'aftermath': 'explode'
-             'aftermath': 'disappear'
+             'aftermath': 'disappear',
+             'subsequent demolishers become floppy': True,
          },),
         # 'demolishers set number' #2
         ({
@@ -665,7 +662,8 @@ jake_punch = {
                  'slash': 1,
              },
             # 'aftermath': 'explode'
-            'aftermath': 'disappear'
+             'aftermath': 'disappear',
+             'subsequent demolishers become floppy': True,
         },),
     ),
 
@@ -734,7 +732,8 @@ axe = {
                  'slash': 10
              },
             # 'aftermath': 'explode'
-            'aftermath': 'disappear'
+             'aftermath': 'disappear',
+             'subsequent demolishers become floppy': True,
         },),
         # 'demolishers set number' #1
         ({
@@ -758,7 +757,8 @@ axe = {
                  'slash': 30
              },
             # 'aftermath': 'explode'
-            'aftermath': 'disappear'
+             'aftermath': 'disappear',
+             'subsequent demolishers become floppy': True,
         },),
         # 'demolishers set number' #2
         ({
@@ -782,7 +782,8 @@ axe = {
                  'slash': 190
              },
             # 'aftermath': 'explode'
-            'aftermath': 'disappear'
+             'aftermath': 'disappear',
+             'subsequent demolishers become floppy': True,
         },),
         # 'demolishers set number' #3
         ({
@@ -806,7 +807,8 @@ axe = {
                  'slash': 90
              },
              # 'aftermath': 'explode'
-             'aftermath': 'disappear'
+             'aftermath': 'disappear',
+             'subsequent demolishers become floppy': True,
          },),
 
     ),
@@ -880,7 +882,8 @@ demon_2_mid = {
                  'slash': 100
              },
             # 'aftermath': 'explode'
-            'aftermath': 'disappear'
+             'aftermath': 'disappear',
+             'subsequent demolishers become floppy': True,
         },),
         ({
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
@@ -904,7 +907,8 @@ demon_2_mid = {
                  'slash': 10
              },
             # 'aftermath': 'explode'
-            'aftermath': 'disappear'
+             'aftermath': 'disappear',
+             'subsequent demolishers become floppy': True,
         },),
         ({
             'rect': pygame.Rect(0, 0, 170, 5), 'flyer': False,
@@ -927,7 +931,8 @@ demon_2_mid = {
                  'blunt': 100,
              },
             # 'aftermath': 'explode'
-            'aftermath': 'disappear'
+             'aftermath': 'disappear',
+             'subsequent demolishers become floppy': True,
         },),
     ),
 
@@ -992,7 +997,8 @@ demon_2_close = {
                 'slash': 100
              },
             # 'aftermath': 'explode'
-            'aftermath': 'disappear'
+             'aftermath': 'disappear',
+             'subsequent demolishers become floppy': True,
         },),
         # Set 1
         ({
@@ -1018,7 +1024,8 @@ demon_2_close = {
                  'slash': 100
              },
             # 'aftermath': 'explode'
-            'aftermath': 'disappear'
+             'aftermath': 'disappear',
+             'subsequent demolishers become floppy': True,
         },),
     ),
 
@@ -1080,7 +1087,8 @@ pistol = {
                  'fire': 225,
              },
              # 'aftermath': 'explode'
-             'aftermath': 'disappear'
+             'aftermath': 'disappear',
+             'subsequent demolishers become floppy': True,
          },
         {
             'rect': pygame.Rect(0, 0, 20, 20), 'flyer': True,
@@ -1104,7 +1112,8 @@ pistol = {
                  'slash': 1
              },
             # 'aftermath': 'explode'
-            'aftermath': 'disappear'
+             'aftermath': 'disappear',
+             'subsequent demolishers become floppy': True,
         },),
     ),
 
@@ -1165,8 +1174,9 @@ barrel_explosion = {
                 'pierce': 100,
                 'slash': 10
             },
-            'aftermath': 'explode'
-            # 'aftermath': 'disappear'
+            'aftermath': 'explode',
+            # 'aftermath': 'disappear',
+            'subsequent demolishers become floppy': True,
         },),
     ),
 
@@ -1232,9 +1242,9 @@ small_shield = {
                 'whip': 0.
             },
 
-            'aftermath': None
             # 'aftermath': 'explode'
-            # 'aftermath': 'disappear'
+            'aftermath': 'disappear',
+            'subsequent demolishers become floppy': True,
         },),
     ),
 

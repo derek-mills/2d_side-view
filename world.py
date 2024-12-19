@@ -442,9 +442,11 @@ class World(object):
 
         # print(f'{demol.parent=}')
         if demol.parent:
+            if demol.parent.make_all_demolishers_floppy:
+                demol.become_mr_floppy()
             if demol.parent.pushed_by_protector:
-                 demol.become_mr_floppy()
-                 demol.summoned_sounds.append(self.protectors[self.location][demol.parent.pushing_protector_id].sounds[demol.type])
+                demol.become_mr_floppy()
+                demol.summoned_sounds.append(self.protectors[self.location][demol.parent.pushing_protector_id].sounds[demol.type])
             demol.parent_id = demol.parent.id
             demol.look = demol.parent.look
             demol.ttl = description['demolisher TTL'] * demol.parent.frames_changing_threshold_modifier
@@ -682,11 +684,19 @@ class World(object):
             self.location_has_been_changed = False
             return
 
-        self.processing_human_input()
         self.processing_protectors()
         self.processing_demolishers()
+        self.processing_human_input()
         self.processing_actors()
         self.processing_particles()
+
+        for key in self.actors[self.location].keys():
+            actor = self.actors[self.location][key]
+            if actor.summon_demolisher:
+                actor.summon_demolisher = False
+                while actor.summoned_demolishers_description:
+                    d = actor.summoned_demolishers_description.pop()
+                    self.add_demolisher(d)
 
         # Applying camera offset:
         if self.actors['player'].influenced_by_obstacle >= 0 and  self.obstacles[self.location][self.actors['player'].influenced_by_obstacle].active:
@@ -980,7 +990,7 @@ class World(object):
                 if dem.snap_to_actor not in self.actors[self.location].keys():
                     dead.append(dem.id)
                     continue
-                actor = self.actors[self.location][dem.snap_to_actor]
+                # actor = self.actors[self.location][dem.snap_to_actor]
                 dem.update()
                 # dem.update(actor.look, actor.sprite_rectangle, actor.current_sprite['demolisher snap point'])
                 # dem.update(actor.look, actor.sprite_rectangle)
@@ -1089,8 +1099,6 @@ class World(object):
     def processing_actors(self):
         dead = list()
         for key in self.actors[self.location].keys():
-            # if key == 0:
-            #     continue
             actor = self.actors[self.location][key]
             # print(actor.name)
             # if not actor.rectangle.colliderect(self.camera.active_objects_rectangle):
@@ -1132,9 +1140,6 @@ class World(object):
             actor.percept({k: self.obstacles[self.location][k] for k in self.active_obstacles}, self.demolishers[self.location], self.protectors[self.location])
             actor.get_time(self.time_passed, self.game_cycles_counter)
 
-            # actor.get_target(self.actors['player'])
-            # if not actor.ignore_user_input:
-            #     actor.think()
 
             if not actor.dead:
                 if not actor.is_stunned:
@@ -1328,22 +1333,12 @@ class World(object):
                     self.add_protector(p)
                     # print(f'[processing actors] {actor.name} summoned a protector.')
                     actor.summoned_protectors_keep_alive.append(self.protector_id - 1)
-            # else:
-            #     while actor.summoned_protectors_keep_alive:
-            #         protector_id = actor.summoned_protectors_keep_alive.pop()
-            #         del self.protectors[self.location][protector_id]
 
-            if actor.summon_demolisher:
-                actor.summon_demolisher = False
-                while actor.summoned_demolishers_description:
-                    d = actor.summoned_demolishers_description.pop()
-                    self.add_demolisher(d)
-                # if not actor.is_summoned_demolishers_keep_alive:
-                #     while actor.summoned_demolishers_description:
-                #         d = actor.summoned_demolishers_description.pop()
-                #         self.add_demolisher(d)
-                # else:
-                #     actor.summoned_demolishers_description.clear()
+            # if actor.summon_demolisher:
+            #     actor.summon_demolisher = False
+            #     while actor.summoned_demolishers_description:
+            #         d = actor.summoned_demolishers_description.pop()
+            #         self.add_demolisher(d)
 
             while actor.summoned_particle_descriptions:
                 description = actor.summoned_particle_descriptions.pop()
@@ -1356,15 +1351,7 @@ class World(object):
                 self.camera_shake_y_amount = actor.shake_earth
                 actor.shake_earth = 0
 
-
-            # if actor.summon_particle:
-            #     actor.summon_particle = False
-                # for description in actor.summoned_particle_descriptions:
-                #     self.add_particle(description)
-                # actor.summoned_particle_descriptions = list()
-
             actor.total_damage_has_got = 0
-            # actor.restore_default_states()
 
         for dead_id in dead:
             # Erase actors which must be disappeared after death.

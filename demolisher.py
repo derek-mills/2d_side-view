@@ -96,49 +96,6 @@ class Demolisher(Entity):
         #     self.rectangle.centery = snap_rect.centery + offset_inside_rect[1] \
         #                              - self.snapping_offset['offset inside demolisher'][1]
 
-    def update_old(self, snap_side, snap_rect, offset_inside_rect):
-        # print(f'[demolisher update] {self.snapping_offset["offset inside actor"]=} {offset_inside_rect=}')
-        if snap_side == 1:  # Snapping to the actor's right side
-            self.rectangle.centerx = snap_rect.centerx + offset_inside_rect[0] \
-                                     - self.snapping_offset['offset inside demolisher'][0]
-            self.rectangle.centery = snap_rect.centery + offset_inside_rect[1] \
-                                     - self.snapping_offset['offset inside demolisher'][1]
-            # self.rectangle.centerx = snap_rect.centerx + self.snapping_offset['offset inside actor'][0] \
-            #                          - self.snapping_offset['offset inside demolisher'][0]
-            # self.rectangle.centery = snap_rect.centery + self.snapping_offset['offset inside actor'][1] \
-            #                          - self.snapping_offset['offset inside demolisher'][1]
-
-        else:
-            self.rectangle.centerx = snap_rect.centerx + offset_inside_rect[0] \
-                                     - self.snapping_offset['offset inside demolisher'][0] * -1
-            self.rectangle.centery = snap_rect.centery + offset_inside_rect[1] \
-                                     - self.snapping_offset['offset inside demolisher'][1]
-
-    def update_very_old(self, snap_side, snap_rect):
-        # self.rectangle.centerx = snap_rect.centerx + self.snapping_offset[snap_side][0]
-        # self.rectangle.centery = snap_rect.centery + self.snapping_offset[snap_side][1]
-
-        if snap_side == 1:  # Snapping to the actor's right side
-            self.rectangle.centerx = snap_rect.centerx + self.snapping_offset['offset inside actor'][0] \
-                                     - self.snapping_offset['offset inside demolisher'][0]
-            self.rectangle.centery = snap_rect.centery + self.snapping_offset['offset inside actor'][1] \
-                                     - self.snapping_offset['offset inside demolisher'][1]
-            # self.rectangle.centerx = snap_rect.centerx + self.snapping_offset['offset inside actor'][0] \
-            #                          + abs(self.snapping_offset['offset inside demolisher'][0])
-            # self.rectangle.centery = snap_rect.centery + self.snapping_offset['offset inside actor'][1] \
-            #                          + abs(self.snapping_offset['offset inside demolisher'][1])
-
-        else:
-            self.rectangle.centerx = snap_rect.centerx + self.snapping_offset['offset inside actor'][0] \
-                                     - self.snapping_offset['offset inside demolisher'][0] * -1
-            self.rectangle.centery = snap_rect.centery + self.snapping_offset['offset inside actor'][1] \
-                                     - self.snapping_offset['offset inside demolisher'][1]
-            # self.rectangle.centerx = snap_rect.centerx + self.snapping_offset['offset inside actor'][0] \
-            #                          - self.snapping_offset['offset inside demolisher'][0] * -1
-            # self.rectangle.centery = snap_rect.centery + self.snapping_offset['offset inside actor'][1] \
-            #                          + abs(self.snapping_offset['offset inside demolisher'][1])
-
-
     def detect_collisions_with_obstacles(self):
         # self.influenced_by_obstacle = None
         sorted_obs = {
@@ -280,7 +237,7 @@ class Demolisher(Entity):
     def become_mr_floppy(self):
         self.floppy = True
 
-    def detect_collisions_with_protectors(self):
+    def detect_demolisher_collisions_with_protectors(self):
         if self.floppy:
             # print(f'[detect collision with protectors] {self.id} IS FLOPPY...')
             return
@@ -291,6 +248,7 @@ class Demolisher(Entity):
                 p = self.protectors_around[k]
                 if self.parent:
                     if self.parent.id == p.parent.id:
+                        # print(f'[detect collision with protectors {self.id} {self.name}] parent')
                         continue
                 if self.flyer:
                     protector_lines = (
@@ -309,13 +267,15 @@ class Demolisher(Entity):
                             # print(f'[detect collision with protectors {self.id}] trace={self_trace_has_been_passed} protector={protector_diagonals}')
                             break
                 else:
+                    print(f'[detect collision with protectors {self.id} {self.name}] detect started:')
                     if self.rectangle.colliderect(p.rectangle):
                     # if self.rectangle.colliderect(p.rectangle) and self.look != p.parent.look:
+                        print(f'[detect collision with protectors {self.id} {self.name}] detected collision')
                         hit_detected = True
 
                 if hit_detected:
                     # self.summoned_sounds.append(p.sounds[self.type])
-
+                    self.parent.make_all_demolishers_floppy = True
                     self.summoned_particle_descriptions.append({
                         'sprite': 'sparkles',
                         'particle TTL': 3,
@@ -438,29 +398,6 @@ class Demolisher(Entity):
             for damage_type in self.damage.keys():
                 self.damage[damage_type] -= self.damage_reduce
 
-        # if self.is_collideable:
-        #     # print('Demolisher check collisions with ', self.obstacles_around.keys())
-        #     self.calculate_colliders()
-        #     self.detect_collisions_with_obstacles()
-        # self.detect_collisions_with_protectors()
-        #
-        # if self.is_being_collided_now:
-        #     if self.bounce:
-        #         if self.fall_speed > 1:
-        #             self.summoned_sounds.append(self.sounds['obstacle hit'])
-        #         self.floppy = False
-        #         self.speed *= self.bounce_factor
-        #         if self.collided_left:
-        #             self.look = 1
-        #         elif self.collided_right:
-        #             self.look = -1
-        #         elif self.collided_bottom:
-        #             self.fall_speed *= -self.bounce_factor  # Bounce up from the floor.
-        #             self.is_stand_on_ground = False
-        #     else:
-        #         self.summoned_sounds.append(self.sounds['obstacle hit'])
-        #         self.die()
-        #         return
 
         if not self.static:
             self.calculate_speed()
@@ -478,7 +415,8 @@ class Demolisher(Entity):
             # print('Demolisher check collisions with ', self.obstacles_around.keys())
             self.calculate_colliders()
             self.detect_collisions_with_obstacles()
-        self.detect_collisions_with_protectors()
+
+        self.detect_demolisher_collisions_with_protectors()
 
         if self.is_being_collided_now:
             if self.bounce:

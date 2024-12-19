@@ -14,6 +14,7 @@ class Actor(Entity):
         self.current_weapon_demolishers_reveal_frames = list()
         self.is_collideable = True
         self.is_destructible = True
+        self.make_all_demolishers_floppy: bool = False
         # self.pushed_by_protector: bool = False
 
         self.move_backwards = False  # Flag to force actor move backwards.
@@ -361,6 +362,9 @@ class Actor(Entity):
         self.check_space_around()
 
         super().process()
+
+        if self.animation_sequence_done:
+            self.make_all_demolishers_floppy = False
         # self.detect_collisions_with_protectors()
 
         # self.restore_default_states()
