@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/constants.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demolisher.py" beforeDir="false" afterPath="$PROJECT_DIR$/demolisher.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
@@ -166,13 +168,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00615" summary="Master chief sprites improved. Still going on.">
-      <created>1733286992794</created>
-      <option name="number" value="00615" />
-      <option name="presentableId" value="LOCAL-00615" />
-      <option name="project" value="LOCAL" />
-      <updated>1733286992794</updated>
     </task>
     <task id="LOCAL-00616" summary="Master chief sprites improved. Still going on.">
       <created>1733289064427</created>
@@ -510,7 +505,14 @@
       <option name="project" value="LOCAL" />
       <updated>1734484492416</updated>
     </task>
-    <option name="localTasksCounter" value="664" />
+    <task id="LOCAL-00664" summary="Demolishers 'update' routine updated.">
+      <created>1734494159387</created>
+      <option name="number" value="00664" />
+      <option name="presentableId" value="LOCAL-00664" />
+      <option name="project" value="LOCAL" />
+      <updated>1734494159387</updated>
+    </task>
+    <option name="localTasksCounter" value="665" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -525,7 +527,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added opportunity to move backwards while covered by shield, improved." />
     <MESSAGE value="Making some code more accurate and beautiful.&#10;Restoring actor's speed to default state." />
     <MESSAGE value="Changed animation of actor walking with protector raised up." />
     <MESSAGE value="'Protected run' has a particular section in the State machine now." />
@@ -550,6 +551,7 @@
     <MESSAGE value="Camera shake ability added." />
     <MESSAGE value="Actors get an ability to cause earthquakes." />
     <MESSAGE value="Actor shakes earth only if he fell from a particular height, and he has a huge weight." />
-    <option name="LAST_COMMIT_MESSAGE" value="Actor shakes earth only if he fell from a particular height, and he has a huge weight." />
+    <MESSAGE value="Demolishers 'update' routine updated." />
+    <option name="LAST_COMMIT_MESSAGE" value="Demolishers 'update' routine updated." />
   </component>
 </project>

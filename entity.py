@@ -177,8 +177,8 @@ class Entity(object):
         self.base_max_jump_height = 22.
         self.max_jump_height = 22.
         self.jump_height = 0.
-        self.default_hop_back_jump_height_modifier: float = 3.6  # Rarely used, mostly while hopping back.
-        self.hop_back_jump_height_modifier = 3.6  # Rarely used, mostly while hopping back.
+        self.default_hop_back_jump_height_modifier = self.max_jump_height // 5 # Rarely used, mostly while hopping back.
+        self.hop_back_jump_height_modifier = self.default_hop_back_jump_height_modifier  # Rarely used, mostly while hopping back.
         self.default_max_jump_attempts: int = 1  #
         self.max_jump_attempts: int = 1  #
         self.jump_attempts_counter: int = 0
@@ -426,7 +426,7 @@ class Entity(object):
         # self.calculate_fall_speed()  # Discover speed and potential fall distance
         self.calculate_speed()       # Discover speed and potential move distance
 
-        if abs(self.speed) > 10:
+        if abs(self.speed) > 20:
             if not self.summon_kicker_demolisher:
                 demolisher = {
                     'parent': self,
@@ -439,7 +439,7 @@ class Entity(object):
                     'visible': False,
                     'demolisher sprite': None,
                     'type': 'blunt',
-                    'pierce': False, 'demolisher TTL': 11, 'speed': 0,
+                    'pierce': False, 'demolisher TTL': 3, 'speed': 0,
                     'static': True, 'damage reduce': 0,
                     'collides': False,
                     # 'collides': True,

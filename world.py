@@ -1143,6 +1143,8 @@ class World(object):
                         if not actor.ignore_user_input:
                             actor.think()
                             actor.perform_ai_deed_after_thinking()
+                            if not actor.summon_protector:
+                                self.discard_protectors(key)
                     else:
                         # ROUTINES FOR HUMAN PLAYER ACTOR
                         if not actor.ignore_user_input:

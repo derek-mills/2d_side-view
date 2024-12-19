@@ -1,6 +1,7 @@
-import sys
+# import sys
 
 from entity import *
+from misc_tools import get_distance_to
 
 class Actor(Entity):
     def __init__(self):
@@ -38,6 +39,19 @@ class Actor(Entity):
         # self.air_acceleration = .4
         self.jump_height: int = 22
         self.max_jump_attempts = 2
+
+        # AI mind special features:
+        self.reflex_counter: int = 0
+        self.reflex_range = (10, 20)
+        self.tendencies = {
+            'idle': (0, 10),
+            'defending': (11, 40),
+            'aggression': (41, 100),
+        }
+        # self.idle_tendency = (0, 10)
+        # self.defending_tendency = (11, 40)
+        # self.aggressiveness_tendency = (41, 100)
+
 
 
         # self.rectangle.height = 149
@@ -1515,6 +1529,16 @@ class Actor(Entity):
         #         self.set_current_animation('decay 50')
 
 
+    def reset_ai_actions(self):
+        self.ai_input_down_arrow = False
+        self.ai_input_jump = False
+        self.ai_input_left_arrow = False
+        self.ai_input_right_arrow = False
+        self.ai_input_attack = False
+        self.ai_input_hop_forward = False
+        self.ai_input_hop_back = False
+        # self.summon_protector = False
+
     def reset_self_flags(self):
         self.is_move_left = False
         self.is_move_right = False
@@ -1546,21 +1570,6 @@ class Actor(Entity):
         if self.think_type == 'patrol':
             self.target = self.living_entities['player']
             self.think_type = 'chaser'
-        elif self.think_type == 'turret':
-            if self.rectangle.centerx > self.target.rectangle.centerx:
-                self.ai_input_left_arrow = True
-                self.ai_input_right_arrow = False
-                self.ai_input_attack = False
-                self.look = -1
-            else:
-                self.ai_input_left_arrow = False
-                self.ai_input_right_arrow = True
-                self.ai_input_attack = False
-                self.look = 1
-            self.activate_weapon(2)  # Activate ranged weapon (always has index 2).
-            self.ai_input_attack = True
-            self.ai_input_left_arrow = False
-            self.ai_input_right_arrow = False
         elif self.think_type == 'chaser':
             # Change weapon depends on target vicinity:
             # print('[think]', list(self.inventory['weapons'].keys()))
@@ -1582,18 +1591,18 @@ class Actor(Entity):
                 self.ai_input_attack = False
                 self.look = 1
 
-            # AI actor collided with someone's shield:
-            if self.pushed_by_protector:
-                possible_actions = ('hop back', 'hop forward', 'slide')
-                next_deed = choice(possible_actions)
-                if next_deed == 'hop back':
-                    self.ai_input_hop_back = True
-                elif next_deed == 'slide':
-                    self.ai_input_down_arrow = True
-                    self.ai_input_jump = True
-                elif next_deed == 'hop forward':
-                    self.ai_input_hop_forward = True
-                return
+            # # AI actor collided with someone's shield:
+            # if self.pushed_by_protector:
+            #     possible_actions = ('hop back', 'hop forward', 'slide')
+            #     next_deed = choice(possible_actions)
+            #     if next_deed == 'hop back':
+            #         self.ai_input_hop_back = True
+            #     elif next_deed == 'slide':
+            #         self.ai_input_down_arrow = True
+            #         self.ai_input_jump = True
+            #     elif next_deed == 'hop forward':
+            #         self.ai_input_hop_forward = True
+            #     return
 
             if self.sprite_rectangle.colliderect(self.target.sprite_rectangle):
                 # Smash actor immediately:
@@ -1646,6 +1655,79 @@ class Actor(Entity):
                         #     self.ai_input_attack = True
                         #     self.ai_input_left_arrow = False
                         #     self.ai_input_right_arrow = False
+        elif self.think_type == 'sober':
+            # Change weapon depends on target vicinity:
+            # print('[think]', list(self.inventory['weapons'].keys()))
+            if self.reflex_counter > 0:
+                self.reflex_counter -= 1
+                return
+            else:
+                self.reset_ai_actions()
+                if not self.target or self.target.dead:
+                    self.think_type = 'patrol'
+                    return
+
+                self.reflex_counter = randint(self.reflex_range[0], self.reflex_range[1])
+
+                # Consider where the target is and turn head to the proper direction.
+                if self.rectangle.centerx > self.target.rectangle.centerx:
+                    self.look = -1
+                else:
+                    self.look = 1
+
+                tendency = randint(0, 101)
+                tendency_factor = 'idle'
+
+                for k in self.tendencies.keys():
+                    if tendency in range(self.tendencies[k][0], self.tendencies[k][1]):
+                        tendency_factor = k
+                        break
+
+                # Get distance to the target.
+                distance_to_target = get_distance_to(self.rectangle.center, self.target.rectangle.center)
+
+                # if self.pushed_by_protector:
+                #     self.ai_input_hop_back = True
+                #     self.ai_input_attack = False
+                #     # possible_actions = ('hop back', 'hop forward', 'slide')
+                #     # next_deed = choice(possible_actions)
+                #     # if next_deed == 'hop back':
+                #     #     self.ai_input_hop_back = True
+                #     # elif next_deed == 'slide':
+                #     #     self.ai_input_down_arrow = True
+                #     #     self.ai_input_jump = True
+                #     # elif next_deed == 'hop forward':
+                #     #     self.ai_input_hop_forward = True
+                #     return
+
+                if tendency_factor == 'idle':
+                    return
+                elif tendency_factor == 'defending':
+                    self.activate_weapon(3)  # Defending stuff (always has index 3 in AI actor inventory).
+                    self.set_action('protect')
+                    # self.summoned_protectors_keep_alive = True
+                    # self.ai_input_attack = True
+                    movement_direction = randint(0, 2)
+                    if movement_direction == 1:
+                        self.move_backwards = True
+                    else:
+                        if self.look == 1:
+                            self.ai_input_right_arrow = True
+                        else:
+                            self.ai_input_left_arrow = True
+                    return
+                elif tendency_factor == 'aggression':
+                    for i in range(0, 3):
+                        self.activate_weapon(i)
+                        if self.current_mana_lost_per_attack < self.stats['mana']:
+                            if distance_to_target <= self.current_weapon['reach']:
+                                self.ai_input_attack = True
+                                self.summon_protector = False
+                                return
+                    else:
+                        return
+
+
         elif self.think_type == 'exploding barrel':
             if self.fall_speed > 20:  # barrel explodes if it falls from the height of 4 blocks (50 pixels * 4)
                 self.set_state('almost explode')
@@ -1654,6 +1736,21 @@ class Actor(Entity):
             #     self.set_state('almost explode')
             #     # self.ai_input_attack = True
             #     self.think_type = ''
+        elif self.think_type == 'turret':
+            if self.rectangle.centerx > self.target.rectangle.centerx:
+                self.ai_input_left_arrow = True
+                self.ai_input_right_arrow = False
+                self.ai_input_attack = False
+                self.look = -1
+            else:
+                self.ai_input_left_arrow = False
+                self.ai_input_right_arrow = True
+                self.ai_input_attack = False
+                self.look = 1
+            self.activate_weapon(2)  # Activate ranged weapon (always has index 2).
+            self.ai_input_attack = True
+            self.ai_input_left_arrow = False
+            self.ai_input_right_arrow = False
 
     def perform_ai_deed_after_thinking(self):
         if self.ai_input_down_arrow:

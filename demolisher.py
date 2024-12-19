@@ -289,7 +289,8 @@ class Demolisher(Entity):
             hit_detected = False
             for k in self.protectors_around.keys():
                 p = self.protectors_around[k]
-
+                if self.parent.id == p.parent.id:
+                    continue
                 if self.flyer:
                     protector_lines = (
                         (p.rectangle.topleft, p.rectangle.bottomleft),

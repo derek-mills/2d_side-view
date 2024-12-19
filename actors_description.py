@@ -2405,8 +2405,8 @@ sober_knight = {
     'health': 2000.,
     'blood color': (255, 0, 0),
     'gravity affected': True,
-    'mana replenish': 1,
-    # 'mana replenish': .01,
+    # 'mana replenish': 1,
+    'mana replenish': .02,
     'stamina replenish': .2,
     'strength': 10,  # The more the strength, the less the inner athletic index, the more max speed and jump height.
     'body weight': 60,  # The more the weight, the more the inner athletic index, the less max speed and jump height.
@@ -2419,7 +2419,9 @@ sober_knight = {
         'smash': .1,
         'fire': 1
     },
-    'max speed': 1 + randint(0, 4),  # Base value, which will be reduced upon athletic index.
+    'max speed': 14,  # Base value, which will be reduced upon athletic index.
+    # 'max speed': 16,  # Base value, which will be reduced upon athletic index.
+    # 'max speed': 1 + randint(0, 4),  # Base value, which will be reduced upon athletic index.
     # 'max speed': 16,  # Base value, which will be reduced upon athletic index.
     'max jump height': 28, # Base value, which will be reduced upon athletic index.
     'acceleration': .2,
@@ -3382,7 +3384,8 @@ sober_knight = {
     },
     # 'think type': 'turret',
     # 'think type': 'patrol',
-    'think type': 'chaser',
+    'think type': 'sober',
+    # 'think type': 'chaser',
     'disappear after death': False,
     'AI controlled': True
 }
