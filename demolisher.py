@@ -275,7 +275,8 @@ class Demolisher(Entity):
 
                 if hit_detected:
                     # self.summoned_sounds.append(p.sounds[self.type])
-                    self.parent.make_all_demolishers_floppy = True
+                    if self.parent:
+                        self.parent.make_all_demolishers_floppy = True
                     self.summoned_particle_descriptions.append({
                         'sprite': 'sparkles',
                         'particle TTL': 3,
