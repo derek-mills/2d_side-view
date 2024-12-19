@@ -7,10 +7,7 @@
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demolisher.py" beforeDir="false" afterPath="$PROJECT_DIR$/demolisher.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -168,13 +165,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00617" summary="Master chief sprites improved. Still going on.">
-      <created>1733293865893</created>
-      <option name="number" value="00617" />
-      <option name="presentableId" value="LOCAL-00617" />
-      <option name="project" value="LOCAL" />
-      <updated>1733293865893</updated>
     </task>
     <task id="LOCAL-00618" summary="Sprite sheet net generator updated slightly.">
       <created>1733296093557</created>
@@ -512,7 +502,14 @@
       <option name="project" value="LOCAL" />
       <updated>1734576674045</updated>
     </task>
-    <option name="localTasksCounter" value="666" />
+    <task id="LOCAL-00666" summary="Collision of demolishers and protectors system remake.">
+      <created>1734591258101</created>
+      <option name="number" value="00666" />
+      <option name="presentableId" value="LOCAL-00666" />
+      <option name="project" value="LOCAL" />
+      <updated>1734591258101</updated>
+    </task>
+    <option name="localTasksCounter" value="667" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -527,7 +524,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Changed animation of actor walking with protector raised up." />
     <MESSAGE value="'Protected run' has a particular section in the State machine now." />
     <MESSAGE value="Fixed some bugs with 'running' and 'defending' states in their different combinations." />
     <MESSAGE value="Added actors and protectors collision checking system." />
@@ -552,6 +548,7 @@
     <MESSAGE value="Actor shakes earth only if he fell from a particular height, and he has a huge weight." />
     <MESSAGE value="Demolishers 'update' routine updated." />
     <MESSAGE value="The 'Sober knight' AI thinking archetype added, which depends on AI mind peculiar features, such as idle state, defence and aggression." />
-    <option name="LAST_COMMIT_MESSAGE" value="The 'Sober knight' AI thinking archetype added, which depends on AI mind peculiar features, such as idle state, defence and aggression." />
+    <MESSAGE value="Collision of demolishers and protectors system remake." />
+    <option name="LAST_COMMIT_MESSAGE" value="Collision of demolishers and protectors system remake." />
   </component>
 </project>

@@ -1533,9 +1533,9 @@ class Actor(Entity):
 
     def restore_default_states(self):
         self.max_speed = self.base_max_speed
-        self.frames_changing_threshold_modifier = 1
-        self.frames_changing_threshold_penalty = 1
-        self.frames_changing_threshold = self.animations[self.current_animation]['speed']
+        # self.frames_changing_threshold_modifier = 1
+        # self.frames_changing_threshold_penalty = 1
+        # self.frames_changing_threshold = self.animations[self.current_animation]['speed']
 
     def think(self):
         # AI actor collided with someone's shield:
@@ -1641,13 +1641,14 @@ class Actor(Entity):
                         #     self.ai_input_right_arrow = False
         elif self.think_type == 'protect':
             # Consider where the target is and turn head to the proper direction.
-            if self.stats['stamina'] < 0:
+            if self.stats['stamina'] <= 0:
                 self.summon_protector = False
+                self.set_state('stand still')
                 return
-            if self.rectangle.centerx > self.target.rectangle.centerx:
-                self.look = -1
-            else:
-                self.look = 1
+            # if self.rectangle.centerx > self.target.rectangle.centerx:
+            #     self.look = -1
+            # else:
+            #     self.look = 1
             self.activate_weapon(3)  # Defending stuff (always has index 3 in AI actor inventory).
             self.set_action('protect')
         elif self.think_type == 'sober':

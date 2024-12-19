@@ -444,6 +444,7 @@ class World(object):
         if demol.parent:
             if demol.parent.pushed_by_protector:
                  demol.become_mr_floppy()
+                 demol.summoned_sounds.append(self.protectors[self.location][demol.parent.pushing_protector_id].sounds[demol.type])
             demol.parent_id = demol.parent.id
             demol.look = demol.parent.look
             demol.ttl = description['demolisher TTL'] * demol.parent.frames_changing_threshold_modifier

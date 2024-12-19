@@ -345,45 +345,45 @@ class Demolisher(Entity):
                             self.parent.stun_counter = 40 # How many cycles attacking actor will be recovering from recoil.
                             self.parent.state_machine()
 
-                    if not self.floppy:
-                        self.summoned_sounds.append(p.sounds[self.type])
-                        # Reduce all damaging abilities according to protector's might:
-                        damage_to_owner_of_protector = dict()
-                        for damage_type in self.damage:
-                            damage_to_owner_of_protector[damage_type] = self.damage[damage_type] * p.protection[damage_type]
-                            self.damage[damage_type] = self.damage[damage_type] * p.protection[damage_type] if damage_type != "fire" else self.damage[damage_type]
-                            # self.damage[damage_type] *= p.protection[damage_type]
+                    # if not self.floppy:
+                    self.summoned_sounds.append(p.sounds[self.type])
+                    # Reduce all damaging abilities according to protector's might:
+                    damage_to_owner_of_protector = dict()
+                    for damage_type in self.damage:
+                        damage_to_owner_of_protector[damage_type] = self.damage[damage_type] * p.protection[damage_type]
+                        self.damage[damage_type] = self.damage[damage_type] * p.protection[damage_type] if damage_type != "fire" else self.damage[damage_type]
+                        # self.damage[damage_type] *= p.protection[damage_type]
 
 
+                    if self.id not in p.parent.got_immunity_to_demolishers:
+                        p.parent.got_immunity_to_demolishers.append(self.id)
+                    # p.parent.mana_reduce(p.mana_consumption * p.parent.normal_mana_lost_per_defend)
+                    p.parent.stamina_reduce(p.stamina_consumption * p.parent.normal_stamina_lost_per_defend)
+                    p.parent.get_damage(damage_to_owner_of_protector, 1)
+                    # p.parent.get_damage(self.damage, 1)
+                    if p.parent.total_damage_has_got > 0:
+                        if p.parent.stats['stamina'] > 0:
+                        # if p.parent.stats['stamina'] > 0 and p.parent.stats['mana'] > 0:
+                            p.parent.invincibility_timer = self.default_invincibility_timer
                         if self.id not in p.parent.got_immunity_to_demolishers:
                             p.parent.got_immunity_to_demolishers.append(self.id)
-                        # p.parent.mana_reduce(p.mana_consumption * p.parent.normal_mana_lost_per_defend)
-                        p.parent.stamina_reduce(p.stamina_consumption * p.parent.normal_stamina_lost_per_defend)
-                        p.parent.get_damage(damage_to_owner_of_protector, 1)
-                        # p.parent.get_damage(self.damage, 1)
-                        if p.parent.total_damage_has_got > 0:
-                            if p.parent.stats['stamina'] > 0:
-                            # if p.parent.stats['stamina'] > 0 and p.parent.stats['mana'] > 0:
-                                p.parent.invincibility_timer = self.default_invincibility_timer
-                            if self.id not in p.parent.got_immunity_to_demolishers:
-                                p.parent.got_immunity_to_demolishers.append(self.id)
-                            # print(f'[detect demolishers] {p.parent.got_immunity_to_demolishers}')
-                            p.parent.set_state('prepare to get hurt')
-                            p.parent.state_machine()
-                            p.parent.summon_info_blob(str(int(p.parent.total_damage_has_got)), YELLOW if p.parent.id == 0 else WHITE, self.parent.look if self.parent else 1)
+                        # print(f'[detect demolishers] {p.parent.got_immunity_to_demolishers}')
+                        p.parent.set_state('prepare to get hurt')
+                        p.parent.state_machine()
+                        p.parent.summon_info_blob(str(int(p.parent.total_damage_has_got)), YELLOW if p.parent.id == 0 else WHITE, self.parent.look if self.parent else 1)
 
-                        if self.bounce:
-                            print(f'[demolisher detect w\protectors ({self.name} {self.id})] bounces.')
-                            self.is_being_collided_now = True
-                            self.parent_id = -1
-                            self.parent = None
-                            if self.rectangle.centerx > p.rectangle.centerx:
-                                self.collided_left = True
-                            else:
-                                self.collided_right = True
+                    if self.bounce:
+                        print(f'[demolisher detect w\protectors ({self.name} {self.id})] bounces.')
+                        self.is_being_collided_now = True
+                        self.parent_id = -1
+                        self.parent = None
+                        if self.rectangle.centerx > p.rectangle.centerx:
+                            self.collided_left = True
                         else:
-                            self.dead = True
-                        self.become_mr_floppy()
+                            self.collided_right = True
+                    else:
+                        self.dead = True
+                    self.become_mr_floppy()
                     break
 
     def process_protector(self):
