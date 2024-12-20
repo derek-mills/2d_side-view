@@ -1673,8 +1673,10 @@ class Actor(Entity):
                 else:
                     self.look = 1
 
+
+
                 tendency = randint(0, 101)
-                tendency_factor = 'idle'
+                tendency_factor = 'idle'  # Default
 
                 for k in self.tendencies.keys():
                     if tendency in range(self.tendencies[k][0], self.tendencies[k][1]):

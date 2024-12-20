@@ -1802,7 +1802,7 @@ player_jake = {
         },
         'whip crouch right': {
             'repeat': True, 'interruptable': True,
-            'sequence': (60, 60, 60, 61, 62, 62, 62, 62,62, 61),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'sequence': (5,5,5,6,7,7,7,7,8,8,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
             'speed': 2,
             'activity at frames': {
                 4: {
@@ -1825,7 +1825,7 @@ player_jake = {
         },
         'whip crouch left': {
             'repeat': True, 'interruptable': True,
-            'sequence': (80, 80, 80, 79, 78, 78, 78, 78,78, 79),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'sequence': (22,22,22,21,20,20,20,20,19,19,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
             'speed': 2,
             'activity at frames': {
                 4: {
@@ -2402,8 +2402,8 @@ sober_knight = {
     },
     'tendencies': {
         'idle': (0, 10),
-        'defending': (11, 40),
-        'aggression': (41, 100),
+        'defending': (11, 80),
+        'aggression': (81, 100),
     },
     'decay counter': 100,
     'drop': ['exp' for i in range(randint(8,12))],
@@ -2414,7 +2414,7 @@ sober_knight = {
     'mana replenish': .02,
     'stamina replenish': .2,
     'strength': 10,  # The more the strength, the less the inner athletic index, the more max speed and jump height.
-    'body weight': 60,  # The more the weight, the more the inner athletic index, the less max speed and jump height.
+    'body weight': 30,  # The more the weight, the more the inner athletic index, the less max speed and jump height.
     'resistances': {
         # Zero is total resistance, such type of damage multiples by zero.
         # Above 1 is a weakness to particular type of damage.

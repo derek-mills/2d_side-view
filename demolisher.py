@@ -267,10 +267,10 @@ class Demolisher(Entity):
                             # print(f'[detect collision with protectors {self.id}] trace={self_trace_has_been_passed} protector={protector_diagonals}')
                             break
                 else:
-                    print(f'[detect collision with protectors {self.id} {self.name}] detect started:')
+                    # print(f'[detect collision with protectors {self.id} {self.name}] detect started:')
                     if self.rectangle.colliderect(p.rectangle):
                     # if self.rectangle.colliderect(p.rectangle) and self.look != p.parent.look:
-                        print(f'[detect collision with protectors {self.id} {self.name}] detected collision')
+                    #     print(f'[detect collision with protectors {self.id} {self.name}] detected collision')
                         hit_detected = True
 
                 if hit_detected:
@@ -421,7 +421,7 @@ class Demolisher(Entity):
 
         if self.is_being_collided_now:
             if self.bounce:
-                if self.fall_speed > 1:
+                if self.fall_speed > 5:
                     self.summoned_sounds.append(self.sounds['obstacle hit'])
                 self.floppy = False
                 self.speed *= self.bounce_factor
