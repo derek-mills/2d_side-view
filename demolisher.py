@@ -301,7 +301,7 @@ class Demolisher(Entity):
                     if self.impact_recoil:
                         # Strike back own parent, because demolisher get hit to the shield.
                         if self.parent:
-                            print(f'[demolisher detect w\protectors ({self.name} {self.id})] strikes back parent: {self.parent.name}')
+                            # print(f'[demolisher detect w\protectors ({self.name} {self.id})] strikes back parent: {self.parent.name}')
                             self.parent.set_state('prepare to get hurt')
                             self.parent.stun_counter = 40 # How many cycles attacking actor will be recovering from recoil.
                             self.parent.state_machine()
@@ -334,7 +334,7 @@ class Demolisher(Entity):
                         p.parent.summon_info_blob(str(int(p.parent.total_damage_has_got)), YELLOW if p.parent.id == 0 else WHITE, self.parent.look if self.parent else 1)
 
                     if self.bounce:
-                        print(f'[demolisher detect w\protectors ({self.name} {self.id})] bounces.')
+                        # print(f'[demolisher detect w\protectors ({self.name} {self.id})] bounces.')
                         self.is_being_collided_now = True
                         self.parent_id = -1
                         self.parent = None

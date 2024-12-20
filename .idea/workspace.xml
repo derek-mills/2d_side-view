@@ -7,11 +7,8 @@
     <list default="true" id="ab506639-4353-427d-a45f-73b72ca2b992" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/actor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actors_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/actors_description.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demolisher.py" beforeDir="false" afterPath="$PROJECT_DIR$/demolisher.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/animations/jake_8bit.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/animations/jake_8bit.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/gimp_originals/jake_8bit_big.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/img/gimp_originals/jake_8bit_big.xcf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/world.py" beforeDir="false" afterPath="$PROJECT_DIR$/world.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,13 +165,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715569007092</updated>
-    </task>
-    <task id="LOCAL-00622" summary="Added 'dizzy' player actor animation">
-      <created>1733376911048</created>
-      <option name="number" value="00622" />
-      <option name="presentableId" value="LOCAL-00622" />
-      <option name="project" value="LOCAL" />
-      <updated>1733376911048</updated>
     </task>
     <task id="LOCAL-00623" summary="Added roll\slide animation.">
       <created>1733380648971</created>
@@ -512,7 +502,14 @@
       <option name="project" value="LOCAL" />
       <updated>1734599175193</updated>
     </task>
-    <option name="localTasksCounter" value="671" />
+    <task id="LOCAL-00671" summary="Added player actor crouch attack animation.">
+      <created>1734678851803</created>
+      <option name="number" value="00671" />
+      <option name="presentableId" value="LOCAL-00671" />
+      <option name="project" value="LOCAL" />
+      <updated>1734678851803</updated>
+    </task>
+    <option name="localTasksCounter" value="672" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -527,7 +524,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="New system of collisions checking between demolisher anf flying protector, based on a trace of passed bullet path." />
     <MESSAGE value="Backward movement added by pressing SHIFT button." />
     <MESSAGE value="Backward movement added by pressing SHIFT button. This system has been greatly modified." />
     <MESSAGE value="Backward movement added by pressing SHIFT button. &#10;This system has been slightly modified." />
@@ -552,6 +548,7 @@
     <MESSAGE value="Demolishers have to be summoned separately, after  all actors, protectors, particles processing to avoid actors hit detection before protectors make sense." />
     <MESSAGE value="Tiny bug fixed." />
     <MESSAGE value="One more bug fixed." />
-    <option name="LAST_COMMIT_MESSAGE" value="One more bug fixed." />
+    <MESSAGE value="Added player actor crouch attack animation." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added player actor crouch attack animation." />
   </component>
 </project>

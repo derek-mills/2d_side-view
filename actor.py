@@ -1665,7 +1665,7 @@ class Actor(Entity):
                     self.think_type = 'patrol'
                     return
 
-                self.reflex_counter = randint(self.reflex_range[0], self.reflex_range[1])
+                # self.reflex_counter = randint(self.reflex_range[0], self.reflex_range[1])
 
                 # Consider where the target is and turn head to the proper direction.
                 if self.rectangle.centerx > self.target.rectangle.centerx:
@@ -1673,15 +1673,21 @@ class Actor(Entity):
                 else:
                     self.look = 1
 
-
-
-                tendency = randint(0, 101)
                 tendency_factor = 'idle'  # Default
 
-                for k in self.tendencies.keys():
-                    if tendency in range(self.tendencies[k][0], self.tendencies[k][1]):
-                        tendency_factor = k
-                        break
+                if self.hit_detected:
+                    self.hit_detected = False
+                    tendency_factor = 'defending'
+                    self.reflex_counter = randint(self.reflex_range[0] * 3, self.reflex_range[1] * 3)
+                    print(f'[think {self.id} {self.name}] try to reflect strikes.')
+                else:
+                    self.reflex_counter = randint(self.reflex_range[0], self.reflex_range[1])
+                    tendency = randint(0, 101)
+
+                    for k in self.tendencies.keys():
+                        if tendency in range(self.tendencies[k][0], self.tendencies[k][1]):
+                            tendency_factor = k
+                            break
 
                 # Get distance to the target.
                 distance_to_target = get_distance_to(self.rectangle.center, self.target.rectangle.center)
