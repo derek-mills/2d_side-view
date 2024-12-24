@@ -2409,6 +2409,7 @@ sober_knight = {
     'drop': ['exp' for _ in range(randint(8,12))],
     'health': 2000.,
     'blood color': (255, 0, 0),
+    'reflex range': (10, 20),
     'gravity affected': True,
     # 'mana replenish': 1,
     'mana replenish': .02,

@@ -150,6 +150,8 @@ class World(object):
         entity.name = description['name']
         if 'tendencies' in description.keys():
             entity.tendencies = description['tendencies']
+        if 'reflex range' in description.keys():
+            entity.reflex_range = description['reflex range']
         for resistance in description['resistances'].keys():
             entity.resistances[resistance] = description['resistances'][resistance]
         # entity.resistances = description['resistances']

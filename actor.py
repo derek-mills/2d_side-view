@@ -589,13 +589,13 @@ class Actor(Entity):
                 self.normal_stamina_replenish = 0.01
 
         elif new_action == 'attack':
-            if self.pushed_by_protector:
-                self.set_state('dizzy prepare')
-                # self.set_state('stand still')
-                # self.ignore_user_input = False
-                self.stun_counter = 5
-                # print('1')
-                return
+            # if self.pushed_by_protector:
+            #     self.set_state('dizzy prepare')
+            #     # self.set_state('stand still')
+            #     # self.ignore_user_input = False
+            #     self.stun_counter = 5
+            #     # print('1')
+            #     return
 
             if self.stats['mana'] <= self.current_mana_lost_per_attack:
                 # print(f'[state machine] NOT ENOUGH MANA')
@@ -1660,6 +1660,7 @@ class Actor(Entity):
                 self.reflex_counter -= 1
                 return
             else:
+                self.reflex_counter = randint(self.reflex_range[0], self.reflex_range[1])
                 self.reset_ai_actions()
                 if not self.target or self.target.dead:
                     self.think_type = 'patrol'
@@ -1673,6 +1674,20 @@ class Actor(Entity):
                 else:
                     self.look = 1
 
+                if self.pushed_by_protector:
+                    # self.set_state('dizzy prepare')
+                    # self.set_state('stand still')
+                    # self.ignore_user_input = False
+                    # self.stun_counter = randint(self.reflex_range[0], self.reflex_range[1]) >> 1
+                    deed = choice(('hop back', 'slide'))
+                    if deed == 'hop back':
+                        self.ai_input_hop_back = True
+                    elif deed == 'slide':
+                        # print('slide_________________________')
+                        self.ai_input_down_arrow = True
+                        self.ai_input_jump = True
+                    return
+
                 tendency_factor = 'idle'  # Default
 
                 if self.hit_detected:
@@ -1681,7 +1696,7 @@ class Actor(Entity):
                     self.reflex_counter = randint(self.reflex_range[0] * 3, self.reflex_range[1] * 3)
                     print(f'[think {self.id} {self.name}] try to reflect strikes.')
                 else:
-                    self.reflex_counter = randint(self.reflex_range[0], self.reflex_range[1])
+                    # self.reflex_counter = randint(self.reflex_range[0], self.reflex_range[1])
                     tendency = randint(0, 101)
 
                     for k in self.tendencies.keys():
