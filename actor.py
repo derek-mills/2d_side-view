@@ -1730,6 +1730,8 @@ class Actor(Entity):
                                 self.ai_input_attack = True
                                 self.summon_protector = False
                                 return
+                        # else:
+                        #     self.ai_input_hop_back = True
                     else:
                         return
 

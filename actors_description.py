@@ -1401,15 +1401,16 @@ player_jake = {
         'frames quantity': 139,
         'frame width': 120,
         'frame height': 120,
-        'frame scale': 4,
+        'frame scale': 3,
     },
-    'health': 2000.,
+    'health': 1000.,
     'blood color': (255, 0, 0),
     'gravity affected': True,
-    'mana replenish': .01,
+    'mana replenish': .2,
+    # 'mana replenish': .01,
     'stamina replenish': .2,
     'strength': 10,  # The more the strength, the less the inner athletic index, the more max speed and jump height.
-    'body weight': 40,  # The more the weight, the more the inner athletic index, the less max speed and jump height.
+    'body weight': 80,  # The more the weight, the more the inner athletic index, the less max speed and jump height.
     'resistances': {
         # Zero is total resistance, such type of damage multiples by zero.
         # Above 1 is a weakness to particular type of damage.
@@ -1419,24 +1420,15 @@ player_jake = {
         'smash': .1,
         'fire': 1
     },
-    # 'sounds': {
-    #     'pain': 'sound_jake_pain',
-    #     'footstep': 'sound_step_2',
-    # },
-    # 'body': {
-    #     'head': {
-    #         'hardness': 100
-    #     },
-    # },
-    'max speed': 15,  # Base value, which will be reduced upon athletic index.
+    'max speed': 10,  # Base value, which will be reduced upon athletic index.
     # 'max speed': 16,  # Base value, which will be reduced upon athletic index.
-    'max jump height': 34, # Base value, which will be reduced upon athletic index.
+    'max jump height': 30, # Base value, which will be reduced upon athletic index.
     # 'max jump height': 28, # Base value, which will be reduced upon athletic index.
     'acceleration': .6,
     'friction': .9,
     'air acceleration': .4,
     # First item in list must be an undroppable weapon.
-    'items': (small_shield,jake_punch, kitchen_knife, whip, spikeball_staff,axe, fireball_staff,pistol,),
+    'items': (small_shield,jake_punch, pistol, whip, fireball_staff,kitchen_knife),
     # 'items': (whip,fireball_staff,sword,kitchen_knife,),
     'animations': {
         'dizzy right': {
@@ -1752,7 +1744,9 @@ player_jake = {
         },
         'whip right': {
             'repeat': True, 'interruptable': True,
-            'sequence': (74,74,74,74,74,75,76,76,76,76,76,77,77,77,77),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'sequence': (74,74,74,74,74,
+                         75,76,76,76,76,
+                         76,77,77,77,77),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
             'speed': 3,
             'activity at frames': {
                 # 1: {
@@ -1777,7 +1771,9 @@ player_jake = {
         },
         'whip left': {
             'repeat': True, 'interruptable': True,
-            'sequence': (90,90,90,90,90,89,88,88,88,88,88,87,87,87,87),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'sequence': (90,90,90,90,90,
+                         89,88,88,88,88,
+                         88,87,87,87,87),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
             'speed': 3,
             'activity at frames': {
                 # 1: {
@@ -1802,20 +1798,22 @@ player_jake = {
         },
         'whip crouch right': {
             'repeat': True, 'interruptable': True,
-            'sequence': (5,5,5,6,7,7,7,7,8,8,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
-            'speed': 2,
+            'sequence': (5,5,5,5,5,
+                         6,7,7,7,7,
+                         7,8,8,8,8,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'speed': 3,
             'activity at frames': {
-                4: {
+                6: {
                     #'sound': True,
                     'demolisher': True,
                     'demolishers set number': 0,
                 },
-                5: {
+                7: {
                     #'sound': True,
                     'demolisher': True,
                     'demolishers set number': 1,
                 },
-                6: {
+                8: {
                     #'sound': True,
                     'demolisher': True,
                     'demolishers set number': 2,
@@ -1825,20 +1823,22 @@ player_jake = {
         },
         'whip crouch left': {
             'repeat': True, 'interruptable': True,
-            'sequence': (22,22,22,21,20,20,20,20,19,19,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
-            'speed': 2,
+            'sequence': (22,22,22,22,22,
+                         21,20,20,20,20,
+                         20,19,19,19,19,),  # 0 - 474, 74, 74, 74, 75, 75),  # 5 - 9
+            'speed': 3,
             'activity at frames': {
-                4: {
+                6: {
                     #'sound': True,
                     'demolisher': True,
                     'demolishers set number': 0,
                 },
-                5: {
+                7: {
                     #'sound': True,
                     'demolisher': True,
                     'demolishers set number': 1,
                 },
-                6: {
+                8: {
                     #'sound': True,
                     'demolisher': True,
                     'demolishers set number': 2,
@@ -2398,7 +2398,7 @@ sober_knight = {
         'frames quantity': 139,
         'frame width': 120,
         'frame height': 120,
-        'frame scale': 4,
+        'frame scale': 3,
     },
     'tendencies': {
         'idle': (0, 10),
@@ -2406,7 +2406,7 @@ sober_knight = {
         'aggression': (41, 100),
     },
     'decay counter': 100,
-    'drop': ['exp' for i in range(randint(8,12))],
+    'drop': ['exp' for _ in range(randint(8,12))],
     'health': 2000.,
     'blood color': (255, 0, 0),
     'gravity affected': True,

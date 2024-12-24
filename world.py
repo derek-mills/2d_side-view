@@ -1807,7 +1807,8 @@ class World(object):
             dy += (self.info_panel_font_size + self.info_panel_gap_between_stripes)
 
         # Show weapons ICONS in both player's hands:
-        frame_sz = sprites['axe']['sprite'].get_size()
+        frame_sz = (150, 150)
+        # frame_sz = sprites['axe']['sprite'].get_size()
         weapon_sprite_start_x = 10
         weapon_sprite_start_y = MAXY - frame_sz[1] - 10
         # weapon_sprite_start_x = self.info_panel_start_x + background_width + 5
